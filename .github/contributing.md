@@ -13,10 +13,10 @@ Remember that this repository is maintained by community members who volunteer t
 
 Please do not open GitHub issues for general support questions as the GitHub list should be used for feature requests and bug reports. This way we can more easily track actual issues or bugs from the code and keep the general discussion separate from the actual code.
 
-If you have questions about how to use SharePoint Framework or any of the provided samples, please use the following locations.
+If you have questions about how to use Power Platform or any of the provided samples, please use the following locations.
 
-* [SharePoint Developer Space](http://aka.ms/SPPnP-Community) at http://techcommunity.microsoft.com
-* [SharePoint Stack Exchange](http://sharepoint.stackexchange.com/) with 'spfx' tag
+* [Power Apps & Power Automate Community](https://techcommunity.microsoft.com/t5/power-apps-power-automate/bd-p/PowerAppFlow) at http://techcommunity.microsoft.com
+* [Microsoft 365 PnP Community](https://techcommunity.microsoft.com/t5/microsoft-365-pnp/bd-p/Microsoft365PnP) for questions including Power Platform solutions
 
 ## Typos, Issues, Bugs and contributions
 
@@ -40,9 +40,9 @@ When you are submitting a new sample, it has to follow up below guidelines
   * For example, if you use Office Graph with React, please add a new web part to the existing solution, rather than introducing a completely new solution
   * When you update existing samples, please update also `README.md` file accordingly with information on provided changes and with your author details
 * When submitting a new sample solution, please name the sample solution folder accordingly
-  * Folder should start by identifying JS library used - like `react-`, `angular-`, `knockout-`
-  * If you are not using any specific JS library, please use `js-` as the prefix for your sample
-  * Do not use words such as `sample`, `webpart` or `wp` in the folder or sample name - these are samples for client-side web parts repository
+  * Folder should start by identifying which product you used like `powerapps-`, `powerautomate-`, `portals-`
+  * If you are not using any specific product, but a combination of them, please use `powerplatform-` as the prefix for your sample
+  * Do not use words such as `sample`, `webpart` or `wp` in the folder or sample name
   * If your solution is demonstrating multiple technologies, please use functional terms as the name for the solution folder
 * Do not use period/dot in the folder name of the provided sample
 
@@ -51,27 +51,30 @@ When you are submitting a new sample, it has to follow up below guidelines
 Here's a high-level process for submitting new samples or updates to existing ones.
 
 1. Sign the Contributor License Agreement (see below)
-2. Fork this repository [pnp/sp-dev-fx-webparts](https://github.com/pnp/sp-dev-fx-webparts) to your GitHub account
+2. Fork this repository [pnp/powerplatform-samples](https://github.com/pnp/powerplatform-samples) to your GitHub account
 3. Create a new branch from the `master` branch for your fork for the contribution
 4. Include your changes to your branch
 5. Commit your changes using descriptive commit message * These are used to track changes on the repositories for monthly communications
 6. Create a pull request in your own fork and target the `master` branch
 7. Fill up the provided PR template with the requested details
 
+
+If you feel insecure about that process or are new to GitHub, please consider to attend the [Sharing Is Caring sessions from PnP team](https://pnp.github.io/sharing-is-caring/#pnp-sic-events) in which the Microsoft 365 PnP team provides hands-on guidance for first time contributors. 
+
 Before you submit your pull request consider the following guidelines:
 
-* Search [GitHub](https://github.com/pnp/sp-dev-fx-webparts/pulls) for an open or closed Pull Request
+* Search [GitHub](https://github.com/pnp/powerplatform-samples/pulls) for an open or closed Pull Request
   which relates to your submission. You don't want to duplicate effort.
-* Make sure you have a link in your local cloned fork to the [pnp/sp-dev-fx-webparts](https://github.com/pnp/sp-dev-fx-webparts):
+* Make sure you have a link in your local cloned fork to the [pnp/powerplatform-samples](https://github.com/pnp/powerplatform-samples)
 
   ```shell
   # check if you have a remote pointing to the Microsoft repo:
   git remote -v
 
-  # if you see a pair of remotes (fetch & pull) that point to https://github.com/pnp/sp-dev-fx-webparts, you're ok... otherwise you need to add one
+  # if you see a pair of remotes (fetch & pull) that point to https://github.com/pnp/powerplatform-samples, you're ok... otherwise you need to add one
 
   # add a new remote named "upstream" and point to the Microsoft repo
-  git remote add upstream https://github.com/pnp/sp-dev-fx-webparts.git
+  git remote add upstream https://github.com/pnp/powerplatform-samples.git
   ```
 
 * Make your changes in a new git branch:
@@ -80,7 +83,7 @@ Before you submit your pull request consider the following guidelines:
   git checkout -b react-taxonomypicker master
   ```
 
-* Ensure your fork is updated and not behind the upstream **sp-dev-fx-webparts** repo. Refer to these resources for more information on syncing your repo:
+* Ensure your fork is updated and not behind the upstream **powerplatform-samples** repo. Refer to these resources for more information on syncing your repo:
   * [GitHub Help: Syncing a Fork](https://help.github.com/articles/syncing-a-fork/)
   * [Keep Your Forked Git Repo Updated with Changes from the Original Upstream Repo](http://www.andrewconnell.com/blog/keep-your-forked-git-repo-updated-with-changes-from-the-original-upstream-repo)
   * For a quick cheat sheet:
@@ -89,7 +92,7 @@ Before you submit your pull request consider the following guidelines:
     # assuming you are in the folder of your locally cloned fork....
     git checkout master
 
-    # assuming you have a remote named `upstream` pointing official **sp-dev-fx-webparts** repo
+    # assuming you have a remote named `upstream` pointing official **powerplatform-samples** repo
     git fetch upstream
 
     # update your local master to be a mirror of what's in the main repo
@@ -112,23 +115,23 @@ Before you submit your pull request consider the following guidelines:
 
 If the sample you wish to contribute is stored in your own GitHub repository, you can use the following steps to merge it with this repository:
 
-* Fork the `sp-dev-fx-webparts` repository from GitHub
+* Fork the `powerplatform-samples` repository from GitHub
 * Create a local git repository
 
     ```shell
-    md sp-dev-fx-webparts
-    cd sp-dev-fx-webparts
+    md powerplatform-samples
+    cd powerplatform-samples
     git init
     ```
 
-* Pull your forked copy of `sp-dev-fx-webparts` into your local repository
+* Pull your forked copy of `powerplatform-samples` into your local repository
 
     ```shell
-    git remote add origin https://github.com/yourgitaccount/sp-dev-fx-webparts.git
+    git remote add origin https://github.com/yourgitaccount/powerplatform-samples.git
     git pull origin master
     ```
 
-* Pull your other project from GitHub into the `samples` folder of your local copy of `sp-dev-fx-webparts`
+* Pull your other project from GitHub into the `samples` folder of your local copy of `powerplatform-samples`
 
     ```shell
     git subtree add --prefix=samples/projectname https://github.com/yourgitaccount/projectname.git master
