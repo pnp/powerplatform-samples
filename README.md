@@ -1,2 +1,1 @@
-# powerplatform-samples
-The PnP samples repository for Power Platform technologies including Power Apps, Power Automate, etc.
+This is where the docs for this repo live. They are created with MKDocs. Wow!
