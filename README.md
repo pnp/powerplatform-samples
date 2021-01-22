@@ -13,9 +13,9 @@ extensions:
 The PnP samples repository for Power Platform technologies including Power Apps, Power Automate, Power Virtual Agents, Portals, AI Builder etc.
 
 
-this repository contains community samples that demonstrate different usage patterns Power Platform
+This repository contains community samples that demonstrate different usage patterns Power Platform
 
-We do welcome community contributions to the samples folder in this repository for demonstrating different use cases with Power Platform. Notice that if you use 3rd party libraries, please make sure that library license allows distributions of it as part of your sample.
+We do welcome community contributions to the samples folder in this repository for demonstrating different use cases with Power Platform.
 
 ## Have issues or questions?
 
