@@ -2,6 +2,8 @@
 
 ## Summary
 
+Short summary on functionality and used technologies.
+
 This sample shows how to add a status indicator in a display form. This uses a train stop style user interface to show a progression of a status field from New to Completed. It provides the user with visibility into the status of their request providing a better experience for them.
 
 ### Home Screen
@@ -10,11 +12,27 @@ This sample shows how to add a status indicator in a display form. This uses a t
 ### Display Screen
 ![Status Indicator Display Screen](./assets/powerapp-statusindicator2.jpg)
 
+
+## Applies to
+
+- [x] papps
+
+- [ ] pautomate
+
+- [ ] portals
+
+- [ ] pva
+
+
+## Prerequisites
+
+> The solution requires a SharePoint site with an Issue Tracker list. Instructions below.
+
 ## Solution
 
 Solution|Author(s)
 --------|---------
-Status-Indicator.msapp | Derek Cash-Peterson ([@espdcp](https://twitter.com/spdcp))
+Status-Indicator-PowerApp | Derek Cash-Peterson ([@spdcp](https://twitter.com/spdcp))
 
 ## Version history
 
@@ -56,3 +74,5 @@ This app uses SharePoint as a data source and requires a single issues list crea
 
 ### Notes
 If you would like to unpack and repack the .msapp you can use the [Power App Language Tooling](https://github.com/microsoft/PowerApps-Language-Tooling).
+
+<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/samples/readme-template" />
