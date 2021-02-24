@@ -1,0 +1,80 @@
+# Power Platform Samples
+# Author: Hugo Bernier
+site_name: Power Platform Samples
+plugins:
+    - search
+    - macros
+    - markdownextradata
+    - redirects:
+        redirect_maps:
+            'samples/framework.md': '../index.md'
+            'samples/framework': 'https://pnp.github.io/powerplatform-samples/'
+nav:
+  - Samples:
+    - By Framework: index.md
+    - By SPFx Version: samples/spfx.md
+    - By Compatibility: samples/compatibility.md
+    - By PnP Controls: samples/pnpcontrols.md
+    - By Technology: samples/technology.md
+    - By Author: samples/author.md
+    - By Keyword: samples/keyword.md
+    - All: samples/all.md
+  - Getting Started:
+    - Using the Samples: gettingstarted/index.md
+    - Troubleshooting: gettingstarted/troubleshooting.md
+  - Contributing:
+    - Contribution Guide: contributing/index.md
+    - Submitting an Issue or Suggestion: contributing/issues.md
+    - Forking?: contributing/forking.md
+    - Creating a Sample: contributing/sample.md
+    - Submitting a Pull Request: contributing/pullrequest.md
+theme:
+  name: 'material'
+  # custom_dir: 'theme/'
+  palette:
+    primary: 'pnp'
+    accent: 'indigo'
+  logo: 'img/pnp-samples-white.svg'
+  feature:
+    tabs: true
+extra_css:
+  - 'css/extra.css'
+  - 'css/filter.css'
+  - 'https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/10.0.0/css/fabric.min.css'
+extra_javascript:
+  - 'https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js'
+  - 'javascript/isotope.pkgd.min.js'
+  - 'javascript/filtersamples.js'
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+extra:
+  version: '1.0.0-0'
+  social:
+    - icon: 'fontawesome/brands/twitter'
+      link: 'https://twitter.com/officedevpnp'
+    - icon: 'fontawesome/brands/youtube'
+      link: 'https://www.youtube.com/playlist?list=PLR9nK3mnD-OXgMjDBdjWUTRia89oixBhx'
+    - icon: 'fontawesome/solid/link'
+      link: 'https://aka.ms/sppnp'
+  samples:
+    - framework: React
+      spfx: 1.11.0
+      url: https://github.com/pnp/sp-dev-fx-webparts/tree/master/samples/react-sites-selected-admin
+      name: react-sites-selected-admin
+      title: Sites Selected Admin 
+      thumbnail: https://github.com/pnp/sp-dev-fx-webparts/raw/master/samples/react-sites-selected-admin/assets/sites-manager-demo.gif
+      author: Fredrik Thorild
+      summary: The web part lets you manage your Azure AD applications that have the Sites Selected Api permission. With this web part you'll get an UI for managing what app can connect to which site.
+      modifiedtext: February 19, 2021
+      modified: 2021-02-19
+  authors:
+    - Aakash Bhardwaj
+repo_url: https://github.com/pnp/powerplatform-samples
+edit_uri: tree/Docs/docs
+site_url: https://pnp.github.io/pnp/powerplatform-samples/
+site_favicon: favicon.ico
+# dev_addr: '127.0.0.1:443'
