@@ -42,4 +42,4 @@
     </tbody>
 </table>
 Count: {{ samples|count }}
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/samples/allstatus" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/allstatus" />

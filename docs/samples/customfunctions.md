@@ -1,4 +1,4 @@
-# Samples by SPFx Version
+# Custom Function Samples
 
  <div class="well">
   <div class="button-group filters-button-group">
@@ -72,4 +72,4 @@
     {% endfor %}
 </div>
 
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/samples/spfx" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/spfx" />

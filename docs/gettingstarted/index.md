@@ -51,4 +51,4 @@ gulp serve
 ```
 
 
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/gettingstarted" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/gettingstarted" />

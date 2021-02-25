@@ -8,4 +8,4 @@
     {% endfor %}
     </ul>
 
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/samples/images" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/images" />

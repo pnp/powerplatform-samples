@@ -1,4 +1,4 @@
-# Samples by Compatibility
+# Power Apps Samples
 
 All samples are compatible with SharePoint Online. If you wish to find web parts that were specifically designed for SharePoint 2019 or Microsoft Teams, use the filters below.
 
@@ -47,4 +47,4 @@ To learn more about how to use these samples, please refer to our [getting start
     {% endfor %}
 </div>
 
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/samples/compatibility" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/compatibility" />

@@ -103,4 +103,4 @@ You can find Microsoft CLA from the following address - https://cla.microsoft.co
 
 Thank you for your contribution.
 
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/contributing/pullrequest" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/contributing/pullrequest" />

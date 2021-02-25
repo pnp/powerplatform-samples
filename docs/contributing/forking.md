@@ -9,4 +9,4 @@ Whenever you are submitting any changes to the SharePoint repositories, please f
 * If you are submitting multiple samples, please create specific PR for each of them
 * If you are submitting typo or documentation fix, you can combine modifications to single PR where suitable
 
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/contributing/forking" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/contributing/forking" />

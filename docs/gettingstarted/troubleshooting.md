@@ -106,4 +106,4 @@ Make sure to include the results from **SPFx doctor** in your issue so that we c
 
 Keep in mind that the samples repository is maintained by members of the community who volunteer their time to help. Please be courteous and respectful, no matter how frustrated you may be!
 
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/troubleshooting" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/troubleshooting" />

@@ -50,4 +50,4 @@ To learn more about how to use these samples, please refer to our [getting start
     </tbody>
 </table>
 <!-- TEST -->
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/samples/all" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/all" />

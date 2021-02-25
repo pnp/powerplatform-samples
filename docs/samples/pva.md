@@ -1,4 +1,4 @@
-# Samples by Framework
+# Power Virtual Agent Samples
 
 You can build client-side web parts using the frameworks you're already familiar with. Use the filters below to find samples by framework.
 
@@ -55,4 +55,4 @@ To learn more about how to use these samples, please refer to our [getting start
     {% endfor %}
 </div>
 
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/samples/framework" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/framework" />

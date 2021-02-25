@@ -41,4 +41,4 @@ To learn more about how to use these samples, please refer to our [getting start
     {% endfor %}
 </div>
 
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/samples/keyword" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/keyword" />

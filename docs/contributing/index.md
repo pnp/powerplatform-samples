@@ -23,4 +23,4 @@ For more information, see the [Code of Conduct FAQ](https://opensource.microsoft
 
 > Sharing is caring!
 
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/contributing" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/contributing" />

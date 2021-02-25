@@ -8,4 +8,4 @@ If you have questions about how to use SharePoint Framework or any of the provid
 * [SharePoint Stack Exchange](http://sharepoint.stackexchange.com/) with 'spfx' tag
 
 If you experience an issue with one of the provided samples [open an issue in GitHub](https://github.com/SharePoint/sp-dev-fx-webparts/issues) and we'll notify the original authors of the sample.
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/contributing/issues" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/contributing/issues" />

@@ -50,4 +50,4 @@ If you encounter any issues with the samples, [create an issue](https://github.c
     {% endfor %}
 </div>
 
-<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/docs/samples/status" />
+<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/status" />
