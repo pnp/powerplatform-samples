@@ -40,5 +40,3 @@ To learn more about how to use these samples, please refer to our [getting start
 </div>
     {% endfor %}
 </div>
-
-<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/keyword" />

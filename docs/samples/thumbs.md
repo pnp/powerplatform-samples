@@ -8,5 +8,3 @@
 <hr/>
     {% endfor %}
     </ul>
-
-<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/thumbs" />

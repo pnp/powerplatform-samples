@@ -22,3 +22,553 @@
     color: #fff;
     overflow: auto;
 }
+
+/* Added for new filtering capability */
+.filter-section {
+    margin: 0 0 30px 25px;
+    text-align: center;
+    padding: 45px 25px 0 0;
+    overflow: hidden;
+}
+
+
+.filter-section .search-input-wrapper {
+    width: 280px;
+}
+
+.search-input-wrapper .search-input {
+    width: 100%;
+    padding: 10px 36px 10px 45px;
+    background: url(../img/search-icon.svg) no-repeat left 15px center;
+    border-bottom: 1px solid #EBEBF2;
+    transition: border 0.3s ease-in-out;
+}
+
+.search-input-wrapper .search-input:hover, .search-input-wrapper .search-input:focus {
+    border-bottom: 1px solid #0078d4;
+}
+
+.primary-btn.dark {
+    border: 1px solid rgba(125,122,158,0.5);
+    color: #7D7A9E;
+    background-color: #ffffff;
+}
+
+.primary-btn {
+    display: inline-block;
+    max-width: 150px;
+    position: relative;
+    margin-left: 1%;
+}
+
+.primary-btn {
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 11px 15px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.float-l {
+    float: left;
+}
+
+.float-r {
+    float: right;
+}
+
+.tag-number {
+    color: #ffffff;
+    background-color: #0078d4;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 25px;
+    position: absolute;
+    top: -11px;
+    right: -11px;
+    padding: 5px 9px;
+    box-shadow: 0 2px 8px 0 rgb(247 117 193 / 50%);
+    display: none;
+}
+
+.software-list {
+    display: inline-block;
+}
+
+.software-item.active {
+    border: 1px solid #0078d4;
+    background-color: #ffffff;
+    color: #242E4C;
+}
+
+.software-item:hover {
+    border: 1px solid #0078d4;
+    background-color: #ffffff;
+    color: #242E4C;
+}
+
+.software-item {
+    width: 42px;
+    height: 42px;
+    background-color: #F7F7FC;
+    border: 1px solid #ffffff;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 42px;
+    font-size: 14px;
+    color: #7D7A9E;
+    margin-left: 10px;
+    position: relative;
+}
+
+.software-item:hover::after {
+    opacity: 1;
+    bottom: 45px;
+}
+
+.software-item::after {
+    content: "All Power Platform Products";
+    background-color: #242E4C;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 5px;
+    box-shadow: 1px 14px 18px -15px #232e4c;
+    position: absolute;
+    bottom: 40px;
+    height: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 15px;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.software-item.powerapps {
+    background-image: url(../img/products/powerapps.svg);
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.software-item.powerapps::after {
+    content: "Power Apps"
+}
+
+.software-item.powerautomate {
+    background-image: url(../img/products/powerautomate.svg);
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.software-item.software-item.powerautomate::after {
+    content: "Power Automate"
+}
+
+.software-item.powervirtualagents {
+    background-image: url(../img/products/powervirtualagents.svg);
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.software-item.software-item.powervirtualagents::after {
+    content: "Power Virtual Agents"
+}
+
+.software-item.software-item.software-item.powerbi::after {
+    content: "Power BI"
+}
+
+
+.software-item.powerbi {
+    background-image: url(../img/products/powerbi.svg);
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.tag-filter-panel {
+    right: -120%;
+    height: 110%;
+    width: 450px;
+    position: fixed;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 10;
+    box-shadow: -8px 9px 25px 0 rgba(132, 128, 177, 0.28);
+    padding: 25px
+}
+
+.tag-filter-panel.hidden {
+    right: -40%
+}
+
+.tag-filter-panel .info-text-grey {
+    margin-top: 5px
+}
+
+.tag-filter-panel .tag-filter-panel-header-text-wrapper {
+    width: calc(100% - 50px);
+    display: inline-block
+}
+
+.tag-filter-panel .close-btn {
+    float: right;
+    display: inline-block
+}
+
+.tag-filter-panel .selected-tags-counter {
+    clear: both;
+    width: 100%;
+    padding: 25px;
+    border-radius: 10px;
+    background: #F7F7FC;
+    margin-top: 30px
+}
+
+.tag-filter-panel .selected-tags-counter.active .tag-counter-label-empty {
+    display: none;
+    font-size: 20px;
+    color: #7D7A9E
+}
+
+.tag-filter-panel .selected-tags-counter.active .tag-counter-label {
+    display: inline-block
+}
+
+.tag-filter-panel .selected-tags-counter.active .link-btn {
+    opacity: 1
+}
+
+.tag-filter-panel .tag-counter-label-empty {
+    font-size: 20px;
+    color: #7D7A9E;
+    display: inline-block;
+    width: calc(100% - 40px)
+}
+
+.tag-filter-panel .tag-counter-label {
+    display: none;
+    font-size: 20px;
+    width: calc(100% - 40px)
+}
+
+.tag-filter-panel .tag-counter-label span {
+    font-weight: bold
+}
+
+.tag-filter-panel .link-btn {
+    float: right;
+    display: inline-block;
+    margin-top: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out
+}
+
+.tag-filter-panel .tags-content-wrapper {
+    margin-top: 25px;
+    height: calc(100% - 300px);
+    width: 100%;
+    overflow-x: hidden
+}
+
+.tag-filter-panel .tags-content {
+    margin-bottom: 15px
+}
+
+.tag-filter-panel .grey {
+    margin-bottom: 5px;
+    text-transform: uppercase
+}
+
+.tag-filter-panel .tag {
+    border-radius: 10px;
+    border: 1px solid #EBEBF2;
+    padding: 7px 10px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: #7D7A9E;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: all 0.3s ease-in-out
+}
+
+.tag-filter-panel .tag:hover {
+    border: 1px solid #0078d4;
+    color: #242E4C
+}
+
+.tag-filter-panel .tag.active {
+    background-color: #0078d4;
+    border: 1px solid #0078d4;
+    color: #ffffff
+}
+
+.tag-filter-panel .tag.active:hover {
+    background-color: #ea64a2
+}
+
+.samples-section {
+    clear: both;
+    padding: 15px 25px 50px;
+    max-width: 1450px;
+    height: auto;
+    margin: 0 auto 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-auto-flow: row dense;
+    grid-gap: 25px;
+}
+
+.samples-section .sample-thumbnail {
+    transition: all 0.3s ease-in-out;
+    /* box-shadow: 0 20px 10px -15px rgb(197 192 249 / 20%); */
+    background-color: rgba(255,255,255,0.8);
+    text-align: center;
+    height: auto;
+    box-shadow: 0 0 4px 2px rgb(0 0 0 / 5%);
+    border-radius: 10px;
+    border: 1px solid rgb(237, 235, 233);
+}
+
+.samples-section .sample-thumbnail:hover {
+    box-shadow: 0 20px 20px -15px rgb(95 83 214 / 20%);
+    transform: scale(1.02);
+}
+
+.samples-section .sample-preview {
+    border-radius: 5px 5px 0 0;
+    height: 250px;
+    background-color: #BBB9D1;
+    width: 100%;
+    position: relative;
+}
+
+.samples-section .sample-preview img {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 100%;
+    width: 100%;
+    object-position: center;
+    object-fit: cover;
+    border: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.samples-section .sample-details {
+    background-color: #ffffff;
+    position: relative;
+    padding: 20px 15px;
+    border-radius: 0 0 5px 5px;
+    margin-top: -5px;
+}
+
+.samples-section .sample-title.sup {
+    width: 100%;
+}
+
+.samples-section .sample-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #242E4C;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: calc(100% - 110px);
+}
+
+.samples-section .sample-date {
+    display: block;
+    font-size: 12px;
+    line-height: 15px;
+    height: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgb(96, 94, 92);
+    text-align: left;
+}
+
+.samples-section .sample-author {
+    display: block;
+    font-size: 12px;
+    line-height: 15px;
+    height: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgb(50, 49, 48);
+    font-weight: 600;
+    text-align: left;
+}
+
+.samples-section .activity-details {
+    padding-left: 8px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.samples-section .activity-author-avatars {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.samples-section .author-image {
+    display: block;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.samples-section .author-imagearea {
+    position: relative;
+    text-align: center;
+    flex: 0 0 auto;
+    height: 32px;
+    width: 32px;
+}
+
+.samples-section .image-400 {
+    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    animation-name: css-0;
+    animation-duration: 0.367s;
+    animation-timing-function: cubic-bezier(0.1, 0.25, 0.75, 0.9);
+    animation-fill-mode: both;
+    position: absolute;
+    margin-right: 10px;
+    top: 0px;
+    left: 0px;
+    width: 32px;
+    height: 32px;
+    border: 0px;
+    border-radius: 50%;
+    perspective: 1px;
+}
+
+.samples-section .sample-avatars {
+    margin-left: -2px;
+    height: 32px;
+}
+
+.samples-section .author-avatar {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    text-align: center;
+    width: 32px;
+    height: 32px;
+}
+
+.samples-section .author-avatar:nth-of-type(2), .samples-section .author-avatar:nth-of-type(3), .samples-section .author-avatar:nth-of-type(4), .samples-section .author-avatar:nth-of-type(5)
+{
+    margin-left: -16px;
+}
+
+.samples-section .sample-activity {
+    padding-bottom: 12px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+    /* position: relative; */
+    text-align: left;
+    display: table-row;
+    vertical-align: middle;
+}
+
+.samples-section .sample-description {
+    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    font-weight: 400;
+    /* padding: 8px 16px;
+    display: block; */
+    overflow: hidden;
+    overflow-wrap: break-word;
+    /* height: 45px; */
+    line-height: 18px;
+    color: rgb(96, 94, 92);
+    text-align: left;
+}
+
+
+.samples-section .sample-details .software-item {
+    border: 1px solid #EBEBF2;
+    position: absolute;
+    left: 0;
+    top: -22px;
+    font-size: 0;
+}
+
+.samples-section .sample-details .software-item.software-item.powerapps::after {
+    content: "Power Apps";
+}
+
+.samples-section .sample-details .software-item::after {
+    background-color: #242E4C;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 5px;
+    box-shadow: 1px 14px 18px -15px #232e4c;
+    position: absolute;
+    bottom: 40px;
+    height: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 15px;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.samples-section .sample-details .software-item.powerapps {
+    background: url(../img/products/powerapps.svg) no-repeat center #fff;
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media only screen and (max-width: 1020px) {
+    .tag-filter-panel {
+        width: 35%
+    }
+    .tag-filter-panel.hidden {
+        right: -50%
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .tag-filter-panel {
+        width: 100%
+    }
+    .tag-filter-panel.hidden {
+        right: -105%
+    }
+    .tag-filter-panel .tags-content-wrapper {
+        height: calc(100vh - 210px)
+    }
+}

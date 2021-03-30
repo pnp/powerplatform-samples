@@ -49,5 +49,3 @@ If you encounter any issues with the samples, [create an issue](https://github.c
 </div>
     {% endfor %}
 </div>
-
-<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/status" />

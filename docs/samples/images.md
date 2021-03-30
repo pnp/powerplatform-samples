@@ -7,5 +7,3 @@
 <img src="{{ sample.thumbnail }}" />
     {% endfor %}
     </ul>
-
-<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/images" />
