@@ -320,13 +320,13 @@ li.md-nav__item .md-nav__link:active, li.md-nav__item .md-nav__link:hover {
 .producttype-item.active, .sampletype-item.active {
     border: 1px solid #0078d4;
     background-color: #ffffff;
-    color: #242E4C;
+    color: #0078D4;
 }
 
 .producttype-item:hover, .sampletype-item:hover {
     border: 1px solid #0078d4;
     background-color: #ffffff;
-    color: #242E4C;
+    color: #0078D4;
 }
 
 .producttype-item, .sampletype-item {
@@ -347,18 +347,18 @@ li.md-nav__item .md-nav__link:active, li.md-nav__item .md-nav__link:hover {
     position: relative;
 }
 
-.producttype-item:hover::after {
+.producttype-item:hover::after, .sampletype-item:hover::after {
     opacity: 1;
     bottom: 45px;
 }
 
-.producttype-item::after {
-    content: "All Power Platform technologies";
-    background-color: #242E4C;
+.producttype-item::after, .sampletype-item::after  {
+    content: attr(title);
+    background-color: #0078D4;
     color: #ffffff;
     font-size: 14px;
-    border-radius: 5px;
-    box-shadow: 1px 14px 18px -15px #232e4c;
+    border-radius: 2px;
+    box-shadow: rgb(0 0 0 / 13%) 0px 6.4px 14.4px 0px, rgb(0 0 0 / 11%) 0px 1.2px 3.6px 0px;
     position: absolute;
     bottom: 40px;
     height: auto;
@@ -370,14 +370,14 @@ li.md-nav__item .md-nav__link:active, li.md-nav__item .md-nav__link:hover {
     pointer-events: none;
     white-space: nowrap;
 }
-
+/* 
 .sampletype-item::after {
-    content: "All sample types";
-    background-color: #242E4C;
+    content: attr(title);
+    background-color: #0078D4;
     color: #ffffff;
     font-size: 14px;
-    border-radius: 5px;
-    box-shadow: 1px 14px 18px -15px #232e4c;
+    border-radius: 2px;
+    box-shadow: rgb(0 0 0 / 13%) 0px 6.4px 14.4px 0px, rgb(0 0 0 / 11%) 0px 1.2px 3.6px 0px;
     position: absolute;
     bottom: 40px;
     height: auto;
@@ -388,110 +388,50 @@ li.md-nav__item .md-nav__link:active, li.md-nav__item .md-nav__link:hover {
     transition: all 0.3s ease-in-out;
     pointer-events: none;
     white-space: nowrap;
-}
+} */
 
-.producttype-item.powerapps {
-    background-image: url(../img/products/powerapps.svg);
+.producttype-item, .sampletype-item {
     background-size: 24px 24px;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.producttype-item.powerapps::after {
-    content: "Power Apps"
+
+.producttype-item.powerapps {
+    background-image: url(../img/products/powerapps.svg);
 }
 
 .producttype-item.powerautomate {
     background-image: url(../img/products/powerautomate.svg);
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.producttype-item.producttype-item.powerautomate::after {
-    content: "Power Automate"
 }
 
 .producttype-item.powervirtualagents {
     background-image: url(../img/products/powervirtualagents.svg);
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: center;
 }
-
-.producttype-item.producttype-item.powervirtualagents::after {
-    content: "Power Virtual Agents"
-}
-
-.producttype-item.producttype-item.producttype-item.powerbi::after {
-    content: "Power BI"
-}
-
-.producttype-item.producttype-item.producttype-item.powerfx::after {
-    content: "Power Fx"
-}
-
 
 .producttype-item.powerbi {
     background-image: url(../img/products/powerbi.svg);
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .producttype-item.powerfx {
     background-image: url(../img/products/powerfx.svg);
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: center;
 }
-
 
 .sampletype-item.powerfxgeo {
     background-image: url(../img/filters/Globe2.svg);
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.sampletype-item.powerfxgeo::after {
-    content: "Geolocation"
 }
 
 .sampletype-item.powerfxnumbers {
     background-image: url(../img/filters/NumberSymbol.svg);
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: center;
 }
-
-.sampletype-item.powerfxnumbers::after {
-    content: "Numbers"
-}
-
 
 .sampletype-item.powerfxdate {
     background-image: url(../img/filters/DateTime12.svg);
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.sampletype-item.powerfxdate::after {
-    content: "Date"
 }
 
 .sampletype-item.powerfxtext {
     background-image: url(../img/filters/PlainText.svg);
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: center;
 }
-
-.sampletype-item.powerfxtext::after {
-    content: "Text"
-}
-
 
 .tag-filter-panel {
     right: -120%;
@@ -602,7 +542,7 @@ li.md-nav__item .md-nav__link:active, li.md-nav__item .md-nav__link:hover {
 
 .tag-filter-panel .tag:hover {
     border: 1px solid #0078d4;
-    color: #242E4C
+    color: #0078D4
 }
 
 .tag-filter-panel .tag.active {
@@ -702,7 +642,7 @@ TODO: Move styles
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 5px;
-    color: #242E4C;
+    color: #0078D4;
     text-align: left;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -844,7 +784,7 @@ TODO: Move styles
 }
 
 .sample-details .producttype-item::after {
-    background-color: #242E4C;
+    background-color: #0078D4;
     color: #ffffff;
     font-size: 14px;
     border-radius: 5px;

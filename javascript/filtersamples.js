@@ -17,7 +17,7 @@ $(document).ready(function () {
     }
   });
 
-  $.getJSON("/samples.json", function (data) {
+  $.getJSON("https://pnp.github.io/powerplatform-samples/samples.json", function (data) {
     console.log("data", data);
     $.each(data, function (_u, sample) {
 
