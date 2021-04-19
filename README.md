@@ -28,18 +28,18 @@ Please use following logic on submitting your questions or issues to right locat
 ## Additional resources
 
 ## Using the samples
+Please refer to the respective sample repositories to learn more how to use a sample.
 
 ## Authors
 This repository's contributors are all community members who volunteered their time to share code samples. Work is done as an open source community project, which each sample contained in their own solution.
 
 ## Contributions
 
-These samples are direct from the feature teams, SharePoint PnP core team (http://aka.ms/m365pnp) or shared by the community. We welcome your input on issues and suggestions for new samples. We do also welcome community contributions around the client-side web parts. If you have any questions, just let us know.
+These samples are direct from the feature teams, PnP core team (http://aka.ms/m365pnp) or shared by the community. We welcome your input on issues and suggestions for new samples. We do also welcome community contributions around the Microsoft Power Platform. If you have any questions, just let us know.
 
-Please have a look on our [Contribution Guidance](./.github/CONTRIBUTING.md) before submitting your pull requests, so that we can get your contribution processed as fast as possible.
+Please have a look at the contribution guidance from each repository before submitting your pull requests, so that we can get your contribution processed as fast as possible.
 
 ## Code of Conduct
 This repository has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 > Sharing is caring ❤!
-
