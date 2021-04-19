@@ -1,8 +1,11 @@
 // external js: isotope.pkgd.js
 
 $(document).ready(function () {
+  var filterText = $('#sample-listing').data("filter");
+  console.log("Filter text", filterText);
+
   // init Isotope
-  var $grid = $('.grid').isotope({
+  var $grid = $('#sample-listing').isotope({
     itemSelector: '.sample-thumbnail',
     layoutMode: 'fitRows',
     getSortData: {
@@ -19,24 +22,27 @@ $(document).ready(function () {
 
   $.getJSON("https://pnp.github.io/powerplatform-samples/samples.json", function (data) {
     console.log("data", data);
+
+
     $.each(data, function (_u, sample) {
 
       try {
         var title = _.escape(sample.title);
         var escapedDescription = _.escape(sample.shortDescription);
         var categories = sample.categories[0];
+
         var modified = new Date(sample.modified).toString().substr(4).substr(0, 12);
-  
+
         var authors = sample.authors;
         var authorsList = "";
         var authorAvatars = "";
-  
+
         authors.forEach(author => {
           if (authorsList !== "") {
             authorsList = authorsList + ", ";
           }
           authorsList = authorsList + author.name;
-  
+
           var authorAvatar = `<div class="author-avatar">
             <div role="presentation" class="author-coin">
               <div role="presentation" class="author-imagearea">
@@ -48,33 +54,33 @@ $(document).ready(function () {
           </div>`;
           authorAvatars = authorAvatar + authorAvatars;
         });
-  
+
         var authorName = authors[0].name;
         if (authors.length > 1) {
           authorName = authorName + ` +${authors.length - 1}`;
         }
-  
+
         var tags = "";
         $.each(sample.tags, function (_u, tag) {
           tags = tags + "#" + tag + ",";
         });
-  
+
         var keywords = title + escapedDescription + authorsList + tags;
         keywords = keywords.toLowerCase();
 
         var productTag = "powerfx";
         var productName = "Power Fx";
-        
+
         switch (categories) {
           case "POWERAPPS":
             productTag = "powerapps";
             productName = "Power Apps";
             break;
-        
+
           default:
             break;
         }
-  
+
         // $("#sample-listing").append(`<a class="sample-thumbnail" href="${sample.url}" id="${sample.name}" data-modified='${sample.modified}' data-title='${title}' data-categories='${categories}' data-description='${escapedDescription}' data-keywords='${keywords}' title='${escapedDescription}'>
         // <div class="sample-preview"><img src="${sample.thumbnails[0].url}" alt="${title}"></div>
         // <div class="sample-details"><div class="producttype-item powerapps">Power Apps</div><p class="sample-title">${sample.title}</p>
@@ -87,7 +93,7 @@ $(document).ready(function () {
         // </div>
         // </div>
         // </div></a>`);
-  
+
         var $items = $(`
         <a class="sample-thumbnail" href="${sample.url}"  data-modified="${sample.modified}" data-title="${title}" data-keywords="${keywords}" data-tags="${tags}" data-category=${categories}>
         <div class="sample-inner">
@@ -108,14 +114,23 @@ $(document).ready(function () {
         </div>
       </div>
     </a>`);
-        //$grid.isotope( 'appended', elements );
-        $grid.append($items)
-          // add and lay out newly appended items
-          .isotope('appended', $items);
+
+        console.log("Filter situation", title, filterText, categories);
+        if (filterText !== undefined && filterText !== "" && filterText !== categories) {
+          console.log("Skipping ", title, filterText, categories);
+          // Skip this sample as it doesn't meet the filter
+          ;
+        } else {
+          //$grid.isotope( 'appended', elements );
+          $grid.append($items)
+            // add and lay out newly appended items
+            .isotope('appended', $items);
+
+        }
       } catch (error) {
         console.log("Error with one sample", error);
       }
-    }); 
+    });
   });
 
 
@@ -142,7 +157,7 @@ $(document).ready(function () {
     filterValue = filterFns[filterValue] || filterValue;
     $grid.isotope({ filter: filterValue });
   });
-   // change is-checked class on buttons
+  // change is-checked class on buttons
   $('.filter-list').each(function (_i, buttonGroup) {
     var $buttonGroup = $(buttonGroup);
     $buttonGroup.on('click', '.filter-choice', function () {

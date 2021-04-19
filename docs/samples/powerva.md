@@ -1,6 +1,7 @@
 ---
 title: Power Virtual Agents Samples
 template: nosamples.html
+filter: POWERVA
 ---
 
 Microsoft Power Virtual Agents lets you create powerful chatbots that can answer questions posed by your customers, other employees, or visitors to your website or service.

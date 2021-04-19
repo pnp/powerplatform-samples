@@ -1,6 +1,7 @@
 ---
 title: Power Automate Samples
 template: nosamples.html
+filter: POWERAUTOMATE
 ---
 
 Power Automate is a service that helps you create automated workflows between your favorite apps and services to synchronize files, get notifications, collect data, and more.
