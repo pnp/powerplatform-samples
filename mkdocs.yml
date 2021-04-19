@@ -4,9 +4,13 @@ site_name: Power Platform Samples
 plugins:
     - macros
     - markdownextradata
+    - redirects:
+        redirect_maps:
+          'samples/all.md': 'index.md'
+
 nav:
   - Samples:
-    - All: samples/all.md
+    - All: index.md
     - Power Fx: samples/powerfx.md
     - Power Apps: samples/powerapps.md
     - Power Automate: samples/powerautomate.md

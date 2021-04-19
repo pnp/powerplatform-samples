@@ -1,14 +1,6 @@
-# Power Platform Samples
+---
+title: Power Platform Samples
+template: filter.html
+---
 
-
-
-To learn more about how to use these samples, please refer to our [getting started](./gettingstarted/index.md) section.
-
-- [Custom Functions](./customfunctions.md)
-- [Power Apps](./powerapps.md)
-- [Power Automate](./powerautomate.md)
-- [Power Virtual Agent](./pva.md)
-- [By Author](./author.md)
-- [Keyword](./keyword.md)
-
-<img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/samples/framework" />
+Find Power Platform samples by entering a keyword. You can filter also filter by product.

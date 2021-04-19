@@ -9,7 +9,7 @@
     "title": "Timesheet",
     "shortDescription": "This timesheet application is a tablet-based canvas app that gives you a way to create and manage weekly timesheets.",
     "longDescription": [
-    "This timesheet application is a tablet-based canvas app that gives you a way to create and manage weekly timesheets."
+      "This timesheet application is a tablet-based canvas app that gives you a way to create and manage weekly timesheets."
     ],
     "url": "https://github.com/pnp/powerapps-samples/tree/main/samples/Timesheet",
     "products": [
@@ -20,7 +20,9 @@
       "POWERAPPS"
     ],
     "tags": [
-      "MATH", "DECIMAL", "HEX"
+      "MATH",
+      "DECIMAL",
+      "HEX"
     ],
     "metadata": [
       {
@@ -73,67 +75,14 @@
       "Power Apps",
       "Power Platform"
     ],
-    "categories": [
-      "POWERFX"
-    ],
     "tags": [
-      "MATH", "DECIMAL", "HEX"
-    ],
-    "metadata": [
-      {
-        "key": "POWERAPPS-MANIFEST-VERSION",
-        "value": "0.20"
-      }
-    ],
-    "thumbnails": [
-      {
-        "type": "image",
-        "order": 100,
-        "url": "https://github.com/pnp/powerfx-samples/raw/main/samples/convertbasenumber-functions/assets/preview.png",
-        "alt": "Convert Base Number Functions"
-      }
-    ],
-    "authors": [
-      {
-        "name": "Korune",
-        "gitHubAccount": "korune",
-        "pictureUrl": "https://github.com/korune.png",
-        "twitter": "koruneko32767"
-      }
-    ],
-    "references": [
-      {
-        "name": "Enhanced Component Properties",
-        "description": "Blog post announcing the enhanced component custom properties for Power Apps",
-        "url": "https://powerapps.microsoft.com/en-us/blog/enhanced-component-properties/"
-      },
-      {
-        "name": "Power Apps Formula Reference",
-        "description": "Formula reference guide for Power Apps",
-        "url": "https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/formula-reference"
-      }
-    ]
-  },
-    {
-    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
-    "name": "pnp-powerfx--samples-convertbasenumber-functions-hextodecimal",
-    "version": "1.0.0.0",
-    "source": "pnp",
-    "created": "2021-03-14T00:00:00.000Z",
-    "modified": "2021-03-14T00:00:00.000Z",
-    "title": "HexToDecimal",
-    "shortDescription": "This function is used to convert hex to decimal.",
-    "longDescription": [],
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/convertbasenumber-functions",
-    "products": [
-      "Power Apps",
-      "Power Platform"
+      "NUMBER",
+      "HEX",
+      "DECIMAL",
+      "CONVERT"
     ],
     "categories": [
       "POWERFX"
-    ],
-    "tags": [
-      "MATH", "DECIMAL", "HEX"
     ],
     "metadata": [
       {
@@ -185,11 +134,14 @@
       "Power Apps",
       "Power Platform"
     ],
+    "tags": [
+      "NUMBER",
+      "HEX",
+      "DECIMAL",
+      "CONVERT"
+    ],
     "categories": [
       "POWERFX"
-    ],
-    "tags": [
-      "MATH", "DECIMAL", "HEX"
     ],
     "metadata": [
       {
@@ -241,6 +193,12 @@
       "Power Apps",
       "Power Platform"
     ],
+    "tags": [
+      "NUMBER",
+      "BINARY",
+      "DECIMAL",
+      "CONVERT"
+    ],
     "categories": [
       "POWERFX"
     ],
@@ -250,8 +208,64 @@
         "value": "0.20"
       }
     ],
+    "thumbnails": [
+      {
+        "type": "image",
+        "order": 100,
+        "url": "https://github.com/pnp/powerfx-samples/raw/main/samples/convertbasenumber-functions/assets/preview.png",
+        "alt": "Convert Base Number Functions"
+      }
+    ],
+    "authors": [
+      {
+        "name": "Korune",
+        "gitHubAccount": "korune",
+        "pictureUrl": "https://github.com/korune.png",
+        "twitter": "koruneko32767"
+      }
+    ],
+    "references": [
+      {
+        "name": "Enhanced Component Properties",
+        "description": "Blog post announcing the enhanced component custom properties for Power Apps",
+        "url": "https://powerapps.microsoft.com/en-us/blog/enhanced-component-properties/"
+      },
+      {
+        "name": "Power Apps Formula Reference",
+        "description": "Formula reference guide for Power Apps",
+        "url": "https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/formula-reference"
+      }
+    ]
+  },
+  {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
+    "name": "pnp-powerfx--samples-convertbasenumber-functions-decimaltobinary",
+    "version": "1.0.0.0",
+    "source": "pnp",
+    "created": "2021-03-14T00:00:00.000Z",
+    "modified": "2021-03-14T00:00:00.000Z",
+    "title": "DecimalToBinary",
+    "shortDescription": "This function is used to convert decimal to binary. ",
+    "longDescription": [],
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/convertbasenumber-functions",
+    "products": [
+      "Power Apps",
+      "Power Platform"
+    ],
     "tags": [
-      "MATH", "DECIMAL", "BINARY"
+      "NUMBER",
+      "BINARY",
+      "DECIMAL",
+      "CONVERT"
+    ],
+    "categories": [
+      "POWERFX"
+    ],
+    "metadata": [
+      {
+        "key": "POWERAPPS-MANIFEST-VERSION",
+        "value": "0.20"
+      }
     ],
     "thumbnails": [
       {
@@ -336,20 +350,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-endofquarter",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "EndOfQuarter",
     "shortDescription": "Get the last day of a quarter.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Get the last day of a quarter."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#EndOfQuarter",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "QUARTER",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -358,14 +378,7 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
-    ],
-    "tags": [
-      "DATE", "QUARTER", "DAY"
     ],
     "thumbnails": [
       {
@@ -378,8 +391,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -396,20 +409,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-endofmonth",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "EndOfMonth",
     "shortDescription": "Get the last day of a month",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Get the last day of a month"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#EndOfMonth",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "MONTH",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -418,14 +437,7 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
-    ],
-    "tags": [
-      "DATE", "MONTH", "DAY"
     ],
     "thumbnails": [
       {
@@ -438,8 +450,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -456,20 +468,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-endofweek",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "EndOfWeek",
     "shortDescription": "Get the last day of a week",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Get the last day of a week"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#endofweek",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "WEEK",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -478,10 +496,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -495,8 +509,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -513,20 +527,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-endofyear",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "EndOfYear",
     "shortDescription": "Get the last day of a year",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Get the last day of a year"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#endofyear",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "YEAR",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -535,10 +555,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -552,8 +568,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -570,20 +586,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isbetweendates",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsBetweenDates",
     "shortDescription": "Checks if a date is within a specified date range",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date is within a specified date range"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isbetweendates",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -592,10 +614,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -609,8 +627,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -627,20 +645,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isleapyear",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsLeapYear",
     "shortDescription": "Checks if a date belongs to a leap year",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date belongs to a leap year"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isleapyear",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "YEAR",
+      "LEAP"
     ],
     "categories": [
       "POWERFX"
@@ -649,10 +673,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -666,8 +686,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -684,20 +704,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isincurrentday",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInCurrentDay",
     "shortDescription": "Checks if a date occurs within the current day",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the current day"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isincurrentday",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "TODAY",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -706,10 +732,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -723,8 +745,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -741,20 +763,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isincurrentmonth",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInCurrentMonth",
     "shortDescription": "Checks if a date occurs within the current month",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the current month"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isincurrentmonth",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "MONTH",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -763,10 +791,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -780,8 +804,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -798,20 +822,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isincurrentquarter",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInCurrentQuarter",
     "shortDescription": "Checks if a date occurs within the current quarter",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the current quarter"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isincurrentquarter",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "QUARTER",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -820,10 +850,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -837,8 +863,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -855,20 +881,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isincurrentweek",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInCurrentWeek",
     "shortDescription": "Checks if a date occurs within the current week",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the current week"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isincurrentweek",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "WEEK",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -877,10 +909,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -894,8 +922,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -912,20 +940,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isincurrentyear",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInCurrentYear",
     "shortDescription": "Checks if a date occurs within the current year",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the current year"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isincurrentyear",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "YEAR",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -934,10 +968,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -951,8 +981,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -969,20 +999,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isinnextndays",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInNextNDays",
     "shortDescription": "Checks if a date occurs within the next number of days.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the next number of days. Start date defaults to the current date."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isinnextndays",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -991,10 +1027,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1008,8 +1040,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1026,20 +1058,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isinnextnmonths",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInNextNMonths",
     "shortDescription": "Checks if a date occurs within the next number of months.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the next number of months. Start date defaults to the current date."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isinnextnmonths",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "MONTH"
     ],
     "categories": [
       "POWERFX"
@@ -1048,10 +1086,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1065,8 +1099,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1083,20 +1117,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isinnextnquarters",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInNextNQuarters",
     "shortDescription": "Checks if a date occurs within the next number of quarters. ",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the next number of quarters. Start date defaults to the current date."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isinnextnquarters",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "QUARTER"
     ],
     "categories": [
       "POWERFX"
@@ -1105,10 +1145,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1122,8 +1158,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1140,20 +1176,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isinnextnweeks",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInNextNWeeks",
     "shortDescription": "Checks if a date occurs within the next number of weeks. ",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the next number of weeks. Start date defaults to the current date."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isinnextnweeks",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "WEEK"
     ],
     "categories": [
       "POWERFX"
@@ -1162,10 +1204,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1179,8 +1217,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1197,20 +1235,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isinnextnyears",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInNextNYears",
     "shortDescription": "Checks if a date occurs within the next number of years.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the next number of years. Start date defaults to the current date."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isinnextnyears",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "YEAR"
     ],
     "categories": [
       "POWERFX"
@@ -1219,10 +1263,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1236,8 +1276,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1254,20 +1294,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isinpreviousndays",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInPreviousNDays",
     "shortDescription": "Checks if a date occurs within the previous number of days. ",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the previous number of days. Start date defaults to the current date."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isinpreviousndays",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -1276,10 +1322,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1293,8 +1335,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1311,20 +1353,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isinpreviousnmonths",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInPreviousNMonths",
     "shortDescription": "Checks if a date occurs within the previous number of months. Start date defaults to the current date.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the previous number of months."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isinpreviousnmonths",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "MONTH"
     ],
     "categories": [
       "POWERFX"
@@ -1333,10 +1381,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1350,8 +1394,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1368,20 +1412,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isinpreviousnquarters",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInPreviousNQuarters",
     "shortDescription": "Checks if a date occurs within the previous number of quarters.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the previous number of quarters. Start date defaults to the current date."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isinpreviousnquarters",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "QUARTER"
     ],
     "categories": [
       "POWERFX"
@@ -1390,10 +1440,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1407,8 +1453,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1425,20 +1471,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isinpreviousnweeks",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInPreviousNWeeks",
     "shortDescription": "Checks if a date occurs within the previous number of weeks.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the previous number of weeks. Start date defaults to the current date."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isinpreviousnweeks",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "WEEK"
     ],
     "categories": [
       "POWERFX"
@@ -1447,10 +1499,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1464,8 +1512,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1482,20 +1530,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-isinpreviousnyears",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "IsInPreviousNYears",
     "shortDescription": "Checks if a date occurs within the previous number of years.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Checks if a date occurs within the previous number of years. Start date defaults to the current date."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#isinpreviousnyears",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "YEAR"
     ],
     "categories": [
       "POWERFX"
@@ -1504,10 +1558,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1521,8 +1571,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1539,20 +1589,27 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-networkdays",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "NetWorkDays",
     "shortDescription": "Find the number of work days between two dates.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Find the number of work days between two dates."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#networkdays",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "DAY",
+      "WEEKDAY"
     ],
     "categories": [
       "POWERFX"
@@ -1561,10 +1618,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1578,8 +1631,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1596,20 +1649,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-startofmonth",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "StartOfMonth",
     "shortDescription": "Get the first day of a month.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Get the first day of a month."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#startofmonth",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "RANGE",
+      "MONTH"
     ],
     "categories": [
       "POWERFX"
@@ -1618,10 +1677,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1635,8 +1690,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1653,20 +1708,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-startofquarter",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "StartOfQuarter",
     "shortDescription": "Get the first day of a quarter.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Get the first day of a quarter."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#startofquarter",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "QUARTER",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -1675,10 +1736,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1692,8 +1749,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1710,20 +1767,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-startofweek",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "StartOfWeek",
     "shortDescription": "Get the first day of a week.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Get the first day of a week."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#startofweek",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "DAY",
+      "WEEK"
     ],
     "categories": [
       "POWERFX"
@@ -1732,10 +1795,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1749,8 +1808,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1767,20 +1826,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-startofyear",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "StartOfYear",
     "shortDescription": "Get the first day of a year",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Get the first day of a year"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#startofyear",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "YEAR",
+      "DAY"
     ],
     "categories": [
       "POWERFX"
@@ -1789,10 +1854,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1806,8 +1867,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1824,20 +1885,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-weekofmonth",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "WeekOfMonth",
     "shortDescription": "Takes a date and returns a week number (1-6) that corresponds to the week of the month.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Takes a date and returns a week number (1-6) that corresponds to the week of the month."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#weekofmonth",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "WEEK",
+      "MONTH"
     ],
     "categories": [
       "POWERFX"
@@ -1846,10 +1913,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1863,8 +1926,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1881,20 +1944,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-weekofyear",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "WeekOfYear",
     "shortDescription": "Takes a date and returns a week number (1-54) that corresponds to the week of the year.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Takes a date and returns a week number (1-54) that corresponds to the week of the year."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#weekofyear",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "WEEK",
+      "YEAR"
     ],
     "categories": [
       "POWERFX"
@@ -1903,10 +1972,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1920,8 +1985,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1938,20 +2003,27 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-date-functions-yearfraction",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "YearFraction",
     "shortDescription": "Calculates a decimal number representing the fraction of a year between two dates.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
     "longDescription": [
       "Calculates a decimal number representing the fraction of a year between two dates."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions#yearfraction",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "DATE",
+      "YEAR",
+      "DECIMAL",
+      "RANGE"
     ],
     "categories": [
       "POWERFX"
@@ -1960,10 +2032,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
       }
     ],
     "thumbnails": [
@@ -1977,8 +2045,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -1995,77 +2063,25 @@
     ]
   },
   {
-    "name": "pnp-powerfx-samples-date-functions-yearfraction",
-    "version": "1.0.0.0",
-    "source": "pnp",
-    "title": "YearFraction",
-    "shortDescription": "Calculates a decimal number representing the fraction of a year between two dates.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/date-functions",
-    "longDescription": [
-      "Calculates a decimal number representing the fraction of a year between two dates."
-    ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
-    "products": [
-      "Power Apps",
-      "Power Platform"
-    ],
-    "categories": [
-      "POWERFX"
-    ],
-    "metadata": [
-      {
-        "key": "POWERAPPS-MANIFEST-VERSION",
-        "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Date"
-      }
-    ],
-    "thumbnails": [
-      {
-        "type": "image",
-        "order": 100,
-        "url": "https://github.com/pnp/powerfx-samples/raw/main/samples/date-functions/assets/date-functions-preview.png",
-        "alt": "Date functions"
-      }
-    ],
-    "authors": [
-      {
-        "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
-      }
-    ],
-    "references": [
-      {
-        "name": "Enhanced Component Properties",
-        "description": "Blog post announcing the enhanced component custom properties for Power Apps",
-        "url": "https://powerapps.microsoft.com/en-us/blog/enhanced-component-properties/"
-      },
-      {
-        "name": "Power Apps Formula Reference",
-        "description": "Formula reference guide for Power Apps",
-        "url": "https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/formula-reference"
-      }
-    ]
-  },
-  {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-financial-functions-fv",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "Future Value (FV)",
     "shortDescription": "Future value: a cash balance you want to attain after the last payment is made",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/financial-functions",
     "longDescription": [
       "Future value: a cash balance you want to attain after the last payment is made"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/financial-functions#fv",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "NUMBER",
+      "FINANCIAL"
     ],
     "categories": [
       "POWERFX"
@@ -2091,8 +2107,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -2109,20 +2125,25 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-financial-functions-pv",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "Present Value (PV)",
     "shortDescription": "Present value: the total amount that a series of future payments is worth now",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/financial-functions",
     "longDescription": [
       "Present value: the total amount that a series of future payments is worth now"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/financial-functions#pv",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "NUMBER",
+      "FINANCIAL"
     ],
     "categories": [
       "POWERFX"
@@ -2148,8 +2169,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -2166,20 +2187,25 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-financial-functions-nper",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "NPER",
     "shortDescription": "The total number of payments for a loan",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/financial-functions",
     "longDescription": [
       "The total number of payments for a loan"
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/financial-functions#nper",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "NUMBER",
+      "FINANCIAL"
     ],
     "categories": [
       "POWERFX"
@@ -2205,8 +2231,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -2223,20 +2249,25 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx-samples-financial-functions-pmt",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-02-08T00:00:00.000Z",
+    "modified": "2021-02-08T00:00:00.000Z",
     "title": "PMT",
     "shortDescription": "The payment made each period over the life of an investment.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/financial-functions",
     "longDescription": [
       "The payment made each period over the life of an investment."
     ],
-    "created": "2021-02-08T00:00:00.000Z",
-    "modified": "2021-02-08T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/financial-functions#pmt",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "NUMBER",
+      "FINANCIAL"
     ],
     "categories": [
       "POWERFX"
@@ -2262,8 +2293,8 @@
     "authors": [
       {
         "gitHubAccount": "matthewdevaney",
-        "pictureUrl": "https://github.com/matthewdevaney.png",
-        "name": "Matthew Devaney"
+        "name": "Matthew Devaney",
+        "pictureUrl": "https://github.com/matthewdevaney.png"
       }
     ],
     "references": [
@@ -2280,21 +2311,26 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx--samples-geolocation-utils-twopoints",
     "version": "1.0.0.0",
     "source": "pnp",
+    "created": "2021-03-07T00:00:00.000Z",
+    "modified": "2021-03-07T00:00:00.000Z",
     "title": "TwoPoints",
     "shortDescription": "Calculate distance in unit of meter and compass heading.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/geolocation-utils",
     "longDescription": [
       "Calculate distance in unit of meter and compass heading.",
       "(Heading is the angle measured clockwise with north at 0 degrees, i.e., North: 0, East: 90, South:180, West: 270)"
     ],
-    "created": "2021-03-07T00:00:00.000Z",
-    "modified": "2021-03-07T00:00:00.000Z",
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/geolocation-utils#twopoints",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "GEOLOCATION",
+      "DISTANCE"
     ],
     "categories": [
       "POWERFX"
@@ -2303,10 +2339,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Geolocation"
       }
     ],
     "thumbnails": [
@@ -2320,8 +2352,8 @@
     "authors": [
       {
         "gitHubAccount": "mofumofu-dance",
-        "pictureUrl": "https://github.com/mofumofu-dance.png",
-        "name": "Hiroaki Nagao"
+        "name": "Hiroaki Nagao",
+        "pictureUrl": "https://github.com/mofumofu-dance.png"
       }
     ],
     "references": [
@@ -2338,18 +2370,23 @@
     ]
   },
   {
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerfx--samples-geolocation-utils-convertunit",
     "version": "1.0.0.0",
     "source": "pnp",
-    "title": "ConvertUnit",
-    "shortDescription": "Perform unit conversion for length.",
-    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/geolocation-utils",
-    "longDescription": [],
     "created": "2021-03-07T00:00:00.000Z",
     "modified": "2021-03-07T00:00:00.000Z",
+    "title": "ConvertUnit",
+    "shortDescription": "Perform unit conversion for length.",
+    "longDescription": [],
+    "url": "https://github.com/pnp/powerfx-samples/tree/main/samples/geolocation-utils#convertunit",
     "products": [
       "Power Apps",
       "Power Platform"
+    ],
+    "tags": [
+      "GEOLOCATION",
+      "UNIT"
     ],
     "categories": [
       "POWERFX"
@@ -2358,10 +2395,6 @@
       {
         "key": "POWERAPPS-MANIFEST-VERSION",
         "value": "0.19"
-      },
-      {
-        "key": "POWERFX-TAGS",
-        "value": "Geolocation"
       }
     ],
     "thumbnails": [
@@ -2375,8 +2408,8 @@
     "authors": [
       {
         "gitHubAccount": "mofumofu-dance",
-        "pictureUrl": "https://github.com/mofumofu-dance.png",
-        "name": "Hiroaki Nagao"
+        "name": "Hiroaki Nagao",
+        "pictureUrl": "https://github.com/mofumofu-dance.png"
       }
     ],
     "references": [
