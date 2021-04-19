@@ -188,6 +188,8 @@
   <!-- Determine class according to state -->
   
   
+    
+  
 
   <!-- Main navigation item with nested items -->
   
@@ -196,7 +198,7 @@
     
 
     <!-- Render item with nested items -->
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
 
       <!-- Active checkbox expands items contained within nested section -->
       
@@ -206,7 +208,7 @@
           data-md-toggle="nav-1"
           type="checkbox"
           id="nav-1"
-          
+          checked
         />
       
 
@@ -233,14 +235,72 @@
   <!-- Determine class according to state -->
   
   
+    
+  
 
   <!-- Main navigation item with nested items -->
   
-    <li class="md-nav__item">
-      <a href="samples/all/" class="md-nav__link">
+    <li class="md-nav__item md-nav__item--active">
+      
+
+      <!-- Active checkbox expands items contained within nested section -->
+      <input
+        class="md-nav__toggle md-toggle"
+        data-md-toggle="toc"
+        type="checkbox"
+        id="__toc"
+      />
+
+      <!-- Hack: see partials/toc.html for more information -->
+      
+      
+
+      <!-- Render table of contents, if not empty -->
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+            <span class="md-nav__icon md-icon"></span>
+            All
+        </label>
+      
+      <a
+        href="."
+        class="md-nav__link md-nav__link--active"
+      >
         All
       </a>
+
+      <!-- Show table of contents -->
+      
+        
+
+<!-- Table of contents -->
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+  <!--
+    Hack: check whether the content contains a h1 headline. If it does, the
+    top-level anchor must be skipped, since it would be redundant to the link
+    to the current page that is located just above the anchor. Therefore we
+    directly continue with the children of the anchor.
+  -->
+  
+  
+
+  <!-- Render item list -->
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+    </ul>
+  
+</nav>
+      
     </li>
+
+  <!-- Main navigation item -->
   
 
           
@@ -622,6 +682,36 @@
 <footer class="md-footer">
 
   <!-- Link to previous and/or next page -->
+  
+    <nav
+      class="md-footer__inner md-grid"
+      aria-label="Footer"
+    >
+
+      <!-- Link to previous page -->
+      
+
+      <!-- Link to next page -->
+      
+        <a
+          href="samples/powerfx/"
+          class="md-footer__link md-footer__link--next"
+          rel="next"
+        >
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Power Fx
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
 
   <!-- Further information -->
