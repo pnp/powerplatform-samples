@@ -1,10 +1,13 @@
-# Getting Started
+---
+title: Getting Started
+template: article.html
+---
 
 These samples were created by the PnP community. They demonstrate different usage patterns for the Power Platform technologies.
 
 The easiest way to get started with using these samples is to watch our video:
 
-**TODO: Add video to get started **
+<iframe width="560" height="315" src="https://www.youtube.com/embed/znjWIRGbzzw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 All samples are stored in various GitHub repositories. Each sample is located in its own folder with a README.md file that provides details about what it demonstrates and any extra information to help you get the most out of it.
 

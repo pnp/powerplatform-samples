@@ -1,5 +1,7 @@
-# Forking?
-
+---
+title: Forking?
+template: article.html
+---
 ## Typos, minor updates, or fixes to existing samples
 
 Whenever you are submitting any changes to the SharePoint repositories, please follow these recommendations.

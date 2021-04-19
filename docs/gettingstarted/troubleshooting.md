@@ -1,4 +1,7 @@
-# Troubleshooting
+---
+title: Troubleshooting
+template: article.html
+---
 
 The samples listed in this repository were built by the community over the years. During that time, the SharePoint Framework has continued to evolve.
 

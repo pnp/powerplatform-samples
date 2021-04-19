@@ -1,6 +1,9 @@
-# Submitting a Pull Request (PR)
+---
+title: Submitting a Pull Request
+template: article.html
+---
 
-## Submitting Pull Requests
+## Submitting Pull Requests (PR)
 
 Here's a high level process for submitting new samples or updates to existing ones.
 
@@ -18,7 +21,7 @@ Before you submit your pull request consider the following guidelines:
   that relates to your submission. You don't want to duplicate effort.
 * Make sure you have a link in your local cloned fork to the [SharePoint/sp-dev-fx-webparts](https://github.com/SharePoint/sp-dev-fx-webparts):
 
-```shell
+```bash
   # check if you have a remote pointing to the Microsoft repo:
   git remote -v
 
@@ -31,7 +34,7 @@ Before you submit your pull request consider the following guidelines:
 
 * Make your changes in a new git branch:
 
-  ```shell
+  ```bash
   git checkout -b react-taxonomypicker master
   ```
 
@@ -40,7 +43,7 @@ Before you submit your pull request consider the following guidelines:
   * [Keep Your Forked Git Repo Updated with Changes from the Original Upstream Repo](http://www.andrewconnell.com/blog/keep-your-forked-git-repo-updated-with-changes-from-the-original-upstream-repo)
   * For a quick cheat sheet:
 
-```shell
+```bash
     # assuming you are in the folder of your locally cloned fork....
     git checkout master
 
@@ -59,7 +62,7 @@ Before you submit your pull request consider the following guidelines:
 
 * Push your branch to GitHub:
 
-```shell
+```bash
   git push origin react-taxonomypicker
 ```
 
@@ -70,7 +73,7 @@ If the sample you wish to contribute is stored in your own Github repository, yo
 * Fork the `sp-dev-fx-webparts` repository from GitHub
 * Create a local git repository
 
-```shell
+```bash
     md sp-dev-fx-webparts
     cd sp-dev-fx-webparts
     git init
@@ -78,20 +81,20 @@ If the sample you wish to contribute is stored in your own Github repository, yo
 
 * Pull your forked copy of sp-dev-fx-webparts into your local repository
 
-```shell
+```bash
     git remote add origin https://github.com/yourgitaccount/sp-dev-fx-webparts.git
     git pull origin dev
 ```
 
 * Pull your other project from github into the samples folder of your local copy of sp-dev-fx-webparts
 
-```shell
+```bash
     git subtree add --prefix=samples/projectname https://github.com/yourgitaccount/projectname.git master
 ```
 
 * Push the changes up to your forked repository
 
-```shell
+```bash
     git push origin dev
 ```
 

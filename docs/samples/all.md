@@ -3,4 +3,4 @@ title: Power Platform Samples
 template: filter.html
 ---
 
-Find Power Platform by entering a keyword. You can filter by product, or by tag.
+Find Power Platform samples by entering a keyword. You can filter also filter by product.
