@@ -9,15 +9,17 @@ $(document).ready(function () {
     itemSelector: '.sample-thumbnail',
     layoutMode: 'fitRows',
     getSortData: {
-      name: '.name',
-      symbol: '.symbol',
+      modified: '[data-modified]',
+      name: '[data-title]'/*,,
       number: '.number parseInt',
-      category: '[data-category]',
+      category: '[data-category]'
       weight: function (itemElem) {
         var weight = $(itemElem).find('.weight').text();
         return parseFloat(weight.replace(/[\(\)]/g, ''));
-      }
-    }
+      }*/
+    },
+    sortBy : 'modified',
+    sortAscending: false
   });
 
   $.getJSON("https://pnp.github.io/powerplatform-samples/samples.json", function (data) {

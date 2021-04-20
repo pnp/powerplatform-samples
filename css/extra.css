@@ -143,6 +143,7 @@ ul.md-nav__list {
     margin-top: unset;
 }
 
+
 li.md-nav__item .md-nav__link:link {
     font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -160,6 +161,14 @@ li.md-nav__item {
     flex: 1 1 0%;
     /* padding: 4px 8px; */
 }
+
+.md-nav--secondary li.md-nav__item .md-nav__link:link {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
 
 .md-nav__icon::after {
     display: none;
