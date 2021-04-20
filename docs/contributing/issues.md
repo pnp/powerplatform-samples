@@ -7,8 +7,9 @@ Please do not open GitHub issues for general support questions as the GitHub lis
 
 If you have questions about how to use SharePoint Framework or any of the provided samples, please use the following locations.
 
-* [SharePoint Developer Space](http://aka.ms/SPPnP-Community) at http://techcommunity.microsoft.com
-* [SharePoint Stack Exchange](http://sharepoint.stackexchange.com/) with 'spfx' tag
+* [Power Platform Community](https://powerusers.microsoft.com/) at https://powerusers.microsoft.com/
+* [Stack Overflow](https://stackoverflow.com/), using the tags associated with the Power Platform technology you're having difficulties with
 
-If you experience an issue with one of the provided samples [open an issue in GitHub](https://github.com/SharePoint/sp-dev-fx-webparts/issues) and we'll notify the original authors of the sample.
+If you experience an issue with one of the provided samples open an issue in GitHub in the repository where the sample is stored and we'll try to help you.
+
 <img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/contributing/issues" />
