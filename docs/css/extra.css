@@ -143,6 +143,7 @@ ul.md-nav__list {
     margin-top: unset;
 }
 
+
 li.md-nav__item .md-nav__link:link {
     font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -159,6 +160,24 @@ li.md-nav__item {
     display: block;
     flex: 1 1 0%;
     /* padding: 4px 8px; */
+}
+
+.md-nav--secondary li.md-nav__item .md-nav__link:link {
+    display: block;
+    flex: 1 1 0%;
+    padding: 4px 8px;
+}
+
+.md-nav--secondary li.md-nav__item .md-nav__link:hover {
+    text-decoration: underline;
+}
+
+.md-nav--secondary .md-nav__item {
+    padding: 0;
+}
+
+.md-nav--secondary li.md-nav__item:hover {
+    background: rgb(237, 235, 233);
 }
 
 .md-nav__icon::after {
