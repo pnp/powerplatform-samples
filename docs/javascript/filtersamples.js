@@ -26,7 +26,7 @@ $(document).ready(function () {
         var escapedDescription = _.escape(sample.shortDescription);
         var categories = sample.categories[0];
 
-        var modified = new Date(sample.modified).toString().substr(4).substr(0, 12);
+        var modified = new Date(sample.updateDateTime).toString().substr(4).substr(0, 12);
 
         var authors = sample.authors;
         var authorsList = "";
