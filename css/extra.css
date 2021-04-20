@@ -163,12 +163,22 @@ li.md-nav__item {
 }
 
 .md-nav--secondary li.md-nav__item .md-nav__link:link {
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
+    display: block;
+    flex: 1 1 0%;
+    padding: 4px 8px;
 }
 
+.md-nav--secondary li.md-nav__item .md-nav__link:hover {
+    text-decoration: underline;
+}
+
+.md-nav--secondary .md-nav__item {
+    padding: 0;
+}
+
+.md-nav--secondary li.md-nav__item:hover {
+    background: rgb(237, 235, 233);
+}
 
 .md-nav__icon::after {
     display: none;

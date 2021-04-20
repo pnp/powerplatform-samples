@@ -83,19 +83,6 @@ $(document).ready(function () {
             break;
         }
 
-        // $("#sample-listing").append(`<a class="sample-thumbnail" href="${sample.url}" id="${sample.name}" data-modified='${sample.modified}' data-title='${title}' data-categories='${categories}' data-description='${escapedDescription}' data-keywords='${keywords}' title='${escapedDescription}'>
-        // <div class="sample-preview"><img src="${sample.thumbnails[0].url}" alt="${title}"></div>
-        // <div class="sample-details"><div class="producttype-item powerapps">Power Apps</div><p class="sample-title">${sample.title}</p>
-        // <p class="sample-description" title='${escapedDescription}'>${sample.shortDescription}</p>
-        // <div class="sample-activity">
-        // ${authorAvatars}
-        // <div class="activity-details">
-        // <span class="sample-author" title="${authorsList}">${authorName}</span>
-        // <span class="sample-date">Modified ${modified}</span>
-        // </div>
-        // </div>
-        // </div></a>`);
-
         var $items = $(`
         <a class="sample-thumbnail" href="${sample.url}"  data-modified="${sample.modified}" data-title="${title}" data-keywords="${keywords}" data-tags="${tags}" data-category=${categories}>
         <div class="sample-inner">
@@ -104,7 +91,7 @@ $(document).ready(function () {
           </div>
           <div class="sample-details">
             <div class="producttype-item ${productTag}">${productName}</div>
-            <p class="sample-title">${sample.title}</p>
+            <p class="sample-title" title="${sample.title}">${sample.title}</p>
             <p class="sample-description" title='${escapedDescription}'>${sample.shortDescription}</p>
             <div class="sample-activity">
               ${authorAvatars}
