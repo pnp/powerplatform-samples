@@ -2,28 +2,21 @@
 
 $(document).ready(function () {
   var filterText = $('#sample-listing').data("filter");
-  console.log("Filter text", filterText);
 
   // init Isotope
   var $grid = $('#sample-listing').isotope({
     itemSelector: '.sample-thumbnail',
     layoutMode: 'fitRows',
+    sortBy : 'modified',
+    sortAscending: false,
     getSortData: {
       modified: '[data-modified]',
-      name: '[data-title]'/*,,
-      number: '.number parseInt',
-      category: '[data-category]'
-      weight: function (itemElem) {
-        var weight = $(itemElem).find('.weight').text();
-        return parseFloat(weight.replace(/[\(\)]/g, ''));
-      }*/
-    },
-    sortBy : 'modified',
-    sortAscending: false
+      title: '.sample-title'
+    }
   });
 
   $.getJSON("https://pnp.github.io/powerplatform-samples/samples.json", function (data) {
-    console.log("data", data);
+    //console.log("data", data);
 
 
     $.each(data, function (_u, sample) {
@@ -104,9 +97,7 @@ $(document).ready(function () {
       </div>
     </a>`);
 
-        console.log("Filter situation", title, filterText, categories);
         if (filterText !== undefined && filterText !== "" && filterText !== categories) {
-          console.log("Skipping ", title, filterText, categories);
           // Skip this sample as it doesn't meet the filter
           ;
         } else {
@@ -120,10 +111,10 @@ $(document).ready(function () {
         console.log("Error with one sample", error);
       }
     });
+
+    // Update the sort
+    $grid.isotope('updateSortData').isotope();
   });
-
-
-
 
   // filter functions
   var filterFns = {
