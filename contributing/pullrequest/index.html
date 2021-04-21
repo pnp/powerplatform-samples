@@ -16,7 +16,7 @@
     
     
       
-        <title>Submitting a Pull Request - Power Platform Samples</title>
+        <title>Submitting a pull request - Power Platform Samples</title>
       
     
     
@@ -69,11 +69,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#submitting-pull-requests-pr" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -101,7 +96,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Submitting a Pull Request
+              Submitting a pull request
             
           </span>
         </div>
@@ -523,7 +518,7 @@
   
     <li class="md-nav__item">
       <a href="../sample/" class="md-nav__link">
-        Creating a sample
+        Add a sample
       </a>
     </li>
   
@@ -593,36 +588,6 @@
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <!-- Table of contents item -->
-<li class="md-nav__item">
-    <a href="#submitting-pull-requests-pr" class="md-nav__link">
-      Submitting Pull Requests (PR)
-    </a>
-</li>  
-    <!-- Render nested item list -->
-    
-  <!-- </li> -->
-      
-        <!-- Table of contents item -->
-<li class="md-nav__item">
-    <a href="#merging-your-existing-github-projects-with-the-samples-repository" class="md-nav__link">
-      Merging your Existing Github Projects with the Samples Repository
-    </a>
-</li>  
-    <!-- Render nested item list -->
-    
-  <!-- </li> -->
-      
-        <!-- Table of contents item -->
-<li class="md-nav__item">
-    <a href="#signing-the-cla" class="md-nav__link">
-      Signing the CLA
-    </a>
-</li>  
-    <!-- Render nested item list -->
-    
-  <!-- </li> -->
-      
     </ul>
   
 </nav>
@@ -648,70 +613,6 @@
               </div>
             
             
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<!-- Table of contents -->
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-
-  <!--
-    Hack: check whether the content contains a h1 headline. If it does, the
-    top-level anchor must be skipped, since it would be redundant to the link
-    to the current page that is located just above the anchor. Therefore we
-    directly continue with the children of the anchor.
-  -->
-  
-  
-
-  <!-- Render item list -->
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <!-- Table of contents item -->
-<li class="md-nav__item">
-    <a href="#submitting-pull-requests-pr" class="md-nav__link">
-      Submitting Pull Requests (PR)
-    </a>
-</li>  
-    <!-- Render nested item list -->
-    
-  <!-- </li> -->
-      
-        <!-- Table of contents item -->
-<li class="md-nav__item">
-    <a href="#merging-your-existing-github-projects-with-the-samples-repository" class="md-nav__link">
-      Merging your Existing Github Projects with the Samples Repository
-    </a>
-</li>  
-    <!-- Render nested item list -->
-    
-  <!-- </li> -->
-      
-        <!-- Table of contents item -->
-<li class="md-nav__item">
-    <a href="#signing-the-cla" class="md-nav__link">
-      Signing the CLA
-    </a>
-</li>  
-    <!-- Render nested item list -->
-    
-  <!-- </li> -->
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -719,105 +620,24 @@
 
 
 <div class="content-header">
-<h1>Submitting a Pull Request</h1>
+<h1>Submitting a pull request</h1>
 </div>
 
 
 <section>
-  <h2 id="submitting-pull-requests-pr">Submitting Pull Requests (PR)<a class="headerlink" href="#submitting-pull-requests-pr" title="Permanent link">&para;</a></h2>
-<p>Here's a high level process for submitting new samples or updates to existing ones.</p>
-<ol>
-<li>Sign the Contributor License Agreement (see below)</li>
-<li>Fork the <a href="https://github.com/SharePoint/sp-dev-fx-webparts">SharePoint/sp-dev-fx-webparts</a> repository to your GitHub account</li>
-<li>Create a new branch off of the <code>master</code> branch for your fork for the contribution</li>
-<li>Include your changes to your branch</li>
-<li>Commit your changes using descriptive commit message * These are used to track changes on the repositories for monthly communications</li>
-<li>Create a pull request in your own fork and target <code>dev</code> branch</li>
-<li>Fill up the provided PR template with the requested details</li>
-</ol>
-<p>Before you submit your pull request consider the following guidelines:</p>
+  <p>To submit your sample or to make changes to an existing sample, you need to create a GitHub pull request in the repository appropriate for each sample type.</p>
+<p>Although the process is similar across all the repositories, each sample type may require you to take additional steps and/or provide additional information. </p>
+<p>For more information on how to submit a pull request for each sample type, please refer to these repositories:</p>
 <ul>
-<li>Search <a href="https://github.com/SharePoint/sp-dev-fx-webparts/pulls">GitHub</a> for an open or closed Pull Request
-  that relates to your submission. You don't want to duplicate effort.</li>
-<li>Make sure you have a link in your local cloned fork to the <a href="https://github.com/SharePoint/sp-dev-fx-webparts">SharePoint/sp-dev-fx-webparts</a>:</li>
+<li><a href="https://github.com/pnp/powerfx-samples">Power Fx Samples</a></li>
+<li><a href="https://github.com/pnp/powerapps-samples">Power Apps Samples</a></li>
+<li><a href="https://github.com/pnp/powerautomate-samples">Power Automate Samples</a></li>
+<li><a href="https://github.com/pnp/powerva-samples">Power Virtual Agents Samples</a></li>
 </ul>
-<div class="codehilite"><pre><span></span><code>  <span class="c1"># check if you have a remote pointing to the Microsoft repo:</span>
-  git remote -v
-
-  <span class="c1"># if you see a pair of remotes (fetch &amp; pull) that point to https://github.com/SharePoint/sp-dev-fx-webparts, you&#39;re ok... otherwise you need to add one</span>
-
-  <span class="c1"># add a new remote named &quot;upstream&quot; and point to the Microsoft repo</span>
-
-  git remote add upstream https://github.com/SharePoint/sp-dev-fx-webparts.git
-</code></pre></div>
-
-<ul>
-<li>Make your changes in a new git branch:</li>
-</ul>
-<p><code>bash
-  git checkout -b react-taxonomypicker master</code></p>
-<ul>
-<li>Ensure your fork is updated and not behind the upstream <strong>sp-dev-fx-webparts</strong> repo. Refer to these resources for more information on syncing your repo:</li>
-<li><a href="https://help.github.com/articles/syncing-a-fork/">GitHub Help: Syncing a Fork</a></li>
-<li><a href="http://www.andrewconnell.com/blog/keep-your-forked-git-repo-updated-with-changes-from-the-original-upstream-repo">Keep Your Forked Git Repo Updated with Changes from the Original Upstream Repo</a></li>
-<li>For a quick cheat sheet:</li>
-</ul>
-<div class="codehilite"><pre><span></span><code>    <span class="c1"># assuming you are in the folder of your locally cloned fork....</span>
-    git checkout master
-
-    <span class="c1"># assuming you have a remote named `upstream` pointing official **sp-dev-fx-webparts** repo</span>
-    git fetch upstream
-
-    <span class="c1"># update your local master to be a mirror of what&#39;s in the main repo</span>
-    git pull --rebase upstream master
-
-    <span class="c1"># switch to your branch where you are working, say &quot;react-taxonomypicker&quot;</span>
-    git checkout react-taxonomypicker
-
-    <span class="c1"># update your branch to update it&#39;s fork point to the current tip of master &amp; put your changes on top of it</span>
-    git rebase master
-</code></pre></div>
-
-<ul>
-<li>Push your branch to GitHub:</li>
-</ul>
-<div class="codehilite"><pre><span></span><code>  git push origin react-taxonomypicker
-</code></pre></div>
-
-<h2 id="merging-your-existing-github-projects-with-the-samples-repository">Merging your Existing Github Projects with the Samples Repository<a class="headerlink" href="#merging-your-existing-github-projects-with-the-samples-repository" title="Permanent link">&para;</a></h2>
-<p>If the sample you wish to contribute is stored in your own Github repository, you can use the following steps to merge it with the samples repository:</p>
-<ul>
-<li>Fork the <code>sp-dev-fx-webparts</code> repository from GitHub</li>
-<li>Create a local git repository</li>
-</ul>
-<div class="codehilite"><pre><span></span><code>    md sp-dev-fx-webparts
-    <span class="nb">cd</span> sp-dev-fx-webparts
-    git init
-</code></pre></div>
-
-<ul>
-<li>Pull your forked copy of sp-dev-fx-webparts into your local repository</li>
-</ul>
-<div class="codehilite"><pre><span></span><code>    git remote add origin https://github.com/yourgitaccount/sp-dev-fx-webparts.git
-    git pull origin dev
-</code></pre></div>
-
-<ul>
-<li>Pull your other project from github into the samples folder of your local copy of sp-dev-fx-webparts</li>
-</ul>
-<div class="codehilite"><pre><span></span><code>    git subtree add --prefix<span class="o">=</span>samples/projectname https://github.com/yourgitaccount/projectname.git master
-</code></pre></div>
-
-<ul>
-<li>Push the changes up to your forked repository</li>
-</ul>
-<div class="codehilite"><pre><span></span><code>    git push origin dev
-</code></pre></div>
-
-<h2 id="signing-the-cla">Signing the CLA<a class="headerlink" href="#signing-the-cla" title="Permanent link">&para;</a></h2>
-<p>Before we can accept your pull requests you will be asked to sign electronically Contributor License Agreement (CLA), which is prerequisite for any contributions to PnP repository. This will be one time process, so for any future contributions you will not be asked to re-sign anything. After the CLA has been signed, our PnP core team members will have a look on your submission for final verification of the submission. Please do not delete your development branch until the submission has been closed.</p>
-<p>You can find Microsoft CLA from the following address - https://cla.microsoft.com. </p>
-<p>Thank you for your contribution.</p>
+<blockquote>
+<p>[!NOTE]
+Many of the above repositories are still under construction and may not be actively accepting pull requests at the moment. Feel free to reach out to the respective repository owners if you'd like to be the first to provide samples on those repositories.</p>
+</blockquote>
 <p><img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/contributing/pullrequest" /></p>
 </section>
 
@@ -864,7 +684,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Creating a sample
+              Add a sample
             </div>
           </div>
         </a>
