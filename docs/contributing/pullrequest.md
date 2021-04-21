@@ -14,7 +14,7 @@ For more information on how to submit a pull request for each sample type, pleas
 - [Power Automate Samples](https://github.com/pnp/powerautomate-samples)
 - [Power Virtual Agents Samples](https://github.com/pnp/powerva-samples)
 
-> [!NOTE]
+> **NOTE:**
 > Many of the above repositories are still under construction and may not be actively accepting pull requests at the moment. Feel free to reach out to the respective repository owners if you'd like to be the first to provide samples on those repositories.
 
 <img src="https://telemetry.sharepointpnp.com/powerplatform-samples/docs/contributing/pullrequest" />
