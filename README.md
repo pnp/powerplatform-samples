@@ -35,9 +35,9 @@ This repository's contributors are all community members who volunteered their t
 
 ## Contributions
 
-These samples are direct from the feature teams, PnP core team (http://aka.ms/m365pnp) or shared by the community. We welcome your input on issues and suggestions for new samples. We do also welcome community contributions around the Microsoft Power Platform. If you have any questions, just let us know.
+This repository does not accept direct contributions. Please refer to the sample repositories listed above to see how you can contribute samples for each respective technology.
 
-Please have a look at the contribution guidance from each repository before submitting your pull requests, so that we can get your contribution processed as fast as possible.
+Have a look at the contribution guidance from each repository before submitting your pull requests, so that we can get your contribution processed as fast as possible.
 
 ## Code of Conduct
 This repository has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
