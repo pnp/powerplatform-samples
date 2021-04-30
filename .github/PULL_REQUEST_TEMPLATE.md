@@ -1,25 +1,10 @@
-|      ❓  Q        |                ❗    A                    |
-| --------------- | --------------------------------------- |
-| Bug fix?        | no - yes?                               |
-| New feature?    | no - yes?                               |
-| New sample?     | no - yes?                               |
-| Related issues? | fixes #X, partially #Y, mentioned in #Z |
+## This repo does not accept pull requests
 
-## What's in this Pull Request?
+If you have a sample that you'd like to share, please visit the appropriate repository for the type of simple you'd like to provide and look for the **Contribution Guidance** section.
 
-> Please describe the changes in this PR. Sample description or details around bugs which are being fixed.
-> 
-> _(DELETE THIS PARAGRAPH AFTER READING)_
+The following is a list of repositories for each sample types:
 
-## Submitter Guidance (DELETE AFTER READING)
-> 
-> *Please update this PR information accordingly. We'll use this as part of our release notes in monthly communications.*
->
-> *Pull requests that do not follow this template will be automatically rejected.*
-> 
-> *Please target your PR to `master` branch.*
->
-> *Remember that this repository is maintained by community members who volunteer their time to help. Be courteous and patient.*
-> _(DELETE THIS SECTION AFTER READING)_
-
-Thank you, Sharing is cariing ❤
+- [Power Fx Samples](https://github.com/pnp/powerfx-samples)
+- [Power Apps Samples](https://github.com/pnp/powerapps-samples)
+- [Power Automate Samples](https://github.com/pnp/powerautomate-samples)
+- [Power Virtual Agents Samples](https://github.com/pnp/powerva-samples)
