@@ -1,5 +1,4 @@
 
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -621,14 +620,51 @@
 
 
 <div class="content-header">
-<h1>Power Automate Samples</h1>
+  <h1>Power Automate Samples</h1>
 </div>
 
 
 <section class="intro-section">
   <p>Power Automate is a service that helps you create automated workflows between your favorite apps and services to synchronize files, get notifications, collect data, and more.</p>
-<p>We do not have any samples for Power Automate yet -- please come back later. If you'd like to contribute a sample flow, please submit a pull request to our <a href="https://github.com/pnp/powerautomate-samples">Power Automate Samples repository</a>.</p>
 <p>For more information about Power Automate, visit the <a href="https://docs.microsoft.com/power-automate/">Microsoft Power Automate documentation</a></p>
+</section>
+
+<section class="filter-section">
+  <h2 class="sub-heading">Samples</h2>
+  <div class="search-input-wrapper float-l" aria-hidden="true">
+    <div class="icon-container">
+      &nbsp;
+    </div>
+    <input id="post-search-input" class="search-input" placeholder="Search samples">
+  </div>
+
+  <!-- <div id="post-tags-filter-btn" class="primary-btn dark float-r">Filter by tags
+    <p id="post-tags-filter-count" class="tag-number">0</p>
+  </div> -->
+
+
+  <div id="filters" class="software-list filter-list float-r">
+    <div id="post-product-filter-all" class="producttype-item filter-choice active" data-filter="*"
+      title="All Power Platform technologies">All</div>
+    <div id="post-product-filter-powerapps" class="producttype-item filter-choice powerapps"
+      data-filter="[data-category='POWERAPPS']" title="Power Apps"></div>
+    <div id="post-product-filter-powerautomate" class="producttype-item filter-choice powerautomate"
+      data-filter="[data-category='POWERAUTOMATE']" title="Power Automate"></div>
+    <div id="post-product-filter-powervirtualagents" class="producttype-item filter-choice powervirtualagents"
+      data-filter="[data-category='POWERVA']" title="Power Virtual Agents"></div>
+    <div id="post-product-filter-powerfx" class="producttype-item filter-choice powerfx"
+      data-filter="[data-category='POWERFX']" title="Power Fx"></div>
+  </div>
+
+  <div class="well">
+    <div class="button-group filters-button-group">
+      
+    </div>
+  </div>
+
+  <div class="grid" id="sample-listing" data-filter=POWERAUTOMATE>
+
+  </div>
 </section>
 
 <!-- Last update of source file -->
