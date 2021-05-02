@@ -17,6 +17,17 @@ $(document).ready(function () {
 
   $.getJSON("https://pnp.github.io/powerplatform-samples/samples.json", function (data) {
     //console.log("data", data);
+    var asc = true;
+    var prop = "updateDateTime";
+
+    data = data.sort(function(a, b) {
+      try {
+        if (asc) return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+        else return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);  
+      } catch (error) {
+        return 0;
+      }
+    });
 
 
     $.each(data, function (_u, sample) {
