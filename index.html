@@ -630,7 +630,7 @@
 
 <section class="filter-section">
   <h2 class="sub-heading">Samples</h2>
-  <div class="search-input-wrapper float-l" aria-hidden="true">
+  <div class="search-input-wrapper float-l">
     <div class="icon-container">
       &nbsp;
     </div>
@@ -642,16 +642,16 @@
   </div> -->
 
 
-  <div id="filters" class="software-list filter-list float-r">
-    <div id="post-product-filter-all" class="producttype-item filter-choice active" data-filter="*"
+  <div id="filters" class="sample-list filter-list float-r">
+    <div id="post-sample-filter-all" class="sampletype-item filter-choice active" data-filter="*"
       title="All Power Platform technologies">All</div>
-    <div id="post-product-filter-powerapps" class="producttype-item filter-choice powerapps"
+    <div id="post-sample-filter-powerapps" class="sampletype-item filter-choice powerapps"
       data-filter="[data-category='POWERAPPS']" title="Power Apps"></div>
-    <div id="post-product-filter-powerautomate" class="producttype-item filter-choice powerautomate"
+    <div id="post-sample-filter-powerautomate" class="sampletype-item filter-choice powerautomate"
       data-filter="[data-category='POWERAUTOMATE']" title="Power Automate"></div>
-    <div id="post-product-filter-powervirtualagents" class="producttype-item filter-choice powervirtualagents"
+    <div id="post-sample-filter-powervirtualagents" class="sampletype-item filter-choice powervirtualagents"
       data-filter="[data-category='POWERVA']" title="Power Virtual Agents"></div>
-    <div id="post-product-filter-powerfx" class="producttype-item filter-choice powerfx"
+    <div id="post-sample-filter-powerfx" class="sampletype-item filter-choice powerfx"
       data-filter="[data-category='POWERFX']" title="Power Fx"></div>
   </div>
 
@@ -664,6 +664,11 @@
   <div class="grid" id="sample-listing" data-filter=>
 
   </div>
+
+  <div id="noresults">
+    No results found.
+  </div>
+
 </section>
 
 <!-- Last update of source file -->
@@ -797,6 +802,8 @@
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
       
         <script src="javascript/isotope.pkgd.min.js"></script>
+      
+        <script src="javascript/loadsamples.js"></script>
       
         <script src="javascript/filtersamples.js"></script>
       

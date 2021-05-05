@@ -632,7 +632,7 @@
 
 <section class="filter-section">
   <h2 class="sub-heading">Samples</h2>
-  <div class="search-input-wrapper float-l" aria-hidden="true">
+  <div class="search-input-wrapper float-l">
     <div class="icon-container">
       &nbsp;
     </div>
@@ -646,11 +646,11 @@
 
 
   <div id="filters" class="software-list filter-list float-r">
-    <div id="post-type-filter-all" class="sampletype-item filter-choice active" data-filter="*" title="All sample types">All</div>
-    <div id="post-type-filter-powerfxtext" class="sampletype-item filter-choice powerfxtext" data-filter="[data-tags*='#TEXT,']" title="Text samples"></div>
-    <div id="post-type-filter-powerfxnumbers" class="sampletype-item filter-choice powerfxnumbers" data-filter="[data-tags*='#NUMBER,']" title="Number samples"></div>
-    <div id="post-type-filter-powerfxdate" class="sampletype-item filter-choice powerfxdate" data-filter="[data-tags*='#DATE,']" title="Date and time samples"></div>
-    <div id="post-type-filter-powerfxgeo" class="sampletype-item filter-choice powerfxgeo" data-filter="[data-tags*='#GEOLOCATION,']" title="Geolocation samples"></div>
+    <div id="post-sample-filter-all" class="sampletype-item filter-choice active" data-filter="*" title="All sample types">All</div>
+    <div id="post-sample-filter-powerfxtext" class="sampletype-item filter-choice powerfxtext" data-filter="[data-tags*='#TEXT,']" title="Text samples"></div>
+    <div id="post-sample-filter-powerfxnumbers" class="sampletype-item filter-choice powerfxnumbers" data-filter="[data-tags*='#NUMBER,']" title="Number samples"></div>
+    <div id="post-sample-filter-powerfxdate" class="sampletype-item filter-choice powerfxdate" data-filter="[data-tags*='#DATE,']" title="Date and time samples"></div>
+    <div id="post-sample-filter-powerfxgeo" class="sampletype-item filter-choice powerfxgeo" data-filter="[data-tags*='#GEOLOCATION,']" title="Geolocation samples"></div>
 </div>
 
   <div class="well">
@@ -664,6 +664,11 @@
 <div class="grid" id="sample-listing" data-filter="POWERFX">
 
 </div>
+
+<div id="noresults">
+  No results found.
+</div>
+
 </section>
 
 <!-- Last update of source file -->
@@ -815,6 +820,8 @@
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
       
         <script src="../../javascript/isotope.pkgd.min.js"></script>
+      
+        <script src="../../javascript/loadsamples.js"></script>
       
         <script src="../../javascript/filtersamples.js"></script>
       
