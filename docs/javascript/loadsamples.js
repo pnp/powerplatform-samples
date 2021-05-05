@@ -66,7 +66,10 @@ function loadSample(sample, filter) {
         productTag = "powerapps";
         productName = "Power Apps";
         break;
-
+      case "POWERAUTOMATE":
+        productTag = "powerautomate";
+        productName = "Power Automate";
+        break;
       default:
         break;
     }
