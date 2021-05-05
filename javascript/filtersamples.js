@@ -1,6 +1,7 @@
 // external js: isotope.pkgd.js
 
 $(document).ready(function () {
+  var jsonPath = "https://pnp.github.io/powerplatform-samples/samples.json";
   var filterText = $('#sample-listing').data("filter");
 
   // init Isotope
@@ -15,11 +16,12 @@ $(document).ready(function () {
     }
   });
 
-  $.getJSON("https://pnp.github.io/powerplatform-samples/samples.json", function (data) {
-    //console.log("data", data);
+  // Get the JSON
+  $.getJSON(jsonPath, function (data) {
     var asc = true;
     var prop = "updateDateTime";
 
+    // Sort data descending order
     data = data.sort(function(a, b) {
       try {
         if (asc) return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);

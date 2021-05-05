@@ -1,73 +1,86 @@
-[{
+[
+  [
+    {
       "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
-      "name": "pnp-powerautomate-samples-teams-invites-via-graph-api",
+      "name": "pnp-powerapps-samples-timer",
       "version": "1.0.0.0",
       "source": "pnp",
-      "creationDateTime": "2021-05-01T00:00:00.000Z",
-      "updateDateTime": "2021-05-01T00:00:00.000Z",
-      "title": "Teams Guest Access with Approval",
-      "shortDescription": "Allows a guest user to request access to a Team",
+      "creationDateTime": "2021-05-04T00:00:00.000Z",
+      "updateDateTime": "2021-05-04T00:00:00.000Z",
+      "title": "timer",
+      "shortDescription": "Example of how to use the timer function as a stopwatch",
       "longDescription": [
-        "This sample project allows a guest user to request access to a Team. The owner(s) of the Team will first Approve the request before the guest account is added to the Tenant along with access to the team"
+        "This app is an example of how to use the timer function as a stopwatch.", 
+        "You can specify predefined times and start the timer with them.",
+        "An easy to read visualization helps all users to estimate how much time has already passed.",
+        "This solution is optimized to use within Microsoft Teams meetings."
       ],
-      "url": "https://github.com/pnp/powerautomate-samples/tree/main/samples/teams-invites-via-graph-api",
+      "url": "https://github.com/pnp/powerapps-samples/tree/main/samples/timer",
       "products": [
-        "Power Automate",
+        "Power Apps",
         "Power Platform"
       ],
       "tags": [
-        "APPROVALS"
+        "TEAMS"
       ],
       "categories": [
-        "POWERAUTOMATE"
+        "POWERAPPS"
       ],
       "metadata": [
         {
-          "key": "POWERAUTOMATE-PREMIUM",
-          "value": "Yes"
+          "key": "POWERAPPS-MANIFEST-VERSION",
+          "value": "0.20"
         },
         {
-          "key": "POWERAUTOMATE-ONPREM",
+          "key": "POWERAPPS-TYPE",
+          "value": "Canvas"
+        },
+        {
+          "key": "POWERAPPS-EXPERIMENTAL",
           "value": "No"
         },
         {
-          "key": "POWERAUTOMATE-CUSTOMCONNECTOR",
-          "value": "Yes"
+          "key": "POWERAPPS-PREMIUM",
+          "value": "No"
         },
         {
-          "key": "POWERAUTOMATE-CONNECTORS",
-          "value": "Approvals"
+          "key": "POWERAPPS-ONPREM",
+          "value": "No"
+        },
+        {
+          "key": "POWERAPPS-CUSTOMCONNECTOR",
+          "value": "No"
         }
       ],
       "thumbnails": [
         {
           "type": "image",
           "order": 100,
-          "url": "https://github.com/pnp/powerautomate-samples/blob/main/samples/teams-invites-via-graph-api/assets/2021-05-02_10-52-05.png?raw=true",
-          "alt": "Preview of the solution"
+          "url": "https://github.com/pnp/powerapps-samples/blob/main/samples/timer/assets/timerapp.png?raw=true",
+          "alt": "App Preview"
         }
       ],
       "authors": [
         {
-          "gitHubAccount": "LinkeD365",
-          "name": "Carl Cookson",
-          "pictureUrl": "https://github.com/LinkeD365.png",
-          "twitter": "https://twitter.com/LinkeD365"
+          "gitHubAccount": "Gezeitenbrand",
+          "name": "Michael Roth",
+          "pictureUrl": "https://github.com/Gezeitenbrand.png"
         }
       ],
       "references": [
-        { 
-          "name": "Create your first flow",
-          "description": "Anyone from a basic business user to an IT professional can create automated processes using Power Automate's no-code/low-code platform.",
-          "url": "https://docs.microsoft.com/en-us/power-automate/getting-started#create-your-first-flow"
+        {
+          "name": "Overview of creating apps in Power Apps",
+          "description": "Power Apps is a high-productivity development platform for business apps.",
+          "url": "https://docs.microsoft.com/powerapps/maker/"
         },
-        { 
-          "name": "Microsoft Power Automate documentation",
-          "description": "Power Automate is a service that helps you create automated workflows between your favorite apps and services to synchronize files, get notifications, collect data, and more.",
-          "url": "https://docs.microsoft.com/en-us/power-automate/"
+        {
+          "name": "Power Apps canvas apps documentation",
+          "description": "Design and build a business app from a canvas in Microsoft Power Apps with data from a variety of sources without writing any code using traditional programming languages, such as C#.",
+          "url": "https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/"
         }
       ]
-    },
+    }
+  ],
   {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-powerapps-samples-expandable-navigation",
