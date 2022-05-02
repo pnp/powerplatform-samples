@@ -1,4 +1,708 @@
 [
+ {
+      "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
+      "name": "o365groups-graph-create-group",
+      "version": "1.0.0.0",
+      "source": "pnp",
+      "creationDateTime": "2021-02-28T00:00:00.000Z",
+      "updateDateTime": "2021-02-28T00:00:00.000Z",
+      "title": "Create Microsoft 365 Groups using the Groups Connector and Microsoft Graph",
+      "shortDescription": "Creates Microsoft 365 Groups using the Office 365 Groups Connector action 'Send an HTTP Request' and the Microsoft Graph Groups endpoint. Adds members to the group if specified.",
+      "longDescription": [
+          "Creates Microsoft 365 Groups using the Office 365 Groups Connector action 'Send an HTTP Request' and the Microsoft Graph Groups endpoint. Adds members to the group if specified."
+      ],
+      "url": "https://github.com/pnp/powerautomate-samples/tree/main/samples/o365groups-graph-create-group",
+      "products": [
+          "Power Automate",
+          "Power Platform",
+          "Microsoft Groups"
+      ],
+      "tags": [
+          "Microsoft Groups",
+          "Power Automate"
+      ],
+      "categories": [
+          "POWERAUTOMATE"
+      ],
+      "metadata": [
+          {
+              "key": "POWERAUTOMATE-PREMIUM",
+              "value": "No"
+          },
+          {
+              "key": "POWERAUTOMATE-ONPREM",
+              "value": "No"
+          },
+          {
+              "key": "POWERAUTOMATE-CUSTOMCONNECTOR",
+              "value": "No"
+          }
+      ],
+      "thumbnails": [
+          {
+              "type": "image",
+              "order": 100,
+              "url": "https://github.com/pnp/powerautomate-samples/blob/main/samples/o365groups-graph-create-group/assets/flow-overview.png?raw=true",
+              "alt": "Preview of the solution"
+          }
+      ],
+      "authors": [
+          {
+              "gitHubAccount": "michelcarlo",
+              "name": "Michel Carlo",
+              "pictureUrl": "https://github.com/michelcarlo.png"
+          }
+      ],
+      "references": [
+          {
+              "name": "Create your first flow",
+              "description": "Anyone from a basic business user to an IT professional can create automated processes using Power Automate's no-code/low-code platform.",
+              "url": "https://docs.microsoft.com/en-us/power-automate/getting-started#create-your-first-flow"
+          },
+          {
+              "name": "Microsoft Power Automate documentation",
+              "description": "Power Automate is a service that helps you create automated workflows between your favorite apps and services to synchronize files, get notifications, collect data, and more.",
+              "url": "https://docs.microsoft.com/en-us/power-automate/"
+          }
+      ]
+  },
+ {
+      "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
+      "name": "pnp-powerautomate-samples-notify-on-last-working-day"
+    {
+      "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
+      "name": "pnp-powerautomate-samples-notify-on-last-working-day",
+      "version": "1.0.0.0",
+      "source": "pnp",
+      "creationDateTime": "2022-03-08T00:00:00.000Z",
+      "updateDateTime": "2022-03-08T00:00:00.000Z",
+      "title": "Be notified about the last working day of the month (except holidays)",
+      "shortDescription": "Send an e-mail notification on the last **working** day of the month. ",
+      "longDescription": [
+        "Send an e-mail notification on the last **working** day of the month. "
+      ],
+      "url": "https://github.com/pnp/powerautomate-samples/tree/main/samples/notify-on-last-working-day",
+      "products": [
+        "Power Automate",
+        "Power Platform"
+      ],
+      "tags": [
+        "Power Automate","Working Days"
+      ],
+      "categories": [
+        "POWERAUTOMATE"
+      ],
+      "metadata": [
+        {
+          "key": "POWERAUTOMATE-PREMIUM",
+          "value": "No"
+        },
+        {
+          "key": "POWERAUTOMATE-ONPREM",
+          "value": "No"
+        },
+        {
+          "key": "POWERAUTOMATE-CUSTOMCONNECTOR",
+          "value": "No"
+        },
+        {
+          "key": "POWERAUTOMATE-CONNECTORS",
+          "value": "Notifications"
+        }
+      ],
+      "thumbnails": [
+        {
+          "type": "image",
+          "order": 100,
+          "url": "https://github.com/pnp/powerautomate-samples/blob/main/samples/notify-on-last-working-day/assets/Send_notification_flow_overview.png?raw=true",
+          "alt": "Preview of the solution"
+        }
+      ],
+      "authors": [
+        {
+          "gitHubAccount": "Michal-Ziemba",
+          "name": "Michal Ziemba",
+          "pictureUrl": "https://github.com/Michal-Ziemba.png"
+        }
+      ],
+      "references": [
+        { 
+          "name": "Create your first flow",
+          "description": "Anyone from a basic business user to an IT professional can create automated processes using Power Automate's no-code/low-code platform.",
+          "url": "https://docs.microsoft.com/en-us/power-automate/getting-started#create-your-first-flow"
+        },
+        { 
+          "name": "Microsoft Power Automate documentation",
+          "description": "Power Automate is a service that helps you create automated workflows between your favorite apps and services to synchronize files, get notifications, collect data, and more.",
+          "url": "https://docs.microsoft.com/en-us/power-automate/"
+        }
+      ]
+    },
+{
+        "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
+<<<<<<< Updated upstream
+        "name": "pnp-powerautomate-samples-new-employee-tip-of-the-day",
+        "version": "1.0.0.0",
+        "source": "pnp",
+        "creationDateTime": "2021-10-07T00:00:00.000Z",
+        "updateDateTime": "2021-10-07T00:00:00.000Z",
+        "title": "New Employee Tip Notification Flow",
+        "shortDescription": "Sends a daily tip of the day",
+        "longDescription": [
+            "Improve new employee onboarding by giving them an automated tip of the day with Power Automate."
+        ],
+        "url": "https://github.com/pnp/powerautomate-samples/tree/main/samples/new-employee-tip-of-the-day",
+=======
+        "name": "pnp-powerautomate-samples-exception-handing-in-do-until-loop",
+        "version": "1.0.0.0",
+        "source": "pnp",
+        "creationDateTime": "2021-05-01T00:00:00.000Z",
+        "updateDateTime": "2021-05-01T00:00:00.000Z",
+        "title": "Pattern: Exception handing in 'Do until'-loop",
+        "shortDescription": "A pattern for breaking out of a 'Do Until'-loop in Power Automate when an exception occurs.",
+        "longDescription": [
+            "A pattern for breaking out of a 'Do Until'-loop in Power Automate when an exception occurs."
+        ],
+        "url": "https://github.com/pnp/powerautomate-samples/tree/main/samples/exception-handing-in-do-until-loop",
+>>>>>>> Stashed changes
+        "products": [
+            "Power Automate",
+            "Power Platform"
+        ],
+        "tags": [
+<<<<<<< Updated upstream
+            "TIPS",
+            "ONBOARDING"
+=======
+            "PATTERNS",
+            "EXCEPTION-HANDLING",
+            "DO-UNTIL-LOOP"
+>>>>>>> Stashed changes
+        ],
+        "categories": [
+            "POWERAUTOMATE"
+        ],
+        "metadata": [
+            {
+                "key": "POWERAUTOMATE-PREMIUM",
+                "value": "No"
+            },
+            {
+                "key": "POWERAUTOMATE-ONPREM",
+                "value": "No"
+            },
+            {
+                "key": "POWERAUTOMATE-CUSTOMCONNECTOR",
+                "value": "No"
+            }
+        ],
+        "thumbnails": [
+            {
+                "type": "image",
+                "order": 100,
+<<<<<<< Updated upstream
+                "url": "https://github.com/pnp/powerautomate-samples/blob/main/samples/new-employee-tip-of-the-day/assets/flow.png?raw=true",
+=======
+                "url": "https://github.com/pnp/powerautomate-samples/blob/main/samples/exception-handing-in-do-until-loop/assets/flow.png?raw=true",
+>>>>>>> Stashed changes
+                "alt": "Preview of the solution"
+            }
+        ],
+        "authors": [
+            {
+<<<<<<< Updated upstream
+                "gitHubAccount": "Adam-it",
+                "name": "Adam Wójcik",
+                "pictureUrl": "https://github.com/Adam-it.png"
+            }
+=======
+        "gitHubAccount": "remyblok",
+        "name": "Remy Blok",
+        "pictureUrl": "https://github.com/remyblok.png"
+      }
+>>>>>>> Stashed changes
+        ],
+        "references": [
+            {
+                "name": "Create your first flow",
+                "description": "Anyone from a basic business user to an IT professional can create automated processes using Power Automate's no-code/low-code platform.",
+                "url": "https://docs.microsoft.com/en-us/power-automate/getting-started#create-your-first-flow"
+            },
+            {
+                "name": "Microsoft Power Automate documentation",
+                "description": "Power Automate is a service that helps you create automated workflows between your favorite apps and services to synchronize files, get notifications, collect data, and more.",
+                "url": "https://docs.microsoft.com/en-us/power-automate/"
+            }
+        ]
+    },
+{
+        "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
+        "name": "pnp-powerautomate-samples-graph_api_in_power_bi",
+        "version": "1.0.0.0",
+        "source": "pnp",
+        "creationDateTime": "2021-06-09T00:00:00.000Z",
+        "updateDateTime": "2021-06-09T00:00:00.000Z",
+        "title": "Refresh Graph API data in Power BI Flow",
+        "shortDescription": "This sample project enables Graph API data to be refreshed within the Power BI Service.",
+        "longDescription": [
+            "This sample project enables Graph API data to be refreshed within the Power BI Service. "
+        ],
+        "url": "https://github.com/pnp/powerautomate-samples/tree/main/samples/graph_api_in_power_bi",
+        "products": [
+            "Power Automate",
+            "Power Platform",
+            "Power BI"
+        ],
+        "tags": [
+            "Power BI",
+            "Graph"
+        ],
+        "categories": [
+            "POWERAUTOMATE"
+        ],
+        "metadata": [
+            {
+                "key": "POWERAUTOMATE-PREMIUM",
+                "value": "yes"
+            },
+            {
+                "key": "POWERAUTOMATE-ONPREM",
+                "value": "No"
+            },
+            {
+                "key": "POWERAUTOMATE-CUSTOMCONNECTOR",
+                "value": "Yes"
+            }
+        ],
+        "thumbnails": [
+            {
+                "type": "image",
+                "order": 100,
+                "url": "https://github.com/pnp/powerautomate-samples/blob/main/samples/graph_api_in_power_bi/assets/preview.png?raw=true",
+                "alt": "Preview of the solution"
+            }
+        ],
+        "authors": [
+            {
+                "gitHubAccount": "365EDUBI",
+                "name": "Scott McKenzie",
+                "pictureUrl": "https://github.com/365EDUBI.png"
+            }
+        ],
+        "references": [
+            {
+                "name": "Create your first flow",
+                "description": "Anyone from a basic business user to an IT professional can create automated processes using Power Automate's no-code/low-code platform.",
+                "url": "https://docs.microsoft.com/en-us/power-automate/getting-started#create-your-first-flow"
+            },
+            {
+                "name": "Microsoft Power Automate documentation",
+                "description": "Power Automate is a service that helps you create automated workflows between your favorite apps and services to synchronize files, get notifications, collect data, and more.",
+                "url": "https://docs.microsoft.com/en-us/power-automate/"
+            }
+        ]
+    },
+ {
+      "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
+      "name": "teams-adaptive-card-reminders-from-lists",
+      "version": "1.0.0.0",
+      "source": "pnp",
+      "creationDateTime": "2021-02-28T00:00:00.000Z",
+      "updateDateTime": "2021-02-28T00:00:00.000Z",
+      "title": "Teams Adaptive Card Reminders From Lists",
+      "shortDescription": "This sample will send a Microsoft Teams adaptive card reminder from Microsoft Lists to the item owner in advance of the due date using Power Automate.",
+      "longDescription": [
+          "This sample will send a Microsoft Teams adaptive card reminder from Microsoft Lists to the item owner in advance of the due date using Power Automate."
+      ],
+      "url": "https://github.com/pnp/powerautomate-samples/tree/main/samples/teams-adaptive-card-reminders-from-lists",
+      "products": [
+          "Power Automate",
+          "Power Platform",
+          "Microsoft Teams"
+      ],
+      "tags": [
+          "Microsoft Teams",
+          "Adaptive Cards",
+          "Power Automate"
+      ],
+      "categories": [
+          "POWERAUTOMATE"
+      ],
+      "metadata": [
+          {
+              "key": "POWERAUTOMATE-PREMIUM",
+              "value": "No"
+          },
+          {
+              "key": "POWERAUTOMATE-ONPREM",
+              "value": "No"
+          },
+          {
+              "key": "POWERAUTOMATE-CUSTOMCONNECTOR",
+              "value": "No"
+          }
+      ],
+      "thumbnails": [
+          {
+              "type": "image",
+              "order": 100,
+              "url": "https://github.com/pnp/powerautomate-samples/blob/main/samples/teams-adaptive-card-reminders-from-lists/assets/flow-overview.png?raw=true",
+              "alt": "Preview of the solution"
+          }
+      ],
+      "authors": [
+          {
+              "gitHubAccount": "nyoung30",
+              "name": "Norm Young",
+              "pictureUrl": "https://github.com/nyoung30.png"
+          }
+      ],
+      "references": [
+          {
+              "name": "Create your first flow",
+              "description": "Anyone from a basic business user to an IT professional can create automated processes using Power Automate's no-code/low-code platform.",
+              "url": "https://docs.microsoft.com/en-us/power-automate/getting-started#create-your-first-flow"
+          },
+          {
+              "name": "Microsoft Power Automate documentation",
+              "description": "Power Automate is a service that helps you create automated workflows between your favorite apps and services to synchronize files, get notifications, collect data, and more.",
+              "url": "https://docs.microsoft.com/en-us/power-automate/"
+          }
+      ]
+  },
+{
+      "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
+      "name": "pnp-powerautomate-samples-teams-invites-via-graph-api",
+      "version": "1.0.0.0",
+      "source": "pnp",
+      "creationDateTime": "2021-05-01T00:00:00.000Z",
+      "updateDateTime": "2021-05-01T00:00:00.000Z",
+      "title": "Teams Guest Access with Approval",
+      "shortDescription": "Allows a guest user to request access to a Team",
+      "longDescription": [
+        "This sample project allows a guest user to request access to a Team. The owner(s) of the Team will first Approve the request before the guest account is added to the Tenant along with access to the team"
+      ],
+      "url": "https://github.com/pnp/powerautomate-samples/tree/main/samples/teams-invites-via-graph-api",
+      "products": [
+        "Power Automate",
+        "Power Platform"
+      ],
+      "tags": [
+        "APPROVALS"
+      ],
+      "categories": [
+        "POWERAUTOMATE"
+      ],
+      "metadata": [
+        {
+          "key": "POWERAUTOMATE-PREMIUM",
+          "value": "Yes"
+        },
+        {
+          "key": "POWERAUTOMATE-ONPREM",
+          "value": "No"
+        },
+        {
+          "key": "POWERAUTOMATE-CUSTOMCONNECTOR",
+          "value": "Yes"
+        },
+        {
+          "key": "POWERAUTOMATE-CONNECTORS",
+          "value": "Approvals"
+        }
+      ],
+      "thumbnails": [
+        {
+          "type": "image",
+          "order": 100,
+          "url": "https://github.com/pnp/powerautomate-samples/blob/main/samples/teams-invites-via-graph-api/assets/2021-05-02_10-52-05.png?raw=true",
+          "alt": "Preview of the solution"
+        }
+      ],
+      "authors": [
+        {
+          "gitHubAccount": "LinkeD365",
+          "name": "Carl Cookson",
+          "pictureUrl": "https://github.com/LinkeD365.png",
+          "twitter": "https://twitter.com/LinkeD365"
+        }
+      ],
+      "references": [
+        { 
+          "name": "Create your first flow",
+          "description": "Anyone from a basic business user to an IT professional can create automated processes using Power Automate's no-code/low-code platform.",
+          "url": "https://docs.microsoft.com/en-us/power-automate/getting-started#create-your-first-flow"
+        },
+        { 
+          "name": "Microsoft Power Automate documentation",
+          "description": "Power Automate is a service that helps you create automated workflows between your favorite apps and services to synchronize files, get notifications, collect data, and more.",
+          "url": "https://docs.microsoft.com/en-us/power-automate/"
+        }
+      ]
+    },
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
+    "name": "dataverse-admin",
+    "version": "1.0.0.0",
+    "source": "pnp",
+    "creationDateTime": "2022-02-24T00:00:00.000Z",
+    "updateDateTime": "2022-02-24T00:00:00.000Z",
+    "title": "Dataverse Admin Power App",
+    "shortDescription": "The Dataverse admin app enables admins to easily manage users/teams/security roles/apps and perform some repetitive tasks more efficiently.",
+    "longDescription": [
+      "The Dataverse admin app enables admins to easily manage users/teams/security roles/apps and perform some repetitive tasks more efficiently."
+    ],
+    "url": "https://github.com/pnp/powerapps-samples/tree/main/samples/dataverse-admin",
+    "products": [
+      "Power Apps",
+      "Power Platform",
+      "Dataverse"
+    ],
+    "tags": [
+      "Power Apps","Dataverse"
+    ],
+    "categories": [
+      "POWERAPPS"
+    ],
+    "metadata": [
+      {
+        "key": "POWERAPPS-MANIFEST-VERSION",
+        "value": "0.20"
+      },
+      {
+        "key": "POWERAPPS-TYPE",
+        "value": "Canvas"
+      },
+      {
+        "key": "POWERAPPS-EXPERIMENTAL",
+        "value": "No"
+      },
+      {
+        "key": "POWERAPPS-PREMIUM",
+        "value": "No"
+      },
+      {
+        "key": "POWERAPPS-ONPREM",
+        "value": "No"
+      },
+      {
+        "key": "POWERAPPS-CUSTOMCONNECTOR",
+        "value": "No"
+      }
+    ],
+    "thumbnails": [
+      {
+        "type": "image",
+        "order": 100,
+        "url": "https://github.com/pnp/powerapps-samples/raw/main/samples/dataverse-admin/assets/home-screenshot.png?raw=true",
+        "alt": "Theme Light"
+      },
+      {
+        "type": "image",
+        "order": 101,
+        "url": "https://github.com/pnp/powerapps-samples/raw/main/samples/dataverse-admin/assets/home-screenshot.png?raw=true",
+        "alt": "Theme Dark"
+      },
+      {
+        "type": "image",
+        "order": 102,
+        "url": "https://github.com/pnp/powerapps-samples/raw/main/samples/dataverse-admin/assets/home-screenshot.png?raw=true",
+        "alt": "Phone Preview"
+      }
+    ],
+    "authors": [
+      {
+        "gitHubAccount": "thatapiguy",
+        "name": "Vivek Bavishi",
+        "pictureUrl": "https://github.com/thatapiguy.png"
+      }
+    ],
+    "references": [
+      {
+        "name": "Overview of creating apps in Power Apps",
+        "description": "Power Apps is a high-productivity development platform for business apps.",
+        "url": "https://docs.microsoft.com/powerapps/maker/"
+      },
+      {
+        "name": "Power Apps canvas apps documentation",
+        "description": "Design and build a business app from a canvas in Microsoft Power Apps with data from a variety of sources without writing any code using traditional programming languages, such as C#.",
+        "url": "https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/"
+      }
+    ]
+  },
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
+    "name": "sharepoint-events",
+    "version": "1.0.0.0",
+    "source": "pnp",
+    "creationDateTime": "2022-05-01T00:00:00.000Z",
+    "updateDateTime": "2022-05-01T00:00:00.000Z",
+    "title": "Office 365 Network (Skills Matrix) Power App",
+    "shortDescription": "The skills matrix Power App lets everyone fill out their skills and gives the ability to search for the right person with the right combination of skills for your unique project",
+    "longDescription": [
+      "The skills matrix Power App lets everyone fill out their skills and gives the ability to search for the right person with the right combination of skills for your unique project"
+    ],
+    "url": "https://github.com/pnp/powerapps-samples/tree/main/samples/skills-matrix",
+    "products": [
+      "Power Apps",
+      "Power Platform",
+      "SharePoint"
+    ],
+    "tags": [
+      "Power Apps","SharePoint","Skills Matrix"
+    ],
+    "categories": [
+      "POWERAPPS"
+    ],
+    "metadata": [
+      {
+        "key": "POWERAPPS-MANIFEST-VERSION",
+        "value": "0.20"
+      },
+      {
+        "key": "POWERAPPS-TYPE",
+        "value": "Canvas"
+      },
+      {
+        "key": "POWERAPPS-EXPERIMENTAL",
+        "value": "No"
+      },
+      {
+        "key": "POWERAPPS-PREMIUM",
+        "value": "No"
+      },
+      {
+        "key": "POWERAPPS-ONPREM",
+        "value": "No"
+      },
+      {
+        "key": "POWERAPPS-CUSTOMCONNECTOR",
+        "value": "No"
+      }
+    ],
+    "thumbnails": [
+      {
+        "type": "image",
+        "order": 100,
+        "url": "https://github.com/pnp/powerapps-samples/raw/main/samples/skills-matrix/assets/4-enter-skills.png?raw=true",
+        "alt": "Theme Light"
+      },
+      {
+        "type": "image",
+        "order": 101,
+        "url": "https://github.com/pnp/powerapps-samples/raw/main/samples/skills-matrix/assets/5-search-by-user.png?raw=true",
+        "alt": "Theme Dark"
+      }
+    ],
+    "authors": [
+      {
+        "gitHubAccount": "RainWatcher",
+        "name": "Jennifer McGee",
+        "pictureUrl": "https://github.com/RainWatcher.png"
+      }
+    ],
+    "references": [
+      {
+        "name": "Overview of creating apps in Power Apps",
+        "description": "Power Apps is a high-productivity development platform for business apps.",
+        "url": "https://docs.microsoft.com/powerapps/maker/"
+      },
+      {
+        "name": "Power Apps canvas apps documentation",
+        "description": "Design and build a business app from a canvas in Microsoft Power Apps with data from a variety of sources without writing any code using traditional programming languages, such as C#.",
+        "url": "https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/"
+      }
+    ]
+  },
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
+    "name": "svg-us-map",
+    "version": "1.0.0.0",
+    "source": "pnp",
+    "creationDateTime": "2022-03-05T00:00:00.000Z",
+    "updateDateTime": "2022-03-05T00:00:00.000Z",
+    "title": "US Map with SVG Images",
+    "shortDescription": "This sample provides an idea of using SVG images within Power Apps",
+    "longDescription": [
+      "This sample provides an idea of using SVG images within Power Apps. Also, showcases how powerful operations we can perform by using SVG images within Power Apps."
+    ],
+    "url": "https://github.com/pnp/powerapps-samples/tree/main/samples/US-Map-with-SVG-Images",
+    "products": [
+      "Power Apps",
+      "Power Platform"
+    ],
+    "tags": [
+      "Power Apps","SVG"
+    ],
+    "categories": [
+      "POWERAPPS"
+    ],
+    "metadata": [
+      {
+        "key": "POWERAPPS-MANIFEST-VERSION",
+        "value": "0.20"
+      },
+      {
+        "key": "POWERAPPS-TYPE",
+        "value": "Canvas"
+      },
+      {
+        "key": "POWERAPPS-EXPERIMENTAL",
+        "value": "No"
+      },
+      {
+        "key": "POWERAPPS-PREMIUM",
+        "value": "No"
+      },
+      {
+        "key": "POWERAPPS-ONPREM",
+        "value": "No"
+      },
+      {
+        "key": "POWERAPPS-CUSTOMCONNECTOR",
+        "value": "No"
+      }
+    ],
+    "thumbnails": [
+      {
+        "type": "image",
+        "order": 100,
+        "url": "https://github.com/pnp/powerapps-samples/blob/main/samples/US-Map-with-SVG-Images/assets/USMapPopulation.JPG?raw=true",
+        "alt": "Theme Light"
+      },
+      {
+        "type": "image",
+        "order": 101,
+        "url": "https://github.com/pnp/powerapps-samples/blob/main/samples/US-Map-with-SVG-Images/assets/USMapStateSElection.JPG?raw=true",
+        "alt": "Theme Dark"
+      },
+      {
+        "type": "image",
+        "order": 102,
+        "url": "https://github.com/pnp/powerapps-samples/blob/main/samples/US-Map-with-SVG-Images/assets/USMapwithSVGImage.gif?raw=true",
+        "alt": "Phone Preview"
+      }
+    ],
+    "authors": [
+      {
+        "gitHubAccount": "rsk2013",
+        "name": "Krishna Rachakonda",
+        "pictureUrl": "https://github.com/rsk2013.png"
+      }
+    ],
+    "references": [
+      {
+        "name": "Overview of creating apps in Power Apps",
+        "description": "Power Apps is a high-productivity development platform for business apps.",
+        "url": "https://docs.microsoft.com/powerapps/maker/"
+      },
+      {
+        "name": "Power Apps canvas apps documentation",
+        "description": "Design and build a business app from a canvas in Microsoft Power Apps with data from a variety of sources without writing any code using traditional programming languages, such as C#.",
+        "url": "https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/"
+      }
+    ]
+  },
   {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/pnp/samples/v1.0/metadata-schema.json",
     "name": "pnp-power-sharepoint-events",
