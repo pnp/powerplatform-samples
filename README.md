@@ -12,10 +12,10 @@ extensions:
 # Power Platform Samples
 The PnP samples repository for Power Platform technologies including Power Apps, Power Automate, Power Virtual Agents, Portals, AI Builder etc.
 
-
 This repository contains the browser for community samples that demonstrate different usage patterns Power Platform
 
-The actual samples are stored in different repositories. We invite you to contribute to any of the following repositories:
+We are currently in the process of going moving all the samples into solutions, so that they can be imported more easily. The following repositories will still exist for the time being but will be removed later on when all samples are migrated to this repository.
+
 - [Power Fx Samples](https://github.com/pnp/powerfx-samples)
 - [Power Apps Samples](https://github.com/pnp/powerapps-samples)
 - [Power Automate Samples](https://github.com/pnp/powerautomate-samples)
