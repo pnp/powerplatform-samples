@@ -8,21 +8,24 @@ This sample illustrates how to get a Chuck Norris joke via the **Chuck Norris IO
 
 ## Applies to
 
-* [Microsoft Power Apps](https://docs.microsoft.com/powerapps/)
+![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
+![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
+![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
+![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
+![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
+![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
+![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
+![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
+![Power Fx](https://img.shields.io/badge/Power%20Fx-No-red "No")
 
 ## Compatibility
 
-![Power Apps Source File Pack and Unpack Utility 0.20](https://img.shields.io/badge/Packing%20Tool-0.20-green.svg)
 ![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-green.svg "Premium Power Apps license not required")
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-green.svg "Does not rely on experimental features")
-![On-Premises Connectors](https://img.shields.io/badge/On--Premises%20Connectors-No-green.svg "Does not use on-premise connectors")
-![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-Not%20Required-green.svg "Does not use custom connectors")
 
-## Authors
+## Contributors
 
-Solution|Author(s)
---------|---------
-ChuckNorrisIO | [Daniel Laskewitz](https://github.com/laskewitz) ([@laskewitz](https://twitter.com/laskewitz)), Microsoft
+- [Daniel Laskewitz](https://github.com/laskewitz)
 
 ## Version history
 
@@ -50,9 +53,11 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 * Clone the repository to a local drive
 * Pack the source files back into a solution `.zip` file:
+
   ```bash
   pac solution pack --zipfile pathtodestinationfile --folder pathtosourcefolder --processCanvasApps
   ```
+
   Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 
@@ -75,6 +80,6 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 * [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
 * [Power Apps canvas apps documentation](https://docs.microsoft.com/powerapps/maker/canvas-apps/)
 
-<img src="https://telemetry.sharepointpnp.com/powerapps-samples/samples/readme-template" />
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/readme-template" />
 
 ---
