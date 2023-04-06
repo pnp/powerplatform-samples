@@ -2,20 +2,12 @@
 
 <!--
 This is how you want the sample to appear in the samples browser.
-When naming your sample, try to give it a friendly name that describes what it does. Avoid using terms like `SharePoint` and `web part` -- because that's what all the samples in this repo is all about. Also, don't use `React`, `Angular`, `JavaScript`, etc. in your sample title -- unless that's what the sample is about.
+When naming your sample, try to give it a friendly name that describes what it does. Avoid using terms like `Power Apps` and `Power Automate` -- because that's what all the samples in this repo is all about.
 GOOD 👍:
   Kitten Videos
 BAD 👎:
-  react-kittenvideos
-  SPFx Kitten Videos Web Part for SharePoint using React
-
-NOTE:
-It is "web part", not "webpart" -- unless when used in a class
-"OneDrive", not "OneDrive"
-"SharePoint" not "Sharepoint"
-"PowerShell" not "Powershell"
-"JavaScript" not "Javascript"
-
+  power-apps-kittenvideos
+  Kitten Videos App for Power Platform using Creator Kit
 -->
 
 ## Summary
@@ -23,13 +15,13 @@ It is "web part", not "webpart" -- unless when used in a class
 Short summary on functionality and used technologies.
 
 <!--
-Please provide a high-quality screenshot of your web parts below. It should be stored in a folder called `assets`. 
+Please provide a high-quality screenshot of your solution below. It should be stored in a folder called `assets`. 
 
 If possible, use a resolution of 1920x1080.
 
-If your web part uses a placeholder screen and requires the user to configure it, please use a screenshot of the web part as it appears **after** it has been configured.
+If your solution uses a placeholder screen and requires the user to configure it, please use a screenshot of the solution as it appears **after** it has been configured.
 
-You can add as many screen shots as you'd like to help users understand your web part without having to download it and install it.
+You can add as many screen shots as you'd like to help users understand your solution without having to download it and install it.
 -->
 
 ![Example of a good preview](assets/goodpreview.png)
@@ -38,23 +30,22 @@ You can add as many screen shots as you'd like to help users understand your web
 
 ![Not so good](assets/notsogood.gif)
 
+## Applies to
+
+![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
+![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
+![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
+![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
+![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
+![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
+![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
+![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
+![Power Fx](https://img.shields.io/badge/Power%20Fx-No-red "No")
+
 ## Compatibility
 
-| :warning: Important          |
-|:---------------------------|
-| Every SPFx version is optimally compatible with specific versions of Node.js. In order to be able to build this sample, you need to ensure that the version of Node on your workstation matches one of the versions listed in this section. This sample will not work on a different version of Node.|
-|Refer to <https://aka.ms/spfx-matrix> for more information on SPFx compatibility.   |
-
-This sample is optimally compatible with the following environment configuration:
-
-![SPFx 1.16.1](https://img.shields.io/badge/SPFx-1.16.1-green.svg)
-![Node.js v16 | v14 | v12](https://img.shields.io/badge/Node.js-v16%20%7C%20v14%20%7C%20v12-green.svg)
-![Compatible with SharePoint Online](https://img.shields.io/badge/SharePoint%20Online-Compatible-green.svg)
-![Does not work with SharePoint 2019](https://img.shields.io/badge/SharePoint%20Server%202019-Incompatible-red.svg "SharePoint Server 2019 requires SPFx 1.4.1 or lower")
-![Does not work with SharePoint 2016 (Feature Pack 2)](https://img.shields.io/badge/SharePoint%20Server%202016%20(Feature%20Pack%202)-Incompatible-red.svg "SharePoint Server 2016 Feature Pack 2 requires SPFx 1.1")
-![Local Workbench Unsupported](https://img.shields.io/badge/Local%20Workbench-Unsupported-red.svg "Local workbench is no longer available as of SPFx 1.13 and above")
-![Hosted Workbench Compatible](https://img.shields.io/badge/Hosted%20Workbench-Compatible-green.svg)
-![Compatible with Remote Containers](https://img.shields.io/badge/Remote%20Containers-Compatible-green.svg)
+![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-green.svg "Premium license not required")
+![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-green.svg "Does not rely on experimental features")
 
 <!--
 
@@ -110,13 +101,6 @@ If using SPFX 1.14, update the SPFx and Node.js tags as per below:
 Don't worry if you're unsure about the compatibility matrix above. We'll verify it when we approve the PR. 
 -->
 
-## Applies to
-
-* [SharePoint Framework](https://learn.microsoft.com/sharepoint/dev/spfx/sharepoint-framework-overview)
-* [Microsoft 365 tenant](https://learn.microsoft.com/sharepoint/dev/spfx/set-up-your-development-environment)
-
-> Get your own free development tenant by subscribing to [Microsoft 365 developer program](http://aka.ms/m365devprogram)
-
 ## Contributors
 <!--
 We use this section to recognize and promote your contributions. Please provide one author per line -- even if you worked together on it.
@@ -161,18 +145,30 @@ As tempting as it may be, don't just use images to describe the steps. Let's be 
 
 -->
 
-* Clone this repository (or [download this solution as a .ZIP file](https://pnp.github.io/download-partial/?url=https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/YOUR-SOLUTION-NAME) then unzip it)
-* From your command line, change your current directory to the directory containing this sample (`YOUR-SOLUTION-NAME`, located under `samples`)
-* in the command line run:
-  * `npm install`
-  * `gulp serve`
+### Using the solution zip
 
-> This sample can also be opened with [VS Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview). Visit <https://aka.ms/spfx-devcontainer> for further instructions.
+* [Download](./solution/solution.zip) the `.zip` from the `solution` folder
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+* Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
+
+### Using the source code
+
+You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps::
+
+* Clone the repository to a local drive
+* Pack the source files back into a solution `.zip` file:
+
+  ```bash
+  pac solution pack --zipfile pathtodestinationfile --folder pathtosourcefolder --processCanvasApps
+  ```
+
+  Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 
 ## Features
 
-Description of the web part with possible additional details than in short summary.
-This Web Part illustrates the following concepts on top of the SharePoint Framework:
+Description of the solution with possible additional details than in short summary.
+This solution illustrates the following concepts on top of the Power Platform:
 
 * topic 1
 * topic 2
@@ -200,7 +196,7 @@ You can just search and replace this page with the following values:
 Search for:
 YOUR-SOLUTION-NAME
 
-Replace with your sample folder name. E.g.: react-my-cool-sample
+Replace with your sample folder name. E.g.: my-cool-sample
 
 Search for:
 @YOURGITHUBUSERNAME
@@ -232,4 +228,4 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/samples/YOUR-SOLUTION-NAME" />
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/YOUR-SOLUTION-NAME" />
