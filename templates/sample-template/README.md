@@ -90,8 +90,8 @@ If a premium license is required and there are experimental features used in you
 Don't worry if you're unsure about the compatibility matrix above. We'll verify it when we approve the PR. 
 -->
 
-![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-green.svg "Premium license not required")
-![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-green.svg "Does not rely on experimental features")
+![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
+![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
 
 ## Contributors
 <!--
