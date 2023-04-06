@@ -1,10 +1,10 @@
 # Power Platform Samples
 
-The PnP samples repository for Power Platform technologies including Power Apps, Power Automate, Power Virtual Agents, Portals, AI Builder etc.
+This repository contains community samples that demonstrate different usage patterns for the Microsoft Power Platform.
 
-This repository contains the browser for community samples that demonstrate different usage patterns Power Platform
+## Sample migration
 
-We are currently in the process of moving all the samples into solutions, so that they can be imported more easily. The following repositories will still exist for the time being but will be removed later on when all samples are migrated to this repository.
+We are currently in the process of moving all the per product samples into solutions, so that they can be used more easily. The following repositories will still exist for the time being but will be removed later on when all samples are migrated to this repository.
 
 - [Power Fx Samples](https://github.com/pnp/powerfx-samples)
 - [Power Apps Samples](https://github.com/pnp/powerapps-samples)
@@ -17,9 +17,11 @@ Please use following logic on submitting your questions or issues to right locat
 
 ## Additional resources
 
+- [Power Platform Community](https://powerusers.microsoft.com/)
+
 ## Using the samples
 
-Please refer to the respective sample repositories to learn more how to use a sample.
+For more info about how to use the Power Platform Samples, please look for the Prerequisites & the Minimal Path to Awesome sections in the readme.md file in every sample directory.
 
 ## Authors
 
