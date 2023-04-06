@@ -32,6 +32,38 @@ You can add as many screen shots as you'd like to help users understand your sol
 
 ## Applies to
 
+<!--
+Update the applies to section below.
+
+If your solution includes all the products and features listed below, use the following:
+![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
+![Power Automate](https://img.shields.io/badge/Power%20Automate-Yes-green "Yes")
+![Power BI](https://img.shields.io/badge/Power%20BI-Yes-green "Yes")
+![Power Pages](https://img.shields.io/badge/Power%20Pages-Yes-green "Yes")
+![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-Yes-green "Yes")
+![Dataverse](https://img.shields.io/badge/Dataverse-Yes-green "Yes")
+![AI Builder](https://img.shields.io/badge/AI%20Builder-Yes-green "Yes")
+![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-Yes-green "Yes")
+![Power Fx](https://img.shields.io/badge/Power%20Fx-Yes-green "Yes")
+
+If your solution doesn't include the products and features listed below, use the following:
+![Power Apps](https://img.shields.io/badge/Power%20Apps-No-red "No")
+![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
+![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
+![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
+![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
+![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
+![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
+![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
+![Power Fx](https://img.shields.io/badge/Power%20Fx-No-red "No")
+
+PRO TIP:
+Use the above samples and copy and paste the ones that apply to you.
+
+Don't worry if you're unsure about the compatibility matrix above. We'll verify it when we approve the PR. 
+-->
+
+
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
 ![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
@@ -44,62 +76,22 @@ You can add as many screen shots as you'd like to help users understand your sol
 
 ## Compatibility
 
-![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-green.svg "Premium license not required")
-![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-green.svg "Does not rely on experimental features")
-
 <!--
+Update the compatibility below.
 
-If using SPFX 1.14, update the SPFx and Node.js tags as per below:
-![SPFx 1.14](https://img.shields.io/badge/SPFx-1.14-green.svg)
-![Node.js v14 | v12](https://img.shields.io/badge/Node.js-v14%20%7C%20v12-green.svg)
+If a premium license is not required and there are no experimental features used in your solution:
+![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
+![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
 
-  If using SPFx 1.13.1, update the SPFx and Node.js tags accordingly:
-![SPFx 1.13.1](https://img.shields.io/badge/SPFx-1.13.1-green.svg)
-
-  If using SPFx 1.12.1, update the SPFx and Node.js tags accordingly:
-![SPFx 1.12.1](https://img.shields.io/badge/SPFx-1.12.1-green.svg)
-![Node.js v14 | v12 | v10](https://img.shields.io/badge/Node.js-v14%20%7C%20v12%20%7C%20v10-green.svg) 
-
-  If using an older version of SPFx, update the SPFx and Node.js compatibility tag accordingly:
-
-  SPFx 1.11
-![SPFx 1.11](https://img.shields.io/badge/SPFx-1.11.0-green.svg) 
-![Node.js v10](https://img.shields.io/badge/Node.js-v10-green.svg) 
-
- SPFx 1.10
-![SPFx 1.10](https://img.shields.io/badge/SPFx-1.10.0-green.svg) 
-![Node.js v10 | v8](https://img.shields.io/badge/Node.js-v10%20%7C%20v8-green.svg) 
-
- SPFx 1.4.1
-![SPFx 1.4.1](https://img.shields.io/badge/SPFx-1.4.1-green.svg)
-![Node.js v6 | v8](https://img.shields.io/badge/Node.js-LTS%206.x%20%7C%20v8-green.svg)
-
-  If you built this sample specifically for SharePoint 2016, or SharePoint 2019 support, update the SharePoint compatibility tag accordingly:
-![Works with SharePoint 2019](https://img.shields.io/badge/SharePoint%20Server%202019-Compatible-green.svg)
-![Work with SharePoint 2016 (Feature Pack 2)](https://img.shields.io/badge/SharePoint%20Server%202016%20(Feature%20Pack%202)-Compatible-green.svg)
-
-  If you know your web part only works on the hosted workbench, you can use this for the workbench compatibility tag:
-![Local Workbench Incompatible](https://img.shields.io/badge/Local%20Workbench-Incompatible-red.svg "EXPLAIN WHY IT WORK WORK IN LOCAL WORKBENCH")
-
-  Otherwise:
-![Local Workbench Compatible](https://img.shields.io/badge/Local%20Workbench-Compatible-green.svg)
-
-  If your web part needs permissions before working in the hosted workbench, let people know;
-![Hosted Workbench (Requires permissions))](https://img.shields.io/badge/Hosted%20Workbench-(Requires%20permissions%)-yellow.svg "Requires permissions to be granted before this solution can work on the hosted workbench")
-
-  or:
-![Hosted Workbench Partially)](https://img.shields.io/badge/Hosted%20Workbench-Partially-yellow.svg "EXPLAIN WHY THE SOLUTION DOESN'T FULL WORK IN THE HOSTED WORKBENCH")
-
-  Otherwise:
-![Hosted Workbench Compatible](https://img.shields.io/badge/Hosted%20Workbench-Compatible-green.svg)
-
- If you specifically built and tested this web part to work with Teams, use this for the Teams compatibility tag:
-    ![Teams Yes: Designed for Microsoft Teams](https://img.shields.io/badge/Teams-Yes-green.svg "Designed for Microsoft Teams")
- And if you know for sure that it is NOT compatible with Teams, use this:
-    ![Teams No: Not designed for Microsoft Teams](https://img.shields.io/badge/Teams-No-red.svg "Not designed for Microsoft Teams")
+If a premium license is required and there are experimental features used in your solution:
+![Premium License](https://img.shields.io/badge/Premium%20License-Required-green.svg "Premium license required")
+![Experimental Features](https://img.shields.io/badge/Experimental%20Features-Yes-green.svg "Does rely on experimental features")
 
 Don't worry if you're unsure about the compatibility matrix above. We'll verify it when we approve the PR. 
 -->
+
+![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-green.svg "Premium license not required")
+![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-green.svg "Does not rely on experimental features")
 
 ## Contributors
 <!--
