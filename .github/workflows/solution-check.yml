@@ -1,1 +1,22 @@
-
+name: Solution Check
+on:
+  workflow_dispatch:
+    inputs:
+      sample_name:
+        description: Which sample do you want to run a solution check on?
+jobs:
+  pack-solution:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Pack Solution
+        uses: microsoft/powerplatform-actions/pack-solution@v0
+        with:
+            solution-folder: ${{ github.event.repository.name}}/samples/${{ github.event.inputs.sample_name }}/source
+            solution-file: ${{ github.event.repository.name}}/samples/${{ github.event.inputs.sample_name }}/solution/${{ github.event.inputs.sample_name }}.zip
+            solution-type: Unmanaged
+      - name: Check Solution
+        uses: microsoft/powerplatform-actions/check-solution@v0
+        with:
+          path: ${{ github.event.repository.name}}/samples/${{ github.event.inputs.sample_name }}/solution/${{ github.event.inputs.sample_name }}.zip
