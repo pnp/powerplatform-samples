@@ -15,10 +15,9 @@ jobs:
       - name: Pack Solution
         uses: microsoft/powerplatform-actions/pack-solution@v0
         with:
-            solution-folder: ${{ github.event.repository.name}}/samples/${{ github.event.inputs.sample_name }}/sourcecode
-            solution-file: ${{ github.event.repository.name}}/samples/${{ github.event.inputs.sample_name }}/solution/${{ github.event.inputs.sample_name }}.zip
+            solution-folder: samples/${{ github.event.inputs.sample_name }}/sourcecode
+            solution-file: samples/${{ github.event.inputs.sample_name }}/solution/${{ github.event.inputs.sample_name }}.zip
             solution-type: Unmanaged
       - name: Check Solution
         uses: microsoft/powerplatform-actions/check-solution@v0
-        with:
-          path: ${{ github.event.repository.name}}/samples/${{ github.event.inputs.sample_name }}/solution/${{ github.event.inputs.sample_name }}.zip
+        with: samples/${{ github.event.inputs.sample_name }}/solution/${{ github.event.inputs.sample_name }}.zip
