@@ -5,19 +5,43 @@ on:
       sample_name:
         description: Which sample do you want to run a solution check on?
 jobs:
-  pack-solution:
+  check-solution:
     runs-on: windows-latest
     steps:
+
       - name: Check out repository code
         uses: actions/checkout@v3
         with:
           lfs: true
-      - name: Pack Solution
-        uses: microsoft/powerplatform-actions/pack-solution@v0
+
+      - if: ${{ false }} # this will never run, but will force powerplatform-actions to download
+        name: force-pac-download
+        uses: microsoft/powerplatform-actions/unpack-solution@latest
         with:
-            solution-folder: samples/${{ github.event.inputs.sample_name }}/sourcecode
-            solution-file: samples/${{ github.event.inputs.sample_name }}/solution/${{ github.event.inputs.sample_name }}.zip
-            solution-type: Unmanaged
-      - name: Check Solution
-        uses: microsoft/powerplatform-actions/check-solution@v0
-        with: samples/${{ github.event.inputs.sample_name }}/solution/${{ github.event.inputs.sample_name }}.zip
+          solution-file: fake.zip
+          solution-folder: fake
+  
+      - if: ${{ always() }}
+        id: get-pac-path
+        name: get-pac-path
+        shell: pwsh
+        run: |
+          $actionsPath = "${{ runner.temp }}".Replace("_temp","_actions")
+          if ($env:RUNNER_OS -eq "Windows") {
+            $array = Get-ChildItem $actionsPath -Recurse | Where-Object{$_.FullName.EndsWith('pac\tools\pac.exe')}
+          }
+          else {
+            $array = Get-ChildItem $actionsPath -Recurse | Where-Object{$_.FullName.EndsWith('pac_linux/tools/pac')}
+          }
+          $pacPath = $array[0].Directory.FullName
+          "$pacPath" >> $env:GITHUB_PATH
+
+      - id: pac-solution-pack
+        name: pac-solution-pack
+        shell: pwsh
+        run: pac solution pack --zipfile samples/${{ github.event.inputs.sample_name }}/solution/${{ github.event.inputs.sample_name }}.zip --folder samples/${{ github.event.inputs.sample_name }}/sourcecode --packagetype Unmanaged --processCanvasApps
+
+      - id: pac-solution-check
+        name: pac-solution-check
+        shell: pwsh
+        run: pac solution check --path samples/${{ github.event.inputs.sample_name }}/solution/${{ github.event.inputs.sample_name }}.zip --outputDirectory samples/${{ github.event.inputs.sample_name }}/solution/ --geo UnitedStates
