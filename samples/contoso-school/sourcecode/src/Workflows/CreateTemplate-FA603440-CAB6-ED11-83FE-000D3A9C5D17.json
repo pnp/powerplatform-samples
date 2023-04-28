@@ -1,0 +1,412 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "acs_sharedcommondataserviceforapps_022ca"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "cf014538-fa54-4576-83a8-337c31f5c56c"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Description",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "Input 1",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please select the target",
+                  "x-ms-content-hint": "TEXT",
+                  "enum": [
+                    "Email",
+                    "SMS",
+                    "Both"
+                  ]
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Compose_Description": {
+          "runAfter": {
+            "Initialize_variable_SMSText": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "487c6326-317e-438d-a771-343ed45a377f"
+          },
+          "type": "Compose",
+          "inputs": "@triggerBody()['text']"
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Compose_GUID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d9b9c7d2-9693-419d-89cb-a0dc836f6af6"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "email": "@variables('EmailText')",
+              "sms": "@variables('SMSText')",
+              "messageid": "@{outputs('Compose_GUID')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "title": "Email",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "sms": {
+                  "title": "SMS",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "messageid": {
+                  "title": "MessageId",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Compose_GUID": {
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4263af83-5180-4439-9b10-c5e9979b0529"
+          },
+          "type": "Compose",
+          "inputs": "@guid()"
+        },
+        "Switch": {
+          "runAfter": {
+            "Compose_Description": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Email": {
+              "case": "Email",
+              "actions": {
+                "ScopeEmail": {
+                  "actions": {
+                    "Email": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "cf54c2ed-3641-41d6-9aba-a557580e3593"
+                      },
+                      "type": "Compose",
+                      "inputs": "Pretend you are a school principal. Generate an email message to send the parents. The email should be formatted using HTML and prettified. The email should be about: "
+                    },
+                    "Create_Completion_Email": {
+                      "runAfter": {
+                        "Email": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "0ddb47e1-05ac-4547-9f58-f4bacc3aea98",
+                        "flowSystemMetadata": {
+                          "portalOperationId": "aibuilderpredict_gptpromptengineering",
+                          "portalOperationGroup": "aibuilder",
+                          "portalOperationApiDisplayNameOverride": "AI Builder",
+                          "portalOperationIconOverride": "https://content.powerapps.com/resource/makerx/static/pauto/images/designeroperations/aiBuilderNew.51dbdb6b.png",
+                          "portalOperationBrandColorOverride": "#0A76C4",
+                          "portalOperationApiTierOverride": "Standard"
+                        }
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "aibuilderpredict_gptpromptengineering",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "item/requestv2/prompt": "@concat(outputs('Email'),outputs('Compose_Description'))",
+                          "item/requestv2/parameters": "{\n  \"best_of\": 1,\n  \"frequency_penalty\": 0,\n  \"max_tokens\": 500,\n  \"presence_penalty\": 0,\n  \"temperature\": 0.5,\n  \"top_p\": 0.5\n}"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Set_variable_EmailText": {
+                      "runAfter": {
+                        "Create_Completion_Email": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "EmailText",
+                        "value": "@outputs('Create_Completion_Email')?['body/responsev2/predictionOutput/text']"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "type": "Scope"
+                }
+              }
+            },
+            "SMS": {
+              "case": "SMS",
+              "actions": {
+                "ScopeSMS": {
+                  "actions": {
+                    "SMS": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "7e1bee4a-23e8-48de-858c-7f6a83c5aa24"
+                      },
+                      "type": "Compose",
+                      "inputs": "Pretend you are a school principal. Generate an sms message to send the parents. Maximum 160 characters. The message should be about:"
+                    },
+                    "Create_Completion_SMS": {
+                      "runAfter": {
+                        "SMS": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "d8c802a4-1d1b-4749-9b38-a9ddbe5b77cb",
+                        "flowSystemMetadata": {
+                          "portalOperationId": "aibuilderpredict_gptpromptengineering",
+                          "portalOperationGroup": "aibuilder",
+                          "portalOperationApiDisplayNameOverride": "AI Builder",
+                          "portalOperationIconOverride": "https://content.powerapps.com/resource/makerx/static/pauto/images/designeroperations/aiBuilderNew.51dbdb6b.png",
+                          "portalOperationBrandColorOverride": "#0A76C4",
+                          "portalOperationApiTierOverride": "Standard"
+                        }
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "aibuilderpredict_gptpromptengineering",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "item/requestv2/prompt": "@concat(outputs('SMS'),outputs('Compose_Description'))",
+                          "item/requestv2/parameters": "{\n  \"best_of\": 1,\n  \"frequency_penalty\": 0,\n  \"max_tokens\": 500,\n  \"presence_penalty\": 0,\n  \"temperature\": 0.5,\n  \"top_p\": 0.5\n}"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Set_variable_SMSText": {
+                      "runAfter": {
+                        "Create_Completion_SMS": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "SMSText",
+                        "value": "@outputs('Create_Completion_SMS')?['body/responsev2/predictionOutput/text']"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "type": "Scope"
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {
+              "ScopeBoth": {
+                "actions": {
+                  "Create_Completion_SMS_Both": {
+                    "runAfter": {
+                      "SMS_Both": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "flowSystemMetadata": {
+                        "portalOperationId": "aibuilderpredict_gptpromptengineering",
+                        "portalOperationGroup": "aibuilder",
+                        "portalOperationApiDisplayNameOverride": "AI Builder",
+                        "portalOperationIconOverride": "https://content.powerapps.com/resource/makerx/static/pauto/images/designeroperations/aiBuilderNew.51dbdb6b.png",
+                        "portalOperationBrandColorOverride": "#0A76C4",
+                        "portalOperationApiTierOverride": "Standard"
+                      }
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "aibuilderpredict_gptpromptengineering",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "item/requestv2/prompt": "@concat(outputs('SMS_Both'),outputs('Compose_Description'))",
+                        "item/requestv2/parameters": "{\n  \"best_of\": 1,\n  \"frequency_penalty\": 0,\n  \"max_tokens\": 500,\n  \"presence_penalty\": 0,\n  \"temperature\": 0.5,\n  \"top_p\": 0.5\n}"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Create_Completion_Email_Both": {
+                    "runAfter": {
+                      "Email_Both": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "flowSystemMetadata": {
+                        "portalOperationId": "aibuilderpredict_gptpromptengineering",
+                        "portalOperationGroup": "aibuilder",
+                        "portalOperationApiDisplayNameOverride": "AI Builder",
+                        "portalOperationIconOverride": "https://content.powerapps.com/resource/makerx/static/pauto/images/designeroperations/aiBuilderNew.51dbdb6b.png",
+                        "portalOperationBrandColorOverride": "#0A76C4",
+                        "portalOperationApiTierOverride": "Standard"
+                      }
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "aibuilderpredict_gptpromptengineering",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "item/requestv2/prompt": "@concat(outputs('Email_Both'),outputs('Compose_Description'))",
+                        "item/requestv2/parameters": "{\n  \"best_of\": 1,\n  \"frequency_penalty\": 0,\n  \"max_tokens\": 500,\n  \"presence_penalty\": 0,\n  \"temperature\": 0.5,\n  \"top_p\": 0.5\n}"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Email_Both": {
+                    "runAfter": {},
+                    "type": "Compose",
+                    "inputs": "Pretend you are a school principal. Generate an email message to send the parents. The email should be formatted using HTML and prettified. The email should be about: "
+                  },
+                  "SMS_Both": {
+                    "runAfter": {},
+                    "type": "Compose",
+                    "inputs": "Pretend you are a school principal. Generate an sms message to send the parents. Maximum 160 characters. The message should be about:"
+                  },
+                  "Set_variable_Email_Both": {
+                    "runAfter": {
+                      "Create_Completion_Email_Both": [
+                        "Succeeded"
+                      ]
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "EmailText",
+                      "value": "@outputs('Create_Completion_Email_Both')?['body/responsev2/predictionOutput/text']"
+                    }
+                  },
+                  "Set_variable_SMS_Both": {
+                    "runAfter": {
+                      "Create_Completion_SMS_Both": [
+                        "Succeeded"
+                      ]
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "SMSText",
+                      "value": "@outputs('Create_Completion_SMS_Both')?['body/responsev2/predictionOutput/text']"
+                    }
+                  }
+                },
+                "runAfter": {},
+                "type": "Scope"
+              }
+            }
+          },
+          "expression": "@triggerBody()['text_1']",
+          "metadata": {
+            "operationMetadataId": "5f5d99cd-e491-4907-8cb1-e35267929b1f"
+          },
+          "type": "Switch"
+        },
+        "Initialize_variable_EmailText": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "7a4fb6e5-0860-405b-8102-1f0b07d805dd"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "EmailText",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_SMSText": {
+          "runAfter": {
+            "Initialize_variable_EmailText": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bb35f1db-4032-4374-ad26-1e24daf3ed59"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SMSText",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

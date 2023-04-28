@@ -1,0 +1,142 @@
+{
+  "3c3a7bcd-91b9-47f6-89b0-aaae22b3703b": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "bypassConsent": true,
+      "displayName": "Microsoft Dataverse",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1628/1.0.1628.3245/commondataserviceforapps/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_commondataserviceforapps",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "d09683fe-3908-4b2b-b37c-c24755d5d6a3"
+    ],
+    "id": "3c3a7bcd-91b9-47f6-89b0-aaae22b3703b"
+  },
+  "7400907f-bfcc-4403-8cf5-84345416edc8": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "be05df1f-c849-4270-acd6-555c15aa5fd1": {
+          "value": "shared_acsemail"
+        },
+        "f4fb5888-7b8b-4089-89e0-a5949afcae34": {
+          "value": "shared_azurecommunicationservicessms"
+        },
+        "workflowEntityId": {
+          "value": "d39d3846-cab6-ed11-83fe-000d3a9c5d17"
+        },
+        "workflowName": {
+          "value": "6ad1bf6f-eeda-4188-8456-20c3de86727a"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_acsemail": {
+          "value": "be05df1f-c849-4270-acd6-555c15aa5fd1"
+        },
+        "shared_azurecommunicationservicessms": {
+          "value": "f4fb5888-7b8b-4089-89e0-a5949afcae34"
+        },
+        "workflowEntityId": {
+          "value": "d39d3846-cab6-ed11-83fe-000d3a9c5d17"
+        },
+        "workflowName": {
+          "value": "6ad1bf6f-eeda-4188-8456-20c3de86727a"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "Sendnotifications"
+    ],
+    "dependencies": {
+      "shared_acsemail": "be05df1f-c849-4270-acd6-555c15aa5fd1",
+      "shared_azurecommunicationservicessms": "f4fb5888-7b8b-4089-89e0-a5949afcae34"
+    },
+    "dependents": [],
+    "id": "7400907f-bfcc-4403-8cf5-84345416edc8"
+  },
+  "be05df1f-c849-4270-acd6-555c15aa5fd1": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Azure Communication Services Email",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1619/1.0.1619.3185/acsemail/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_acsemail",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "7400907f-bfcc-4403-8cf5-84345416edc8"
+    ],
+    "id": "be05df1f-c849-4270-acd6-555c15aa5fd1"
+  },
+  "d09683fe-3908-4b2b-b37c-c24755d5d6a3": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "3c3a7bcd-91b9-47f6-89b0-aaae22b3703b": {
+          "value": "shared_commondataserviceforapps"
+        },
+        "workflowEntityId": {
+          "value": "fa603440-cab6-ed11-83fe-000d3a9c5d17"
+        },
+        "workflowName": {
+          "value": "48a83a57-a503-4f69-b375-8c65bdcfb9a7"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_commondataserviceforapps": {
+          "value": "3c3a7bcd-91b9-47f6-89b0-aaae22b3703b"
+        },
+        "workflowEntityId": {
+          "value": "fa603440-cab6-ed11-83fe-000d3a9c5d17"
+        },
+        "workflowName": {
+          "value": "48a83a57-a503-4f69-b375-8c65bdcfb9a7"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "CreateTemplate"
+    ],
+    "dependencies": {
+      "shared_commondataserviceforapps": "3c3a7bcd-91b9-47f6-89b0-aaae22b3703b"
+    },
+    "dependents": [],
+    "id": "d09683fe-3908-4b2b-b37c-c24755d5d6a3"
+  },
+  "f4fb5888-7b8b-4089-89e0-a5949afcae34": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "authenticationType": "connectionStringAuthentication",
+      "displayName": "Azure Communication Services SMS",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1622/1.0.1622.3199/azurecommunicationservicessms/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_azurecommunicationservicessms",
+      "parameterHints": {},
+      "parameterHintsV2": {},
+      "sharedConnectionId": "/providers/microsoft.powerapps/apis/shared_azurecommunicationservicessms/connections/89230cd802524d79950cbd8b464c49d1",
+      "xrmConnectionReferenceLogicalName": "acs_sharedazurecommunicationservicessms_78007"
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "7400907f-bfcc-4403-8cf5-84345416edc8"
+    ],
+    "id": "f4fb5888-7b8b-4089-89e0-a5949afcae34"
+  }
+}

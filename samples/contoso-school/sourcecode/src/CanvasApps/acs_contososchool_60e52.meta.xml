@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>acs_contososchool_60e52</Name>
+  <AppVersion>2023-04-28T11:44:23Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.23042.12.0</CreatedByClientVersion>
+  <MinClientVersion>3.23042.12.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","publisherVersion":"3.23042.12","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20230427T230504Z-3.23042.12.0"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+  <DisplayName>Contoso School</DisplayName>
+  <Description xsi:nil="true"></Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{"d09683fe-3908-4b2b-b37c-c24755d5d6a3":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png","dataSources":["CreateTemplate"],"dependencies":["3c3a7bcd-91b9-47f6-89b0-aaae22b3703b"],"dependents":[],"parameterHints":{"workflowName":{"value":"fa8155d6-fe98-4ecc-a546-e4c77a009bd8"},"workflowEntityId":{"value":"fa603440-cab6-ed11-83fe-000d3a9c5d17"},"3c3a7bcd-91b9-47f6-89b0-aaae22b3703b":{"value":"shared_commondataserviceforapps"}},"parameterHintsV2":{"workflowName":{"value":"fa8155d6-fe98-4ecc-a546-e4c77a009bd8"},"workflowEntityId":{"value":"fa603440-cab6-ed11-83fe-000d3a9c5d17"},"shared_commondataserviceforapps":{"value":"3c3a7bcd-91b9-47f6-89b0-aaae22b3703b"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"3c3a7bcd-91b9-47f6-89b0-aaae22b3703b":{"id":"/providers/microsoft.powerapps/apis/shared_commondataserviceforapps","displayName":"Microsoft Dataverse","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1628/1.0.1628.3245/commondataserviceforapps/icon.png","dataSources":[],"dependencies":[],"dependents":["d09683fe-3908-4b2b-b37c-c24755d5d6a3"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Premium"},"7400907f-bfcc-4403-8cf5-84345416edc8":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png","dataSources":["Sendnotifications"],"dependencies":["f4fb5888-7b8b-4089-89e0-a5949afcae34","be05df1f-c849-4270-acd6-555c15aa5fd1"],"dependents":[],"parameterHints":{"workflowName":{"value":"0a5641c1-9cd2-46ec-ac0d-48d0f4c23175"},"workflowEntityId":{"value":"d39d3846-cab6-ed11-83fe-000d3a9c5d17"},"f4fb5888-7b8b-4089-89e0-a5949afcae34":{"value":"shared_azurecommunicationservicessms"},"be05df1f-c849-4270-acd6-555c15aa5fd1":{"value":"shared_acsemail"}},"parameterHintsV2":{"workflowName":{"value":"0a5641c1-9cd2-46ec-ac0d-48d0f4c23175"},"workflowEntityId":{"value":"d39d3846-cab6-ed11-83fe-000d3a9c5d17"},"shared_azurecommunicationservicessms":{"value":"f4fb5888-7b8b-4089-89e0-a5949afcae34"},"shared_acsemail":{"value":"be05df1f-c849-4270-acd6-555c15aa5fd1"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"f4fb5888-7b8b-4089-89e0-a5949afcae34":{"id":"/providers/microsoft.powerapps/apis/shared_azurecommunicationservicessms","xrmConnectionReferenceLogicalName":"acs_sharedazurecommunicationservicessms_78007","displayName":"Azure Communication Services SMS","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1622/1.0.1622.3199/azurecommunicationservicessms/icon.png","dataSources":[],"dependencies":[],"dependents":["7400907f-bfcc-4403-8cf5-84345416edc8"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"sharedConnectionId":"d4ee4155-f68c-4f01-b751-ab89f122b747","bypassConsent":false,"dataSets":{},"apiTier":"Premium","authenticationType":"connectionStringAuthentication"},"be05df1f-c849-4270-acd6-555c15aa5fd1":{"id":"/providers/microsoft.powerapps/apis/shared_acsemail","displayName":"Azure Communication Services Email","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1619/1.0.1619.3185/acsemail/icon.png","dataSources":[],"dependencies":[],"dependents":["7400907f-bfcc-4403-8cf5-84345416edc8"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Premium"}}</ConnectionReferences>
+  <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified"}},"dataSources":{"Parents":{"entitySetName":"cr6fd_parentses","logicalName":"cr6fd_parents"}}}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>0</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"logicalname":"cr6fd_parents","componenttype":1},{"logicalname":"acs_sharedazurecommunicationservicessms_78007","componenttype":10066,"componenttypeplatformname":"ConnectionReference"}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/acs_contososchool_60e52_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/acs_contososchool_60e52_DocumentUri.msapp</DocumentUri>
+</CanvasApp>
