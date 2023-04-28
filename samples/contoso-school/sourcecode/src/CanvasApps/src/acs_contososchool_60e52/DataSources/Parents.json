@@ -1,0 +1,101 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr6fd_parentses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr6fd_parents",
+    "MaxGetRowsCount": 500,
+    "Name": "Parents",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "acs_delivered": "Delivered",
+      "acs_messageid": "MessageId",
+      "cr6fd_email": "Email",
+      "cr6fd_name": "Name",
+      "cr6fd_parents_AsyncOperations": "System Jobs",
+      "cr6fd_parents_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr6fd_parents_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr6fd_parents_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr6fd_parents_ProcessSession": "Process Sessions",
+      "cr6fd_parents_SyncErrors": "Sync Errors",
+      "cr6fd_parentsid": "Parents",
+      "cr6fd_phonenumber": "Phone Number",
+      "cr6fd_preferredchannel": "Preferred Channel",
+      "cr6fd_threadid": "ThreadId",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Parents",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Parents (Views)",
+    "Name": "_cr6fd_parents_views",
+    "RelatedEntityName": "Parents",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "2b1ad274-83e4-42c5-b424-ed87fd0c1ae6": "Active Parents",
+      "85f00188-ebec-4f4b-8eaa-dabe786d8cd3": "Parents Associated View",
+      "880ff054-e7fe-4ed0-932e-49402bc5ecc4": "Parents Lookup View",
+      "d1306182-99ca-4389-acfc-909ec58bca40": "Inactive Parents",
+      "f55800c0-bdd9-410a-bcca-257746d3a4d3": "Parents Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Parents)",
+    "Name": "cr6fd_parents_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Parents"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Parents",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Parents)",
+    "Name": "cr6fd_parents_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Parents"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Parents",
+    "Type": "OptionSetInfo"
+  }
+]

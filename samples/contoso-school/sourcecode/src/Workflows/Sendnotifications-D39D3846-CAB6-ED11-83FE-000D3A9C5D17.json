@@ -1,0 +1,269 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_azurecommunicationservicessms": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "acs_sharedazurecommunicationservicessms_78007"
+        },
+        "api": {
+          "name": "shared_azurecommunicationservicessms"
+        }
+      },
+      "shared_acsemail": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "acs_sharedacsemail_684b6"
+        },
+        "api": {
+          "name": "shared_acsemail"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Azure Communication Services Email (acs_AzureCommunicationServicesEmail)": {
+          "defaultValue": "DoNotReply@76ed131b-913d-4c1d-be59-41bc19b6a87b.azurecomm.net",
+          "type": "String",
+          "metadata": {
+            "schemaName": "acs_AzureCommunicationServicesEmail",
+            "description": "Email for Azure "
+          }
+        },
+        "Azure Communication Services Phone Number (acs_AzureCommunicationServicesPhoneNumber)": {
+          "defaultValue": "+18332994828",
+          "type": "String",
+          "metadata": {
+            "schemaName": "acs_AzureCommunicationServicesPhoneNumber",
+            "description": "Phone number for Azure Communication Services"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "7fb669d8-77a6-42a8-90de-5e1e3de43ea9"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text_1": {
+                  "title": "Email",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "SMS",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_4": {
+                  "title": "SMS Content",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_5": {
+                  "title": "Email Content",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text": {
+                  "title": "Channel",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT",
+                  "enum": [
+                    "Email",
+                    "SMS",
+                    "Both"
+                  ]
+                }
+              },
+              "required": [
+                "text_1",
+                "text_2",
+                "text_4",
+                "text_5",
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Switch": {
+          "runAfter": {},
+          "cases": {
+            "SMS": {
+              "case": "SMS",
+              "actions": {
+                "Send_SMS": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "decf6e2e-fe64-4074-8af8-27fbb6e75385"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_azurecommunicationservicessms",
+                      "operationId": "SendSMSv2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_azurecommunicationservicessms"
+                    },
+                    "parameters": {
+                      "body/from": "@parameters('Azure Communication Services Phone Number (acs_AzureCommunicationServicesPhoneNumber)')",
+                      "body/smsRecipients": [
+                        {
+                          "to": "@triggerBody()['text_2']"
+                        }
+                      ],
+                      "body/message": "@triggerBody()['text_4']",
+                      "body/smsSendOptions/enableDeliveryReport": true
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            },
+            "Email": {
+              "case": "Email",
+              "actions": {
+                "Send_email_(Preview)": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "c99a60ad-c4c5-4b81-b7a7-09892f9917a2"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_acsemail",
+                      "operationId": "SendEmail",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_acsemail"
+                    },
+                    "parameters": {
+                      "emailMessage/sender": "@parameters('Azure Communication Services Email (acs_AzureCommunicationServicesEmail)')",
+                      "emailMessage/recipients/to": [
+                        {
+                          "email": "@triggerBody()['text_1']"
+                        }
+                      ],
+                      "emailMessage/content/subject": "Notification from Contoso School",
+                      "emailMessage/content/html": "<p>@{triggerBody()['text_5']}</p>",
+                      "emailMessage/importance": "normal"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            },
+            "Both": {
+              "case": "Both",
+              "actions": {
+                "Send_Email_Both": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_acsemail",
+                      "operationId": "SendEmail",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_acsemail"
+                    },
+                    "parameters": {
+                      "emailMessage/sender": "@parameters('Azure Communication Services Email (acs_AzureCommunicationServicesEmail)')",
+                      "emailMessage/recipients/to": [
+                        {
+                          "email": "@triggerBody()['text_1']"
+                        }
+                      ],
+                      "emailMessage/content/subject": "Notification from Contoso School",
+                      "emailMessage/content/html": "@triggerBody()['text_5']",
+                      "emailMessage/importance": "normal"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Send_SMS_Both": {
+                  "runAfter": {
+                    "Send_Email_Both": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_azurecommunicationservicessms",
+                      "operationId": "SendSMSv2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_azurecommunicationservicessms"
+                    },
+                    "parameters": {
+                      "body/from": "@parameters('Azure Communication Services Phone Number (acs_AzureCommunicationServicesPhoneNumber)')",
+                      "body/smsRecipients": [
+                        {
+                          "to": "@triggerBody()['text_2']"
+                        }
+                      ],
+                      "body/message": "@triggerBody()['text_4']",
+                      "body/smsSendOptions/enableDeliveryReport": true
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerBody()['text']",
+          "metadata": {
+            "operationMetadataId": "2979a85d-549a-44d4-8ea9-1116c05c52ad"
+          },
+          "type": "Switch"
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "440647eb-031f-4aac-a1c3-4c47708b204a"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {},
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

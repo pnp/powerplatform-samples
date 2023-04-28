@@ -1,0 +1,96 @@
+"'Start Screen' As screen":
+
+    rectHeaderBackgroundStart As rectangle:
+        Height: =124
+        Width: =1366
+        ZIndex: =1
+
+    lblContosoSchoolStart As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =84
+        Size: =30
+        Text: ="Contoso School"
+        Width: =378
+        X: =120
+        Y: =24
+        ZIndex: =2
+
+    "icoContosoSchoolStart As icon.'3DPrinting'":
+        Color: =RGBA(255, 255, 255, 1)
+        Icon: =Icon.Printing3D
+        X: =35
+        Y: =34
+        ZIndex: =3
+
+    lblAlertSenderStart As label:
+        Height: =47
+        Size: =20
+        Text: ="Alert Sender"
+        Width: =186
+        X: =99
+        Y: =169
+        ZIndex: =4
+
+    inpAlertSenderRequest As text:
+        Default: =
+        Height: =387
+        HintText: ="Enter a description of the alert you want to send"
+        Mode: =TextMode.MultiLine
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =630
+        X: =99
+        Y: =240
+        ZIndex: =5
+
+    btnStart As button:
+        FontWeight: =FontWeight.Lighter
+        Height: =51
+        OnSelect: |-
+            =Set(
+                glbChannel,
+                If(
+                    CountRows(lstChannelsNeeded.SelectedItems) > 1,
+                    "Both",
+                    If(
+                        First(lstChannelsNeeded.SelectedItemsText).Value = "Email",
+                        "Email",
+                        First(lstChannelsNeeded.SelectedItems).Value = "SMS",
+                        "SMS"
+                    )
+                )
+            );
+            Set(
+                glbTemplates,
+                CreateTemplate.Run(
+                    inpAlertSenderRequest.Text,
+                    glbChannel
+                )
+            );
+            Navigate(
+                'Send Screen',
+                Transition.Push
+            )
+        Text: ="Start"
+        Width: =554
+        X: =406
+        Y: =686
+        ZIndex: =6
+
+    lstChannelsNeeded As listbox:
+        Height: =89
+        Items: =["Email", "SMS"]
+        X: =885
+        Y: =240
+        ZIndex: =8
+
+    lblChannelsNeeded As label:
+        Text: |-
+            ="Channels Needed:"
+        Width: =257
+        X: =885
+        Y: =200
+        ZIndex: =9
+

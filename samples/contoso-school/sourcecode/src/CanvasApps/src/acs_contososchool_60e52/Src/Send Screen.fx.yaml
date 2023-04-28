@@ -1,0 +1,104 @@
+"'Send Screen' As screen":
+
+    rectHeaderBackgroundSend As rectangle:
+        Height: =124
+        Width: =1366
+        ZIndex: =1
+
+    lblContosoSchoolSend As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =84
+        Size: =30
+        Text: ="Contoso School"
+        Width: =378
+        X: =120
+        Y: =24
+        ZIndex: =2
+
+    "icoContosoSchoolSend As icon.'3DPrinting'":
+        Color: =RGBA(255, 255, 255, 1)
+        Icon: =Icon.Printing3D
+        X: =35
+        Y: =34
+        ZIndex: =3
+
+    lblAlertSenderSend As label:
+        Height: =47
+        Size: =20
+        Text: ="Alert Sender"
+        Width: =186
+        X: =68
+        Y: =153
+        ZIndex: =4
+
+    rteEmailResponse As richTextEditor:
+        Default: =glbTemplates.email
+        DisplayMode: =If(glbChannel = "Email" || glbChannel = "Both", DisplayMode.Edit, DisplayMode.Disabled)
+        Height: =410
+        Width: =500
+        X: =808
+        Y: =240
+        ZIndex: =5
+
+    lblEmailTitle As label:
+        Text: ="Email"
+        X: =808
+        Y: =200
+        ZIndex: =6
+
+    lblSMSTitle As label:
+        Text: ="SMS"
+        Width: =286
+        X: =68
+        Y: =200
+        ZIndex: =7
+
+    inpSMSResponse As text:
+        Default: =glbTemplates.sms
+        DisplayMode: =If(glbChannel = "SMS" || glbChannel = "Both", DisplayMode.Edit, DisplayMode.Disabled)
+        Height: =410
+        Mode: =TextMode.MultiLine
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =608
+        X: =68
+        Y: =240
+        ZIndex: =9
+
+    btnSend As button:
+        FontWeight: =FontWeight.Lighter
+        Height: =51
+        OnSelect: |-
+            =IfError(
+                ForAll(
+                    Parents,
+                    Sendnotifications.Run(
+                        Email,
+                        'Phone Number',
+                        inpSMSResponse.Text,
+                        rteEmailResponse.HtmlText,
+                        glbChannel
+                    )
+                ),
+                Notify(
+                    "An error occurred, please contact your administrator.",
+                    NotificationType.Error,
+                    2000
+                ),
+                UpdateContext({ctxSuccess: true})
+            );
+            If(
+                ctxSuccess,
+                Navigate(
+                    'Thank You Screen',
+                    Transition.Push
+                )
+            )
+        Text: ="Send"
+        Width: =554
+        X: =406
+        Y: =686
+        ZIndex: =10
+
