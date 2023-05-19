@@ -198,7 +198,7 @@ This command runs our SendNotification flow for each name in our Contacts databa
 ## Initialize a data model in Microsoft Dataverse
 For the Power App, a storage table is necessary to keep a record of all the names registered for a notification. We will create a table in Microsoft Dataverse within our Power Platform environment. We will call the table `Contacts List`. We can manually populate the table with some sample rows for which we will add name, phone number, and email address information.
 
-![image](https://github.com/pnp/powerplatform-samples/assets/43075365/7b5806b2-e11b-4bbf-b0f6-fc308955a214)
+![image](https://github.com/ddematheu2/powerplatform-samples/assets/43075365/7784d63a-60b4-4fa3-a954-cab696ddf0a8)
 
 ## Run it.
 Now that everything is ready, go back to Screen 1 and press play in your Power App environment. 
