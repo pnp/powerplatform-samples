@@ -140,7 +140,7 @@ As tempting as it may be, don't just use images to describe the steps. Let's be 
 
 ### Using the solution zip
 
-* [Download](./solution/solution.zip) the `.zip` from the `solution` folder
+* [Download](./solution/ParseJSONfun_1_0_0_1.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
 
