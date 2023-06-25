@@ -1,4 +1,4 @@
-# Title of the sample
+# JSON and ParseJSON functions
 
 <!--
 This is how you want the sample to appear in the samples browser.
@@ -12,7 +12,7 @@ BAD 👎:
 
 ## Summary
 
-Short summary on functionality and used technologies.
+This sample illustrates how to use the JSON and ParseJSON functions in Power Fx.
 
 <!--
 Please provide a high-quality screenshot of your solution below. It should be stored in a folder called `assets`. 
