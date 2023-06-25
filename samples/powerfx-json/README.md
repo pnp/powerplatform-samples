@@ -24,11 +24,10 @@ If your solution uses a placeholder screen and requires the user to configure it
 You can add as many screen shots as you'd like to help users understand your solution without having to download it and install it.
 -->
 
-![Example of a good preview](assets/goodpreview.png)
-
-![Also a good preview](assets/alsogoodpreview.png)
-
-![Not so good](assets/notsogood.gif)
+![picture of sample homepage](assets/01_appHome.png)
+![picture of JSON explainer](assets/02_appJSON.png)
+![picture of ParseJSON explainer](assets/03_appParseJSON.png)
+![picture of combining the two functions](assets/04_appCombined.png)
 
 ## Applies to
 
@@ -69,10 +68,10 @@ Don't worry if you're unsure about the compatibility matrix above. We'll verify 
 ![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
 ![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
 ![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
-![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
+![Dataverse](https://img.shields.io/badge/Dataverse-No-red "Yes")
 ![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
-![Power Fx](https://img.shields.io/badge/Power%20Fx-No-red "No")
+![Power Fx](https://img.shields.io/badge/Power%20Fx-No-red "Yes")
 
 ## Compatibility
 
@@ -90,8 +89,8 @@ If a premium license is required and there are experimental features used in you
 Don't worry if you're unsure about the compatibility matrix above. We'll verify it when we approve the PR. 
 -->
 
-![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
-![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
+![Premium License](https://img.shields.io/badge/Premium%20License-Required-green.svg "Premium license required")
+![Experimental Features](https://img.shields.io/badge/Experimental%20Features-Yes-green.svg "Does rely on experimental features")
 
 ## Contributors
 <!--
@@ -104,14 +103,13 @@ Provide a link to your GitHub profile to help others find more cool things you h
 If you want to provide links to your social media, blog, and employer name, make sure to update your GitHub profile.
 -->
 
-* [Author Name](LinkToYourGitHubProfile)
+* [Craig White](https://github.com/CraigWhite81)
 
 ## Version history
 
 Version|Date|Comments
 -------|----|--------
-1.1|November 1, 2022|Update comment
-1.0|October 29, 2022|Initial release
+1.0|June 25, 2023|Initial release
 
 ## Prerequisites
 
@@ -121,6 +119,9 @@ Any special pre-requisites? Include any lists, permissions, offerings to the dem
 Please describe the steps to configure the pre-requisites. Feel free to add screen shots, but make sure that there is a text description of the steps to perform.
  
 -->
+
+To use the 'Parse JSON function and untyped objects' feature, please go to Settings > Upcoming features and switch the toggle to 'On'
+![picture of enabling ParseJSON feature](assets/enableParseJSON.png)
 
 ## Minimal path to awesome
 
@@ -216,4 +217,4 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/YOUR-SOLUTION-NAME" />
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/powerfx-json" />
