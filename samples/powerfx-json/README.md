@@ -160,12 +160,7 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 ## Features
 
-Description of the solution with possible additional details than in short summary.
-This solution illustrates the following concepts on top of the Power Platform:
-
-* topic 1
-* topic 2
-* topic 3
+This sample shows and explains how to use the JSON and ParseJSON functions, individually and together.
 
 <!--
 Note that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions in advance! You rock ❤.
