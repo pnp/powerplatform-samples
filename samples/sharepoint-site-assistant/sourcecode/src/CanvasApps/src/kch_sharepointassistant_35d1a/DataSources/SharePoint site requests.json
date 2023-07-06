@@ -1,0 +1,107 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "kch_sharepointsiterequestses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "kch_sharepointsiterequests",
+    "Name": "SharePoint site requests",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "kch_additionalusers": "Additional Users",
+      "kch_expirationdate": "Expiration Date",
+      "kch_externalusers": "External Users",
+      "kch_languagecode": "Language Code",
+      "kch_languagename": "Language Name",
+      "kch_requestoremail": "Requestor Email",
+      "kch_sharepointsiterequests_AsyncOperations": "System Jobs",
+      "kch_sharepointsiterequests_BulkDeleteFailures": "Bulk Delete Failures",
+      "kch_sharepointsiterequests_DuplicateBaseRecord": "Duplicate Records (kch_sharepointsiterequests_DuplicateBaseRecord)",
+      "kch_sharepointsiterequests_DuplicateMatchingRecord": "Duplicate Records (kch_sharepointsiterequests_DuplicateMatchingRecord)",
+      "kch_sharepointsiterequests_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "kch_sharepointsiterequests_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "kch_sharepointsiterequests_ProcessSession": "Process Sessions",
+      "kch_sharepointsiterequests_SyncErrors": "Sync Errors",
+      "kch_sharepointsiterequestsid": "SharePoint site requests",
+      "kch_sitedescription": "Site Description",
+      "kch_sitedesigncode": "Site Design Code",
+      "kch_sitedesignname": "Site Design Name",
+      "kch_sitename": "SiteName",
+      "kch_siteurl": "Site URL",
+      "kch_status": "Status (kch_status)",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status (statecode)",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "SharePoint site requests",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "SharePoint site requests (Views)",
+    "Name": "_kch_sharepointsiterequests_views",
+    "RelatedEntityName": "SharePoint site requests",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "0f7f0db9-9fe3-4d2d-aafb-81afdcd679cf": "SharePoint site requests Associated View",
+      "18780611-7965-4715-aea3-de0ebc50c62e": "SharePoint site requests Advanced Find View",
+      "818a9613-dc7d-4942-b510-c8c8f236f0e4": "SharePoint site requests Lookup View",
+      "a1a84e03-4e87-41b1-85ae-38714bac9fd6": "Inactive SharePoint site requests",
+      "bf6cd2ca-3055-47ad-ac6b-97b394b96228": "Active SharePoint site requests"
+    }
+  },
+  {
+    "DisplayName": "Status (SharePoint site requests)",
+    "Name": "kch_sharepointsiterequests_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "SharePoint site requests"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "SharePoint site requests",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (SharePoint site requests)",
+    "Name": "kch_sharepointsiterequests_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "SharePoint site requests"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "SharePoint site requests",
+    "Type": "OptionSetInfo"
+  }
+]
