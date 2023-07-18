@@ -4,7 +4,6 @@
 
 This sample illustrates how to use the JSON and ParseJSON functions in Power Fx.
 
-
 ![picture of sample homepage](assets/01_appHome.png)
 ![picture of JSON explainer](assets/02_appJSON.png)
 ![picture of ParseJSON explainer](assets/03_appParseJSON.png)
@@ -12,25 +11,22 @@ This sample illustrates how to use the JSON and ParseJSON functions in Power Fx.
 
 ## Applies to
 
-
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
 ![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
 ![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
 ![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
-![Dataverse](https://img.shields.io/badge/Dataverse-No-red "Yes")
+![Dataverse](https://img.shields.io/badge/Dataverse-Yes-green "Yes")
 ![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
-![Power Fx](https://img.shields.io/badge/Power%20Fx-No-red "Yes")
+![Power Fx](https://img.shields.io/badge/Power%20Fx-Yes-green "Yes")
 
 ## Compatibility
-
 
 ![Premium License](https://img.shields.io/badge/Premium%20License-Required-green.svg "Premium license required")
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-Yes-green.svg "Does rely on experimental features")
 
 ## Contributors
-
 
 * [Craig White](https://github.com/CraigWhite81)
 
@@ -42,28 +38,14 @@ Version|Date|Comments
 
 ## Prerequisites
 
-
 To use the 'Parse JSON function and untyped objects' feature, please go to Settings > Upcoming features and switch the toggle to 'On'
 ![picture of enabling ParseJSON feature](assets/enableParseJSON.png)
 
 ## Minimal path to awesome
 
-<!-- 
-PRO TIP:
-
-For commands, use the `code syntax`
-
-For button labels, page names, dialog names, etc. as they appear on the screen, use **Bold**
-
-Don't use "click", use "select" or "use"
-
-As tempting as it may be, don't just use images to describe the steps. Let's be as inclusive as possible and think about accessibility.
-
--->
-
 ### Using the solution zip
 
-* [Download](./solution/ParseJSONfun_1_0_0_1.zip) the `.zip` from the `solution` folder
+* [Download](./solution/powerfx-json.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * Open the app in edit mode and make sure the data source **Dataverse** is connected correctly.
 
@@ -84,20 +66,6 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 ## Features
 
 This sample shows and explains how to use the JSON and ParseJSON functions, individually and together.
-
-<!--
-Note that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions in advance! You rock ❤.
--->
-
-<!--
-RESERVED FOR REPO MAINTAINERS
-
-We'll add the video from the community call recording here
-
-## Video
-
-[![YouTube video title](./assets/video-thumbnail.jpg)](https://www.youtube.com/watch?v=XXXXX "YouTube video title")
--->
 
 ## Help
 
