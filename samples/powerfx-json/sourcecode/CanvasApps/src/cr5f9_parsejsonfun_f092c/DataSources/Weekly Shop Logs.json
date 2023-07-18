@@ -1,0 +1,97 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr5f9_weeklyshoplogs",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr5f9_weeklyshoplog",
+    "Name": "Weekly Shop Logs",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr5f9_purchases": "Purchases",
+      "cr5f9_shoppingdate": "ShoppingDate",
+      "cr5f9_weeklyshoplog_AsyncOperations": "System Jobs",
+      "cr5f9_weeklyshoplog_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr5f9_weeklyshoplog_DuplicateBaseRecord": "Duplicate Records (cr5f9_weeklyshoplog_DuplicateBaseRecord)",
+      "cr5f9_weeklyshoplog_DuplicateMatchingRecord": "Duplicate Records (cr5f9_weeklyshoplog_DuplicateMatchingRecord)",
+      "cr5f9_weeklyshoplog_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr5f9_weeklyshoplog_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr5f9_weeklyshoplog_ProcessSession": "Process Sessions",
+      "cr5f9_weeklyshoplog_SyncErrors": "Sync Errors",
+      "cr5f9_weeklyshoplogid": "Weekly Shop Log",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Weekly Shop Logs",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Weekly Shop Logs (Views)",
+    "Name": "_cr5f9_weeklyshoplog_views",
+    "RelatedEntityName": "Weekly Shop Logs",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "43f3e7d7-65ae-41ab-b458-b42a8f73a0ed": "Weekly Shop Log Associated View",
+      "5c6c82fa-d760-4f29-81a7-283fdacc3894": "Active Weekly Shop Logs",
+      "72a40851-55eb-4520-8c01-38c8a39c26be": "Weekly Shop Log Lookup View",
+      "9874af05-08ff-4fb0-9425-6cc9545e25bf": "Inactive Weekly Shop Logs",
+      "eb5c2c45-0494-4be4-b8dc-b6d178c6edab": "Weekly Shop Log Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Weekly Shop Logs)",
+    "Name": "cr5f9_weeklyshoplog_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Weekly Shop Logs"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Weekly Shop Logs",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Weekly Shop Logs)",
+    "Name": "cr5f9_weeklyshoplog_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Weekly Shop Logs"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Weekly Shop Logs",
+    "Type": "OptionSetInfo"
+  }
+]

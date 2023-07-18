@@ -1,0 +1,66 @@
+"'Home Screen' As screen":
+    Fill: =RGBA(0, 0, 0, 1)
+
+    imgHome As image:
+        Height: =768
+        Image: ='ParseJSON Title'
+        Width: =1366
+        ZIndex: =1
+
+    btnHomeEnter As button:
+        BorderColor: =Color.Black
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: |-
+            =ColorValue("#FDF5DF")
+        FocusedBorderThickness: =2
+        Font: =Font.Lato
+        Height: =80
+        HoverFill: |-
+            =ColorValue("#F92C85")
+        OnSelect: =Navigate('JSON Function Screen')
+        RadiusBottomLeft: =5
+        RadiusBottomRight: =5
+        RadiusTopLeft: =5
+        RadiusTopRight: =5
+        Size: =13
+        Text: ="Enter"
+        X: =603
+        Y: =457
+        ZIndex: =2
+
+    btnLaunchSite As button:
+        BorderColor: =Self.Color
+        BorderStyle: =BorderStyle.None
+        Color: =Color.Transparent
+        Fill: =Self.Color
+        Height: =157
+        HoverBorderColor: =Self.Color
+        HoverColor: =Self.Color
+        HoverFill: =Self.Color
+        OnSelect: |-
+            =Launch("https://platformsofpower.net/")
+        PressedBorderColor: =Self.Color
+        PressedColor: =Self.Color
+        Text: =""
+        Width: =210
+        Y: =537
+        ZIndex: =3
+
+    btnLaunchTwitter As button:
+        BorderColor: =Self.Color
+        BorderStyle: =BorderStyle.None
+        Color: =Color.Transparent
+        Fill: =Self.Color
+        HoverBorderColor: =Self.Color
+        HoverColor: =Self.Color
+        HoverFill: =Self.Color
+        OnSelect: |-
+            =Launch("https://twitter.com/platformspower")
+        PressedBorderColor: =Self.Color
+        PressedColor: =Self.Color
+        Text: =""
+        Width: =210
+        Y: =694
+        ZIndex: =4
+

@@ -1,0 +1,439 @@
+"'JSON Function Screen' As screen":
+    OnVisible: |-
+        =UpdateContext({cvJSONTab: "Info"})
+
+    cmpJSONFuncBaseLayout As cmpBaseLayout:
+        cmpScreenHeader: ="JSON Function"
+
+    ctrJSONFunction As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semilight
+        Height: =111
+        RadiusBottomLeft: =5
+        RadiusBottomRight: =5
+        RadiusTopLeft: =5
+        RadiusTopRight: =5
+        Width: =1302
+        X: =32
+        Y: =110
+        ZIndex: =2
+
+        lblJSONFuncHeader As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Height: =111
+            Size: =16
+            Text: ="The JSON function can take tabular data in our Apps and turn them into JSON representations, saved as Text"
+            Width: =1136
+            X: =8
+            ZIndex: =1
+
+        btnJSONFuncMSDocs As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =Launch("https://learn.microsoft.com/en-us/power-platform/power-fx/reference/function-json")
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: ="MS Docs"
+            Width: =120
+            X: =1176
+            Y: =35
+            ZIndex: =2
+
+    ctrJSONFunctionExample As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =460
+        Visible: =cvJSONTab="Example"
+        Width: =1302
+        X: =32
+        Y: =281
+        ZIndex: =3
+
+        "gllJSONFWeekyShop As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+            DelayItemLoading: =true
+            Height: =259
+            Items: =SortByColumns(colWeeklyShop,"Name",SortOrder.Ascending)
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =50
+            Width: =432
+            X: =16
+            Y: =107
+            ZIndex: =1
+
+            lblJSONFProduct As label:
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Normal
+                Height: =49
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Name
+                Width: =147
+                ZIndex: =1
+
+            lblJSONFCategory As label:
+                Align: =Align.Center
+                Font: =Font.Lato
+                Height: =49
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Category
+                Width: =108
+                X: =294
+                ZIndex: =2
+
+            shpJSONFSeparator As rectangle:
+                Fill: =Color.DarkGray
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =4
+
+            lblJSONFQuantity As label:
+                Align: =Align.Center
+                Font: =Font.Lato
+                Height: =48
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Quantity
+                Width: =78
+                X: =172
+                Y: =1
+                ZIndex: =5
+
+        lblJSONFProductHeader As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Product"
+            X: =16
+            Y: =77
+            ZIndex: =2
+
+        lblJSONFQuantityHeader As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Quantity"
+            Width: =122
+            X: =166
+            Y: =77
+            ZIndex: =3
+
+        lblJSONFCategoryHeader As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Category"
+            Width: =160
+            X: =288
+            Y: =77
+            ZIndex: =4
+
+        lblJSONExCollectionStart As label:
+            Font: =Font.Lato
+            Height: =49
+            Size: =12
+            Text: |-
+                ="Here is our collection, colWeeklyShop, viewed in a gallery:"
+            Width: =432
+            X: =16
+            ZIndex: =5
+
+        gllJSONFFormats As gallery.galleryHorizontal:
+            DelayItemLoading: =true
+            Height: =335
+            Items: =colJSONFormats
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplateSize: =261
+            Width: =282
+            WrapCount: =6
+            X: =496
+            Y: =64
+            ZIndex: =6
+
+            btnJSONFFormats As button:
+                BorderColor: =Color.Black
+                BorderThickness: =1
+                Color: =Color.White
+                Fill: =RGBA(0, 0, 0, 1)
+                FocusedBorderThickness: =2
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Normal
+                HoverFill: |-
+                    =ColorValue("#F92C85")
+                OnSelect: |
+                    =
+                    Switch(ThisItem.Format,
+                    "None",Set(gvJSONConvert,JSON(colWeeklyShop)),
+                    "Compact",Set(gvJSONConvert,JSON(colWeeklyShop, JSONFormat.Compact)),
+                    "Ignore Binary Data",Set(gvJSONConvert,JSON(colWeeklyShop, JSONFormat.IgnoreBinaryData)),
+                    "Ignore Unsupported Types",Set(gvJSONConvert,JSON(colWeeklyShop, JSONFormat.IgnoreUnsupportedTypes)),
+                    "Include Binary Data",Set(gvJSONConvert,JSON(colWeeklyShop, JSONFormat.IncludeBinaryData)),
+                    "Indent Four",Set(gvJSONConvert,JSON(colWeeklyShop,JSONFormat.IndentFour)))
+                RadiusBottomLeft: =5
+                RadiusBottomRight: =5
+                RadiusTopLeft: =5
+                RadiusTopRight: =5
+                Size: =12
+                Text: =ThisItem.Format
+                Width: =250
+                X: =3
+                Y: =3
+                ZIndex: =1
+
+        lblJSONExFormatTypes As label:
+            Font: =Font.Lato
+            Height: =49
+            Size: =12
+            Text: |-
+                ="These are our formatting types. Click an option to view the output:"
+            Width: =282
+            X: =496
+            ZIndex: =7
+
+        txtJSONFView As text:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: =gvJSONConvert
+            DisabledBorderColor: =Color.Black
+            DisabledColor: =Color.Black
+            DisabledFill: |-
+                =ColorValue("#FDF5DF")
+            DisplayMode: =DisplayMode.Disabled
+            Font: =Font.Lato
+            Height: =355
+            Mode: =TextMode.MultiLine
+            Size: =12
+            Width: =464
+            X: =827
+            Y: =64
+            ZIndex: =8
+
+        lblJSONExOutputs As label:
+            Font: =Font.Lato
+            Height: =49
+            Size: =12
+            Text: |-
+                ="These are the outputs - all the same except Indent Four:"
+            Width: =489
+            X: =827
+            ZIndex: =9
+
+        lblJSONExPleaseNote As label:
+            Align: =Align.Center
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Italic: =true
+            Size: =12
+            Text: |-
+                ="Please note: the JSON function can only be used with behavioural properties in Power Apps, such as OnSelect or OnChange"
+            Width: =1300
+            X: =2
+            Y: =419
+            ZIndex: =10
+
+        shpJSONExSeparator As rectangle:
+            DisplayMode: =DisplayMode.View
+            Fill: =Color.DarkGray
+            Height: =1
+            Width: =1292
+            X: =6
+            Y: =49
+            ZIndex: =11
+
+    btnJSONSyntaxInfo As button:
+        Color: =If(cvJSONTab=Self.Text, Color.White, Color.Black)
+        Fill: =If(cvJSONTab=Self.Text, Color.Black, Color.LightGray)
+        FocusedBorderThickness: =2
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Normal
+        HoverFill: |-
+            =ColorValue("#F92C85")
+        OnSelect: |-
+            =UpdateContext({cvJSONTab: Self.Text});Set(gvJSONConvert, Blank())
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        Size: =12
+        Text: ="Info"
+        Width: =120
+        X: =32
+        Y: =241
+        ZIndex: =4
+
+    btnJSONSyntaxExample As button:
+        Color: =If(cvJSONTab=Self.Text, Color.White, Color.Black)
+        Fill: =If(cvJSONTab=Self.Text, Color.Black, Color.LightGray)
+        FocusedBorderThickness: =2
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Normal
+        HoverFill: |-
+            =ColorValue("#F92C85")
+        OnSelect: |-
+            =UpdateContext({cvJSONTab: Self.Text});Set(gvJSONConvert, Blank())
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        Size: =12
+        Text: ="Example"
+        Width: =120
+        X: =163
+        Y: =241
+        ZIndex: =5
+
+    ctrJSONSyntax As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =450
+        Visible: =cvJSONTab="Info"
+        Width: =1302
+        X: =32
+        Y: =281
+        ZIndex: =6
+
+        lblJSONSyntaxHeader As label:
+            Font: =Font.Lato
+            Size: =12
+            Text: |-
+                ="Here's how to write the JSON function in Power Fx:"
+            Width: =453
+            X: =16
+            Y: =8
+            ZIndex: =3
+
+        txtJSONSyntax As text:
+            BorderThickness: =1
+            Default: ="JSON(DataStructure, Format)"
+            DisabledBorderColor: =Color.LightGray
+            DisabledColor: =Color.Black
+            DisplayMode: =DisplayMode.Disabled
+            Font: =Font.Lato
+            Size: =12
+            Width: =518
+            X: =469
+            Y: =8
+            ZIndex: =4
+
+        htmJSONFormats As htmlViewer:
+            Font: =Font.Lato
+            Height: =377
+            HtmlText: |-
+                ="<p>There are 5 formats that provide different options:</p>
+                <p><br /><span style='color: #F92C85;'><strong>Compact</strong></span> - his is the default format, so if your Power Fx is JSON(NameOfCollection), it will automatically use Compact as its format. Compact has no added spaces or new lines.<br /><br /><span style='color: #F92C85;'><strong>Indent Four</strong></span> - This option visually makes the output look better, as adds lines and breaks in to compartmentalise the text.<br /><br /><span style='color: #F92C85;'><strong>IncludeBinaryData</strong></span> - This option converting of any images, videos &amp; audio clips. Use with caution though, those file types aren&rsquo;t small, so converting them will have adverse performance affects.<br /><br /><span style='color: #F92C85;'><strong>IgnoreBinaryData</strong></span> - The opposite of above &ndash; won&rsquo;t include any image, video or audio outputs.<br /><br /><span style='color: #F92C85;'><strong>IgnoreUnsupportedTypes</strong></span> - This option will ignore any data types that are not supported in this list. If it finds any, it&rsquo;ll throw an error.<br /><br />On the example tab, we take a collection and convert it to JSON. Visually, most of the outputs are stored as simple strings except 'Indent Four', which displays data in a more friendly way</p>"
+            Size: =12
+            Width: =1268
+            X: =16
+            Y: =59
+            ZIndex: =5
+
+    ctrJSONNav As groupContainer.manualLayoutContainer:
+        Height: =58
+        Width: =281
+        X: =1052
+        Y: =30
+        ZIndex: =7
+
+        btnJSONNavPrevious As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: =Navigate('Home Screen')
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: ="<< Previous"
+            Width: =100
+            X: =8
+            Y: =8
+            ZIndex: =1
+
+        btnJSONNavNext As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: =Navigate('ParseJSON Function Screen')
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: ="Next >>"
+            Width: =100
+            X: =174
+            Y: =8
+            ZIndex: =2
+
+        btnJSONNavHome As button:
+            DisabledBorderColor: =Color.Black
+            DisabledFill: =Color.Black
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =Launch("https://learn.microsoft.com/en-us/power-platform/power-fx/reference/function-json")
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: =""
+            Width: =40
+            X: =120
+            Y: =8
+            ZIndex: =3
+
+        icoJSONNavHome As icon.Home:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =30
+            Icon: =Icon.Home
+            OnSelect: =Navigate('Home Screen')
+            Width: =30
+            X: =125
+            Y: =13
+            ZIndex: =4
+

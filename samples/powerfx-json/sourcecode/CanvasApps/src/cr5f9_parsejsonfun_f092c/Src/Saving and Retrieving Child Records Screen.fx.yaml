@@ -1,0 +1,767 @@
+"'Saving and Retrieving Child Records Screen' As screen":
+    OnVisible: |
+        =UpdateContext({cvCombinedTab: "Saving data"});
+        Clear(colWeeklyShopSelected);
+        UpdateContext({cvCheckboxReset: false});
+        UpdateContext({cvCheckboxReset: true});
+
+    cmpCombinedBaseLayout As cmpBaseLayout:
+        cmpScreenHeader: ="Saving and Retrieving Child Records"
+
+    ctrCombinedHeader As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semilight
+        Height: =111
+        RadiusBottomLeft: =5
+        RadiusBottomRight: =5
+        RadiusTopLeft: =5
+        RadiusTopRight: =5
+        Width: =1302
+        X: =32
+        Y: =110
+        ZIndex: =2
+
+        lblCombinedHeader As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Height: =110
+            Size: =16
+            Text: ="We can combine the JSON and ParseJSON functions to save, then retrieve 'child' information that relates to a 'parent' record."
+            Width: =1250
+            ZIndex: =1
+
+    ctrCombinedSave As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =450
+        Visible: =cvCombinedTab="Saving data"
+        Width: =1302
+        X: =32
+        Y: =281
+        ZIndex: =7
+
+        lblCombSaveHeader As label:
+            Font: =Font.Lato
+            Size: =12
+            Text: |-
+                ="Use the gallery below to select some items for the weekly food shop. Once selected, click the run button to convert items to JSON, then store in our Dataverse table:"
+            Width: =1200
+            X: =11
+            Y: =11
+            ZIndex: =3
+
+        "gllCombSaveWeeklyShop As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+            DelayItemLoading: =true
+            Height: =259
+            Items: =SortByColumns(colWeeklyShop,"Name",SortOrder.Ascending)
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =50
+            Width: =386
+            X: =11
+            Y: =130
+            ZIndex: =8
+
+            lblWeeklyShopProduct As label:
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Normal
+                Height: =49
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Strikethrough: =cbxWeeklyShopSelect.Value=true
+                Text: =ThisItem.Name
+                Width: =125
+                ZIndex: =1
+
+            lblWeeklyShopCategory As label:
+                Align: =Align.Center
+                Font: =Font.Lato
+                Height: =49
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Strikethrough: =cbxWeeklyShopSelect.Value=true
+                Text: =ThisItem.Category
+                Width: =116
+                X: =199
+                ZIndex: =2
+
+            shpWeeklyShopSeparator As rectangle:
+                Fill: =Color.DarkGray
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =4
+
+            lblWeeklyShopQuantity As label:
+                Align: =Align.Center
+                Font: =Font.Lato
+                Height: =48
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Strikethrough: =cbxWeeklyShopSelect.Value=true
+                Text: =ThisItem.Quantity
+                Width: =58
+                X: =141
+                ZIndex: =5
+
+            cbxWeeklyShopSelect As checkbox:
+                BorderStyle: =BorderStyle.None
+                CheckboxBorderColor: =Color.DarkGray
+                FocusedBorderThickness: =1
+                OnCheck: =Collect(colWeeklyShopSelected, ThisItem)
+                OnSelect: =Select(Parent)
+                OnUncheck: =Remove(colWeeklyShopSelected, ThisItem)
+                Reset: =cvCheckboxReset
+                Text: =""
+                Width: =40
+                X: =333
+                ZIndex: =6
+
+        lblCombSaveProHeader As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Product"
+            Width: =128
+            X: =11
+            Y: =100
+            ZIndex: =9
+
+        lblCombSaveQuaHeader As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Quantity"
+            Width: =75
+            X: =139
+            Y: =100
+            ZIndex: =10
+
+        lblCombSaveCatHeader As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Category"
+            Width: =108
+            X: =214
+            Y: =100
+            ZIndex: =11
+
+        lblCombSaveSelectHeader As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Select"
+            Width: =75
+            X: =322
+            Y: =100
+            ZIndex: =12
+
+        "gllCombSaveWeekyShopSelected As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+            DelayItemLoading: =true
+            Height: =259
+            Items: =SortByColumns(colWeeklyShopSelected,"Name",SortOrder.Ascending)
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =50
+            Width: =311
+            X: =471
+            Y: =130
+            ZIndex: =13
+
+            lblJSONFProduct_2 As label:
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Normal
+                Height: =49
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Name
+                Width: =125
+                ZIndex: =1
+
+            lblJSONFCategory_2 As label:
+                Align: =Align.Center
+                Font: =Font.Lato
+                Height: =49
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Category
+                Width: =112
+                X: =199
+                ZIndex: =2
+
+            shpJSONFSeparator_2 As rectangle:
+                Fill: =Color.DarkGray
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =4
+
+            lblJSONFQuantity_2 As label:
+                Align: =Align.Center
+                Font: =Font.Lato
+                Height: =48
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Quantity
+                Width: =58
+                X: =141
+                ZIndex: =5
+
+        lblCombSaveProductHeader As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Product"
+            Width: =128
+            X: =471
+            Y: =100
+            ZIndex: =14
+
+        lblCombSaveQuantityHeader As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Quantity"
+            Width: =75
+            X: =599
+            Y: =100
+            ZIndex: =15
+
+        lblCombSaveCategoryHeader As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Category"
+            Width: =108
+            X: =674
+            Y: =100
+            ZIndex: =16
+
+        txtCombSaveCode As text:
+            BorderThickness: =1
+            Default: |-
+                ="Patch(
+                    'Weekly Shop Logs',
+                    Defaults('Weekly Shop Logs'),
+                    {
+                        ShoppingDate: Now(),
+                        Purchases: JSON(colWeeklyShopSelected)
+                    }
+                )"
+            DisabledColor: =Color.Black
+            DisplayMode: =DisplayMode.Disabled
+            Font: =Font.Lato
+            Height: =289
+            Mode: =TextMode.MultiLine
+            Size: =12
+            Width: =404
+            X: =856
+            Y: =100
+            ZIndex: =17
+
+        btnCombSaveData As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =Patch(
+                    'Weekly Shop Logs',
+                    Defaults('Weekly Shop Logs'),
+                    {
+                        ShoppingDate: Now(),
+                        Purchases: JSON(colWeeklyShopSelected)
+                    }
+                );
+                UpdateContext({cvCombinedTab: "Retrieving data"});
+                Clear(colWeeklyShopSelected);
+                UpdateContext({cvCheckboxReset: false});UpdateContext({cvCheckboxReset: true});
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: ="Run code"
+            Width: =120
+            X: =998
+            Y: =400
+            ZIndex: =18
+
+        lblCombSaveSave01Header As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Height: =43
+            Size: =12
+            Text: |-
+                ="01. Select item(s) from colWeeklyShop:"
+            Width: =386
+            X: =11
+            Y: =51
+            ZIndex: =19
+
+        lblCombSave02Header As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Height: =43
+            Size: =12
+            Text: |-
+                ="02. Selected items shown in colWeeklyShopSelected:"
+            Width: =312
+            X: =470
+            Y: =51
+            ZIndex: =20
+
+        lblCombSave03Header As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Height: =43
+            Size: =12
+            Text: |-
+                ="03. Run code to convert colWeeklyShopSelected and save:"
+            Width: =404
+            X: =856
+            Y: =51
+            ZIndex: =21
+
+    ctrCombinedRetrieve As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =450
+        Visible: =cvCombinedTab="Retrieving data"
+        Width: =1302
+        X: =32
+        Y: =281
+        ZIndex: =8
+
+        lblCombRetrieveHeader As label:
+            Font: =Font.Lato
+            Size: =12
+            Text: |-
+                ="To retrieve the data, select an entry from the gallery on the left. The list of items previously saved as JSON will be converted back to a table/collection, using the ParseJSON function:"
+            Width: =1270
+            X: =11
+            Y: =11
+            ZIndex: =3
+
+        "gllCombRetrieve As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+            DelayItemLoading: =true
+            Height: =259
+            Items: =SortByColumns(colWeeklyShopSelected,"Name",SortOrder.Ascending)
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =50
+            Width: =311
+            X: =941
+            Y: =130
+            ZIndex: =13
+
+            lblCombRetrieveProduct As label:
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Normal
+                Height: =49
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Name
+                Width: =125
+                ZIndex: =1
+
+            lblCombRetrieveCategory As label:
+                Align: =Align.Center
+                Font: =Font.Lato
+                Height: =49
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Category
+                Width: =112
+                X: =199
+                ZIndex: =2
+
+            shpCombRetrieveSeparator As rectangle:
+                Fill: =Color.DarkGray
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =4
+
+            lblCombRetrieveQuantity As label:
+                Align: =Align.Center
+                Font: =Font.Lato
+                Height: =48
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Quantity
+                Width: =58
+                X: =141
+                ZIndex: =5
+
+        lblCombRetrieveProductHeader As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Product"
+            Width: =128
+            X: =941
+            Y: =100
+            ZIndex: =14
+
+        lblCombRetrieveQuantityHeader As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Quantity"
+            Width: =75
+            X: =1069
+            Y: =100
+            ZIndex: =15
+
+        lblCombRetrieveCategoryHeader As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Category"
+            Width: =108
+            X: =1144
+            Y: =100
+            ZIndex: =16
+
+        txtCombRetrievePowerFx As text:
+            BorderThickness: =1
+            Default: |-
+                ="ClearCollect(
+                    colWeeklyShopSelected,
+                    ForAll(
+                        ParseJSON(ThisItem.Purchases),
+                        {
+                            Name: Text(ThisRecord.Name),
+                            Category: Text(ThisRecord.Category),
+                            Quantity: Value(ThisRecord.Quantity)
+                        }
+                    )
+                )"
+            DisabledColor: =Color.Black
+            DisplayMode: =DisplayMode.Disabled
+            Font: =Font.Lato
+            Height: =289
+            Mode: =TextMode.MultiLine
+            Size: =12
+            Width: =404
+            X: =467
+            Y: =100
+            ZIndex: =17
+
+        "gllCombRetrieveShopLog As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+            DelayItemLoading: =true
+            Height: =309
+            Items: =SortByColumns('Weekly Shop Logs',"cr5f9_shoppingdate",SortOrder.Descending)
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            OnSelect: |-
+                =ClearCollect(
+                    colWeeklyShopSelected,
+                    ForAll(
+                        ParseJSON(ThisItem.Purchases),
+                        {
+                            Name: Text(ThisRecord.Name),
+                            Category: Text(ThisRecord.Category),
+                            Quantity: Value(ThisRecord.Quantity)
+                        }
+                    )
+                )
+            TemplatePadding: =0
+            TemplateSize: =105
+            Width: =387
+            X: =11
+            Y: =130
+            ZIndex: =19
+
+            lblShopLogDate As label:
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Normal
+                Height: =49
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.ShoppingDate
+                Width: =94
+                ZIndex: =1
+
+            lblShopLogItems As label:
+                Font: =Font.Lato
+                Height: =104
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Purchases
+                VerticalAlign: =VerticalAlign.Top
+                Width: =270
+                X: =114
+                ZIndex: =2
+
+            shpShopLogSeparator As rectangle:
+                Fill: =Color.DarkGray
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =4
+
+        lblCombRetrieveDateHeader As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Purchase date"
+            Width: =114
+            X: =11
+            Y: =100
+            ZIndex: =20
+
+        lblCombRetrieveItemsHeader As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Color: =Color.White
+            Fill: =Color.Black
+            Font: =Font.Lato
+            Height: =30
+            Size: =12
+            Text: ="Items"
+            Width: =273
+            X: =125
+            Y: =100
+            ZIndex: =21
+
+        lblCombRetrieveHeader01 As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Size: =12
+            Text: |-
+                ="01. View of 'Weekly Shop Logs' table:"
+            Width: =387
+            X: =11
+            Y: =60
+            ZIndex: =22
+
+        lblCombRetrieveHeader02 As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Size: =12
+            Text: |-
+                ="02. Power Fx that's run when selecting an item from the gallery on the left:"
+            Width: =404
+            X: =467
+            Y: =60
+            ZIndex: =23
+
+        lblCombRetrieveHeader03 As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Size: =12
+            Text: |-
+                ="03. JSON string converted back to a collection:"
+            Width: =311
+            X: =941
+            Y: =60
+            ZIndex: =24
+
+    grpCombined As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =8
+
+        btnCombSave As button:
+            Color: =If(cvCombinedTab=Self.Text, Color.White, Color.Black)
+            Fill: =If(cvCombinedTab=Self.Text, Color.Black, Color.LightGray)
+            FocusedBorderThickness: =1
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =UpdateContext({cvCombinedTab: Self.Text});
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            Size: =12
+            Text: ="Saving data"
+            Width: =120
+            X: =32
+            Y: =241
+            ZIndex: =4
+
+        btnCombRetrieve As button:
+            Color: =If(cvCombinedTab=Self.Text, Color.White, Color.Black)
+            Fill: =If(cvCombinedTab=Self.Text, Color.Black, Color.LightGray)
+            FocusedBorderThickness: =1
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =UpdateContext({cvCombinedTab: Self.Text});
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            Size: =12
+            Text: ="Retrieving data"
+            Width: =120
+            X: =163
+            Y: =241
+            ZIndex: =5
+
+    ctrCombinedNav As groupContainer.manualLayoutContainer:
+        Height: =58
+        Width: =281
+        X: =1052
+        Y: =30
+        ZIndex: =9
+
+        btnCombinedNavPrevious As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: =Navigate('ParseJSON Function Screen')
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: ="<< Previous"
+            Width: =100
+            X: =8
+            Y: =8
+            ZIndex: =1
+
+        btnCombinedNavHome As button:
+            DisabledBorderColor: =Color.Black
+            DisabledFill: =Color.Black
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =Launch("https://learn.microsoft.com/en-us/power-platform/power-fx/reference/function-json")
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: =""
+            Width: =40
+            X: =120
+            Y: =8
+            ZIndex: =3
+
+        icoCombinedNavHome As icon.Home:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =30
+            Icon: =Icon.Home
+            OnSelect: =Navigate('Home Screen')
+            Width: =30
+            X: =125
+            Y: =13
+            ZIndex: =4
+
