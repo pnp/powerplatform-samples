@@ -1,0 +1,53 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =Concurrent(
+            ClearCollect(
+                colTreatments,
+                {
+                    Treatment: "Leg wax", Price: 20, Duration: "15 mins"
+                },
+                {
+                    Treatment: "Spray tan", Price: 35, Duration: "10 mins"
+                },
+                {
+                    Treatment: "Eyebrow shape", Price: 10, Duration: "10 mins"
+                },
+                {
+                    Treatment: "Fancy nails", Price: 50, Duration: "45 mins"
+                },
+                {
+                    Treatment: "Even fancier nails", Price: 500, Duration: "75 mins"
+                }
+            ),
+            ClearCollect(
+                colClients,
+                {Name: ""},
+                {Name: "Bungle"},
+                {Name: "George"},
+                {Name: "Zippy"}
+            ),
+            ClearCollect(
+                colJSONFormats,
+                {Format: "None"},
+                {Format: "Compact"},
+                {Format: "Ignore Binary Data"},
+                {Format: "Ignore Unsupported Types"},
+                {Format: "Include Binary Data"},
+                {Format: "Indent Four"}),
+            ClearCollect(
+                colWeeklyShop,
+                {Name: "Apples", Quantity: 5, Category: "Fruits"},
+                {Name: "Bread", Quantity: 2, Category: "Bakery"},
+                {Name: "Milk bottle", Quantity: 1, Category: "Dairy"},
+                {Name: "Chicken breast", Quantity: 3, Category: "Meat"},
+                {Name: "Eggs", Quantity: 12, Category: "Dairy"})
+        )
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

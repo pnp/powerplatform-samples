@@ -1,0 +1,48 @@
+cmpBaseLayout As CanvasComponent:
+    cmpScreenHeader: ="Text"
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =768
+    Width: =1366
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Image2 As image:
+        Height: =768
+        Image: ='ParseJSON Background'
+        ImagePosition: =ImagePosition.Fill
+        Width: =1366
+        ZIndex: =1
+
+    Button3 As button:
+        BorderStyle: =BorderStyle.None
+        DisabledFill: |-
+            =ColorValue("#FDF5DF")
+        DisplayMode: =DisplayMode.Disabled
+        Height: =717
+        Text: =""
+        Width: =1316
+        X: =25
+        Y: =25
+        ZIndex: =2
+
+    Image3 As image:
+        BorderStyle: =BorderStyle.None
+        Height: =8
+        Image: ='ParseJSON Background'
+        ImagePosition: =ImagePosition.Fill
+        Width: =1316
+        X: =25
+        Y: =92
+        ZIndex: =3
+
+    Label3 As label:
+        Font: =Font.'Lato Black'
+        Height: =67
+        Size: =24
+        Text: =cmpBaseLayout.cmpScreenHeader
+        Width: =657
+        X: =25
+        Y: =25
+        ZIndex: =4
+

@@ -1,0 +1,648 @@
+"'ParseJSON Function Screen' As screen":
+    OnVisible: |-
+        =Clear(colParseEnvVarSQL);UpdateContext({cvParseJSONTab: "Example 1"})
+
+    cmpParseBaseLayout As cmpBaseLayout:
+        cmpScreenHeader: ="ParseJSON Function"
+
+    ctrParseJSON As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semilight
+        Height: =111
+        RadiusBottomLeft: =5
+        RadiusBottomRight: =5
+        RadiusTopLeft: =5
+        RadiusTopRight: =5
+        Width: =1302
+        X: =32
+        Y: =110
+        ZIndex: =2
+
+        lblParseJSONHeader As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Height: =35
+            Size: =16
+            Text: ="The Parse JSON function can take JSON data from our App, or other sources, and turn it into tabular data"
+            Width: =1136
+            ZIndex: =1
+
+        btnParseMSDocs As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =Launch("https://learn.microsoft.com/en-us/power-platform/power-fx/reference/function-parsejson")
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: ="MS Docs"
+            Width: =120
+            X: =1176
+            Y: =35
+            ZIndex: =2
+
+        lblParseExampleText As label:
+            Font: =Font.Lato
+            Height: =50
+            Size: =12
+            Text: |-
+                ="This solution contains an environment variable called 'JSON env var', that houses our example JSON string - a server name and database for a sample SQL Server instance. This is the output of the variable, in string format: "
+            Width: =1154
+            Y: =34
+            ZIndex: =3
+
+        lblParseExampleOutput As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Height: =27
+            Size: =12
+            Text: |-
+                =LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "cr5f9_JSONenvvar"
+                ).Value
+            Width: =1302
+            Y: =84
+            ZIndex: =4
+
+    ctrParseJSONEx1 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =450
+        Visible: =cvParseJSONTab="Example 1"
+        Width: =1302
+        X: =32
+        Y: =281
+        ZIndex: =7
+
+        "gllParseEx1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver5.0'":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            DelayItemLoading: =true
+            Height: =352
+            Items: =colParseEnvVarSQL
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =80
+            Width: =526
+            X: =723
+            Y: =91
+            ZIndex: =1
+
+            lblParseEx1Ser As label:
+                Font: =Font.Lato
+                Height: =50
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.servername
+                VerticalAlign: =VerticalAlign.Top
+                Width: =228
+                X: =7
+                Y: =15
+                ZIndex: =1
+
+            lblParseEx1Db As label:
+                Font: =Font.Lato
+                Height: =50
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.dbname
+                VerticalAlign: =VerticalAlign.Top
+                Width: =182
+                X: =269
+                Y: =15
+                ZIndex: =3
+
+        lblParseEx1CodeHeader As label:
+            Font: =Font.Lato
+            Size: =12
+            Text: |-
+                ="Using the example JSON environment variable, we can use the following Power to build a collection:"
+            Width: =900
+            X: =11
+            Y: =11
+            ZIndex: =3
+
+        txtParseEx1Code As text:
+            BorderThickness: =1
+            Default: |-
+                ="// Build collection with JSON environment variable
+                With(
+                    {
+                        tvEnvVarValue: // name of temporary variable inside our With function
+                        LookUp(
+                            'Environment Variable Values',
+                            'Environment Variable Definition'.'Schema Name' = " & Char(34) & "cr5f9_JSONenvvar" & Char(34) & ").Value},
+                    // Build collection
+                    ClearCollect(
+                        colCollection,
+                        ForAll(
+                            ParseJSON(tvEnvVarValue), // referencing output of above With function
+                            {
+                                servername: ThisRecord.servername,
+                                dbname: ThisRecord.dbname
+                            }
+                        )
+                    )
+                )"
+            DisabledColor: =Color.Black
+            DisplayMode: =DisplayMode.Disabled
+            Font: =Font.Lato
+            Height: =393
+            Mode: =TextMode.MultiLine
+            Size: =12
+            Width: =653
+            X: =11
+            Y: =51
+            ZIndex: =4
+
+        btnParseEx1Run As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =// Build collection
+                With(
+                    {
+                        tvEnvVarValue: // name of temporary variable inside our With function
+                        LookUp(
+                            'Environment Variable Values',
+                            'Environment Variable Definition'.'Schema Name' = "cr5f9_JSONenvvar"
+                        ).Value
+                    },
+                    // Build collection
+                    ClearCollect(
+                        colParseEnvVarSQL,
+                        ForAll(
+                            ParseJSON(tvEnvVarValue), // referencing output of above With function
+                            {
+                                servername: ThisRecord.servername,
+                                dbname: ThisRecord.dbname
+                            }
+                        )
+                    )
+                );
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: ="Run code"
+            Width: =120
+            X: =532
+            Y: =392
+            ZIndex: =5
+
+        lblParseEx1SerHeader As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Font: =Font.Lato
+            Size: =12
+            Text: ="Server Name"
+            Width: =263
+            X: =723
+            Y: =51
+            ZIndex: =6
+
+        lblParseEx1DbHeader As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Font: =Font.Lato
+            Size: =12
+            Text: ="Database Name"
+            Width: =263
+            X: =986
+            Y: =51
+            ZIndex: =7
+
+    ctrParseJSONEx2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =450
+        Visible: =cvParseJSONTab="Example 2"
+        Width: =1302
+        X: =32
+        Y: =281
+        ZIndex: =11
+
+        "gllParseEx2 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver5.0'":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            DelayItemLoading: =true
+            Height: =352
+            Items: |-
+                =With(
+                    {
+                        tvEnvVarValue: // name of temporary variable inside our With function
+                        LookUp(
+                            'Environment Variable Values',
+                            'Environment Variable Definition'.'Schema Name' = "cr5f9_JSONenvvar"
+                        ).Value
+                    },
+                        ForAll(
+                            ParseJSON(tvEnvVarValue), // referencing output of above With function
+                            {
+                                servername: ThisRecord.servername,
+                                dbname: ThisRecord.dbname
+                            }
+                        )
+                    )
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =80
+            Width: =526
+            X: =723
+            Y: =91
+            ZIndex: =1
+
+            lblParseEx2Ser As label:
+                Font: =Font.Lato
+                Height: =50
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.servername
+                VerticalAlign: =VerticalAlign.Top
+                Width: =228
+                X: =7
+                Y: =15
+                ZIndex: =1
+
+            lblParseEx2Db As label:
+                Font: =Font.Lato
+                Height: =50
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.dbname
+                VerticalAlign: =VerticalAlign.Top
+                Width: =182
+                X: =269
+                Y: =15
+                ZIndex: =3
+
+        lblParseEx2CodeHeader As label:
+            Font: =Font.Lato
+            Size: =12
+            Text: |-
+                ="If you don't need a collection but want to visualise in a gallery, you can use the following code in the Items property:"
+            Width: =900
+            X: =11
+            Y: =11
+            ZIndex: =3
+
+        txtParseEx2Code As text:
+            BorderThickness: =1
+            Default: |-
+                ="With(
+                    {
+                        tvEnvVarValue: // name of temporary variable inside our With function
+                        LookUp(
+                            'Environment Variable Values',
+                            'Environment Variable Definition'.'Schema Name' = " & Char(34) & "cr5f9_JSONenvvar" & Char(34) & "
+                        ).Value
+                    },
+                        ForAll(
+                            ParseJSON(tvEnvVarValue), // referencing output of above With function
+                            {
+                                servername: ThisRecord.servername,
+                                dbname: ThisRecord.dbname
+                            }
+                        )
+                    )"
+            DisabledColor: =Color.Black
+            DisplayMode: =DisplayMode.Disabled
+            Font: =Font.Lato
+            Height: =393
+            Mode: =TextMode.MultiLine
+            Size: =12
+            Width: =653
+            X: =11
+            Y: =51
+            ZIndex: =4
+
+        lblParseEx2SerHeader As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Font: =Font.Lato
+            Size: =12
+            Text: ="Server Name"
+            Width: =263
+            X: =723
+            Y: =51
+            ZIndex: =6
+
+        lblParseEx2DbHeader As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Font: =Font.Lato
+            Size: =12
+            Text: ="Database Name"
+            Width: =263
+            X: =986
+            Y: =51
+            ZIndex: =7
+
+    grpParseEx As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =11
+
+        btnParseEx1 As button:
+            Color: =If(cvParseJSONTab=Self.Text, Color.White, Color.Black)
+            Fill: =If(cvParseJSONTab=Self.Text, Color.Black, Color.LightGray)
+            FocusedBorderThickness: =1
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =UpdateContext({cvParseJSONTab: Self.Text});
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            Size: =12
+            Text: ="Example 1"
+            Width: =120
+            X: =32
+            Y: =241
+            ZIndex: =4
+
+        btnParseEx2 As button:
+            Color: =If(cvParseJSONTab=Self.Text, Color.White, Color.Black)
+            Fill: =If(cvParseJSONTab=Self.Text, Color.Black, Color.LightGray)
+            FocusedBorderThickness: =1
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =UpdateContext({cvParseJSONTab: Self.Text});
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            Size: =12
+            Text: ="Example 2"
+            Width: =120
+            X: =163
+            Y: =241
+            ZIndex: =5
+
+        btnParseEx3 As button:
+            Color: =If(cvParseJSONTab=Self.Text, Color.White, Color.Black)
+            Fill: =If(cvParseJSONTab=Self.Text, Color.Black, Color.LightGray)
+            FocusedBorderThickness: =1
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =UpdateContext({cvParseJSONTab: Self.Text});
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            Size: =12
+            Text: ="Example 3"
+            Width: =120
+            X: =294
+            Y: =241
+            ZIndex: =8
+
+    ctrParseJSONEx3 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =450
+        Visible: =cvParseJSONTab="Example 3"
+        Width: =1302
+        X: =32
+        Y: =281
+        ZIndex: =12
+
+        lblParseEx3CodeHeader As label:
+            Font: =Font.Lato
+            Size: =12
+            Text: |-
+                ="We can also retrieve specific entries from an individual row, field and value. With our environment variable, our JSON output is a table/object with 1 row. The examples below are easily customisable to work with multiple rows - just change the number within the Index formula:"
+            Width: =1280
+            X: =11
+            Y: =11
+            ZIndex: =3
+
+        txtParseEx3CodeA As text:
+            BorderThickness: =1
+            Default: |-
+                ="With(
+                    {
+                        tvEnvVarValue: // name of temporary variable inside our With function
+                LookUp(
+                            'Environment Variable Values',
+                            'Environment Variable Definition'.'Schema Name' = " & Char(34) & "cr5f9_JSONenvvar" & Char(34) & "
+                        ).Value
+                    },
+                    Index(
+                        Table(ParseJSON(tvEnvVarValue)),
+                        1
+                    ).Value.servername
+                )"
+            DisabledColor: =Color.Black
+            DisplayMode: =DisplayMode.Disabled
+            Font: =Font.Lato
+            Height: =304
+            Mode: =TextMode.MultiLine
+            Size: =12
+            Width: =600
+            X: =11
+            Y: =64
+            ZIndex: =4
+
+        txtParseEx3CodeB As text:
+            BorderThickness: =1
+            Default: |-
+                ="With(
+                    {
+                        tvEnvVarValue: // name of temporary variable inside our With function
+                LookUp(
+                            'Environment Variable Values',
+                            'Environment Variable Definition'.'Schema Name' = " & Char(34) & "cr5f9_JSONenvvar" & Char(34) & "
+                        ).Value
+                    },
+                    Index(
+                        Table(ParseJSON(tvEnvVarValue)),
+                        1
+                    ).Value.dbname
+                )"
+            DisabledColor: =Color.Black
+            DisplayMode: =DisplayMode.Disabled
+            Font: =Font.Lato
+            Height: =304
+            Mode: =TextMode.MultiLine
+            Size: =12
+            Width: =600
+            X: =691
+            Y: =64
+            ZIndex: =5
+
+        lblParseEx3OutputHeaderA As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Size: =12
+            Text: |-
+                ="Output from above formula:"
+            Width: =300
+            X: =11
+            Y: =381
+            ZIndex: =6
+
+        lblParseEx3OutputA As label:
+            Font: =Font.Lato
+            Size: =12
+            Text: |-
+                =With(
+                    {
+                        tvEnvVarValue: // name of temporary variable inside our With function
+                LookUp(
+                            'Environment Variable Values',
+                            'Environment Variable Definition'.'Schema Name' = "cr5f9_JSONenvvar"
+                        ).Value
+                    },
+                    Index(
+                        Table(ParseJSON(tvEnvVarValue)),
+                        1
+                    ).Value.servername
+                )
+            Width: =300
+            X: =311
+            Y: =381
+            ZIndex: =7
+
+        lblParseEx3OutputHeaderB As label:
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Size: =12
+            Text: |-
+                ="Output from above formula:"
+            Width: =300
+            X: =691
+            Y: =381
+            ZIndex: =8
+
+        lblParseEx3OutputB As label:
+            Font: =Font.Lato
+            Size: =12
+            Text: |-
+                =With(
+                    {
+                        tvEnvVarValue: // name of temporary variable inside our With function
+                LookUp(
+                            'Environment Variable Values',
+                            'Environment Variable Definition'.'Schema Name' = "cr5f9_JSONenvvar"
+                        ).Value
+                    },
+                    Index(
+                        Table(ParseJSON(tvEnvVarValue)),
+                        1
+                    ).Value.dbname
+                )
+            Width: =300
+            X: =991
+            Y: =381
+            ZIndex: =9
+
+    ctrParseJSONNav As groupContainer.manualLayoutContainer:
+        Height: =58
+        Width: =281
+        X: =1052
+        Y: =30
+        ZIndex: =13
+
+        btnParseJSONNavPrevious As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: =Navigate('JSON Function Screen')
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: ="<< Previous"
+            Width: =100
+            X: =8
+            Y: =8
+            ZIndex: =1
+
+        btnParseJSONNavNext As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: =Navigate('Saving and Retrieving Child Records Screen')
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: ="Next >>"
+            Width: =100
+            X: =174
+            Y: =8
+            ZIndex: =2
+
+        btnParseJSONNavHome As button:
+            DisabledBorderColor: =Color.Black
+            DisabledFill: =Color.Black
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            HoverFill: |-
+                =ColorValue("#F92C85")
+            OnSelect: |-
+                =Launch("https://learn.microsoft.com/en-us/power-platform/power-fx/reference/function-json")
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =12
+            Text: =""
+            Width: =40
+            X: =120
+            Y: =8
+            ZIndex: =3
+
+        icoParseJSONNavHome As icon.Home:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =30
+            Icon: =Icon.Home
+            OnSelect: =Navigate('Home Screen')
+            Width: =30
+            X: =125
+            Y: =13
+            ZIndex: =4
+
