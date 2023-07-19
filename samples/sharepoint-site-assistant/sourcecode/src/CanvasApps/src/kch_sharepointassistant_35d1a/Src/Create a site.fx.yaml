@@ -989,7 +989,16 @@
                             ),
                         
                             // Notify
-                            Notify("Ensure all mandatory fields are completed correctly.", NotificationType.Warning),
+                            Notify("Ensure all mandatory fields are completed correctly.", NotificationType.Warning);
+                            
+                            //Trace for Azure Application Insights
+                            Trace(
+                                "SharePoint Assistant",
+                                TraceSeverity.Information,
+                                {
+                                    Action: "Submission unsuccessful"
+                                }
+                            ),
                         
                             // Patch
                             Set(
@@ -1027,6 +1036,15 @@
                         
                             // Navigate to the next screen
                             Navigate(Done);
+                        
+                            //Trace for Azure Application Insights
+                            Trace(
+                                "SharePoint Assistant",
+                                TraceSeverity.Information,
+                                {
+                                    Action: "Submission successful"
+                                }
+                            );
                         
                             //Run flow
                             'SharePointAssistant-Sitecreation'.Run(_newRequestRecord.'SharePoint site requests');

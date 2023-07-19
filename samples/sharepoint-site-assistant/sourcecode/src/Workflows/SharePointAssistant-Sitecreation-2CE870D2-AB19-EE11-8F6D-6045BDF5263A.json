@@ -27,15 +27,6 @@
         "api": {
           "name": "shared_commondataserviceforapps"
         }
-      },
-      "shared_sharepointonline": {
-        "runtimeSource": "invoker",
-        "connection": {
-          "connectionReferenceLogicalName": "kch_sharedsharepointonline_83d6d"
-        },
-        "api": {
-          "name": "shared_sharepointonline"
-        }
       }
     },
     "definition": {
@@ -954,7 +945,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_sharepointonline",
+              "connectionName": "shared_sharepointonline_1",
               "operationId": "HttpRequest",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
             },
@@ -985,7 +976,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_sharepointonline",
+              "connectionName": "shared_sharepointonline_1",
               "operationId": "HttpRequest",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
             },

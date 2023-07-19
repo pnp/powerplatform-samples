@@ -99,6 +99,14 @@ App As appinfo:
                     }
                 )
             );
+            //Trace for Azure Application Insights
+            Trace(
+                "SharePoint Assistant",
+                TraceSeverity.Information,
+                {
+                    Action: "Open app"
+                }
+            )
         
         )
 
