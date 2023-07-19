@@ -98,26 +98,26 @@ The following solution components are used in this sample:
 
 ### Import the solution
 
-* [Download](./solution/SharePointSiteassistant_1_0_0_3.zip) the solution `.zip` from the `solution` folder
-* Within **https://make.powerapps.com**, open your target environment, go to the `Solutions` tab, click `Import solution`. In the pop-up window click `Brows` and select the `.zip` file you just downloaded. Click next. Also click `Next` on the next screen.
+* [Download](./solution/SharePointSiteAssistant.zip) the solution `.zip` from the `solution` folder
+* Within **[https://make.powerapps.com](https://make.powerapps.com)**, open your target environment, go to the `Solutions` tab, click `Import solution`. In the pop-up window click `Brows` and select the `.zip` file you just downloaded. Click next. Also click `Next` on the next screen.
 ![Step 8](assets/8.png)
 * On the next screen set up connections for `SharePointSiteAssistant-Dataverse`, `SharePointSiteAssistant-Outlook` and `SharePointSiteAssistant-SharePoint`. If the necessary connections aren't available in your environment, locate the drop-down list adjacent to the required connection and select `New connection`. You will then need to establish a new connection in the tab that opens. After you've created the new connection, return to the solution import dialog tab, click on `Refresh`, and your newly established connection should now be visible in the drop-down list.
 Once you are ready, click on the `Next` button.
 ![Step 9](assets/9.png)
 * On the next screen provide values for Environment Variables and click on the `Import` button.
-- **siteOwner** - the app's admin email that will be used to send email notifications after the process will be completed (in both success or failed cases)
-- **SharePointAssistantTenant** - value of the `Directory (tenant) ID` from the App Regiastration created in the previous step
-- **SharePointAssistantClient**  - value of the `Application (client) ID` from the App Regiastration created in the previous step
-- **SharePointAssistantKey**  - value of the `Secret value` from the App Regiastration created in the previous step
-- **textHEX** - the color for text (in HEX format)
-- **blueHEX** - the color for controls like button or selected icons (in HEX format)
-- **lightBlueAccentHEX** - the color for accent (in HEX format)
+* **siteOwner** - the app's admin email that will be used to send email notifications after the process will be completed (in both success or failed cases)
+* **SharePointAssistantTenant** - value of the `Directory (tenant) ID` from the App Registration created in the previous step
+* **SharePointAssistantClient**  - value of the `Application (client) ID` from the App Registration created in the previous step
+* **SharePointAssistantKey**  - value of the `Secret value` from the App Registration created in the previous step
+* **textHEX** - the color for text (in HEX format)
+* **blueHEX** - the color for controls like button or selected icons (in HEX format)
+* **lightBlueAccentHEX** - the color for accent (in HEX format)
 ![Step 10](assets/10.png)
+
 * After the solution is imported, open it and share the Canvas App with all users who require access. Remember to allocate the suitable security role to these users, as well as to assign the necessary licenses.
 ![Step 11](assets/11.png)
 
 Once all the steps have been completed, the users with whom the app was shared will gain the capability to use this app for submitting requests to create SharePoint Sites.
-
 
 ## Disclaimer
 
@@ -135,8 +135,7 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 
 ## For more information
 
-- [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
-- [Power Apps canvas apps documentation](https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/)
-
+* [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
+* [Power Apps canvas apps documentation](https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/)
 
 <img src="https://telemetry.sharepointpnp.com/powerapps-samples/samples/sharepoint-site-assistant" />
