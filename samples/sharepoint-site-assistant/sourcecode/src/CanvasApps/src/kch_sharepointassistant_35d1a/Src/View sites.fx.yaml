@@ -1,0 +1,347 @@
+"'View sites' As screen":
+
+    "'View sites - Background HtmlText' As htmlViewer":
+        Height: =App.Height
+        HtmlText: |-
+            ="<div style='
+                margin: 0px; 
+                height: " & Parent.Height-1 & "px; 
+                width: " & Parent.Width & "px;
+                background: linear-gradient(45deg, #F0F3FF, #FFFFFF, #F0F3FF); 
+                border-radius:0px; 
+            '>
+            </div> "
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        Width: =App.Width/4*3
+        X: =App.Width/4
+        ZIndex: =1
+
+    "'View sites - Left Hand Container' As groupContainer.horizontalAutoLayoutContainer":
+        Height: =App.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =App.Width/4
+        ZIndex: =3
+
+        "'View sites - Logo' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =1
+
+            "'View sites - Icon' As image":
+                Height: =72
+                Image: =sp
+                TabIndex: =0
+                Width: =72
+                X: =48
+                Y: =60
+                ZIndex: =1
+
+            "'View sites - Label' As label":
+                Color: |-
+                    =ColorValue("#036C70")
+                Font: =Font.'Lato Black'
+                Height: ='View sites - Icon'.Height
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =20
+                TabIndex: =1
+                Text: ="SharePoint Assistant"
+                Visible: =If(Parent.Width > 320, true, false)
+                Width: =Parent.Width - Self.X - 24
+                X: ='View sites - Icon'.X + 'View sites - Icon'.Width + 24
+                Y: ='View sites - Icon'.Y
+                ZIndex: =2
+
+        "'View sites - Menu items Container' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =2
+
+            "'View sites - Gallery' As gallery.'BrowseLayout_Flexible_NewsFeed_ver5.0'":
+                DelayItemLoading: =true
+                Height: =Parent.Height
+                Items: =_menu
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                OnSelect: |-
+                    =If(
+                        ThisItem.StepName = "Create a site",
+                        Navigate('Create a site'),
+                        Navigate('View sites')
+                    )
+                TabIndex: =0
+                TemplatePadding: =0
+                TemplateSize: =Min(220, Self.Height - 60)
+                Width: =Parent.Width
+                ZIndex: =1
+
+                "'View sites - Gallery title' As label":
+                    Color: |-
+                        =If(
+                            And(
+                                App.ActiveScreen.Name = "View sites",
+                                ThisItem.StepName = "View created sites"
+                            ),
+                            ColorValue(_blue),
+                            ColorValue(_text)
+                        )
+                    Font: =Font.'Lato Black'
+                    FontWeight: |-
+                        =FontWeight.Normal
+                        //If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    TabIndex: =3
+                    Text: =ThisItem.StepName
+                    VerticalAlign: =VerticalAlign.Top
+                    Visible: =If(Parent.Width > 280, true, false)
+                    Width: =Parent.TemplateWidth - Self.X - 48
+                    X: ='View sites - Gallery Icon'.X + 'View sites - Gallery Icon'.Width + 24
+                    Y: ='View sites - Gallery Icon'.Y + 10
+                    ZIndex: =1
+
+                "'View sites - Gallery body' As label":
+                    AutoHeight: =true
+                    Color: |-
+                        =If(
+                            And(
+                                App.ActiveScreen.Name = "View sites",
+                                ThisItem.StepName = "View created sites"
+                            ),
+                            ColorValue(_blue),
+                            ColorValue(_text)
+                        )
+                    Font: =Font.'Lato Light'
+                    FontWeight: =FontWeight.Normal //If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =Self.Size * 4
+                    Italic: =true
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    TabIndex: =4
+                    Text: =ThisItem.StepDescription
+                    VerticalAlign: =VerticalAlign.Top
+                    Visible: =If(Parent.Width > 280, true, false)
+                    Width: ='View sites - Gallery title'.Width
+                    X: ='View sites - Gallery title'.X
+                    Y: =92
+                    ZIndex: =2
+
+                "'View sites - Gallery Icon' As image":
+                    BorderColor: =Color.Transparent
+                    DisabledBorderColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =Color.Transparent
+                    FocusedBorderThickness: =0
+                    Height: =40
+                    HoverBorderColor: =Color.Transparent
+                    HoverFill: =Color.Transparent
+                    Image: |-
+                        ="data:image/svg+xml;utf8, "&EncodeUrl("
+                        
+                        <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='"& 
+                        
+                        If(
+                            And(
+                                App.ActiveScreen.Name = "View sites",
+                                ThisItem.StepName = "View created sites"
+                            ),
+                            _blue,
+                            _text
+                        )
+                        
+                        &"' viewBox='0 0 16 16'>
+                          "& ThisItem.Icon &"
+                        </svg>
+                        
+                        ")
+                    OnSelect: =Select(Parent)
+                    PressedBorderColor: =Color.Transparent
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =8
+                    RadiusBottomRight: =8
+                    RadiusTopLeft: =8
+                    RadiusTopRight: =8
+                    TabIndex: =2
+                    Width: =40
+                    X: =If(Parent.Width <= 280, (Parent.Width-60)/2, 48)
+                    Y: =48
+                    ZIndex: =3
+
+                Rectangle3_2 As rectangle:
+                    Fill: =Color.Transparent
+                    Height: =36
+                    OnSelect: =Select(Parent)
+                    Width: =156
+                    Y: ='View sites - Gallery body'.Y + 'View sites - Gallery body'.Height
+                    ZIndex: =4
+
+        "'View sites - Footer' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            Height: =150
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =4
+
+            "'View sites - Author' As label":
+                Align: =Align.Center
+                Font: =Font.'Lato Light'
+                Size: =10
+                Text: ="Created by Katerina Chernevskaya | 2023"
+                Width: =Parent.Width-36-36
+                X: =36
+                Y: =Parent.Height - 60
+                ZIndex: =1
+
+    "'Create a site - Main Container_2' As groupContainer.verticalAutoLayoutContainer":
+        Height: =App.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =App.Width/4*3
+        X: ='View sites - Left Hand Container'.X + 'View sites - Left Hand Container'.Width
+        ZIndex: =4
+
+        "'View sites - Header' As groupContainer.manualLayoutContainer":
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            ZIndex: =1
+
+            "'View sites - Header Label' As label":
+                Align: =Align.Center
+                Color: =ColorValue(_text)
+                Font: =Font.'Lato Black'
+                Height: =Parent.Height - 24
+                Size: =20
+                TabIndex: =5
+                Text: ="SharePoint sites"
+                VerticalAlign: =VerticalAlign.Bottom
+                Width: =Parent.Width - 144
+                X: =Parent.X + 72
+                ZIndex: =1
+
+        Container1 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.None
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            ZIndex: =3
+
+            "Gallery3_1 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver5.0'":
+                Default: ={}
+                DelayItemLoading: =true
+                Height: =Parent.Height
+                Items: =SortByColumns(_sitesAll,"createdDate",SortOrder.Ascending)
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =0
+                TemplateSize: =90
+                Transition: =Transition.Pop
+                Width: =Parent.Width - 144
+                WrapCount: |-
+                    =If(
+                        Parent.Width <= 920, 
+                        2, 
+                        3
+                    )
+                X: =Parent.X + 72
+                ZIndex: =1
+
+                "'Site Title' As label":
+                    Color: =ColorValue(_text)
+                    Font: =Font.'Lato Black'
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =12
+                    Text: =ThisItem.siteName
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 20 - 'Site Link'.Width
+                    X: =10
+                    Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + 'Site Created Date'.Size * 1.8)) / 2
+                    ZIndex: =1
+
+                "'Site Created Date' As label":
+                    Color: =ColorValue(_text)
+                    Font: =Font.Lato
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =10
+                    Text: ="(Created " & ThisItem.createdDate & ")"
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: ='Site Title'.Width
+                    X: ='Site Title'.X
+                    Y: ='Site Title'.Y + 'Site Title'.Height
+                    ZIndex: =2
+
+                "'Site Link' As icon.ChevronRight":
+                    AccessibleLabel: =Self.Tooltip
+                    Color: =ColorValue(_blue)
+                    Height: ='Site Title'.Height
+                    Icon: =Icon.Link
+                    OnSelect: |-
+                        =Launch(ThisItem.url,{q:"PowerApps"},LaunchTarget.New)
+                    PaddingLeft: =16
+                    PaddingRight: =16
+                    Tooltip: ="View item details"
+                    Width: =50
+                    X: ='Site Title'.X + 'Site Title'.Width
+                    Y: ='Site Title'.Y
+                    ZIndex: =3
+

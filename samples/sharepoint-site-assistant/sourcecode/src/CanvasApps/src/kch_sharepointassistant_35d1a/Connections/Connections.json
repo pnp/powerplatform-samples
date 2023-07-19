@@ -1,0 +1,128 @@
+{
+  "0c59d51b-6914-4f76-90ed-333153cbb065": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Groups",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/390724148/1.0.1641.3327/office365groups/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365groups",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Groups"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "0c59d51b-6914-4f76-90ed-333153cbb065"
+  },
+  "5b6050e2-00ad-4f68-9907-86b3a4f38ade": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "bypassConsent": true,
+      "displayName": "Microsoft Dataverse",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1641/1.0.1641.3326/commondataserviceforapps/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_commondataserviceforapps",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "91ab881a-49c0-4031-bbc3-95b3b8a746f9"
+    ],
+    "id": "5b6050e2-00ad-4f68-9907-86b3a4f38ade"
+  },
+  "91ab881a-49c0-4031-bbc3-95b3b8a746f9": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1636/1.0.1636.3297/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "5b6050e2-00ad-4f68-9907-86b3a4f38ade": {
+          "value": "shared_commondataserviceforapps_1"
+        },
+        "b2172242-646f-4544-a5d2-60edda0dbd05": {
+          "value": "shared_office365_1"
+        },
+        "e4f51bee-d0ed-43cc-baee-f6062e991018": {
+          "value": "shared_sharepointonline"
+        },
+        "workflowEntityId": {
+          "value": "2ce870d2-ab19-ee11-8f6d-6045bdf5263a"
+        },
+        "workflowName": {
+          "value": "40752323-badf-2e40-9671-0aaf90cf0ffd"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_commondataserviceforapps_1": {
+          "value": "5b6050e2-00ad-4f68-9907-86b3a4f38ade"
+        },
+        "shared_office365_1": {
+          "value": "b2172242-646f-4544-a5d2-60edda0dbd05"
+        },
+        "shared_sharepointonline": {
+          "value": "e4f51bee-d0ed-43cc-baee-f6062e991018"
+        },
+        "shared_sharepointonline_1": {
+          "value": "e4f51bee-d0ed-43cc-baee-f6062e991018"
+        },
+        "workflowEntityId": {
+          "value": "2ce870d2-ab19-ee11-8f6d-6045bdf5263a"
+        },
+        "workflowName": {
+          "value": "40752323-badf-2e40-9671-0aaf90cf0ffd"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "SharePointAssistant-Sitecreation"
+    ],
+    "dependencies": {
+      "shared_commondataserviceforapps_1": "5b6050e2-00ad-4f68-9907-86b3a4f38ade",
+      "shared_office365_1": "b2172242-646f-4544-a5d2-60edda0dbd05",
+      "shared_sharepointonline": "e4f51bee-d0ed-43cc-baee-f6062e991018",
+      "shared_sharepointonline_1": "e4f51bee-d0ed-43cc-baee-f6062e991018"
+    },
+    "dependents": [],
+    "id": "91ab881a-49c0-4031-bbc3-95b3b8a746f9"
+  },
+  "b2172242-646f-4544-a5d2-60edda0dbd05": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Outlook",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/390724148/1.0.1641.3327/office365/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "91ab881a-49c0-4031-bbc3-95b3b8a746f9"
+    ],
+    "id": "b2172242-646f-4544-a5d2-60edda0dbd05"
+  },
+  "e4f51bee-d0ed-43cc-baee-f6062e991018": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3312/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "91ab881a-49c0-4031-bbc3-95b3b8a746f9"
+    ],
+    "id": "e4f51bee-d0ed-43cc-baee-f6062e991018"
+  }
+}

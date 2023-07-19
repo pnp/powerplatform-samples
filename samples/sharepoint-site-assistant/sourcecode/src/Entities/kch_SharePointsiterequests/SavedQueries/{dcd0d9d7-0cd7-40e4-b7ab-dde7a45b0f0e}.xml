@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{dcd0d9d7-0cd7-40e4-b7ab-dde7a45b0f0e}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="kch_sitename" select="1" icon="1" preview="1">
+        <row name="result" id="kch_sharepointsiterequestsid">
+          <cell name="kch_sitename" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="kch_sharepointsiterequests">
+          <attribute name="kch_sharepointsiterequestsid" />
+          <attribute name="kch_sitename" />
+          <attribute name="createdon" />
+          <order attribute="kch_sitename" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="kch_sitename" operator="like" value="{0}" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Active SharePoint site requests" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

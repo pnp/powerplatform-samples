@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{bf6cd2ca-3055-47ad-ac6b-97b394b96228}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="kch_sitename" select="1" icon="1" preview="1">
+        <row name="result" id="kch_sharepointsiterequestsid">
+          <cell name="kch_sitename" width="300" />
+          <cell name="createdon" width="125" />
+          <cell name="kch_sitedescription" width="131" />
+          <cell name="kch_languagename" width="133" />
+          <cell name="kch_languagecode" width="129" />
+          <cell name="kch_sitedesignname" width="142" />
+          <cell name="kch_sitedesigncode" width="138" />
+          <cell name="kch_externalusers" width="123" />
+          <cell name="kch_requestoremail" width="134" />
+          <cell name="kch_additionalusers" width="136" />
+          <cell name="kch_expirationdate" width="130" />
+          <cell name="kch_status" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="kch_sharepointsiterequests">
+          <attribute name="kch_sharepointsiterequestsid" />
+          <attribute name="kch_sitename" />
+          <attribute name="createdon" />
+          <order attribute="kch_sitename" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="kch_sitedescription" />
+          <attribute name="kch_languagename" />
+          <attribute name="kch_languagecode" />
+          <attribute name="kch_sitedesignname" />
+          <attribute name="kch_sitedesigncode" />
+          <attribute name="kch_externalusers" />
+          <attribute name="kch_requestoremail" />
+          <attribute name="kch_additionalusers" />
+          <attribute name="kch_expirationdate" />
+          <attribute name="kch_status" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active SharePoint site requests" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

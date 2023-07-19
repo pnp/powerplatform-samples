@@ -1,0 +1,1004 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "kch_sharedsharepointonline_39362"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_office365_1": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "kch_sharedoffice365_5929a"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "kch_sharedcommondataserviceforapps_acb8f"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "siteAddress (kch_siteAddress)": {
+          "defaultValue": "https://51ks0n.sharepoint.com/",
+          "type": "String",
+          "metadata": {
+            "schemaName": "kch_siteAddress"
+          }
+        },
+        "siteOwner (kch_siteOwner)": {
+          "defaultValue": "Admin@51ks0n.onmicrosoft.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "kch_siteOwner"
+          }
+        },
+        "SharePointAssistantKey (kch_SharePointAssistantKey)": {
+          "defaultValue": "L7G8Q~hrbCng~.7odgmw50Xh4D1Ti1KstHKfDayS",
+          "type": "String",
+          "metadata": {
+            "schemaName": "kch_SharePointAssistantKey"
+          }
+        },
+        "SharePointAssistantTenant (kch_SharePointAssistantTenant)": {
+          "defaultValue": "eac68690-7010-4e37-9d60-093ddbcf26e3",
+          "type": "String",
+          "metadata": {
+            "schemaName": "kch_SharePointAssistantTenant"
+          }
+        },
+        "SharePointAssistantClient (kch_SharePointAssistantClient)": {
+          "defaultValue": "8b7b1031-fd75-45ea-9ac6-3cec20b60d93",
+          "type": "String",
+          "metadata": {
+            "schemaName": "kch_SharePointAssistantClient"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "59f6fd0f-eb62-4688-9e1c-7ef769965bfa"
+          },
+          "type": "Request",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "GetarowbyID_RowID": {
+                  "type": "string",
+                  "description": "Enter the row's globally unique identifier (GUID)",
+                  "x-ms-powerflows-param-ispartial": false
+                }
+              },
+              "required": [
+                "GetarowbyID_RowID"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Initialize_variable_-_External_Users": {
+          "runAfter": {
+            "Get_a_row_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d50e8238-3207-4ea5-b87f-f24248cc96a4"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "externalUsers",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Additional_Users": {
+          "runAfter": {
+            "Initialize_variable_-_External_Users": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7b6eebf9-b796-45d3-a104-8fce9e7ad9fc"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "additionalUsers",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "External_Users": {
+          "actions": {
+            "Check_External_Users_count": {
+              "actions": {
+                "Set_variable_for_multiple_external_users": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "f724a6e2-c0ce-4916-8fb3-214e342d2e0c"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "externalUsers",
+                    "value": "@split(replace(replace(replace(replace(replace(outputs('Get_a_row_by_ID')?['body/kch_externalusers'],', ',','),'; ',','),' ',','),',,',','),',',';'),';')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Set_variable_for_one_external_user": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "d3495683-ba02-446f-a0f4-165de4e6c1a1"
+                    },
+                    "type": "AppendToArrayVariable",
+                    "inputs": {
+                      "name": "externalUsers",
+                      "value": "@outputs('Get_a_row_by_ID')?['body/kch_externalusers']"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "contains": [
+                  "@replace(replace(replace(replace(replace(outputs('Get_a_row_by_ID')?['body/kch_externalusers'],', ',','),'; ',','),' ',','),',,',','),',',';')",
+                  ";"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "692004b2-ceb4-404c-9355-7b76536f899f"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_Additional_Users": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e4174c1d-be56-495d-928b-30c2f067c537"
+          },
+          "type": "Scope"
+        },
+        "Additional_Members": {
+          "actions": {
+            "Check_if_Additional_Members_is_blank": {
+              "actions": {},
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Check_Additional_Users_count": {
+                    "actions": {
+                      "Set_variable_for_multiple_Additional_Users": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "a178aec7-fd7f-4f5d-aab3-85a925a723d6"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "additionalUsers",
+                          "value": "@split(replace(replace(replace(replace(replace(outputs('Get_a_row_by_ID')?['body/kch_additionalusers'],', ',','),'; ',','),' ',','),',,',','),',',';'),';')"
+                        }
+                      }
+                    },
+                    "runAfter": {},
+                    "else": {
+                      "actions": {
+                        "Set_variable_for_one_Additional_User": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "231901dc-5cac-4fca-ab11-267c4d83b8a9"
+                          },
+                          "type": "AppendToArrayVariable",
+                          "inputs": {
+                            "name": "additionalUsers",
+                            "value": "@outputs('Get_a_row_by_ID')?['body/kch_additionalusers']"
+                          }
+                        }
+                      }
+                    },
+                    "expression": {
+                      "contains": [
+                        "@replace(replace(replace(replace(replace(outputs('Get_a_row_by_ID')?['body/kch_additionalusers'],', ',','),'; ',','),' ',','),',,',','),',',';')",
+                        ";"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "edb8d33e-b412-44c7-b5c1-88f0b74c49e8"
+                    },
+                    "type": "If"
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@outputs('Get_a_row_by_ID')?['body/kch_additionalusers']",
+                  "@null"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "35a9fa92-f9ea-4d6d-b11b-181cb17c6e05"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_Additional_Users": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "70dd946d-84eb-4a53-88c6-e6f0045c6ec1"
+          },
+          "type": "Scope"
+        },
+        "Final_Users_List": {
+          "runAfter": {
+            "Additional_Members": [
+              "Succeeded"
+            ],
+            "External_Users": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4e09ff55-b97b-4935-b55f-f48353f555a3"
+          },
+          "type": "Compose",
+          "inputs": "@union(variables('externalUsers'),variables('additionalUsers'))"
+        },
+        "Parse_JSON_-_Site_creation_result": {
+          "runAfter": {
+            "Send_an_HTTP_request_to_SharePoint": [
+              "Succeeded",
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0942705d-afa3-4a06-b724-dca78634bda8"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Send_an_HTTP_request_to_SharePoint')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "Create": {
+                      "type": "object",
+                      "properties": {
+                        "__metadata": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "SiteId": {
+                          "type": "string"
+                        },
+                        "SiteStatus": {
+                          "type": "integer"
+                        },
+                        "SiteUrl": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Send_an_HTTP_request_to_SharePoint": {
+          "runAfter": {
+            "Initialize_variable_-_Site_URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c8644d02-ae29-4574-acf9-22d793f56c46"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('siteAddress (kch_siteAddress)')",
+              "parameters/method": "POST",
+              "parameters/uri": "_api/SPSiteManager/create",
+              "parameters/headers": {
+                "accept": "application/json;odata=verbose",
+                "content-type": "application/json;odata=verbose"
+              },
+              "parameters/body": "{\n\t\"request\": {\n\t\t\"Title\": \"@{outputs('Get_a_row_by_ID')?['body/kch_sitename']}\",\n\t\t\"Url\": \"@{variables('siteURL')}\",\n\t\t\"Description\": \"@{outputs('Get_a_row_by_ID')?['body/kch_sitedescription']}\",\n\t\t\"Owner\": \"@{parameters('siteOwner (kch_siteOwner)')}\",\n\t\t\"Lcid\": @{outputs('Get_a_row_by_ID')?['body/kch_languagecode']},\n\t\t\"WebTemplate\": \"SITEPAGEPUBLISHING#0\",\n\t\t\"SiteDesignId\": \"@{outputs('Get_a_row_by_ID')?['body/kch_sitedesigncode']}\",\n\t\t\"ShareByEmailEnabled\": true\n\t}\n}"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Initialize_variable_-_Site_URL": {
+          "runAfter": {
+            "Final_Users_List": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c396b993-756c-46bb-b82b-78b50ab34fb2"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "siteURL",
+                "type": "string",
+                "value": "@{concat(parameters('siteAddress (kch_siteAddress)'),'sites/',replace(outputs('Get_a_row_by_ID')?['body/kch_sitename'],' ',''))}"
+              }
+            ]
+          }
+        },
+        "Check_if_site_was_created": {
+          "actions": {},
+          "runAfter": {
+            "Parse_JSON_-_Site_creation_result": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Send_an_email_(V2)_-_Provisioning_failed": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "f10d6ca0-6a67-4a86-ab52-2971b5a203ed"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_office365_1",
+                    "operationId": "SendEmailV2",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                  },
+                  "parameters": {
+                    "emailMessage/To": "@parameters('siteOwner (kch_siteOwner)')",
+                    "emailMessage/Subject": "Site can't be provisioned",
+                    "emailMessage/Body": "<p>Hello!<br>\n<br>\nThe site  can't be provisioned.<br>\nStatus Code: @{body('Parse_JSON_-_Site_creation_result')?['d']?['Create']?['SiteStatus']}</p>",
+                    "emailMessage/Importance": "Normal"
+                  },
+                  "authentication": {
+                    "type": "Raw",
+                    "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                  }
+                }
+              },
+              "Terminate": {
+                "runAfter": {
+                  "Update_a_row_-_Failed": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "f0c07a73-cd00-44ba-8910-95246146dc1d"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Succeeded"
+                }
+              },
+              "Update_a_row_-_Failed": {
+                "runAfter": {
+                  "Send_an_email_(V2)_-_Provisioning_failed": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "366f0011-2e7a-4a6b-93f8-b10b70ac154f"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps_1",
+                    "operationId": "UpdateRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "kch_sharepointsiterequestses",
+                    "recordId": "@triggerBody()['GetarowbyID_RowID']",
+                    "item/kch_status": "Failed"
+                  },
+                  "authentication": {
+                    "type": "Raw",
+                    "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                  }
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@body('Parse_JSON_-_Site_creation_result')?['d']?['Create']?['SiteStatus']",
+              2
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5a0b3b4c-7cd0-49f2-9bc7-ea1ff2b269ca"
+          },
+          "type": "If"
+        },
+        "Apply_to_each_-_Invite_users": {
+          "foreach": "@variables('externalUsers')",
+          "actions": {
+            "HTTP_-_Invite_external_user": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "cc474402-e29b-4f2f-a901-d32b73705fad"
+              },
+              "type": "Http",
+              "inputs": {
+                "method": "POST",
+                "uri": "https://graph.microsoft.com/v1.0/invitations",
+                "headers": {
+                  "Content-type": "application/json"
+                },
+                "body": {
+                  "invitedUserEmailAddress": "@{items('Apply_to_each_-_Invite_users')}",
+                  "inviteRedirectUrl": "@{body('Parse_JSON_-_Site_creation_result')?['d']?['Create']?['SiteUrl']}",
+                  "sendInvitationMessage": false,
+                  "invitedUserMessageInfo": {
+                    "customizedMessageBody": "Hey! Join this site!"
+                  }
+                },
+                "authentication": {
+                  "type": "ActiveDirectoryOAuth",
+                  "tenant": "@parameters('SharePointAssistantTenant (kch_SharePointAssistantTenant)')",
+                  "audience": "https://graph.microsoft.com",
+                  "clientId": "@parameters('SharePointAssistantClient (kch_SharePointAssistantClient)')",
+                  "secret": "@parameters('SharePointAssistantKey (kch_SharePointAssistantKey)')"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Send_an_HTTP_request_to_SharePoint_-_Assign_Contribute": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "09d1d552-80e7-4482-b790-cbff8821fcc4"
+          },
+          "type": "Foreach"
+        },
+        "Apply_to_each_-_Add_users_to_SharePoint_site": {
+          "foreach": "@outputs('Final_Users_List')",
+          "actions": {
+            "Send_an_HTTP_request_to_SharePoint_-_Add_users": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "329284df-0a62-4805-8c89-291acf348ffb"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline_1",
+                  "operationId": "HttpRequest",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "@body('Parse_JSON_-_Site_creation_result')?['d']?['Create']?['SiteUrl']",
+                  "parameters/method": "POST",
+                  "parameters/uri": "_api/web/sitegroups(@{body('Parse_JSON_-_Members')?['d']?['Id']})/users",
+                  "parameters/headers": {
+                    "accept": "application/json;odata=verbose",
+                    "content-type": "application/json;odata=verbose"
+                  },
+                  "parameters/body": "{\"__metadata\":{\"type\":\"SP.User\"},\"LoginName\":\"i:0#.f|membership|@{items('Apply_to_each_-_Add_users_to_SharePoint_site')}\"}"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Apply_to_each_-_Invite_users": [
+              "Succeeded",
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "13e678dc-30f3-4f2d-a143-335144553ecc"
+          },
+          "type": "Foreach"
+        },
+        "Send_an_HTTP_request_to_SharePoint_-_Add_requestor": {
+          "runAfter": {
+            "Apply_to_each_-_Add_users_to_SharePoint_site": [
+              "Succeeded",
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a19e59c1-f896-4b89-a22e-2a821308118f"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@body('Parse_JSON_-_Site_creation_result')?['d']?['Create']?['SiteUrl']",
+              "parameters/method": "POST",
+              "parameters/uri": "_api/web/sitegroups(@{body('Parse_JSON_-_Owners')?['d']?['Id']})/users",
+              "parameters/headers": {
+                "accept": "application/json;odata=verbose",
+                "content-type": "application/json;odata=verbose"
+              },
+              "parameters/body": "{\"__metadata\":{\"type\":\"SP.User\"},\"LoginName\":\"i:0#.f|membership|@{outputs('Get_a_row_by_ID')?['body/kch_requestoremail']}\"}"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Update_a_row_-_Created": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "681acb0e-1422-4b91-93bc-16d1615ce470"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365_1",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/To": "@outputs('Get_a_row_by_ID')?['body/kch_requestoremail']",
+              "emailMessage/Subject": "Invitation to access SharePoint site",
+              "emailMessage/Body": "<p>Hello!<br>\n<br>\nWe invite you to use the SharePoint site @{outputs('Get_a_row_by_ID')?['body/kch_sitename']} for collaboration.<br>\nPlease follow this <a href=\"@{body('Parse_JSON_-_Site_creation_result')?['d']?['Create']?['SiteUrl']}\">link</a> to open the site.</p>",
+              "emailMessage/From": "@parameters('siteOwner (kch_siteOwner)')",
+              "emailMessage/Cc": "@parameters('siteOwner (kch_siteOwner)')",
+              "emailMessage/Bcc": "@join(outputs('Final_Users_List'),';')",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Get_a_row_by_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "764f2eaf-b761-4160-8d1f-87aab35a1c68"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "kch_sharepointsiterequestses",
+              "recordId": "@triggerBody()['GetarowbyID_RowID']"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Update_a_row_-_Created": {
+          "runAfter": {
+            "Send_an_HTTP_request_to_SharePoint_-_Add_requestor": [
+              "Succeeded",
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ed71bd8f-8296-42c5-8f9b-86102ff3d6c1"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "UpdateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "kch_sharepointsiterequestses",
+              "recordId": "@triggerBody()['GetarowbyID_RowID']",
+              "item/kch_status": "Created"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Send_an_HTTP_request_to_SharePoint_-_Create_Owners_group": {
+          "runAfter": {
+            "Check_if_site_was_created": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9fbe38d2-6913-4550-ab68-839361481012"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@body('Parse_JSON_-_Site_creation_result')?['d']?['Create']?['SiteUrl']",
+              "parameters/method": "POST",
+              "parameters/uri": "_api/web/SiteGroups",
+              "parameters/headers": {
+                "accept": "application/json;odata=verbose",
+                "content-type": "application/json;odata=verbose"
+              },
+              "parameters/body": "{  \n\"__metadata\": {  \n\"type\":\"SP.Group\"  \n},  \n\"Title\": \"@{concat(replace(outputs('Get_a_row_by_ID')?['body/kch_sitename'],' ',''),' - Owners permissions')}\",  \n\"Description\": \"The group for a requestor and employees\"  \n} "
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Send_an_HTTP_request_to_SharePoint_-_Create_Members_group": {
+          "runAfter": {
+            "Send_an_HTTP_request_to_SharePoint_-_Assign_Full_Control": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c89dd90a-d7d0-49f0-934c-ce47c6bafc1e"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@body('Parse_JSON_-_Site_creation_result')?['d']?['Create']?['SiteUrl']",
+              "parameters/method": "POST",
+              "parameters/uri": "_api/web/SiteGroups",
+              "parameters/headers": {
+                "accept": "application/json;odata=verbose",
+                "content-type": "application/json;odata=verbose"
+              },
+              "parameters/body": "{  \n\"__metadata\": {  \n\"type\":\"SP.Group\"  \n},  \n\"Title\": \"@{concat(replace(outputs('Get_a_row_by_ID')?['body/kch_sitename'],' ',''),' - Members permissions')}\",  \n\"Description\": \"The group for external users\"  \n} "
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Parse_JSON_-_Owners": {
+          "runAfter": {
+            "Send_an_HTTP_request_to_SharePoint_-_Create_Owners_group": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "be7c035c-18a6-47f7-aad9-5fadd67dc0c5"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Send_an_HTTP_request_to_SharePoint_-_Create_Owners_group')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "__metadata": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "uri": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Owner": {
+                      "type": "object",
+                      "properties": {
+                        "__deferred": {
+                          "type": "object",
+                          "properties": {
+                            "uri": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Users": {
+                      "type": "object",
+                      "properties": {
+                        "__deferred": {
+                          "type": "object",
+                          "properties": {
+                            "uri": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Id": {
+                      "type": "integer"
+                    },
+                    "IsHiddenInUI": {
+                      "type": "boolean"
+                    },
+                    "LoginName": {
+                      "type": "string"
+                    },
+                    "Title": {
+                      "type": "string"
+                    },
+                    "PrincipalType": {
+                      "type": "integer"
+                    },
+                    "AllowMembersEditMembership": {
+                      "type": "boolean"
+                    },
+                    "AllowRequestToJoinLeave": {
+                      "type": "boolean"
+                    },
+                    "AutoAcceptRequestToJoinLeave": {
+                      "type": "boolean"
+                    },
+                    "Description": {
+                      "type": "string"
+                    },
+                    "OnlyAllowMembersViewMembership": {
+                      "type": "boolean"
+                    },
+                    "OwnerTitle": {
+                      "type": "string"
+                    },
+                    "RequestToJoinLeaveEmailSetting": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Parse_JSON_-_Members": {
+          "runAfter": {
+            "Send_an_HTTP_request_to_SharePoint_-_Create_Members_group": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f2dd8c45-b530-4b26-a38b-3f5f67466dbe"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Send_an_HTTP_request_to_SharePoint_-_Create_Members_group')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "__metadata": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "uri": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "Owner": {
+                      "type": "object",
+                      "properties": {
+                        "__deferred": {
+                          "type": "object",
+                          "properties": {
+                            "uri": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Users": {
+                      "type": "object",
+                      "properties": {
+                        "__deferred": {
+                          "type": "object",
+                          "properties": {
+                            "uri": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Id": {
+                      "type": "integer"
+                    },
+                    "IsHiddenInUI": {
+                      "type": "boolean"
+                    },
+                    "LoginName": {
+                      "type": "string"
+                    },
+                    "Title": {
+                      "type": "string"
+                    },
+                    "PrincipalType": {
+                      "type": "integer"
+                    },
+                    "AllowMembersEditMembership": {
+                      "type": "boolean"
+                    },
+                    "AllowRequestToJoinLeave": {
+                      "type": "boolean"
+                    },
+                    "AutoAcceptRequestToJoinLeave": {
+                      "type": "boolean"
+                    },
+                    "Description": {
+                      "type": "string"
+                    },
+                    "OnlyAllowMembersViewMembership": {
+                      "type": "boolean"
+                    },
+                    "OwnerTitle": {
+                      "type": "string"
+                    },
+                    "RequestToJoinLeaveEmailSetting": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Send_an_HTTP_request_to_SharePoint_-_Assign_Full_Control": {
+          "runAfter": {
+            "Parse_JSON_-_Owners": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b4fd03e4-cadf-404b-9c02-2d488b70285d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@body('Parse_JSON_-_Site_creation_result')?['d']?['Create']?['SiteUrl']",
+              "parameters/method": "POST",
+              "parameters/uri": "/_api/web/roleassignments/addroleassignment(principalid=@{body('Parse_JSON_-_Owners')?['d']?['Id']}, roledefid=1073741829)",
+              "parameters/headers": {
+                "accept": "application/json;odata=verbose",
+                "content-type": "application/json;odata=verbose"
+              }
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Send_an_HTTP_request_to_SharePoint_-_Assign_Contribute": {
+          "runAfter": {
+            "Parse_JSON_-_Members": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "562e5960-a828-42a4-834d-ac92c8cc84e7"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@body('Parse_JSON_-_Site_creation_result')?['d']?['Create']?['SiteUrl']",
+              "parameters/method": "POST",
+              "parameters/uri": "/_api/web/roleassignments/addroleassignment(principalid=@{body('Parse_JSON_-_Members')?['d']?['Id']}, roledefid=1073741827)",
+              "parameters/headers": {
+                "accept": "application/json;odata=verbose",
+                "content-type": "application/json;odata=verbose"
+              }
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

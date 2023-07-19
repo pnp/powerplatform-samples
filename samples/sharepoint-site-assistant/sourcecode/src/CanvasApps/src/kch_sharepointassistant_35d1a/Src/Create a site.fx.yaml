@@ -1,0 +1,1079 @@
+"'Create a site' As screen":
+
+    "'Create a site - Background HtmlText' As htmlViewer":
+        Height: =App.Height
+        HtmlText: |-
+            ="<div style='
+                margin: 0px; 
+                height: " & Parent.Height-1 & "px; 
+                width: " & Parent.Width & "px;
+                background: linear-gradient(45deg, #F0F3FF, #FFFFFF, #F0F3FF); 
+                border-radius:0px; 
+            '>
+            </div> "
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        Width: =App.Width/4*3
+        X: =App.Width/4
+        ZIndex: =1
+
+    "'Create a site - Left Hand Container' As groupContainer.horizontalAutoLayoutContainer":
+        Height: =App.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =App.Width/4
+        ZIndex: =3
+
+        "'Create a site - Logo' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =1
+
+            "'Create a site - Icon' As image":
+                Height: =72
+                Image: =sp
+                TabIndex: =0
+                Width: =72
+                X: =48
+                Y: =60
+                ZIndex: =1
+
+            "'Create a site - Label' As label":
+                Color: |-
+                    =ColorValue("#036C70")
+                Font: =Font.'Lato Black'
+                Height: ='Create a site - Icon'.Height
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =20
+                TabIndex: =1
+                Text: ="SharePoint Assistant"
+                Visible: =If(Parent.Width > 320, true, false)
+                Width: =Parent.Width - Self.X - 24
+                X: ='Create a site - Icon'.X + 'Create a site - Icon'.Width + 24
+                Y: ='Create a site - Icon'.Y
+                ZIndex: =2
+
+        "'Create a site - Menu items Container' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =2
+
+            "'Create a site - Gallery' As gallery.'BrowseLayout_Flexible_NewsFeed_ver5.0'":
+                DelayItemLoading: =true
+                Height: =Parent.Height
+                Items: =_menu
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                OnSelect: |-
+                    =If(
+                        ThisItem.StepName = "Create a site",
+                        Navigate('Create a site'),
+                        Navigate('View sites')
+                    )
+                TabIndex: =0
+                TemplatePadding: =0
+                TemplateSize: =Min(220, Self.Height - 60)
+                Width: =Parent.Width
+                ZIndex: =1
+
+                "'Create a site - Gallery icon title' As label":
+                    Color: |-
+                        =If(
+                            And(
+                                App.ActiveScreen.Name = "Create a site",
+                                ThisItem.StepName = "Create a site"
+                            ),
+                            ColorValue(_blue),
+                            ColorValue(_text)
+                        )
+                    Font: =Font.'Lato Black'
+                    FontWeight: |-
+                        =FontWeight.Normal
+                        //If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    TabIndex: =3
+                    Text: =ThisItem.StepName
+                    VerticalAlign: =VerticalAlign.Top
+                    Visible: =If(Parent.Width > 280, true, false)
+                    Width: =Parent.TemplateWidth - Self.X - 48
+                    X: ='Create a site - Gallery icon'.X + 'Create a site - Gallery icon'.Width + 24
+                    Y: ='Create a site - Gallery icon'.Y + 10
+                    ZIndex: =1
+
+                "'Create a site - Gallery body' As label":
+                    AutoHeight: =true
+                    Color: |-
+                        =If(
+                            And(
+                                App.ActiveScreen.Name = "Create a site",
+                                ThisItem.StepName = "Create a site"
+                            ),
+                            ColorValue(_blue),
+                            ColorValue(_text)
+                        )
+                    Font: =Font.'Lato Light'
+                    FontWeight: =FontWeight.Normal //If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =Self.Size * 4
+                    Italic: =true
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    TabIndex: =4
+                    Text: =ThisItem.StepDescription
+                    VerticalAlign: =VerticalAlign.Top
+                    Visible: =If(Parent.Width > 280, true, false)
+                    Width: ='Create a site - Gallery icon title'.Width
+                    X: ='Create a site - Gallery icon title'.X
+                    Y: ='Create a site - Gallery icon title'.Y + 'Create a site - Gallery icon title'.Height + 12
+                    ZIndex: =2
+
+                "'Create a site - Gallery icon' As image":
+                    BorderColor: =Color.Transparent
+                    DisabledBorderColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =Color.Transparent
+                    FocusedBorderThickness: =0
+                    Height: =40
+                    HoverBorderColor: =Color.Transparent
+                    HoverFill: =Color.Transparent
+                    Image: |-
+                        ="data:image/svg+xml;utf8, "&EncodeUrl("
+                        
+                        <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='"& 
+                        
+                        If(
+                            And(
+                                App.ActiveScreen.Name = "Create a site",
+                                ThisItem.StepName = "Create a site"
+                            ),
+                            _blue,
+                            _text
+                        )
+                        
+                        &"' viewBox='0 0 16 16'>
+                          "& ThisItem.Icon &"
+                        </svg>
+                        
+                        ")
+                    OnSelect: =Select(Parent)
+                    PressedBorderColor: =Color.Transparent
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =8
+                    RadiusBottomRight: =8
+                    RadiusTopLeft: =8
+                    RadiusTopRight: =8
+                    TabIndex: =2
+                    Width: =40
+                    X: =If(Parent.Width <= 280, (Parent.Width-60)/2, 48)
+                    Y: =48
+                    ZIndex: =3
+
+                Rectangle3 As rectangle:
+                    Fill: =Color.Transparent
+                    Height: =36
+                    OnSelect: =Select(Parent)
+                    Width: =156
+                    Y: ='Create a site - Gallery body'.Y + 'Create a site - Gallery body'.Height
+                    ZIndex: =4
+
+        "'Create a site - Footer' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            Height: =150
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =4
+
+            "'Create a site - Author' As label":
+                Align: =Align.Center
+                Font: =Font.'Lato Light'
+                Size: =10
+                Text: ="Created by Katerina Chernevskaya | 2023"
+                Width: =Parent.Width-36-36
+                X: =36
+                Y: =Parent.Height - 60
+                ZIndex: =1
+
+    "'Create a site - Main Container' As groupContainer.verticalAutoLayoutContainer":
+        Height: =App.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =App.Width/4*3
+        X: ='Create a site - Left Hand Container'.X + 'Create a site - Left Hand Container'.Width
+        ZIndex: =4
+
+        "'Create a site - Header' As groupContainer.manualLayoutContainer":
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            ZIndex: =1
+
+            "'Create a site - Header Label' As label":
+                Align: =Align.Center
+                Color: =ColorValue(_text)
+                Font: =Font.'Lato Black'
+                Height: =Parent.Height - 24
+                Size: =20
+                TabIndex: =5
+                Text: ="Fill out the form to create a new SharePoint site"
+                VerticalAlign: =VerticalAlign.Bottom
+                Width: =Parent.Width - 144
+                X: =Parent.X + 72
+                ZIndex: =1
+
+        Container16 As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.None
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            ZIndex: =2
+
+            "'Create a site - Title' As groupContainer.manualLayoutContainer":
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =70
+                LayoutMinHeight: =64
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =1
+
+                "'Site Title - TextInput' As text":
+                    BorderColor: =Color.Transparent
+                    BorderThickness: =0
+                    Color: |-
+                        =If(
+                            !_uniqueName,
+                            Color.Red,
+                            ColorValue(_text)
+                        )
+                    Default: =
+                    DisabledBorderColor: =Color.Transparent
+                    DisabledColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =Color.Transparent
+                    FocusedBorderThickness: =0
+                    Font: =Font.Lato
+                    HintText: ="Site name in English"
+                    HoverBorderColor: =Color.Transparent
+                    HoverColor: =ColorValue(_text)
+                    HoverFill: =Color.Transparent
+                    OnChange: |-
+                        =Set(
+                            _sitesByKeyword,
+                            Office365Groups.HttpRequest(
+                                "https://graph.microsoft.com/v1.0/sites?search=" & 'Site Title - TextInput'.Text,
+                                "GET",
+                                ""
+                            )
+                        );
+                        
+                        ClearCollect(
+                            _sitesTable,
+                            ForAll(
+                                Table(_sitesByKeyword.value),
+                                {
+                                    siteName: Text(Value.name)
+                                }
+                            )
+                        );
+                        
+                        Set(
+                            _uniqueName,
+                            If(
+                                CountRows(
+                                    Filter(
+                                        _sitesTable,
+                                        Lower(siteName) = 
+                                        Lower(
+                                            Substitute('Site Title - TextInput'.Text," ", "")
+                                        )
+                                    )
+                                ) > 0,
+                                false,
+                                true
+                            )
+                        )
+                    PressedBorderColor: =Color.Transparent
+                    PressedColor: =ColorValue(_text)
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =12
+                    TabIndex: =7
+                    Width: |-
+                        =If(
+                            Parent.Width <= 920, 
+                            Parent.Width - Self.X - 72, 
+                            Parent.Width - Self.X - 144
+                        )
+                    X: |-
+                        =If(
+                            Parent.Width <= 920, 
+                            72, 
+                            'Site Title - Label'.X + 'Site Title - Label'.Width + 24
+                        )
+                    Y: ='Site Title - Label'.Y
+                    ZIndex: =1
+
+                "'Site Title - Label' As label":
+                    Color: =ColorValue(_text)
+                    Font: =Font.'Lato Black'
+                    Size: =12
+                    TabIndex: =6
+                    Text: ="Site name *"
+                    Visible: =If(Parent.Width > 920, true, false)
+                    Width: =200
+                    X: =Parent.X + 144
+                    Y: =12
+                    ZIndex: =8
+
+                "'Site Title - Rectangle' As rectangle":
+                    Fill: |-
+                        =If(
+                            Or(
+                                _titleWarning,
+                                !_uniqueName
+                            ),
+                            Color.Red,
+                            ColorValue(_text)
+                        )
+                    Height: =1
+                    TabIndex: =8
+                    Width: ='Site Title - TextInput'.Width
+                    X: ='Site Title - TextInput'.X
+                    Y: ='Site Title - TextInput'.Y + 'Site Title - TextInput'.Height
+                    ZIndex: =9
+
+                "'Site Title - Tooltip' As label":
+                    Color: =Color.Red
+                    Height: =17
+                    PaddingBottom: =0
+                    PaddingTop: =2
+                    Size: =8
+                    Text: ="This site name already used. Please enter a unique site name"
+                    Visible: =!_uniqueName
+                    Width: ='Site Title - TextInput'.Width
+                    X: |-
+                        =If(
+                            Parent.Width <= 920, 
+                            72, 
+                            'Site Title - Label'.X + 'Site Title - Label'.Width + 24
+                        )
+                    Y: ='Site Title - TextInput'.Y + 'Site Title - TextInput'.Height
+                    ZIndex: =11
+
+            "'Create a site - Description' As groupContainer.manualLayoutContainer":
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =80
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =2
+
+                "'Site Description - TextInput' As text":
+                    BorderColor: =Color.Transparent
+                    BorderThickness: =0
+                    Color: =ColorValue(_text)
+                    Default: =
+                    DisabledBorderColor: =Color.Transparent
+                    DisabledColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    EnableSpellCheck: =true
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =Color.Transparent
+                    FocusedBorderThickness: =0
+                    Font: =Font.Lato
+                    Height: =50
+                    HintText: ="Describe the purpose of the site"
+                    HoverBorderColor: =Color.Transparent
+                    HoverColor: =ColorValue(_text)
+                    HoverFill: =Color.Transparent
+                    Mode: =TextMode.MultiLine
+                    PressedBorderColor: =Color.Transparent
+                    PressedColor: =ColorValue(_text)
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =12
+                    TabIndex: =11
+                    Width: |-
+                        =//Parent.Width - Self.X - 144
+                        
+                        If(
+                            Parent.Width <= 920, 
+                            Parent.Width - Self.X - 72, 
+                            Parent.Width - Self.X - 144
+                        )
+                    X: |-
+                        =//'Site Title - Label'.X + 'Site Title - Label'.Width + 24
+                        If(
+                            Parent.Width <= 920, 
+                            72, 
+                            'Site Description - Label'.X + 'Site Description - Label'.Width + 24
+                        )
+                    Y: ='Site Description - Label'.Y
+                    ZIndex: =1
+
+                "'Site Description - Label' As label":
+                    Color: =ColorValue(_text)
+                    Font: =Font.'Lato Black'
+                    Size: =12
+                    TabIndex: =9
+                    Text: ="Site description"
+                    Visible: =If(Parent.Width > 920, true, false)
+                    Width: =200
+                    X: =Parent.X + 144
+                    Y: =12
+                    ZIndex: =2
+
+                "'Site Description - Rectangle' As rectangle":
+                    Fill: =ColorValue(_text)
+                    Height: =1
+                    Width: ='Site Description - TextInput'.Width
+                    X: ='Site Description - TextInput'.X
+                    Y: ='Site Description - TextInput'.Y + 'Site Description - TextInput'.Height
+                    ZIndex: =3
+
+            "'Create a site - Language' As groupContainer.manualLayoutContainer":
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =70
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =3
+
+                "'Site Language - Label' As label":
+                    Color: =ColorValue(_text)
+                    Font: =Font.'Lato Black'
+                    Size: =12
+                    TabIndex: =12
+                    Text: ="Site language"
+                    Visible: =If(Parent.Width > 920, true, false)
+                    Width: =200
+                    X: =Parent.X + 144
+                    Y: =12
+                    ZIndex: =1
+
+                "'Site Language - Radio' As radio":
+                    BorderColor: =Color.Transparent
+                    Color: =ColorValue(_text)
+                    Default: ="English"
+                    DisabledBorderColor: =Color.Transparent
+                    DisabledColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =Color.Transparent
+                    FocusedBorderThickness: =0
+                    Font: =Font.Lato
+                    Height: =45
+                    HoverColor: =ColorValue(_blue)
+                    HoverFill: =Color.Transparent
+                    Items: =["English", "Lithuanian"]
+                    Layout: =Layout.Horizontal
+                    PaddingBottom: =0
+                    PaddingTop: =5
+                    PressedColor: =ColorValue(_text)
+                    PressedFill: =Color.Transparent
+                    RadioBackgroundFill: =Color.Transparent
+                    RadioBorderColor: =ColorValue(_text)
+                    RadioSelectionFill: =ColorValue(_blue)
+                    RadioSize: =30
+                    Size: =12
+                    TabIndex: =13
+                    Width: =344
+                    X: |-
+                        =If(
+                            Parent.Width <= 920, 
+                            72, 
+                            'Site Language - Label'.X + 'Site Language - Label'.Width + 24
+                        )
+                    Y: ='Site Language - Label'.Y
+                    ZIndex: =2
+
+            "'Create a site - Design' As groupContainer.manualLayoutContainer":
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =167
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =4
+
+                "'Site Design - Gallery' As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0'":
+                    DelayItemLoading: =true
+                    Height: =137
+                    Items: =_design
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TabIndex: =15
+                    TemplatePadding: =0
+                    TemplateSize: =162
+                    Transition: =Transition.Push
+                    Width: =Parent.Width - Self.X - 72
+                    X: |-
+                        =If(
+                            Parent.Width <= 920, 
+                            72, 
+                            'Site Design - Label'.X + 'Site Design - Label'.Width + 24
+                        )
+                    Y: ='Site Design - Label'.Y
+                    ZIndex: =1
+
+                    "'Template Image' As image":
+                        Image: |-
+                            =Switch(
+                                ThisItem.name,
+                                "Blank", blank,
+                                "Showcase", Showcase,
+                                "Topic", Topic
+                            )
+                        OnSelect: =Select(Parent)
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        TabIndex: =16
+                        Width: =141
+                        X: =(Parent.TemplateWidth / 2) - (Self.Width / 2)
+                        ZIndex: =1
+
+                    "'Template Title' As label":
+                        Align: =Align.Center
+                        Font: =Font.Lato
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =Self.Size * 1.8
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =12
+                        TabIndex: =17
+                        Text: =ThisItem.name
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: ='Template Image'.Width
+                        X: ='Template Image'.X
+                        Y: ='Template Image'.Y + 'Template Image'.Height + 6
+                        ZIndex: =2
+
+                    "'Select Icon' As icon.CheckBadge":
+                        Color: =ColorValue(_blue)
+                        Height: =22
+                        Icon: =Icon.CheckBadge
+                        OnSelect: =Select(Parent)
+                        TabIndex: =18
+                        Visible: |-
+                            =If(
+                                ThisItem.IsSelected,
+                                true,
+                                false
+                            )
+                        Width: =18
+                        X: ='Template Image'.X
+                        Y: ='Template Title'.Y
+                        ZIndex: =3
+
+                "'Site Design - Label' As label":
+                    Color: =ColorValue(_text)
+                    Font: =Font.'Lato Black'
+                    Size: =12
+                    TabIndex: =14
+                    Text: ="Site design"
+                    Visible: =If(Parent.Width > 920, true, false)
+                    Width: =200
+                    X: =Parent.X + 144
+                    Y: =12
+                    ZIndex: =2
+
+            "'Create a site - External users' As groupContainer.manualLayoutContainer":
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =105
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =5
+
+                "'Site External Users - TextInput' As text":
+                    BorderColor: =Color.Transparent
+                    BorderThickness: =0
+                    Color: =ColorValue(_text)
+                    Default: =
+                    DisabledBorderColor: =Color.Transparent
+                    DisabledColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =Color.Transparent
+                    FocusedBorderThickness: =0
+                    Font: =Font.Lato
+                    Height: =75
+                    HintText: ="Please enter the email addresses of external users who need site access. Use a comma (,), a semicolon (;) or a space ( ) to separate multiple emails."
+                    HoverBorderColor: =Color.Transparent
+                    HoverColor: =ColorValue(_text)
+                    HoverFill: =Color.Transparent
+                    Mode: =TextMode.MultiLine
+                    OnChange: |-
+                        =If(
+                            IsBlank('Site External Users - TextInput'),
+                            Set(_externalUserWarning, true),
+                            Set(_externalUserWarning, false)
+                        )
+                    PressedBorderColor: =Color.Transparent
+                    PressedColor: =ColorValue(_text)
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =12
+                    TabIndex: =20
+                    Width: |-
+                        =//Parent.Width - Self.X - 144
+                        
+                        If(
+                            Parent.Width <= 920, 
+                            Parent.Width - Self.X - 72, 
+                            Parent.Width - Self.X - 144
+                        )
+                    X: |-
+                        =//'Site Title - Label'.X + 'Site Title - Label'.Width + 24
+                        If(
+                            Parent.Width <= 920, 
+                            72, 
+                            'Site External Users - Label'.X + 'Site External Users - Label'.Width + 24
+                        )
+                    Y: ='Site External Users - Label'.Y
+                    ZIndex: =1
+
+                "'Site External Users - Label' As label":
+                    Color: =ColorValue(_text)
+                    Font: =Font.'Lato Black'
+                    Size: =12
+                    TabIndex: =19
+                    Text: ="External users *"
+                    Visible: =If(Parent.Width > 920, true, false)
+                    Width: =200
+                    X: =Parent.X + 144
+                    Y: =12
+                    ZIndex: =2
+
+                "'Site External Users - Rectangle' As rectangle":
+                    Fill: |-
+                        =If(
+                            _externalUserWarning,
+                            Color.Red,
+                            ColorValue(_text)
+                        )
+                    Height: =1
+                    TabIndex: =21
+                    Width: ='Site External Users - TextInput'.Width
+                    X: ='Site External Users - TextInput'.X
+                    Y: ='Site External Users - TextInput'.Y + 'Site External Users - TextInput'.Height
+                    ZIndex: =3
+
+            "'Create a site - Requestor' As groupContainer.manualLayoutContainer":
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =70
+                LayoutMinHeight: =64
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =6
+
+                "'Site Requestor - TextInput' As text":
+                    BorderColor: =Color.Transparent
+                    BorderThickness: =0
+                    Color: |-
+                        =If(
+                            _requestorWarning,
+                            Color.Red,
+                            ColorValue(_text)
+                        )
+                    Default: =
+                    DisabledBorderColor: =Color.Transparent
+                    DisabledColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =Color.Transparent
+                    FocusedBorderThickness: =0
+                    Font: =Font.Lato
+                    HintText: ="requestor@example.com"
+                    HoverBorderColor: =Color.Transparent
+                    HoverColor: =ColorValue(_text)
+                    HoverFill: =Color.Transparent
+                    OnChange: |-
+                        =If(
+                            Or(
+                                " " in 'Site Requestor - TextInput'.Text,
+                                ";" in 'Site Requestor - TextInput'.Text,
+                                "," in 'Site Requestor - TextInput'.Text,
+                                Not("@" in 'Site Requestor - TextInput'.Text)
+                            ),
+                            Set(_requestorWarning, true),
+                            Set(_requestorWarning, false)
+                        )
+                    PressedBorderColor: =Color.Transparent
+                    PressedColor: =ColorValue(_text)
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =12
+                    TabIndex: =23
+                    Width: |-
+                        =//Parent.Width - Self.X - 144
+                        
+                        If(
+                            Parent.Width <= 920, 
+                            Parent.Width - Self.X - 72, 
+                            Parent.Width - Self.X - 144
+                        )
+                    X: |-
+                        =//'Site Title - Label'.X + 'Site Title - Label'.Width + 24
+                        If(
+                            Parent.Width <= 920, 
+                            72, 
+                            'Site Requestor - Label'.X + 'Site Requestor - Label'.Width + 24
+                        )
+                    Y: ='Site Requestor - Label'.Y
+                    ZIndex: =1
+
+                "'Site Requestor - Label' As label":
+                    Color: =ColorValue(_text)
+                    Font: =Font.'Lato Black'
+                    Size: =12
+                    TabIndex: =22
+                    Text: ="Requestor Email *"
+                    Visible: =If(Parent.Width > 920, true, false)
+                    Width: =200
+                    X: =Parent.X + 144
+                    Y: =12
+                    ZIndex: =8
+
+                "'Site Requestor - Rectangle' As rectangle":
+                    Fill: |-
+                        =If(
+                            _requestorWarning,
+                            Color.Red,
+                            ColorValue(_text)
+                        )
+                    Height: =1
+                    TabIndex: =24
+                    Width: ='Site Requestor - TextInput'.Width
+                    X: ='Site Requestor - TextInput'.X
+                    Y: ='Site Requestor - TextInput'.Y + 'Site Requestor - TextInput'.Height
+                    ZIndex: =9
+
+                "'Site Requestor - Tooltip' As label":
+                    Color: =Color.Red
+                    Height: =17
+                    PaddingBottom: =0
+                    PaddingTop: =2
+                    Size: =8
+                    Text: ="Please enter information in this field without spaces, comma and semicolon"
+                    Visible: =_requestorWarning
+                    Width: ='Site Requestor - TextInput'.Width
+                    X: |-
+                        =If(
+                            Parent.Width <= 920, 
+                            72, 
+                            'Site Requestor - Label'.X + 'Site Requestor - Label'.Width + 24
+                        )
+                    Y: ='Site Requestor - TextInput'.Y + 'Site Requestor - TextInput'.Height
+                    ZIndex: =10
+
+            "'Create a site - Additional users' As groupContainer.manualLayoutContainer":
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =105
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =7
+
+                "'Site Additional Users - TextInput' As text":
+                    BorderColor: =Color.Transparent
+                    BorderThickness: =0
+                    Color: =ColorValue(_text)
+                    Default: =
+                    DisabledBorderColor: =Color.Transparent
+                    DisabledColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =Color.Transparent
+                    FocusedBorderThickness: =0
+                    Font: =Font.Lato
+                    Height: =75
+                    HintText: ="Please enter the email addresses of additional users (employees) who need site access. Use a comma (,), a semicolon (;) or a space ( ) to separate multiple emails."
+                    HoverBorderColor: =Color.Transparent
+                    HoverColor: =ColorValue(_text)
+                    HoverFill: =Color.Transparent
+                    Mode: =TextMode.MultiLine
+                    PressedBorderColor: =Color.Transparent
+                    PressedColor: =ColorValue(_text)
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =12
+                    TabIndex: =26
+                    Width: |-
+                        =//Parent.Width - Self.X - 144
+                        
+                        If(
+                            Parent.Width <= 920, 
+                            Parent.Width - Self.X - 72, 
+                            Parent.Width - Self.X - 144
+                        )
+                    X: |-
+                        =//'Site Title - Label'.X + 'Site Title - Label'.Width + 24
+                        If(
+                            Parent.Width <= 920, 
+                            72, 
+                            'Site Additional Users - Label'.X + 'Site Additional Users - Label'.Width + 24
+                        )
+                    Y: ='Site Additional Users - Label'.Y
+                    ZIndex: =1
+
+                "'Site Additional Users - Label' As label":
+                    Color: =ColorValue(_text)
+                    Font: =Font.'Lato Black'
+                    Size: =12
+                    TabIndex: =25
+                    Text: ="Additional users"
+                    Visible: =If(Parent.Width > 920, true, false)
+                    Width: =200
+                    X: =Parent.X + 144
+                    Y: =12
+                    ZIndex: =2
+
+                "'Site Additional Users - Rectangle' As rectangle":
+                    Fill: =ColorValue(_text)
+                    Height: =1
+                    TabIndex: =27
+                    Width: ='Site Additional Users - TextInput'.Width
+                    X: ='Site Additional Users - TextInput'.X
+                    Y: ='Site Additional Users - TextInput'.Y + 'Site Additional Users - TextInput'.Height
+                    ZIndex: =3
+
+            "'Create a site - Submit button' As groupContainer.manualLayoutContainer":
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =100
+                LayoutMinHeight: =64
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =8
+
+                "'Create a site - Submit Button' As button":
+                    BorderThickness: =0
+                    Color: =ColorValue(_blueAccent)
+                    Fill: =ColorValue(_blue)
+                    Font: =Font.Lato
+                    FontWeight: =FontWeight.Normal
+                    OnSelect: |-
+                        =// Check required fields
+                        Concurrent(
+                            If(
+                                IsBlank('Site Title - TextInput'),
+                                Set(_titleWarning, true),
+                                Set(_titleWarning, false)
+                            ),
+                            If(
+                                IsBlank('Site External Users - TextInput'),
+                                Set(_externalUserWarning, true),
+                                Set(_externalUserWarning, false)
+                            ),
+                            If(
+                                Or(
+                                    " " in 'Site Requestor - TextInput'.Text,
+                                    ";" in 'Site Requestor - TextInput'.Text,
+                                    "," in 'Site Requestor - TextInput'.Text,
+                                    Not("@" in 'Site Requestor - TextInput'.Text),
+                                    IsBlank('Site Requestor - TextInput')
+                                ),
+                                Set(_requestorWarning, true),
+                                Set(_requestorWarning, false)
+                            )
+                        );
+                        
+                        // Check if we can patch
+                        
+                        If(
+                            Or(
+                                _titleWarning,
+                                _externalUserWarning,
+                                _requestorWarning,
+                                !_uniqueName
+                            ),
+                        
+                            // Notify
+                            Notify("Ensure all mandatory fields are completed correctly.", NotificationType.Warning);
+                            
+                            //Trace for Azure Application Insights
+                            Trace(
+                                "SharePoint Assistant",
+                                TraceSeverity.Information,
+                                {
+                                    Action: "Submission unsuccessful"
+                                }
+                            ),
+                        
+                            // Patch
+                            Set(
+                                _newRequestRecord,
+                                Patch(
+                                    'SharePoint site requests',
+                                    Defaults('SharePoint site requests'),
+                                    {
+                                        SiteName: 'Site Title - TextInput'.Text,
+                                        'Site Description': 'Site Description - TextInput'.Text,
+                                        'Language Name': 'Site Language - Radio'.Selected.Value,
+                                        'Language Code':
+                                            If(
+                                                'Site Language - Radio'.Selected.Value = "English",
+                                                1033,
+                                                1063
+                                            ),
+                                        'Site Design Name': 'Site Design - Gallery'.Selected.name,
+                                        'Site Design Code':
+                                            Switch(
+                                                'Site Design - Gallery'.Selected.name,
+                                                "Blank", "f6cc5403-0d63-442e-96c0-285923709ffc",
+                                                "Showcase", "6142d2a0-63a5-4ba0-aede-d9fefca2c767",
+                                                "Topic", "96c933ac-3698-44c7-9f4a-5fd17d71af9e"
+                                            ),
+                                        'External Users': 'Site External Users - TextInput'.Text,
+                                        'Requestor Email': 'Site Requestor - TextInput'.Text,
+                                        'Additional Users': 'Site Additional Users - TextInput'.Text,
+                                        'Expiration Date': DateAdd(Today(), 6, TimeUnit.Months),
+                                        'Status (kch_status)': "New"
+                                    }
+                                )
+                            );
+                        
+                        
+                            // Navigate to the next screen
+                            Navigate(Done);
+                        
+                            //Trace for Azure Application Insights
+                            Trace(
+                                "SharePoint Assistant",
+                                TraceSeverity.Information,
+                                {
+                                    Action: "Submission successful"
+                                }
+                            );
+                        
+                            //Run flow
+                            'SharePointAssistant-Sitecreation'.Run(_newRequestRecord.'SharePoint site requests');
+                            
+                            
+                            //Reset controls
+                            Reset('Site Title - TextInput');
+                            Reset('Site Description - TextInput');
+                            Reset('Site Language - Radio');
+                            Reset('Site Design - Gallery');
+                            Reset('Site External Users - TextInput');
+                            Reset('Site Requestor - TextInput');
+                            Reset('Site Additional Users - TextInput');
+                        
+                            Set(_titleWarning, false);
+                            Set(_externalUserWarning, false);
+                            Set(_requestorWarning, false);
+                            Set(_uniqueName, true)
+                        
+                        )
+                    RadiusBottomLeft: =5
+                    RadiusBottomRight: =5
+                    RadiusTopLeft: =5
+                    RadiusTopRight: =5
+                    Size: =12
+                    TabIndex: =28
+                    Text: ="Submit"
+                    Width: =200
+                    X: =Parent.Width/2 - Self.Width/2
+                    Y: =50
+                    ZIndex: =11
+
