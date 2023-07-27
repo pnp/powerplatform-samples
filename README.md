@@ -11,6 +11,8 @@ We are currently in the process of moving all the per product samples into solut
 - [Power Automate Samples](https://github.com/pnp/powerautomate-samples)
 - [Power Virtual Agents Samples](https://github.com/pnp/powerva-samples)
 
+> You're welcome to bring samples from the other repositories! The more people help, the faster we'll move all the samples here.
+
 ## Have issues or questions?
 
 Please use following logic on submitting your questions or issues to right location to ensure that they are noticed and addressed as soon as possible.

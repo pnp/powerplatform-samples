@@ -116,7 +116,7 @@ Version|Date|Comments
 ## Prerequisites
 
 <!--
-Any special pre-requisites? Include any lists, permissions, offerings to the demo gods, or whatever else needs to be done for this web part to work.
+Any special pre-requisites? Include any lists, permissions, offerings to the demo gods, or whatever else needs to be done for this sample to work.
 
 Please describe the steps to configure the pre-requisites. Feel free to add screen shots, but make sure that there is a text description of the steps to perform.
  
@@ -145,7 +145,7 @@ As tempting as it may be, don't just use images to describe the steps. Let's be 
 
 ### Using the source code
 
-You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps::
+You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps:
 
 * Clone the repository to a local drive
 * Pack the source files back into a solution `.zip` file:

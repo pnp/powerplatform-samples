@@ -1,13 +1,13 @@
 ---
 name: "\U0001F4A1 Suggestion"
-about: Suggest an enhancement to make one of our web part samples even better
+about: Suggest an enhancement to make one of our Power powerplatform samples even better
 title: Let's make SAMPLE even better
 labels: type:enhancement
 assignees: ''
 
 ---
 
-Thank you for your suggestion! Use the sections below to submit a suggestion ONLY if it's related to samples in this repo. If you have an issue or question about the SharePoint Framework or its documentation, please submit it at https://aka.ms/spdev-issues
+Thank you for your suggestion! Use the sections below to submit a suggestion ONLY if it's related to samples in this repo. If you have an issue or question about the Power Platform or documentation, please submit it at https://powerusers.microsoft.com/ instead.
 
 - Suggestions that do not follow the below template will automatically be closed
 - All ideas are welcome - let's build something together!
