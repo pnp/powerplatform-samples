@@ -34,7 +34,7 @@ jobs:
           curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Accept: application/vnd.github.v3.raw" \
           -o .metadata/powerapps-samples.json \
-          https://raw.githubusercontent.com/pnp/powerapps-samples/main/main/.metadata/samples.json
+          https://raw.githubusercontent.com/pnp/powerapps-samples/main/.metadata/samples.json
       - name: Join samples  
         run: |
           jq -s '[.[][]]' ./main/samples/**/assets/sample.json .metadata/powerapps-samples.json > ./Docs/docs/samples.json
