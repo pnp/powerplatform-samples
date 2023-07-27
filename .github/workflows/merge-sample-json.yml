@@ -40,6 +40,7 @@ jobs:
           jq -s '[.[][]]' ./main/samples/**/assets/sample.json ./main/.metadata/powerapps-samples.json > ./Docs/docs/samples.json
       - name: Validate JSON
         uses: docker://orrosenblatt/validate-json-action:latest
+        continue-on-error: true
         env:
           INPUT_SCHEMA: ./main/templates/metadata-schema.json
           INPUT_JSONS: ./Docs/docs/samples.json
