@@ -37,7 +37,7 @@ jobs:
           https://raw.githubusercontent.com/pnp/powerapps-samples/main/.metadata/samples.json
       - name: Join samples  
         run: |
-          jq -s '[.[][]]' ./main/samples/**/assets/sample.json .metadata/powerapps-samples.json > ./Docs/docs/samples.json
+          jq -s '[.[][]]' ./main/samples/**/assets/sample.json ./main/.metadata/powerapps-samples.json > ./Docs/docs/samples.json
       - name: Validate JSON
         uses: docker://orrosenblatt/validate-json-action:latest
         env:
