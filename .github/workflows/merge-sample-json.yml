@@ -47,9 +47,15 @@ jobs:
           -H "Accept: application/vnd.github.v3.raw" \
           -o ./main/.metadata/powerfx-samples.json \
           https://raw.githubusercontent.com/pnp/powerfx-samples/main/.metadata/samples.json
+      - name: Download Power Virtual Agents samples
+        run: |
+            curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3.raw" \
+            -o ./main/.metadata/powerva-samples.json \
+            https://raw.githubusercontent.com/pnp/powerva-samples/main/.metadata/samples.json
       - name: Join samples  
         run: |
-          jq -s '[.[][]]' ./main/samples/**/assets/sample.json ./main/.metadata/powerapps-samples.json ./main/.metadata/powerautomate-samples.json ./main/.metadata/powerfx-samples.json > ./Docs/docs/samples.json
+          jq -s '[.[][]]' ./main/samples/**/assets/sample.json ./main/.metadata/powerapps-samples.json ./main/.metadata/powerautomate-samples.json ./main/.metadata/powerfx-samples.json  ./main/.metadata/powerva-samples.json> ./Docs/docs/samples.json
       - name: Validate JSON
         uses: docker://orrosenblatt/validate-json-action:latest
         continue-on-error: true
