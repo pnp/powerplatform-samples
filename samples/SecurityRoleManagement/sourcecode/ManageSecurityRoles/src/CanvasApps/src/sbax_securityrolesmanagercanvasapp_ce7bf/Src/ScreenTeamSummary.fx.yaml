@@ -1,0 +1,704 @@
+"ScreenTeamSummary As screen.'autoLayout_Sidebar_ver1.0'":
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+
+    ScreenTS As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainerTS As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(0,0,0,0)
+            FillPortions: =0
+            Height: =120
+            LayoutMinHeight: =100
+            LayoutMinWidth: =300
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =10
+            ZIndex: =1
+
+            HeaderComponentTS As HeaderComponent:
+                AlignInContainer: =AlignInContainer.Center
+                ComponentText: ="Team Overview V0.0.0."& varAppVersion
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =1
+                Height: =120
+                LayoutMinHeight: =640
+                LayoutMinWidth: =Parent.Width
+                Width: =HeaderComponentTS.ComponentWidth
+
+        SearchContainerTS As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            ContentLanguage: =
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =TextCanvasSRHeader_1.Height + ComboboxCanvasGroupsTS.Height + Self.PaddingTop + Self.PaddingBottom + 20
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =5
+            LayoutMinHeight: =100
+            LayoutMinWidth: =300
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =2
+
+            TextCanvasSRHeader_1 As Text:
+                Align: ='TextCanvas.Align'.Center
+                AutoHeight: =false
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =18
+                Text: ="Select a Team to manage"
+                Underline: =true
+                VerticalAlign: ="Middle"
+                Weight: ='TextCanvas.Weight'.Bold
+                Width: =200
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+            ComboboxCanvasGroupsTS As Combobox.pcfdataset:
+                DefaultSelectedItems: =First(Filter(Teams, 'Teams (Views)'.'All AAD Security Group Teams'))
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                Items: =Filter(Teams, 'Teams (Views)'.'All AAD Security Group Teams')
+                LayoutMinHeight: =10
+                LayoutMinWidth: =320
+                OnSelect: =false
+                Width: =320
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+                "'Team Name1' As pcfDataField.textualColumn":
+                    FieldDisplayName: ="Team Name"
+                    FieldName: ="name"
+                    FieldType: ="s"
+                    FieldVariantName: ="textualColumn"
+                    Order: =1
+                    ZIndex: =7
+
+                "'Business Unit1' As pcfDataField":
+                    FieldDisplayName: ="Business Unit"
+                    FieldName: ="businessunitid"
+                    FieldType: ="E"
+                    FieldVariantName: ="complexTypeColumn"
+                    Order: =2
+                    ZIndex: =8
+
+        BottomContainerTS As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(245, 245, 245, 1)
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =16
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            ZIndex: =3
+
+            BottomContainerLeftTS As groupContainer.horizontalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(245, 245, 245, 1)
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =16
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =BottomContainerLeftTopTS.LayoutMinHeight + BottomContainerLeftMiddleTS.LayoutMinHeight + BottomContainerLeftBottomTS.LayoutMinHeight
+                LayoutMinWidth: =300
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =2
+                PaddingLeft: =2
+                PaddingRight: =2
+                PaddingTop: =2
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =1
+
+                BottomContainerLeftTopTS As groupContainer.verticalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.Light
+                    Fill: =RGBA(255, 255, 255, 1)
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =ContainerSectionWithEditSR.Height + (GalleryTeamAssignedSR.LayoutMinHeight * 2)
+                    LayoutMinWidth: =Parent.Width
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =10
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =10
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    ZIndex: =1
+
+                    ContainerSectionWithEditSR As groupContainer.horizontalAutoLayoutContainer:
+                        FillPortions: =0
+                        Height: =32
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        ZIndex: =1
+
+                        TextCanvasSRHeader As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =false
+                            DisplayMode: =DisplayMode.Edit
+                            FillPortions: =1
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Size: =18
+                            Text: ="Security Roles"
+                            Underline: =true
+                            VerticalAlign: ="Middle"
+                            Weight: ='TextCanvas.Weight'.Bold
+                            Width: =200
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        ButtonCanvasEditSR As Button:
+                            Appearance: ='ButtonCanvas.Appearance'.Primary
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            OnSelect: |-
+                                =UpdateContext({locEditing:"Security"})
+                            Text: ="Edit"
+                            Visible: =Not(locEditing="Security")
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                    "GalleryTeamAssignedSR As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                        AccessibleLabel: ="Avaliable groups"
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =RGBA(245, 245, 245, 1)
+                        DelayItemLoading: =true
+                        ItemAccessibleLabel: =
+                        Items: =ComboboxCanvasGroupsTS.Selected.'Security Roles'
+                        Layout: =Layout.Vertical
+                        LayoutMinHeight: =Self.TemplateHeight
+                        LayoutMinWidth: =Parent.Width
+                        LoadingSpinner: =LoadingSpinner.Data
+                        Selectable: =false
+                        TabIndex: =0
+                        TemplateFill: =RGBA(0,0,0,5%)
+                        TemplatePadding: =10
+                        TemplateSize: =50
+                        Width: =Parent.Width
+                        ZIndex: =4
+
+                        lblRoleName As label:
+                            Color: =RGBA(0, 120, 212, 1)
+                            DisabledColor: =RGBA(161, 159, 157, 1)
+                            Font: =Font.'Segoe UI'
+                            FontWeight: =FontWeight.Semibold
+                            Height: =Self.Size * 1.8
+                            OnSelect: =Select(Parent)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =10.5
+                            Text: =ThisItem.Name
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.TemplateWidth - 104
+                            X: =40
+                            Y: =Parent.TemplateHeight / 2 - Self.Height / 2
+                            ZIndex: =3
+
+                BottomContainerLeftMiddleTS As groupContainer.verticalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.Light
+                    Fill: =RGBA(255, 255, 255, 1)
+                    LayoutAlignItems: =LayoutAlignItems.Stretch
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =ContainerSectionWithEditFS.Height + (GalleryTeamFSAssigned.LayoutMinHeight * 2)
+                    LayoutMinWidth: =Parent.Width
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =10
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =10
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    ZIndex: =3
+
+                    ContainerSectionWithEditFS As groupContainer.horizontalAutoLayoutContainer:
+                        FillPortions: =0
+                        Height: =32
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        ZIndex: =1
+
+                        TextCanvasFSHeader As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =false
+                            DisplayMode: =DisplayMode.Edit
+                            FillPortions: =1
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Size: =18
+                            Text: ="Column Security"
+                            Underline: =true
+                            VerticalAlign: ="Middle"
+                            Weight: ='TextCanvas.Weight'.Bold
+                            Width: =200
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        ButtonCanvasEditFS As Button:
+                            Appearance: ='ButtonCanvas.Appearance'.Primary
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            OnSelect: |-
+                                =UpdateContext({locEditing:"Column Security"})
+                            Text: ="Edit"
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                    "GalleryTeamFSAssigned As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                        AccessibleLabel: ="Avaliable groups"
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =RGBA(245, 245, 245, 1)
+                        DelayItemLoading: =true
+                        Height: =Parent.Height
+                        ItemAccessibleLabel: =
+                        Items: =ComboboxCanvasGroupsTS.Selected.'Field Security Profiles'
+                        Layout: =Layout.Vertical
+                        LayoutMinHeight: =Self.TemplateHeight
+                        LayoutMinWidth: =Parent.Width
+                        LoadingSpinner: =LoadingSpinner.Data
+                        Selectable: =false
+                        TabIndex: =0
+                        TemplateFill: =RGBA(0,0,0,5%)
+                        TemplatePadding: =10
+                        TemplateSize: =50
+                        Width: =Parent.Width
+                        ZIndex: =2
+
+                        LblProfileName As label:
+                            Color: =RGBA(0, 120, 212, 1)
+                            DisabledColor: =RGBA(161, 159, 157, 1)
+                            Font: =Font.'Segoe UI'
+                            FontWeight: =FontWeight.Semibold
+                            Height: =Self.Size * 1.8
+                            OnSelect: =Select(Parent)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =10.5
+                            Text: =ThisItem.'Created On'
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.TemplateWidth - 104
+                            X: =40
+                            Y: =10
+                            ZIndex: =3
+
+                BottomContainerLeftBottomTS As groupContainer.verticalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.Light
+                    Fill: =RGBA(255, 255, 255, 1)
+                    LayoutAlignItems: =LayoutAlignItems.Stretch
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =ContainerSectionWithEditUsers.Height + (GalleryTeamUsers.LayoutMinHeight * 2)
+                    LayoutMinWidth: =Parent.Width
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =10
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =10
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    ZIndex: =4
+
+                    ContainerSectionWithEditUsers As groupContainer.horizontalAutoLayoutContainer:
+                        FillPortions: =0
+                        Height: =32
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        ZIndex: =1
+
+                        TextCanvasUserHeader As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =false
+                            DisplayMode: =DisplayMode.Edit
+                            FillPortions: =1
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Size: =18
+                            Text: ="Users"
+                            Underline: =true
+                            VerticalAlign: ="Middle"
+                            Weight: ='TextCanvas.Weight'.Bold
+                            Width: =200
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        ButtonCanvasEditUsers As Button:
+                            Appearance: ='ButtonCanvas.Appearance'.Primary
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            OnSelect: |-
+                                =UpdateContext({locEditing:"Users"})
+                            Text: ="Edit"
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                    "GalleryTeamUsers As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                        AccessibleLabel: ="Avaliable groups"
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =RGBA(245, 245, 245, 1)
+                        DelayItemLoading: =true
+                        ItemAccessibleLabel: =
+                        Items: =ComboboxCanvasGroupsTS.Selected.Users
+                        Layout: =Layout.Vertical
+                        LayoutMinHeight: =Self.TemplateHeight
+                        LayoutMinWidth: =Parent.Width
+                        LoadingSpinner: =LoadingSpinner.Data
+                        Selectable: =false
+                        TabIndex: =0
+                        TemplateFill: =RGBA(0,0,0,5%)
+                        TemplatePadding: =10
+                        TemplateSize: =50
+                        Width: =Parent.Width
+                        ZIndex: =2
+
+                        LblUserEmail As label:
+                            Color: =RGBA(50, 49, 48, 1)
+                            DisabledColor: =RGBA(161, 159, 157, 1)
+                            Font: =Font.'Segoe UI'
+                            Height: =Self.Size * 1.8
+                            OnSelect: =Select(Parent)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =10.5
+                            Text: =ThisItem.'Primary Email'
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.TemplateWidth - 104
+                            X: =40
+                            Y: =LblUserName.Y + LblUserName.Height
+                            ZIndex: =2
+
+                        LblUserName As label:
+                            Color: =RGBA(0, 120, 212, 1)
+                            DisabledColor: =RGBA(161, 159, 157, 1)
+                            Font: =Font.'Segoe UI'
+                            FontWeight: =FontWeight.Semibold
+                            Height: =Self.Size * 1.8
+                            OnSelect: =Select(Parent)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =10.5
+                            Text: =ThisItem.'Full Name'
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.TemplateWidth - 104
+                            X: =40
+                            Y: =10
+                            ZIndex: =3
+
+            ContainerSidebarSecurity As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =5
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =IconCloseSecurity.Height + SearchComponentTeamSR.Height + (GalleryAvaliableSR.TemplateHeight * 2)
+                LayoutMinWidth: =300
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =10
+                PaddingLeft: =10
+                PaddingRight: =10
+                PaddingTop: =10
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Visible: =locEditing="Security"
+                ZIndex: =2
+
+                IconCloseSecurity As icon.Cancel:
+                    AlignInContainer: =AlignInContainer.End
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                    DisabledColor: =RGBA(225, 223, 221, 1)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    Height: =25
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(16, 110, 190, 1)
+                    HoverFill: =RGBA(0, 0, 0, 0)
+                    Icon: =Icon.Cancel
+                    OnSelect: |-
+                        =UpdateContext({locEditing:""})
+                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                    PressedColor: =RGBA(16, 110, 190, 1)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    Width: =Self.Height
+                    ZIndex: =1
+
+                SearchComponentTeamSR As SearchComponent:
+                    ComponentLabel: ="Search for a Role"
+                    LayoutMinHeight: =640
+                    LayoutMinWidth: =Parent.LayoutMinWidth
+                    Width: =Parent.Width
+                    ZIndex: =2
+
+                "GalleryAvaliableSR As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                    AccessibleLabel: ="Avaliable groups"
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    BorderColor: =RGBA(245, 245, 245, 1)
+                    DelayItemLoading: =true
+                    ItemAccessibleLabel: =
+                    Items: |+
+                        =If(IsBlank(SearchComponentTeamSR.SearchText),SortByColumns('Security Roles',"name"),Search(SortByColumns('Security Roles',"name"),SearchComponentTeamSR.SearchText,"name"))
+                        
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =Self.TemplateHeight
+                    LayoutMinWidth: =Parent.Width
+                    LoadingSpinner: =LoadingSpinner.Data
+                    OnSelect: =
+                    TabIndex: =0
+                    TemplateFill: =RGBA(0,0,0,5%)
+                    TemplatePadding: =10
+                    TemplateSize: =50
+                    Width: =Parent.Width
+                    ZIndex: =3
+
+                    CheckboxCanvas2 As Checkbox:
+                        Checked: =ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group' in Concat(ThisItem.Teams,'Azure AD Object Id for a group')
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        Label: =ThisItem.Name
+                        OnCheck: =Relate(ThisItem.Teams,ComboboxCanvasGroupsTS.Selected)
+                        OnSelect: =Select(Parent)
+                        OnUncheck: =Unrelate(ThisItem.Teams,ComboboxCanvasGroupsTS.Selected)
+                        Width: =Parent.TemplateWidth - 25
+                        X: =0
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =1
+
+            ContainerSidebarColumnSecurity As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                LayoutAlignItems: =LayoutAlignItems.End
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =5
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =IconCloseSecurity.Height + SearchComponentTeamSR.Height + (GalleryAvaliableSR.TemplateHeight * 2)
+                LayoutMinWidth: =300
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =10
+                PaddingLeft: =10
+                PaddingRight: =10
+                PaddingTop: =10
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Visible: =locEditing="Column Security"
+                ZIndex: =3
+
+                IconCloseColumnSecurity As icon.Cancel:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                    DisabledColor: =RGBA(225, 223, 221, 1)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    Height: =25
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(16, 110, 190, 1)
+                    HoverFill: =RGBA(0, 0, 0, 0)
+                    Icon: =Icon.Cancel
+                    OnSelect: |-
+                        =UpdateContext({locEditing:""})
+                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                    PressedColor: =RGBA(16, 110, 190, 1)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    Width: =Self.Height
+                    ZIndex: =1
+
+                SearchComponentTeamFS As SearchComponent:
+                    AlignInContainer: =AlignInContainer.Center
+                    ComponentLabel: ="Search for a Profile"
+                    LayoutMinHeight: =640
+                    LayoutMinWidth: =Parent.LayoutMinWidth
+                    ZIndex: =2
+
+                "GalleryAvaliableColumnSecurity As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                    AccessibleLabel: ="Avaliable groups"
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    BorderColor: =RGBA(245, 245, 245, 1)
+                    DelayItemLoading: =true
+                    ItemAccessibleLabel: =
+                    Items: =If(IsBlank(SearchComponentTeamFS.SearchText),SortByColumns('Field Security Profiles',"name"),Search(SortByColumns('Field Security Profiles',"name"),SearchComponentTeamFS.SearchText,"name"))
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =Self.TemplateHeight
+                    LayoutMinWidth: =Parent.Width
+                    LoadingSpinner: =LoadingSpinner.Data
+                    OnSelect: =
+                    TabIndex: =0
+                    TemplateFill: =RGBA(0,0,0,5%)
+                    TemplatePadding: =10
+                    TemplateSize: =50
+                    Width: =Parent.Width
+                    ZIndex: =3
+
+                    CheckboxCanvas2_1 As Checkbox:
+                        Checked: =ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group' in Concat(ThisItem.Teams,'Azure AD Object Id for a group')
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        Label: =ThisItem.Name
+                        OnCheck: =Relate(ThisItem.Teams,ComboboxCanvasGroupsTS.Selected)
+                        OnSelect: =Select(Parent)
+                        OnUncheck: =Unrelate(ThisItem.Teams,ComboboxCanvasGroupsTS.Selected)
+                        Width: =Parent.TemplateWidth - 25
+                        X: =0
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =1
+
+            ContainerSidebarUsers As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                LayoutAlignItems: =LayoutAlignItems.End
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =5
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =IconCloseSecurity.Height + SearchComponentTeamSR.Height + (GalleryAvaliableSR.TemplateHeight * 2)
+                LayoutMinWidth: =300
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =10
+                PaddingLeft: =10
+                PaddingRight: =10
+                PaddingTop: =10
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Visible: =locEditing="Users"
+                ZIndex: =4
+
+                IconCloseUsers As icon.Cancel:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                    DisabledColor: =RGBA(225, 223, 221, 1)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    Height: =25
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(16, 110, 190, 1)
+                    HoverFill: =RGBA(0, 0, 0, 0)
+                    Icon: =Icon.Cancel
+                    OnSelect: |-
+                        =UpdateContext({locEditing:""})
+                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                    PressedColor: =RGBA(16, 110, 190, 1)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    Width: =Self.Height
+                    ZIndex: =1
+
+                SearchComponentTeamUsers As SearchComponent:
+                    LayoutMinHeight: =640
+                    LayoutMinWidth: =Parent.LayoutMinWidth
+                    ZIndex: =2
+
+                "GalleryAvaliableUsers As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                    AccessibleLabel: ="Avaliable groups"
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    BorderColor: =RGBA(245, 245, 245, 1)
+                    DelayItemLoading: =true
+                    ItemAccessibleLabel: =
+                    Items: =If(IsBlank(SearchComponentTeamUsers.SearchText),SortByColumns(Users,"fullname"),Search(SortByColumns(Users,"fullname"),SearchComponentTeamUsers.SearchText,"fullname"))
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =Self.TemplateHeight
+                    LayoutMinWidth: =Parent.Width
+                    LoadingSpinner: =LoadingSpinner.Data
+                    OnSelect: =
+                    TabIndex: =0
+                    TemplateFill: =RGBA(0,0,0,5%)
+                    TemplatePadding: =10
+                    TemplateSize: =50
+                    Width: =Parent.Width
+                    ZIndex: =3
+
+                    CheckboxCanvas2_2 As Checkbox:
+                        Checked: =ThisItem.'Azure AD Object ID' in  Concat(AzureAD.GetGroupMembers(ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group').value,id)
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        Label: =ThisItem.'Full Name'
+                        OnCheck: =AzureAD.AddUserToGroup(ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group',ThisItem.'Azure AD Object ID')
+                        OnSelect: =Select(Parent)
+                        OnUncheck: =AzureAD.RemoveMemberFromGroup(ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group',ThisItem.'Azure AD Object ID')
+                        Width: =Parent.TemplateWidth - 25
+                        X: =0
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =1
+

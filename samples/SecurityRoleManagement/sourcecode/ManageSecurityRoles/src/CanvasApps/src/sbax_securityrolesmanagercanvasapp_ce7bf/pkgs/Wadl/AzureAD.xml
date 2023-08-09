@@ -1,0 +1,544 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://uk-001.azure-apim.net/apim/azuread" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="AzureAD" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="Azure AD">Azure Active Directory is an Identity and Access Management cloud solution that extends your on-premises directories to the cloud and provides single sign-on to thousands of cloud (SaaS) apps and access to web apps you run on-premises.</doc>
+  <grammars>
+    <jsonTypes targetNamespace="https://uk-001.azure-apim.net/apim/azuread" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <string name="GetGroup_Request__ux40_odata_id_def" />
+      <object name="GetGroup_Request">
+        <property name="@odata.id" type="string" />
+      </object>
+      <string name="AssignManager_Request__ux40_odata_id_def" />
+      <object name="AssignManager_Request">
+        <property name="@odata.id" type="string" />
+      </object>
+      <string name="CreateGroup_Response__ux40_odata_context_def" />
+      <string name="CreateGroup_Response_id_def" />
+      <string name="CreateGroup_Response_deletedDateTime_def" />
+      <string name="CreateGroup_Response_classification_def" />
+      <dateTimeString name="CreateGroup_Response_createdDateTime_def" />
+      <string name="CreateGroup_Response_description_def" />
+      <dateTimeString name="CreateGroup_Response_displayName_def" />
+      <string name="CreateGroup_Response_groupTypes_def_items_def" />
+      <array type="string" name="CreateGroup_Response_groupTypes_def" />
+      <string name="CreateGroup_Response_mail_def" />
+      <boolean name="CreateGroup_Response_mailEnabled_def" />
+      <dateTimeString name="CreateGroup_Response_mailNickname_def" />
+      <string name="CreateGroup_Response_onPremisesLastSyncDateTime_def" />
+      <string name="CreateGroup_Response_onPremisesSecurityIdentifier_def" />
+      <boolean name="CreateGroup_Response_onPremisesSyncEnabled_def" />
+      <string name="CreateGroup_Response_proxyAddresses_def_items_def" />
+      <array type="string" name="CreateGroup_Response_proxyAddresses_def" />
+      <dateTimeString name="CreateGroup_Response_renewedDateTime_def" />
+      <boolean name="CreateGroup_Response_securityEnabled_def" />
+      <string name="CreateGroup_Response_visibility_def" />
+      <object name="CreateGroup_Response">
+        <property name="@odata.context" type="string" />
+        <property name="id" type="string" />
+        <property name="deletedDateTime" type="string" />
+        <property name="classification" type="string" />
+        <property name="createdDateTime" typeRef="CreateGroup_Response_createdDateTime_def" />
+        <property name="description" type="string" />
+        <property name="displayName" typeRef="CreateGroup_Response_displayName_def" />
+        <property name="groupTypes" typeRef="CreateGroup_Response_groupTypes_def" />
+        <property name="mail" type="string" />
+        <property name="mailEnabled" type="boolean" />
+        <property name="mailNickname" typeRef="CreateGroup_Response_mailNickname_def" />
+        <property name="onPremisesLastSyncDateTime" type="string" />
+        <property name="onPremisesSecurityIdentifier" type="string" />
+        <property name="onPremisesSyncEnabled" type="boolean" />
+        <property name="proxyAddresses" typeRef="CreateGroup_Response_proxyAddresses_def" />
+        <property name="renewedDateTime" typeRef="CreateGroup_Response_renewedDateTime_def" />
+        <property name="securityEnabled" type="boolean" />
+        <property name="visibility" type="string" />
+      </object>
+      <string name="GetGroup_Response_id_def" />
+      <dateTimeString name="GetGroup_Response_deletedDateTime_def" />
+      <dateTimeString name="GetGroup_Response_createdDateTime_def" />
+      <string name="GetGroup_Response_description_def" />
+      <string name="GetGroup_Response_displayName_def" />
+      <string name="GetGroup_Response_mail_def" />
+      <boolean name="GetGroup_Response_mailEnabled_def" />
+      <dateTimeString name="GetGroup_Response_onPremisesLastSyncDateTime_def" />
+      <boolean name="GetGroup_Response_onPremisesSyncEnabled_def" />
+      <boolean name="GetGroup_Response_securityEnabled_def" />
+      <string name="GetGroup_Response_visibility_def" />
+      <object name="GetGroup_Response">
+        <property name="id" type="string" />
+        <property name="deletedDateTime" typeRef="GetGroup_Response_deletedDateTime_def" />
+        <property name="createdDateTime" typeRef="GetGroup_Response_createdDateTime_def" />
+        <property name="description" type="string" />
+        <property name="displayName" type="string" />
+        <property name="mail" type="string" />
+        <property name="mailEnabled" type="boolean" />
+        <property name="onPremisesLastSyncDateTime" typeRef="GetGroup_Response_onPremisesLastSyncDateTime_def" />
+        <property name="onPremisesSyncEnabled" type="boolean" />
+        <property name="securityEnabled" type="boolean" />
+        <property name="visibility" type="string" />
+      </object>
+      <string name="GetUser_Response_id_def" />
+      <string name="GetUser_Response_businessPhones_def_items_def" />
+      <array type="string" name="GetUser_Response_businessPhones_def" />
+      <string name="GetUser_Response_displayName_def" />
+      <string name="GetUser_Response_givenName_def" />
+      <string name="GetUser_Response_jobTitle_def" />
+      <string name="GetUser_Response_mail_def" />
+      <string name="GetUser_Response_mobilePhone_def" />
+      <string name="GetUser_Response_officeLocation_def" />
+      <string name="GetUser_Response_preferredLanguage_def" />
+      <string name="GetUser_Response_surname_def" />
+      <string name="GetUser_Response_userPrincipalName_def" />
+      <object name="GetUser_Response">
+        <property name="id" type="string" />
+        <property name="businessPhones" typeRef="GetUser_Response_businessPhones_def" />
+        <property name="displayName" type="string" />
+        <property name="givenName" type="string" />
+        <property name="jobTitle" type="string" />
+        <property name="mail" type="string" />
+        <property name="mobilePhone" type="string" />
+        <property name="officeLocation" type="string" />
+        <property name="preferredLanguage" type="string" />
+        <property name="surname" type="string" />
+        <property name="userPrincipalName" type="string" />
+      </object>
+      <string name="UpdateUser_Request_userPrincipalName_def" />
+      <string name="UpdateUser_Request_displayName_def" />
+      <string name="UpdateUser_Request_mailNickname_def" />
+      <string name="UpdateUser_Request_givenName_def" />
+      <string name="UpdateUser_Request_surname_def" />
+      <boolean name="UpdateUser_Request_accountEnabled_def" />
+      <string name="UpdateUser_Request_jobTitle_def" />
+      <string name="UpdateUser_Request_department_def" />
+      <string name="UpdateUser_Request_mobilePhone_def" />
+      <string name="UpdateUser_Request_officeLocation_def" />
+      <string name="UpdateUser_Request_preferredLanguage_def" />
+      <string name="UpdateUser_Request_businessPhones_def_items_def" />
+      <array type="string" name="UpdateUser_Request_businessPhones_def" />
+      <string name="UpdateUser_Request_customProperties_def_mapValues_def" />
+      <mapObject name="UpdateUser_Request_customProperties_def">
+        <values type="string" />
+      </mapObject>
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute1_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute2_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute3_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute4_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute5_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute6_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute7_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute8_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute9_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute10_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute11_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute12_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute13_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute14_def" />
+      <string name="UpdateUser_Request_onPremisesExtensionAttributes_def_extensionAttribute15_def" />
+      <object name="UpdateUser_Request_onPremisesExtensionAttributes_def">
+        <property name="extensionAttribute1" type="string" />
+        <property name="extensionAttribute2" type="string" />
+        <property name="extensionAttribute3" type="string" />
+        <property name="extensionAttribute4" type="string" />
+        <property name="extensionAttribute5" type="string" />
+        <property name="extensionAttribute6" type="string" />
+        <property name="extensionAttribute7" type="string" />
+        <property name="extensionAttribute8" type="string" />
+        <property name="extensionAttribute9" type="string" />
+        <property name="extensionAttribute10" type="string" />
+        <property name="extensionAttribute11" type="string" />
+        <property name="extensionAttribute12" type="string" />
+        <property name="extensionAttribute13" type="string" />
+        <property name="extensionAttribute14" type="string" />
+        <property name="extensionAttribute15" type="string" />
+      </object>
+      <object name="UpdateUser_Request">
+        <property name="userPrincipalName" type="string" />
+        <property name="displayName" type="string" />
+        <property name="mailNickname" type="string" />
+        <property name="givenName" type="string" />
+        <property name="surname" type="string" />
+        <property name="accountEnabled" type="boolean" />
+        <property name="jobTitle" type="string" />
+        <property name="department" type="string" />
+        <property name="mobilePhone" type="string" />
+        <property name="officeLocation" type="string" />
+        <property name="preferredLanguage" type="string" />
+        <property name="businessPhones" typeRef="UpdateUser_Request_businessPhones_def" />
+        <property name="customProperties" typeRef="UpdateUser_Request_customProperties_def" />
+        <property name="onPremisesExtensionAttributes" typeRef="UpdateUser_Request_onPremisesExtensionAttributes_def" />
+      </object>
+      <boolean name="GetMemberGroups_Request_securityEnabledOnly_def" />
+      <object name="GetMemberGroups_Request">
+        <property name="securityEnabledOnly" type="boolean" />
+      </object>
+      <string name="GetMemberGroups_Response_items_def" />
+      <array type="string" name="GetMemberGroups_Response" />
+      <object name="GetMemberGroups_Response_V2">
+        <property name="value" typeRef="GetMemberGroups_Response" />
+      </object>
+      <boolean name="CreateUser_Request_accountEnabled_def" />
+      <string name="CreateUser_Request_displayName_def" />
+      <string name="CreateUser_Request_mailNickname_def" />
+      <string name="CreateUser_Request_passwordProfile_def_password_def" />
+      <object name="CreateUser_Request_passwordProfile_def">
+        <property name="password" type="string" />
+      </object>
+      <string name="CreateUser_Request_userPrincipalName_def" />
+      <string name="CreateUser_Request_givenName_def" />
+      <string name="CreateUser_Request_surname_def" />
+      <string name="CreateUser_Request_businessPhones_def_items_def" />
+      <array type="string" name="CreateUser_Request_businessPhones_def" />
+      <string name="CreateUser_Request_department_def" />
+      <string name="CreateUser_Request_jobTitle_def" />
+      <string name="CreateUser_Request_mobilePhone_def" />
+      <string name="CreateUser_Request_officeLocation_def" />
+      <string name="CreateUser_Request_preferredLanguage_def" />
+      <object name="CreateUser_Request">
+        <property name="accountEnabled" type="boolean" />
+        <property name="displayName" type="string" />
+        <property name="mailNickname" type="string" />
+        <property name="passwordProfile" typeRef="CreateUser_Request_passwordProfile_def" />
+        <property name="userPrincipalName" type="string" />
+        <property name="givenName" type="string" />
+        <property name="surname" type="string" />
+        <property name="businessPhones" typeRef="CreateUser_Request_businessPhones_def" />
+        <property name="department" type="string" />
+        <property name="jobTitle" type="string" />
+        <property name="mobilePhone" type="string" />
+        <property name="officeLocation" type="string" />
+        <property name="preferredLanguage" type="string" />
+      </object>
+      <string name="GetGroupMembers_Response__ux40_odata_nextLink_def" />
+      <array typeRef="GetUser_Response" name="GetGroupMembers_Response_value_def" />
+      <object name="GetGroupMembers_Response">
+        <property name="@odata.nextLink" type="string" />
+        <property name="value" typeRef="GetGroupMembers_Response_value_def" />
+      </object>
+      <string name="CheckMemberGroups_Request_groupIds_def_items_def" />
+      <array type="string" name="CheckMemberGroups_Request_groupIds_def" />
+      <object name="CheckMemberGroups_Request">
+        <property name="groupIds" typeRef="CheckMemberGroups_Request_groupIds_def" />
+      </object>
+      <string name="CreateOffice365Group_param_body_def_displayName_def" />
+      <string name="CreateOffice365Group_param_body_def_description_def" />
+      <string name="CreateOffice365Group_param_body_def_mailNickname_def" />
+      <string name="CreateOffice365Group_param_body_def_groupTypes_def_items_def" />
+      <array type="string" name="CreateOffice365Group_param_body_def_groupTypes_def" />
+      <boolean name="CreateOffice365Group_param_body_def_securityEnabled_def" />
+      <boolean name="CreateOffice365Group_param_body_def_mailEnabled_def" />
+      <object name="CreateOffice365Group_param_body_def">
+        <property name="displayName" type="string" />
+        <property name="description" type="string" />
+        <property name="mailNickname" type="string" />
+        <property name="groupTypes" typeRef="CreateOffice365Group_param_body_def_groupTypes_def" />
+        <property name="securityEnabled" type="boolean" />
+        <property name="mailEnabled" type="boolean" />
+      </object>
+      <string name="CreateSecurityGroup_param_body_def_displayName_def" />
+      <string name="CreateSecurityGroup_param_body_def_description_def" />
+      <string name="CreateSecurityGroup_param_body_def_mailNickname_def" />
+      <boolean name="CreateSecurityGroup_param_body_def_securityEnabled_def" />
+      <boolean name="CreateSecurityGroup_param_body_def_mailEnabled_def" />
+      <object name="CreateSecurityGroup_param_body_def">
+        <property name="displayName" type="string" />
+        <property name="description" type="string" />
+        <property name="mailNickname" type="string" />
+        <property name="securityEnabled" type="boolean" />
+        <property name="mailEnabled" type="boolean" />
+      </object>
+      <string name="CreateGroup_param_body_def_displayName_def" />
+      <string name="CreateGroup_param_body_def_description_def" />
+      <string name="CreateGroup_param_body_def_mailNickname_def" />
+      <string name="CreateGroup_param_body_def_groupTypes_def_items_def" />
+      <array type="string" name="CreateGroup_param_body_def_groupTypes_def" />
+      <boolean name="CreateGroup_param_body_def_securityEnabled_def" />
+      <boolean name="CreateGroup_param_body_def_mailEnabled_def" />
+      <object name="CreateGroup_param_body_def">
+        <property name="displayName" type="string" />
+        <property name="description" type="string" />
+        <property name="mailNickname" type="string" />
+        <property name="groupTypes" typeRef="CreateGroup_param_body_def_groupTypes_def" />
+        <property name="securityEnabled" type="boolean" />
+        <property name="mailEnabled" type="boolean" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://uk-001.azure-apim.net/apim/azuread">
+    <resource path="/{connectionId}/v1.0/groups/office365">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="CreateOffice365Group" actionName="CreateOffice365Group" siena:isDeprecated="false">
+        <doc title="Create Office 365 group&#xA;Create an Office 365 group in your AAD tenant." />
+        <request>
+          <representation mediaType="application/json">
+            <param style="plain" name="displayName" path="/displayName" type="xs:string" required="true" />
+            <param style="plain" name="description" path="/description" type="xs:string" required="true" />
+            <param style="plain" name="mailNickname" path="/mailNickname" type="xs:string" required="true" />
+            <param style="plain" name="groupTypes" path="/groupTypes" type="service:CreateOffice365Group_param_body_def_groupTypes_def" required="true" />
+            <param style="plain" name="securityEnabled" path="/securityEnabled" type="xs:boolean" required="true" />
+            <param style="plain" name="mailEnabled" path="/mailEnabled" type="xs:boolean" required="true" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:CreateGroup_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/groups/securityGroup">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="CreateSecurityGroup" actionName="CreateSecurityGroup" siena:isDeprecated="false">
+        <doc title="Create security group&#xA;Create a security group in your AAD tenant." />
+        <request>
+          <representation mediaType="application/json">
+            <param style="plain" name="displayName" path="/displayName" type="xs:string" required="true" />
+            <param style="plain" name="description" path="/description" type="xs:string" required="true" />
+            <param style="plain" name="mailNickname" path="/mailNickname" type="xs:string" required="true" />
+            <param style="plain" name="securityEnabled" path="/securityEnabled" type="xs:boolean" required="true" />
+            <param style="plain" name="mailEnabled" path="/mailEnabled" type="xs:boolean" required="true" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:CreateGroup_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/groups/{id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Unique identifer of a group (Ex. '40639f36-46a6-73a6-91e2-9584b7913429')." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetGroup" actionName="GetGroup" siena:isDeprecated="false">
+        <doc title="Get group&#xA;Get details for a group." />
+        <request />
+        <response>
+          <representation mediaType="application/json" element="service:GetGroup_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/users/{id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Unique identifier of a user (Ex. 'user@tennant.onmicrosoft.com' or '5f6ce5c7-b521-4842-9bbe-3f6d5aa5e35b')." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetUser" actionName="GetUser" siena:isDeprecated="false">
+        <doc title="Get user&#xA;Get details for a user." />
+        <request />
+        <response>
+          <representation mediaType="application/json" element="service:GetUser_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/users/{id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Unique identifier of a user (Ex. 'user@tennant.onmicrosoft.com' or '5f6ce5c7-b521-4842-9bbe-3f6d5aa5e35b')." />
+      </param>
+      <method siena:requiresAuthentication="true" name="PATCH" id="UpdateUser" actionName="UpdateUser" siena:isDeprecated="false">
+        <doc title="Update user&#xA;Update the info for a user." />
+        <request>
+          <representation mediaType="application/json">
+            <param style="plain" name="userPrincipalName" path="/userPrincipalName" type="xs:string" />
+            <param style="plain" name="displayName" path="/displayName" type="xs:string" />
+            <param style="plain" name="mailNickname" path="/mailNickname" type="xs:string" />
+            <param style="plain" name="givenName" path="/givenName" type="xs:string" />
+            <param style="plain" name="surname" path="/surname" type="xs:string" />
+            <param style="plain" name="accountEnabled" path="/accountEnabled" type="xs:boolean" />
+            <param style="plain" name="jobTitle" path="/jobTitle" type="xs:string" />
+            <param style="plain" name="department" path="/department" type="xs:string" />
+            <param style="plain" name="mobilePhone" path="/mobilePhone" type="xs:string" />
+            <param style="plain" name="officeLocation" path="/officeLocation" type="xs:string" />
+            <param style="plain" name="preferredLanguage" path="/preferredLanguage" type="xs:string" />
+            <param style="plain" name="businessPhones" path="/businessPhones" type="service:UpdateUser_Request_businessPhones_def" />
+            <param style="plain" name="customProperties" path="/customProperties" type="service:UpdateUser_Request_customProperties_def" />
+            <param style="plain" name="onPremisesExtensionAttributes" path="/onPremisesExtensionAttributes" type="service:UpdateUser_Request_onPremisesExtensionAttributes_def" />
+          </representation>
+        </request>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/users/{id}/revokeSignInSessions">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Unique identifier of a user (Ex. 'user@tennant.onmicrosoft.com' or '5f6ce5c7-b521-4842-9bbe-3f6d5aa5e35b')." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="RefreshTokens" actionName="RefreshTokens" siena:isDeprecated="false">
+        <doc title="Refresh tokens&#xA;Invalidate all refresh tokens for a user" />
+        <request />
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/v1.0/users/{id}/getMemberGroups">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Unique identifier of a user (Ex. 'user@tennant.onmicrosoft.com' or '5f6ce5c7-b521-4842-9bbe-3f6d5aa5e35b')." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="GetMemberGroupsV2" actionName="GetMemberGroupsV2" siena:isDeprecated="false" siena:family="GetMemberGroups" siena:revision="2" siena:status="Production">
+        <doc title="Get groups of a user (V2)&#xA;Get the groups a user is a member of." />
+        <request>
+          <representation mediaType="application/json">
+            <param style="plain" name="securityEnabledOnly" path="/securityEnabledOnly" type="xs:boolean" required="true" default="true" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:GetMemberGroups_Response_V2" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/users">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="CreateUser" actionName="CreateUser" visibility="important" siena:isDeprecated="false">
+        <doc title="Create user&#xA;Create a new user in your AAD tenant." />
+        <request>
+          <representation mediaType="application/json">
+            <param style="plain" name="accountEnabled" path="/accountEnabled" type="xs:boolean" required="true" />
+            <param style="plain" name="displayName" path="/displayName" type="xs:string" required="true" />
+            <param style="plain" name="mailNickname" path="/mailNickname" type="xs:string" required="true" />
+            <param style="plain" name="passwordProfile" path="/passwordProfile" type="service:CreateUser_Request_passwordProfile_def" required="true" />
+            <param style="plain" name="userPrincipalName" path="/userPrincipalName" type="xs:string" required="true" />
+            <param style="plain" name="givenName" path="/givenName" type="xs:string" />
+            <param style="plain" name="surname" path="/surname" type="xs:string" />
+            <param style="plain" name="businessPhones" path="/businessPhones" type="service:CreateUser_Request_businessPhones_def" />
+            <param style="plain" name="department" path="/department" type="xs:string" />
+            <param style="plain" name="jobTitle" path="/jobTitle" type="xs:string" />
+            <param style="plain" name="mobilePhone" path="/mobilePhone" type="xs:string" />
+            <param style="plain" name="officeLocation" path="/officeLocation" type="xs:string" />
+            <param style="plain" name="preferredLanguage" path="/preferredLanguage" type="xs:string" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:GetUser_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/groups/{id}/members">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Unique identifer of a group (Ex. '40639f36-46a6-73a6-91e2-9584b7913429')." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetGroupMembers" actionName="GetGroupMembers" siena:isDeprecated="false">
+        <doc title="Get group members&#xA;Get the users who are members of a group. You can query up to 1000 items using the Top parameter. If you need to retrieve more than 1000 values, please turn on the Settings-&gt;Pagination feature and provide a Threshold limit." />
+        <request>
+          <param style="query" name="$top" type="xs:int">
+            <doc title="Limit on the number of results to return (from 1 to 999, default is 100)." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:GetGroupMembers_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/groups/{groupId}/members/{memberId}/$ref">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="groupId" type="xs:string" required="true">
+        <doc title="The Id of the group." />
+      </param>
+      <param style="template" name="memberId" type="xs:string" required="true">
+        <doc title="The Id of the member." />
+      </param>
+      <method siena:requiresAuthentication="true" name="DELETE" id="RemoveMemberFromGroup" actionName="RemoveMemberFromGroup" siena:isDeprecated="false">
+        <doc title="Remove Member From Group&#xA;Remove Member From Group" />
+        <request />
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/groups/{id}/members/$ref">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Unique identifer of a group (Ex. '40639f36-46a6-73a6-91e2-9584b7913429')." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="AddUserToGroup" actionName="AddUserToGroup" visibility="important" siena:isDeprecated="false">
+        <doc title="Add user to group&#xA;Add a user to a group in this AAD tenant." />
+        <request>
+          <representation mediaType="application/json">
+            <param style="plain" name="@odata.id" path="/@odata.id" type="xs:string" required="true" />
+          </representation>
+        </request>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/v1.0/users/{id}/checkMemberGroups">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Unique identifier of a user (Ex. 'user@tennant.onmicrosoft.com' or '5f6ce5c7-b521-4842-9bbe-3f6d5aa5e35b')." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="CheckMemberGroupsV2" actionName="CheckMemberGroupsV2" siena:isDeprecated="false" siena:family="CheckMemberGroups" siena:revision="2" siena:status="Production">
+        <doc title="Check group membership (V2)&#xA;If the user is a member of the given group, the result will contain the given id. Otherwise the result will be empty." />
+        <request>
+          <representation mediaType="application/json">
+            <param style="plain" name="groupIds" path="/groupIds" type="service:CheckMemberGroups_Request_groupIds_def" required="true" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:GetMemberGroups_Response_V2" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/users/{id}/manager/$ref">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Unique identifier of a user (Ex. 'user@tennant.onmicrosoft.com' or '5f6ce5c7-b521-4842-9bbe-3f6d5aa5e35b')." />
+      </param>
+      <method siena:requiresAuthentication="true" name="PUT" id="AssignManager" actionName="AssignManager" siena:isDeprecated="false">
+        <doc title="Assign manager&#xA;Assign a manager for a user." />
+        <request>
+          <representation mediaType="application/json">
+            <param style="plain" name="@odata.id" path="/@odata.id" type="xs:string" required="true" />
+          </representation>
+        </request>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/groups">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="CreateGroup" actionName="CreateGroup" siena:isDeprecated="false">
+        <doc title="Create group&#xA;Create a group in your AAD tenant." />
+        <request>
+          <representation mediaType="application/json">
+            <param style="plain" name="displayName" path="/displayName" type="xs:string" required="true" />
+            <param style="plain" name="description" path="/description" type="xs:string" required="true" />
+            <param style="plain" name="mailNickname" path="/mailNickname" type="xs:string" required="true" />
+            <param style="plain" name="groupTypes" path="/groupTypes" type="service:CreateGroup_param_body_def_groupTypes_def" required="true" />
+            <param style="plain" name="securityEnabled" path="/securityEnabled" type="xs:boolean" required="true" />
+            <param style="plain" name="mailEnabled" path="/mailEnabled" type="xs:boolean" required="true" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:CreateGroup_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/users/{id}/getMemberGroups">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Unique identifier of a user (Ex. 'user@tennant.onmicrosoft.com' or '5f6ce5c7-b521-4842-9bbe-3f6d5aa5e35b')." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="GetMemberGroups" actionName="GetMemberGroups" siena:isDeprecated="true" siena:family="GetMemberGroups" siena:revision="1" siena:status="Production">
+        <doc title="Get groups of a user&#xA;Get the groups a user is a member of." />
+        <request>
+          <representation mediaType="application/json">
+            <param style="plain" name="securityEnabledOnly" path="/securityEnabledOnly" type="xs:boolean" required="true" default="true" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:GetMemberGroups_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v1.0/users/{id}/checkMemberGroups">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Unique identifier of a user (Ex. 'user@tennant.onmicrosoft.com' or '5f6ce5c7-b521-4842-9bbe-3f6d5aa5e35b')." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="CheckMemberGroups" actionName="CheckMemberGroups" siena:isDeprecated="true" siena:family="CheckMemberGroups" siena:revision="1" siena:status="Production">
+        <doc title="Check group membership&#xA;If the user is a member of the given group, the result will contain the given id. Otherwise the result will be empty." />
+        <request>
+          <representation mediaType="application/json">
+            <param style="plain" name="groupIds" path="/groupIds" type="service:CheckMemberGroups_Request_groupIds_def" required="true" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:GetMemberGroups_Response" />
+        </response>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="shared_azuread" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

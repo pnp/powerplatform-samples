@@ -1,0 +1,42 @@
+HeaderComponent As CanvasComponent:
+    ComponentHeight: =75
+    ComponentText: ="Text"
+    ComponentWidth: =1366
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =HeaderComponent.ComponentHeight
+    Width: =HeaderComponent.ComponentWidth
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    ConHeaderMain As groupContainer.horizontalAutoLayoutContainer:
+        Height: =Parent.Height - 10
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =5
+        RadiusBottomRight: =5
+        RadiusTopLeft: =5
+        RadiusTopRight: =5
+        Width: =Parent.Width - 20
+        X: =5
+        Y: =5
+        ZIndex: =2
+
+        TextCanvasHeaderLabel As Text:
+            Align: ='TextCanvas.Align'.Center
+            AutoHeight: =false
+            DisplayMode: =DisplayMode.Edit
+            FillPortions: =1
+            Height: =Parent.Height
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            Size: =Max(Parent.Width / 20,20)
+            Text: =HeaderComponent.ComponentText
+            VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+            Weight: ='TextCanvas.Weight'.Regular
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+

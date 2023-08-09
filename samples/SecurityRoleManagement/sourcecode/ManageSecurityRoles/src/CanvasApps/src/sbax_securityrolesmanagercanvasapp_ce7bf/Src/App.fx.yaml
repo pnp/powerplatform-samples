@@ -1,0 +1,31 @@
+App As appinfo:
+    BackEnabled: =false
+    Formulas: =
+    OnStart: |+
+        =Set(
+            varSelectedSearchText,
+            ""
+        );
+        ClearCollect(
+            collAppVersions,
+            PowerAppsforMakers.GetAppVersions("e6d0d78f-a50d-42d3-ad99-b0c508f1d735").value
+        );
+        Set(
+            varAppVersion,
+            (CountRows(collAppVersions))
+        );
+        
+        
+        
+        
+        
+        
+        
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
