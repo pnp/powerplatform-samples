@@ -1,19 +1,16 @@
 # Power Platform Teams Management
 
-
 ## Summary
 
-This solution allows admins to manage assignment of Security Roles, Column Secuirty Profiles, and Users to Azure AD synced teams via a Canvas App.
+This solution allows admins to manage assignment of Security Roles, Column Security Profiles, and Users to Azure AD synced teams via a Canvas App.
 
-I have also included a Power Automate Cloud Flow to create AAD synced team for demo purposes
+I have also included a Power Automate Cloud Flow to create AAD synced team for demo purposes.
 
 ![picture of the sample](assets/Preview.png)
 
 ## Applies to
 
 * [Microsoft Power Apps](https://docs.microsoft.com/powerapps/)
-
-## Compatibility
 
 ## Authors
 
@@ -28,7 +25,6 @@ Version|Date|Comments
 1.0.0.0|July 22, 2023|Initial release
 
 ## Features
-
 
 This sample illustrates the following concepts:
 
@@ -54,13 +50,13 @@ The following solution components are used in this sample:
 
 ## Data Sources
 
-Not required
+* Dataverse
 
 ## Minimal Path to Awesome
 
-* Download the **[Unmanaged](.Solutions/ManageSecurityRoles_1.0.0.0.zip)** or **[Managed](.Solutions/ManageSecurityRoles_1.0.0.0_managed.zip)** solution `.zip` from the `Solutions` folder
-* Within **https://make.powerapps.com**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
-* Click next.
+* Download the **[Unmanaged](./solution/SecurityRoleManagement.zip)** solution `.zip` from the `solution` folder
+* Within **<https://make.powerapps.com>**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded
+* Click next
 * Click Import
 * Run the **Add a new AAD group and associated Team** flow
 * Open the **Manage Power Platform Teams Canvas App**
@@ -71,11 +67,13 @@ You can also use the [Power Apps CLI](https://aka.ms/pac/docs) to pack the sourc
 
 * Clone the repository to a local drive
 * Pack the source files back into `.zip` file:
+
   ```bash
   pac solution pack --folder pathtosourcefolder --zipfile pathtosolution  --processCanvasApps
   ```
+
   Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtosolution` to point to the path of this solution's `.zip` file (located under the `Solutions` folder)
-* Within **https://make.powerapps.com**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
+* Within **<https://make.powerapps.com>**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
 * Click next.
 * Click import
 * following solution import, run the **Add a new AAD group and associated Team** flow to create a team for demo purposes
@@ -89,7 +87,5 @@ You can also use the [Power Apps CLI](https://aka.ms/pac/docs) to pack the sourc
 
 ## For more information
 
-- [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
-- [Power Apps canvas apps documentation](https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/)
-
-
+* [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
+* [Power Apps canvas apps documentation](https://docs.microsoft.com/powerapps/maker/canvas-apps/)
