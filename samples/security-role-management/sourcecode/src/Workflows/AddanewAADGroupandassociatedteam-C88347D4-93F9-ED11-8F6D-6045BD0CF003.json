@@ -1,0 +1,187 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_azuread": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "sbax_AADManageSecurityRoles"
+        },
+        "api": {
+          "name": "shared_azuread"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "sbax_DataverseManageSecurityRoles"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "AAD Group Admin (sbax_AADGroupAdmin)": {
+          "defaultValue": "02ae516b-56f4-ed11-8849-0022481b7570",
+          "type": "String",
+          "metadata": {
+            "schemaName": "sbax_AADGroupAdmin"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "78b03705-05d8-4e7c-ae6f-d4fa0f6988b1"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Group Name",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "Description",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "Team Name",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Create_security_group": {
+          "runAfter": {
+            "Get_a_row_by_ID_-_System_Admin_Account": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0722c9be-bbee-4756-8794-0e0bb952f8fb"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_azuread",
+              "connectionName": "shared_azuread",
+              "operationId": "CreateSecurityGroup"
+            },
+            "parameters": {
+              "body/displayName": "@triggerBody()['text']",
+              "body/description": "@triggerBody()['text_1']",
+              "body/mailNickname": "@replace(replace(triggerBody()['text'],'-',''),' ','')",
+              "body/securityEnabled": true,
+              "body/mailEnabled": false
+            },
+            "authentication": {
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+              "type": "Raw"
+            }
+          }
+        },
+        "Add_a_new_row_-_Create_a_new_Team": {
+          "runAfter": {
+            "Delay_for_30_seconds_to_allow_the_team_to_create": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0770b1f6-93d7-4322-b13b-876d71d5dd41"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "CreateRecord"
+            },
+            "parameters": {
+              "entityName": "teams",
+              "item/administratorid@odata.bind": "systemusers(@{outputs('Get_a_row_by_ID_-_System_Admin_Account')?['body/systemuserid']})",
+              "item/businessunitid@odata.bind": "businessunits(@{outputs('Get_a_row_by_ID_-_System_Admin_Account')?['body/_businessunitid_value']})",
+              "item/membershiptype": 0,
+              "item/name": "@triggerBody()['text_2']",
+              "item/teamtype": 2,
+              "item/azureactivedirectoryobjectid": "@outputs('Create_security_group')?['body/id']",
+              "item/description": "Synced to Azure AD Group @{triggerBody()['text']}"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_a_row_by_ID_-_System_Admin_Account": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "cb8b1455-b31b-4d56-bf4f-535a92fdf3fe"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@parameters('AAD Group Admin (sbax_AADGroupAdmin)')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Delay_for_30_seconds_to_allow_the_team_to_create": {
+          "runAfter": {
+            "Create_security_group": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bfb8bdb1-08f9-48f7-b585-1e5379b53a7b"
+          },
+          "type": "Wait",
+          "inputs": {
+            "interval": {
+              "count": 30,
+              "unit": "Second"
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

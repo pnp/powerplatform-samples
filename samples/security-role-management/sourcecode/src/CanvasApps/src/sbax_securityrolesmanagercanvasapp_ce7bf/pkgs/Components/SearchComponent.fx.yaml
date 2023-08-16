@@ -1,0 +1,72 @@
+SearchComponent As CanvasComponent:
+    ComponentLabel: ="Search for a User"
+    Fill: =RGBA(0,0,0,0)
+    Height: =50
+    SearchText: =varSelectedSearchText
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    ConSearch As groupContainer.horizontalAutoLayoutContainer:
+        Fill: =RGBA(0,0,0,0)
+        Height: =50
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutJustifyContent: =LayoutJustifyContent.Center
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =10
+        PaddingLeft: =10
+        PaddingRight: =10
+        PaddingTop: =10
+        RadiusBottomLeft: =10
+        RadiusBottomRight: =10
+        RadiusTopLeft: =10
+        RadiusTopRight: =10
+        Width: =Parent.Width
+        ZIndex: =4
+
+        TextCanvasLabel As Text:
+            Align: ='TextCanvas.Align'.End
+            AlignInContainer: =AlignInContainer.Stretch
+            AutoHeight: =false
+            DisplayMode: =DisplayMode.Edit
+            Height: =32
+            LayoutMinHeight: =32
+            LayoutMinWidth: =10
+            Size: =10.5
+            Text: =SearchComponent.ComponentLabel &"    "
+            VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+            Visible: =SearchComponent.Width > 300
+            Weight: ='TextCanvas.Weight'.Bold
+            Width: =150
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+        "TextInputSearch As 'Text input'":
+            AccessibleLabel: ="Enter a user's name here"
+            DelayOutput: =true
+            DisplayMode: =DisplayMode.Edit
+            FillPortions: =2
+            Height: =32
+            LayoutMinHeight: =32
+            LayoutMinWidth: =10
+            OnChange: =Set(varSelectedSearchText,TextInputSearch.Value)
+            Width: =Parent.Width - Self.Height
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+        IcoSearch As icon.Search:
+            AccessibleLabel: ="Select to search"
+            AutoDisableOnSelect: =false
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =Self.Color
+            DisplayMode: =DisplayMode.Disabled
+            Height: =32
+            Icon: =Icon.Search
+            TabIndex: =0
+            Tooltip: ="Search"
+            Width: =32
+            ZIndex: =3
+
