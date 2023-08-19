@@ -1,0 +1,100 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "e0703c13-00c2-4ffc-9681-dadf4624b65a"
+          },
+          "type": "Request",
+          "kind": "Http",
+          "inputs": {
+            "method": "GET",
+            "triggerAuthenticationType": "All"
+          }
+        }
+      },
+      "actions": {
+        "Scope": {
+          "actions": {
+            "Actual_Work": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "dcc03324-a5c8-4e9d-807d-faf17bf033fe"
+              },
+              "type": "Compose",
+              "inputs": "@div(5, 0)"
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "b8942805-d7a9-4271-8b95-af0a50e1eb62"
+          },
+          "type": "Scope"
+        },
+        "Response_OK": {
+          "runAfter": {
+            "Scope": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "08af6954-90c7-49ed-b446-820c321bd38b"
+          },
+          "type": "Response",
+          "kind": "Http",
+          "inputs": {
+            "statusCode": 200
+          }
+        },
+        "Response_Error": {
+          "runAfter": {
+            "Scope": [
+              "Failed",
+              "TimedOut",
+              "Skipped"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d16d7387-f47e-49c4-b972-378151ec530d"
+          },
+          "type": "Response",
+          "kind": "Http",
+          "inputs": {
+            "statusCode": 500,
+            "body": "@result('Scope')[0]?['error']"
+          }
+        },
+        "Terminate_with_Failed": {
+          "runAfter": {
+            "Response_Error": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2e783367-c889-4a5c-ba40-82c0a2f516f0"
+          },
+          "type": "Terminate",
+          "inputs": {
+            "runStatus": "Failed",
+            "runError": {
+              "code": "500",
+              "message": "An error has occured"
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
