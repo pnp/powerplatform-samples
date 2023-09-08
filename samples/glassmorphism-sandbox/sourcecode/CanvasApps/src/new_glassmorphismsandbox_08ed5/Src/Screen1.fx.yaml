@@ -1,0 +1,179 @@
+Screen1 As screen:
+
+    sldBlur As slider:
+        Default: =0
+        Max: =10
+        Width: =403
+        X: =112
+        Y: =72
+        ZIndex: =1
+
+    sldAlpha As slider:
+        Default: =0
+        Width: =403
+        X: =112
+        Y: =232
+        ZIndex: =2
+
+    lbl27_5 As label:
+        Text: ="Blur"
+        Width: =80
+        X: =32
+        Y: =72
+        ZIndex: =3
+
+    lbl27_6 As label:
+        Text: ="Alpha"
+        Width: =80
+        X: =32
+        Y: =232
+        ZIndex: =4
+
+    sldRed As slider:
+        Default: =255
+        Max: =255
+        Width: =403
+        X: =112
+        Y: =112
+        ZIndex: =5
+
+    lbl27_7 As label:
+        Text: ="Red"
+        Width: =80
+        X: =32
+        Y: =112
+        ZIndex: =6
+
+    sldGreen As slider:
+        Default: =255
+        Max: =255
+        Width: =403
+        X: =112
+        Y: =152
+        ZIndex: =7
+
+    lbl27_8 As label:
+        Text: ="Green"
+        Width: =80
+        X: =32
+        Y: =152
+        ZIndex: =8
+
+    sldBlue As slider:
+        Default: =255
+        Max: =255
+        Width: =403
+        X: =112
+        Y: =192
+        ZIndex: =9
+
+    lbl27_9 As label:
+        Text: ="Blue"
+        Width: =80
+        X: =32
+        Y: =192
+        ZIndex: =10
+
+    btnReset As button:
+        OnSelect: |-
+            =Reset(sldBlur);
+            Reset(sldRed);
+            Reset(sldGreen);
+            Reset(sldBlue);
+            Reset(sldAlpha);
+        Text: ="Reset"
+        Width: =483
+        X: =32
+        Y: =291
+        ZIndex: =11
+
+    img2 As image:
+        Height: =428
+        Image: ='horses-keith-atherton'
+        Width: =761
+        X: =563
+        Y: =72
+        ZIndex: =12
+
+    htmlMain As htmlViewer:
+        BorderStyle: =BorderStyle.Solid
+        Height: =431
+        HtmlText: |-
+            =$"<div
+                style='width:{Self.Width}px;
+                height:{Self.Height - 1}px;
+                backdrop-filter:blur({sldBlur.Value}px);
+                background-color:rgba({sldRed.Value}, {sldGreen.Value}, {sldBlue.Value}, {sldAlpha.Value / 100.0});'
+            </div>"
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        Width: =763
+        X: =562
+        Y: =71
+        ZIndex: =13
+
+    lbl27_10 As label:
+        FontWeight: =FontWeight.Semibold
+        Text: ="1. Change parameters as required"
+        Width: =483
+        X: =32
+        Y: =32
+        ZIndex: =14
+
+    lbl27_11 As label:
+        FontWeight: =FontWeight.Semibold
+        Text: ="2. View output HTML"
+        Width: =483
+        X: =32
+        Y: =390
+        ZIndex: =15
+
+    lblOutputHtml As label:
+        BorderThickness: =1
+        Height: =174
+        Text: =htmlMain.HtmlText
+        VerticalAlign: =VerticalAlign.Top
+        Width: =483
+        X: =32
+        Y: =430
+        ZIndex: =16
+
+    btnCopyOutputHtmlToClipboard As button:
+        OnSelect: |-
+            =Copy(lblOutputHtml.Text);
+            Notify("Output HTML copied to clipboard", NotificationType.Information);
+        Text: ="3. Click to copy output HTML to clipboard"
+        Width: =483
+        X: =32
+        Y: =620
+        ZIndex: =17
+
+    lbl27_12 As label:
+        FontWeight: =FontWeight.Semibold
+        Text: ="Image"
+        Width: =300
+        X: =563
+        Y: =32
+        ZIndex: =18
+
+    lbl27_13 As label:
+        OnSelect: |-
+            =Launch("https://linktr.ee/keithatherton");
+        Text: ="Created by Keith Atherton"
+        Width: =300
+        X: =72
+        Y: =696
+        ZIndex: =19
+
+    icoShare As icon.Share:
+        Height: =40
+        Icon: =Icon.Share
+        OnSelect: |-
+            =Launch("https://linktr.ee/keithatherton");
+        Width: =40
+        X: =32
+        Y: =696
+        ZIndex: =20
+
