@@ -1,0 +1,75 @@
+FluentSearchBox_3 As CanvasComponent:
+    Fill: =RGBA(255,255,255,1)
+    Height: =70
+    HintText: ="Search"
+    SearchBoxColor: =RGBA(255, 255, 255, 1)
+    SearchBoxFill: |-
+        =ColorValue("#0060aa")
+    SearchClearColor: |-
+        =ColorValue("#0060aa")
+    SearchClearFill: =RGBA(255,255,255,1)
+    SearchIconFill: ="ffffff"
+    SearchText: =txtSearch.Text
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =2
+
+    txtSearch As text:
+        BorderThickness: =0
+        Color: =FluentSearchBox_3.SearchBoxColor
+        Default: =If(IsBlank(hintText) && hasSearched,"",FluentSearchBox_3.HintText)
+        Fill: =FluentSearchBox_3.SearchBoxFill
+        FocusedBorderThickness: =0
+        Font: =Font.'Segoe UI'
+        Height: =70
+        HintText: =""
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =FluentSearchBox_3.SearchBoxFill
+        OnChange: =Set(searchText,txtSearch.Text)
+        OnSelect: =Set(hasSearched,true);Set(hintText,"")
+        PaddingLeft: =imgSearch.Width
+        PaddingRight: =shpClear.Width
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Reset: =
+        Size: =17
+        Width: =Parent.Width
+        ZIndex: =1
+
+    imgSearch As image:
+        Height: =70
+        Image: |-
+            ="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2224%22%20height%3D%2224%22%3E%0A%20%20%3C!--%20Generator%3A%20Sketch%2059.1%20(86144)%20-%20https%3A%2F%2Fsketch.com%20--%3E%0A%20%20%3Ctitle%3Eic_fluent_search_24_regular%3C%2Ftitle%3E%0A%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%3Cg%20id%3D%22%F0%9F%94%8D-Product-Icons%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Cg%20id%3D%22ic_fluent_search_24_regular%22%20fill%3D%22%23" & FluentSearchBox_3.SearchIconFill &  "%22%20fill-rule%3D%22nonzero%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M10%2C2.75%20C14.0040644%2C2.75%2017.25%2C5.99593556%2017.25%2C10%20C17.25%2C11.7318729%2016.6427468%2C13.3219143%2015.6295486%2C14.5688158%20L20.5303301%2C19.4696699%20C20.8232233%2C19.7625631%2020.8232233%2C20.2374369%2020.5303301%2C20.5303301%20C20.2640635%2C20.7965966%2019.8473998%2C20.8208027%2019.5537883%2C20.6029482%20L19.4696699%2C20.5303301%20L14.5688158%2C15.6295486%20C13.3219143%2C16.6427468%2011.7318729%2C17.25%2010%2C17.25%20C5.99593556%2C17.25%202.75%2C14.0040644%202.75%2C10%20C2.75%2C5.99593556%205.99593556%2C2.75%2010%2C2.75%20Z%20M10%2C4.25%20C6.82436269%2C4.25%204.25%2C6.82436269%204.25%2C10%20C4.25%2C13.1756373%206.82436269%2C15.75%2010%2C15.75%20C13.1756373%2C15.75%2015.75%2C13.1756373%2015.75%2C10%20C15.75%2C6.82436269%2013.1756373%2C4.25%2010%2C4.25%20Z%22%20id%3D%22%F0%9F%8E%A8-Color%22%3E%3C%2Fpath%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E"
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        Width: =txtSearch.Height
+        ZIndex: =2
+
+    shpClear As circle:
+        Fill: =FluentSearchBox_3.SearchClearFill
+        Height: =imgSearch.Width - 40
+        OnSelect: =Select(icoClear)
+        Visible: =icoClear.Visible
+        Width: =imgSearch.Width - 40
+        X: =txtSearch.Width - Self.Width - 20
+        Y: =txtSearch.Y + txtSearch.Height / 2 - Self.Height / 2
+        ZIndex: =3
+
+    icoClear As icon.Cancel:
+        Color: =FluentSearchBox_3.SearchClearColor
+        Height: =shpClear.Height
+        Icon: =Icon.Cancel
+        OnSelect: =Set(hintText,FluentSearchBox_3.HintText)
+        PaddingLeft: =8
+        PaddingRight: =8
+        Visible: =txtSearch.Text <> FluentSearchBox_3.HintText
+        Width: =shpClear.Width
+        X: =shpClear.X
+        Y: =shpClear.Y
+        ZIndex: =4
+

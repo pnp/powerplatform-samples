@@ -1,0 +1,31 @@
+{
+  "8280fed7-ebd0-4146-9754-d226d460a1b9": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://m365x765471.sharepoint.com/sites/MyTools": {
+        "dataSources": {
+          "Tools": {
+            "tableName": "d9bd9540-ede0-4675-b5ef-bddb1605587b"
+          },
+          "User Tools": {
+            "tableName": "437312a8-6deb-4a74-b42b-4d01786942be"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Tools",
+      "User Tools"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "8280fed7-ebd0-4146-9754-d226d460a1b9"
+  }
+}

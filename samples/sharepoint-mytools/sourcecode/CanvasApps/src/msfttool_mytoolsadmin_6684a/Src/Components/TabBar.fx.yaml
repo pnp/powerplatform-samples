@@ -1,0 +1,136 @@
+TabBar As CanvasComponent:
+    AccentColor: |-
+        =RGBA(
+            16,
+            110,
+            190,
+            1
+        )
+    DefaultSelectedTabName: ="Text"
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =79
+    Items: |-
+        =Table(
+            {
+                TabName: "Home",
+                TabImage: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202048%202048%22%20width%3D%2232%22%20height%3D%2232%22%3E%0A%20%20%3Cpath%20d%3D%22M1024%20165l941%20942-90%2090-83-82v805h-640v-640H896v640H256v-805l-83%2082-90-90%20941-942zm640%201627V987l-640-640-640%20640v805h384v-640h512v640h384z%22%20%2F%3E%0A%3C%2Fsvg%3E",
+                TabSelectedImage: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202048%202048%22%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%230078d4%22%3E%0A%20%20%3Cpath%20d%3D%22M1024%20165l941%20942-90%2090-83-82v805h-640v-640H896v640H256v-805l-83%2082-90-90%20941-942zm640%201627V987l-640-640-640%20640v805h384v-640h512v640h384z%22%20%2F%3E%0A%3C%2Fsvg%3E",
+                TabPadding: 15,
+                TabHighlightColor: ColorValue("#0078d4"),
+                TabScreen: App.ActiveScreen
+            },
+            {
+                TabName: "Search",
+                TabImage: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202048%202048%22%20width%3D%2232%22%20height%3D%2232%22%3E%0A%20%20%3Cpath%20d%3D%22M1344%200q97%200%20187%2025t168%2071%20143%20110%20110%20142%2071%20169%2025%20187q0%2097-25%20187t-71%20168-110%20143-142%20110-169%2071-187%2025q-125%200-239-41t-211-122l-98%2097q16%2014%2025%2030t10%2038q0%2034-23%2057l-536%20535q-23%2023-52%2035t-61%2012q-32%200-60-12t-50-33-35-49-13-60q0-35%2012-66t37-57l531-532q23-23%2057-23%2023%200%2038%209t30%2026l97-98q-80-96-121-210t-42-240q0-97%2025-187t71-168%20110-143T988%2096t169-71%20187-25zM159%201953q26%200%2045-19l524-524-90-90-520%20519q-21%2021-21%2051%200%2026%2017%2044t45%2019zm1185-641q126%200%20236-48t193-130%20131-193%2048-237q0-126-48-236t-130-193-193-131-237-48q-126%200-236%2048T915%20274%20784%20467t-48%20237q0%20126%2048%20236t130%20193%20193%20131%20237%2048zm0-1120q20%200%2034%2014t14%2034q0%2020-14%2034t-34%2014q-86%200-161%2033t-132%2089-90%20132-33%20162q0%2020-14%2034t-34%2014q-20%200-34-14t-14-34q0-106%2040-199t109-163%20163-110%20200-40z%22%20%2F%3E%0A%3C%2Fsvg%3E",
+                TabSelectedImage: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202048%202048%22%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%230078d4%22%3E%0A%20%20%3Cpath%20d%3D%22M1344%200q97%200%20187%2025t168%2071%20143%20110%20110%20142%2071%20169%2025%20187q0%2097-25%20187t-71%20168-110%20143-142%20110-169%2071-187%2025q-125%200-239-41t-211-122l-98%2097q16%2014%2025%2030t10%2038q0%2034-23%2057l-536%20535q-23%2023-52%2035t-61%2012q-32%200-60-12t-50-33-35-49-13-60q0-35%2012-66t37-57l531-532q23-23%2057-23%2023%200%2038%209t30%2026l97-98q-80-96-121-210t-42-240q0-97%2025-187t71-168%20110-143T988%2096t169-71%20187-25zM159%201953q26%200%2045-19l524-524-90-90-520%20519q-21%2021-21%2051%200%2026%2017%2044t45%2019zm1185-641q126%200%20236-48t193-130%20131-193%2048-237q0-126-48-236t-130-193-193-131-237-48q-126%200-236%2048T915%20274%20784%20467t-48%20237q0%20126%2048%20236t130%20193%20193%20131%20237%2048zm0-1120q20%200%2034%2014t14%2034q0%2020-14%2034t-34%2014q-86%200-161%2033t-132%2089-90%20132-33%20162q0%2020-14%2034t-34%2014q-20%200-34-14t-14-34q0-106%2040-199t109-163%20163-110%20200-40z%22%20%2F%3E%0A%3C%2Fsvg%3E",
+                TabPadding: 20,
+                TabHighlightColor: ColorValue("#0078d4"),
+                TabScreen: App.ActiveScreen
+            },
+            {
+                TabName: "Settings",
+                TabImage: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202048%202048%22%20width%3D%2232%22%20height%3D%2232%22%3E%0A%20%20%3Cpath%20d%3D%22M1783%20988v18q0%209%201%2018v18q0%209-1%2018l259%20161-159%20383-297-68q-24%2026-50%2050l68%20297-383%20159-161-259h-18q-9%200-18%201h-18q-9%200-18-1l-161%20259-383-159%2068-297q-26-24-50-50l-297%2068L6%201221l259-161v-18q0-9-1-18v-18q0-9%201-18L6%20827l159-383%20297%2068q24-26%2050-50l-68-297L827%206l161%20259h18q9%200%2018-1h18q9%200%2018%201L1221%206l383%20159-68%20297q26%2024%2050%2050l297-68%20159%20383-259%20161zm-117%20130q2-24%204-47t2-48q0-23-2-47t-4-47l236-147-86-208-271%2063q-31-38-63-70t-71-64l63-271-208-86-148%20236q-23-2-47-4t-47-2q-24%200-47%202t-48%204L782%20146l-208%2086%2063%20271q-38%2031-70%2063t-64%2071l-271-63-86%20208%20236%20148q-2%2024-4%2047t-2%2048q0%2023%202%2047t4%2047l-236%20147%2086%20208%20271-63q31%2038%2063%2070t71%2064l-63%20271%20208%2086%20148-236q23%202%2047%204t47%202q24%200%2047-2t48-4l147%20236%20208-86-63-271q38-31%2070-63t64-71l271%2063%2086-208-236-148zm-642-470q78%200%20146%2029t120%2081%2080%20119%2030%20147q0%2078-29%20146t-81%20120-119%2080-147%2030q-78%200-146-29t-120-81-80-119-30-147q0-78%2029-146t81-120%20119-80%20147-30zm0%20640q55%200%20103-20t84-57%2056-84%2021-103q0-55-20-103t-57-84-84-56-103-21q-55%200-103%2020t-84%2057-56%2084-21%20103q0%2055%2020%20103t57%2084%2084%2056%20103%2021z%22%20%2F%3E%0A%3C%2Fsvg%3E",
+                TabSelectedImage: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202048%202048%22%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%230078d4%22%3E%0A%20%20%3Cpath%20d%3D%22M1783%20988v18q0%209%201%2018v18q0%209-1%2018l259%20161-159%20383-297-68q-24%2026-50%2050l68%20297-383%20159-161-259h-18q-9%200-18%201h-18q-9%200-18-1l-161%20259-383-159%2068-297q-26-24-50-50l-297%2068L6%201221l259-161v-18q0-9-1-18v-18q0-9%201-18L6%20827l159-383%20297%2068q24-26%2050-50l-68-297L827%206l161%20259h18q9%200%2018-1h18q9%200%2018%201L1221%206l383%20159-68%20297q26%2024%2050%2050l297-68%20159%20383-259%20161zm-117%20130q2-24%204-47t2-48q0-23-2-47t-4-47l236-147-86-208-271%2063q-31-38-63-70t-71-64l63-271-208-86-148%20236q-23-2-47-4t-47-2q-24%200-47%202t-48%204L782%20146l-208%2086%2063%20271q-38%2031-70%2063t-64%2071l-271-63-86%20208%20236%20148q-2%2024-4%2047t-2%2048q0%2023%202%2047t4%2047l-236%20147%2086%20208%20271-63q31%2038%2063%2070t71%2064l-63%20271%20208%2086%20148-236q23%202%2047%204t47%202q24%200%2047-2t48-4l147%20236%20208-86-63-271q38-31%2070-63t64-71l271%2063%2086-208-236-148zm-642-470q78%200%20146%2029t120%2081%2080%20119%2030%20147q0%2078-29%20146t-81%20120-119%2080-147%2030q-78%200-146-29t-120-81-80-119-30-147q0-78%2029-146t81-120%20119-80%20147-30zm0%20640q55%200%20103-20t84-57%2056-84%2021-103q0-55-20-103t-57-84-84-56-103-21q-55%200-103%2020t-84%2057-56%2084-21%20103q0%2055%2020%20103t57%2084%2084%2056%20103%2021z%22%20%2F%3E%0A%3C%2Fsvg%3E",
+                TabPadding: 20,
+                TabHighlightColor: ColorValue("#0078d4"),
+                TabScreen: App.ActiveScreen
+            },
+            {
+                TabName: "Notifications",
+                TabImage: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202048%202048%22%20width%3D%2232%22%20height%3D%2232%22%3E%0A%20%20%3Cpath%20d%3D%22M1792%201536v128h-512q0%2053-20%2099t-55%2082-81%2055-100%2020q-53%200-99-20t-82-55-55-81-20-100H256v-128h128V768q0-88%2023-170t64-153%20100-129%20130-100%20153-65%20170-23q88%200%20170%2023t153%2064%20129%20100%20100%20130%2065%20153%2023%20170v768h128zm-256%200V768q0-106-40-199t-110-162-163-110-199-41q-106%200-199%2040T663%20406%20553%20569t-41%20199v768h1024zm-512%20256q27%200%2050-10t40-27%2028-41%2010-50H896q0%2027%2010%2050t27%2040%2041%2028%2050%2010z%22%20%2F%3E%0A%3C%2Fsvg%3E",
+                TabSelectedImage: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202048%202048%22%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%230078d4%22%3E%0A%20%20%3Cpath%20d%3D%22M1792%201536v128h-512q0%2053-20%2099t-55%2082-81%2055-100%2020q-53%200-99-20t-82-55-55-81-20-100H256v-128h128V768q0-88%2023-170t64-153%20100-129%20130-100%20153-65%20170-23q88%200%20170%2023t153%2064%20129%20100%20100%20130%2065%20153%2023%20170v768h128zm-256%200V768q0-106-40-199t-110-162-163-110-199-41q-106%200-199%2040T663%20406%20553%20569t-41%20199v768h1024zm-512%20256q27%200%2050-10t40-27%2028-41%2010-50H896q0%2027%2010%2050t27%2040%2041%2028%2050%2010z%22%20%2F%3E%0A%3C%2Fsvg%3E",
+                TabPadding: 17,
+                TabHighlightColor: ColorValue("#0078d4"),
+                TabScreen: App.ActiveScreen
+            }
+        )
+    OnReset: =Reset(galTabBar)
+    SelectedTab: =galTabBar.Selected
+    SelectedTextColor: |-
+        =RGBA(
+            255,
+            255,
+            255,
+            1
+        )
+    ShowTabNames: =false
+    TextColor: |-
+        =RGBA(
+            51,
+            51,
+            51,
+            1
+        )
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =15
+
+    galTabBar As gallery.galleryHorizontal:
+        DisabledBorderColor: =galTabBar.BorderColor
+        DisabledFill: =galTabBar.Fill
+        Fill: =TabBar.Fill
+        Height: =79
+        HoverBorderColor: =galTabBar.BorderColor
+        HoverFill: =galTabBar.Fill
+        Items: =TabBar.Items
+        LoadingSpinnerColor: =galTabBar.BorderColor
+        OnSelect: =
+        PressedBorderColor: =galTabBar.BorderColor
+        PressedFill: =galTabBar.Fill
+        TemplateFill: =TabBar.Fill
+        TemplatePadding: |
+            =0
+        TemplateSize: =galTabBar.Width / CountRows(TabBar.Items)
+        Width: =TabBar.Width
+        ZIndex: =1
+
+        imgTab As image:
+            FocusedBorderColor: =imgTab.BorderColor
+            Height: =Parent.TemplateHeight - shpTabSelected.Height
+            HoverBorderColor: =ColorFade(imgTab.BorderColor, 20%)
+            HoverFill: =ColorFade(imgTab.Fill, 20%)
+            Image: =If(ThisItem.IsSelected,ThisItem.TabSelectedImage,ThisItem.TabImage)
+            OnSelect: =Navigate(ThisItem.TabScreen,ScreenTransition.CoverRight)
+            PaddingBottom: =ThisItem.TabPadding
+            PaddingLeft: =ThisItem.TabPadding
+            PaddingRight: =ThisItem.TabPadding
+            PaddingTop: =ThisItem.TabPadding
+            PressedBorderColor: =ColorFade(imgTab.BorderColor, -20%)
+            PressedFill: =ColorFade(imgTab.Fill, -20%)
+            Width: =Parent.TemplateWidth
+            ZIndex: =1
+
+        lblTabName As label:
+            Align: =Align.Center
+            Color: =If(ThisItem.IsSelected,ThisItem.TabHighlightColor,RGBA(0,0,0,1))
+            FocusedBorderColor: =lblTabName.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =23
+            HoverBorderColor: =lblTabName.BorderColor
+            HoverColor: =lblTabName.Color
+            HoverFill: =lblTabName.Fill
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PressedBorderColor: =lblTabName.BorderColor
+            PressedColor: =lblTabName.Color
+            PressedFill: =lblTabName.Fill
+            Size: =11
+            Text: =ThisItem.TabName
+            Visible: =TabBar.ShowTabNames
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - lblTabName.Height
+            ZIndex: =2
+
+        shpTabSelected As rectangle:
+            Fill: =ThisItem.TabHighlightColor
+            Height: =3
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.IsSelected && !TabBar.ShowTabNames
+            Width: =imgTab.Width / 4
+            X: =Parent.TemplateWidth / 2 - shpTabSelected.Width / 2
+            Y: =Parent.TemplateHeight - shpTabSelected.Height
+            ZIndex: =3
+

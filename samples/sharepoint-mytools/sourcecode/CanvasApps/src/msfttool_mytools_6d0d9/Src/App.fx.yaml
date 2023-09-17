@@ -1,0 +1,118 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |
+        =Set(
+            gblIsLoading,
+            true
+        );
+        Set(
+            gblMyToolsColor,
+            "#0078d4"
+        );
+        Set(
+            gblUser,
+            User()
+        );
+        Set(
+            gblEditTools,
+            false
+        );
+        Clear(colMyTools1);
+        ClearCollect(
+            colMyTools,
+            Filter(
+                'User Tools',
+                User.Email = gblUser.Email
+            )
+        );
+        If(
+            CountRows(colMyTools) = 0,
+            ForAll(
+                Filter(
+                    Tools,
+                    'Is Mandatory'
+                ),
+                If(
+                    IsBlank(
+                        LookUp(
+                            colMyTools,
+                            ToolId = ThisRecord.ID
+                        )
+                    ),
+                    Collect(
+                        colMyTools1,
+                        ThisRecord
+                    )
+                )
+            ),
+            ForAll(
+                colMyTools,
+                Collect(
+                    colMyTools1,
+                    LookUp(
+                        Tools,
+                        ID = ToolId
+                    )
+                )
+            );
+            ForAll(
+                Filter(
+                    Tools,
+                    'Is Mandatory'
+                ),
+                If(
+                    IsBlank(
+                        LookUp(
+                            colMyTools,
+                            ToolId = ThisRecord.ID
+                        )
+                    ),
+                    Collect(
+                        colMyTools1,
+                        ThisRecord
+                    )
+                )
+            )
+        );
+        ClearCollect(
+            colMyToolsFave,
+            AddColumns(
+                colMyTools1,
+                "IsFavourite",
+                true
+            )
+        );
+        ClearCollect(
+            colAllTools,
+            Tools
+        );
+        ClearCollect(
+            colAllToolsFave,
+            AddColumns(
+                colAllTools,
+                "IsFavourite",
+                false
+            )
+        );
+        ForAll(
+            colMyTools As MyTool,
+            UpdateIf(
+                colAllToolsFave,
+                ID = MyTool.ToolId,
+                {IsFavourite: true}
+            )
+        );
+        Set(
+            gblIsLoading,
+            false
+        );
+    SizeBreakpoints: =[860, 1100, 1200]
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

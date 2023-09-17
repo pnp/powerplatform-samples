@@ -1,0 +1,110 @@
+Tabs_1 As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =640
+    InactiveTabFill: =RGBA(243, 242, 241, 1)
+    Items: |-
+        =Table(
+            {
+                TabName: "Tab 1",
+                TabScreen: App.ActiveScreen,
+                Selected:true
+            },
+            {
+                TabName: "Tab 2",
+                TabScreen: App.ActiveScreen,
+                Selected:false
+            },
+            {
+                TabName: "Tab 3",
+                TabScreen: App.ActiveScreen,
+                Selected:false
+            },
+            {
+                TabName: "Tab 4",
+                TabScreen: App.ActiveScreen,
+                Selected:false
+            }
+        )
+    SelectedTabColor: =RGBA(98, 100, 167, 1)
+    SelectedTabFill: =RGBA(255, 255, 255, 1)
+    TabColor: =RGBA(0, 0, 0, 1)
+    TabFontSize: =25
+    TabHoverFill: =RGBA(98, 100, 167, 1)
+    TabPressedFill: =RGBA(98, 100, 167, 1)
+    TabUnderscoreHeight: =10
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =10
+
+    galTabs_1 As gallery.galleryHorizontal:
+        Height: =Parent.Height
+        Items: =Tabs_1.Items
+        OnSelect: =
+        TemplatePadding: |+
+            =5
+            
+        TemplateSize: =210
+        Width: =Parent.Width
+        ZIndex: =1
+
+        shpSelectedTabInactive As rectangle:
+            Fill: |-
+                =ColorValue("#a0aeb2")
+            Height: =Tabs_1.TabUnderscoreHeight
+            Visible: =false
+            Width: =Parent.TemplateWidth - Self.X
+            X: |+
+                =10
+                
+            Y: =lblTabNameTabs.Height
+            ZIndex: =1
+
+        shpSelectedTabActive As rectangle:
+            Fill: =Tabs_1.SelectedTabColor
+            Height: =Tabs_1.TabUnderscoreHeight
+            Visible: =false
+            Width: =galTabs_1.TemplateWidth - Self.X
+            X: =10
+            Y: =lblTabNameTabs.Height
+            ZIndex: =2
+
+        lblTabNameTabs As label:
+            Color: =If(ThisItem.Selected,Tabs_1.SelectedTabColor,Tabs_1.TabColor)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =70
+            OnSelect: =Select(Parent)
+            PaddingLeft: =0
+            Size: =Tabs_1.TabFontSize
+            Text: =ThisItem.TabName
+            Width: =Parent.TemplateWidth - 10
+            X: |
+                =10
+            Y: |
+                =0
+            ZIndex: =3
+
+        btnTab As button:
+            BorderThickness: |
+                =0
+            Color: =If(ThisItem.Selected,Tabs_1.SelectedTabColor,Tabs_1.TabColor)
+            Fill: =If(ThisItem.Selected,Tabs_1.SelectedTabFill,Tabs_1.InactiveTabFill)
+            FocusedBorderThickness: |
+                =0
+            Height: =70
+            HoverFill: =Tabs_1.TabHoverFill
+            OnSelect: =Navigate(ThisItem.TabScreen)
+            PressedFill: =Tabs_1.TabPressedFill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: |
+                =10
+            RadiusTopRight: |
+                =10
+            Size: =20
+            Text: =ThisItem.TabName
+            Width: =Parent.TemplateWidth
+            Y: =10
+            ZIndex: =4
+

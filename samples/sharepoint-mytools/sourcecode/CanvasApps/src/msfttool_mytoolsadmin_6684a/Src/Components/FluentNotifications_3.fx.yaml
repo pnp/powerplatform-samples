@@ -1,0 +1,68 @@
+FluentNotifications_3 As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =640
+    Items: |-
+        =Table({NotificationTitle: "Notification Title", NotificationDesc: "Description"},{NotificationTitle: "Notification Title", NotificationDesc: "Description"},{NotificationTitle: "Notification Title", NotificationDesc: "Description"})
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =6
+
+    Gallery1_1 As gallery.galleryVertical:
+        Height: =Parent.Height
+        Items: =FluentNotifications_2.Items
+        Layout: =Layout.Vertical
+        TemplateSize: =84
+        ZIndex: =1
+
+        Button2_1 As button:
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Disabled
+            Height: =75
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =20
+            RadiusBottomRight: =20
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Size: =24
+            Text: =""
+            Width: =Parent.TemplateWidth - Parent.TemplatePadding
+            ZIndex: =1
+
+        lblNotificationTitle_2 As label:
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =Button2_1.Height / 2
+            OnSelect: =Select(Parent)
+            PaddingLeft: =16
+            PaddingTop: =10
+            Size: =16
+            Text: =ThisItem.NotificationTitle
+            Width: =560
+            ZIndex: =2
+
+        lblNotificationDesc_2 As label:
+            Font: =Font.'Segoe UI'
+            Height: =Button2_1.Height / 2
+            OnSelect: =Select(Parent)
+            PaddingBottom: =10
+            PaddingLeft: =16
+            PaddingTop: =0
+            Size: =16
+            Text: =ThisItem.NotificationDesc
+            Width: =560
+            Y: =40
+            ZIndex: =3
+
+        icoClearNotification_1 As icon.Cancel:
+            Height: =Button2_1.Height
+            Icon: =Icon.Cancel
+            OnSelect: =Select(Parent)
+            PaddingBottom: =25
+            PaddingLeft: =25
+            PaddingRight: =25
+            PaddingTop: =25
+            Width: =Button2_1.Height
+            X: =Parent.TemplateWidth - Self.Width - 10
+            ZIndex: =4
+

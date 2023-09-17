@@ -1,0 +1,95 @@
+FluentNotifications_2 As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =640
+    Items: |-
+        =Table(
+            {
+                NotificationTitle: "Notification Title",
+                NotificationDesc: "Description",
+                NotificationImage: "",
+                NotificationImagePadding: 10,
+                NotificationX:0
+            },
+            {
+                NotificationTitle: "Notification Title",
+                NotificationDesc: "Description",
+                NotificationImage: "",
+                NotificationImagePadding: 10,
+                NotificationX:0
+            },
+            {
+                NotificationTitle: "Notification Title",
+                NotificationDesc: "Description",
+                NotificationImage: "",
+                NotificationImagePadding: 10,
+                NotificationX:0
+            }
+        )
+    NotificationClearColor: =RGBA(0, 0, 0, 1)
+    NotificationImage: =SampleImage
+    ShowImage: =true
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =12
+
+    galNotifications_1 As gallery.galleryVertical:
+        Height: =Parent.Height
+        Items: =FluentNotifications_1.Items
+        Layout: =Layout.Vertical
+        TemplateSize: =84
+        Width: =Parent.Width
+        ZIndex: =1
+
+        btnNotification_1 As button:
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Disabled
+            Height: =75
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =20
+            RadiusBottomRight: =20
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Size: =24
+            Text: =""
+            Width: =Parent.TemplateWidth - Parent.TemplatePadding
+            X: =Parent.TemplateWidth / 2 - Self.Width / 2
+            ZIndex: =1
+
+        lblNotificationTitle_1 As label:
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =btnNotification_1.Height / 2
+            OnSelect: =Select(Parent)
+            PaddingLeft: =16
+            PaddingTop: =10
+            Size: =16
+            Text: =ThisItem.NotificationTitle
+            Width: =560
+            X: =If(FluentNotifications_1.ShowImage,imgNotification_1.X + imgNotification_1.Width,0)
+            ZIndex: =2
+
+        lblNotificationDesc_1 As label:
+            Font: =Font.'Segoe UI'
+            Height: =btnNotification_1.Height / 2
+            OnSelect: =Select(Parent)
+            PaddingBottom: =10
+            PaddingLeft: =16
+            PaddingTop: =0
+            Size: =16
+            Text: =ThisItem.NotificationDesc
+            Width: =560
+            X: =If(FluentNotifications_1.ShowImage,imgNotification_1.X + imgNotification_1.Width,0)
+            Y: =40
+            ZIndex: =3
+
+        imgNotification_1 As image:
+            Height: =btnNotification_1.Height - 20 - ThisItem.NotificationImagePadding
+            Image: =ThisItem.NotificationImage
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: =Select(Parent)
+            Width: =btnNotification_1.Height - 20 - ThisItem.NotificationImagePadding
+            X: =btnNotification_1.X + 10 + ThisItem.NotificationX
+            Y: =btnNotification_1.Y + btnNotification_1.Height / 2 - Self.Height / 2
+            ZIndex: =5
+
