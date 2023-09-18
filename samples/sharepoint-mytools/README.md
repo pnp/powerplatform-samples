@@ -42,32 +42,15 @@ The data source comprises of 2 SharePoint lists, one to store the tools and one 
 ![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-Yes-green.svg "Does rely on experimental features")
 
-## Authors
+## Contributors
 
-Solution|Author(s)
---------|---------
-SharePointMyTools | [Alex Clark - Microsoft](https://github.com/alexc-MSFT)
+* [Alex Clark - Microsoft](https://github.com/alexc-MSFT)
 
 ## Version history
 
 Version|Date|Comments
 -------|----|--------
 1.0.0.0|Sep 14, 2023|Initial release
-
-## Features
-
-This sample app is a great way to learn some fundamental Power Apps concepts like:
-
-* Branding out-of-the-box controls
-* Creating and using components
-* Working with SharePoint as a data source
-* Using and creating dialog boxes
-* Power Fx Formulas
-* Working with local collections
-* Building custom UIs
-* Responsive design
-* Using containers to build responsive layouts
-* Working with modern controls
 
 ## Prerequisites
 
@@ -93,7 +76,7 @@ The following solution components are used in this sample:
 
 Follow the instructions below to deploy this sample to your tenant. Once deployed, the end user app (My Tools) is designed to be embedded within a SharePoint page.
 
-I woild recommend using the 'Embed' Web Part and defining your own size. This works much better than the native Power Apps Web Part in terms of how it looks on the page. 
+I would recommend using the 'Embed' Web Part and defining your own size. This works much better than the native Power Apps Web Part in terms of how it looks on the page. 
 
 The recommended size is as follows:
 
@@ -112,7 +95,7 @@ All users who will use the solution will need a Power Apps 'seeded' license.
 
 #### Tools
 
-1. Create a new list named 'Tools' in your SharePoint site.
+1. Create a new list named **Tools** in your SharePoint site.
 2. Create the following colummns:
 
 ***
@@ -162,12 +145,12 @@ Type: Number
 
 ***
 
-3. Edit the settings for the 'Title' field and set it to not required.
+3. Edit the settings for the **Title** field and set it to not required.
 
 #### User Tools
 
-1. Create a new list named 'UserTools' in your SharePoint site.
-2. Rename the list and add a space so the name becomes 'User Tools'.
+1. Create a new list named **UserTools** in your SharePoint site.
+2. Rename the list and add a space so the name becomes **User Tools**.
 3. Create the following columns:
 
 ***
@@ -190,11 +173,11 @@ Type: Person or Group
 
 ***
 
-4. Edit the settings for the 'Title' field and set it to not required.
+4. Edit the settings for the **Title** field and set it to not required.
 
 ### Import Power Apps solution
 
-1. Download the **[Unmanaged](./solution/MyTools_1_0_0_0.zip)** solution `.zip` from the `solution` folder.
+1. Download the **[Unmanaged](./solution/MyTools_1_0_0_0.zip)** solution `.zip` from the **solution** folder.
 
 2. Within **<https://make.powerapps.com>**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
 
@@ -202,7 +185,7 @@ Type: Person or Group
 
 4. Click Import. It is worth noting that the solution does not use environment variables at the time of writing due to a bug with SharePoint list environment variables where image columns are used.
 
-5. Edit both the 'My Tools' and 'My Tools Admin' Apps and update the data sources - you will need to remove the 2 SharePoint lists from the data sources pane and re-add them. They may appear that they are pointing correctly but they will be pointing at the tenant the app was exported from. Simply remove them, point to your SharePoint site and add the 2 lists again.
+5. Edit both the **My Tools** and **My Tools Admin** Apps and update the data sources - you will need to remove the 2 SharePoint lists from the data sources pane and re-add them. They may appear that they are pointing correctly but they will be pointing at the tenant the app was exported from. Simply remove them, point to your SharePoint site and add the 2 lists again.
 
 6. Update the color in the OnStart event to match your SharePoint branding. Locate the below formula and update the hex code. This will update the colors in the app.
 
@@ -212,7 +195,7 @@ Set(gblMyToolsColor,"#0078d4");
 
 7. Save and publish both Apps. 
 
-8. Get the unique Id for the 'My Tools' Power App from your tenant - Navigate to the Power Apps portal, select the app and click 'Details' on the menu bar. Copy the 'App ID' value.
+8. Get the unique Id for the **My Tools** Power App from your tenant - Navigate to the Power Apps portal, select the app and click **Details** on the menu bar. Copy the **App ID** value.
 
 9. Embed the app in a SharePoint page. You can use the following embed code, replace the GUID after /apps/ with the Id you copied above. Feel free to change the size as you see fit.
 
@@ -222,7 +205,7 @@ Set(gblMyToolsColor,"#0078d4");
 
 11. Share the app with ALL users that have access to/will use your SharePoint site.
 
-12. Share the SharePoint lists with the same users as above, users need READ access to the 'Tools' list and READ/WRITE access to the 'User Tools' list. Admins will need WRITE access to both lists.
+12. Share the SharePoint lists with the same users as above, users need READ access to the **Tools** list and READ/WRITE access to the **User Tools** list. Admins will need WRITE access to both lists.
 
 ## Using the Source Code
 
@@ -240,6 +223,21 @@ You can also use the [Power Apps CLI](https://aka.ms/pac/docs) to pack the sourc
 * Click next.
 * Click import.
 * Follow the steps above to configure and use the apps.
+
+## Features
+
+This sample app is a great way to learn some fundamental Power Apps concepts like:
+
+* Branding out-of-the-box controls
+* Creating and using components
+* Working with SharePoint as a data source
+* Using and creating dialog boxes
+* Power Fx Formulas
+* Working with local collections
+* Building custom UIs
+* Responsive design
+* Using containers to build responsive layouts
+* Working with modern controls
 
 ### How to use the solution
 
@@ -261,9 +259,9 @@ Tools marked as mandatory will appear for all users in their toolbox even if the
 
 #### End user app
 
-Users can add/remove tools from their toolbox by clicking the 'Edit' icon. The star icon allows users to add/remove tools from their toolbox. Mandatory tools do not display this icon.
+Users can add/remove tools from their toolbox by clicking the **Edit** icon. The star icon allows users to add/remove tools from their toolbox. Mandatory tools do not display this icon.
 
-Users can search for tools using the searchbox in both 'Edit' mode and 'View' mode.
+Users can search for tools using the searchbox in both **Edit** mode and **View** mode.
 
 Clicking the tile for a tool launches the URL configured for the tool in a new window.
 
@@ -273,7 +271,11 @@ Tools are displayed in a horizontal gallery format and can be scrolled.
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, please create a new issue.
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=sharepoint-mytools&authors=@alexc-MSFT&title=sharepoint-mytools%20-%20).
+
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=sharepoint-mytools&authors=@alexc-MSFT&title=sharepoint-mytools%20-%20).
+
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=sharepoint-mytools&authors=@alexc-MSFT&title=sharepoint-mytools%20-%20).
 
 ## For more information
 
