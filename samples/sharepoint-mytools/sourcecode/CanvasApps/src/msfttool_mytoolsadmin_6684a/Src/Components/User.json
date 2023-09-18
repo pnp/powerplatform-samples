@@ -1,0 +1,154 @@
+{
+  "ComponentAllowCustomization": true,
+  "ComponentChangedSinceFileImport": false,
+  "ComponentManifest": {
+    "AllowAccessToGlobals": false,
+    "AllowCustomization": true,
+    "Description": "",
+    "Name": "User",
+    "TemplateGuid": "3ac72235fbcb48b696eaf3c9f05ed865"
+  },
+  "ComponentType": "CanvasComponent",
+  "CustomGroupControlTemplateName": "",
+  "CustomProperties": [
+    {
+      "Category": 0,
+      "DisplayName": "Photo",
+      "Hidden": false,
+      "Name": "Photo",
+      "PropertyDataTypeKey": "Image",
+      "Tooltip": "The user photo to display",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Image\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Has Photo",
+      "Hidden": false,
+      "Name": "HasPhoto",
+      "PropertyDataTypeKey": "Boolean",
+      "Tooltip": "Does the logged in user have a photo",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Boolean\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "User",
+      "Hidden": false,
+      "Name": "User",
+      "PropertyDataTypeKey": "Record",
+      "Tooltip": "Record of the logged in user",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Record\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"aboutMe\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"accountEnabled\",\"Kind\":\"Boolean\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"birthday\",\"Kind\":\"DateTime\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"businessPhones\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Value\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]},{\"Name\":\"city\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"companyName\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"country\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"department\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"displayName\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"givenName\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"hireDate\",\"Kind\":\"DateTime\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"id\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"interests\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Value\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]},{\"Name\":\"jobTitle\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"mail\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"mailNickname\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"mobilePhone\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"mySite\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"officeLocation\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"pastProjects\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Value\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]},{\"Name\":\"postalCode\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"preferredLanguage\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"preferredName\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"responsibilities\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Value\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]},{\"Name\":\"schools\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Value\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]},{\"Name\":\"skills\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Value\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]},{\"Name\":\"state\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"streetAddress\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"surname\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"userPrincipalName\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"userType\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Show Welcome",
+      "Hidden": false,
+      "Name": "ShowWelcome",
+      "PropertyDataTypeKey": "Boolean",
+      "Tooltip": "Show or hide the welcome text",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Boolean\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Show Photo Outline",
+      "Hidden": false,
+      "Name": "ShowPhotoOutline",
+      "PropertyDataTypeKey": "Boolean",
+      "Tooltip": "Show or hide the photo outline",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Boolean\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Photo Outline Fill",
+      "Hidden": false,
+      "Name": "PhotoOutlineFill",
+      "PropertyDataTypeKey": "Color",
+      "Tooltip": "Fill color for the photo outline",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Color\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "User Initials",
+      "Hidden": false,
+      "Name": "UserInitials",
+      "PropertyDataTypeKey": "String",
+      "Tooltip": "Initials for the user (Visible when the user has no photo)",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Initials Fill Color",
+      "Hidden": false,
+      "Name": "InitialsFillColor",
+      "PropertyDataTypeKey": "Color",
+      "Tooltip": "Fill color for the initials circle",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Color\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Photo size",
+      "Hidden": false,
+      "Name": "PhotoSize",
+      "PropertyDataTypeKey": "Number",
+      "Tooltip": "Size for the photo",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Center Align Photo",
+      "Hidden": false,
+      "Name": "CenterAlignPhoto",
+      "PropertyDataTypeKey": "Boolean",
+      "Tooltip": "Center align the photo",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Boolean\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Notifications Fill",
+      "Hidden": false,
+      "Name": "NotificationsFill",
+      "PropertyDataTypeKey": "Color",
+      "Tooltip": "Fill color for the notifications circle",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Color\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Notification Count",
+      "Hidden": false,
+      "Name": "NotificationCount",
+      "PropertyDataTypeKey": "Number",
+      "Tooltip": "Number to display",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Notifications Text Color",
+      "Hidden": false,
+      "Name": "NotificationsTextColor",
+      "PropertyDataTypeKey": "Color",
+      "Tooltip": "Text color for the notifications count",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Color\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "User Display Name Font Size",
+      "Hidden": false,
+      "Name": "UserDisplayNameFontSize",
+      "PropertyDataTypeKey": "Number",
+      "Tooltip": "Font size for the user display name",
+      "Type": "{\"Version\":\"1.334\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}"
+    }
+  ],
+  "FirstParty": true,
+  "Id": "http://microsoft.com/appmagic/Component",
+  "IsComponentLocked": true,
+  "IsComponentTemplate": true,
+  "IsCustomGroupControlTemplate": false,
+  "IsPcfControl": false,
+  "IsPremiumPcfControl": false,
+  "IsWidgetTemplate": false,
+  "LastModifiedTimestamp": "638301157975076357",
+  "Name": "3ac72235fbcb48b696eaf3c9f05ed865",
+  "OverridableProperties": {},
+  "TemplateOriginalName": "b558fd13cf43441293aa31f08fc2f8cf",
+  "Version": "637368345602859859"
+}

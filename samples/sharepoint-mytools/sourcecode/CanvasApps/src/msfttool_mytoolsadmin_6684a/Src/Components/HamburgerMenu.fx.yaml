@@ -1,0 +1,116 @@
+HamburgerMenu As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    HamburgerIconColor: =RGBA(0 , 0, 0, 1)
+    Height: =App.Height
+    Items: |-
+        =Table(
+            {
+                ItemName: "Home",
+                ItemImage: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202048%202048%22%20width%3D%2232%22%20height%3D%2232%22%3E%0A%20%20%3Cpath%20d%3D%22M1024%20165l941%20942-90%2090-83-82v805h-640v-640H896v640H256v-805l-83%2082-90-90%20941-942zm640%201627V987l-640-640-640%20640v805h384v-640h512v640h384z%22%20%2F%3E%0A%3C%2Fsvg%3E",
+                ItemImagePadding:5,
+                ItemColor: RGBA(0,0,0,1),
+                ItemHoverColor: ColorValue("#0078d4"),
+                ItemScreen: App.ActiveScreen
+            },
+             {
+                ItemName: "Search",
+                ItemImage: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202048%202048%22%20width%3D%2232%22%20height%3D%2232%22%3E%0A%20%20%3Cpath%20d%3D%22M1344%200q97%200%20187%2025t168%2071%20143%20110%20110%20142%2071%20169%2025%20187q0%2097-25%20187t-71%20168-110%20143-142%20110-169%2071-187%2025q-125%200-239-41t-211-122l-98%2097q16%2014%2025%2030t10%2038q0%2034-23%2057l-536%20535q-23%2023-52%2035t-61%2012q-32%200-60-12t-50-33-35-49-13-60q0-35%2012-66t37-57l531-532q23-23%2057-23%2023%200%2038%209t30%2026l97-98q-80-96-121-210t-42-240q0-97%2025-187t71-168%20110-143T988%2096t169-71%20187-25zM159%201953q26%200%2045-19l524-524-90-90-520%20519q-21%2021-21%2051%200%2026%2017%2044t45%2019zm1185-641q126%200%20236-48t193-130%20131-193%2048-237q0-126-48-236t-130-193-193-131-237-48q-126%200-236%2048T915%20274%20784%20467t-48%20237q0%20126%2048%20236t130%20193%20193%20131%20237%2048zm0-1120q20%200%2034%2014t14%2034q0%2020-14%2034t-34%2014q-86%200-161%2033t-132%2089-90%20132-33%20162q0%2020-14%2034t-34%2014q-20%200-34-14t-14-34q0-106%2040-199t109-163%20163-110%20200-40z%22%20%2F%3E%0A%3C%2Fsvg%3E",
+                ItemImagePadding:10,
+                ItemColor: RGBA(0,0,0,1),
+                ItemHoverColor: ColorValue("#0078d4"),
+                ItemScreen: App.ActiveScreen
+            }
+        )
+    MenuClosedWidth: =200
+    MenuFill: =RGBA(243, 242, 241, 1)
+    MenuOpen: =menuOpen
+    MenuOpenWidth: =400
+    SeparatorFill: |-
+        =ColorValue("#797775")
+    Width: =400
+    X: =0
+    Y: =0
+    ZIndex: =8
+
+    shpMenu As rectangle:
+        Fill: =HamburgerMenu.MenuFill
+        Height: =Parent.Height
+        Width: =If(menuOpen,HamburgerMenu.MenuOpenWidth,HamburgerMenu.MenuClosedWidth)
+        ZIndex: =1
+
+    icoHamburger As icon.Hamburger:
+        Color: =HamburgerMenu.HamburgerIconColor
+        Icon: =Icon.Hamburger
+        OnSelect: =If(menuOpen,Set(menuOpen,false),Set(menuOpen,true))
+        PaddingBottom: =5
+        PaddingLeft: =5
+        PaddingRight: =5
+        PaddingTop: =5
+        Width: =100
+        X: |
+            =0
+        Y: |
+            =0
+        ZIndex: =2
+
+    galMenuItems As gallery.galleryVertical:
+        Items: =HamburgerMenu.Items
+        Layout: =Layout.Vertical
+        TemplatePadding: =10
+        TemplateSize: |
+            =60
+        Width: =HamburgerMenu.MenuOpenWidth
+        X: |
+            =0
+        Y: =icoHamburger.Height + 10
+        ZIndex: =3
+
+        imgMenuItem As image:
+            Height: =50
+            Image: =ThisItem.ItemImage
+            OnSelect: =Select(Parent)
+            PaddingBottom: =ThisItem.ItemImagePadding
+            PaddingLeft: =ThisItem.ItemImagePadding
+            PaddingRight: =ThisItem.ItemImagePadding
+            PaddingTop: =ThisItem.ItemImagePadding
+            Visible: =If(IsBlank(menuOpen),false,menuOpen)
+            Width: =50
+            X: |
+                =0
+            Y: =lblMenuItemName.Height / 2 - imgMenuItem.Height / 2
+            ZIndex: =1
+
+        shpSeparator As rectangle:
+            Fill: =HamburgerMenu.SeparatorFill
+            Height: =1
+            OnSelect: =Select(Parent)
+            Visible: =If(IsBlank(menuOpen),false,menuOpen)
+            Width: =Parent.TemplateWidth - Parent.TemplatePadding
+            Y: =Parent.TemplateHeight - shpSeparator.Height
+            ZIndex: =2
+
+        lblMenuItemName As label:
+            Color: =ThisItem.ItemColor
+            Height: =icoHamburger.Height - shpSeparator.Height
+            HoverColor: =ThisItem.ItemHoverColor
+            OnSelect: =Select(Parent)
+            PaddingLeft: =15
+            Size: =19
+            Text: =ThisItem.ItemName
+            Visible: =If(IsBlank(menuOpen),false,menuOpen)
+            Width: =shpMenu.Width - imgMenuItem.Width
+            X: =imgMenuItem.Width
+            Y: |
+                =
+                0
+            ZIndex: =3
+
+    shpOverlay_1 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.8)
+        Height: =App.Height
+        OnSelect: =If(menuOpen,Set(menuOpen,false))
+        Visible: =menuOpen
+        Width: =App.Width - shpMenu.Width
+        X: =shpMenu.Width
+        ZIndex: =4
+

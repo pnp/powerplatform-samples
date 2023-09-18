@@ -1,0 +1,449 @@
+"'My Tools Screen' As screen":
+    Height: =App.Height
+    Width: =App.Width
+
+    contMain As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =7
+
+        contHeader As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =50
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =2
+
+            lblMyTools As label:
+                Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Semibold
+                Size: =20
+                Text: |
+                    =If(gblEditTools,"Edit My Tools", "My Tools")
+                Tooltip: =Self.Text
+                Width: =190
+                X: |
+                    =10
+                Y: =5
+                ZIndex: =1
+
+            icoEditTools As icon.Edit:
+                AccessibleLabel: ="Edit my tools"
+                Color: =RGBA(255,255,255,1)
+                Fill: =ColorValue(gblMyToolsColor)
+                Height: =30
+                Icon: =If(gblEditTools,Icon.Cancel,Icon.Edit)
+                OnSelect: =If(gblEditTools, Set(gblEditTools,false),Set(gblEditTools,true))
+                PaddingBottom: =3
+                PaddingLeft: =3
+                PaddingRight: =3
+                PaddingTop: =3
+                TabIndex: =1
+                Tooltip: ="Edit my tools"
+                Visible: ='My Tools Screen'.Size >= 3
+                Width: =30
+                X: =Parent.Width - Self.Width - 15
+                Y: =lblMyTools.Y + lblMyTools.Height / 2 - Self.Height / 2
+                ZIndex: =2
+
+        contSearch As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =50
+            LayoutMinHeight: =20
+            LayoutMinWidth: =250
+            Visible: ='My Tools Screen'.Size >= ScreenSize.Large
+            Width: =Parent.Width
+            ZIndex: =3
+
+            txtSearch As text:
+                AccessibleLabel: =Self.HintText
+                BorderColor: =ColorValue(gblMyToolsColor)
+                BorderThickness: =1.5
+                Default: =""
+                FocusedBorderThickness: =Self.BorderThickness
+                Font: =Font.'Segoe UI'
+                HintText: ="Search for a tool..."
+                HoverFill: =Self.Fill
+                PressedBorderColor: =Self.BorderColor
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: ="Search for a tool"
+                X: =Parent.Width / 2 - Self.Width / 2
+                Y: =5
+                ZIndex: =1
+
+            shpClear As circle:
+                AccessibleLabel: ="Clear search"
+                Fill: =ColorValue(gblMyToolsColor)
+                Height: =20
+                OnSelect: =Reset(txtSearch)
+                TabIndex: =2
+                Visible: =!IsBlank(txtSearch.Text)
+                Width: =20
+                X: =txtSearch.X + txtSearch.Width - Self.Width - 5
+                Y: =txtSearch.Y + txtSearch.Height / 2 - Self.Height / 2
+                ZIndex: =2
+
+            icoClear As icon.Cancel:
+                AccessibleLabel: ="Clear search"
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =15
+                Icon: =Icon.Cancel
+                OnSelect: =Reset(txtSearch)
+                TabIndex: =3
+                Tooltip: ="Clear search"
+                Visible: =shpClear.Visible
+                Width: =15
+                X: =shpClear.X + shpClear.Width / 2 - Self.Width / 2
+                Y: =shpClear.Y + shpClear.Height / 2 - Self.Height / 2
+                ZIndex: =3
+
+        contTools As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =4
+
+            galTools As gallery.galleryHorizontal:
+                AccessibleLabel: ="My tools"
+                BorderColor: =Color.DimGray
+                FocusedBorderColor: =Parent.Fill
+                FocusedBorderThickness: =1
+                Height: =280
+                Items: |-
+                    =If(
+                        gblEditTools,
+                        If(
+                            !IsBlank(txtSearch.Text),
+                            Filter(
+                                Sort(
+                                    colAllToolsFave,
+                                    Order,
+                                    SortOrder.Ascending
+                                ),
+                                StartsWith(
+                                    'Tool Name',
+                                    txtSearch.Text
+                                )
+                            ),
+                            Sort(
+                                colAllToolsFave,
+                                Order,
+                                SortOrder.Ascending
+                            )
+                        ),
+                        If(
+                            !IsBlank(txtSearch.Text),
+                            Filter(
+                                colMyToolsFave,
+                                StartsWith(
+                                    'Tool Name',
+                                    txtSearch.Text
+                                )
+                            ),
+                            colMyToolsFave
+                        )
+                    )
+                LoadingSpinner: =LoadingSpinner.Data
+                LoadingSpinnerColor: =ColorValue(gblMyToolsColor)
+                ShowNavigation: =true
+                TabIndex: =4
+                TemplatePadding: |-
+                    =If(
+                        'My Tools Screen'.Width < 590,
+                        15,
+                        10
+                    )
+                TemplateSize: |-
+                    =If(
+                        'My Tools Screen'.Size >= 2,
+                        225,
+                        If(
+                            'My Tools Screen'.Width < 590,
+                            60,
+                            120
+                        )
+                    )
+                Width: =Parent.Width - Self.X * 2
+                Y: =If(gblEditTools,lblEditToolsMsg.Y + lblEditToolsMsg.Height,10)
+                ZIndex: =1
+
+                contTool As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.Semibold
+                    Height: |-
+                        =If(
+                            'My Tools Screen'.Size >= 2,
+                            190,
+                            If(
+                                'My Tools Screen'.Width < 590,
+                                50,
+                                120
+                            )
+                        )
+                    Width: |-
+                        =If(
+                            'My Tools Screen'.Size >= 2,
+                            210,
+                            If(
+                                'My Tools Screen'.Width < 590,
+                                70,
+                                120
+                            )
+                        )
+                    Y: |
+                        =0
+                    ZIndex: =8
+
+                    imgToolImage As image:
+                        Height: =Self.Width
+                        Image: =ThisItem.'Tool Image'.Large
+                        OnSelect: =
+                        Tooltip: =ThisItem.'Tool Name'
+                        Width: |-
+                            =If(
+                                'My Tools Screen'.Size < 2,
+                                If(
+                                    'My Tools Screen'.Width < 590,
+                                    20,
+                                    50
+                                ),
+                                74
+                            )
+                        X: =Parent.Width / 2 - Self.Width / 2
+                        Y: |-
+                            =If(
+                                'My Tools Screen'.Width < 590,
+                                Parent.Height / 2 - Self.Height / 2 - 5,
+                                Parent.Height / 2 - Self.Height / 2 - 20
+                            )
+                        ZIndex: =1
+
+                    lblToolName As label:
+                        Align: =Align.Center
+                        FocusedBorderColor: =RGBA(0,0,0,0)
+                        FocusedBorderThickness: =1
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: |-
+                            =If(
+                                'My Tools Screen'.Width < 590,
+                                25,
+                                40
+                            )
+                        OnSelect: =ThisItem.'Is Mandatory'
+                        Size: |-
+                            =If(
+                                'My Tools Screen'.Size < 2,
+                                If(
+                                    'My Tools Screen'.Width < 590,
+                                    6,
+                                    10
+                                ),
+                                13
+                            )
+                        TabIndex: =6
+                        Text: =ThisItem.'Tool Name'
+                        Tooltip: =Self.Text
+                        Width: =Parent.Width
+                        Y: |-
+                            =If(
+                                'My Tools Screen'.Width < 590,
+                                imgToolImage.Y + imgToolImage.Height,
+                                imgToolImage.Y + imgToolImage.Height + 15
+                            )
+                        ZIndex: =2
+
+                    imgAddRemoveTool As image:
+                        AccessibleLabel: =Self.Tooltip
+                        Height: =25
+                        Image: |-
+                            =If(
+                                ThisItem.IsFavourite,
+                                "data:image/svg+xml;utf8, " & EncodeUrl(
+                                    "
+                            <svg width='24' height='24' viewBox='0 0 24 24' fill='" & gblMyToolsColor & "' xmlns='http://www.w3.org/2000/svg'>
+                              <path d='M10.7878 3.10215C11.283 2.09877 12.7138 2.09876 13.209 3.10215L15.567 7.87987L20.8395 8.64601C21.9468 8.80691 22.3889 10.1677 21.5877 10.9487L17.7724 14.6676L18.6731 19.9189C18.8622 21.0217 17.7047 21.8627 16.7143 21.342L11.9984 18.8627L7.28252 21.342C6.29213 21.8627 5.13459 21.0217 5.32374 19.9189L6.2244 14.6676L2.40916 10.9487C1.60791 10.1677 2.05005 8.80691 3.15735 8.64601L8.42988 7.87987L10.7878 3.10215Z' fill='" & gblMyToolsColor & "' />
+                            </svg>"
+                                ),
+                                "data:image/svg+xml;utf8, " & EncodeUrl(
+                                    "
+                            <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                              <path d='M10.7878 3.10215C11.283 2.09877 12.7138 2.09876 13.209 3.10215L15.567 7.87987L20.8395 8.64601C21.9468 8.80691 22.3889 10.1677 21.5877 10.9487L17.7724 14.6676L18.6731 19.9189C18.8622 21.0217 17.7047 21.8627 16.7143 21.342L11.9984 18.8627L7.28252 21.342C6.29213 21.8627 5.13459 21.0217 5.32374 19.9189L6.2244 14.6676L2.40916 10.9487C1.60791 10.1677 2.05005 8.80691 3.15735 8.64601L8.42988 7.87987L10.7878 3.10215ZM11.9984 4.03854L9.74008 8.61443C9.54344 9.01288 9.16332 9.28904 8.72361 9.35294L3.67382 10.0867L7.32788 13.6486C7.64606 13.9587 7.79125 14.4055 7.71614 14.8435L6.85353 19.8729L11.3702 17.4983C11.7635 17.2915 12.2333 17.2915 12.6266 17.4983L17.1433 19.8729L16.2807 14.8435C16.2056 14.4055 16.3508 13.9587 16.6689 13.6486L20.323 10.0867L15.2732 9.35294C14.8335 9.28904 14.4534 9.01288 14.2568 8.61443L11.9984 4.03854Z' fill='#212121' />
+                            </svg>"
+                                )
+                            )
+                        OnSelect: |-
+                            =If(
+                                ThisItem.IsFavourite,
+                                Remove(
+                                    'User Tools',
+                                    LookUp(
+                                        colMyTools,
+                                        ToolId = ThisItem.ID
+                                    )
+                                );
+                                Notify(
+                                    ThisItem.'Tool Name' & " removed from My Tools",
+                                    NotificationType.Success
+                                ),
+                                Patch(
+                                    'User Tools',
+                                    {
+                                        ToolId: ThisItem.ID,
+                                        User: {
+                                            '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+                                            Claims: "i:0#.f|membership|" & User().Email,
+                                            Department: "",
+                                            DisplayName: User().FullName,
+                                            Email: User().Email,
+                                            JobTitle: "",
+                                            Picture: ""
+                                        }
+                                    }
+                                );
+                                Notify(
+                                    ThisItem.'Tool Name' & " added to My Tools",
+                                    NotificationType.Success
+                                );
+                                
+                            );
+                            Refresh('User Tools');
+                            ClearCollect(
+                                colMyTools,
+                                Filter(
+                                    'User Tools',
+                                    User.Email = gblUser.Email
+                                )
+                            );
+                            Clear(colMyTools1);
+                            ForAll(
+                                colMyTools,
+                                Collect(
+                                    colMyTools1,
+                                    LookUp(
+                                        Tools,
+                                        ID = ToolId
+                                    )
+                                )
+                            );
+                            ForAll(
+                                Filter(
+                                    Tools,
+                                    'Is Mandatory'
+                                ),
+                                If(
+                                    IsBlank(
+                                        LookUp(
+                                            colMyTools,
+                                            ToolId = ThisRecord.ID
+                                        )
+                                    ),
+                                    Collect(
+                                        colMyTools1,
+                                        ThisRecord
+                                    )
+                                )
+                            );
+                            ClearCollect(
+                                colMyToolsFave,
+                                AddColumns(
+                                    colMyTools1,
+                                    "IsFavourite",
+                                    true
+                                )
+                            );
+                            ClearCollect(
+                                colAllTools,
+                                Tools
+                            );
+                            ClearCollect(
+                                colAllToolsFave,
+                                AddColumns(
+                                    colAllTools,
+                                    "IsFavourite",
+                                    false
+                                )
+                            );
+                            ForAll(
+                                colMyTools As MyTool,
+                                UpdateIf(
+                                    colAllToolsFave,
+                                    ID = MyTool.ToolId,
+                                    {IsFavourite: true}
+                                )
+                            );
+                            ClearCollect(
+                                colAllToolsSorted,
+                                AddColumns(
+                                    colAllToolsFave,
+                                    "IsFavouriteSort",
+                                    If(
+                                        IsFavourite,
+                                        1,
+                                        2
+                                    )
+                                )
+                            )
+                        TabIndex: =5
+                        Tooltip: |-
+                            =If(
+                                ThisItem.IsFavourite,
+                                "Remove " & ThisItem.'Tool Name' & " from my tools",
+                                "Add " & ThisItem.'Tool Name' & " to my tools"
+                            )
+                        Visible: =gblEditTools && !ThisItem.'Is Mandatory'
+                        Width: =25
+                        X: =10
+                        Y: =5
+                        ZIndex: =3
+
+                    btnLaunchTool As button:
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =Parent.Height
+                        HoverFill: =RGBA(0,0,0,0.1)
+                        OnSelect: =Launch(ThisItem.'Tool Link')
+                        PressedFill: =Self.HoverFill
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Text: =""
+                        Tooltip: ="Launch " & ThisItem.'Tool Name'
+                        Visible: =!gblEditTools
+                        Width: =Parent.Width
+                        ZIndex: =6
+
+            lblEditToolsMsg As label:
+                Font: =Font.'Segoe UI'
+                Height: =30
+                Size: =10
+                Text: ="Use the star icon to add/remove a tool from your tools. Mandatory tools cannot be removed."
+                Tooltip: =Self.Text
+                Visible: =gblEditTools
+                Width: =600
+                X: =10
+                ZIndex: =2
+
+            lblNoTools As label:
+                Align: =Align.Center
+                Font: =Font.'Segoe UI'
+                Text: |-
+                    =If(
+                        !IsBlank(txtSearch.Text),
+                        "No matching tools found.",
+                        "You have no tools, why not edit your tools and add some?"
+                    )
+                Visible: =CountRows(galTools.AllItems) = 0 && !gblIsLoading
+                Width: =500
+                X: =Parent.Width / 2 - Self.Width / 2
+                Y: =galTools.Y + galTools.Height / 2 - Self.Height / 2
+                ZIndex: =3
+

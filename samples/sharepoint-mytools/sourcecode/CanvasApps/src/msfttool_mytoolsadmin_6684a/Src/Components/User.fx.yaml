@@ -1,0 +1,81 @@
+User As CanvasComponent:
+    CenterAlignPhoto: =true
+    Fill: =RGBA(0, 0, 0, 0)
+    HasPhoto: =true
+    Height: =640
+    InitialsFillColor: =RGBA(0, 0, 0, 1)
+    NotificationCount: =1
+    NotificationsFill: |-
+        =ColorValue("#0078d4")
+    NotificationsTextColor: =RGBA(255, 255, 255, 1)
+    Photo: |-
+        =If(
+            User.HasPhoto,
+            Office365Users.UserPhotoV2(User.User.id)
+        )
+    PhotoOutlineFill: =RGBA(0, 0, 0, 1)
+    PhotoSize: |
+        =150
+    ShowPhotoOutline: =true
+    ShowWelcome: =true
+    User: =Office365Users.MyProfileV2()
+    UserDisplayNameFontSize: =100
+    UserInitials: ="Text"
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =14
+
+    lblUser_1 As label:
+        Align: =If(!User.CenterAlignPhoto,Align.Right,Align.Center)
+        AutoHeight: =true
+        Font: =Font.'Segoe UI'
+        Height: =70
+        Size: =25
+        Text: =If(User.ShowWelcome,"Welcome, " & User.User.displayName,User.User.displayName)
+        Visible: =User.ShowWelcome
+        Width: =If(!User.CenterAlignPhoto,User.Width - imgUser_1.Width - 20,User.Width)
+        X: |
+            =0
+        Y: =If(!User.CenterAlignPhoto,imgUser_1.Y + imgUser_1.Height / 2 - lblUser_1.Height,imgUser_1.Y + imgUser_1.Height)
+        ZIndex: =1
+
+    shpUserBg_1 As circle:
+        Height: =imgUser_1.Height + 10
+        Visible: =false
+        Width: =imgUser_1.Width + 10
+        X: =imgUser_1.X
+        Y: =imgUser_1.Y
+        ZIndex: =2
+
+    imgUser_1 As image:
+        Height: =User.PhotoSize
+        Image: =User.Photo
+        RadiusBottomLeft: =Self.RadiusTopLeft
+        RadiusBottomRight: =Self.RadiusTopLeft
+        RadiusTopLeft: =imgUser_1.Height
+        RadiusTopRight: =Self.RadiusTopLeft
+        Width: =User.PhotoSize
+        X: =If(User.CenterAlignPhoto,User.Width / 2 - Self.Width / 2,User.Width - Self.Width - 20)
+        Y: =If(!User.CenterAlignPhoto,User.Height / 2 - Self.Height / 2,User.Height / 2 - Self.Height / 2 - lblUser_1.Height / 2)
+        ZIndex: =3
+
+    shpNotificationsBg As circle:
+        Fill: =User.NotificationsFill
+        Height: =50
+        Width: =50
+        X: =imgUser_1.X + imgUser_1.Width - shpNotificationsBg.Width
+        Y: =imgUser_1.Y
+        ZIndex: =4
+
+    Label1 As label:
+        Align: =Align.Center
+        Color: =User.NotificationsTextColor
+        Height: =shpNotificationsBg.Height
+        Size: =20
+        Text: =User.NotificationCount
+        Width: =shpNotificationsBg.Width
+        X: =shpNotificationsBg.X
+        Y: =shpNotificationsBg.Y
+        ZIndex: =5
+

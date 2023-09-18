@@ -1,0 +1,360 @@
+"'Manage Tools Screen' As screen":
+    OnVisible: |-
+        =UpdateContext({locExpandMenu: false});
+        Set(
+            gblSelMenuItem,
+            LookUp(
+                colMenuItems,
+                MenuItemTitle = "Manage tools"
+            )
+        )
+
+    cmpMenuBarMTS As MenuBar:
+        DefaultSelectedItem: =gblSelMenuItem
+        ExpandImageColor: ="ffffff"
+        ExpandMenu: =locExpandMenu
+        Fill: =App.Theme.Colors.Primary
+        Height: =Parent.Height
+        ItemTextColor: =RGBA(255, 255, 255, 1)
+        MenuItems: =colMenuItems
+        OnExpandSelect: |-
+            =If(
+                !locExpandMenu,
+                UpdateContext({locExpandMenu: true}),
+                UpdateContext({locExpandMenu: false})
+            )
+        OnMenuItemSelect: |-
+            =Set(
+                gblSelMenuItem,
+                Self.SelectedItem
+            );
+            Navigate(Self.SelectedItem.MenuItemScreen)
+        SelectedIndicatorFill: |-
+            =ColorValue("#ffffff")
+        Width: =If(locExpandMenu,230,70)
+
+    contMiddleMTS As groupContainer.horizontalAutoLayoutContainer:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        DropShadow: =DropShadow.None
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =Parent.Width
+        X: =cmpMenuBarMTS.Width + 10
+        Y: =40
+        ZIndex: =1
+
+        contManageTools As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.None
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            Height: =700
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width - cmpMenuBarMTS.Width - 10
+            ZIndex: =2
+
+            contManageToolsMiddle As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.None
+                Height: =Parent.Height
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =10
+                Width: =Parent.Width
+                X: =10
+                Y: |
+                    =0
+                ZIndex: =2
+
+                contManageToolsHeader As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =50
+                    LayoutMinHeight: =50
+                    LayoutMinWidth: =250
+                    Width: =Parent.Width
+                    ZIndex: =3
+
+                    txtManageTools As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        Size: =25
+                        Text: ="Manage tools"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =200
+                        X: =10
+                        Y: =0
+                        ZIndex: =1
+
+                contManageToolsGal As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    Fill: =RGBA(255,255,255,1)
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    Width: =Parent.Width - 40
+                    ZIndex: =4
+
+                    "galManageTools As gallery.'BrowseLayout_Vertical_OneTextVariant_ver5.0'":
+                        BorderColor: =App.Theme.Colors.Primary
+                        BorderThickness: |
+                            =0
+                        DelayItemLoading: =true
+                        Fill: =App.Theme.Colors.Lighter20
+                        Height: =Parent.Height - 30
+                        Items: =Sort(Tools,Order,SortOrder.Ascending)
+                        Layout: =Layout.Vertical
+                        LoadingSpinner: =LoadingSpinner.Data
+                        TemplatePadding: =0
+                        TemplateSize: =57
+                        Width: =Parent.Width - Self.X * 2
+                        Y: =shpHeader.Y + shpHeader.Height
+                        ZIndex: =1
+
+                        lblToolNameMTS As label:
+                            Color: =RGBA(255,255,255,1)
+                            Font: =Font.'Segoe UI'
+                            FontWeight: =FontWeight.Semibold
+                            Height: =Self.Size * 1.8
+                            OnSelect: =Select(Parent)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =ThisItem.'Tool Name'
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =350
+                            X: =16
+                            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                            ZIndex: =1
+
+                        shpSeparatorMTS As rectangle:
+                            Height: =8
+                            OnSelect: =Select(Parent)
+                            Visible: =false
+                            Width: =Parent.TemplateWidth
+                            Y: =Parent.TemplateHeight - Self.Height
+                            ZIndex: =3
+
+                        lblToolLinkMTS As label:
+                            Color: =RGBA(255,255,255,1)
+                            Font: =Font.'Segoe UI'
+                            Height: =Self.Size * 1.8
+                            OnSelect: =Select(Parent)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =ThisItem.'Tool Link'
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =350
+                            X: =lblToolNameMTS.X + lblToolNameMTS.Width + 10
+                            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                            ZIndex: =4
+
+                        lblMandatoryMTS As label:
+                            Color: =RGBA(255, 255, 255, 1)
+                            Font: =Font.'Segoe UI'
+                            Height: =Self.Size * 1.8
+                            OnSelect: =Select(Parent)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =If(ThisItem.'Is Mandatory',"Yes","No")
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =200
+                            X: =lblToolLinkMTS.X + lblToolLinkMTS.Width + 10
+                            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                            ZIndex: =5
+
+                        icoEditTool As icon.Cancel:
+                            Color: =RGBA(255,255,255,1)
+                            Height: =20
+                            Icon: =Icon.Edit
+                            OnSelect: |-
+                                =Set(
+                                    gblSelTool,
+                                    ThisItem
+                                );
+                                Set(
+                                    gblSelMenuItem,
+                                    LookUp(
+                                        colMenuItems,
+                                        MenuItemTitle = "Create tool"
+                                    )
+                                );
+                                Navigate('Tool Screen')
+                            Width: =20
+                            X: =Parent.Width - Self.Width - 5 - icoDeleteTool.Width - 20
+                            Y: =Parent.TemplateHeight / 2 - Self.Height / 2
+                            ZIndex: =6
+
+                        icoDeleteTool As icon.Cancel:
+                            Color: =RGBA(255,255,255,1)
+                            Height: =20
+                            Icon: =Icon.Trash
+                            OnSelect: |-
+                                =Set(
+                                    gblSelTool,
+                                    ThisItem
+                                );
+                                UpdateContext({locShowDlg: true})
+                            Width: =20
+                            X: =Parent.Width - Self.Width - 10
+                            Y: =Parent.TemplateHeight / 2 - Self.Height / 2
+                            ZIndex: =7
+
+                        icoMoveDown As icon.Cancel:
+                            Color: =RGBA(255,255,255,1)
+                            Height: =20
+                            Icon: =Icon.ChevronDown
+                            OnSelect: |-
+                                =Patch(
+                                    Tools,
+                                    LookUp(
+                                        Tools,
+                                        Order = ThisItem.Order + 1
+                                    ),
+                                    {Order: ThisItem.Order}
+                                );
+                                Patch(
+                                    Tools,
+                                    ThisItem,
+                                    {Order: ThisItem.Order + 1}
+                                );
+                                Refresh(Tools)
+                            Tooltip: ="Move tool down"
+                            Visible: =galManageTools.AllItemsCount > 1
+                            Width: =20
+                            X: =icoEditTool.X - icoEditTool.Width - 15
+                            Y: =Parent.TemplateHeight / 2 - Self.Height / 2
+                            ZIndex: =8
+
+                        icoMoveUp As icon.Cancel:
+                            Color: =RGBA(255,255,255,1)
+                            Height: =20
+                            Icon: =Icon.ChevronUp
+                            OnSelect: |-
+                                =Patch(
+                                    Tools,
+                                    LookUp(
+                                        Tools,
+                                        Order = ThisItem.Order - 1
+                                    ),
+                                    {Order: ThisItem.Order}
+                                );
+                                Patch(
+                                    Tools,
+                                    ThisItem,
+                                    {Order: ThisItem.Order - 1}
+                                );
+                                Refresh(Tools)
+                            Tooltip: ="Move tool up"
+                            Visible: =First(Sort(Tools,Order,SortOrder.Ascending)).ID <> ThisItem.ID && galManageTools.AllItemsCount > 1
+                            Width: =20
+                            X: =icoMoveDown.X - icoMoveDown.Width - 15
+                            Y: =Parent.TemplateHeight / 2 - Self.Height / 2
+                            ZIndex: =9
+
+                    shpHeader As rectangle:
+                        Fill: =App.Theme.Colors.Primary
+                        Height: =50
+                        Width: =Parent.Width
+                        ZIndex: =2
+
+                    lblToolNameHeader As label:
+                        Color: =App.Theme.Colors.Lighter80
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        PaddingLeft: =0
+                        Text: ="Tool Name"
+                        X: =15
+                        Y: =shpHeader.Y + shpHeader.Height / 2 - Self.Height / 2
+                        ZIndex: =3
+
+                    lblToolLinkHeader As label:
+                        Color: =App.Theme.Colors.Lighter80
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        PaddingLeft: =0
+                        Text: ="Tool Link"
+                        X: =lblToolNameMTS.X + lblToolNameMTS.Width + 10
+                        Y: =shpHeader.Y + shpHeader.Height / 2 - Self.Height / 2
+                        ZIndex: =4
+
+                    lblMandatoryHeader As label:
+                        Color: =App.Theme.Colors.Lighter80
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        PaddingLeft: =0
+                        Text: ="Mandatory"
+                        X: =lblToolLinkMTS.X + lblToolLinkMTS.Width + 10
+                        Y: =shpHeader.Y + shpHeader.Height / 2 - Self.Height / 2
+                        ZIndex: =5
+
+                    lblNoTools As label:
+                        Align: =Align.Center
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Size: =14
+                        Text: ="No tools to display"
+                        Visible: =galManageTools.AllItemsCount = 0
+                        Width: =500
+                        X: =galManageTools.X + galManageTools.Width / 2 - Self.Width / 2
+                        Y: =galManageTools.Y + galManageTools.Height / 2 - Self.Height / 2 - shpHeader.Height
+                        ZIndex: =6
+
+    cmpDlgMTS As Dialog:
+        Buttons: |-
+            =Table({Label: "Cancel", ButtonType:'Button.ButtonType'.Standard } ,{Label: "Yes", ButtonType:'Button.ButtonType'.Primary})
+        DialogHeight: =300
+        Fill: =cmpDlgMTS.OverlayColor
+        Height: =Parent.Height
+        OnButtonSelect: |-
+            =If(
+                cmpDlgMTS.SelectedButton.Label = "Yes",
+                Remove(
+                    Tools,
+                    gblSelTool
+                );
+                RemoveIf(
+                    'User Tools',
+                    ToolId = gblSelTool.ID
+                );
+                Notify(
+                    gblSelTool.'Tool Name' & " deleted successfully.",
+                    NotificationType.Success,
+                    5000
+                );
+                UpdateContext({locShowDlg: false}),
+                UpdateContext({locShowDlg: false});
+                Set(
+                    gblSelTool,
+                    Blank()
+                )
+            )
+        OnCloseSelect: |-
+            =Set(
+                gblSelTool,
+                Blank()
+            );
+            UpdateContext({locShowDlg: false})
+        SubTitle: ="Are you sure you want to delete this tool?"
+        Title: ="Delete " & gblSelTool.'Tool Name'
+        Visible: =locShowDlg
+        Width: =1366
+        ZIndex: =4
+

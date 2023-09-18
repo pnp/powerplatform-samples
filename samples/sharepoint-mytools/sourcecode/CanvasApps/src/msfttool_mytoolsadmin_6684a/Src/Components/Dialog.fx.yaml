@@ -1,0 +1,211 @@
+Dialog As CanvasComponent:
+    Buttons: |-
+        =Table({Label: "Cancel", ButtonType:'Button.ButtonType'.Standard } ,{Label: "Ok", ButtonType:'Button.ButtonType'.Primary})
+    ContentHeight: =Dialog.DialogHeight - contDialogHeader.Height - galButtons.Height
+    ContentWidth: =Dialog.DialogWidth
+    ContentX: = Dialog.Width/2-Dialog.DialogWidth/2
+    ContentY: = Dialog.Height/2-Dialog.DialogHeight/2+contDialogHeader.Height
+    Description: ="At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ?"
+    DialogHeight: =400
+    DialogWidth: =640
+    Fill: =Dialog.OverlayColor
+    Height: =900
+    OnButtonSelect: =
+    OnCloseSelect: =true
+    OnReset: =
+    OverlayColor: =RGBA(0, 0, 0, 0.4)
+    SelectedButton: |-
+        ={ Label: galButtons.Selected.Label }
+    SubTitle: ="At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ?"
+    Theme: =App.Theme
+    Title: ="Title"
+    Visible: =true
+    Width: =1600
+    X: =0
+    Y: =0
+    ZIndex: =3
+
+    htmShadow As htmlViewer:
+        Height: =Dialog.Height
+        HtmlText: |-
+            ="<div style=' transform: translate(-50%, -50%);position:absolute;top:50%;left:50%;margin:auto;box-shadow:rgba(0, 0, 0, 0.22) 0px 25.6px 57.6px 0px, rgba(0, 0, 0, 0.18) 0px 4.8px 14.4px 0px;border-radius:2px;padding:0;background-color:#ffffff;width:"& Dialog.DialogWidth &"px;height:" & Dialog.DialogHeight  &"px'></div>"
+        Width: =Dialog.Width
+        ZIndex: =1
+
+    contDialogRoot As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =2
+
+        contTop As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            LayoutMinHeight: =0
+            Width: =Parent.Width
+            ZIndex: =1
+
+        contMiddle As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =Min(Dialog.DialogHeight, Parent.Height) 
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutMinWidth: =0
+            LayoutMode: =LayoutMode.Auto
+            Width: =Parent.Width
+            ZIndex: =2
+
+            contLeft As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                LayoutMinWidth: =0
+                ZIndex: =1
+
+            contDialogCenter As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                Fill: =Color.Transparent
+                FillPortions: =0
+                Height: =Min(Dialog.DialogHeight, Parent.Height) 
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =10
+                PaddingTop: =10
+                Width: =Min(Dialog.DialogWidth, Parent.Width)
+                X: =40
+                Y: =40
+                ZIndex: =2
+
+                contDialogHeader As groupContainer.horizontalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =75
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingRight: =10
+                    Width: =Dialog.DialogWidth
+                    ZIndex: =1
+
+                    lblDialogTitle As label:
+                        BorderColor: =
+                        Color: =App.Theme.Colors.Darker70
+                        DisabledFill: =RGBA(0,0,0,0)
+                        Fill: =RGBA(0,0,0,0)
+                        FillPortions: =1
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =60
+                        LineHeight: =20
+                        PaddingBottom: =0
+                        PaddingLeft: =24
+                        PaddingRight: =0
+                        PaddingTop: =16  
+                        Size: =20
+                        TabIndex: =0
+                        Text: =Dialog.Title
+                        ZIndex: =1
+
+                    icoCloseDialog As icon.Cancel:
+                        AccessibleLabel: ="close button"
+                        BorderColor: =ColorFade(icoCloseDialog.Fill, -20%)
+                        Color: =Color.Black
+                        DisabledFill: =ColorFade(icoCloseDialog.Fill, -80%)
+                        Fill: =RGBA(0,0,0,0)
+                        FocusedBorderThickness: =0
+                        Height: =32
+                        HoverBorderColor: =ColorFade(icoCloseDialog.BorderColor, 20%)
+                        HoverColor: =ColorFade(icoCloseDialog.Color, 20%)
+                        HoverFill: =ColorFade(icoCloseDialog.Color, 90%)
+                        Icon: =Icon.Cancel
+                        OnSelect: =Dialog.OnCloseSelect()
+                        PaddingBottom: =8
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =8
+                        PressedBorderColor: =ColorFade(icoCloseDialog.BorderColor, -20%)
+                        PressedColor: =ColorFade(icoCloseDialog.Color, -20%)
+                        PressedFill: =ColorFade(icoCloseDialog.Fill, -20%)
+                        TabIndex: =1
+                        Width: =32
+                        ZIndex: =2
+
+                DialogContentContainer As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    PaddingBottom: =5
+                    Width: =Dialog.DialogWidth
+                    ZIndex: =2
+
+                    lblDialogContent As label:
+                        AutoHeight: =true
+                        BorderColor: =
+                        Color: =App.Theme.Colors.Darker70
+                        DisabledFill: =RGBA(0,0,0,0)
+                        Fill: =RGBA(0,0,0,0)
+                        Font: =Font.'Segoe UI'
+                        Height: =Parent.Height
+                        PaddingBottom: =10
+                        PaddingLeft: =24
+                        PaddingRight: =24
+                        PaddingTop: =0
+                        Size: =15
+                        Text: =Dialog.SubTitle
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                galButtons As gallery.galleryHorizontal:
+                    AccessibleLabel: ="dialog buttons"
+                    AlignInContainer: =AlignInContainer.End
+                    DisabledBorderColor: =galButtons.BorderColor
+                    DisabledFill: =galButtons.Fill
+                    FillPortions: =0
+                    Height: =40
+                    HoverBorderColor: =galButtons.BorderColor
+                    HoverFill: =galButtons.Fill
+                    Items: =Dialog.Buttons
+                    LoadingSpinnerColor: =galButtons.BorderColor
+                    OnSelect: =Set(isButtonSelected, true);Set(selectedButton, ThisItem);Set(isDialogOpen,false)
+                    PressedBorderColor: =galButtons.BorderColor
+                    PressedFill: =galButtons.Fill
+                    ShowScrollbar: =false
+                    TabIndex: =2
+                    TemplatePadding: =0
+                    TemplateSize: =100
+                    Width: =CountRows(galButtons.AllItems) * 100 + 10
+                    X: =20
+                    ZIndex: =5
+
+                    btnDialog As Button:
+                        Alignment: ="center"
+                        BorderColor: =
+                        BorderRadius: =0
+                        BorderStyle: =""
+                        BorderThickness: =0
+                        ButtonType: =ThisItem.ButtonType
+                        DisplayMode: =DisplayMode.Edit
+                        FillColor: =If(ThisItem.ButtonType = 'AppHeader.ColorStyle'.Primary, App.Theme.Colors.Primary)
+                        Height: =32
+                        HideFromAssistiveTechnologies: =false
+                        HoverFillColor: =If(ThisItem.ButtonType = 'AppHeader.ColorStyle'.Primary, App.Theme.Colors.Primary)
+                        Italic: =false
+                        OnSelect: =Dialog.OnButtonSelect()
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        PressedFillColor: =
+                        Strikethrough: =false
+                        Text: =ThisItem.Label
+                        TextColor: =If(ThisItem.ButtonType = 'AppHeader.ColorStyle'.Primary, App.Theme.Colors.Lighter80)
+                        Underline: =false
+                        VerticalAlignment: ="middle"
+                        Width: =96
+                        X: =0
+                        Y: =8
+                        ZIndex: =2
+
+            contRight As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                LayoutMinWidth: =0
+                ZIndex: =3
+
+        contBottom As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Width: =Parent.Width
+            ZIndex: =3
+

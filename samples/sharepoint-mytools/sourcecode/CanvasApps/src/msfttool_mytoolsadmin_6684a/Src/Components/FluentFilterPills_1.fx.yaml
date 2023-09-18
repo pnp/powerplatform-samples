@@ -1,0 +1,67 @@
+FluentFilterPills_1 As CanvasComponent:
+    Fill: |-
+        =ColorValue("#0078D4")
+    Height: =70
+    InactivePillColor: =RGBA(255, 255, 255, 1)
+    InactivePillFill: |-
+        =ColorValue("#106EBE")
+    Items: |-
+        =Table(
+            {
+                PillName: "All",
+                PillValue: "All"
+            },
+            {
+                PillName: "Filter1",
+                PillValue: "Filter1Value"
+            },
+            {
+                PillName: "Filter2",
+                PillValue: "Filter2Value"
+            }
+        )
+    PillFontSize: =15
+    PillPadding: =10
+    PillWidth: =120
+    SelectedPill: =galPills_1.Selected.PillValue
+    SelectedPillColor: |-
+        =ColorValue("#0078D4")
+    SelectedPillFill: =RGBA(255, 255, 255, 1)
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =11
+
+    galPills_1 As gallery.galleryHorizontal:
+        Height: =Parent.Height
+        Items: =FluentFilterPills_1.Items
+        ShowNavigation: =true
+        ShowScrollbar: =false
+        TemplatePadding: =FluentFilterPills_1.PillPadding
+        TemplateSize: =FluentFilterPills_1.PillWidth
+        Width: =Parent.Width
+        ZIndex: =1
+
+        btnPill_1 As button:
+            BorderThickness: =0
+            Color: =If(ThisItem.IsSelected,FluentFilterPills_1.SelectedPillColor,FluentFilterPills_1.InactivePillColor)
+            Fill: =If(!ThisItem.IsSelected,FluentFilterPills_1.InactivePillFill,FluentFilterPills_1.SelectedPillFill)
+            FocusedBorderThickness: =0
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Normal
+            Height: =Parent.TemplateHeight - Parent.TemplatePadding
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnSelect: =Select(Parent)
+            PressedColor: =Self.Color
+            PressedFill: =Self.Fill
+            RadiusBottomLeft: =30
+            RadiusBottomRight: =30
+            RadiusTopLeft: =30
+            RadiusTopRight: =30
+            Size: =FluentFilterPills_1.PillFontSize
+            Text: =ThisItem.PillName
+            Width: =Parent.TemplateWidth
+            X: =12
+            ZIndex: =1
+

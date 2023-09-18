@@ -1,0 +1,591 @@
+"'Tool Screen' As screen":
+    OnVisible: |-
+        =UpdateContext({locExpandMenu:false})
+
+    cmpMenuBarTS As MenuBar:
+        DefaultSelectedItem: =gblSelMenuItem
+        ExpandImageColor: ="ffffff"
+        ExpandMenu: =locExpandMenu
+        Fill: =App.Theme.Colors.Primary
+        Height: =Parent.Height
+        ItemTextColor: =RGBA(255, 255, 255, 1)
+        MenuItems: =colMenuItems
+        OnExpandSelect: |-
+            =If(
+                !locExpandMenu,
+                UpdateContext({locExpandMenu: true}),
+                UpdateContext({locExpandMenu: false})
+            )
+        OnMenuItemSelect: |-
+            =Set(
+                gblSelMenuItem,
+                Self.SelectedItem
+            );
+            Navigate(Self.SelectedItem.MenuItemScreen)
+        SelectedIndicatorFill: |-
+            =ColorValue("#ffffff")
+        Width: =If(locExpandMenu,230,70)
+
+    contMiddleTS As groupContainer.horizontalAutoLayoutContainer:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        DropShadow: =DropShadow.None
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =Parent.Width - cmpMenuBarTS.Width
+        X: =cmpMenuBarTS.Width + 10
+        Y: =40
+        ZIndex: =1
+
+        contCreateEditTool As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.None
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            Height: =700
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =2
+
+            contCreateEditToolVert As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.None
+                Height: =Parent.Height
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =10
+                Width: =Parent.Width - 30
+                X: =10
+                Y: |
+                    =0
+                ZIndex: =2
+
+                contCreateEditToolHeader As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =50
+                    LayoutMinHeight: =50
+                    LayoutMinWidth: =250
+                    Width: =Parent.Width
+                    ZIndex: =3
+
+                    txtCreateEditTool As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        Size: =25
+                        Text: =If(!IsBlank(gblSelTool),"Edit tool - " & gblSelTool.'Tool Name', "Create a new tool")
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =400
+                        X: =10
+                        Y: =0
+                        ZIndex: =1
+
+                    icoDeleteToolCTS As icon.Trash:
+                        Color: =App.Theme.Colors.Primary
+                        Height: =50
+                        Icon: =Icon.Trash
+                        OnSelect: |-
+                            =UpdateContext({locShowDlg:true})
+                        Tooltip: ="Delete tool"
+                        Visible: =!IsBlank(gblSelTool)
+                        Width: =30
+                        X: =Parent.Width - Self.Width - 10
+                        ZIndex: =2
+
+                contCreateEditToolForm As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    Width: =Parent.Width
+                    ZIndex: =4
+
+                    frmTool As form:
+                        DataSource: =Tools
+                        DefaultMode: =If(!IsBlank(gblSelTool),FormMode.Edit, FormMode.New)
+                        Height: =Parent.Height
+                        Item: =gblSelTool
+                        OnSuccess: |-
+                            =Notify(
+                                If(
+                                    !IsBlank(gblSelTool),
+                                    "Tool updated",
+                                    "Tool created"
+                                ),
+                                NotificationType.Success,
+                                5000
+                            );
+                            Set(
+                                gblSelTool,
+                                Blank()
+                            );
+                            ResetForm(frmTool);
+                            Back()
+                        ZIndex: =1
+
+                        crdIsMandatory As typedDataCard.toggleEditCard:
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="IsMandatory"
+                            Default: =ThisItem.'Is Mandatory'
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@Tools],DataSourceInfo.DisplayName,"IsMandatory")
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =50
+                            Required: =false
+                            Update: =tglMandatory.Value
+                            Width: =Parent.Width
+                            X: =0
+                            Y: =3
+                            ZIndex: =1
+
+                            lblMandatoryKey As label:
+                                AutoHeight: =true
+                                Color: =RGBA(0, 0, 0, 1)
+                                Font: =Font.'Segoe UI'
+                                Height: =34
+                                Text: =Parent.DisplayName
+                                Width: =Parent.Width - 60
+                                Wrap: =false
+                                X: =30
+                                Y: =10
+                                ZIndex: =1
+
+                            tglMandatory As toggleSwitch:
+                                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                                Default: =chkMandatory.Checked
+                                DisplayMode: =Parent.DisplayMode
+                                Tooltip: =Parent.DisplayName
+                                Visible: =false
+                                X: =30
+                                Y: =lblMandatoryKey.Y + lblMandatoryKey.Height + 5
+                                ZIndex: =2
+
+                            lblMandatoryError As label:
+                                AutoHeight: =true
+                                Font: =Font.'Segoe UI'
+                                Height: =10
+                                Live: =Live.Assertive
+                                PaddingBottom: =0
+                                PaddingLeft: =0
+                                PaddingRight: =0
+                                PaddingTop: =0
+                                Size: =12
+                                Text: =Parent.Error
+                                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                                Width: =Parent.Width - 60
+                                X: =30
+                                Y: =tglMandatory.Y + tglMandatory.Height
+                                ZIndex: =3
+
+                            lblMandatoryStar As label:
+                                Align: =Align.Center
+                                Font: =Font.'Segoe UI'
+                                Height: =lblMandatoryKey.Height
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                Wrap: =false
+                                Y: =lblMandatoryKey.Y
+                                ZIndex: =4
+
+                            chkMandatory As Checkbox:
+                                Checked: =ThisItem.'Is Mandatory'
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =32
+                                Label: =""
+                                Width: =160
+                                X: =25
+                                Y: =lblMandatoryMsg.Y + lblMandatoryMsg.Height
+                                ZIndex: =5
+
+                            lblMandatoryMsg As label:
+                                AutoHeight: =true
+                                Color: =RGBA(0, 0, 0, 1)
+                                Font: =Font.'Segoe UI'
+                                Height: =34
+                                Size: =10
+                                Text: ="Mandatory tools are displayed for all users in their 'My Tools' and cannot be removed."
+                                Width: =Parent.Width - 60
+                                Wrap: =false
+                                X: =30
+                                Y: =40
+                                ZIndex: =6
+
+                        crdOrder As typedDataCard.numberEditCard:
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Order0"
+                            Default: =ThisItem.Order
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@Tools],DataSourceInfo.DisplayName,"Order0")
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =50
+                            Required: =false
+                            Update: =txtOrder.Text
+                            Visible: =false
+                            Width: =266
+                            X: =1
+                            Y: =3
+                            ZIndex: =1
+
+                            lblOrderKey As label:
+                                AutoHeight: =true
+                                Height: =34
+                                Text: =Parent.DisplayName
+                                Width: =Parent.Width - 60
+                                Wrap: =false
+                                X: =30
+                                Y: =10
+                                ZIndex: =1
+
+                            txtOrder As text:
+                                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                                Default: =If(IsBlank(gblSelTool),First(Sort(Tools,Order,SortOrder.Descending)).Order + 1,gblSelTool.Order)
+                                DelayOutput: =true
+                                DisplayMode: =Parent.DisplayMode
+                                Format: =TextFormat.Number
+                                PaddingLeft: =5
+                                RadiusBottomLeft: =0
+                                RadiusBottomRight: =0
+                                RadiusTopLeft: =0
+                                RadiusTopRight: =0
+                                Tooltip: =Parent.DisplayName
+                                Width: =Parent.Width - 60
+                                X: =30
+                                Y: =lblOrderKey.Y + lblOrderKey.Height + 5
+                                ZIndex: =2
+
+                            lblOrderError As label:
+                                AutoHeight: =true
+                                Height: =10
+                                Live: =Live.Assertive
+                                PaddingBottom: =0
+                                PaddingLeft: =0
+                                PaddingRight: =0
+                                PaddingTop: =0
+                                Text: =Parent.Error
+                                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                                Width: =Parent.Width - 60
+                                X: =30
+                                Y: =txtOrder.Y + txtOrder.Height
+                                ZIndex: =3
+
+                            lblOrderStar As label:
+                                Align: =Align.Center
+                                Height: =lblOrderKey.Height
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                Wrap: =false
+                                Y: =lblOrderKey.Y
+                                ZIndex: =4
+
+                        crdToolName As typedDataCard.textualEditCard:
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="ToolName"
+                            Default: =ThisItem.'Tool Name'
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@Tools],DataSourceInfo.DisplayName,"ToolName")
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =50
+                            MaxLength: =DataSourceInfo([@Tools], DataSourceInfo.MaxLength, "ToolName")
+                            Required: =true
+                            Update: =txtToolName.Value
+                            Width: =Parent.Width
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                            lblToolNameKey As label:
+                                AutoHeight: =true
+                                Color: =RGBA(0, 0, 0, 1)
+                                Font: =Font.'Segoe UI'
+                                Height: =34
+                                Text: =Parent.DisplayName
+                                Width: =Parent.Width - 60
+                                Wrap: =false
+                                X: =30
+                                Y: =10
+                                ZIndex: =1
+
+                            lblToolNameError As label:
+                                AutoHeight: =true
+                                Font: =Font.'Segoe UI'
+                                Height: =10
+                                Live: =Live.Assertive
+                                PaddingBottom: =0
+                                PaddingLeft: =0
+                                PaddingRight: =0
+                                PaddingTop: =0
+                                Size: =12
+                                Text: =Parent.Error
+                                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                                Width: =Parent.Width - 60
+                                X: =30
+                                Y: =txtToolName.Y + txtToolName.Height
+                                ZIndex: =3
+
+                            lblToolNameStar As label:
+                                Align: =Align.Center
+                                Color: =RGBA(0, 0, 0, 1)
+                                Font: =Font.'Segoe UI'
+                                Height: =lblToolNameKey.Height
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                Wrap: =false
+                                Y: =lblToolNameKey.Y
+                                ZIndex: =4
+
+                            "txtToolName As 'Text input'":
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =32
+                                Placeholder: ="Enter name of tool"
+                                Required: =true
+                                Value: =Parent.Default
+                                Width: =200
+                                X: =30
+                                Y: =lblToolNameKey.Y + lblToolNameKey.Height + 5
+                                ZIndex: =5
+
+                        crdToolLink As typedDataCard.urlEditCard:
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="ToolLink"
+                            Default: =ThisItem.'Tool Link'
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@Tools],DataSourceInfo.DisplayName,"ToolLink")
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =50
+                            Required: =true
+                            Update: =txtToolLink.Value
+                            Width: =Parent.Width
+                            X: =0
+                            Y: =1
+                            ZIndex: =2
+
+                            lblToolLinkKey As label:
+                                AutoHeight: =true
+                                Color: =RGBA(0, 0, 0, 1)
+                                Font: =Font.'Segoe UI'
+                                Height: =34
+                                Text: =Parent.DisplayName
+                                Width: =Parent.Width - 60
+                                Wrap: =false
+                                X: =30
+                                Y: =10
+                                ZIndex: =1
+
+                            lblToolLinkError As label:
+                                AutoHeight: =true
+                                Font: =Font.'Segoe UI'
+                                Height: =10
+                                Live: =Live.Assertive
+                                PaddingBottom: =0
+                                PaddingLeft: =0
+                                PaddingRight: =0
+                                PaddingTop: =0
+                                Size: =12
+                                Text: |-
+                                    =If(!IsMatch(txtToolLink.Value,"(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$") && !IsBlank(txtToolLink.Value),"Enter a valid URL", Parent.Error)
+                                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                                Width: =Parent.Width - 60
+                                X: =30
+                                Y: =txtToolLink.Y + txtToolLink.Height
+                                ZIndex: =3
+
+                            lblToolLinkStar As label:
+                                Align: =Align.Center
+                                Color: =RGBA(0, 0, 0, 1)
+                                Font: =Font.'Segoe UI'
+                                Height: =lblToolLinkKey.Height
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                Wrap: =false
+                                Y: =lblToolLinkKey.Y
+                                ZIndex: =4
+
+                            "txtToolLink As 'Text input'":
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =32
+                                Placeholder: ="Enter URL to tool"
+                                Required: =true
+                                Value: =Parent.Default
+                                Width: =320
+                                X: =30
+                                Y: =lblToolLinkKey.Y + lblToolLinkKey.Height + 5
+                                ZIndex: =5
+
+                        crdToolImage As typedDataCard.addLargePictureCard:
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="ToolImage"
+                            Default: =ThisItem.'Tool Image'
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@Tools],DataSourceInfo.DisplayName,"ToolImage")
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =50
+                            Required: =true
+                            Update: =imgToolImageTS.Image
+                            Width: =266
+                            X: =0
+                            Y: =2
+                            ZIndex: =2
+
+                            lblToolImageKey As label:
+                                AutoHeight: =true
+                                Color: =RGBA(0, 0, 0, 1)
+                                Font: =Font.'Segoe UI'
+                                Height: =34
+                                Text: =Parent.DisplayName
+                                Width: =Parent.Width - 60
+                                Wrap: =false
+                                X: =30
+                                Y: =10
+                                ZIndex: =1
+
+                            imgToolImageTS As image:
+                                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                                DisplayMode: =Parent.DisplayMode
+                                Height: =btnAddToolImage.Height
+                                Image: |-
+                                    =If(
+                                        IsBlank(btnAddToolImage.Media),
+                                        If(
+                                            IsBlank(ThisItem.'Tool Image'),
+                                            SampleImage,
+                                            ThisItem.'Tool Image'
+                                        ),
+                                        btnAddToolImage.Media
+                                    )
+                                Tooltip: =Parent.DisplayName
+                                Width: =btnAddToolImage.Width
+                                X: =btnAddToolImage.X
+                                Y: =btnAddToolImage.Y
+                                ZIndex: =2
+
+                            btnAddToolImage As addMedia:
+                                Font: =Font.'Segoe UI'
+                                Height: =200
+                                Text: |-
+                                    =If(
+                                        !IsBlank(gblSelTool.'Tool Image'),
+                                        "Change picture",
+                                        "Tap or click to add a picture"
+                                    )
+                                Width: =Parent.Width - 60
+                                X: =30
+                                Y: =lblToolImageKey.Y + lblToolImageKey.Height + 5
+                                ZIndex: =3
+
+                            lblToolImageError As label:
+                                AutoHeight: =true
+                                Font: =Font.'Segoe UI'
+                                Height: =10
+                                Live: =Live.Assertive
+                                PaddingBottom: =0
+                                PaddingLeft: =0
+                                PaddingRight: =0
+                                PaddingTop: =0
+                                Size: =12
+                                Text: =Parent.Error
+                                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                                Width: =Parent.Width - 60
+                                X: =30
+                                Y: =imgToolImageTS.Y + imgToolImageTS.Height
+                                ZIndex: =4
+
+                            lblToolImageStar As label:
+                                Align: =Align.Center
+                                Color: =RGBA(0, 0, 0, 1)
+                                Font: =Font.'Segoe UI'
+                                Height: =lblToolImageKey.Height
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                Wrap: =false
+                                Y: =lblToolImageKey.Y
+                                ZIndex: =5
+
+                contButtons As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =50
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    Width: =Parent.Width
+                    ZIndex: =5
+
+                    btnSubmit As Button:
+                        AccessibleLabel: ="Submit changes to tool"
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        OnSelect: |-
+                            =If(
+                                lblToolLinkError.Text <> "Enter a valid URL",
+                                SubmitForm(frmTool)
+                            )
+                        Text: ="Submit"
+                        Width: =110
+                        X: =Parent.Width - Self.Width - 10
+                        Y: =Parent.Height / 2 - Self.Height / 2
+                        ZIndex: =1
+
+                    btnCancel As Button:
+                        AccessibleLabel: ="Cancel"
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        OnSelect: |-
+                            =Set(
+                                gblSelTool,
+                                Blank()
+                            );
+                            Back()
+                        Text: ="Cancel"
+                        Width: =110
+                        X: =btnSubmit.X - btnSubmit.Width - 10
+                        Y: =Parent.Height / 2 - Self.Height / 2
+                        ZIndex: =2
+
+    cmpDlgTS As Dialog:
+        Buttons: |-
+            =Table({Label: "Cancel", ButtonType:'Button.ButtonType'.Standard } ,{Label: "Yes", ButtonType:'Button.ButtonType'.Primary})
+        Fill: =cmpDlgTS.OverlayColor
+        Height: =Parent.Height
+        OnButtonSelect: |-
+            =If(
+                cmpDlgTS.SelectedButton.Label = "Yes",
+                Remove(
+                    Tools,
+                    gblSelTool
+                );
+                RemoveIf(
+                    'User Tools',
+                    ToolId = gblSelTool.ID
+                );
+                Notify(
+                    gblSelTool.'Tool Name' & " deleted successfully.",
+                    NotificationType.Success,
+                    5000
+                );
+                UpdateContext({locShowDlg: false}),
+                UpdateContext({locShowDlg: false});
+            )
+        OnCloseSelect: |-
+            =UpdateContext({locShowDlg: false})
+        SubTitle: ="Are you sure you want to delete this tool?"
+        Title: ="Delete " & gblSelTool.'Tool Name'
+        Visible: =locShowDlg
+        Width: =Parent.Width
+        ZIndex: =4
+

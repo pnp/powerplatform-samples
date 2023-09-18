@@ -1,0 +1,358 @@
+"'All Tools Screen' As screen":
+    OnVisible: |-
+        =UpdateContext({locExpandMenu: false});
+        Set(
+            gblSelTool,
+            Blank()
+        );
+        Set(
+            gblSelMenuItem,
+            LookUp(
+                colMenuItems,
+                MenuItemTitle = "All tools"
+            )
+        )
+
+    contMiddleATS As groupContainer.horizontalAutoLayoutContainer:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        DropShadow: =DropShadow.None
+        Height: =Parent.Height - shpHeaderBgATS.Height - 20
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =Parent.Width - cmpMenuBarATS.Width - 20
+        X: =cmpMenuBarATS.Width + 10
+        Y: =60
+        ZIndex: =1
+
+        contAllTools As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.None
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            Height: =720
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =2
+
+            contAllToolsVert As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.None
+                Height: =Parent.Height
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =10
+                Width: =Parent.Width - 20
+                X: =10
+                Y: |
+                    =0
+                ZIndex: =2
+
+                contAllToolsHeader As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =45
+                    LayoutMinHeight: =50
+                    LayoutMinWidth: =250
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                    txtAllTools As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        Size: =20
+                        Text: ="All Tools"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =10
+                        Y: =5
+                        ZIndex: =1
+
+                    btnCreateTool As Button:
+                        AccessibleLabel: ="Create tool"
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        OnSelect: |-
+                            =Set(
+                                gblSelMenuItem,
+                                LookUp(
+                                    colMenuItems,
+                                    MenuItemTitle = "Create tool"
+                                )
+                            );
+                            ResetForm(frmTool);
+                            Navigate(
+                                'Tool Screen',
+                                ScreenTransition.CoverRight
+                            )
+                        Text: ="Create tool"
+                        Width: =110
+                        X: =Parent.Width - Self.Width - 10
+                        Y: =Parent.Height / 2 - Self.Height / 2
+                        ZIndex: =2
+
+                contAllToolsSearch As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =45
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    Width: =Parent.Width
+                    ZIndex: =2
+
+                    "txtSearchATS As 'Text input'":
+                        AccessibleLabel: ="Search for a tool..."
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =40
+                        Placeholder: ="Search for a tool..."
+                        Width: =350
+                        X: =Parent.Width / 2 - Self.Width / 2
+                        Y: =0
+                        ZIndex: =1
+
+                    shpClearATS As circle:
+                        Fill: =App.Theme.Colors.Primary
+                        Height: =20
+                        OnSelect: =Reset(txtSearchATS)
+                        Tooltip: ="Clear search"
+                        Visible: =!IsBlank(txtSearchATS.Value)
+                        Width: =20
+                        X: =txtSearchATS.X + txtSearchATS.Width - Self.Width - 5
+                        Y: =txtSearchATS.Y + txtSearchATS.Height / 2 - Self.Height / 2
+                        ZIndex: =2
+
+                    icoClearATS As icon.Cancel:
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =15
+                        Icon: =Icon.Cancel
+                        OnSelect: =Reset(txtSearchATS)
+                        Tooltip: ="Clear search"
+                        Visible: =shpClearATS.Visible
+                        Width: =15
+                        X: =shpClearATS.X + shpClearATS.Width / 2 - Self.Width / 2
+                        Y: =shpClearATS.Y + shpClearATS.Height / 2 - Self.Height / 2
+                        ZIndex: =3
+
+                contAllToolsGal As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    Width: =Parent.Width - Self.X * 2
+                    ZIndex: =3
+
+                    "galAllTools As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0'":
+                        DelayItemLoading: =true
+                        Height: =Parent.Height
+                        Items: |-
+                            =If(
+                                !IsBlank(txtSearchATS),
+                                Sort(
+                                    Filter(
+                                        Tools,
+                                        StartsWith(
+                                            'Tool Name',
+                                            txtSearchATS.Value
+                                        )
+                                    ),
+                                    Order,
+                                    SortOrder.Ascending
+                                ),
+                                Sort(
+                                    Tools,
+                                    Order,
+                                    SortOrder.Ascending
+                                )
+                            )
+                        LoadingSpinner: =LoadingSpinner.Data
+                        ShowNavigation: =true
+                        ShowScrollbar: =false
+                        TemplateSize: =230
+                        Width: =Parent.Width
+                        WrapCount: =3
+                        ZIndex: =1
+
+                        contTool As groupContainer.manualLayoutContainer:
+                            DropShadow: =DropShadow.Semibold
+                            Width: =225
+                            X: =5
+                            ZIndex: =4
+
+                            imgToolImage As image:
+                                Height: =74
+                                Image: =ThisItem.'Tool Image'.Full
+                                Tooltip: =ThisItem.'Tool Name' & " image"
+                                Width: =74
+                                X: =Parent.Width / 2 - Self.Width / 2
+                                Y: =Parent.Height / 2 - Self.Height / 2 - 20
+                                ZIndex: =1
+
+                            lblToolName As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =60
+                                Size: =16
+                                Text: =ThisItem.'Tool Name'
+                                Weight: ='TextCanvas.Weight'.Bold
+                                Width: =Parent.Width
+                                X: =Parent.Width / 2 - Self.Width / 2
+                                Y: =imgToolImage.Y + imgToolImage.Height + 15
+                                ZIndex: =2
+
+                            icoEditToolATS As icon.Cancel:
+                                Color: =App.Theme.Colors.Darker10
+                                Height: =20
+                                Icon: =Icon.Edit
+                                OnSelect: |-
+                                    =Set(
+                                        gblSelTool,
+                                        ThisItem
+                                    );
+                                    Set(
+                                        gblSelMenuItem,
+                                        LookUp(
+                                            colMenuItems,
+                                            MenuItemTitle = "Create tool"
+                                        )
+                                    );
+                                    Navigate(
+                                        'Tool Screen',
+                                        ScreenTransition.CoverRight
+                                    )
+                                Tooltip: ="Edit " & ThisItem.'Tool Name'
+                                Width: =20
+                                X: =Parent.Width - Self.Width - 5 - icoDeleteToolATS.Width - 7
+                                Y: =10
+                                ZIndex: =3
+
+                            icoDeleteToolATS As icon.Cancel:
+                                Color: =App.Theme.Colors.Darker10
+                                Height: =20
+                                Icon: =Icon.Trash
+                                OnSelect: |-
+                                    =Set(
+                                        gblSelTool,
+                                        ThisItem
+                                    );
+                                    UpdateContext({locShowDlg: true})
+                                Tooltip: ="Delete " & ThisItem.'Tool Name'
+                                Width: =20
+                                X: =Parent.Width - Self.Width - 5
+                                Y: =10
+                                ZIndex: =4
+
+                    Label3 As label:
+                        Align: =Align.Center
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Size: =14
+                        Text: |-
+                            =If(
+                                !IsBlank(txtSearchATS.Value),
+                                "No matching tools found.",
+                                "No tools to display. Please create some using the create tool option."
+                            )
+                        Visible: =galAllTools.AllItemsCount = 0
+                        Width: =600
+                        X: =Parent.Width / 2 - Self.Width / 2
+                        Y: =Parent.Height / 2 - Self.Height / 2
+                        ZIndex: =2
+
+    cmpMenuBarATS As MenuBar:
+        DefaultSelectedItem: =gblSelMenuItem
+        ExpandImageColor: ="ffffff"
+        ExpandMenu: =locExpandMenu
+        Fill: =App.Theme.Colors.Primary
+        Height: =Parent.Height
+        ItemTextColor: =RGBA(255, 255, 255, 1)
+        MenuItems: =colMenuItems
+        OnExpandSelect: |-
+            =If(
+                !locExpandMenu,
+                UpdateContext({locExpandMenu: true}),
+                UpdateContext({locExpandMenu: false})
+            )
+        OnMenuItemSelect: |-
+            =Set(
+                gblSelMenuItem,
+                Self.SelectedItem
+            );
+            Navigate(Self.SelectedItem.MenuItemScreen)
+        SelectedIndicatorFill: |-
+            =ColorValue("#ffffff")
+        Width: =If(locExpandMenu,230,70)
+        ZIndex: =2
+
+    shpHeaderBgATS As rectangle:
+        Fill: =App.Theme.Colors.Primary
+        FocusedBorderColor: =Self.Fill
+        FocusedBorderThickness: =0
+        Height: =55
+        Tooltip: ="My Tools Admin"
+        Width: =Parent.Width - cmpMenuBarATS.Width
+        X: =cmpMenuBarATS.Width
+        ZIndex: =3
+
+    lblMyToolsAdmin As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Size: =15
+        Text: ="My Tools Admin"
+        Tooltip: =Self.Text
+        Width: =200
+        X: =cmpMenuBarATS.Width + 10
+        Y: =5
+        ZIndex: =4
+
+    cmpDlgATS As Dialog:
+        Buttons: |-
+            =Table({Label: "Cancel", ButtonType:'Button.ButtonType'.Standard } ,{Label: "Yes", ButtonType:'Button.ButtonType'.Primary})
+        Fill: =cmpDlgATS.OverlayColor
+        Height: =Parent.Height
+        OnButtonSelect: |-
+            =If(
+                cmpDlgATS.SelectedButton.Label = "Yes",
+                Remove(
+                    Tools,
+                    gblSelTool
+                );
+                RemoveIf(
+                    'User Tools',
+                    ToolId = gblSelTool.ID
+                );
+                Notify(
+                    gblSelTool.'Tool Name' & " deleted successfully.",
+                    NotificationType.Success,
+                    5000
+                );
+                UpdateContext({locShowDlg: false}),
+                UpdateContext({locShowDlg: false});
+                Set(
+                    gblSelTool,
+                    Blank()
+                )
+            )
+        OnCloseSelect: |-
+            =Set(
+                gblSelTool,
+                Blank()
+            );
+            UpdateContext({locShowDlg: false})
+        SubTitle: ="Are you sure you want to delete this tool?"
+        Title: ="Delete " & gblSelTool.'Tool Name'
+        Visible: =locShowDlg
+        Width: =Parent.Width
+        ZIndex: =5
+
