@@ -26,6 +26,16 @@ Whenever you are submitting any changes to the community sample repositories, pl
 * If you are submitting multiple samples, please create a specific PR for each of them
 * If you are submitting typo or documentation fix, you can combine modifications to single PR where suitable
 
+## Why
+
+To make your app reusable, so that more people can benefit from it, we want to share the source code files. To be able to get the source files, you will need to use the Power Platform CLI to extract all files from the solution. 
+
+By using solutions, you have the ability to add multiple components to your solution. You don't have to only have a Power App, but you can also combine it with a dataverse table or a cloud flow.
+
+## Prerequisites
+
+To unpack the source code for your solution, you will need to use the Power Platform CLI. The easiest way install the Power Platform CLI, is by installing the [Power Platform Tools for Visual Studio Code](https://aka.ms/pac/docs#install-using-power-platform-tools-for-visual-studio-code). This means you will also have to install [Visual Studio Code](https://code.visualstudio.com/Download).
+
 ## Sample Naming and Structure Guidelines
 
 When you are submitting a new sample, it has to follow up below guidelines
@@ -40,6 +50,24 @@ When you are submitting a new sample, it has to follow up below guidelines
 * When submitting a new sample solution, please name the sample solution folder accordingly
 * Do not use period/dot in the folder name of the provided sample
 * All folders should be in lower case
+
+## Clone the solution
+
+* Open up Visual Studio Code
+* Open a terminal by going to `Terminal` > `New Terminal` or by using `ctrl + backtick`
+* Create a new auth profile by using the the `pac auth create` command ([Link](https://aka.ms/pac/auth#pac-auth-create)) or by using the Power Platform Tools pane in Visual Studio Code (that's the Power Apps icon in the activity bar that's on the left of in Visual Studio Code)
+* Make sure that you are connected to the right environment by using the `pac org who` command. This will show you to which environment you are connected. If you are not connected to the right environment, you can switch by using the `pac org select` command ([link](https://aka.ms/pac/org#pac-org-select))
+* To clone the solution we need the internal name of the solution. If you don't know it by heart, you can list all the solutions in the environment by using the `pac solution list` command ([link](https://aka.ms/pac/solution#pac-solution-list))
+* Cloning can be done by using the `pac solution clone` command ([link](https://aka.ms/pac/solution#pac-solution-clone)), type the following command in the terminal:
+  ```bash
+  pac solution clone --name InternalSolutionName --outputDirectory sourcecode --processCanvasApps
+  ```
+
+  Making sure to replace `InternalSolutionName` to the internal solution name.  **Be sure to wrap values that have spaces!**
+
+  The `--processCanvasApps` is used to unpack the canvas apps that might be in your solution. 
+
+Please note that you will now find all source code files in that new folder. You can open the folder in [Visual Studio Code](https://code.visualstudio.com/Download).
 
 ## Submitting Pull Requests
 
