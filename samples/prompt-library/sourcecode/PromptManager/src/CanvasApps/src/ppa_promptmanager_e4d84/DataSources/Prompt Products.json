@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr84c_newtable1s",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr84c_newtable1",
+    "MaxGetRowsCount": 500,
+    "Name": "Prompt Products",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr84c_cr84c_promptlibrary_Product_cr84c_newtabl": "Prompt Libraries",
+      "cr84c_newtable1_AsyncOperations": "System Jobs",
+      "cr84c_newtable1_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr84c_newtable1_DuplicateBaseRecord": "Duplicate Records (cr84c_newtable1_DuplicateBaseRecord)",
+      "cr84c_newtable1_DuplicateMatchingRecord": "Duplicate Records (cr84c_newtable1_DuplicateMatchingRecord)",
+      "cr84c_newtable1_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr84c_newtable1_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr84c_newtable1_ProcessSession": "Process Sessions",
+      "cr84c_newtable1_SyncErrors": "Sync Errors",
+      "cr84c_newtable1id": "Prompt Products",
+      "cr84c_order": "Order",
+      "cr84c_product": "Product",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Prompt Products",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Prompt Products (Views)",
+    "Name": "_cr84c_newtable1_views",
+    "RelatedEntityName": "Prompt Products",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "465511c8-31b0-4154-aaeb-4d61c81e120a": "Active Prompt Products",
+      "8f40afd1-14fb-4d92-a2f2-d5850c6be82d": "Inactive Prompt Products",
+      "915cf3eb-6bed-4698-9d71-1d8f395563c7": "Prompt Products Lookup View",
+      "ac5a3c57-7c31-4e1a-acd0-7c1a2bbe3ab5": "Prompt Products Advanced Find View",
+      "b7f49b01-0534-4cbe-9a59-cb7a986ada9d": "Prompt Products Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Prompt Products)",
+    "Name": "cr84c_newtable1_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Prompt Products"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Prompt Products",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Prompt Products)",
+    "Name": "cr84c_newtable1_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Prompt Products"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Prompt Products",
+    "Type": "OptionSetInfo"
+  }
+]

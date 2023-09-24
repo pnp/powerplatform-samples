@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr84c_newtable3s",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr84c_newtable3",
+    "MaxGetRowsCount": 500,
+    "Name": "Prompt Favorites",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr84c_newtable3_AsyncOperations": "System Jobs",
+      "cr84c_newtable3_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr84c_newtable3_DuplicateBaseRecord": "Duplicate Records (cr84c_newtable3_DuplicateBaseRecord)",
+      "cr84c_newtable3_DuplicateMatchingRecord": "Duplicate Records (cr84c_newtable3_DuplicateMatchingRecord)",
+      "cr84c_newtable3_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr84c_newtable3_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr84c_newtable3_ProcessSession": "Process Sessions",
+      "cr84c_newtable3_SyncErrors": "Sync Errors",
+      "cr84c_newtable3id": "Prompt Favorites",
+      "cr84c_Prompt": "Prompt",
+      "cr84c_user": "User",
+      "cr84c_useremail": "User Email",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Prompt Favorites",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Prompt Favorites (Views)",
+    "Name": "_cr84c_newtable3_views",
+    "RelatedEntityName": "Prompt Favorites",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "3219378e-aa7c-40bb-9ed8-78488f1fbbf7": "Prompt Favorites Lookup View",
+      "6029f96c-1c91-46ae-939c-a15b62debfa7": "Inactive Prompt Favorites",
+      "83fda2cd-c8ba-49e9-a922-986d4eda7535": "Prompt Favorites Advanced Find View",
+      "9d20cef4-a5e7-4d1a-af9b-d2545ed385a2": "Prompt Favorites Associated View",
+      "abbfa14a-6143-4df0-a230-90e3b68062c3": "Active Prompt Favorites"
+    }
+  },
+  {
+    "DisplayName": "Status (Prompt Favorites)",
+    "Name": "cr84c_newtable3_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Prompt Favorites"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Prompt Favorites",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Prompt Favorites)",
+    "Name": "cr84c_newtable3_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Prompt Favorites"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Prompt Favorites",
+    "Type": "OptionSetInfo"
+  }
+]
