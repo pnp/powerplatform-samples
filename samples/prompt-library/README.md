@@ -1,4 +1,4 @@
-# Prompt Management Solutino
+# Prompt Management Solution
 
 ## Summary
 
