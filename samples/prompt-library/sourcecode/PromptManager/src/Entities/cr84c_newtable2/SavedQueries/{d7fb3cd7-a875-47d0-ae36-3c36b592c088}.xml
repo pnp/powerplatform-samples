@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{d7fb3cd7-a875-47d0-ae36-3c36b592c088}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="cr84c_user" select="1" icon="1" preview="1">
+        <row name="result" id="cr84c_newtable2id">
+          <cell name="cr84c_user" width="300" />
+          <cell name="createdon" width="125" />
+          <cell name="cr84c_rating" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="cr84c_newtable2">
+          <attribute name="cr84c_newtable2id" />
+          <attribute name="cr84c_user" />
+          <attribute name="createdon" />
+          <order attribute="cr84c_user" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Prompt Ratings" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
