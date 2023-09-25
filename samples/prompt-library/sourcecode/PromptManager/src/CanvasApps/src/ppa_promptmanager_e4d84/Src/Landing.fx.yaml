@@ -1,0 +1,1345 @@
+"Landing As screen.'autoLayout_Sidebar_ver1.0'":
+    OnVisible: =
+
+    ScreenContainer1 As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer1 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            Container1 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.None
+                FillPortions: =7
+                Height: =70
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutJustifyContent: =LayoutJustifyContent.Center
+                LayoutMinHeight: =70
+                LayoutMinWidth: =150
+                LayoutMode: =LayoutMode.Auto
+                ZIndex: =3
+
+                TextCanvas1 As Text:
+                    Align: ='TextCanvas.Align'.Start
+                    AlignInContainer: =AlignInContainer.Start
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Size: =21
+                    Text: ="    PROMPT MANAGER"
+                    VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =300
+                    Wrap: =false
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+            Container3_1 As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.None
+                LayoutAlignItems: =LayoutAlignItems.End
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutJustifyContent: =LayoutJustifyContent.Center
+                LayoutMinHeight: =70
+                LayoutMinWidth: =45
+                LayoutMode: =LayoutMode.Auto
+                ZIndex: =5
+
+                Button2 As button:
+                    BorderThickness: =1
+                    Fill: |-
+                        =ColorValue("#287086")
+                    HoverFill: |-
+                        =ColorFade(ColorValue("#287086"), -20%)
+                    OnSelect: =Navigate(MyProfile)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    PressedColor: =Self.Color
+                    PressedFill: =Self.Fill
+                    RadiusBottomLeft: =100
+                    RadiusBottomRight: =100
+                    RadiusTopLeft: =100
+                    RadiusTopRight: =100
+                    Size: =12
+                    Text: =Left(User().FullName,1) & Left(Last(Split(User().FullName, " ")).Value,1)
+                    Tooltip: ="View your profile"
+                    Width: =40
+                    ZIndex: =2
+
+            Container3_4 As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.None
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutJustifyContent: =LayoutJustifyContent.Center
+                LayoutMinHeight: =70
+                LayoutMinWidth: =60
+                LayoutMode: =LayoutMode.Auto
+                ZIndex: =6
+
+                Button2_2 As button:
+                    AlignInContainer: =AlignInContainer.Start
+                    BorderThickness: =0
+                    Color: =RGBA(51, 51, 51, 1)
+                    Fill: =Color.Transparent
+                    HoverColor: =Self.Color
+                    HoverFill: =Color.Transparent
+                    OnSelect: =Navigate(MyProfile)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    PressedColor: =Self.Color
+                    PressedFill: =Self.Fill
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =12
+                    Text: =If(Landing.Size = ScreenSize.Small, "Profile","My Profile")
+                    Tooltip: ="View your profile"
+                    Visible: =If(Landing.Size = ScreenSize.Small, false, true)
+                    Width: =100
+                    ZIndex: =2
+
+        BottomContainer1 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(245, 245, 245, 1)
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =16
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            ZIndex: =3
+
+            SidebarContainer1 As groupContainer.verticalAutoLayoutContainer:
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =3
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =1
+
+                Container6 As groupContainer.horizontalAutoLayoutContainer:
+                    FillPortions: =0
+                    Height: =50
+                    LayoutGap: =10
+                    LayoutMinHeight: =50
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =8
+                    PaddingLeft: =10
+                    PaddingTop: =8
+                    ZIndex: =1
+
+                    ButtonCanvas1_2 As Button:
+                        AccessibleLabel: ="Create new prompt"
+                        Appearance: ='ButtonCanvas.Appearance'.Primary
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =36
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: |-
+                            =NewForm(Form1); UpdateContext({ newMode: true });
+                        Text: ="+ NEW PROMPT"
+                        Visible: =DataSourceInfo('Prompt Libraries',DataSourceInfo.CreatePermission)
+                        Width: =140
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                SearchContainer1 As groupContainer.horizontalAutoLayoutContainer:
+                    FillPortions: =0
+                    Height: =44
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    ZIndex: =2
+
+                    SearchInput1_1 As text:
+                        AccessibleLabel: ="Search Prompts"
+                        Default: =""
+                        FillPortions: =1
+                        Height: =44
+                        HintText: ="Search"
+                        LayoutMinWidth: =280
+                        ZIndex: =7
+
+                    SearchIcon1_1 As icon:
+                        Color: =RGBA(0, 120, 212, 1)
+                        Height: =44
+                        Icon: =Icon.Search
+                        PaddingBottom: =10
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =10
+                        Width: =44
+                        ZIndex: =8
+
+                "TabList1 As 'Tab list'.pcfdataset":
+                    AccessibleLabel: ="Prompt Tabs"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =55
+                    Items: =["CATEGORIES","PRODUCTS"]
+                    LayoutMinHeight: =55
+                    LayoutMinWidth: =280
+                    Width: =300
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                "galCategory As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                    AccessibleLabel: ="Categories List"
+                    DelayItemLoading: =true
+                    Fill: =RGBA(250, 250, 250, 1)
+                    Items: =Sort(colCategories,cr84c_order,SortOrder.Ascending)
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =200
+                    LayoutMinWidth: =200
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TabIndex: =0
+                    TemplatePadding: =0
+                    TemplateSize: =70
+                    Visible: =TabList1.Selected.Value = "CATEGORIES"
+                    ZIndex: =4
+
+                    Image2 As image:
+                        Height: =40
+                        Image: =category
+                        OnSelect: =Select(Parent)
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        Width: =40
+                        X: =16
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =1
+
+                    Title2 As label:
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =Self.Size * 1.8
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =12
+                        Text: =ThisItem.cr84c_category
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.TemplateWidth - 110
+                        X: =80
+                        Y: =(Parent.TemplateHeight - (Self.Size * 1.8 )) / 2
+                        ZIndex: =2
+
+                    Separator2 As rectangle:
+                        BorderColor: =RGBA(237, 237, 237, 1)
+                        Height: =8
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - Self.Height
+                        ZIndex: =5
+
+                    Rectangle2 As rectangle:
+                        Height: =Parent.TemplateHeight - Separator2.Height
+                        OnSelect: =Select(Parent)
+                        Visible: =ThisItem.IsSelected
+                        Width: =4
+                        ZIndex: =6
+
+                "galProduct As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                    AccessibleLabel: ="Products List"
+                    DelayItemLoading: =true
+                    Fill: =RGBA(250, 250, 250, 1)
+                    Items: =Sort(colProducts,cr84c_order,SortOrder.Ascending)
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =287
+                    LayoutMinWidth: =320
+                    LoadingSpinner: =LoadingSpinner.Data
+                    OnSelect: |-
+                        =UpdateContext({ editMode: false, newMode: false });
+                    TabIndex: =0
+                    TemplatePadding: =0
+                    TemplateSize: =70
+                    Visible: =TabList1.Selected.Value = "PRODUCTS"
+                    ZIndex: =5
+
+                    Image1 As image:
+                        Height: =40
+                        Image: =product
+                        OnSelect: =Select(Parent)
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        Width: =40
+                        X: =16
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =1
+
+                    Title1 As label:
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =Self.Size * 1.8
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =12
+                        Text: =ThisItem.cr84c_product
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.TemplateWidth - 110
+                        X: =80
+                        Y: =(Parent.TemplateHeight - (Self.Size * 1.8)) / 2
+                        ZIndex: =2
+
+                    Separator1 As rectangle:
+                        Height: =8
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - Self.Height
+                        ZIndex: =5
+
+                    Rectangle1 As rectangle:
+                        Height: =Parent.TemplateHeight - Separator1.Height
+                        OnSelect: =Select(Parent)
+                        Visible: =ThisItem.IsSelected
+                        Width: =4
+                        ZIndex: =6
+
+            ResultsContainer As groupContainer.verticalAutoLayoutContainer:
+                FillPortions: =4
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                Visible: =If(And(Landing.Size = ScreenSize.Small, Or(newMode, editMode, itemSelected)), false, true)
+                ZIndex: =2
+
+                Container2 As groupContainer.horizontalAutoLayoutContainer:
+                    FillPortions: =0
+                    Height: =40
+                    LayoutAlignItems: =LayoutAlignItems.Center
+                    LayoutMinHeight: =30
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    ZIndex: =1
+
+                    TextCanvas2 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: =CountRows(galPrompts.AllItems) & " results"
+                        VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    Label2 As label:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(202, 202, 202, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(51, 51, 51, 1)
+                        Fill: =RGBA(237, 237, 237, 1)
+                        Font: =Font.'Segoe UI'
+                        Height: =30
+                        Size: =10
+                        Text: =galCategory.Selected.cr84c_category
+                        Visible: =galCategory.Selected.cr84c_category <> "All"
+                        Width: =100
+                        ZIndex: =3
+
+                    Icon1 As icon.Cancel:
+                        AccessibleLabel: ="Remove Filter"
+                        AlignInContainer: =AlignInContainer.Start
+                        Color: =RGBA(77, 77, 77, 1)
+                        Height: =20
+                        Icon: =Icon.Cancel
+                        OnSelect: =Reset(galCategory)
+                        PaddingTop: =10
+                        TabIndex: =0
+                        Visible: =galCategory.Selected.cr84c_category <> "All"
+                        Width: =15
+                        ZIndex: =4
+
+                    Label2_1 As label:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(202, 202, 202, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(51, 51, 51, 1)
+                        Fill: =RGBA(237, 237, 237, 1)
+                        Font: =Font.'Segoe UI'
+                        Height: =30
+                        Size: =9
+                        Text: =galProduct.Selected.cr84c_product
+                        Visible: =galProduct.Selected.cr84c_product <> "All"
+                        Width: =100
+                        ZIndex: =5
+
+                    Icon1_1 As icon.Cancel:
+                        AccessibleLabel: ="Remove Filter"
+                        AlignInContainer: =AlignInContainer.Start
+                        Color: =RGBA(77, 77, 77, 1)
+                        Height: =20
+                        Icon: =Icon.Cancel
+                        OnSelect: =Reset(galProduct)
+                        PaddingTop: =10
+                        TabIndex: =0
+                        Visible: =galProduct.Selected.cr84c_product <> "All"
+                        Width: =15
+                        ZIndex: =6
+
+                    Label2_2 As label:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(202, 202, 202, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(51, 51, 51, 1)
+                        Fill: =RGBA(237, 237, 237, 1)
+                        Font: =Font.'Segoe UI'
+                        Height: =30
+                        Size: =10
+                        Text: =SearchInput1_1.Text
+                        Visible: =!IsBlank(SearchInput1_1.Text)
+                        Width: =100
+                        ZIndex: =7
+
+                    Icon1_2 As icon.Cancel:
+                        AccessibleLabel: ="Remove Filter"
+                        AlignInContainer: =AlignInContainer.Start
+                        Color: =RGBA(77, 77, 77, 1)
+                        Height: =20
+                        Icon: =Icon.Cancel
+                        OnSelect: =Reset(SearchInput1_1)
+                        PaddingTop: =10
+                        TabIndex: =0
+                        Visible: =!IsBlank(SearchInput1_1.Text)
+                        Width: =15
+                        ZIndex: =8
+
+                Container4 As groupContainer.horizontalAutoLayoutContainer:
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    ZIndex: =3
+
+                    "galPrompts As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                        AccessibleLabel: ="Prompts List"
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DelayItemLoading: =true
+                        FillPortions: =2
+                        Items: |-
+                            =If(galCategory.Selected.cr84c_category = "All" && galProduct.Selected.cr84c_product = "All",
+                            Search(
+                                'Prompt Libraries',
+                                SearchInput1_1.Text,
+                                "cr84c_name"
+                            ),
+                            galCategory.Selected.cr84c_category <> "All" && galProduct.Selected.cr84c_product = "All",
+                            Search(
+                                Filter('Prompt Libraries',Category.Category = galCategory.Selected.cr84c_category),
+                                SearchInput1_1.Text,
+                                "cr84c_name"
+                            ),
+                            galCategory.Selected.cr84c_category = "All" && galProduct.Selected.cr84c_product <> "All",
+                            Search(
+                                Filter('Prompt Libraries',Product.Product = galProduct.Selected.cr84c_product),
+                                SearchInput1_1.Text,
+                                "cr84c_name"
+                            ),
+                            galCategory.Selected.cr84c_category <> "All" && galProduct.Selected.cr84c_product <> "All",
+                            Search(
+                                Filter('Prompt Libraries',Category.Category = galCategory.Selected.cr84c_category && Product.Product = galProduct.Selected.cr84c_product),
+                                SearchInput1_1.Text,
+                                "cr84c_name"
+                            ))
+                        Layout: =Layout.Vertical
+                        LayoutMinHeight: =287
+                        LayoutMinWidth: =200
+                        LoadingSpinner: =LoadingSpinner.Data
+                        OnSelect: |-
+                            =UpdateContext({ itemSelected: true, CurrentItem: ThisItem });UpdateContext({ editMode: false, newMode: false });
+                        TabIndex: =0
+                        TemplatePadding: =0
+                        TemplateSize: =104
+                        ZIndex: =1
+
+                        Image3 As image:
+                            Height: =40
+                            Image: =prompt
+                            OnSelect: =Select(Parent)
+                            RadiusBottomLeft: =8
+                            RadiusBottomRight: =8
+                            RadiusTopLeft: =8
+                            RadiusTopRight: =8
+                            Width: =40
+                            X: =16
+                            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                            ZIndex: =1
+
+                        Title3 As label:
+                            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                            Height: =Self.Size * 1.8
+                            OnSelect: =Select(Parent)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =12
+                            Text: =ThisItem.Name
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.TemplateWidth - 173
+                            X: =80
+                            Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle3.Size * 1.8)) / 2
+                            ZIndex: =2
+
+                        Subtitle3 As label:
+                            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                            Height: =Self.Size * 1.8
+                            OnSelect: =Select(Parent)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =11
+                            Text: =ThisItem.Product.Product
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Title3.Width
+                            X: =Title3.X
+                            Y: =Title3.Y + Title3.Height
+                            ZIndex: =3
+
+                        NextArrow3 As icon.ChevronRight:
+                            AccessibleLabel: =Self.Tooltip
+                            Color: =RGBA(166, 166, 166, 1)
+                            Height: =50
+                            Icon: =Icon.ChevronRight
+                            OnSelect: =Select(Parent)
+                            PaddingBottom: =16
+                            PaddingLeft: =16
+                            PaddingRight: =16
+                            PaddingTop: =16
+                            Tooltip: ="View item details"
+                            Width: =50
+                            X: =Parent.TemplateWidth - Self.Width - 12
+                            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                            ZIndex: =4
+
+                        Separator3 As rectangle:
+                            Height: =8
+                            OnSelect: =Select(Parent)
+                            Width: =Parent.TemplateWidth
+                            Y: =Parent.TemplateHeight - Self.Height
+                            ZIndex: =5
+
+                        Rectangle3 As rectangle:
+                            Height: =Parent.TemplateHeight - Separator3.Height
+                            OnSelect: =Select(Parent)
+                            Visible: =ThisItem.IsSelected
+                            Width: =4
+                            ZIndex: =6
+
+            MainContainer1 As groupContainer.verticalAutoLayoutContainer:
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =5
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =200
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                Visible: =If(Or(deleteMode, And(Landing.Size = ScreenSize.Small, !newMode, !editMode, !itemSelected)), false, true)
+                ZIndex: =3
+
+                SelectedRecordHeaderContainer1 As groupContainer.horizontalAutoLayoutContainer:
+                    Fill: =RGBA(255, 255, 255, 1)
+                    FillPortions: =0
+                    Height: =50
+                    LayoutAlignItems: =LayoutAlignItems.Center
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    ZIndex: =1
+
+                    BackIconButton1 As icon.Add:
+                        AccessibleLabel: ="Back"
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(0, 120, 212, 1)
+                        DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                        DisabledColor: =RGBA(225, 223, 221, 1)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(16, 110, 190, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Icon: =Icon.ChevronLeft
+                        OnSelect: |-
+                            =UpdateContext({ itemSelected: false })
+                        PaddingBottom: =12
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =RGBA(16, 110, 190, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        TabIndex: =0
+                        Visible: =If(Landing.Size = ScreenSize.Small, And(!editMode, !newMode, !deleteMode), false)
+                        Width: =50
+                        ZIndex: =1
+
+                    SelectedRecordTitle1 As label:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FillPortions: =1
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        PaddingLeft: =30
+                        Text: |-
+                            =If(
+                                newMode,
+                                "New Prompt",
+                                If(
+                                    Len(galPrompts.Selected.Title3) >= 9 && Landing.Size = ScreenSize.Small,
+                                    Left(
+                                        galPrompts.Selected.Title3,
+                                        8
+                                    ) & "...",
+                                    galPrompts.Selected.Title3
+                                )
+                            )
+                        ZIndex: =2
+
+                    SubmitFormButton1 As icon:
+                        AccessibleLabel: ="Submit"
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(0, 120, 212, 1)
+                        DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                        DisabledColor: =RGBA(225, 223, 221, 1)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(16, 110, 190, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Icon: =Icon.Check
+                        OnSelect: =SubmitForm(Form1)
+                        PaddingBottom: =12
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =RGBA(16, 110, 190, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        TabIndex: =0
+                        Visible: =Or(editMode, newMode)
+                        Width: =50
+                        ZIndex: =3
+
+                    ResetFormButton1 As icon:
+                        AccessibleLabel: ="Reset"
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(0, 120, 212, 1)
+                        DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                        DisabledColor: =RGBA(225, 223, 221, 1)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(16, 110, 190, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Icon: =Icon.Cancel
+                        OnSelect: |-
+                            =ResetForm(Form1); UpdateContext({ editMode: false, newMode: false });
+                        PaddingBottom: =12
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =RGBA(16, 110, 190, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        TabIndex: =0
+                        Visible: =Or(editMode, newMode)
+                        Width: =50
+                        ZIndex: =4
+
+                    FavoriteIconButton1 As icon:
+                        AccessibleLabel: ="Favorite Prompt"
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(0, 120, 212, 1)
+                        DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                        DisabledColor: =RGBA(225, 223, 221, 1)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(16, 110, 190, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Icon: |-
+                            =If(
+                                IsBlank(
+                                    LookUp(
+                                        'Prompt Favorites',
+                                        Prompt.'Prompt Library' = galPrompts.Selected.'Prompt Library' && 'User Email' = User().Email
+                                    )
+                                ),Icon.Bookmark, Icon.BookmarkFilled)
+                        OnSelect: |-
+                            =With({promptLookup: LookUp(
+                                        'Prompt Favorites',
+                                        Prompt.'Prompt Library' = galPrompts.Selected.'Prompt Library' && 'User Email' = User().Email
+                                    )},
+                            If(
+                                IsBlank(
+                                    promptLookup
+                                ),
+                            Patch(
+                                'Prompt Favorites',
+                                Defaults('Prompt Favorites'),
+                                {
+                                    User: User().FullName,
+                                    'User Email': User().Email,
+                                    Prompt: galPrompts.Selected
+                                }
+                            );
+                            Notify(
+                                "Prompt Saved to your Favorites!",
+                                NotificationType.Success
+                            ),
+                            Remove('Prompt Favorites',promptLookup);
+                            Notify(
+                                "Prompt Removed from your Favorites!",
+                                NotificationType.Success
+                            )
+                            )
+                            )
+                        PaddingBottom: =12
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =RGBA(16, 110, 190, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        TabIndex: =0
+                        Tooltip: |-
+                            =With({promptLookup: LookUp(
+                                        'Prompt Favorites',
+                                        Prompt.'Prompt Library' = galPrompts.Selected.'Prompt Library' && 'User Email' = User().Email
+                                    )},
+                            If(
+                                IsBlank(
+                                    promptLookup
+                                ),"Add to Favorites","Remove from Favorites"))
+                        Visible: =And(!editMode, !newMode, !deleteMode)
+                        Width: =50
+                        ZIndex: =5
+
+                    CopyIconButton1 As icon:
+                        AccessibleLabel: ="Copy Prompt"
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(0, 120, 212, 1)
+                        DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                        DisabledColor: =RGBA(225, 223, 221, 1)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(16, 110, 190, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Icon: =Icon.Copy
+                        OnSelect: =Copy(galPrompts.Selected.Prompt);Notify("Prompt Copied to Clipboard!",NotificationType.Success)
+                        PaddingBottom: =12
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =RGBA(16, 110, 190, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        TabIndex: =0
+                        Tooltip: ="Copy Prompt"
+                        Visible: =And(!editMode, !newMode, !deleteMode)
+                        Width: =50
+                        ZIndex: =7
+
+                    EditIconButton1 As icon:
+                        AccessibleLabel: ="Edit Prompt"
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(0, 120, 212, 1)
+                        DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                        DisabledColor: =RGBA(225, 223, 221, 1)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(16, 110, 190, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Icon: =Icon.Edit
+                        OnSelect: |-
+                            =UpdateContext({selectedRecord: galPrompts.Selected, editMode: true })
+                        PaddingBottom: =12
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =RGBA(16, 110, 190, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        TabIndex: =0
+                        Tooltip: ="Edit Prompt"
+                        Visible: =DataSourceInfo('Prompt Libraries',DataSourceInfo.EditPermission) And !editMode And !newMode And !deleteMode
+                        Width: =50
+                        ZIndex: =8
+
+                    DeleteIconButton1 As icon:
+                        AccessibleLabel: ="Delete Prompt"
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(0, 120, 212, 1)
+                        DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                        DisabledColor: =RGBA(225, 223, 221, 1)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(16, 110, 190, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Icon: =Icon.Trash
+                        OnSelect: |-
+                            =UpdateContext({ deleteMode: true, deleteCancelled: false, selectedRecord: galPrompts.Selected })
+                        PaddingBottom: =12
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =RGBA(16, 110, 190, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        TabIndex: =0
+                        Tooltip: ="Delete Prompt"
+                        Visible: =DataSourceInfo('Prompt Libraries',DataSourceInfo.DeletePermission) And editMode
+                        Width: =50
+                        ZIndex: =9
+
+                TextCanvas3 As Text:
+                    AlignInContainer: =AlignInContainer.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Size: =22
+                    Text: ="Add Prompts to get started!"
+                    Visible: =If(IsBlank(galPrompts) && !newMode,true,false)
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =350
+                    X: =40
+                    Y: =40
+                    ZIndex: =2
+
+                Form1 As form:
+                    DataSource: ='Prompt Libraries'
+                    DefaultMode: =If(newMode, FormMode.New, editMode, FormMode.Edit, FormMode.View)
+                    Item: =galPrompts.Selected
+                    LayoutMinHeight: =250
+                    LayoutMinWidth: =250
+                    NumberOfColumns: =2
+                    OnFailure: =Notify("Cannot save. Please check if there are errors in the form.", NotificationType.Error)
+                    OnSuccess: |-
+                        =UpdateContext({ CurrentItem: Self.LastSubmit, editMode: false, newMode: false })
+                    Visible: =If(IsBlank(galPrompts) && !newMode,false,true)
+                    ZIndex: =3
+
+                    Prompt_DataCard1 As typedDataCard.textualMultiLineEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="cr84c_prompt"
+                        Default: =ThisItem.Prompt
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Prompt Libraries'],DataSourceInfo.DisplayName,"cr84c_prompt")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =216
+                        Required: =false
+                        Update: =TextInputCanvas1.Value //DataCardValue6.Text
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =1
+                        ZIndex: =1
+
+                        DataCardKey6 As label:
+                            AutoHeight: =true
+                            Height: =34
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue6 As text:
+                            AccessibleLabel: ="Prompt"
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: =Parent.Default
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =174
+                            Mode: =TextMode.MultiLine
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Tooltip: =Parent.DisplayName
+                            Visible: =false
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey6.Y + DataCardKey6.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessage5 As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue6.Y + DataCardValue6.Height
+                            ZIndex: =3
+
+                        StarVisible5 As label:
+                            Align: =Align.Center
+                            Height: =DataCardKey6.Height
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey6.Y
+                            ZIndex: =4
+
+                        "TextInputCanvas1 As 'Text input'":
+                            AccessibleLabel: ="Prompt"
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =158
+                            Mode: ='TextInputCanvas.Mode'.Multiline
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =52
+                            ZIndex: =6
+
+                    Category_DataCard1 As typedDataCard.comboBoxEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="cr84c_Category"
+                        Default: =ThisItem.Category
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Prompt Libraries'],DataSourceInfo.DisplayName,"cr84c_Category")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =ComboboxCanvas1.Selected //DataCardValue2.Selected
+                        Width: =270
+                        X: =0
+                        Y: =2
+                        ZIndex: =1
+
+                        DataCardKey2 As label:
+                            AutoHeight: =true
+                            Height: =34
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue2 As combobox:
+                            AccessibleLabel: ="Category"
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            DefaultSelectedItems: =Parent.Default
+                            DisplayFields: =["cr84c_category"]
+                            DisplayMode: =Parent.DisplayMode
+                            Items: =Choices([@'Prompt Libraries'].cr84c_Category)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            SearchFields: =["cr84c_category"]
+                            SearchItems: =Search(Choices([@'Prompt Libraries'].cr84c_Category),DataCardValue2.SearchText,"cr84c_category")
+                            SelectMultiple: =false
+                            Tooltip: =Parent.DisplayName
+                            Visible: =false
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey2.Y + DataCardKey2.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessage2 As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue2.Y + DataCardValue2.Height
+                            ZIndex: =3
+
+                        StarVisible2 As label:
+                            Align: =Align.Center
+                            Height: =DataCardKey2.Height
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey2.Y
+                            ZIndex: =4
+
+                        ComboboxCanvas1 As Combobox.pcfdataset:
+                            AccessibleLabel: ="Category"
+                            DefaultSelectedItems: =Parent.Default
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =39
+                            Items: ='Prompt Categories'
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =50
+                            ZIndex: =5
+
+                            Category1 As pcfDataField.textualColumn:
+                                FieldDisplayName: ="Category"
+                                FieldName: ="cr84c_category"
+                                FieldType: ="s"
+                                FieldVariantName: ="textualColumn"
+                                Order: =1
+                                ZIndex: =9
+
+                            "'Created On1' As pcfDataField.textualColumn":
+                                FieldDisplayName: ="Created On"
+                                FieldName: ="createdon"
+                                FieldType: ="d"
+                                FieldVariantName: ="textualColumn"
+                                Order: =2
+                                ZIndex: =10
+
+                    Product_DataCard1 As typedDataCard.comboBoxEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="cr84c_Product"
+                        Default: =ThisItem.Product
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Prompt Libraries'],DataSourceInfo.DisplayName,"cr84c_Product")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =ComboboxCanvas2.Selected //DataCardValue3.Selected
+                        Width: =270
+                        X: =1
+                        Y: =2
+                        ZIndex: =1
+
+                        DataCardKey3 As label:
+                            AutoHeight: =true
+                            Height: =34
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue3 As combobox:
+                            AccessibleLabel: ="Product"
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            DefaultSelectedItems: =Parent.Default
+                            DisplayFields: =["cr84c_product"]
+                            DisplayMode: =Parent.DisplayMode
+                            Items: =Choices([@'Prompt Libraries'].cr84c_Product)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            SearchFields: =["cr84c_product"]
+                            SearchItems: =Search(Choices([@'Prompt Libraries'].cr84c_Product),DataCardValue3.SearchText,"cr84c_product")
+                            SelectMultiple: =false
+                            Tooltip: =Parent.DisplayName
+                            Visible: =false
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey3.Y + DataCardKey3.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessage4 As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue3.Y + DataCardValue3.Height
+                            ZIndex: =3
+
+                        StarVisible4 As label:
+                            Align: =Align.Center
+                            Height: =DataCardKey3.Height
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey3.Y
+                            ZIndex: =4
+
+                        ComboboxCanvas2 As Combobox.pcfdataset:
+                            AccessibleLabel: ="Product"
+                            DefaultSelectedItems: =Parent.Default
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =40
+                            Items: ='Prompt Products'
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =49
+                            ZIndex: =5
+
+                            Product1 As pcfDataField.textualColumn:
+                                FieldDisplayName: ="Product"
+                                FieldName: ="cr84c_product"
+                                FieldType: ="s"
+                                FieldVariantName: ="textualColumn"
+                                Order: =1
+                                ZIndex: =11
+
+                            "'Created On2' As pcfDataField.textualColumn":
+                                FieldDisplayName: ="Created On"
+                                FieldName: ="createdon"
+                                FieldType: ="d"
+                                FieldVariantName: ="textualColumn"
+                                Order: =2
+                                ZIndex: =12
+
+                    Notes_DataCard1 As typedDataCard.textualEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="cr84c_notes"
+                        Default: =ThisItem.Notes
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Prompt Libraries'],DataSourceInfo.DisplayName,"cr84c_notes")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =101
+                        MaxLength: =DataSourceInfo([@'Prompt Libraries'], DataSourceInfo.MaxLength, "cr84c_notes")
+                        Required: =false
+                        Update: =TextInputCanvas3.Value //DataCardValue4.Text
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =3
+                        ZIndex: =1
+
+                        DataCardKey4 As label:
+                            AutoHeight: =true
+                            Height: =34
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue4 As text:
+                            AccessibleLabel: ="Notes"
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: =Parent.Default
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =76
+                            MaxLength: =Parent.MaxLength
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Tooltip: =Parent.DisplayName
+                            Visible: =false
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey4.Y + DataCardKey4.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessage3 As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue4.Y + DataCardValue4.Height
+                            ZIndex: =3
+
+                        StarVisible3 As label:
+                            Align: =Align.Center
+                            Height: =DataCardKey4.Height
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey4.Y
+                            ZIndex: =4
+
+                        "TextInputCanvas3 As 'Text input'":
+                            AccessibleLabel: ="Notes"
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =76
+                            Mode: ='TextInputCanvas.Mode'.Multiline
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =49
+                            ZIndex: =6
+
+                    DataCard1 As typedDataCard.blankCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =4
+                        ZIndex: =1
+
+                        TextCanvas4 As Text:
+                            Align: ='TextCanvas.Align'.End
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =33
+                            Text: ="Created On " & DateValue(galPrompts.Selected.'Created On') & " by " & galPrompts.Selected.'Created By'.'Full Name'
+                            Width: =Parent.Width - 60
+                            X: =24
+                            Y: =8
+                            ZIndex: =1
+
+                    Name_DataCard1 As typedDataCard.textualEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="cr84c_name"
+                        Default: =ThisItem.Name
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Prompt Libraries'],DataSourceInfo.DisplayName,"cr84c_name")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        MaxLength: =DataSourceInfo([@'Prompt Libraries'], DataSourceInfo.MaxLength, "cr84c_name")
+                        Required: =true
+                        Update: =TextInputCanvas2.Value //DataCardValue1.Text
+                        Width: =Parent.Width
+                        WidthFit: =false
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                        DataCardKey1 As label:
+                            AutoHeight: =true
+                            Height: =34
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue1 As text:
+                            AccessibleLabel: ="Title"
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: =Parent.Default
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            MaxLength: =Parent.MaxLength
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Tooltip: =Parent.DisplayName
+                            Visible: =false
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey1.Y + DataCardKey1.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessage1 As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue1.Y + DataCardValue1.Height
+                            ZIndex: =3
+
+                        StarVisible1 As label:
+                            Align: =Align.Center
+                            Height: =DataCardKey1.Height
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey1.Y
+                            ZIndex: =4
+
+                        "TextInputCanvas2 As 'Text input'":
+                            AccessibleLabel: ="Title"
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =36
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =53
+                            ZIndex: =5
+

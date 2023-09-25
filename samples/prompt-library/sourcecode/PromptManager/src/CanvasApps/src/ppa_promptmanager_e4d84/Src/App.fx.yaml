@@ -1,0 +1,47 @@
+App As appinfo:
+    BackEnabled: =false
+    Formulas: =
+    OnStart: |-
+        =Concurrent(
+            ClearCollect(
+                colCategories,
+                ShowColumns(
+                'Prompt Categories',
+                    "cr84c_category",
+                    "cr84c_order"
+                )
+            ),
+            ClearCollect(
+                colProducts,
+                ShowColumns(
+                    'Prompt Products',
+                    "cr84c_product",
+                    "cr84c_order"
+                )
+            )
+        );
+        Concurrent(
+            Collect(
+                colCategories,
+                {
+                    cr84c_order: 0,
+                    cr84c_category: "All"
+                }
+            ),
+            Collect(
+                colProducts,
+                {
+                    cr84c_order: 0,
+                    cr84c_product: "All"
+                }
+            )
+        )
+    Theme: =SteelTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
