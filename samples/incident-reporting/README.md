@@ -4,7 +4,7 @@
 
 The Incident Reporting Canvas Application is a powerful tool designed to streamline incident reporting and enhance data collection. With its unique and visually appealing phone layout UI/UX, this application provides an efficient and user-friendly solution for reporting and managing incidents. Seamlessly integrated with SharePoint, it allows users to upload incident images and related data securely.
 
-![Incident Reporting Canvas App Preview](assets/preview.png)
+![Incident Reporting Canvas App Preview](./assets/Screenshot%202023-09-25%20111027.png)
 
 ## Applies to
 
