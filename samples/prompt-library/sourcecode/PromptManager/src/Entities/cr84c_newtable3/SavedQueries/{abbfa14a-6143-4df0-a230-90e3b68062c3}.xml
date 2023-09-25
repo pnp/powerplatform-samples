@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{abbfa14a-6143-4df0-a230-90e3b68062c3}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="cr84c_user" select="1" icon="1" preview="1">
+        <row name="result" id="cr84c_newtable3id">
+          <cell name="cr84c_user" width="300" />
+          <cell name="createdon" width="125" />
+          <cell name="cr84c_useremail" width="150" />
+          <cell name="cr84c_prompt" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="cr84c_newtable3">
+          <attribute name="cr84c_newtable3id" />
+          <attribute name="cr84c_user" />
+          <attribute name="createdon" />
+          <order attribute="cr84c_user" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="cr84c_useremail" />
+          <attribute name="cr84c_prompt" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Prompt Favorites" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr84c_newtables",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr84c_newtable",
+    "MaxGetRowsCount": 500,
+    "Name": "Prompt Categories",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr84c_category": "Category",
+      "cr84c_cr84c_promptlibrary_Category_cr84c_newtab": "Prompt Libraries",
+      "cr84c_newtable_AsyncOperations": "System Jobs",
+      "cr84c_newtable_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr84c_newtable_DuplicateBaseRecord": "Duplicate Records (cr84c_newtable_DuplicateBaseRecord)",
+      "cr84c_newtable_DuplicateMatchingRecord": "Duplicate Records (cr84c_newtable_DuplicateMatchingRecord)",
+      "cr84c_newtable_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr84c_newtable_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr84c_newtable_ProcessSession": "Process Sessions",
+      "cr84c_newtable_SyncErrors": "Sync Errors",
+      "cr84c_newtableid": "Prompt Categories",
+      "cr84c_order": "Order",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Prompt Categories",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Prompt Categories (Views)",
+    "Name": "_cr84c_newtable_views",
+    "RelatedEntityName": "Prompt Categories",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "095c8e5a-730f-4ef8-8c46-2ed19c702520": "Prompt Categories Lookup View",
+      "8264c96e-a6c8-4168-b79c-26589e671fd6": "Prompt Categories Advanced Find View",
+      "8b539baf-6f96-40a0-92f8-5778870abd56": "Inactive Prompt Categories",
+      "b1540eab-ea30-4669-8254-8082e1489e6e": "Prompt Categories Associated View",
+      "e5df1410-cb1f-485e-82dc-e23c330d9fff": "Active Prompt Categories"
+    }
+  },
+  {
+    "DisplayName": "Status (Prompt Categories)",
+    "Name": "cr84c_newtable_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Prompt Categories"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Prompt Categories",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Prompt Categories)",
+    "Name": "cr84c_newtable_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Prompt Categories"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Prompt Categories",
+    "Type": "OptionSetInfo"
+  }
+]
