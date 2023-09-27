@@ -1,0 +1,777 @@
+Onboarding As screen:
+
+    "'Onboarding main container' As groupContainer.verticalAutoLayoutContainer":
+        Height: =App.Height
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =App.Width
+        ZIndex: =2
+
+        "'Onboarding Header container' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            Height: =47
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =1
+
+        "'Onboarding Main container' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width - 12
+            X: |
+                =6
+            ZIndex: =2
+
+            "'Onboarding Safe zone' As groupContainer.verticalAutoLayoutContainer":
+                DropShadow: =DropShadow.None
+                Height: =Parent.Height
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Width: =Parent.Width
+                ZIndex: =3
+
+                "'Onboarding Image container' As groupContainer.manualLayoutContainer":
+                    DropShadow: =DropShadow.None
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                    "'Onboarding Image' As image":
+                        Height: =300
+                        Image: |-
+                            =Switch(
+                                _tip,
+                                1, Intro1,
+                                2, Intro2,
+                                3, Intro3,
+                                4, Intro4,
+                                5, Intro5,
+                                6, Intro6
+                            )
+                        Width: =300
+                        X: =Parent.Width/2 - Self.Width/2
+                        Y: =Parent.Y + Parent.Height - Self.Height - 5
+                        ZIndex: =1
+
+                    "'Onboarding Language container' As groupContainer.manualLayoutContainer":
+                        DropShadow: =DropShadow.None
+                        Fill: =If(_languageSelection, Color.White, Color.Transparent)
+                        Height: =37 + CountRows(_appLanguages) * 35 + 3
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: =37
+                        X: ='Onboarding Next button'.X + 'Onboarding Next button'.Width - Self.Width + 2
+                        Y: ='Onboarding Image'.Y
+                        ZIndex: =2
+
+                        "'Onboarding Language icon' As image":
+                            Height: ='Onboarding Language button'.Height
+                            Image: |-
+                                ="data:image/svg+xml;utf8, "&EncodeUrl("
+                                
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='"& _textRegular &"' class='bi bi-gear-fill' viewBox='0 0 16 16'>
+                                        <path d='M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286H4.545zm1.634-.736L5.5 3.956h-.049l-.679 2.022H6.18z'/>
+                                        <path d='M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2zm7.138 9.995c.193.301.402.583.63.846-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6.066 6.066 0 0 1-.415-.492 1.988 1.988 0 0 1-.94.31z'/>
+                                    </svg>
+                                
+                                ")
+                            Width: ='Onboarding Language button'.Width - 15
+                            X: ='Onboarding Language button'.X + 'Onboarding Language button'.Width/2 - Self.Width/2
+                            Y: =1
+                            ZIndex: =1
+
+                        "'Onboarding Language button' As button":
+                            BorderColor: =ColorValue(_textRegular)
+                            BorderThickness: =1
+                            Color: =Color.Transparent
+                            DisabledBorderColor: =ColorValue(_textRegular)
+                            DisabledColor: =Color.Transparent
+                            DisabledFill: =Color.Transparent
+                            Fill: |-
+                                =If(
+                                    _languageSelection,
+                                    ColorValue("#0286F226"),
+                                    Color.Transparent
+                                )
+                            FocusedBorderColor: =ColorValue(_textRegular)
+                            FocusedBorderThickness: =1
+                            Height: =35
+                            HoverBorderColor: =ColorValue(_textRegular)
+                            HoverColor: =Color.Transparent
+                            HoverFill: |-
+                                =ColorValue("#0286F226")
+                            OnSelect: |
+                                =Set(_languageSelection, !_languageSelection)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            PressedBorderColor: =ColorValue(_textRegular)
+                            PressedColor: =Color.Transparent
+                            PressedFill: =Color.Transparent
+                            RadiusBottomLeft: =8
+                            RadiusBottomRight: =8
+                            RadiusTopLeft: =8
+                            RadiusTopRight: =8
+                            Text: =""
+                            Width: =35
+                            X: =Parent.Width - Self.Width - 1
+                            Y: =1
+                            ZIndex: =2
+
+                        "'Onboarding Language List container' As groupContainer.manualLayoutContainer":
+                            DropShadow: =DropShadow.None
+                            Height: =CountRows(_appLanguages) * 35 + 2
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Visible: =_languageSelection
+                            Width: ='Onboarding Language button'.Width + 2
+                            X: ='Onboarding Language button'.X
+                            Y: ='Onboarding Language button'.Y + 'Onboarding Language button'.Height
+                            ZIndex: =3
+
+                            "'Onboarding Language List Gallery' As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                                Default: |-
+                                    =First(
+                                        Filter(
+                                            'App Languages',
+                                            Code = _appLanguageSelected
+                                        )
+                                    )
+                                DelayItemLoading: =true
+                                Height: =Parent.Height
+                                Items: ='App Languages'
+                                Layout: =Layout.Vertical
+                                LoadingSpinner: =LoadingSpinner.Data
+                                ShowScrollbar: =false
+                                TemplatePadding: =0
+                                TemplateSize: =35
+                                Transition: =Transition.Pop
+                                Width: =Parent.Width
+                                ZIndex: =1
+
+                                "'Onboarding Language Title' As label":
+                                    Align: =Align.Center
+                                    BorderColor: =Color.Transparent
+                                    Color: |-
+                                        =If(
+                                            ThisItem.IsSelected,
+                                            ColorValue(_buttonMain),
+                                            ColorValue(_textRegular)
+                                        )
+                                    DisabledBorderColor: =Color.Transparent
+                                    DisabledColor: =ColorValue(_textRegular)
+                                    DisabledFill: =Color.Transparent
+                                    Fill: =Color.Transparent
+                                    FocusedBorderColor: =Color.Transparent
+                                    Font: =Font.Lato
+                                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                                    Height: =Parent.TemplateHeight - 2
+                                    HoverBorderColor: =Color.Transparent
+                                    HoverColor: =ColorValue(_buttonMain)
+                                    HoverFill: =Color.Transparent
+                                    OnSelect: |-
+                                        =Set(
+                                            _appLanguageSelected,
+                                            ThisItem.Code
+                                        );
+                                        Set(_languageSelection, !_languageSelection)
+                                    PaddingBottom: =0
+                                    PaddingLeft: =0
+                                    PaddingRight: =0
+                                    PaddingTop: =0
+                                    PressedBorderColor: =Color.Transparent
+                                    PressedColor: =ColorValue(_buttonMain)
+                                    PressedFill: =Color.Transparent
+                                    Size: =11
+                                    Text: =ThisItem.Code
+                                    Width: =Parent.Width - 2
+                                    X: =1
+                                    Y: =1
+                                    ZIndex: =2
+
+                                "'Onboarding Language Separator' As rectangle":
+                                    Fill: =ColorValue(_iconBackground)
+                                    Height: =1
+                                    Width: =Parent.TemplateWidth
+                                    X: ='Onboarding Language List Gallery'.X
+                                    Y: ='Onboarding Language Title'.Y + 'Onboarding Language Title'.Height
+                                    ZIndex: =3
+
+                    "'Onboarding Skip button' As button":
+                        BorderColor: =Color.Transparent
+                        BorderThickness: =0
+                        Color: =ColorValue(_textHeader)
+                        DisabledBorderColor: =Color.Transparent
+                        DisabledColor: =ColorValue(_textHeader)
+                        DisabledFill: =ColorValue(_buttonSkip)
+                        Fill: =ColorValue(_buttonSkip)
+                        FocusedBorderColor: =Color.Transparent
+                        FocusedBorderThickness: =0
+                        Font: =Font.Lato
+                        Height: =20
+                        HoverBorderColor: =Color.Transparent
+                        HoverColor: =ColorValue(_textHeader)
+                        HoverFill: =ColorValue(_buttonSkip)
+                        OnSelect: =Navigate(Prompts)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        PressedBorderColor: =Color.Transparent
+                        PressedColor: =ColorValue(_textHeader)
+                        PressedFill: =ColorValue(_buttonSkip)
+                        RadiusBottomLeft: =6
+                        RadiusBottomRight: =6
+                        RadiusTopLeft: =6
+                        RadiusTopRight: =6
+                        Size: =6
+                        Text: |-
+                            =//"Skip"
+                            
+                            Switch(
+                                _appLanguageSelected,
+                                "EN", 
+                                First(
+                                    Filter(
+                                        'UI Multilanguages',
+                                        Control = "Onboarding Skip button"
+                                    )
+                                ).TextEN,
+                                
+                                "DE", 
+                                First(
+                                    Filter(
+                                        'UI Multilanguages',
+                                        Control = "Onboarding Skip button"
+                                    )
+                                ).TextDE,
+                            
+                                "FR", 
+                                First(
+                                    Filter(
+                                        'UI Multilanguages',
+                                        Control = "Onboarding Skip button"
+                                    )
+                                ).TextFR
+                            
+                            )
+                        Visible: =!_languageSelection
+                        Width: |
+                            =35
+                        X: ='Onboarding Next button'.X + 'Onboarding Next button'.Width - Self.Width
+                        Y: |-
+                            =//'Onboarding Image'.Y
+                            'Onboarding Language container'.Y + 'Onboarding Language button'.Height + 20
+                        ZIndex: =3
+
+                "'Onboarding Content container' As groupContainer.manualLayoutContainer":
+                    DropShadow: =DropShadow.None
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Width: =Parent.Width
+                    ZIndex: =2
+
+                    "'Onboarding Header' As label":
+                        Align: =Align.Center
+                        Color: =ColorValue(_textHeader)
+                        Font: =Font.'Lato Black'
+                        Height: =60
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: |-
+                            =18
+                            
+                            /*Switch(
+                                _appLanguageSelected,
+                                "EN", 18,
+                                16
+                            )*/
+                        Text: |-
+                            =//"Boost your work with our easy-to-use, secure corporate AI tutor featuring ChatGPT"
+                            
+                            Switch(
+                                _appLanguageSelected,
+                                "EN", 
+                                First(
+                                    Filter(
+                                        'UI Multilanguages',
+                                        Control = "Onboarding Header"
+                                    )
+                                ).TextEN,
+                                
+                                "DE", 
+                                First(
+                                    Filter(
+                                        'UI Multilanguages',
+                                        Control = "Onboarding Header"
+                                    )
+                                ).TextDE,
+                            
+                                "FR", 
+                                First(
+                                    Filter(
+                                        'UI Multilanguages',
+                                        Control = "Onboarding Header"
+                                    )
+                                ).TextFR
+                            
+                            )
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: |-
+                            =If(
+                                App.Width > 400,
+                                'Onboarding Image'.Width + 100,
+                                App.Width - 24
+                            )
+                        X: =Parent.Width/2 - Self.Width/2
+                        Y: =39
+                        ZIndex: =1
+
+                    "'Onboarding Tip' As label":
+                        Align: =Align.Center
+                        Color: |-
+                            =If(
+                                _tip = 1,
+                                ColorValue(_buttonMain),
+                                ColorValue(_textRegular)
+                            )
+                        Font: =Font.Lato
+                        Height: =90
+                        OnSelect: |-
+                            =If(
+                                _tip = 1,
+                                Launch("https://promptwagon.com")
+                            )
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =12
+                        Text: |-
+                            =/*First(
+                                Filter(
+                                    _onboardingTips,
+                                    id = _tip
+                                )
+                            ).text*/
+                            
+                            Switch(
+                                _tip,
+                            
+                                1,
+                                Switch(
+                                    _appLanguageSelected,
+                                    "EN", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 1"
+                                        )
+                                    ).TextEN,
+                                    
+                                    "DE", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 1"
+                                        )
+                                    ).TextDE,
+                            
+                                    "FR", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 1"
+                                        )
+                                    ).TextFR
+                            
+                                ),
+                            
+                                2,
+                                Switch(
+                                    _appLanguageSelected,
+                                    "EN", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 2"
+                                        )
+                                    ).TextEN,
+                                    
+                                    "DE", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 2"
+                                        )
+                                    ).TextDE,
+                            
+                                    "FR", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 2"
+                                        )
+                                    ).TextFR
+                            
+                                ),
+                            
+                                3,
+                                Switch(
+                                    _appLanguageSelected,
+                                    "EN", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 3"
+                                        )
+                                    ).TextEN,
+                                    
+                                    "DE", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 3"
+                                        )
+                                    ).TextDE,
+                            
+                                    "FR", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 3"
+                                        )
+                                    ).TextFR
+                            
+                                ),
+                            
+                                4,
+                                Switch(
+                                    _appLanguageSelected,
+                                    "EN", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 4"
+                                        )
+                                    ).TextEN,
+                                    
+                                    "DE", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 4"
+                                        )
+                                    ).TextDE,
+                            
+                                    "FR", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 4"
+                                        )
+                                    ).TextFR
+                            
+                                ),
+                            
+                                5,
+                                Switch(
+                                    _appLanguageSelected,
+                                    "EN", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 5"
+                                        )
+                                    ).TextEN,
+                                    
+                                    "DE", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 5"
+                                        )
+                                    ).TextDE,
+                            
+                                    "FR", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 5"
+                                        )
+                                    ).TextFR
+                            
+                                ),
+                            
+                                6,
+                                Switch(
+                                    _appLanguageSelected,
+                                    "EN", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 6"
+                                        )
+                                    ).TextEN,
+                                    
+                                    "DE", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 6"
+                                        )
+                                    ).TextDE,
+                            
+                                    "FR", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Tip 6"
+                                        )
+                                    ).TextFR
+                            
+                                )
+                            )
+                        Underline: |-
+                            =If(
+                                _tip = 1,
+                                true,
+                                false
+                            )
+                        VerticalAlign: =VerticalAlign.Bottom
+                        Width: |-
+                            =If(
+                                App.Width > 400,
+                                'Onboarding Image'.Width + 80,
+                                App.Width - 24
+                            )
+                        X: =Parent.Width/2 - Self.Width/2
+                        Y: ='Onboarding Header'.Y + 'Onboarding Header'.Height + 10
+                        ZIndex: =2
+
+                    "'Onboarding Next button' As button":
+                        BorderColor: =Color.Transparent
+                        BorderThickness: =0
+                        Color: =ColorValue(_buttonText)
+                        DisabledBorderColor: =Color.Transparent
+                        DisabledColor: =ColorValue(_buttonText)
+                        DisabledFill: =ColorValue(_textRegular)
+                        Fill: =ColorValue(_buttonMain)
+                        FocusedBorderColor: =Color.Transparent
+                        FocusedBorderThickness: =0
+                        Font: =Font.Lato
+                        Height: =50
+                        HoverBorderColor: =Color.Transparent
+                        HoverColor: =ColorValue(_buttonText)
+                        HoverFill: =ColorValue(_buttonHover)
+                        OnSelect: |-
+                            =If(
+                                _tip < 6,
+                                Set(_tip, _tip+1),
+                                Navigate(Prompts)
+                            )
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        PressedBorderColor: =Color.Transparent
+                        PressedColor: =ColorValue(_buttonMain)
+                        PressedFill: =ColorValue(_buttonPressed)
+                        RadiusBottomLeft: =11
+                        RadiusBottomRight: =11
+                        RadiusTopLeft: =11
+                        RadiusTopRight: =11
+                        Text: |-
+                            =Switch(
+                                _tip,
+                                
+                                1, 
+                                Switch(
+                                    _appLanguageSelected,
+                                    "EN", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Next button - Get started"
+                                        )
+                                    ).TextEN,
+                                    
+                                    "DE", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Next button - Get started"
+                                        )
+                                    ).TextDE,
+                            
+                                    "FR", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Next button - Get started"
+                                        )
+                                    ).TextFR
+                            
+                                ),
+                                
+                                6, 
+                                Switch(
+                                    _appLanguageSelected,
+                                    "EN", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Next button - Continue"
+                                        )
+                                    ).TextEN,
+                                    
+                                    "DE", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Next button - Continue"
+                                        )
+                                    ).TextDE,
+                            
+                                    "FR", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Next button - Continue"
+                                        )
+                                    ).TextFR
+                            
+                                ),
+                            
+                                Switch(
+                                    _appLanguageSelected,
+                                    "EN", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Next button - Next"
+                                        )
+                                    ).TextEN,
+                                    
+                                    "DE", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Next button - Next"
+                                        )
+                                    ).TextDE,
+                            
+                                    "FR", 
+                                    First(
+                                        Filter(
+                                            'UI Multilanguages',
+                                            Control = "Onboarding Next button - Next"
+                                        )
+                                    ).TextFR
+                            
+                                )
+                            )
+                        Width: |-
+                            =If(
+                                App.Width > 400,
+                                'Onboarding Image'.Width + 80,
+                                App.Width - 24
+                            )
+                        X: =Parent.Width/2 - Self.Width/2
+                        Y: ='Onboarding Tip'.Y + 'Onboarding Tip'.Height + 10
+                        ZIndex: =3
+
+                    "'Onboarding Progress gallery' As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0'":
+                        DelayItemLoading: =true
+                        Height: =12
+                        Items: =_onboardingTips
+                        LoadingSpinner: =LoadingSpinner.Data
+                        TemplatePadding: =0
+                        TemplateSize: =20
+                        Width: =120
+                        X: =Parent.Width/2 - Self.Width/2
+                        Y: ='Onboarding Next button'.Y + 'Onboarding Next button'.Height + 20
+                        ZIndex: =4
+
+                        "'Onboarding Progress circle' As circle":
+                            BorderColor: |-
+                                =If(
+                                    ThisItem.id = _tip,
+                                    ColorValue(_buttonMain),
+                                    ColorValue(_progressInactive)
+                                )
+                            BorderThickness: =1
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: |-
+                                =If(
+                                    ThisItem.id = _tip,
+                                    5,
+                                    7
+                                )
+                            OnSelect: =Select(Parent)
+                            Width: |-
+                                =If(
+                                    ThisItem.id = _tip,
+                                    12,
+                                    7
+                                )
+                            X: =Parent.TemplateWidth/2 - Self.Width/2
+                            Y: |-
+                                =If(
+                                    ThisItem.id = _tip,
+                                    2,
+                                    1
+                                )
+                            ZIndex: =3
+
+                    "'app version' As label":
+                        Align: =Align.Right
+                        Color: =ColorValue(_iconBackground)
+                        Font: =Font.Lato
+                        Height: =20
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =8
+                        Text: ="v 1.26"
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =40
+                        X: =Parent.Width - Self.Width - 5
+                        Y: =Parent.Height - Self.Height - 10
+                        ZIndex: =5
+

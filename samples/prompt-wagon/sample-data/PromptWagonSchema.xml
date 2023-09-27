@@ -1,0 +1,95 @@
+<entities >
+  <entity name="archer_applanguage" displayname="App Language" etc="10568" primaryidfield="archer_applanguageid" primarynamefield="archer_name" disableplugins="false">
+    <fields>
+      <field updateCompare="true" displayname="App Language" name="archer_applanguageid" type="guid" primaryKey="true" />
+      <field updateCompare="true" displayname="Code" name="archer_code" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Created By" name="createdby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Created By (Delegate)" name="createdonbehalfby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Created On" name="createdon" type="datetime" />
+      <field updateCompare="true" displayname="Import Sequence Number" name="importsequencenumber" type="number" />
+      <field updateCompare="true" displayname="Modified By" name="modifiedby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Modified By (Delegate)" name="modifiedonbehalfby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Modified On" name="modifiedon" type="datetime" />
+      <field updateCompare="true" displayname="Name" name="archer_name" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Owner" name="ownerid" type="owner" />
+      <field updateCompare="true" displayname="Owning Business Unit" name="owningbusinessunit" type="entityreference" lookupType="businessunit" />
+      <field updateCompare="true" displayname="Owning Team" name="owningteam" type="entityreference" lookupType="team" />
+      <field updateCompare="true" displayname="Owning User" name="owninguser" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Record Created On" name="overriddencreatedon" type="datetime" />
+      <field updateCompare="true" displayname="Status" name="statecode" type="state" />
+      <field updateCompare="true" displayname="Status Reason" name="statuscode" type="status" />
+      <field updateCompare="true" displayname="Time Zone Rule Version Number" name="timezoneruleversionnumber" type="number" />
+      <field updateCompare="true" displayname="UTC Conversion Time Zone Code" name="utcconversiontimezonecode" type="number" />
+      <field updateCompare="true" displayname="Version Number" name="versionnumber" type="bigint" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="archer_prompts" displayname="Prompts" etc="10476" primaryidfield="archer_promptsid" primarynamefield="archer_name" disableplugins="false">
+    <fields>
+      <field updateCompare="true" displayname="archer_iconid" name="archer_iconid" type="guid" customfield="true" />
+      <field updateCompare="true" displayname="Category" name="archer_category" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Created By" name="createdby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Created By (Delegate)" name="createdonbehalfby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Created On" name="createdon" type="datetime" />
+      <field updateCompare="true" displayname="Description" name="archer_description" type="string" customfield="true" />
+      <field updateCompare="true" displayname="DescriptionDE" name="archer_descriptionde" type="string" customfield="true" />
+      <field updateCompare="true" displayname="DescriptionFR" name="archer_descriptionfr" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Frequency Penalty" name="archer_frequencypenalty" type="decimal" customfield="true" />
+      <field updateCompare="true" displayname="Icon" name="archer_icon" type="imagedata" customfield="true" />
+      <field updateCompare="true" displayname="Import Sequence Number" name="importsequencenumber" type="number" />
+      <field updateCompare="true" displayname="Max Tokens" name="archer_maxtokens" type="number" customfield="true" />
+      <field updateCompare="true" displayname="Modified By" name="modifiedby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Modified By (Delegate)" name="modifiedonbehalfby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Modified On" name="modifiedon" type="datetime" />
+      <field updateCompare="true" displayname="Name" name="archer_name" type="string" customfield="true" />
+      <field updateCompare="true" displayname="NameDE" name="archer_namede" type="string" customfield="true" />
+      <field updateCompare="true" displayname="NameFR" name="archer_namefr" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Owner" name="ownerid" type="owner" />
+      <field updateCompare="true" displayname="Owning Business Unit" name="owningbusinessunit" type="entityreference" lookupType="businessunit" />
+      <field updateCompare="true" displayname="Owning Team" name="owningteam" type="entityreference" lookupType="team" />
+      <field updateCompare="true" displayname="Owning User" name="owninguser" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Presence Penalty" name="archer_presencepenalty" type="decimal" customfield="true" />
+      <field updateCompare="true" displayname="Prompt" name="archer_prompt" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Prompts" name="archer_promptsid" type="guid" primaryKey="true" />
+      <field updateCompare="true" displayname="Record Created On" name="overriddencreatedon" type="datetime" />
+      <field updateCompare="true" displayname="RoleSystem" name="archer_rolesystem" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Status" name="statecode" type="state" />
+      <field updateCompare="true" displayname="Status Reason" name="statuscode" type="status" />
+      <field updateCompare="true" displayname="Stop" name="archer_stop" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Temperature" name="archer_temperature" type="decimal" customfield="true" />
+      <field updateCompare="true" displayname="Time Zone Rule Version Number" name="timezoneruleversionnumber" type="number" />
+      <field updateCompare="true" displayname="Top P" name="archer_topp" type="decimal" customfield="true" />
+      <field updateCompare="true" displayname="UTC Conversion Time Zone Code" name="utcconversiontimezonecode" type="number" />
+      <field updateCompare="true" displayname="Version Number" name="versionnumber" type="bigint" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="archer_uimultilanguage" displayname="UI Multilanguage" etc="10755" primaryidfield="archer_uimultilanguageid" primarynamefield="archer_name" disableplugins="false">
+    <fields>
+      <field updateCompare="true" displayname="Control" name="archer_control" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Created By" name="createdby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Created By (Delegate)" name="createdonbehalfby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Created On" name="createdon" type="datetime" />
+      <field updateCompare="true" displayname="Import Sequence Number" name="importsequencenumber" type="number" />
+      <field updateCompare="true" displayname="Modified By" name="modifiedby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Modified By (Delegate)" name="modifiedonbehalfby" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Modified On" name="modifiedon" type="datetime" />
+      <field updateCompare="true" displayname="Name" name="archer_name" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Owner" name="ownerid" type="owner" />
+      <field updateCompare="true" displayname="Owning Business Unit" name="owningbusinessunit" type="entityreference" lookupType="businessunit" />
+      <field updateCompare="true" displayname="Owning Team" name="owningteam" type="entityreference" lookupType="team" />
+      <field updateCompare="true" displayname="Owning User" name="owninguser" type="entityreference" lookupType="systemuser" />
+      <field updateCompare="true" displayname="Record Created On" name="overriddencreatedon" type="datetime" />
+      <field updateCompare="true" displayname="Status" name="statecode" type="state" />
+      <field updateCompare="true" displayname="Status Reason" name="statuscode" type="status" />
+      <field updateCompare="true" displayname="TextDE" name="archer_textde" type="string" customfield="true" />
+      <field updateCompare="true" displayname="TextEN" name="archer_texten" type="string" customfield="true" />
+      <field updateCompare="true" displayname="TextFR" name="archer_textfr" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Time Zone Rule Version Number" name="timezoneruleversionnumber" type="number" />
+      <field updateCompare="true" displayname="UI Multilanguage" name="archer_uimultilanguageid" type="guid" primaryKey="true" />
+      <field updateCompare="true" displayname="UTC Conversion Time Zone Code" name="utcconversiontimezonecode" type="number" />
+      <field updateCompare="true" displayname="Version Number" name="versionnumber" type="bigint" />
+    </fields>
+    <relationships />
+  </entity>
+</entities>

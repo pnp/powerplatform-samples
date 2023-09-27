@@ -1,0 +1,171 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://europe-002.azure-apim.net/apim/archer-5fpromptwagon-5ff73fc8ceb8bd1dfd" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="Defaulttitle" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="Default title"></doc>
+  <grammars>
+    <jsonTypes targetNamespace="https://europe-002.azure-apim.net/apim/archer-5fpromptwagon-5ff73fc8ceb8bd1dfd" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <string name="RequestToAzureOpenAI_param_body_def_messages_def_items_def_role_def" />
+      <string name="RequestToAzureOpenAI_param_body_def_messages_def_items_def_content_def" />
+      <object name="RequestToAzureOpenAI_param_body_def_messages_def_items_def">
+        <property name="role" type="string" />
+        <property name="content" type="string" />
+      </object>
+      <array typeRef="RequestToAzureOpenAI_param_body_def_messages_def_items_def" name="RequestToAzureOpenAI_param_body_def_messages_def" />
+      <integer name="RequestToAzureOpenAI_param_body_def_max_tokens_def" />
+      <number name="RequestToAzureOpenAI_param_body_def_temperature_def" />
+      <integer name="RequestToAzureOpenAI_param_body_def_frequency_penalty_def" />
+      <integer name="RequestToAzureOpenAI_param_body_def_presence_penalty_def" />
+      <number name="RequestToAzureOpenAI_param_body_def_top_p_def" />
+      <string name="RequestToAzureOpenAI_param_body_def_stop_def" />
+      <object name="RequestToAzureOpenAI_param_body_def">
+        <property name="messages" typeRef="RequestToAzureOpenAI_param_body_def_messages_def" />
+        <property name="max_tokens" type="integer" />
+        <property name="temperature" type="number" />
+        <property name="frequency_penalty" type="integer" />
+        <property name="presence_penalty" type="integer" />
+        <property name="top_p" type="number" />
+        <property name="stop" type="string" />
+      </object>
+      <string name="RequestToAzureOpenAI_responses_default_def_id_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_object_def" />
+      <integer name="RequestToAzureOpenAI_responses_default_def_created_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_model_def" />
+      <integer name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_prompt_index_def" />
+      <boolean name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_hate_def_filtered_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_hate_def_severity_def" />
+      <object name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_hate_def">
+        <property name="filtered" type="boolean" />
+        <property name="severity" type="string" />
+      </object>
+      <boolean name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_self_harm_def_filtered_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_self_harm_def_severity_def" />
+      <object name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_self_harm_def">
+        <property name="filtered" type="boolean" />
+        <property name="severity" type="string" />
+      </object>
+      <boolean name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_sexual_def_filtered_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_sexual_def_severity_def" />
+      <object name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_sexual_def">
+        <property name="filtered" type="boolean" />
+        <property name="severity" type="string" />
+      </object>
+      <boolean name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_violence_def_filtered_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_violence_def_severity_def" />
+      <object name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_violence_def">
+        <property name="filtered" type="boolean" />
+        <property name="severity" type="string" />
+      </object>
+      <object name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def">
+        <property name="hate" typeRef="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_hate_def" />
+        <property name="self_harm" typeRef="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_self_harm_def" />
+        <property name="sexual" typeRef="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_sexual_def" />
+        <property name="violence" typeRef="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def_violence_def" />
+      </object>
+      <object name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def">
+        <property name="prompt_index" type="integer" />
+        <property name="content_filter_results" typeRef="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def_content_filter_results_def" />
+      </object>
+      <array typeRef="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def_items_def" name="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def" />
+      <integer name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_index_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_finish_reason_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_message_def_role_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_message_def_content_def" />
+      <object name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_message_def">
+        <property name="role" type="string" />
+        <property name="content" type="string" />
+      </object>
+      <boolean name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_hate_def_filtered_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_hate_def_severity_def" />
+      <object name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_hate_def">
+        <property name="filtered" type="boolean" />
+        <property name="severity" type="string" />
+      </object>
+      <boolean name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_self_harm_def_filtered_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_self_harm_def_severity_def" />
+      <object name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_self_harm_def">
+        <property name="filtered" type="boolean" />
+        <property name="severity" type="string" />
+      </object>
+      <boolean name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_sexual_def_filtered_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_sexual_def_severity_def" />
+      <object name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_sexual_def">
+        <property name="filtered" type="boolean" />
+        <property name="severity" type="string" />
+      </object>
+      <boolean name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_violence_def_filtered_def" />
+      <string name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_violence_def_severity_def" />
+      <object name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_violence_def">
+        <property name="filtered" type="boolean" />
+        <property name="severity" type="string" />
+      </object>
+      <object name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def">
+        <property name="hate" typeRef="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_hate_def" />
+        <property name="self_harm" typeRef="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_self_harm_def" />
+        <property name="sexual" typeRef="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_sexual_def" />
+        <property name="violence" typeRef="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def_violence_def" />
+      </object>
+      <object name="RequestToAzureOpenAI_responses_default_def_choices_def_items_def">
+        <property name="index" type="integer" />
+        <property name="finish_reason" type="string" />
+        <property name="message" typeRef="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_message_def" />
+        <property name="content_filter_results" typeRef="RequestToAzureOpenAI_responses_default_def_choices_def_items_def_content_filter_results_def" />
+      </object>
+      <array typeRef="RequestToAzureOpenAI_responses_default_def_choices_def_items_def" name="RequestToAzureOpenAI_responses_default_def_choices_def" />
+      <integer name="RequestToAzureOpenAI_responses_default_def_usage_def_completion_tokens_def" />
+      <integer name="RequestToAzureOpenAI_responses_default_def_usage_def_prompt_tokens_def" />
+      <integer name="RequestToAzureOpenAI_responses_default_def_usage_def_total_tokens_def" />
+      <object name="RequestToAzureOpenAI_responses_default_def_usage_def">
+        <property name="completion_tokens" type="integer" />
+        <property name="prompt_tokens" type="integer" />
+        <property name="total_tokens" type="integer" />
+      </object>
+      <object name="RequestToAzureOpenAI_responses_default_def">
+        <property name="id" type="string" />
+        <property name="object" type="string" />
+        <property name="created" type="integer" />
+        <property name="model" type="string" />
+        <property name="prompt_annotations" typeRef="RequestToAzureOpenAI_responses_default_def_prompt_annotations_def" />
+        <property name="choices" typeRef="RequestToAzureOpenAI_responses_default_def_choices_def" />
+        <property name="usage" typeRef="RequestToAzureOpenAI_responses_default_def_usage_def" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://europe-002.azure-apim.net/apim/archer-5fpromptwagon-5ff73fc8ceb8bd1dfd">
+    <resource path="/{connectionId}/">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="RequestToAzureOpenAI" actionName="RequestToAzureOpenAI" siena:isDeprecated="false">
+        <doc title="Request to Azure OpenAI&#xA;Request to Azure OpenAI" />
+        <request>
+          <param style="query" name="api-version" type="xs:string" required="true" fixed="2023-07-01-preview" />
+          <param style="header" name="Content-Type" type="xs:string" required="true" fixed="application/json" />
+          <representation mediaType="application/json">
+            <param style="plain" name="messages" path="/messages" type="service:RequestToAzureOpenAI_param_body_def_messages_def" />
+            <param style="plain" name="max_tokens" path="/max_tokens" type="xs:int" required="true" default="800">
+              <doc title="max_tokens" />
+            </param>
+            <param style="plain" name="temperature" path="/temperature" type="xs:float" required="true" default="0.7">
+              <doc title="temperature" />
+            </param>
+            <param style="plain" name="frequency_penalty" path="/frequency_penalty" type="xs:int" default="0">
+              <doc title="frequency_penalty" />
+            </param>
+            <param style="plain" name="presence_penalty" path="/presence_penalty" type="xs:int" default="0" />
+            <param style="plain" name="top_p" path="/top_p" type="xs:float" required="true" default="0.95">
+              <doc title="top_p" />
+            </param>
+            <param style="plain" name="stop" path="/stop" type="xs:string" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:RequestToAzureOpenAI_responses_default_def" />
+        </response>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="shared_archer-5fpromptwagon-5ff73fc8ceb8bd1dfd" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

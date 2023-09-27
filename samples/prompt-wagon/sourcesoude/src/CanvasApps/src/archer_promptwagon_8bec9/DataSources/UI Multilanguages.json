@@ -1,0 +1,101 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "archer_uimultilanguages",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "archer_uimultilanguage",
+    "MaxGetRowsCount": 500,
+    "Name": "UI Multilanguages",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "archer_control": "Control",
+      "archer_name": "Name",
+      "archer_textde": "TextDE",
+      "archer_texten": "TextEN",
+      "archer_textfr": "TextFR",
+      "archer_uimultilanguage_AsyncOperations": "System Jobs",
+      "archer_uimultilanguage_BulkDeleteFailures": "Bulk Delete Failures",
+      "archer_uimultilanguage_DuplicateBaseRecord": "Duplicate Records (archer_uimultilanguage_DuplicateBaseRecord)",
+      "archer_uimultilanguage_DuplicateMatchingRecord": "Duplicate Records (archer_uimultilanguage_DuplicateMatchingRecord)",
+      "archer_uimultilanguage_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "archer_uimultilanguage_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "archer_uimultilanguage_ProcessSession": "Process Sessions",
+      "archer_uimultilanguage_SyncErrors": "Sync Errors",
+      "archer_uimultilanguageid": "UI Multilanguage",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "UI Multilanguages",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "UI Multilanguages (Views)",
+    "Name": "_archer_uimultilanguage_views",
+    "RelatedEntityName": "UI Multilanguages",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "9a7c9fbf-f570-43bc-b9ac-b81fde2318af": "UI Multilanguage Advanced Find View",
+      "bce1c2f6-5f43-457b-bff0-914aa8990117": "Active UI Multilanguages",
+      "c9785463-db36-41a5-a516-c04db2ac9642": "UI Multilanguage Lookup View",
+      "e207b8ad-9807-41bb-a567-a62e2d574b6a": "Inactive UI Multilanguages",
+      "f5757245-4171-4754-a4d8-6e093a8deb2f": "UI Multilanguage Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (UI Multilanguages)",
+    "Name": "archer_uimultilanguage_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "UI Multilanguages"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "UI Multilanguages",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (UI Multilanguages)",
+    "Name": "archer_uimultilanguage_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "UI Multilanguages"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "UI Multilanguages",
+    "Type": "OptionSetInfo"
+  }
+]

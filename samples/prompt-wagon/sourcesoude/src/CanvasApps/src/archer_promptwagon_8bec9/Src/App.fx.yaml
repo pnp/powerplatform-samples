@@ -1,0 +1,200 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |+
+        =Concurrent(
+            ClearCollect(
+                _onboardingTips,
+                Table(
+                    {
+                        id: 1,
+                        text: "Pick a Category and Start with a Prompt"
+                    },
+                    {
+                        id: 2,
+                        text: "The app remembers your last 20 entries"
+                    },
+                    {
+                        id: 3,
+                        text: "Use the broom icon to start the chat from the beginning"
+                    },
+                    {
+                        id: 4,
+                        text: "Use the special icon to copy the chatbot's entire response"
+                    },
+                    {
+                        id: 5,
+                        text: "Use the recycling icon to generate a new response from the chatbot"
+                    },
+                    {
+                        id: 6,
+                        text: "You can write to the chatbot in any language"
+                    }
+                )
+            ),
+        
+            Set(_tip, 1),
+        
+            ClearCollect(
+                _categories,
+                Distinct(Prompts_1,Category)
+            ),
+        
+            // Set colors
+            Set(
+                _textHeader,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_TextHeader"
+                ).Value
+            ),
+            Set(
+                _textRegular,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_TextRegular"
+                ).Value
+            ),
+            Set(
+                _tileBackground,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_TileBackground"
+                ).Value
+            ),
+            Set(
+                _buttonMain,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_ButtonMain"
+                ).Value
+            ),
+            Set(
+                _iconBackground,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_IconBackground"
+                ).Value
+            ),
+            Set(
+                _buttonHover,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_ButtonHover"
+                ).Value
+            ),
+            Set(
+                _buttonPressed,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_ButtonPressed"
+                ).Value
+            ),
+            Set(
+                _buttonText,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_ButtonText"
+                ).Value
+            ),
+            Set(
+                _buttonSkip,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_ButtonSkip"
+                ).Value
+            ),
+            Set(
+                _progressInactive,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_ProgressInactive"
+                ).Value
+            ),
+            Set(
+                _inputActive,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_InputActive"
+                ).Value
+            ),
+        
+            //Set Super Prompt
+            Set(
+                _superPrompt,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_SuperPrompt"
+                ).Value
+            ),
+        
+            //Set api-key
+            Set(
+                _apiKey,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_AzureOpenAIKey"
+                ).Value
+            ),
+        
+            //Set admin emails
+            Set(
+                _admin1,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_Admin1"
+                ).Value
+            ),
+            Set(
+                _admin2,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_Admin2"
+                ).Value
+            ),
+            Set(
+                _admin3,
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "archer_Admin3"
+                ).Value
+            ),
+        
+            //Set App languages
+            ClearCollect(
+                _appLanguages,
+                ForAll(
+                    'App Languages',
+                    Table(
+                        {
+                            langName: ThisRecord.Name,
+                            langCode: ThisRecord.Code
+                        }
+                    )
+                )
+            ),
+            Set(_appLanguageSelected, "EN"),
+        
+            //clear variables
+            Set(_botResponse, ""),
+            Clear(_conversation),
+            Set(_settingsPopup, false),
+            Set(_languageSelection, false),
+            Set(_languageSelected, "en")
+            
+        );
+        
+        Patch(
+            _categories,
+            Defaults(_categories),
+            {Value: "All"}
+        );
+        
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

@@ -1,0 +1,713 @@
+"Settings As screen.'autoLayout_HeaderFooter_ver1.0'":
+
+    "'Settings screen container' As groupContainer.verticalAutoLayoutContainer":
+        DropShadow: =DropShadow.None
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =Parent.Width
+        ZIndex: =1
+
+        "'Settings Header container' As groupContainer.horizontalAutoLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =47
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            ZIndex: =2
+
+        "'Settings Main container' As groupContainer.verticalAutoLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =3
+
+            "'Settings Main Header container' As groupContainer.manualLayoutContainer":
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =50
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Width: |-
+                    =If(
+                        Parent.Width > 390,
+                        Parent.Width - 40,
+                        Parent.Width - 12
+                    )
+                X: |-
+                    =/*If(
+                        Parent.Width > 390,
+                        20,
+                        6
+                    )*/
+                ZIndex: =1
+
+                "'Settings Back icon' As image":
+                    Height: ='Settings Back button'.Height
+                    Image: |-
+                        ="data:image/svg+xml;utf8, "&EncodeUrl("
+                            
+                            <svg width='7' height='12' viewBox='0 0 7 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                            <path d='M6 11.234L0.884615 6.117L6 1' stroke='"& _textRegular &"' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/>
+                            </svg>
+                        
+                        ")
+                    Width: =12
+                    X: ='Settings Back button'.Width/2 - Self.Width/2
+                    Y: ='Settings Back button'.Y
+                    ZIndex: =1
+
+                "'Chat Settings icon_1' As image":
+                    Height: ='Chat Settings button_1'.Height
+                    Image: |-
+                        ="data:image/svg+xml;utf8, "&EncodeUrl("
+                        
+                            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='"& _textRegular &"' class='bi bi-gear-fill' viewBox='0 0 16 16'>
+                                <path d='M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z'/>
+                                <path d='M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z'/>
+                            </svg>
+                        
+                        ")
+                    Visible: |-
+                        =If(
+                            Or(
+                                Lower(User().Email) = "artem.chernevskiy@ms-learn.com",
+                                Lower(User().Email) = "katerina.chernevskaya@ms-learn.com"
+                            ),
+                            true,
+                            false
+                        )
+                    Width: ='Chat Settings button_1'.Width - 15
+                    X: ='Chat Settings button_1'.X + 'Chat Settings button_1'.Width/2 - Self.Width/2
+                    Y: ='Chat Settings button_1'.Y
+                    ZIndex: =1
+
+                "'Settings Name' As label":
+                    Align: =Align.Center
+                    Font: =Font.'Lato Black'
+                    Height: =Parent.Height
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =18
+                    Text: ="Prompts editor"
+                    Width: =Parent.Width
+                    ZIndex: =2
+
+                "'Chat Back icon_1' As image":
+                    Height: ='Chat Back button_1'.Height
+                    Image: |-
+                        ="data:image/svg+xml;utf8, "&EncodeUrl("
+                            
+                            <svg width='7' height='12' viewBox='0 0 7 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                            <path d='M6 11.234L0.884615 6.117L6 1' stroke='"& _textRegular &"' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/>
+                            </svg>
+                        
+                        ")
+                    Width: =12
+                    X: ='Chat Back button_1'.Width/2 - Self.Width/2
+                    Y: ='Chat Back button_1'.Y
+                    ZIndex: =2
+
+                "'Settings Back button' As button":
+                    BorderColor: =ColorValue(_textRegular)
+                    BorderThickness: =1
+                    Color: =Color.Transparent
+                    DisabledBorderColor: =ColorValue(_textRegular)
+                    DisabledColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =ColorValue(_textRegular)
+                    FocusedBorderThickness: =1
+                    Height: =35
+                    HoverBorderColor: =ColorValue(_textRegular)
+                    HoverColor: =Color.Transparent
+                    HoverFill: =Color.Transparent
+                    OnSelect: =Navigate(Chat)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    PressedBorderColor: =ColorValue(_textRegular)
+                    PressedColor: =Color.Transparent
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =8
+                    RadiusBottomRight: =8
+                    RadiusTopLeft: =8
+                    RadiusTopRight: =8
+                    Text: =""
+                    Width: =35
+                    X: =2
+                    Y: =7
+                    ZIndex: =3
+
+                "'Chat Back button_1' As button":
+                    BorderColor: =ColorValue(_textRegular)
+                    BorderThickness: =1
+                    Color: =Color.Transparent
+                    DisabledBorderColor: =ColorValue(_textRegular)
+                    DisabledColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =ColorValue(_textRegular)
+                    FocusedBorderThickness: =1
+                    Height: =35
+                    HoverBorderColor: =ColorValue(_textRegular)
+                    HoverColor: =Color.Transparent
+                    HoverFill: =Color.Transparent
+                    OnSelect: =Navigate(Prompts)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    PressedBorderColor: =ColorValue(_textRegular)
+                    PressedColor: =Color.Transparent
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =8
+                    RadiusBottomRight: =8
+                    RadiusTopLeft: =8
+                    RadiusTopRight: =8
+                    Text: =""
+                    Width: =35
+                    X: =2
+                    Y: =7
+                    ZIndex: =4
+
+                "'Chat Settings button_1' As button":
+                    BorderColor: =ColorValue(_textRegular)
+                    BorderThickness: =1
+                    Color: =Color.Transparent
+                    DisabledBorderColor: =ColorValue(_textRegular)
+                    DisabledColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =ColorValue(_textRegular)
+                    FocusedBorderThickness: =1
+                    Height: =35
+                    HoverBorderColor: =ColorValue(_textRegular)
+                    HoverColor: =Color.Transparent
+                    HoverFill: =Color.Transparent
+                    OnSelect: |-
+                        =Notify(
+                            "The Setting screen is under construction yet. Please be patient!",
+                            NotificationType.Information
+                        )
+                        
+                        
+                        //Navigate(Prompts)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    PressedBorderColor: =ColorValue(_textRegular)
+                    PressedColor: =Color.Transparent
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =8
+                    RadiusBottomRight: =8
+                    RadiusTopLeft: =8
+                    RadiusTopRight: =8
+                    Text: =""
+                    Visible: |-
+                        =If(
+                            Or(
+                                Lower(User().Email) = "artem.chernevskiy@ms-learn.com",
+                                Lower(User().Email) = "katerina.chernevskaya@ms-learn.com"
+                            ),
+                            true,
+                            false
+                        )
+                    Width: =35
+                    X: =Parent.Width - Self.Width - 2
+                    Y: ='Chat Back button_1'.Y
+                    ZIndex: =5
+
+            "'Settings Editor container' As groupContainer.manualLayoutContainer":
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.None
+                Height: =50
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Width: |-
+                    =If(
+                        Parent.Width > 390,
+                        Parent.Width - 40,
+                        Parent.Width - 12
+                    )
+                X: |-
+                    =/*If(
+                        Parent.Width > 390,
+                        20,
+                        6
+                    )*/
+                ZIndex: =2
+
+                "'Settings Prompts Gallery' As gallery.variableTemplateHeightGallery":
+                    DelayItemLoading: =true
+                    Height: =Parent.Height
+                    Items: =Prompts_1
+                    Layout: =Layout.Vertical
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplatePadding: =10
+                    TemplateSize: =280
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                    "'Settings Prompt Tile' As button":
+                        BorderColor: =Color.Transparent
+                        BorderThickness: =0
+                        Color: =Color.Transparent
+                        DisabledBorderColor: =Color.Transparent
+                        DisabledColor: =Color.Transparent
+                        DisabledFill: =ColorValue(_tileBackground)
+                        Fill: =ColorValue(_tileBackground)
+                        FocusedBorderColor: =Color.Transparent
+                        FocusedBorderThickness: =0
+                        Height: ='Settings Prompt Name'.Height + 'Settings Prompt Description'.Height + 'Settings Prompt'.Height + 40
+                        HoverBorderColor: =Color.Transparent
+                        HoverColor: =Color.Transparent
+                        HoverFill: =ColorValue(_tileBackground)
+                        OnSelect: =Select(Parent)
+                        PressedBorderColor: =Color.Transparent
+                        PressedColor: =Color.Transparent
+                        PressedFill: =ColorValue(_tileBackground)
+                        RadiusBottomLeft: =20
+                        RadiusBottomRight: =20
+                        RadiusTopLeft: =20
+                        RadiusTopRight: =20
+                        Text: ="Button"
+                        Width: =Parent.TemplateWidth - 10
+                        ZIndex: =1
+
+                    "'Settings Prompt Name' As label":
+                        Font: =Font.'Lato Black'
+                        OnSelect: =Select(Parent)
+                        Size: =12
+                        Text: =ThisItem.Name
+                        Width: =Parent.TemplateWidth - 'Settings Prompt Icon'.X - 'Settings Prompt Icon'.Width - 40
+                        X: ='Settings Prompt Icon'.X + 'Settings Prompt Icon'.Width + 10
+                        Y: ='Settings Prompt Icon'.Y
+                        ZIndex: =2
+
+                    "'Settings Prompt Description' As label":
+                        AutoHeight: =true
+                        Font: =Font.Lato
+                        FontWeight: =FontWeight.Semibold
+                        OnSelect: =Select(Parent)
+                        Size: =10
+                        Text: =ThisItem.Description
+                        Width: =Parent.TemplateWidth - 50
+                        X: ='Settings Prompt Icon'.X
+                        Y: ='Settings Prompt Name'.Y + 'Settings Prompt Name'.Height
+                        ZIndex: =3
+
+                    "'Settings Prompt' As label":
+                        AutoHeight: =true
+                        Font: =Font.Lato
+                        Italic: =true
+                        OnSelect: =Select(Parent)
+                        Size: =10
+                        Text: =ThisItem.Prompt
+                        Width: =Parent.TemplateWidth - 50
+                        X: ='Settings Prompt Icon'.X
+                        Y: ='Settings Prompt Description'.Y + 'Settings Prompt Description'.Height
+                        ZIndex: =4
+
+                    "'Settings Prompt Icon' As image":
+                        Height: =40
+                        Image: =ThisItem.Icon
+                        OnSelect: =Select(Parent)
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                        Width: =40
+                        X: =20
+                        Y: =20
+                        ZIndex: =5
+
+                "'Settings Background' As htmlViewer":
+                    Height: =Parent.Height
+                    HtmlText: |
+                        ="<div style='
+                            width:"& Parent.Width-0 &"px;
+                            height:"& Parent.Height-1 &"px;
+                            border-radius: 0px;
+                            backdrop-filter: blur(3px);
+                            -webkit-backdrop-filter: blur(5px);
+                            border: 1px solid rgba(255, 255, 255, 0.3);
+                        '></div>"
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Visible: =false
+                    Width: =Parent.Width
+                    ZIndex: =2
+
+                "'Settings Tile' As htmlViewer":
+                    Height: =Parent.Height-60
+                    HtmlText: |
+                        ="<div style='
+                            width:"&
+                            
+                            If(
+                                App.Width = 360,
+                                330,
+                                If(
+                                    App.Width < 1080,
+                                    Parent.Width - 70,
+                                    Parent.Width - 600
+                                )
+                            )
+                        
+                        
+                            &"px;
+                            height:"& Parent.Height-80 &"px;
+                            background: #ffffff;
+                            border-radius:30px;
+                            box-shadow: 6px 6px 10px #D6D6D6;
+                            margin:5px;
+                        '></div>"
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Visible: =false
+                    Width: |-
+                        =If(
+                            App.Width = 360,
+                            360,
+                            If(
+                                App.Width < 1080,
+                                Parent.Width - 40,
+                                Parent.Width - 570
+                            )
+                        )
+                    X: =Parent.Width/2 - Self.Width/2
+                    Y: =30
+                    ZIndex: =3
+
+                "'Settings Editor Name input' As text":
+                    BorderColor: =ColorValue(_iconBackground)
+                    BorderThickness: =1
+                    Color: =ColorValue(_textRegular)
+                    Default: =Self.Width
+                    DisabledBorderColor: =ColorValue(_iconBackground)
+                    DisabledColor: =ColorValue(_textRegular)
+                    DisabledFill: =ColorValue(_tileBackground)
+                    Fill: =ColorValue(_tileBackground)
+                    FocusedBorderColor: =ColorValue(_buttonMain)
+                    FocusedBorderThickness: =1
+                    Font: =Font.Lato
+                    HintText: ="Type your message"
+                    HoverBorderColor: =ColorValue(_buttonMain)
+                    HoverColor: =ColorValue(_textRegular)
+                    HoverFill: =ColorValue(_tileBackground)
+                    PaddingBottom: =3
+                    PaddingRight: =12
+                    PaddingTop: =3
+                    PressedBorderColor: =ColorValue(_buttonMain)
+                    PressedColor: =ColorValue(_textRegular)
+                    PressedFill: =ColorValue(_tileBackground)
+                    RadiusBottomLeft: =11
+                    RadiusBottomRight: =11
+                    RadiusTopLeft: =11
+                    RadiusTopRight: =11
+                    Size: =10
+                    Visible: =false
+                    Width: ='Settings Editor Name label'.Width
+                    X: ='Settings Editor Name label'.X
+                    Y: ='Settings Editor Name label'.Y + 'Settings Editor Name label'.Height + 10
+                    ZIndex: =4
+
+                "'Settings Editor Name label' As label":
+                    Font: =Font.'Lato Black'
+                    Text: ="Name"
+                    Visible: =false
+                    Width: ='Settings Tile'.Width - 60
+                    X: ='Settings Tile'.X + 20
+                    Y: ='Settings Tile'.Y + 40
+                    ZIndex: =5
+
+                "'Settings Editor Description input' As text":
+                    BorderColor: =ColorValue(_iconBackground)
+                    BorderThickness: =1
+                    Color: =ColorValue(_textRegular)
+                    Default: =Self.Width
+                    DisabledBorderColor: =ColorValue(_iconBackground)
+                    DisabledColor: =ColorValue(_textRegular)
+                    DisabledFill: =ColorValue(_tileBackground)
+                    Fill: =ColorValue(_tileBackground)
+                    FocusedBorderColor: =ColorValue(_buttonMain)
+                    FocusedBorderThickness: =1
+                    Font: =Font.Lato
+                    Height: =60
+                    HintText: ="Type your message"
+                    HoverBorderColor: =ColorValue(_buttonMain)
+                    HoverColor: =ColorValue(_textRegular)
+                    HoverFill: =ColorValue(_tileBackground)
+                    Mode: =TextMode.MultiLine
+                    PaddingBottom: =3
+                    PaddingRight: =12
+                    PaddingTop: =3
+                    PressedBorderColor: =ColorValue(_buttonMain)
+                    PressedColor: =ColorValue(_textRegular)
+                    PressedFill: =ColorValue(_tileBackground)
+                    RadiusBottomLeft: =11
+                    RadiusBottomRight: =11
+                    RadiusTopLeft: =11
+                    RadiusTopRight: =11
+                    Size: =10
+                    Visible: =false
+                    Width: ='Settings Editor Description label'.Width
+                    X: ='Settings Editor Description label'.X
+                    Y: ='Settings Editor Description label'.Y + 'Settings Editor Description label'.Height + 10
+                    ZIndex: =6
+
+                "'Settings Editor Description label' As label":
+                    Font: =Font.'Lato Black'
+                    Text: ="Description"
+                    Visible: =false
+                    Width: ='Settings Editor Name label'.Width
+                    X: ='Settings Editor Name label'.X
+                    Y: ='Settings Editor Name input'.Y + 'Settings Editor Name input'.Height + 30
+                    ZIndex: =7
+
+                "'Settings Editor Prompt input' As text":
+                    BorderColor: =ColorValue(_iconBackground)
+                    BorderThickness: =1
+                    Color: =ColorValue(_textRegular)
+                    Default: =Self.Width
+                    DisabledBorderColor: =ColorValue(_iconBackground)
+                    DisabledColor: =ColorValue(_textRegular)
+                    DisabledFill: =ColorValue(_tileBackground)
+                    Fill: =ColorValue(_tileBackground)
+                    FocusedBorderColor: =ColorValue(_buttonMain)
+                    FocusedBorderThickness: =1
+                    Font: =Font.Lato
+                    Height: =80
+                    HintText: ="Type your message"
+                    HoverBorderColor: =ColorValue(_buttonMain)
+                    HoverColor: =ColorValue(_textRegular)
+                    HoverFill: =ColorValue(_tileBackground)
+                    Mode: =TextMode.MultiLine
+                    PaddingBottom: =3
+                    PaddingRight: =12
+                    PaddingTop: =3
+                    PressedBorderColor: =ColorValue(_buttonMain)
+                    PressedColor: =ColorValue(_textRegular)
+                    PressedFill: =ColorValue(_tileBackground)
+                    RadiusBottomLeft: =11
+                    RadiusBottomRight: =11
+                    RadiusTopLeft: =11
+                    RadiusTopRight: =11
+                    Size: =10
+                    Visible: =false
+                    Width: ='Settings Editor Prompt label'.Width
+                    X: ='Settings Editor Prompt label'.X
+                    Y: ='Settings Editor Prompt label'.Y + 'Settings Editor Prompt label'.Height + 10
+                    ZIndex: =8
+
+                "'Settings Editor Prompt label' As label":
+                    Font: =Font.'Lato Black'
+                    Text: ="Prompt"
+                    Visible: =false
+                    Width: ='Settings Editor Name label'.Width
+                    X: ='Settings Editor Name label'.X
+                    Y: ='Settings Editor Description input'.Y + 'Settings Editor Description input'.Height + 30
+                    ZIndex: =9
+
+                Container1 As groupContainer.manualLayoutContainer:
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =Parent.Height-60
+                    RadiusBottomLeft: =20
+                    RadiusBottomRight: =20
+                    RadiusTopLeft: =20
+                    RadiusTopRight: =20
+                    Visible: =false
+                    Width: |-
+                        =If(
+                            App.Width = 360,
+                            360,
+                            If(
+                                App.Width < 1080,
+                                Parent.Width - 40,
+                                Parent.Width - 570
+                            )
+                        )
+                    X: =Parent.Width/2 - Self.Width/2
+                    Y: =40
+                    ZIndex: =10
+
+                    "'Settings Editor Name input_1' As text":
+                        BorderColor: =ColorValue(_iconBackground)
+                        BorderThickness: =1
+                        Color: =ColorValue(_textRegular)
+                        Default: =Self.Width
+                        DisabledBorderColor: =ColorValue(_iconBackground)
+                        DisabledColor: =ColorValue(_textRegular)
+                        DisabledFill: =ColorValue(_tileBackground)
+                        Fill: =ColorValue(_tileBackground)
+                        FocusedBorderColor: =ColorValue(_buttonMain)
+                        FocusedBorderThickness: =1
+                        Font: =Font.Lato
+                        HintText: ="Type your message"
+                        HoverBorderColor: =ColorValue(_buttonMain)
+                        HoverColor: =ColorValue(_textRegular)
+                        HoverFill: =ColorValue(_tileBackground)
+                        PaddingBottom: =3
+                        PaddingRight: =12
+                        PaddingTop: =3
+                        PressedBorderColor: =ColorValue(_buttonMain)
+                        PressedColor: =ColorValue(_textRegular)
+                        PressedFill: =ColorValue(_tileBackground)
+                        RadiusBottomLeft: =11
+                        RadiusBottomRight: =11
+                        RadiusTopLeft: =11
+                        RadiusTopRight: =11
+                        Size: =10
+                        Width: ='Settings Editor Name label_1'.Width
+                        X: ='Settings Editor Name label_1'.X
+                        Y: ='Settings Editor Name label_1'.Y + 'Settings Editor Name label_1'.Height + 10
+                        ZIndex: =1
+
+                    "'Settings Editor Name label_1' As label":
+                        Font: =Font.'Lato Black'
+                        Text: ="Name"
+                        Width: =Parent.Width - 80
+                        X: =40
+                        Y: =40
+                        ZIndex: =2
+
+                    "'Settings Editor Description input_1' As text":
+                        BorderColor: =ColorValue(_iconBackground)
+                        BorderThickness: =1
+                        Color: =ColorValue(_textRegular)
+                        Default: =Self.Width
+                        DisabledBorderColor: =ColorValue(_iconBackground)
+                        DisabledColor: =ColorValue(_textRegular)
+                        DisabledFill: =ColorValue(_tileBackground)
+                        Fill: =ColorValue(_tileBackground)
+                        FocusedBorderColor: =ColorValue(_buttonMain)
+                        FocusedBorderThickness: =1
+                        Font: =Font.Lato
+                        Height: =60
+                        HintText: ="Type your message"
+                        HoverBorderColor: =ColorValue(_buttonMain)
+                        HoverColor: =ColorValue(_textRegular)
+                        HoverFill: =ColorValue(_tileBackground)
+                        Mode: =TextMode.MultiLine
+                        PaddingBottom: =3
+                        PaddingRight: =12
+                        PaddingTop: =3
+                        PressedBorderColor: =ColorValue(_buttonMain)
+                        PressedColor: =ColorValue(_textRegular)
+                        PressedFill: =ColorValue(_tileBackground)
+                        RadiusBottomLeft: =11
+                        RadiusBottomRight: =11
+                        RadiusTopLeft: =11
+                        RadiusTopRight: =11
+                        Size: =10
+                        Width: ='Settings Editor Name label_1'.Width
+                        X: ='Settings Editor Description label_1'.X
+                        Y: ='Settings Editor Description label_1'.Y + 'Settings Editor Description label_1'.Height + 10
+                        ZIndex: =3
+
+                    "'Settings Editor Description label_1' As label":
+                        Font: =Font.'Lato Black'
+                        Text: ="Description"
+                        Width: ='Settings Editor Name label_1'.Width
+                        X: ='Settings Editor Name label_1'.X
+                        Y: ='Settings Editor Name input_1'.Y + 'Settings Editor Name input_1'.Height + 30
+                        ZIndex: =4
+
+                    "'Settings Editor Prompt input_1' As text":
+                        BorderColor: =ColorValue(_iconBackground)
+                        BorderThickness: =1
+                        Color: =ColorValue(_textRegular)
+                        Default: =Self.Width
+                        DisabledBorderColor: =ColorValue(_iconBackground)
+                        DisabledColor: =ColorValue(_textRegular)
+                        DisabledFill: =ColorValue(_tileBackground)
+                        Fill: =ColorValue(_tileBackground)
+                        FocusedBorderColor: =ColorValue(_buttonMain)
+                        FocusedBorderThickness: =1
+                        Font: =Font.Lato
+                        Height: =180
+                        HintText: ="Type your message"
+                        HoverBorderColor: =ColorValue(_buttonMain)
+                        HoverColor: =ColorValue(_textRegular)
+                        HoverFill: =ColorValue(_tileBackground)
+                        Mode: =TextMode.MultiLine
+                        PaddingBottom: =3
+                        PaddingRight: =12
+                        PaddingTop: =3
+                        PressedBorderColor: =ColorValue(_buttonMain)
+                        PressedColor: =ColorValue(_textRegular)
+                        PressedFill: =ColorValue(_tileBackground)
+                        RadiusBottomLeft: =11
+                        RadiusBottomRight: =11
+                        RadiusTopLeft: =11
+                        RadiusTopRight: =11
+                        Size: =10
+                        Width: ='Settings Editor Prompt label_1'.Width
+                        X: ='Settings Editor Prompt label_1'.X
+                        Y: ='Settings Editor Prompt label_1'.Y + 'Settings Editor Prompt label_1'.Height + 10
+                        ZIndex: =5
+
+                    "'Settings Editor Prompt label_1' As label":
+                        Font: =Font.'Lato Black'
+                        Text: ="Prompt"
+                        Width: ='Settings Editor Name label_1'.Width
+                        X: ='Settings Editor Name label_1'.X
+                        Y: ='Settings Editor Description input_1'.Y + 'Settings Editor Description input_1'.Height + 30
+                        ZIndex: =6
+
+        "'Settings Footer container' As groupContainer.horizontalAutoLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =34
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            ZIndex: =4
+
