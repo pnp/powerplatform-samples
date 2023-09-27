@@ -3,6 +3,7 @@
 ## Summary
 
 This sample uses a Power Virtual Agents chatbot to diagnose and suggest a fitting doctor based on the user's inputted symptoms.
+NOTE: "healthAlde" is a placeholder brand name for the bot & the Power Pages portal
 
 ![picture of the sample](assets/portal-chatbot.PNG)
 
