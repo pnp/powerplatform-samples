@@ -47,7 +47,9 @@ This sample illustrates how to implement an internal prompt management solution.
 * Administration app to easily modify the available categories and products in the app and manage all prompts
 ![Prompt Admin Products](assets/PromptAdminProducts.png)
 
+## Solution Overview video
 
+Check out [this video](https://youtu.be/4pSJu3qNl7k?si=4oK68HbhGO9P90a5) for a full overview of the solution in action including how it was built and how to install it.
 
 ## Data Sources
 
