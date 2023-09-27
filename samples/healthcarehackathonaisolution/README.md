@@ -4,7 +4,7 @@
 
 This sample uses a Power Virtual Agents chatbot to diagnose and suggest a fitting doctor based on the user's inputted symptoms.
 
-![picture of the sample](.assets/portal-chatbot.PNG)
+![picture of the sample](assets/portal-chatbot.PNG)
 
 ## Prerequisites
 
@@ -47,6 +47,7 @@ There are also 2 alternate topics in the chatbot:
 ![picture of the consultation pva topic](assets/pva-consultation-2.PNG)
 
 * And another one for requesting an ambulance on demand
+
 ![picture of the ambulance pva topic](assets/pva-ambulance-1.PNG)
 ![picture of the ambulance pva topic](assets/pva-ambulance-2.PNG)
 
