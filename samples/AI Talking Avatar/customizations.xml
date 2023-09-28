@@ -1,0 +1,1491 @@
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Entities>
+    <Entity>
+      <Name LocalizedName="Heygen" OriginalName="Heygen">crd69_heygen</Name>
+      <EntityInfo>
+        <entity Name="crd69_heygen">
+          <LocalizedNames>
+            <LocalizedName description="Heygen" languagecode="1033" />
+          </LocalizedNames>
+          <LocalizedCollectionNames>
+            <LocalizedCollectionName description="Heygen" languagecode="1033" />
+          </LocalizedCollectionNames>
+          <Descriptions>
+            <Description description="This table contains a record of Heygen information" languagecode="1033" />
+          </Descriptions>
+          <attributes>
+            <attribute PhysicalName="crd69_heygenId">
+              <Type>primarykey</Type>
+              <Name>crd69_heygenid</Name>
+              <LogicalName>crd69_heygenid</LogicalName>
+              <RequiredLevel>systemrequired</RequiredLevel>
+              <DisplayMask>ValidForAdvancedFind|RequiredForGrid</DisplayMask>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>0</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>1</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>0</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>0</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>1</IsFilterable>
+              <IsRetrievable>1</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <displaynames>
+                <displayname description="Heygen" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Unique identifier for entity instances" languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="crd69_name">
+              <Type>nvarchar</Type>
+              <Name>crd69_name</Name>
+              <LogicalName>crd69_name</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <DisplayMask>PrimaryName|ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForForm</DisplayMask>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>1</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>1</ValidForCreateApi>
+              <IsCustomField>1</IsCustomField>
+              <IsAuditEnabled>1</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>1</IsSearchable>
+              <IsFilterable>0</IsFilterable>
+              <IsRetrievable>1</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <Format>text</Format>
+              <MaxLength>100</MaxLength>
+              <Length>200</Length>
+              <displaynames>
+                <displayname description="Name" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="" languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="crd69_videourl">
+              <Type>nvarchar</Type>
+              <Name>crd69_videourl</Name>
+              <LogicalName>crd69_videourl</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>1</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>1</ValidForCreateApi>
+              <IsCustomField>1</IsCustomField>
+              <IsAuditEnabled>1</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>0</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <Format>url</Format>
+              <MaxLength>2000</MaxLength>
+              <Length>4000</Length>
+              <displaynames>
+                <displayname description="Video URL" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="" languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="CreatedBy">
+              <Type>lookup</Type>
+              <Name>createdby</Name>
+              <LogicalName>createdby</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>0</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>0</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>0</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>0</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <LookupStyle>single</LookupStyle>
+              <LookupTypes />
+              <displaynames>
+                <displayname description="Created By" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Unique identifier of the user who created the record." languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="CreatedOn">
+              <Type>datetime</Type>
+              <Name>createdon</Name>
+              <LogicalName>createdon</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+              <ImeMode>inactive</ImeMode>
+              <ValidForUpdateApi>0</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>0</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>0</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>1</IsFilterable>
+              <IsRetrievable>1</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <Format>datetime</Format>
+              <CanChangeDateTimeBehavior>0</CanChangeDateTimeBehavior>
+              <Behavior>1</Behavior>
+              <displaynames>
+                <displayname description="Created On" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Date and time when the record was created." languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="ImportSequenceNumber">
+              <Type>int</Type>
+              <Name>importsequencenumber</Name>
+              <LogicalName>importsequencenumber</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <DisplayMask>ValidForAdvancedFind</DisplayMask>
+              <ImeMode>disabled</ImeMode>
+              <ValidForUpdateApi>0</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>1</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>1</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>0</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <Format></Format>
+              <MinValue>-2147483648</MinValue>
+              <MaxValue>2147483647</MaxValue>
+              <displaynames>
+                <displayname description="Import Sequence Number" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Sequence number of the import that created this record." languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="ModifiedBy">
+              <Type>lookup</Type>
+              <Name>modifiedby</Name>
+              <LogicalName>modifiedby</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>0</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>0</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>0</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>0</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <LookupStyle>single</LookupStyle>
+              <LookupTypes />
+              <displaynames>
+                <displayname description="Modified By" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Unique identifier of the user who modified the record." languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="ModifiedOn">
+              <Type>datetime</Type>
+              <Name>modifiedon</Name>
+              <LogicalName>modifiedon</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+              <ImeMode>inactive</ImeMode>
+              <ValidForUpdateApi>0</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>0</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>0</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>1</IsFilterable>
+              <IsRetrievable>1</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <Format>datetime</Format>
+              <CanChangeDateTimeBehavior>0</CanChangeDateTimeBehavior>
+              <Behavior>1</Behavior>
+              <displaynames>
+                <displayname description="Modified On" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Date and time when the record was modified." languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="OverriddenCreatedOn">
+              <Type>datetime</Type>
+              <Name>overriddencreatedon</Name>
+              <LogicalName>overriddencreatedon</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <DisplayMask>ValidForAdvancedFind|ValidForGrid</DisplayMask>
+              <ImeMode>inactive</ImeMode>
+              <ValidForUpdateApi>0</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>1</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>1</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>0</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <Format>date</Format>
+              <CanChangeDateTimeBehavior>0</CanChangeDateTimeBehavior>
+              <Behavior>1</Behavior>
+              <displaynames>
+                <displayname description="Record Created On" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Date and time that the record was migrated." languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="OwnerId">
+              <Type>owner</Type>
+              <Name>ownerid</Name>
+              <LogicalName>ownerid</LogicalName>
+              <RequiredLevel>systemrequired</RequiredLevel>
+              <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForForm</DisplayMask>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>1</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>1</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>1</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>1</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <LookupStyle>single</LookupStyle>
+              <LookupTypes>
+                <LookupType id="00000000-0000-0000-0000-000000000000">8</LookupType>
+                <LookupType id="00000000-0000-0000-0000-000000000000">9</LookupType>
+              </LookupTypes>
+              <displaynames>
+                <displayname description="Owner" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Owner Id" languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="OwningBusinessUnit">
+              <Type>lookup</Type>
+              <Name>owningbusinessunit</Name>
+              <LogicalName>owningbusinessunit</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>0</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>0</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>1</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>1</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <LookupStyle>single</LookupStyle>
+              <LookupTypes />
+              <displaynames>
+                <displayname description="Owning Business Unit" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Unique identifier for the business unit that owns the record" languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="OwningTeam">
+              <Type>lookup</Type>
+              <Name>owningteam</Name>
+              <LogicalName>owningteam</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>0</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>0</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>0</IsAuditEnabled>
+              <IsLogical>1</IsLogical>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>0</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <LookupStyle>single</LookupStyle>
+              <LookupTypes />
+              <displaynames>
+                <displayname description="Owning Team" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Unique identifier for the team that owns the record." languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="OwningUser">
+              <Type>lookup</Type>
+              <Name>owninguser</Name>
+              <LogicalName>owninguser</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>0</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>0</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>0</IsAuditEnabled>
+              <IsLogical>1</IsLogical>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>0</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <LookupStyle>single</LookupStyle>
+              <LookupTypes />
+              <displaynames>
+                <displayname description="Owning User" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Unique identifier for the user that owns the record." languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="statecode">
+              <Type>state</Type>
+              <Name>statecode</Name>
+              <LogicalName>statecode</LogicalName>
+              <RequiredLevel>systemrequired</RequiredLevel>
+              <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>1</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>0</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>1</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>1</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <optionset Name="crd69_heygen_statecode">
+                <OptionSetType>state</OptionSetType>
+                <IntroducedVersion>1.0</IntroducedVersion>
+                <IsCustomizable>1</IsCustomizable>
+                <displaynames>
+                  <displayname description="Status" languagecode="1033" />
+                </displaynames>
+                <Descriptions>
+                  <Description description="Status of the Heygen" languagecode="1033" />
+                </Descriptions>
+                <states>
+                  <state value="0" defaultstatus="1" invariantname="Active">
+                    <labels>
+                      <label description="Active" languagecode="1033" />
+                    </labels>
+                  </state>
+                  <state value="1" defaultstatus="2" invariantname="Inactive">
+                    <labels>
+                      <label description="Inactive" languagecode="1033" />
+                    </labels>
+                  </state>
+                </states>
+              </optionset>
+              <displaynames>
+                <displayname description="Status" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Status of the Heygen" languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="statuscode">
+              <Type>status</Type>
+              <Name>statuscode</Name>
+              <LogicalName>statuscode</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>1</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>1</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>1</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>0</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <optionset Name="crd69_heygen_statuscode">
+                <OptionSetType>status</OptionSetType>
+                <IntroducedVersion>1.0</IntroducedVersion>
+                <IsCustomizable>1</IsCustomizable>
+                <displaynames>
+                  <displayname description="Status Reason" languagecode="1033" />
+                </displaynames>
+                <Descriptions>
+                  <Description description="Reason for the status of the Heygen" languagecode="1033" />
+                </Descriptions>
+                <statuses>
+                  <status value="1" state="0">
+                    <labels>
+                      <label description="Active" languagecode="1033" />
+                    </labels>
+                  </status>
+                  <status value="2" state="1">
+                    <labels>
+                      <label description="Inactive" languagecode="1033" />
+                    </labels>
+                  </status>
+                </statuses>
+              </optionset>
+              <displaynames>
+                <displayname description="Status Reason" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Reason for the status of the Heygen" languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="TimeZoneRuleVersionNumber">
+              <Type>int</Type>
+              <Name>timezoneruleversionnumber</Name>
+              <LogicalName>timezoneruleversionnumber</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>1</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>1</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>0</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>0</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <Format></Format>
+              <MinValue>-1</MinValue>
+              <MaxValue>2147483647</MaxValue>
+              <displaynames>
+                <displayname description="Time Zone Rule Version Number" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="For internal use only." languagecode="1033" />
+              </Descriptions>
+            </attribute>
+            <attribute PhysicalName="UTCConversionTimeZoneCode">
+              <Type>int</Type>
+              <Name>utcconversiontimezonecode</Name>
+              <LogicalName>utcconversiontimezonecode</LogicalName>
+              <RequiredLevel>none</RequiredLevel>
+              <ImeMode>auto</ImeMode>
+              <ValidForUpdateApi>1</ValidForUpdateApi>
+              <ValidForReadApi>1</ValidForReadApi>
+              <ValidForCreateApi>1</ValidForCreateApi>
+              <IsCustomField>0</IsCustomField>
+              <IsAuditEnabled>0</IsAuditEnabled>
+              <IsSecured>0</IsSecured>
+              <IntroducedVersion>1.0</IntroducedVersion>
+              <IsCustomizable>1</IsCustomizable>
+              <IsRenameable>1</IsRenameable>
+              <CanModifySearchSettings>1</CanModifySearchSettings>
+              <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+              <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+              <SourceType>0</SourceType>
+              <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+              <IsSortableEnabled>0</IsSortableEnabled>
+              <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+              <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+              <IsDataSourceSecret>0</IsDataSourceSecret>
+              <AutoNumberFormat></AutoNumberFormat>
+              <IsSearchable>0</IsSearchable>
+              <IsFilterable>0</IsFilterable>
+              <IsRetrievable>0</IsRetrievable>
+              <IsLocalizable>0</IsLocalizable>
+              <Format></Format>
+              <MinValue>-1</MinValue>
+              <MaxValue>2147483647</MaxValue>
+              <displaynames>
+                <displayname description="UTC Conversion Time Zone Code" languagecode="1033" />
+              </displaynames>
+              <Descriptions>
+                <Description description="Time zone code that was in use when the record was created." languagecode="1033" />
+              </Descriptions>
+            </attribute>
+          </attributes>
+          <EntitySetName>crd69_heygens</EntitySetName>
+          <IsDuplicateCheckSupported>1</IsDuplicateCheckSupported>
+          <IsBusinessProcessEnabled>0</IsBusinessProcessEnabled>
+          <IsRequiredOffline>0</IsRequiredOffline>
+          <IsInteractionCentricEnabled>0</IsInteractionCentricEnabled>
+          <IsCollaboration>0</IsCollaboration>
+          <AutoRouteToOwnerQueue>0</AutoRouteToOwnerQueue>
+          <IsConnectionsEnabled>0</IsConnectionsEnabled>
+          <IsDocumentManagementEnabled>0</IsDocumentManagementEnabled>
+          <AutoCreateAccessTeams>0</AutoCreateAccessTeams>
+          <IsOneNoteIntegrationEnabled>0</IsOneNoteIntegrationEnabled>
+          <IsKnowledgeManagementEnabled>0</IsKnowledgeManagementEnabled>
+          <IsSLAEnabled>0</IsSLAEnabled>
+          <IsDocumentRecommendationsEnabled>0</IsDocumentRecommendationsEnabled>
+          <IsBPFEntity>0</IsBPFEntity>
+          <OwnershipTypeMask>UserOwned</OwnershipTypeMask>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsRetrieveAuditEnabled>0</IsRetrieveAuditEnabled>
+          <IsRetrieveMultipleAuditEnabled>0</IsRetrieveMultipleAuditEnabled>
+          <IsActivity>0</IsActivity>
+          <ActivityTypeMask></ActivityTypeMask>
+          <IsActivityParty>0</IsActivityParty>
+          <IsReplicated>0</IsReplicated>
+          <IsReplicationUserFiltered>0</IsReplicationUserFiltered>
+          <IsMailMergeEnabled>1</IsMailMergeEnabled>
+          <IsVisibleInMobile>0</IsVisibleInMobile>
+          <IsVisibleInMobileClient>0</IsVisibleInMobileClient>
+          <IsReadOnlyInMobileClient>0</IsReadOnlyInMobileClient>
+          <IsOfflineInMobileClient>0</IsOfflineInMobileClient>
+          <DaysSinceRecordLastModified>0</DaysSinceRecordLastModified>
+          <MobileOfflineFilters></MobileOfflineFilters>
+          <IsMapiGridEnabled>1</IsMapiGridEnabled>
+          <IsReadingPaneEnabled>1</IsReadingPaneEnabled>
+          <IsQuickCreateEnabled>0</IsQuickCreateEnabled>
+          <SyncToExternalSearchIndex>0</SyncToExternalSearchIndex>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <IsMappable>1</IsMappable>
+          <CanModifyAuditSettings>1</CanModifyAuditSettings>
+          <CanModifyMobileVisibility>1</CanModifyMobileVisibility>
+          <CanModifyMobileClientVisibility>1</CanModifyMobileClientVisibility>
+          <CanModifyMobileClientReadOnly>1</CanModifyMobileClientReadOnly>
+          <CanModifyMobileClientOffline>1</CanModifyMobileClientOffline>
+          <CanModifyConnectionSettings>1</CanModifyConnectionSettings>
+          <CanModifyDuplicateDetectionSettings>1</CanModifyDuplicateDetectionSettings>
+          <CanModifyMailMergeSettings>1</CanModifyMailMergeSettings>
+          <CanModifyQueueSettings>1</CanModifyQueueSettings>
+          <CanCreateAttributes>1</CanCreateAttributes>
+          <CanCreateForms>1</CanCreateForms>
+          <CanCreateCharts>1</CanCreateCharts>
+          <CanCreateViews>1</CanCreateViews>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <CanEnableSyncToExternalSearchIndex>1</CanEnableSyncToExternalSearchIndex>
+          <EnforceStateTransitions>0</EnforceStateTransitions>
+          <CanChangeHierarchicalRelationship>1</CanChangeHierarchicalRelationship>
+          <EntityHelpUrlEnabled>0</EntityHelpUrlEnabled>
+          <ChangeTrackingEnabled>0</ChangeTrackingEnabled>
+          <CanChangeTrackingBeEnabled>1</CanChangeTrackingBeEnabled>
+          <IsEnabledForExternalChannels>0</IsEnabledForExternalChannels>
+          <IsSolutionAware>0</IsSolutionAware>
+        </entity>
+      </EntityInfo>
+      <FormXml>
+        <forms type="card">
+          <systemform>
+            <formid>{42b49749-3c71-4f86-bcd8-7262885d69c8}</formid>
+            <IntroducedVersion>1.0</IntroducedVersion>
+            <FormPresentation>1</FormPresentation>
+            <FormActivationState>1</FormActivationState>
+            <form>
+              <tabs>
+                <tab name="general" verticallayout="true" id="{eee9bd65-819e-4e7d-ac30-59e9a544a98b}" IsUserDefined="0">
+                  <labels>
+                    <label description="" languagecode="1033" />
+                  </labels>
+                  <columns>
+                    <column width="25%">
+                      <sections>
+                        <section name="ColorStrip" showlabel="false" showbar="false" columns="1" IsUserDefined="0" id="{0de34a52-81ea-4b88-a519-1dd5f928b6ee}">
+                          <labels>
+                            <label description="ColorStrip" languagecode="1033" />
+                          </labels>
+                        </section>
+                      </sections>
+                    </column>
+                    <column width="75%">
+                      <sections>
+                        <section name="CardHeader" showlabel="false" showbar="false" columns="111" id="{ed5983fe-5b23-4566-be27-87f5e867eb0d}" IsUserDefined="0">
+                          <labels>
+                            <label description="Header" languagecode="1033" />
+                          </labels>
+                          <rows>
+                            <row>
+                              <cell id="{f0800030-579a-42f9-953b-362fee7c7e35}" showlabel="true" locklevel="0">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                                <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
+                              </cell>
+                              <cell id="{a1f5036c-cea1-4e7b-8060-77a5c80902b2}" showlabel="true" locklevel="0">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                              </cell>
+                              <cell id="{8d8e71d9-c6ea-4a50-96a3-7cec9e9c1d31}" showlabel="true" locklevel="0">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                              </cell>
+                            </row>
+                          </rows>
+                        </section>
+                        <section name="CardDetails" showlabel="false" showbar="false" columns="1" id="{2726a4fb-29e5-4696-8221-d24cc47880ab}" IsUserDefined="0">
+                          <labels>
+                            <label description="Details" languagecode="1033" />
+                          </labels>
+                          <rows>
+                            <row>
+                              <cell id="{bb30e935-ab1b-4342-8736-f0d31a2f5a60}" showlabel="true" locklevel="0">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                                <control id="crd69_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="crd69_name" disabled="false" />
+                              </cell>
+                            </row>
+                          </rows>
+                        </section>
+                        <section name="CardFooter" showlabel="false" columns="1111" showbar="false" id="{e6c280d9-96c8-49e1-9642-aec432f07e0b}" IsUserDefined="0">
+                          <labels>
+                            <label description="Footer" languagecode="1033" />
+                          </labels>
+                          <rows>
+                            <row>
+                              <cell id="{54e8421d-cf9b-45b9-a85f-bd330bcbeef0}" showlabel="true" locklevel="0">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                                <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+                              </cell>
+                              <cell id="{3f4c800e-54a4-40bf-8f89-b9e3744c82d9}" showlabel="true" locklevel="0">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                                <control id="createdon" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdon" disabled="false" />
+                              </cell>
+                              <cell id="{8e59fced-6f2b-4da7-ac21-d7495b9f6be6}" showlabel="true" locklevel="0">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                              </cell>
+                              <cell id="{9bd97bf4-897c-4b6e-89b6-70207a2d6526}" showlabel="true" locklevel="0">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                              </cell>
+                            </row>
+                          </rows>
+                        </section>
+                      </sections>
+                    </column>
+                  </columns>
+                </tab>
+              </tabs>
+            </form>
+            <IsCustomizable>1</IsCustomizable>
+            <CanBeDeleted>1</CanBeDeleted>
+            <LocalizedNames>
+              <LocalizedName description="Information" languagecode="1033" />
+            </LocalizedNames>
+            <Descriptions>
+              <Description description="A card form for this entity." languagecode="1033" />
+            </Descriptions>
+          </systemform>
+        </forms>
+        <forms type="main">
+          <systemform>
+            <formid>{eaf62186-605e-4000-be8c-b4a6437ff08a}</formid>
+            <IntroducedVersion>1.0</IntroducedVersion>
+            <FormPresentation>1</FormPresentation>
+            <FormActivationState>1</FormActivationState>
+            <form>
+              <tabs>
+                <tab verticallayout="true" id="{8843ef2b-7be8-4da0-b8a0-02da9bef54d5}" IsUserDefined="1">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <columns>
+                    <column width="100%">
+                      <sections>
+                        <section showlabel="false" showbar="false" IsUserDefined="0" id="{b47839af-22cc-4c31-a590-3bf38e699175}">
+                          <labels>
+                            <label description="General" languagecode="1033" />
+                          </labels>
+                          <rows>
+                            <row>
+                              <cell id="{8eb1847a-d5c3-4bdd-bf76-bf83ee13748d}">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                                <control id="crd69_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="crd69_name" />
+                              </cell>
+                            </row>
+                            <row>
+                              <cell id="{f1bc7497-56dc-4e50-b745-1ef0871591f5}">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                                <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                              </cell>
+                            </row>
+                          </rows>
+                        </section>
+                      </sections>
+                    </column>
+                  </columns>
+                </tab>
+              </tabs>
+            </form>
+            <IsCustomizable>1</IsCustomizable>
+            <CanBeDeleted>1</CanBeDeleted>
+            <LocalizedNames>
+              <LocalizedName description="Information" languagecode="1033" />
+            </LocalizedNames>
+            <Descriptions>
+              <Description description="A form for this entity." languagecode="1033" />
+            </Descriptions>
+          </systemform>
+        </forms>
+        <forms type="quick">
+          <systemform>
+            <formid>{ba0f755e-24b1-4ae0-a163-d98fe9d6ed35}</formid>
+            <IntroducedVersion>1.0</IntroducedVersion>
+            <FormPresentation>1</FormPresentation>
+            <FormActivationState>1</FormActivationState>
+            <form>
+              <tabs>
+                <tab verticallayout="true" id="{495b6000-d2e2-4500-92d4-003fb642ba3f}" IsUserDefined="1">
+                  <labels>
+                    <label description="" languagecode="1033" />
+                  </labels>
+                  <columns>
+                    <column width="100%">
+                      <sections>
+                        <section showlabel="false" showbar="false" IsUserDefined="0" id="{2f932699-c530-4171-8826-2c1350f411ff}">
+                          <labels>
+                            <label description="GENERAL" languagecode="1033" />
+                          </labels>
+                          <rows>
+                            <row>
+                              <cell id="{1a99c2c2-65ec-4be6-bde7-2ee8699372b7}">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                                <control id="crd69_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="crd69_name" />
+                              </cell>
+                            </row>
+                            <row>
+                              <cell id="{4df1dd2d-e2b2-4b10-a6a4-ac9506c51b63}">
+                                <labels>
+                                  <label description="" languagecode="1033" />
+                                </labels>
+                                <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                              </cell>
+                            </row>
+                          </rows>
+                        </section>
+                      </sections>
+                    </column>
+                  </columns>
+                </tab>
+              </tabs>
+            </form>
+            <IsCustomizable>1</IsCustomizable>
+            <CanBeDeleted>1</CanBeDeleted>
+            <LocalizedNames>
+              <LocalizedName description="Information" languagecode="1033" />
+            </LocalizedNames>
+          </systemform>
+        </forms>
+      </FormXml>
+      <SavedQueries>
+        <savedqueries>
+          <savedquery>
+            <IsCustomizable>1</IsCustomizable>
+            <CanBeDeleted>0</CanBeDeleted>
+            <isquickfindquery>0</isquickfindquery>
+            <isprivate>0</isprivate>
+            <isdefault>1</isdefault>
+            <savedqueryid>{36d35d08-716f-44e3-829c-0ca9042a2367}</savedqueryid>
+            <layoutxml>
+              <grid name="resultset" jump="crd69_name" select="1" icon="1" preview="1">
+                <row name="result" id="crd69_heygenid">
+                  <cell name="crd69_name" width="300" />
+                  <cell name="createdon" width="125" />
+                </row>
+              </grid>
+            </layoutxml>
+            <querytype>0</querytype>
+            <fetchxml>
+              <fetch version="1.0" mapping="logical">
+                <entity name="crd69_heygen">
+                  <attribute name="crd69_heygenid" />
+                  <attribute name="crd69_name" />
+                  <attribute name="createdon" />
+                  <order attribute="crd69_name" descending="false" />
+                  <filter type="and">
+                    <condition attribute="statecode" operator="eq" value="0" />
+                  </filter>
+                </entity>
+              </fetch>
+            </fetchxml>
+            <IntroducedVersion>1.0</IntroducedVersion>
+            <LocalizedNames>
+              <LocalizedName description="Active Heygen" languagecode="1033" />
+            </LocalizedNames>
+          </savedquery>
+          <savedquery>
+            <IsCustomizable>1</IsCustomizable>
+            <CanBeDeleted>0</CanBeDeleted>
+            <isquickfindquery>0</isquickfindquery>
+            <isprivate>0</isprivate>
+            <isdefault>1</isdefault>
+            <savedqueryid>{8de322ae-2772-48b0-9258-b9ac5283b185}</savedqueryid>
+            <layoutxml>
+              <grid name="resultset" jump="crd69_name" select="1" icon="1" preview="1">
+                <row name="result" id="crd69_heygenid">
+                  <cell name="crd69_name" width="300" />
+                  <cell name="createdon" width="125" />
+                </row>
+              </grid>
+            </layoutxml>
+            <querytype>1</querytype>
+            <fetchxml>
+              <fetch version="1.0" mapping="logical">
+                <entity name="crd69_heygen">
+                  <attribute name="crd69_heygenid" />
+                  <attribute name="crd69_name" />
+                  <attribute name="createdon" />
+                  <order attribute="crd69_name" descending="false" />
+                </entity>
+              </fetch>
+            </fetchxml>
+            <IntroducedVersion>1.0</IntroducedVersion>
+            <LocalizedNames>
+              <LocalizedName description="Heygen Advanced Find View" languagecode="1033" />
+            </LocalizedNames>
+          </savedquery>
+          <savedquery>
+            <IsCustomizable>1</IsCustomizable>
+            <CanBeDeleted>0</CanBeDeleted>
+            <isquickfindquery>0</isquickfindquery>
+            <isprivate>0</isprivate>
+            <isdefault>1</isdefault>
+            <savedqueryid>{87027e63-2d2d-4d88-b4db-d38e4984c51b}</savedqueryid>
+            <layoutxml>
+              <grid name="crd69_heygens" jump="crd69_name" select="1" icon="1" preview="1">
+                <row name="crd69_heygen" id="crd69_heygenid">
+                  <cell name="crd69_name" width="300" />
+                  <cell name="createdon" width="125" />
+                </row>
+              </grid>
+            </layoutxml>
+            <querytype>2</querytype>
+            <fetchxml>
+              <fetch version="1.0" mapping="logical">
+                <entity name="crd69_heygen">
+                  <attribute name="crd69_heygenid" />
+                  <attribute name="crd69_name" />
+                  <attribute name="createdon" />
+                  <order attribute="crd69_name" descending="false" />
+                  <filter type="and">
+                    <condition attribute="statecode" operator="eq" value="0" />
+                  </filter>
+                </entity>
+              </fetch>
+            </fetchxml>
+            <IntroducedVersion>1.0</IntroducedVersion>
+            <LocalizedNames>
+              <LocalizedName description="Heygen Associated View" languagecode="1033" />
+            </LocalizedNames>
+          </savedquery>
+          <savedquery>
+            <IsCustomizable>1</IsCustomizable>
+            <CanBeDeleted>0</CanBeDeleted>
+            <isquickfindquery>0</isquickfindquery>
+            <isprivate>0</isprivate>
+            <isdefault>1</isdefault>
+            <savedqueryid>{93c965bb-cb1c-4bb8-b3f7-842fc4f9f439}</savedqueryid>
+            <layoutxml>
+              <grid name="crd69_heygens" jump="crd69_name" select="1" icon="1" preview="0">
+                <row name="crd69_heygen" id="crd69_heygenid">
+                  <cell name="crd69_name" width="300" />
+                  <cell name="createdon" width="125" />
+                </row>
+              </grid>
+            </layoutxml>
+            <querytype>64</querytype>
+            <fetchxml>
+              <fetch version="1.0" mapping="logical">
+                <entity name="crd69_heygen">
+                  <attribute name="crd69_heygenid" />
+                  <attribute name="crd69_name" />
+                  <attribute name="createdon" />
+                  <filter type="and">
+                    <condition attribute="statecode" operator="eq" value="0" />
+                  </filter>
+                </entity>
+              </fetch>
+            </fetchxml>
+            <IntroducedVersion>1.0</IntroducedVersion>
+            <LocalizedNames>
+              <LocalizedName description="Heygen Lookup View" languagecode="1033" />
+            </LocalizedNames>
+          </savedquery>
+          <savedquery>
+            <IsCustomizable>1</IsCustomizable>
+            <CanBeDeleted>0</CanBeDeleted>
+            <isquickfindquery>0</isquickfindquery>
+            <isprivate>0</isprivate>
+            <isdefault>0</isdefault>
+            <savedqueryid>{b1ac061a-c327-4f7d-8a63-f27e854f8367}</savedqueryid>
+            <layoutxml>
+              <grid name="resultset" jump="crd69_name" select="1" icon="1" preview="1">
+                <row name="result" id="crd69_heygenid">
+                  <cell name="crd69_name" width="300" />
+                  <cell name="createdon" width="125" />
+                </row>
+              </grid>
+            </layoutxml>
+            <querytype>0</querytype>
+            <fetchxml>
+              <fetch version="1.0" mapping="logical">
+                <entity name="crd69_heygen">
+                  <attribute name="crd69_heygenid" />
+                  <attribute name="crd69_name" />
+                  <attribute name="createdon" />
+                  <order attribute="crd69_name" descending="false" />
+                  <filter type="and">
+                    <condition attribute="statecode" operator="eq" value="1" />
+                  </filter>
+                </entity>
+              </fetch>
+            </fetchxml>
+            <IntroducedVersion>1.0</IntroducedVersion>
+            <LocalizedNames>
+              <LocalizedName description="Inactive Heygen" languagecode="1033" />
+            </LocalizedNames>
+          </savedquery>
+          <savedquery>
+            <IsCustomizable>1</IsCustomizable>
+            <CanBeDeleted>1</CanBeDeleted>
+            <isquickfindquery>0</isquickfindquery>
+            <isprivate>0</isprivate>
+            <isdefault>1</isdefault>
+            <savedqueryid>{0d9a9983-9850-ee11-be6f-002248201668}</savedqueryid>
+            <querytype>8192</querytype>
+            <fetchxml>
+              <fetch version="1.0" mapping="logical" output-format="xml-platform">
+                <entity name="crd69_heygen">
+                  <attribute name="crd69_heygenid" />
+                  <filter type="and">
+                    <condition attribute="statecode" operator="eq" value="0" />
+                    <condition attribute="ownerid" operator="eq-userid" />
+                  </filter>
+                </entity>
+              </fetch>
+            </fetchxml>
+            <IntroducedVersion>1.0</IntroducedVersion>
+            <LocalizedNames>
+              <LocalizedName description="My Heygen" languagecode="1033" />
+            </LocalizedNames>
+            <Descriptions>
+              <Description description="Active Heygen owned by me" languagecode="1033" />
+            </Descriptions>
+          </savedquery>
+          <savedquery>
+            <IsCustomizable>1</IsCustomizable>
+            <CanBeDeleted>0</CanBeDeleted>
+            <isquickfindquery>1</isquickfindquery>
+            <isprivate>0</isprivate>
+            <isdefault>1</isdefault>
+            <savedqueryid>{fbd28a51-faa3-4318-aea1-3f539510afc9}</savedqueryid>
+            <layoutxml>
+              <grid name="resultset" jump="crd69_name" select="1" icon="1" preview="1">
+                <row name="result" id="crd69_heygenid">
+                  <cell name="crd69_name" width="300" />
+                  <cell name="createdon" width="125" />
+                </row>
+              </grid>
+            </layoutxml>
+            <querytype>4</querytype>
+            <fetchxml>
+              <fetch version="1.0" mapping="logical">
+                <entity name="crd69_heygen">
+                  <attribute name="crd69_heygenid" />
+                  <attribute name="crd69_name" />
+                  <attribute name="createdon" />
+                  <order attribute="crd69_name" descending="false" />
+                  <filter type="and">
+                    <condition attribute="statecode" operator="eq" value="0" />
+                  </filter>
+                  <filter type="or" isquickfindfields="1">
+                    <condition attribute="crd69_name" operator="like" value="{0}" />
+                  </filter>
+                </entity>
+              </fetch>
+            </fetchxml>
+            <IntroducedVersion>1.0</IntroducedVersion>
+            <LocalizedNames>
+              <LocalizedName description="Quick Find Active Heygen" languagecode="1033" />
+            </LocalizedNames>
+          </savedquery>
+        </savedqueries>
+      </SavedQueries>
+      <RibbonDiffXml>
+        <CustomActions />
+        <Templates>
+          <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+        </Templates>
+        <CommandDefinitions />
+        <RuleDefinitions>
+          <TabDisplayRules />
+          <DisplayRules />
+          <EnableRules />
+        </RuleDefinitions>
+        <LocLabels />
+      </RibbonDiffXml>
+    </Entity>
+  </Entities>
+  <Roles></Roles>
+  <Workflows>
+    <Workflow WorkflowId="{20c62f34-9c50-ee11-be6f-000d3a4f73e8}" Name="HeyGen">
+      <JsonFileName>/Workflows/HeyGen-20C62F34-9C50-EE11-BE6F-000D3A4F73E8.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="HeyGen" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{b5e76bff-e152-ee11-be6e-6045bda8a6d7}" Name="UploadImage">
+      <JsonFileName>/Workflows/UploadImage-B5E76BFF-E152-EE11-BE6E-6045BDA8A6D7.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="UploadImage" />
+      </LocalizedNames>
+    </Workflow>
+  </Workflows>
+  <FieldSecurityProfiles></FieldSecurityProfiles>
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships>
+    <EntityRelationship Name="business_unit_crd69_heygen">
+      <EntityRelationshipType>OneToMany</EntityRelationshipType>
+      <IsCustomizable>1</IsCustomizable>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsHierarchical>0</IsHierarchical>
+      <ReferencingEntityName>crd69_heygen</ReferencingEntityName>
+      <ReferencedEntityName>BusinessUnit</ReferencedEntityName>
+      <CascadeAssign>NoCascade</CascadeAssign>
+      <CascadeDelete>NoCascade</CascadeDelete>
+      <CascadeArchive>NoCascade</CascadeArchive>
+      <CascadeReparent>NoCascade</CascadeReparent>
+      <CascadeShare>NoCascade</CascadeShare>
+      <CascadeUnshare>NoCascade</CascadeUnshare>
+      <ReferencingAttributeName>OwningBusinessUnit</ReferencingAttributeName>
+      <RelationshipDescription>
+        <Descriptions>
+          <Description description="Unique identifier for the business unit that owns the record" languagecode="1033" />
+        </Descriptions>
+      </RelationshipDescription>
+    </EntityRelationship>
+    <EntityRelationship Name="lk_crd69_heygen_createdby">
+      <EntityRelationshipType>OneToMany</EntityRelationshipType>
+      <IsCustomizable>1</IsCustomizable>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsHierarchical>0</IsHierarchical>
+      <ReferencingEntityName>crd69_heygen</ReferencingEntityName>
+      <ReferencedEntityName>SystemUser</ReferencedEntityName>
+      <CascadeAssign>NoCascade</CascadeAssign>
+      <CascadeDelete>NoCascade</CascadeDelete>
+      <CascadeArchive>NoCascade</CascadeArchive>
+      <CascadeReparent>NoCascade</CascadeReparent>
+      <CascadeShare>NoCascade</CascadeShare>
+      <CascadeUnshare>NoCascade</CascadeUnshare>
+      <ReferencingAttributeName>CreatedBy</ReferencingAttributeName>
+      <RelationshipDescription>
+        <Descriptions>
+          <Description description="Unique identifier of the user who created the record." languagecode="1033" />
+        </Descriptions>
+      </RelationshipDescription>
+    </EntityRelationship>
+    <EntityRelationship Name="lk_crd69_heygen_modifiedby">
+      <EntityRelationshipType>OneToMany</EntityRelationshipType>
+      <IsCustomizable>1</IsCustomizable>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsHierarchical>0</IsHierarchical>
+      <ReferencingEntityName>crd69_heygen</ReferencingEntityName>
+      <ReferencedEntityName>SystemUser</ReferencedEntityName>
+      <CascadeAssign>NoCascade</CascadeAssign>
+      <CascadeDelete>NoCascade</CascadeDelete>
+      <CascadeArchive>NoCascade</CascadeArchive>
+      <CascadeReparent>NoCascade</CascadeReparent>
+      <CascadeShare>NoCascade</CascadeShare>
+      <CascadeUnshare>NoCascade</CascadeUnshare>
+      <ReferencingAttributeName>ModifiedBy</ReferencingAttributeName>
+      <RelationshipDescription>
+        <Descriptions>
+          <Description description="Unique identifier of the user who modified the record." languagecode="1033" />
+        </Descriptions>
+      </RelationshipDescription>
+    </EntityRelationship>
+    <EntityRelationship Name="owner_crd69_heygen">
+      <EntityRelationshipType>OneToMany</EntityRelationshipType>
+      <IsCustomizable>1</IsCustomizable>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsHierarchical>0</IsHierarchical>
+      <ReferencingEntityName>crd69_heygen</ReferencingEntityName>
+      <ReferencedEntityName>Owner</ReferencedEntityName>
+      <CascadeAssign>NoCascade</CascadeAssign>
+      <CascadeDelete>NoCascade</CascadeDelete>
+      <CascadeArchive>NoCascade</CascadeArchive>
+      <CascadeReparent>NoCascade</CascadeReparent>
+      <CascadeShare>NoCascade</CascadeShare>
+      <CascadeUnshare>NoCascade</CascadeUnshare>
+      <ReferencingAttributeName>OwnerId</ReferencingAttributeName>
+      <RelationshipDescription>
+        <Descriptions>
+          <Description description="Owner Id" languagecode="1033" />
+        </Descriptions>
+      </RelationshipDescription>
+    </EntityRelationship>
+    <EntityRelationship Name="team_crd69_heygen">
+      <EntityRelationshipType>OneToMany</EntityRelationshipType>
+      <IsCustomizable>1</IsCustomizable>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsHierarchical>0</IsHierarchical>
+      <ReferencingEntityName>crd69_heygen</ReferencingEntityName>
+      <ReferencedEntityName>Team</ReferencedEntityName>
+      <CascadeAssign>NoCascade</CascadeAssign>
+      <CascadeDelete>NoCascade</CascadeDelete>
+      <CascadeArchive>NoCascade</CascadeArchive>
+      <CascadeReparent>NoCascade</CascadeReparent>
+      <CascadeShare>NoCascade</CascadeShare>
+      <CascadeUnshare>NoCascade</CascadeUnshare>
+      <ReferencingAttributeName>OwningTeam</ReferencingAttributeName>
+      <RelationshipDescription>
+        <Descriptions>
+          <Description description="Unique identifier for the team that owns the record." languagecode="1033" />
+        </Descriptions>
+      </RelationshipDescription>
+    </EntityRelationship>
+    <EntityRelationship Name="user_crd69_heygen">
+      <EntityRelationshipType>OneToMany</EntityRelationshipType>
+      <IsCustomizable>1</IsCustomizable>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsHierarchical>0</IsHierarchical>
+      <ReferencingEntityName>crd69_heygen</ReferencingEntityName>
+      <ReferencedEntityName>SystemUser</ReferencedEntityName>
+      <CascadeAssign>NoCascade</CascadeAssign>
+      <CascadeDelete>NoCascade</CascadeDelete>
+      <CascadeArchive>NoCascade</CascadeArchive>
+      <CascadeReparent>NoCascade</CascadeReparent>
+      <CascadeShare>NoCascade</CascadeShare>
+      <CascadeUnshare>NoCascade</CascadeUnshare>
+      <ReferencingAttributeName>OwningUser</ReferencingAttributeName>
+      <RelationshipDescription>
+        <Descriptions>
+          <Description description="Unique identifier for the user that owns the record." languagecode="1033" />
+        </Descriptions>
+      </RelationshipDescription>
+    </EntityRelationship>
+  </EntityRelationships>
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <CanvasApps>
+    <CanvasApp>
+      <Name>crd69_heygen_fe813</Name>
+      <AppVersion>2023-09-28T07:22:16Z</AppVersion>
+      <Status>Ready</Status>
+      <CreatedByClientVersion>3.23092.13.0</CreatedByClientVersion>
+      <MinClientVersion>3.23092.13.0</MinClientVersion>
+      <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","showStatusBar":"false","publisherVersion":"3.23092.13","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20230927T090514Z-3.23092.13.0"}</Tags>
+      <IsCdsUpgraded>0</IsCdsUpgraded>
+      <GalleryItemId xsi:nil="true"></GalleryItemId>
+      <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+      <DisplayName>Heygen</DisplayName>
+      <Description xsi:nil="true"></Description>
+      <CommitMessage xsi:nil="true"></CommitMessage>
+      <Publisher xsi:nil="true"></Publisher>
+      <AuthorizationReferences>[]</AuthorizationReferences>
+      <ConnectionReferences>{"44bd678f-96ec-49ce-ab7d-477112f6779d":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1653/1.0.1653.3403/logicflows/icon.png","dataSources":["UploadImage"],"dependencies":["e0823ae9-73e5-4699-aba5-9e11d3931000"],"dependents":[],"parameterHints":{"workflowName":{"value":"5de42663-05e6-4ea7-8d67-d7ef2ad7c041"},"workflowEntityId":{"value":"b5e76bff-e152-ee11-be6e-6045bda8a6d7"},"e0823ae9-73e5-4699-aba5-9e11d3931000":{"value":"shared_onedriveforbusiness"}},"parameterHintsV2":{"workflowName":{"value":"5de42663-05e6-4ea7-8d67-d7ef2ad7c041"},"workflowEntityId":{"value":"b5e76bff-e152-ee11-be6e-6045bda8a6d7"},"shared_onedriveforbusiness":{"value":"e0823ae9-73e5-4699-aba5-9e11d3931000"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"],"isCustomApiSolutionAware":false},"e0823ae9-73e5-4699-aba5-9e11d3931000":{"id":"/providers/microsoft.powerapps/apis/shared_onedriveforbusiness","displayName":"OneDrive for Business","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1656/1.0.1656.3432/onedriveforbusiness/icon.png","dataSources":[],"dependencies":[],"dependents":["44bd678f-96ec-49ce-ab7d-477112f6779d"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","isCustomApiSolutionAware":false},"9a639307-b8be-4b17-8ad6-41873e6ddd07":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1653/1.0.1653.3403/logicflows/icon.png","dataSources":["HeyGen"],"dependencies":["a6cbf110-9ae6-4390-a413-cbb5892713a9"],"dependents":[],"parameterHints":{"workflowName":{"value":"f268f071-c4ab-4ca2-95e5-09d8d3da4ffd"},"workflowEntityId":{"value":"20c62f34-9c50-ee11-be6f-000d3a4f73e8"},"a6cbf110-9ae6-4390-a413-cbb5892713a9":{"value":"shared_commondataserviceforapps"}},"parameterHintsV2":{"workflowName":{"value":"f268f071-c4ab-4ca2-95e5-09d8d3da4ffd"},"workflowEntityId":{"value":"20c62f34-9c50-ee11-be6f-000d3a4f73e8"},"shared_commondataserviceforapps":{"value":"a6cbf110-9ae6-4390-a413-cbb5892713a9"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"],"isCustomApiSolutionAware":false},"a6cbf110-9ae6-4390-a413-cbb5892713a9":{"id":"/providers/microsoft.powerapps/apis/shared_commondataserviceforapps","displayName":"Microsoft Dataverse","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1651/1.0.1651.3382/commondataserviceforapps/icon.png","dataSources":[],"dependencies":[],"dependents":["9a639307-b8be-4b17-8ad6-41873e6ddd07"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Premium","isCustomApiSolutionAware":false},"2de7c82d-3fc2-4d64-bb41-fe7822aa9945":{"id":"/providers/microsoft.powerapps/apis/shared_crd69-5fopenai-2ddall-2de-20new-5ffa4deb0eede67d72","displayName":"OpenAI-Dall-E new","iconUri":"https://az787822.vo.msecnd.net/defaulticons/api-dedicated.png","dataSources":["OpenAI_1"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["CreateImage"],"customApiLogicalName":"crd69_5Fopenai-2Ddall-2De-20new","isCustomApiSolutionAware":true}}</ConnectionReferences>
+      <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified"}},"dataSources":{"Heygen":{"entitySetName":"crd69_heygens","logicalName":"crd69_heygen"}}}}</DatabaseReferences>
+      <AppComponents>[]</AppComponents>
+      <AppComponentDependencies>[]</AppComponentDependencies>
+      <CanConsumeAppPass>1</CanConsumeAppPass>
+      <CanvasAppType>0</CanvasAppType>
+      <BypassConsent>0</BypassConsent>
+      <AdminControlBypassConsent>0</AdminControlBypassConsent>
+      <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <CdsDependencies>{"cdsdependencies":[{"logicalname":"crd69_5Fopenai-2Ddall-2De-20new","componenttype":372,"componenttypeplatformname":"connector"},{"dependencyid":"b5e76bff-e152-ee11-be6e-6045bda8a6d7","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"20c62f34-9c50-ee11-be6f-000d3a4f73e8","componenttype":29,"componenttypeplatformname":"Workflow"},{"logicalname":"crd69_heygen","componenttype":1}]}</CdsDependencies>
+      <IsCustomizable>1</IsCustomizable>
+      <BackgroundImageUri>/CanvasApps/crd69_heygen_fe813_BackgroundImageUri</BackgroundImageUri>
+      <DocumentUri>/CanvasApps/crd69_heygen_fe813_DocumentUri.msapp</DocumentUri>
+    </CanvasApp>
+  </CanvasApps>
+  <Connectors>
+    <Connector>
+      <connectorid>c62d4a95-cd1c-4b3b-b8fa-3d54a38bc944</connectorid>
+      <description>new conn</description>
+      <displayname>OpenAI-Dall-E new</displayname>
+      <iconbrandcolor>#007ee5</iconbrandcolor>
+      <name>crd69_5Fopenai-2Ddall-2De-20new</name>
+      <connectortype>1</connectortype>
+      <openapidefinition>/Connector/crd69_5Fopenai-2Ddall-2De-20new_openapidefinition.json</openapidefinition>
+      <connectionparameters>/Connector/crd69_5Fopenai-2Ddall-2De-20new_connectionparameters.json</connectionparameters>
+      <policytemplateinstances>/Connector/crd69_5Fopenai-2Ddall-2De-20new_policytemplateinstances.json</policytemplateinstances>
+      <iconblob>/Connector/crd69_5Fopenai-2Ddall-2De-20new_iconblob.Png</iconblob>
+    </Connector>
+  </Connectors>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>
