@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{7d460b7e-8f5d-ee11-be6f-0022480b6a3f}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab id="ACBA75B7-97B6-4116-AA55-51312992B721" name="tab_1" showlabel="false" labelid="{dda720d9-1d51-42ec-856e-f7e9dd56f5da}">
+          <labels>
+            <label description="New Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_1_section_3" id="c25b649b-d922-4b5e-ac0f-c54d21f76105" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{7654444f-8399-4129-9302-b07aa8cf7c12}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{89fd7837-0227-4f2f-97d1-daf0aa36fe95}" locklevel="0" colspan="1" rowspan="1" labelid="{52fcc8a0-9bbc-4673-8583-579afbb11044}">
+                        <labels>
+                          <label description="Address 1: Street 1" languagecode="1033" />
+                        </labels>
+                        <control id="address1_line1" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="address1_line1" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7ba78bb4-5870-48d6-abee-a64ab3cd0da2}" locklevel="0" colspan="1" rowspan="1" labelid="{a8788f8e-3f28-4193-95ce-c8e588be26eb}">
+                        <labels>
+                          <label description="Address 1: ZIP/Postal Code" languagecode="1033" />
+                        </labels>
+                        <control id="address1_postalcode" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="address1_postalcode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{294b2fba-9c45-4597-aead-6cc066a2d217}" locklevel="0" colspan="1" rowspan="1" labelid="{237d33ca-d400-49d7-8b14-82ee5cc9b288}">
+                        <labels>
+                          <label description="Address 1: City" languagecode="1033" />
+                        </labels>
+                        <control id="address1_city" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="address1_city" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4face957-536b-4086-a3eb-0b93db105d98}" locklevel="0" colspan="1" rowspan="1" labelid="{b716fea4-8ecd-4bfd-ab7b-d6739dc79127}">
+                        <labels>
+                          <label description="Address 1: County" languagecode="1033" />
+                        </labels>
+                        <control id="address1_county" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="address1_county" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="2" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Contact quick view form" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

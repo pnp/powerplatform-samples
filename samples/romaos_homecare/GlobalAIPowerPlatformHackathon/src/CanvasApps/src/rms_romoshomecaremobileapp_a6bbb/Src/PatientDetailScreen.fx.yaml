@@ -1,0 +1,267 @@
+PatientDetailScreen As screen:
+    Fill: =RGBA(245, 247, 254, 1)
+
+    Button3 As button:
+        BorderThickness: =0
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =71
+        HoverFill: =Self.Fill
+        Size: =24
+        Text: =
+        Width: =181
+        X: =27
+        Y: =476
+        ZIndex: =1
+
+    Circle1_1 As circle:
+        Fill: |-
+            =ColorValue("#7889d3")
+        Height: =195
+        Width: =195
+        X: =221
+        Y: =155
+        ZIndex: =2
+
+    Circle1 As circle:
+        Fill: =RGBA(245, 247, 254, 1)
+        Height: =182
+        Width: =182
+        X: =228
+        Y: =162
+        ZIndex: =3
+
+    Image2 As image:
+        Height: =140
+        Image: =patient.Photo.Full
+        ImagePosition: =ImagePosition.Fill
+        RadiusBottomLeft: =500
+        RadiusBottomRight: =500
+        RadiusTopLeft: =500
+        RadiusTopRight: =500
+        Width: =140
+        X: =249
+        Y: =183
+        ZIndex: =4
+
+    Label1 As label:
+        Align: =Align.Center
+        Font: =Font.'Lato Black'
+        Height: =70
+        Size: =20
+        Text: =patient.Name
+        VerticalAlign: =VerticalAlign.Top
+        Width: =311
+        X: =163
+        Y: =361
+        ZIndex: =5
+
+    Label1_1 As label:
+        Font: =Font.Arial
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =21
+        Text: ="Info"
+        Width: =311
+        X: =27
+        Y: =406
+        ZIndex: =6
+
+    Label1_2 As label:
+        Color: =RGBA(102, 102, 102, 1)
+        Height: =41
+        Size: =12
+        Text: ="Age"
+        Width: =123
+        X: =40
+        Y: =476
+        ZIndex: =7
+
+    Label1_3 As label:
+        Color: =RGBA(26, 26, 26, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =36
+        Size: =15
+        Text: =DateDiff(patient.Birthday, Now(),TimeUnit.Years) & " years"
+        VerticalAlign: =VerticalAlign.Top
+        Width: =123
+        X: =40
+        Y: =505
+        ZIndex: =8
+
+    Group2_1 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =12
+
+        Button3_1 As button:
+            BorderThickness: =0
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =71
+            HoverFill: =Self.Fill
+            Size: =24
+            Text: =""
+            Width: =181
+            X: =231
+            Y: =476
+            ZIndex: =9
+
+        Label1_4 As label:
+            Color: =RGBA(102, 102, 102, 1)
+            Height: =41
+            Size: =12
+            Text: ="Weight"
+            Width: =123
+            X: =244
+            Y: =476
+            ZIndex: =10
+
+        Label1_5 As label:
+            Color: =RGBA(26, 26, 26, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =36
+            Size: =15
+            Text: =patient.Weight & " kg"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =123
+            X: =244
+            Y: =505
+            ZIndex: =11
+
+    Button3_3 As button:
+        BorderThickness: =0
+        Fill: |-
+            =ColorValue("#7889d3")
+        Height: =161
+        HoverFill: =Self.Fill
+        Size: =24
+        Text: =""
+        Width: =383
+        X: =27
+        Y: =583
+        ZIndex: =15
+
+    Group2_2 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =15
+
+        Button3_2 As button:
+            BorderThickness: =0
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =71
+            HoverFill: =Self.Fill
+            Size: =24
+            Text: =""
+            Width: =181
+            X: =436
+            Y: =476
+            ZIndex: =12
+
+        Label1_6 As label:
+            Color: =RGBA(102, 102, 102, 1)
+            Height: =41
+            Size: =12
+            Text: ="Height"
+            Width: =123
+            X: =449
+            Y: =476
+            ZIndex: =13
+
+        Label1_7 As label:
+            Color: =RGBA(26, 26, 26, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =36
+            Size: =15
+            Text: =patient.Height & " cm"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =123
+            X: =449
+            Y: =505
+            ZIndex: =14
+
+    Label1_9 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =36
+        Size: =15
+        Text: =If(lastVisit.Score > 50, "Great!", "Ops!")
+        VerticalAlign: =VerticalAlign.Top
+        Width: =123
+        X: =198
+        Y: =600
+        ZIndex: =17
+
+    Label1_8 As label:
+        Color: =RGBA(237, 237, 237, 1)
+        Height: =54
+        LineHeight: =1.4
+        Size: =12
+        Text: ="Last Visit in " & Text(lastVisit.'Planned Date and Time', "dd/mm")  & ", done by Dr. Ray."
+        Width: =191
+        X: =198
+        Y: =636
+        ZIndex: =18
+
+    Label1_10 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =150
+        Size: =80
+        Text: =If(lastVisit.Score > 50, "👍🏻", "🤒")
+        VerticalAlign: =VerticalAlign.Top
+        Width: =170
+        X: =32
+        Y: =583
+        ZIndex: =19
+
+    Label1_11 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =54
+        LineHeight: =1.4
+        Size: =10
+        Text: ="Score " & lastVisit.Score & " out of 100"
+        Width: =191
+        X: =198
+        Y: =679
+        ZIndex: =20
+
+    Label1_12 As label:
+        Align: =Align.Center
+        Color: |-
+            =ColorValue("#7889d3")
+        FontWeight: =FontWeight.Bold
+        Height: =161
+        LineHeight: =1.8
+        Size: =15
+        Text: ="Last Visit AI Calculated Score"
+        Width: =181
+        X: =436
+        Y: =583
+        ZIndex: =21
+
+    Icon3_4 As icon.BackArrow:
+        Color: |-
+            =ColorValue("#7889d3")
+        Height: =35
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Back()
+        Width: =35
+        X: =35
+        Y: =17
+        ZIndex: =22
+
+    Label1_17 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =16
+        Text: ="Patient Profile"
+        Width: =311
+        X: =165
+        ZIndex: =23
+

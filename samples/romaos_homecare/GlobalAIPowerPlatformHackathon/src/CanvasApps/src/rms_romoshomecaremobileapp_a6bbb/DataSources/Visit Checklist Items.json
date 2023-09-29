@@ -1,0 +1,117 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "rms_visitchecklistitems",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "rms_visitchecklistitem",
+    "MaxGetRowsCount": 500,
+    "Name": "Visit Checklist Items",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "rms_answer": "Answer",
+      "rms_question": "Question",
+      "rms_Visit": "Visit",
+      "rms_visitchecklistitem_AsyncOperations": "System Jobs",
+      "rms_visitchecklistitem_BulkDeleteFailures": "Bulk Delete Failures",
+      "rms_visitchecklistitem_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "rms_visitchecklistitem_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "rms_visitchecklistitem_ProcessSession": "Process Sessions",
+      "rms_visitchecklistitem_SyncErrors": "Sync Errors",
+      "rms_visitchecklistitemid": "Visit Checklist Item",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Visit Checklist Items",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Visit Checklist Items (Views)",
+    "Name": "_rms_visitchecklistitem_views",
+    "RelatedEntityName": "Visit Checklist Items",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "26c77ad8-13f1-4741-bf00-c80ef9a68d2e": "Visit Checklist Item Advanced Find View",
+      "72440342-a701-47c0-894f-a40508e6d810": "Active Visit Checklist Items",
+      "853f4951-0ac7-477a-b11c-4213790872fe": "Visit Checklist Item Lookup View",
+      "ae42cd1d-dec7-4426-8109-334fe071783a": "Visit Checklist Item Associated View",
+      "f445ccb1-5fad-4d55-a65c-9af38c8fae0b": "Inactive Visit Checklist Items"
+    }
+  },
+  {
+    "DisplayName": "Answer (Visit Checklist Items)",
+    "Name": "rms_visitchecklistitem_rms_answer",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "rms_answer",
+        "OptionSetReferenceEntityName": "Visit Checklist Items"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "rms_answer",
+    "RelatedEntityName": "Visit Checklist Items",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Visit Checklist Items)",
+    "Name": "rms_visitchecklistitem_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Visit Checklist Items"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Visit Checklist Items",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Visit Checklist Items)",
+    "Name": "rms_visitchecklistitem_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Visit Checklist Items"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Visit Checklist Items",
+    "Type": "OptionSetInfo"
+  }
+]
