@@ -1,0 +1,127 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "appr_assignmentmarks",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "appr_assignmentmark",
+    "MaxGetRowsCount": 500,
+    "Name": "Assignment Marks",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "appr_assignmentmark_AsyncOperations": "System Jobs",
+      "appr_assignmentmark_BulkDeleteFailures": "Bulk Delete Failures",
+      "appr_assignmentmark_DuplicateBaseRecord": "Duplicate Records (appr_assignmentmark_DuplicateBaseRecord)",
+      "appr_assignmentmark_DuplicateMatchingRecord": "Duplicate Records (appr_assignmentmark_DuplicateMatchingRecord)",
+      "appr_assignmentmark_FileAttachments": "FileAttachments",
+      "appr_assignmentmark_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "appr_assignmentmark_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "appr_assignmentmark_ProcessSession": "Process Sessions",
+      "appr_assignmentmark_SyncErrors": "Sync Errors",
+      "appr_assignmentmarkid": "Assignment Mark",
+      "appr_assignmentstatus": "Assignment Status",
+      "appr_attachment": "Attachment",
+      "appr_feedbackcomment": "Feedback Comment",
+      "appr_name": "Name",
+      "appr_StudentName": "Student Name",
+      "appr_submissiontext": "Submission Text",
+      "appr_SubmittedAssignment": "Submitted Assignment",
+      "appr_submittedon": "Submitted On",
+      "appr_totalmarks": "total marks",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Assignment Marks",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Assignment Marks (Views)",
+    "Name": "_appr_assignmentmark_views",
+    "RelatedEntityName": "Assignment Marks",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "5078ae01-3ebb-4181-86c8-ba67627a0280": "Assignment Mark Associated View",
+      "58934c47-c8ef-44fb-934d-01cd896f312f": "Assignment Mark Advanced Find View",
+      "a558466b-df4a-4440-bdd8-9341d802492a": "Inactive Assignment Marks",
+      "abbb8298-e408-4d68-89f8-b7a61e56779c": "Active Assignment Marks",
+      "d2f8cc9c-fc4a-43b9-b5fd-75a63800b6d3": "Assignment Mark Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (Assignment Marks)",
+    "Name": "appr_assignmentmark_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Assignment Marks"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Assignment Marks",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Assignment Marks)",
+    "Name": "appr_assignmentmark_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Assignment Marks"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Assignment Marks",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Assignment Status",
+    "Name": "appr_assignmentstatus",
+    "OptionSetInfoNameMapping": {
+      "1": "Submitted",
+      "2": "Not Submitted",
+      "3": "Graded"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "appr_assignmentstatus",
+        "OptionSetReferenceEntityName": "Assignment Marks"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "appr_assignmentstatus",
+    "RelatedEntityName": "Assignment Marks",
+    "Type": "OptionSetInfo"
+  }
+]
