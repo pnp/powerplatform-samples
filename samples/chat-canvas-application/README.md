@@ -46,6 +46,7 @@ The following solution components are used in this sample:
 
 * Chat Canvas App (Canvas app)
 * Dataverse Integration (Connection)
+* Messages (Table)
 
 
 ## Minimal Path to Awesome
