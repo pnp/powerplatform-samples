@@ -1,19 +1,4 @@
----
-page_type: sample
-languages:
-- powerapps-comma
-products:
-- powerapps
-- canvas
-name: Calendar Component
-description: A re-usable component that allows you to display events in  a calendar.
-urlFragment: powerapps-calendar-component
-ms.date: 5/5/2021
-author: aprildunnam
-ms.author: pnp
-level: intermediate
-ms.prod: power-apps
----
+
 
 # Calendar Component
 
@@ -40,49 +25,26 @@ A re-usable component that allows you to display events in  a calendar.
 
 Solution|Author(s)
 --------|---------
-Calendar Component | [April Dunnam](https://github.com/aprildunnam) ([@aprildunnam](https://www.twitter.com/aprildunnam) )
+Calendar Component | [Shaheer Ahmad](https://github.com/shaheerahmadch) ([LinkedIn]([https://www.twitter.com/aprildunnam](https://www.linkedin.com/in/shaheer-ahmad-ch/)) )
 
 ## Version history
 
 Version|Date|Comments
 -------|----|--------
-1.0|May 5, 2021|Initial release
+1.0|Sept 5, 2023|Initial release
 
 
 ## Features
 
 This sample illustrates the following concepts:
 
-* Creating a Power Apps component
-* Using a Power Apps component
+* Creating a Canvas App
+* Using a Power Apps gallery
+* Patching Data into the dataverse
 
 ## Prerequisites
 
-### Using the component
-
-To use the component in this sample, you'll need to pass events to display in the calendar.
-
-You can do this by connecting to a data source which provides a `Date`, a `Title` and a `Time` field, or you can manually create entries and pass them as a `Table`, as follows:
-
-```excel
-Table(
-    {
-        Date: "5/3/2021",
-        Title: "Meeting",
-        Time: "2:30pm"
-    },
-     {
-        Date: "5/4/2021",
-        Title: "MBAS PVA",
-        Time: "1:00pm"
-    },
-    {
-        Date: "5/5/2021",
-        Title: "PnP AMA Power Platform",
-        Time: "3:00pm"
-    }
-)
-```
+None
 
 ## Data Sources
  
