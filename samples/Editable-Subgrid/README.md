@@ -26,7 +26,7 @@ A re-usable component that allows you to display events in  a calendar.
 
 Solution|Author(s)
 --------|---------
-Calendar Component | [Shaheer Ahmad](https://github.com/shaheerahmadch) ([LinkedIn]([https://www.twitter.com/aprildunnam](https://www.linkedin.com/in/shaheer-ahmad-ch/)) )
+Calendar Component | [Shaheer Ahmad](https://github.com/shaheerahmadch) ([LinkedIn](https://www.linkedin.com/in/shaheer-ahmad-ch/) )
 
 ## Version history
 
