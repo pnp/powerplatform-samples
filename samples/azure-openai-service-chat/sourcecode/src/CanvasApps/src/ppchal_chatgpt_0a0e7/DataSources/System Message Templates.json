@@ -1,0 +1,100 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "ppchal_systemmessagetemplates",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "ppchal_systemmessagetemplate",
+    "MaxGetRowsCount": 500,
+    "Name": "System Message Templates",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "ppchal_hinttext": "Hint Text",
+      "ppchal_name": "Name",
+      "ppchal_systemmessage": "System Message",
+      "ppchal_systemmessagetemplate_AsyncOperations": "System Jobs",
+      "ppchal_systemmessagetemplate_BulkDeleteFailures": "Bulk Delete Failures",
+      "ppchal_systemmessagetemplate_DuplicateBaseRecord": "Duplicate Records (ppchal_systemmessagetemplate_DuplicateBaseRecord)",
+      "ppchal_systemmessagetemplate_DuplicateMatchingRecord": "Duplicate Records (ppchal_systemmessagetemplate_DuplicateMatchingRecord)",
+      "ppchal_systemmessagetemplate_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "ppchal_systemmessagetemplate_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "ppchal_systemmessagetemplate_ProcessSession": "Process Sessions",
+      "ppchal_systemmessagetemplate_SyncErrors": "Sync Errors",
+      "ppchal_systemmessagetemplateid": "System Message Template",
+      "ppchal_temperature": "Temperature",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "System Message Templates",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "System Message Templates (Views)",
+    "Name": "_ppchal_systemmessagetemplate_views",
+    "RelatedEntityName": "System Message Templates",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "33e07a72-4e1e-46b4-9d78-b7dc12a76114": "System Message Template Advanced Find View",
+      "3b6b722b-1e8f-4c93-b1b6-1698ea2e8046": "Inactive System Message Templates",
+      "bf251861-272d-48f7-a13a-2e91e6bb44f3": "System Message Template Associated View",
+      "fa814f8b-4780-42d8-a359-70751b8d4bdf": "Active System Message Templates",
+      "fcb4b7ce-0ee9-4d3c-b5be-5f0729bac9f3": "System Message Template Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (System Message Templates)",
+    "Name": "ppchal_systemmessagetemplate_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "System Message Templates"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "System Message Templates",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (System Message Templates)",
+    "Name": "ppchal_systemmessagetemplate_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "System Message Templates"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "System Message Templates",
+    "Type": "OptionSetInfo"
+  }
+]
