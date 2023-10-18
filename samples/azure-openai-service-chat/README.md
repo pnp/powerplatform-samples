@@ -4,11 +4,7 @@
 
 This solution combines the interface of ChatGPT, The [Azure OpenAI service custom connector](https://github.com/microsoft/PowerPlatformConnectors/tree/dev/custom-connectors/AzureOpenAIService) to process the prompt, and the [Prompt Library](https://adoption.microsoft.com/en-us/sample-solution-gallery/sample/pnp-powerplatform-samples-prompt-library/) solution where prompts can be saved. This way the data stays within the organization, super users can save good working prompts, and all other employees can use these valuable prompts directly from within the app.
 
-<!-- 
-ER MOET NOG EEN SCREENSHOT GEMAAKT WORDEN VAN DE APP IN GEBRUIK, LIEFST 1920x1080. KON NOG NIET DOOR DLP ISSUE. ER KUNNEN ER MEERDERE TOEGEVOEGD WORDEN.
-
-![picture of the sample](assets/AzureOpenAIServiceChat.png)
--->
+![picture of the sample](assets/AzureOpenAISeriveChat.png)
 
 ## Applies to
 
