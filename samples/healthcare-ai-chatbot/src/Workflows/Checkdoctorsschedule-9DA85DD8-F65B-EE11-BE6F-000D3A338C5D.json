@@ -1,0 +1,203 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "hhp_sharedcommondataserviceforapps_a7589"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "63239468-cefc-497a-81a2-a44d88ecaa67"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Date",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "Time",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "DoctorName",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Condition": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2932e726-d249-4c65-8ba7-bbd0361c9d98"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "isavailable": "@{variables('IsAvailable')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "isavailable": {
+                  "title": "IsAvailable",
+                  "x-ms-dynamically-added": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "List_rows": {
+          "runAfter": {
+            "Get_Date_Day": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6377a572-98e3-4430-aed8-874e915fcd88"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "cr961_doctorses",
+              "$filter": "cr961_name eq '@{triggerBody()['text_2']}' and hhp_availabilityday eq '@{outputs('Get_Date_Day')}'"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Date_Day": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "307f38f7-66db-4060-a769-08c6cf24e000"
+          },
+          "type": "Compose",
+          "inputs": "@formatDateTime(triggerBody()?['text'], 'dddd')"
+        },
+        "Initialize_variable_2": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9415736c-6ef6-4a00-b41e-8ee382777067"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "NoOfDoctors",
+                "type": "integer",
+                "value": "@length(outputs('List_rows')?['body/value'])"
+              }
+            ]
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Set_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "306c0dc9-2f49-46fa-b6cf-56b7395cfd49"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "IsAvailable",
+                "value": true
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "greaterOrEquals": [
+              "@variables('NoOfDoctors')",
+              1
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7f2c4048-a3db-4f16-8980-247933e60997"
+          },
+          "type": "If"
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a862d4df-ab61-42c3-b3cf-b694842e4834"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "IsAvailable",
+                "type": "boolean",
+                "value": false
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": "c9cd2c4e691a4646adc8aa592c88489b"
+  },
+  "schemaVersion": "1.0.0.0"
+}

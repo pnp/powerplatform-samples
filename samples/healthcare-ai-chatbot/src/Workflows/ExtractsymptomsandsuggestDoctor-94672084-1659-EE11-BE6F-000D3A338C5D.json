@@ -1,0 +1,696 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "hhp_sharedcommondataserviceforapps_a7589"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "36cb8e45-cc58-4557-b5fd-be1418f677bc"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Symptoms",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "Date",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "Time",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Extract_the_key_phrases_from_text": {
+          "runAfter": {
+            "Get_Selected_Date_Day": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e2fdfabe-8385-4072-aec7-5bbb5da303a6",
+            "flowSystemMetadata": {
+              "portalOperationId": "aibuilderpredict_keyphraseextraction",
+              "portalOperationGroup": "aibuilder",
+              "portalOperationApiDisplayNameOverride": "AI Builder",
+              "portalOperationIconOverride": "https://content.powerapps.com/resource/makerx/static/pauto/images/designeroperations/aiBuilderNew.51dbdb6b.png",
+              "portalOperationBrandColorOverride": "#0A76C4",
+              "portalOperationApiTierOverride": "Standard"
+            }
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "aibuilderpredict_keyphraseextraction",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "item/requestv2/language": "en",
+              "item/requestv2/text": "@triggerBody()['text']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "8c44dcbe-3301-457e-b403-95b431ca7096"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Specialization",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_Doctor_Name": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c041e4d2-888f-4c49-a665-21ee2a3b62e0"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "DoctorName",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Get_Selected_Date_Day": {
+          "runAfter": {
+            "Initialize_Doctor_Name": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "287800e0-2e6e-41b4-89a6-65534031068f"
+          },
+          "type": "Compose",
+          "inputs": "@formatDateTime(triggerBody()?['text_1'], 'dddd')"
+        },
+        "Hematology": {
+          "foreach": "@outputs('Extract_the_key_phrases_from_text')?['body/responsev2/predictionOutput/results']",
+          "actions": {
+            "Key_phrase_contains_blood": {
+              "actions": {
+                "Set_variable_-_Hematology": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "e86579b4-1c02-4aaf-a0a3-f9f495f79941"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Specialization",
+                    "value": "Hematology"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "contains": [
+                  "@items('Hematology')?['phrase']",
+                  "blood"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "92390cf7-db67-4691-9752-4f4c57f58057"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Extract_the_key_phrases_from_text": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9b6250c4-1126-46e8-8ee0-65c0ef7f839f"
+          },
+          "type": "Foreach"
+        },
+        "Allergy_and_Immunology": {
+          "foreach": "@outputs('Extract_the_key_phrases_from_text')?['body/responsev2/predictionOutput/results']",
+          "actions": {
+            "Key_phrase_contains_allergy,_allergic": {
+              "actions": {
+                "Set_variable_-_Allergy_and_Immunology": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "7b5d4b60-6abf-4a84-b599-5a2b36fa1a39"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Specialization",
+                    "value": "Allergy and Immunology"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "or": [
+                  {
+                    "contains": [
+                      "@items('Allergy_and_Immunology')?['phrase']",
+                      "allergy"
+                    ]
+                  },
+                  {
+                    "contains": [
+                      "@items('Allergy_and_Immunology')?['phrase']",
+                      "allergic"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "33a7f08e-b028-4098-9d80-3eda7bca2bc5"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Extract_the_key_phrases_from_text": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a0bcb077-eb02-4f07-b34c-cf8ce6dc3423"
+          },
+          "type": "Foreach"
+        },
+        "Dermatology": {
+          "foreach": "@outputs('Extract_the_key_phrases_from_text')?['body/responsev2/predictionOutput/results']",
+          "actions": {
+            "Key_phrase_contains_skin,_rash,_itchy": {
+              "actions": {
+                "Set_variable_-_Dermatology": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "63e47f1e-ceae-4419-9f8c-71c878b3b3fb"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Specialization",
+                    "value": "Dermatology"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "or": [
+                  {
+                    "contains": [
+                      "@items('Dermatology')?['phrase']",
+                      "skin"
+                    ]
+                  },
+                  {
+                    "contains": [
+                      "@items('Dermatology')?['phrase']",
+                      "rash"
+                    ]
+                  },
+                  {
+                    "contains": [
+                      "@items('Dermatology')?['phrase']",
+                      "itchy"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "8451a4e1-5651-4a2b-a9af-a334f4c2f5fd"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Extract_the_key_phrases_from_text": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7b774f3a-786d-44c9-b3e0-181d653aca7c"
+          },
+          "type": "Foreach"
+        },
+        "Gastroenterology": {
+          "foreach": "@outputs('Extract_the_key_phrases_from_text')?['body/responsev2/predictionOutput/results']",
+          "actions": {
+            "Key_phrase_contains_food,_stomach,_intestinal": {
+              "actions": {
+                "Set_variable_-_Gastroenterology": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "eccff3fd-612a-4a18-a0fa-eb4b86538531"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Specialization",
+                    "value": "Gastroenterology"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "and": [
+                  {
+                    "contains": [
+                      "@items('Gastroenterology')?['phrase']",
+                      "food"
+                    ]
+                  },
+                  {
+                    "contains": [
+                      "@items('Gastroenterology')?['phrase']",
+                      "stomach"
+                    ]
+                  },
+                  {
+                    "contains": [
+                      "@items('Gastroenterology')?['phrase']",
+                      "intestinal"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "32de2039-9a54-40fb-8b1e-39da92bd389c"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Extract_the_key_phrases_from_text": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b8c47e36-d4d9-4886-9169-8e865078038a"
+          },
+          "type": "Foreach"
+        },
+        "Endocrinology": {
+          "foreach": "@outputs('Extract_the_key_phrases_from_text')?['body/responsev2/predictionOutput/results']",
+          "actions": {
+            "Key_phrase_contains_hormones": {
+              "actions": {
+                "Set_variable_-_Endocrinology": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "774d365a-d6e0-4301-bc93-ec899179b514"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Specialization",
+                    "value": "Endocrinology"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "or": [
+                  {
+                    "contains": [
+                      "@items('Endocrinology')?['phrase']",
+                      "hormones"
+                    ]
+                  },
+                  {
+                    "contains": [
+                      "@items('Endocrinology')?['phrase']",
+                      "hormone"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5656e480-0966-4849-b52e-c5c6a1defb4a"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Extract_the_key_phrases_from_text": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ef0ebe3e-5c6f-4116-bc8b-4771f6841996"
+          },
+          "type": "Foreach"
+        },
+        "Cardiology": {
+          "foreach": "@outputs('Extract_the_key_phrases_from_text')?['body/responsev2/predictionOutput/results']",
+          "actions": {
+            "Key_phrase_contains_heart,_chest": {
+              "actions": {
+                "Set_variable_-_Cardiology": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "76d6fb32-94a6-47f7-898a-d6d24a707d54"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Specialization",
+                    "value": "Cardiology"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "or": [
+                  {
+                    "contains": [
+                      "@items('Cardiology')?['phrase']",
+                      "heart"
+                    ]
+                  },
+                  {
+                    "contains": [
+                      "@items('Cardiology')?['phrase']",
+                      "chest"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c21a37de-d0c1-4610-b251-8b84a7e0e9f4"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Extract_the_key_phrases_from_text": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d5a2cb61-07fb-4e0b-a79d-0a5ae1cc083d"
+          },
+          "type": "Foreach"
+        },
+        "Infectious_Disease": {
+          "foreach": "@outputs('Extract_the_key_phrases_from_text')?['body/responsev2/predictionOutput/results']",
+          "actions": {
+            "Key_phrase_contains_infectious,_infection": {
+              "actions": {
+                "Set_variable_-_Infectious_Disease": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "8949e4d6-bf5c-490b-beec-69dff8274307"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Specialization",
+                    "value": "Infectious Disease"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "or": [
+                  {
+                    "contains": [
+                      "@items('Infectious_Disease')?['phrase']",
+                      "infectious"
+                    ]
+                  },
+                  {
+                    "contains": [
+                      "@items('Infectious_Disease')?['phrase']",
+                      "infection"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c7125983-b35b-40af-a1df-04930b24d024"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Extract_the_key_phrases_from_text": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fe3f5cba-1154-483c-a29a-bfb74b60b254"
+          },
+          "type": "Foreach"
+        },
+        "Neonatology": {
+          "foreach": "@outputs('Extract_the_key_phrases_from_text')?['body/responsev2/predictionOutput/results']",
+          "actions": {
+            "Condition": {
+              "actions": {
+                "Set_variable_-_Neonatology": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "eadcbb19-a3a1-4537-b107-a12cc2eaafc1"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Specialization",
+                    "value": "Neonatology"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "or": [
+                  {
+                    "contains": [
+                      "@items('Neonatology')?['phrase']",
+                      "baby"
+                    ]
+                  },
+                  {
+                    "contains": [
+                      "@items('Neonatology')?['phrase']",
+                      "infant"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "98963052-72d6-49b3-aa50-279d27b972b6"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Extract_the_key_phrases_from_text": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a11a71d7-52b2-4f35-b6b5-443cfe1ff08c"
+          },
+          "type": "Foreach"
+        },
+        "No_Specilalization": {
+          "actions": {
+            "Set_variable_-_Internal_Medicine": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "98fd9b2b-5308-4ab7-97f2-aa2dbc3a35ce"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Specialization",
+                "value": "Internal Medicine"
+              }
+            }
+          },
+          "runAfter": {
+            "Neonatology": [
+              "Succeeded"
+            ],
+            "Hematology": [
+              "Succeeded"
+            ],
+            "Dermatology": [
+              "Succeeded"
+            ],
+            "Allergy_and_Immunology": [
+              "Succeeded"
+            ],
+            "Gastroenterology": [
+              "Succeeded"
+            ],
+            "Endocrinology": [
+              "Succeeded"
+            ],
+            "Cardiology": [
+              "Succeeded"
+            ],
+            "Infectious_Disease": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@variables('Specialization')",
+              "@null"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "19d70582-cf77-42b1-a682-83b400596251"
+          },
+          "type": "If"
+        },
+        "Scope": {
+          "actions": {
+            "List_relevant_Doctors": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "55b097ac-771c-465c-b47a-7661763d8e1c"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "cr961_doctorses",
+                  "$filter": "cr961_specialization eq '@{variables('Specialization')}' and hhp_availabilityday eq '@{outputs('Get_Selected_Date_Day')}'",
+                  "$top": 3
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each_2": {
+              "foreach": "@outputs('List_relevant_Doctors')?['body/value']",
+              "actions": {
+                "Set_Doctor_Name": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "f4994b55-2517-4940-9f1f-ab4ffaddef60"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "DoctorName",
+                    "value": "@items('Apply_to_each_2')?['cr961_name']"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_relevant_Doctors": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5bcdbd52-be2b-4919-8d55-a2fb3913901c"
+              },
+              "type": "Foreach"
+            },
+            "Return_value(s)_to_Power_Virtual_Agents": {
+              "runAfter": {
+                "Apply_to_each_2": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5c4f25ba-0609-47b7-8814-8f775e091e0c"
+              },
+              "type": "Response",
+              "kind": "VirtualAgent",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "doctorname": "@variables('DoctorName')",
+                  "specialization": "@variables('Specialization')"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "doctorname": {
+                      "title": "DoctorName",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    },
+                    "specialization": {
+                      "title": "Specialization",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "No_Specilalization": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f3556ba4-7685-442f-acb9-0400176fb631"
+          },
+          "type": "Scope"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": "c9cd2c4e691a4646adc8aa592c88489b"
+  },
+  "schemaVersion": "1.0.0.0"
+}

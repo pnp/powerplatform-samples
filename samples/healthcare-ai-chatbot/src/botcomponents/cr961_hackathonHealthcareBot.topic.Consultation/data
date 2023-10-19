@@ -1,0 +1,138 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Untitled
+    triggerQueries:
+      - I'd like to schedule
+      - Consult with doctor
+      - Doctor's appointment
+      - Schedule an appointment
+      - book an appointment
+      - schedule a visit
+
+  actions:
+    - kind: Question
+      id: question_QSFTqh
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Name
+      prompt: I see that you are trying to schedule an appointment. May I know your name?
+      entity: StringPrebuiltEntity
+
+    - kind: Question
+      id: question_f8eGcG
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.DoctorName
+      prompt: Which doctor would you like to schedule an appointment with?
+      entity: StringPrebuiltEntity
+
+    - kind: SendActivity
+      id: sendActivity_Ynczzh
+      activity: When would you like to set your consultation?
+
+    - kind: AdaptiveCardPrompt
+      id: YT7MKa
+      card: |-
+        {
+            "type": "AdaptiveCard",
+            "body": [
+                {
+                    "type": "TextBlock",
+                    "text": "Set your schedule here:",
+                    "wrap": true,
+                    "size": "Large",
+                    "weight": "Bolder"
+                },
+                {
+                    "type": "Input.Date",
+                    "id": "dateInput",
+                    "label": "Date"
+                },
+                {
+                    "type": "Input.Time",
+                    "id": "timeInput",
+                    "label": "Time"
+                },
+                {
+              "type": "Input.ChoiceSet",
+              "id": "choiceOne",
+              "style": "expanded",
+              "isMultiSelect": false,
+              "value": "1",
+              "choices": [
+                {
+                  "title": "Online",
+                  "value": "online"
+                },
+                {
+                  "title": "On Site",
+                  "value": "on site"
+                }
+              ]
+            }
+            ],
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "version": "1.2",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Submit",
+                    "style": "positive"
+                }
+            ]
+        }
+      output:
+        binding:
+          actionSubmitId: Topic.actionSubmitId
+          choiceOne: Topic.choiceOne
+          dateInput: Topic.dateInput
+          timeInput: Topic.timeInput
+
+      outputType:
+        properties:
+          actionSubmitId: String
+          choiceOne: String
+          dateInput: String
+          timeInput: String
+
+    - kind: SendActivity
+      id: sendActivity_3Uw1Nl
+      activity: _Checking doctor's availability..._
+
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_o65kxW
+      input:
+        binding:
+          text: =Topic.dateInput
+          text_1: =Topic.timeInput
+          text_2: =Topic.DoctorName
+
+      output:
+        binding:
+          isavailable: Topic.IsAvailable
+
+      flowId: 9da85dd8-f65b-ee11-be6f-000d3a338c5d
+
+    - kind: ConditionGroup
+      id: conditionGroup_0bApRH
+      conditions:
+        - id: conditionItem_wBerIl
+          condition: =Topic.IsAvailable = true
+          actions:
+            - kind: SendActivity
+              id: sendActivity_n619VC
+              activity: We have scheduled your {Topic.choiceOne} appointment with Dr. {Topic.DoctorName}   .
+
+      elseActions:
+        - kind: SendActivity
+          id: sendActivity_AnS5K5
+          activity: Sorry, but there are no avaialable Doctors based on your parameters. 
+
+        - kind: GotoAction
+          id: fJT9j8
+          actionId: question_f8eGcG
