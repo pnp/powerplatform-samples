@@ -8,30 +8,21 @@ The Incident Reporting Canvas Application is a powerful tool designed to streaml
 
 ## Applies to
 
-* [Microsoft Power Apps](https://docs.microsoft.com/powerapps/)
+![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
 
-## Authors
+## Compatibility
 
-Solution|Author(s)
---------|---------
-IncidentReportingApp | [Shaheer Ahmad](https://github.com/shaheerahmadch) [LinkedIn](https://www.linkedin.com/in/shaheer-ahmad-ch), 365Connect Community
+![Premium License](https://img.shields.io/badge/Premium%20License-Required-green.svg "Premium license required")
+
+## Contributors
+
+* [Shaheer Ahmad](https://github.com/shaheerahmadch)
 
 ## Version history
 
 Version|Date|Comments
 -------|----|--------
 1.0|September 25, 2023|Initial release
-
-## Features
-
-This sample illustrates the following concepts:
-
-* Streamlined incident reporting process
-* Visually appealing phone layout UI/UX
-* Seamless integration with SharePoint for data storage
-* Real-time collaboration and notifications
-* Customizable reporting forms
-* Data analytics for incident insights
 
 ## Prerequisites
 
@@ -79,7 +70,7 @@ This SharePoint list contains incident report data, including incident details a
 
 ## Minimal Path to Awesome
 
-1. [Download](./solutions/IncidentReporting_1_0_0_2.zip) the solution `.zip` from the `solution` folder.
+1. [Download](./solutions/incident-reporting.zip) the solution `.zip` from the `solution` folder.
 2. Within **https://make.powerapps.com**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
 3. Follow the on-screen instructions to deploy the application.
 4. Access the Incident Reporting Canvas App and start reporting incidents.
@@ -92,3 +83,33 @@ You can also use the [Power Apps CLI](https://aka.ms/pac/docs) to pack the sourc
 2. Pack the source files back into `.zip` file:
    ```bash
    pac solution pack --folder pathtosourcefolder --zipfile pathtosolution  --processCanvasApps
+   ```
+
+Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
+
+## Features
+
+This sample illustrates the following concepts:
+
+* Streamlined incident reporting process
+* Visually appealing phone layout UI/UX
+* Seamless integration with SharePoint for data storage
+* Real-time collaboration and notifications
+* Customizable reporting forms
+* Data analytics for incident insights
+
+## Help
+
+We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
+
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=incident-reporting&authors=@shaheerahmadch&title=incident-reporting%20-%20).
+
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=incident-reporting&authors=@shaheerahmadch&title=incident-reporting%20-%20).
+
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=incident-reporting&authors=@shaheerahmadch&title=incident-reporting%20-%20).
+
+## Disclaimer
+
+**THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
+
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/incident-reporting" />
