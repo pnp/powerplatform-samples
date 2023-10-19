@@ -1,0 +1,226 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "csa_sharedcommondataserviceforapps_e2b3d"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "csa_sharedoffice365_e578a"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "457f3b5d-4226-4b77-bf8b-9d1d1ef27496"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "csa_csincident",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Switch": {
+          "runAfter": {},
+          "cases": {
+            "Low": {
+              "case": 770250000,
+              "actions": {
+                "Update_Incident": {
+                  "runAfter": {
+                    "Send_an_email_(V2)": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "8d37589a-10af-4cb3-8ac1-7f7bc04cb4f0"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "csa_csincidents",
+                      "recordId": "@triggerOutputs()?['body/activityid']",
+                      "item/ownerid_csa_csincident@odata.bind": "/teams(d69a7f4a-e459-ee11-be6f-000d3a45ed19)"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Send_an_email_(V2)": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "c07bb44a-05d0-451f-ac15-7777064176a0"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365",
+                      "operationId": "SendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "admin@powerdynamicspk.onmicrosoft.com",
+                      "emailMessage/Subject": "Incident Report for a LOW priority incident",
+                      "emailMessage/Body": "<!DOCTYPE html>\n<html>\n<head>\n   <title>Incident Report</title>\n   <link rel=\"stylesheet\" href=\"https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css\">\n   <style>\n       .card {\n           border: 1px solid #ccc;\n           border-radius: 4px;\n           padding: 20px;\n           background-color: #fff;\n           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n       }\n\n       h1 {\n           color: #0072C6;\n       }\n\n       .highlight {\n           color: #0072C6;\n           font-weight: bold;\n       }\n\n       table {\n           width: 100%;\n           border-collapse: collapse;\n           margin-top: 20px;\n       }\n\n       th, td {\n           border: 1px solid #ccc;\n           padding: 8px;\n           text-align: left;\n       }\n\n       th {\n           background-color: #f2f2f2;\n       }\n   </style>\n</head>\n<body>\n   <div class=\"card\">\n       <h1>Incident Report for a LOW priority Incident</h1>\n       <p>Hello,</p>\n       <p>Following is the severity report</p>\n       <p><span class=\"highlight\">Key Highlights:</span></p>\n       <table>\n           <tr>\n               <td>Description</td>\n               <td>@{triggerOutputs()?['body/subject']}</td>\n           </tr>\n           <tr>\n               <td>Date</td>\n               <td>@{triggerOutputs()?['body/csa_date']}</td>\n           </tr>\n           <tr>\n               <td>Location</td>\n               <td>@{triggerOutputs()?['body/csa_location']}</td>\n           </tr>\n           <tr>\n               <td>Assigned to</td>\n               <td>Primary Care Unit</td>\n           </tr>\n       </table>\n       <p>Best regards,<br>Test Y</p>\n   </div>\n</body>\n</html>\n",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            },
+            "Medium": {
+              "case": 770250001,
+              "actions": {
+                "Update_Incident_2": {
+                  "runAfter": {
+                    "Send_an_email_(V2)_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "a7e63f82-a578-4569-a6fb-9eec3bf6e8a5"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "csa_csincidents",
+                      "recordId": "@triggerOutputs()?['body/activityid']",
+                      "item/ownerid_csa_csincident@odata.bind": "/teams(c2f9d560-e459-ee11-be6f-000d3a45ed19)"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Send_an_email_(V2)_2": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "ab515ff9-c600-4ca5-9953-56bdad0ee798"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365",
+                      "operationId": "SendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "admin@powerdynamicspk.onmicrosoft.com",
+                      "emailMessage/Subject": "Incident Report for a MEDIUM priority incident",
+                      "emailMessage/Body": "<!DOCTYPE html>\n<html>\n<head>\n   <title>Incident Report</title>\n   <link rel=\"stylesheet\" href=\"https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css\">\n   <style>\n       .card {\n           border: 1px solid #ccc;\n           border-radius: 4px;\n           padding: 20px;\n           background-color: #fff;\n           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n       }\n\n       h1 {\n           color: #0072C6;\n       }\n\n       .highlight {\n           color: #0072C6;\n           font-weight: bold;\n       }\n\n       table {\n           width: 100%;\n           border-collapse: collapse;\n           margin-top: 20px;\n       }\n\n       th, td {\n           border: 1px solid #ccc;\n           padding: 8px;\n           text-align: left;\n       }\n\n       th {\n           background-color: #f2f2f2;\n       }\n   </style>\n</head>\n<body>\n   <div class=\"card\">\n       <h1>Incident Report for a MEDIUM priority Incident</h1>\n       <p>Hello,</p>\n       <p>Following is the severity report</p>\n       <p><span class=\"highlight\">Key Highlights:</span></p>\n       <table>\n           <tr>\n               <td>Description</td>\n               <td>@{triggerOutputs()?['body/subject']}</td>\n           </tr>\n           <tr>\n               <td>Date</td>\n               <td>@{triggerOutputs()?['body/csa_date']}</td>\n           </tr>\n           <tr>\n               <td>Location</td>\n               <td>@{triggerOutputs()?['body/csa_location']}</td>\n           </tr>\n           <tr>\n               <td>Assigned to</td>\n               <td>Advance Care Unit</td>\n           </tr>\n       </table>\n       <p>Best regards,<br>Test Y</p>\n   </div>\n</body>\n</html>\n",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            },
+            "High": {
+              "case": 770250002,
+              "actions": {
+                "Update_Incident_3": {
+                  "runAfter": {
+                    "Send_an_email_(V2)_3": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "1b3940ce-1125-476d-880d-cca2364fe763"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "csa_csincidents",
+                      "recordId": "@triggerOutputs()?['body/activityid']",
+                      "item/ownerid_csa_csincident@odata.bind": "/teams(7912166f-e459-ee11-be6f-000d3a45ed19)"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Send_an_email_(V2)_3": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "32d75648-9074-4293-94d4-3147cc1d592a"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365",
+                      "operationId": "SendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "admin@powerdynamicspk.onmicrosoft.com",
+                      "emailMessage/Subject": "Incident Report for a HIGH priority incident",
+                      "emailMessage/Body": "<!DOCTYPE html>\n<html>\n<head>\n   <title>Incident Report</title>\n   <link rel=\"stylesheet\" href=\"https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css\">\n   <style>\n       .card {\n           border: 1px solid #ccc;\n           border-radius: 4px;\n           padding: 20px;\n           background-color: #fff;\n           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n       }\n\n       h1 {\n           color: #0072C6;\n       }\n\n       .highlight {\n           color: #0072C6;\n           font-weight: bold;\n       }\n\n       table {\n           width: 100%;\n           border-collapse: collapse;\n           margin-top: 20px;\n       }\n\n       th, td {\n           border: 1px solid #ccc;\n           padding: 8px;\n           text-align: left;\n       }\n\n       th {\n           background-color: #f2f2f2;\n       }\n   </style>\n</head>\n<body>\n   <div class=\"card\">\n       <h1>Incident Report for HIGH priority incident</h1>\n       <p>Hello,</p>\n       <p>Following is the severity report</p>\n       <p><span class=\"highlight\">Key Highlights:</span></p>\n       <table>\n           <tr>\n               <td>Description</td>\n               <td>@{triggerOutputs()?['body/subject']}</td>\n           </tr>\n           <tr>\n               <td>Date</td>\n               <td>@{triggerOutputs()?['body/csa_date']}</td>\n           </tr>\n           <tr>\n               <td>Location</td>\n               <td>@{triggerOutputs()?['body/csa_location']}</td>\n           </tr>\n           <tr>\n               <td>Assigned to</td>\n               <td>Critical Care Unit</td>\n           </tr>\n       </table>\n       <p>Best regards,<br>Test Y</p>\n   </div>\n</body>\n</html>\n",
+                      "emailMessage/Importance": "High"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerOutputs()?['body/csa_severity']",
+          "metadata": {
+            "operationMetadataId": "8dabc048-d2a0-410c-b9c9-68bd18779534"
+          },
+          "type": "Switch"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
