@@ -55,6 +55,8 @@ Sharing Content_2023102004S6 | Page
 
 ## Minimal Path to Awesome
 
+For detailed Instructions please visit the [blog post](https://shaheer365.blogspot.com/2023/08/mlsa-sharing-content-power-app.html)
+
 1. [Download](./solution/SharingContent_1_0_0_7.zip) the solution `.zip` from the `solution` folder.
 2. Within **https://make.powerapps.com**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
 3. Follow the on-screen instructions to deploy the application.
