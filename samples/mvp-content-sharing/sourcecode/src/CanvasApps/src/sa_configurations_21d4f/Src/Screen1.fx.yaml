@@ -1,0 +1,129 @@
+Screen1 As screen:
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+
+    Gallery1 As gallery.BrowseLayout_Vertical_TwoTextOneImageVariant_pcfCore:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        DelayItemLoading: =true
+        FocusedBorderColor: =RGBA(0, 120, 212, 1)
+        FocusedBorderThickness: =2
+        Height: =Parent.Height-Label1.Height
+        Items: =Filter(Configurations,'Show In App')
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplateFill: =If(ThisItem.IsSelected,RGBA(0, 0, 0, 0.05), RGBA(0, 0, 0, 0))
+        TemplatePadding: =0
+        TemplateSize: =128
+        Width: =Parent.Width
+        WrapCount: =If(Parent.Width>Parent.Height,2,1)
+        Y: =Label1.Height
+        ZIndex: =1
+
+        Rectangle1 As rectangle:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(0,0,0,0)
+            Fill: =RGBA(0,0,0,0)
+            FocusedBorderColor: =RGBA(0, 120, 212, 1)
+            Height: =Parent.TemplateHeight
+            HoverFill: =RGBA(0,0,0,0)
+            OnSelect: =Select(Parent)
+            PressedFill: =RGBA(0,0,0,0)
+            TabIndex: =0
+            Width: =Parent.TemplateWidth
+            ZIndex: =1
+
+        Image1 As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Height: =67
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: =ThisItem.Icon.Full
+            ImagePosition: =ImagePosition.Stretch
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Width: =Self.Height
+            X: =27
+            Y: =30
+            ZIndex: =2
+
+        Title1 As Label:
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =16
+            FontWeight: =FontWeight.Semibold
+            Height: =34
+            OnSelect: =Select(Parent)
+            TabIndex: =-1
+            Text: =ThisItem.'Display Name'
+            VerticalAlignment: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - Self.X - 8
+            X: =Image1.X + Image1.Width + 18
+            Y: =((Parent.TemplateHeight - 36) / 2) - 16
+            ZIndex: =3
+
+        Subtitle1 As Label:
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =10
+            FontWeight: =FontWeight.Normal
+            Height: =30
+            OnSelect: =Select(Parent)
+            TabIndex: =-1
+            Text: =ThisItem.Value
+            VerticalAlignment: =VerticalAlign.Top
+            Width: =Title1.Width
+            X: =Title1.X
+            Y: =Title1.Y + Title1.Height 
+            ZIndex: =4
+
+        Toggle1 As Toggle:
+            Checked: =If(ThisItem.Status = 'Status (Configurations)'.Active,true,false)
+            DisplayMode: =DisplayMode.Edit
+            Height: =32
+            OnSelect: |-
+                =Patch(Configurations,ThisItem,{Status:If(ThisItem.Status = 'Status (Configurations)'.Active,'Status (Configurations)'.Inactive,'Status (Configurations)'.Active)})
+            Width: =87
+            X: =Parent.TemplateWidth-Self.Width
+            Y: =Parent.TemplateHeight-Self.Height-10
+            ZIndex: =5
+
+        Icon1 As icon.Edit:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Color: =RGBA(0, 120, 212, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Height: =32
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Edit
+            OnSelect: =Navigate(ThisItem)
+            PaddingBottom: =3
+            PaddingLeft: =3
+            PaddingRight: =3
+            PaddingTop: =3
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Visible: =ThisItem.IsSelected
+            Width: =32
+            X: =Parent.TemplateWidth-Self.Width-10
+            Y: =10
+            ZIndex: =6
+
+    Label1 As Label:
+        Alignment: =Align.Center
+        DisplayMode: =DisplayMode.Edit
+        FontSize: =20
+        FontWeight: =FontWeight.Bold
+        Height: =80
+        PaddingStart: =10
+        Text: ="Configurations"
+        Width: =Parent.Width
+        X: =0
+        Y: =0
+        ZIndex: =2
+
