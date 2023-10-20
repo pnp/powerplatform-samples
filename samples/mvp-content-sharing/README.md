@@ -1,4 +1,4 @@
-# Chat-Canvas-App
+# MVP Content Sharing
 
 ## Summary
 
