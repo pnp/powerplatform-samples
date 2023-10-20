@@ -42,6 +42,8 @@ None
 
 The following solution components are used in this sample:
 
+Component|Type
+---------|-----
 About Me | Web Resource (HTML)
 Configurations | Page
 Configurations | Table
