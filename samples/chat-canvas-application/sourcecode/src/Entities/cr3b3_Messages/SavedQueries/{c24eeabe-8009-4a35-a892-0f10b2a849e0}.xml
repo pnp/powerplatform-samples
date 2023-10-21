@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{c24eeabe-8009-4a35-a892-0f10b2a849e0}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="cr3b3_messagetext" select="1" icon="1" preview="1">
+        <row name="result" id="cr3b3_messagesid">
+          <cell name="cr3b3_messagetext" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="cr3b3_messages">
+          <attribute name="cr3b3_messagesid" />
+          <attribute name="cr3b3_messagetext" />
+          <attribute name="createdon" />
+          <order attribute="cr3b3_messagetext" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Inactive Messages" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

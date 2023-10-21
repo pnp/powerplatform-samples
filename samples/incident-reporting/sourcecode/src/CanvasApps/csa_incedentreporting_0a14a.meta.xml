@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>csa_incedentreporting_0a14a</Name>
+  <AppVersion>2023-09-25T06:08:15Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.23092.13.0</CreatedByClientVersion>
+  <MinClientVersion>3.23092.13.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"640","primaryDeviceHeight":"1136","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Phone","showStatusBar":"false","publisherVersion":"3.23092.13","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20230924T185559Z-3.23092.13.0"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+  <DisplayName>Incedent Reporting</DisplayName>
+  <Description xsi:nil="true"></Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{"44acd3c5-7c9f-4cf4-8438-97b6824368dd":{"id":"/providers/microsoft.powerapps/apis/shared_sharepointonline","displayName":"SharePoint","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1656/1.0.1656.3429/sharepointonline/icon.png","dataSources":["Incident Images"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{"https://w20tr.sharepoint.com/sites/IncidentReporting":{"dataSources":{"Incident Images":{"tableName":"29056b9b-b5e3-4076-b6e4-e64b0467c85e"}}}},"apiTier":"Standard","actions":["providers/PowerPlatform.Governance/Operations/Read","providers/PowerPlatform.Governance/Operations/Write"]}}</ConnectionReferences>
+  <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified"}},"dataSources":{"Incidents":{"entitySetName":"csa_csincidents","logicalName":"csa_csincident"},"Employees":{"entitySetName":"systemusers","logicalName":"systemuser"}}}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>0</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"logicalname":"csa_csincident","componenttype":1},{"logicalname":"systemuser","componenttype":1}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/csa_incedentreporting_0a14a_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/csa_incedentreporting_0a14a_DocumentUri.msapp</DocumentUri>
+</CanvasApp>
