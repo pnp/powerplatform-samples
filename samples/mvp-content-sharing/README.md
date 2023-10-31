@@ -13,7 +13,9 @@ Are you a Microsoft Learn Student Ambassador or a Microsoft's Most Valuable Prof
 📱 Contribute to the program
 
 
-![image](https://github.com/shaheerahmadch/powerplatform-samples/assets/114233717/c39c57f6-cfa1-4020-87af-4d3d9e30722b)
+![image](./assets/Screenshot%20(6).png)
+![image](./assets/Screenshot%20(5).png)
+![image](./assets/Screenshot%20(3).png)
 
 
 ## Applies to
@@ -21,7 +23,7 @@ Are you a Microsoft Learn Student Ambassador or a Microsoft's Most Valuable Prof
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
 
 ## Compatibility
-![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
+![Premium License](https://img.shields.io/badge/Premium%20License-Required-green.svg "Premium license required")
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
 
 ## Contributors
@@ -51,13 +53,11 @@ Sharing Content | Site Map
 Sharing Content | Model-Driven App
 Sharing Content_2023102004S6 | Page
 
-
-
 ## Minimal Path to Awesome
 
 For detailed Instructions please visit the [blog post](https://shaheer365.blogspot.com/2023/08/mlsa-sharing-content-power-app.html)
 
-1. [Download](./solution/SharingContent_1_0_0_7.zip) the solution `.zip` from the `solution` folder.
+1. [Download](./solution/mvp-content-sharing.zip) the solution `.zip` from the `solution` folder.
 2. Within **https://make.powerapps.com**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
 3. Follow the on-screen instructions to deploy the application.
 4. Access the Incident Reporting Canvas App and start reporting incidents.
@@ -94,6 +94,4 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-![Alt text](image.png)
-
-![Alt text](image-1.png)
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/mvp-content-sharing" />
