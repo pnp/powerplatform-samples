@@ -24,7 +24,7 @@ With this template, you'll discover the power of a modern canvas app in handling
 
 Version|Date|Comments
 -------|----|--------
-1.0|October 15, 2023|Initial release
+1.0|November 1, 2023|Initial release
 
 ## Prerequisites
 
