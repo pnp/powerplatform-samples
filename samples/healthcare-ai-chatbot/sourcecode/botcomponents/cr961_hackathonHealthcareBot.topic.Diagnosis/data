@@ -1,0 +1,198 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Diagnosis
+    triggerQueries:
+      - What is wrong with me?
+      - What is my diagnosis?
+      - Do I have a diagnosis?
+      - What is the diagnosis?
+      - Can you diagnose me?
+      - Can you tell me what's wrong with me?
+      - I need a diagnosis
+      - I need to know my diagnosis
+      - Give me a diagnosis
+      - Help diagnose my condition
+
+  actions:
+    - kind: Question
+      id: question_3rDr2G
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Name
+      prompt: I'll try my best to assist you. What's your name?
+      entity: PersonNamePrebuiltEntity
+
+    - kind: Question
+      id: Question_ngW4wC
+      variable: Topic.Symptoms
+      prompt: I'm sorry that you are not feeling well, {Topic.Name}. Could you please describe in detail the symptoms you are currently experiencing?
+      entity: StringPrebuiltEntity
+
+    - kind: SearchAndSummarizeContent
+      id: searchAndSummarizeContent_T39HuC
+      userInput: =Topic.Symptoms
+      publicDataSource:
+        kind: PublicSiteSearchDataSource
+        sites:
+          - "https://www.mayoclinic.org/"
+          - "https://www.healthline.com/"
+          - "https://www.webmd.com/"
+
+      sharePointSearchDataSource: {}
+      customDataSource: {}
+
+    - kind: SendActivity
+      id: sendActivity_WfocQw
+      activity: It's best that you consult with one of our doctors. When are you free?
+
+    - kind: AdaptiveCardPrompt
+      id: jve4Fs
+      card: |-
+        {
+            "type": "AdaptiveCard",
+            "body": [
+                {
+                    "type": "TextBlock",
+                    "text": "Set your schedule here:",
+                    "wrap": true,
+                    "size": "Large",
+                    "weight": "Bolder"
+                },
+                {
+                    "type": "Input.Date",
+                    "id": "dateInput",
+                    "label": "Date"
+                },
+                {
+                    "type": "Input.Time",
+                    "id": "timeInput",
+                    "label": "Time"
+                },
+                {
+              "type": "Input.ChoiceSet",
+              "id": "choiceOne",
+              "style": "expanded",
+              "isMultiSelect": false,
+              "value": "1",
+              "choices": [
+                {
+                  "title": "Online",
+                  "value": "online"
+                },
+                {
+                  "title": "On Site",
+                  "value": "on site"
+                }
+              ]
+            }
+            ],
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "version": "1.2",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Submit",
+                    "style": "positive"
+                }
+            ]
+        }
+      output:
+        binding:
+          actionSubmitId: Topic.actionSubmitId
+          choiceOne: Topic.choiceOne
+          dateInput: Topic.dateInput
+          timeInput: Topic.timeInput
+
+      outputType:
+        properties:
+          actionSubmitId: String
+          choiceOne: String
+          dateInput: String
+          timeInput: String
+
+    - kind: SendActivity
+      id: SendActivity_qd9sud
+      activity: Give me sometime to check for doctor's availability.
+
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_S7SL2i
+      input:
+        binding:
+          text: =Topic.Symptoms
+          text_1: =Topic.dateInput
+          text_2: =Topic.timeInput
+
+      output:
+        binding:
+          doctorname: Topic.DoctorName
+          specialization: Topic.Specialization
+
+      flowId: 94672084-1659-ee11-be6f-000d3a338c5d
+
+    - kind: Question
+      id: question_uTqNMH
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Var1
+      prompt: Dr. {Topic.DoctorName}-{Topic.Specialization}     is the best doctor aligned for your condition and your selected schedule. Would you like to schedule an appointment now?
+      entity:
+        kind: EmbeddedEntity
+        definition:
+          kind: ClosedListEntity
+          items:
+            - id: Yes
+              displayName: Yes
+
+            - id: No
+              displayName: No
+
+    - kind: ConditionGroup
+      id: conditionGroup_9kdhkp
+      conditions:
+        - id: conditionItem_IO9oba
+          condition: =Topic.Var1 = 'cr961_hackathonHealthcareBot.topic.Diagnosis.main.question_uTqNMH'.Yes
+          actions:
+            - kind: SendActivity
+              id: sendActivity_Bu3EvN
+              activity: OK, we've set your {Topic.choiceOne} appointment with Dr. {Topic.DoctorName}  .
+
+            - kind: Question
+              id: question_hF2rqo
+              interruptionPolicy:
+                allowInterruption: true
+
+              variable: init:Topic.Var2
+              prompt: Is there anything else we can help you with?
+              entity:
+                kind: EmbeddedEntity
+                definition:
+                  kind: ClosedListEntity
+                  items:
+                    - id: Yes
+                      displayName: Yes
+
+                    - id: No
+                      displayName: No
+
+                displayName: EmbeddedEntity-dOG6Hk
+
+            - kind: ConditionGroup
+              id: conditionGroup_UfQyVH
+              conditions:
+                - id: conditionItem_Gbnhe3
+                  condition: =Topic.Var2 = 'cr961_hackathonHealthcareBot.topic.Diagnosis.main.question_hF2rqo'.Yes
+                  actions:
+                    - kind: EndDialog
+                      id: pcDoM2
+
+        - id: conditionItem_Zg0DOd
+          condition: =Topic.Var1 = 'cr961_hackathonHealthcareBot.topic.Diagnosis.main.question_uTqNMH'.No
+
+    - kind: BeginDialog
+      id: iuaN7r
+      dialog: cr961_hackathonHealthcareBot.topic.Goodbye
