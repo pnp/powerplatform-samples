@@ -1,0 +1,18 @@
+App As appinfo:
+    BackEnabled: =true
+    OnStart: |-
+        =ClearCollect(colNavbar,
+        {Icon: "PowerBILogo", Label: "Home Screen", Screen:'Home Screen', Tooltip:"Home Screen"}, 
+        {Icon: "PowerApps", Label: "Edit Contact", Screen:'Edit Contact', Tooltip:"Edit Contact"},
+        {Icon: "PowerAutomateLogo", Label: "New Contact", Screen:'Edit Contact', Tooltip:"New Contact"}, 
+        {Icon: "Dataverse", Label: "View Contacts", Screen:'View Contacts', Tooltip:"View Contacts"}
+        )
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
