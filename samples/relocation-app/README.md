@@ -57,9 +57,36 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 ## Features
 
-* Power Virtual Agents - helps users in familiarizing themselves with their new workplace and local regulations by answering questions regarding company benefits, local administration or connects them with HR. 
+* Power Virtual Agents - helps users in familiarizing themselves with their new workplace and local regulations by answering questions regarding company benefits, local administration or connects them with HR.
 
-* AI Builder Object Detection - Users can snap pictures of landmarks, which the app recognizes and then catalogues into a personalized collection. This fun feature helps users learn about important places in their new city, invites them to explore, and lets them keep track of all the must-see spots as they settle in.
+  ![Screenshot](assets/ChatBot.PNG)
+
+* AI Builder Object Detection
+
+Within the app, users have access to a curated selection of important landmarks in their new city.
+
+![Screenshot](assets/LandmarkOverview.PNG)
+
+  The app provides entertaining and amusing facts about key landmarks in the new city, adding a touch of humor to the discovery of local treasures.
+
+![Screenshot](assets/LandmarkDetail.PNG)
+
+* While exploring the landmarks, users can easily snap photos and add them to the app.
+  
+![Screenshot](assets/ChatBot.PNG)
+ 
+ 
+ The AI Builder Object Detection model recognizes the landmark...
+ 
+ ![Screenshot](assets/LandmarkMatch.PNG)
+ 
+ ...and then catalogues it into a personalized collection:
+ 
+![Screenshot](assets/LandmarkCollection.PNG)
+ 
+ This fun feature helps users learn about important places in their new city, invites them to explore, and lets them keep track of all the must-see spots as they settle in.
+
+ 
 
 ## Help
 
