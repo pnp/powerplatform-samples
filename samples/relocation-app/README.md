@@ -77,7 +77,7 @@ Within the app, users have access to a curated selection of important landmarks 
 
 * While exploring the landmarks, users can easily snap photos and add them to the app.
   
-![Screenshot](assets/ChatBot.PNG)
+![Screenshot](assets/LandmarkDetect.PNG)
  
  
  The AI Builder Object Detection model recognizes the landmark...
