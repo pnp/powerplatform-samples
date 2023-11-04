@@ -2,7 +2,7 @@
 
 ## Summary
 
-This sample illustrates how to use glassmorphism, combining a blur effect with transparency, using a HTML text control.
+This Power App leverages AI to assist individuals starting a new job in a new city. The main purpose is to enhance the relocation process for people embarking on a new career journey in an unfamiliar city by providing personalized assistance and resources. 
 
 ![Screenshot](assets/screenshot.png)
 
@@ -34,6 +34,10 @@ Version|Date|Comments
 1.0|September 24, 2023|Initial release
 
 ## Minimal path to awesome
+Download the (./solution/relocation-app.zip) solution .zip from the solution folder
+Within https://make.powerapps.com, import the solution .zip file via Solutions > Import solution > Browse and select the .zip file you just downloaded
+Click next
+Click Import
 
 ### Using the solution zip
 
@@ -57,11 +61,9 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 ## Features
 
-This sample illustrates how to use glassmorphism, combining a blur effect with transparency, using a HTML text control. The following can be done:
+Power Virtual Agents - helps users in familiarizing themselves with their new workplace and local regulations by answering questions regarding company benefits, local administration or connects them with HR. 
 
-* Change parameters such as blur and color (red, green, blue) and alpha
-* View output HTML
-* Copy output HTML to clipboard
+AI Builder Object Detection - Users can snap pictures of landmarks, which the app recognizes and then catalogues into a personalized collection. This fun feature helps users learn about important places in their new city, invites them to explore, and lets them keep track of all the must-see spots as they settle in.
 
 ## Help
 
