@@ -12,15 +12,15 @@ This sample illustrates how to use glassmorphism, combining a blur effect with t
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
 ![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
 ![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
-![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
-![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
-![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
+![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-Yes-green "Yes")
+![Dataverse](https://img.shields.io/badge/Dataverse-Yes-green "Yes")
+![AI Builder](https://img.shields.io/badge/AI%20Builder-Yes-green "Yes")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
 ![Power Fx](https://img.shields.io/badge/Power%20Fx-No-red "No")
 
 ## Compatibility
 
-![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license required")
+![Premium License](https://img.shields.io/badge/Premium%20License-Yes%20Required-green.svg "Premium license required")
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
 
 ## Contributors
