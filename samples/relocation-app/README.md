@@ -20,24 +20,24 @@ This sample illustrates how to use glassmorphism, combining a blur effect with t
 
 ## Compatibility
 
-![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
+![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license required")
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
 
 ## Contributors
 
-* [Keith Atherton](https://github.com/KeithAtherton)
+* [Denisa Mihai](https://github.com/denisamihai)
 
 ## Version history
 
 Version|Date|Comments
 -------|----|--------
-1.0|August 20, 2023|Initial release
+1.0|September 24, 2023|Initial release
 
 ## Minimal path to awesome
 
 ### Using the solution zip
 
-* [Download](./solution/solution.zip) the `.zip` from the `solution` folder
+* [Download](./solution/relocation-app.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
 
