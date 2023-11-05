@@ -59,23 +59,24 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 * Power Virtual Agents 
 
-The PVA with Boost Conversation helps users in familiarizing themselves with their new workplace and local regulations by answering questions regarding company benefits, local administration or connects them with HR.
+The PVA with Boost Conversation helps users in familiarizing themselves with their new workplace and local regulations by answering questions regarding company benefits, local administration or connects them with HR:
 
   ![Screenshot](assets/ChatBot.PNG)
 
-It pulls information from official local authorities websites, where the user can ask questions regarding documents, work permits and so on. It is also linked with the company's internal benefits website, and this is where the user could find information about specific company offered benefits like language courses, health insurance discounts, etc. 
+The system gathers information from official local websites, making it easy for users to get answers about paperwork and work permits. It's also connected to the company's own benefits site, where employees can discover various company-provided advantages such as language classes and health insurance discounts.
+
 
 * AI Builder Object Detection
 
-Within the app, users have access to a curated selection of important landmarks in their new city.
+Within the app, users have access to a curated selection of important landmarks in their new city:
 
 ![Screenshot](assets/LandmarkOverview.PNG)
 
-  The app provides entertaining and amusing facts about key landmarks in the new city, adding a touch of humor to the discovery of local treasures.
+  The app provides entertaining and amusing facts about key landmarks in the new city, adding a touch of humor to the discovery of local treasures:
 
 ![Screenshot](assets/LandmarkDetail.PNG)
 
-* While exploring the landmarks, users can easily snap photos and add them to the app.
+While exploring the landmarks, users can easily snap photos and add them to the app:
   
 ![Screenshot](assets/LandmarkDetect.PNG)
  
