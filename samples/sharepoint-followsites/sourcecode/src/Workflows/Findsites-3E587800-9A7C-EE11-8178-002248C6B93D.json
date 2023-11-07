@@ -1,0 +1,528 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "alexmsft_SharePointConnectionFollowSites"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Follow Sites SPO Site (alexmsft_FollowSitesSPOSite)": {
+          "defaultValue": "https://m365x765471.sharepoint.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alexmsft_FollowSitesSPOSite",
+            "description": "SharePoint site for the Follow Sites solution"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "1c66db2b-12c8-447c-a6d6-8046f1af97bf"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "SiteSearchText",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Initialize_Sites_array_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "38c6a6b3-6062-49af-bfdc-d82907317a4b"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Sites",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Search_for_site": {
+          "runAfter": {
+            "Initialize_Sites_array_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0c0c1ae3-2ffb-4c5c-83e0-2ca78ffa0974"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('Follow Sites SPO Site (alexmsft_FollowSitesSPOSite)')",
+              "parameters/method": "GET",
+              "parameters/uri": "_api/search/query?querytext='(contentClass:STS_Site) (Title:@{triggerBody()['text']})'&trimduplicates=false&selectproperties='SiteLogo%2cTitle'"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Parse_site_search_results_JSON": {
+          "runAfter": {
+            "Search_for_site": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e87d6e59-e1af-48f7-b11c-90b248474e8d"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Search_for_site')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "__metadata": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "ElapsedTime": {
+                          "type": "integer"
+                        },
+                        "PrimaryQueryResult": {
+                          "type": "object",
+                          "properties": {
+                            "__metadata": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "CustomResults": {
+                              "type": "object",
+                              "properties": {
+                                "__metadata": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "results": {
+                                  "type": "array"
+                                }
+                              }
+                            },
+                            "QueryId": {
+                              "type": "string"
+                            },
+                            "QueryRuleId": {
+                              "type": "string"
+                            },
+                            "RefinementResults": {},
+                            "RelevantResults": {
+                              "type": "object",
+                              "properties": {
+                                "__metadata": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "GroupTemplateId": {},
+                                "ItemTemplateId": {},
+                                "Properties": {
+                                  "type": "object",
+                                  "properties": {
+                                    "__metadata": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "results": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "Key": {
+                                            "type": "string"
+                                          },
+                                          "Value": {
+                                            "type": "string"
+                                          },
+                                          "ValueType": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "Key",
+                                          "Value",
+                                          "ValueType"
+                                        ]
+                                      }
+                                    }
+                                  }
+                                },
+                                "ResultTitle": {},
+                                "ResultTitleUrl": {},
+                                "RowCount": {
+                                  "type": "integer"
+                                },
+                                "Table": {
+                                  "type": "object",
+                                  "properties": {
+                                    "__metadata": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "Rows": {
+                                      "type": "object",
+                                      "properties": {
+                                        "results": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "__metadata": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "Cells": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "results": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "__metadata": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "type": {
+                                                              "type": "string"
+                                                            }
+                                                          }
+                                                        },
+                                                        "Key": {
+                                                          "type": "string"
+                                                        },
+                                                        "Value": {
+                                                          "type": [
+                                                            "string",
+                                                            "null"
+                                                          ]
+                                                        },
+                                                        "ValueType": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "__metadata",
+                                                        "Key",
+                                                        "Value",
+                                                        "ValueType"
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "required": [
+                                              "__metadata",
+                                              "Cells"
+                                            ]
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "TotalRows": {
+                                  "type": "integer"
+                                },
+                                "TotalRowsIncludingDuplicates": {
+                                  "type": "integer"
+                                }
+                              }
+                            },
+                            "SpecialTermResults": {}
+                          }
+                        },
+                        "Properties": {
+                          "type": "object",
+                          "properties": {
+                            "__metadata": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "results": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "Key": {
+                                    "type": "string"
+                                  },
+                                  "Value": {
+                                    "type": "string"
+                                  },
+                                  "ValueType": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "Key",
+                                  "Value",
+                                  "ValueType"
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "SecondaryQueryResults": {
+                          "type": "object",
+                          "properties": {
+                            "__metadata": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "results": {
+                              "type": "array"
+                            }
+                          }
+                        },
+                        "SpellingSuggestion": {},
+                        "TriggeredRules": {
+                          "type": "object",
+                          "properties": {
+                            "__metadata": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "results": {
+                              "type": "array"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Loop_through_results": {
+          "foreach": "@body('Parse_site_search_results_JSON')?['d']?['query']?['PrimaryQueryResult']?['RelevantResults']?['Table']?['Rows']?['results']",
+          "actions": {
+            "Parse_cells_JSON": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "3bdeadbd-3325-4eb0-8c98-ba543d63dbd5"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@items('Loop_through_results')?['Cells']",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "__metadata": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "Key": {
+                            "type": "string"
+                          },
+                          "Value": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "ValueType": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "__metadata",
+                          "Key",
+                          "Value",
+                          "ValueType"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Filter_array_to_get_title": {
+              "runAfter": {
+                "Parse_cells_JSON": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e8ebbf67-f984-48aa-948d-751940b1fb04"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Parse_cells_JSON')?['results']",
+                "where": "@equals(item()?['Key'], 'Title')"
+              }
+            },
+            "Append_to_Sites_array": {
+              "runAfter": {
+                "Filter_array_to_get_path": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "6d6cc304-c71f-4054-9516-b177cf08f93b"
+              },
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "Sites",
+                "value": {
+                  "siteTitle": "@{first(body('Filter_array_to_get_title'))?['Value']}",
+                  "siteUri": "@{first(body('Filter_array_to_get_path'))?['Value']}"
+                }
+              }
+            },
+            "Filter_array_to_get_path": {
+              "runAfter": {
+                "Filter_array_to_get_title": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5d87edd6-7f8e-4331-894f-d3182162b62e"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Parse_cells_JSON')?['results']",
+                "where": "@equals(item()['Key'], 'Path')"
+              }
+            }
+          },
+          "runAfter": {
+            "Parse_site_search_results_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "db5e0430-f164-446b-8131-1f58279fb956"
+          },
+          "type": "Foreach"
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Loop_through_results": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "12e84c24-ff0b-4321-969c-2ec82f0cb494"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "sites": "@{variables('Sites')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sites": {
+                  "title": "Sites",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

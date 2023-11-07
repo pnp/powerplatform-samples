@@ -1,0 +1,229 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "alexmsft_SharePointConnectionFollowSites"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Follow Sites SPO Site (alexmsft_FollowSitesSPOSite)": {
+          "defaultValue": "https://m365x765471.sharepoint.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alexmsft_FollowSitesSPOSite",
+            "description": "SharePoint site for the Follow Sites solution"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "9ce99ffc-4f10-4865-826b-ba35e1dcbedc"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Get_followed_sites": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "acd2f6a9-58cc-4d9f-920e-198354b695a9"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('Follow Sites SPO Site (alexmsft_FollowSitesSPOSite)')",
+              "parameters/method": "GET",
+              "parameters/uri": "_api/social.following/my/followed(types=4)"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Parse_followed_sites_JSON": {
+          "runAfter": {
+            "Get_followed_sites": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "252183b8-d24d-4173-be8e-4eb5f51efdd2"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Get_followed_sites')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "Followed": {
+                      "type": "object",
+                      "properties": {
+                        "__metadata": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "AccountName": {},
+                              "ActorType": {
+                                "type": "integer"
+                              },
+                              "CanFollow": {
+                                "type": "boolean"
+                              },
+                              "ContentUri": {
+                                "type": "string"
+                              },
+                              "EmailAddress": {},
+                              "FollowedContentUri": {},
+                              "GroupId": {
+                                "type": "string"
+                              },
+                              "Id": {
+                                "type": "string"
+                              },
+                              "ImageUri": {},
+                              "IsFollowed": {
+                                "type": "boolean"
+                              },
+                              "LibraryUri": {},
+                              "Name": {
+                                "type": "string"
+                              },
+                              "PersonalSiteUri": {},
+                              "Status": {
+                                "type": "integer"
+                              },
+                              "StatusText": {},
+                              "TagGuid": {
+                                "type": "string"
+                              },
+                              "Title": {
+                                "type": "string"
+                              },
+                              "Uri": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "AccountName",
+                              "ActorType",
+                              "CanFollow",
+                              "ContentUri",
+                              "EmailAddress",
+                              "FollowedContentUri",
+                              "GroupId",
+                              "Id",
+                              "ImageUri",
+                              "IsFollowed",
+                              "LibraryUri",
+                              "Name",
+                              "PersonalSiteUri",
+                              "Status",
+                              "StatusText",
+                              "TagGuid",
+                              "Title",
+                              "Uri"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Create_custom_array": {
+          "runAfter": {
+            "Parse_followed_sites_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "128ff686-1033-47b3-a9c1-acc081e39934"
+          },
+          "type": "Select",
+          "inputs": {
+            "from": "@body('Parse_followed_sites_JSON')?['d']?['Followed']?['results']",
+            "select": {
+              "siteTitle": "@item()?['Title']",
+              "siteUri": "@item()?['Uri']"
+            }
+          }
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Create_custom_array": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "89afc712-17f7-4d44-9ec5-8dbea91e8daf"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "sites": "@{body('Create_custom_array')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sites": {
+                  "title": "Sites",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
