@@ -1,0 +1,1172 @@
+SharingContentPage As screen:
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnVisible: =
+
+    Container1 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =10
+        LayoutJustifyContent: =LayoutJustifyContent.Center
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        TextCanvas2 As Text:
+            Align: ='TextCanvas.Align'.Center
+            AlignInContainer: =AlignInContainer.Stretch
+            DisplayMode: =DisplayMode.Edit
+            Height: =120
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            Size: =24
+            Text: ="Sharing Content"
+            Weight: ='TextCanvas.Weight'.Semibold
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+        TextCanvas1 As Text:
+            Align: ='TextCanvas.Align'.Center
+            AlignInContainer: =AlignInContainer.Stretch
+            DisplayMode: =DisplayMode.Edit
+            Height: =80
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            Text: |-
+                ="Add the link you want to share here:"
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+        "TextInputCanvas1 As 'Text input'":
+            AccessibleLabel: ="Link"
+            DisplayMode: =If( !IsBlank(DropdownCanvas1.Selected), DisplayMode.Edit,DisplayMode.Disabled)
+            Height: =40
+            LayoutMinHeight: =32
+            LayoutMinWidth: =320
+            OnChange: |-
+                =UpdateContext({locGeneratedLink: Blank()});
+                Clear(Error);
+                ForAll(
+                    Gallery1.AllItems,
+                    If(
+                        Not(ThisRecord.Value in TextInputCanvas1.Value),
+                        Collect(
+                            Error,
+                            true
+                        ),
+                        Collect(
+                            Error,
+                            false
+                        )
+                    )
+                );
+                If(
+                    
+                    !IsBlank(LookUp(Error, Value = false)),Set(locError,"URL is allowed"),Set(locError,"URL is not allowed")
+                )
+            Width: =320
+            X: =0
+            Y: =0
+            ZIndex: =3
+
+        Label1 As Label:
+            AlignInContainer: =AlignInContainer.Stretch
+            Alignment: =Align.Center
+            Color: |-
+                =If(
+                    If(
+                        "www." exactin TextInputCanvas1.Value,
+                        CountRows(
+                            Split(
+                                TextInputCanvas1.Value,
+                                "."
+                            )
+                        ) >= 3 && Len(
+                            Last(
+                                Split(
+                                    TextInputCanvas1.Value,
+                                    "."
+                                )
+                            ).Value
+                        ) >= 2 && IsMatch(
+                            TextInputCanvas1.Value,
+                            "http(s)?:\/\/(www\.)?\S*"
+                        ),
+                        IsMatch(
+                            TextInputCanvas1.Value,
+                            "http(s)?:\/\/(www\.)?\S*"
+                        )
+                    ) && locError = "URL is allowed",
+                    Color.Green,
+                    Color.Red
+                )
+            DisplayMode: =DisplayMode.Edit
+            Height: =32
+            LayoutMinHeight: =32
+            LayoutMinWidth: =320
+            Text: |-
+                =If(
+                    !IsBlank(TextInputCanvas1.Value),
+                    If(
+                        If(
+                            "www." exactin TextInputCanvas1.Value,
+                            CountRows(
+                                Split(
+                                    TextInputCanvas1.Value,
+                                    "."
+                                )
+                            ) >= 3 && Len(
+                                Last(
+                                    Split(
+                                        TextInputCanvas1.Value,
+                                        "."
+                                    )
+                                ).Value
+                            ) >= 2 && IsMatch(
+                                TextInputCanvas1.Value,
+                                "http(s)?:\/\/(www\.)?\S*"
+                            ),
+                            IsMatch(
+                                TextInputCanvas1.Value,
+                                "http(s)?:\/\/(www\.)?\S*"
+                            )
+                        ),
+                        "Url is valid. ",
+                        "Enter a valid Url. "
+                    )
+                ) &locError
+            Width: =320
+            X: =0
+            Y: =0
+            ZIndex: =4
+
+        ButtonCanvas1 As Button:
+            AccessibleLabel: ="Button"
+            DisplayMode: |-
+                =If( !IsBlank(DropdownCanvas1.Selected) && !IsBlank(TextInputCanvas1.Value) && If(
+                    "www." exactin TextInputCanvas1.Value,
+                    CountRows(
+                        Split(
+                            TextInputCanvas1.Value,
+                            "."
+                        )
+                    ) >= 3 && Len(
+                        Last(
+                            Split(
+                                TextInputCanvas1.Value,
+                                "."
+                            )
+                        ).Value
+                    ) >= 2 && IsMatch(
+                        TextInputCanvas1.Value,
+                        "http(s)?:\/\/(www\.)?\S*"
+                    ),
+                    IsMatch(
+                        TextInputCanvas1.Value,
+                        "http(s)?:\/\/(www\.)?\S*"
+                    )
+                )&& locError = "URL is allowed", DisplayMode.Edit,DisplayMode.Disabled)
+            Height: =40
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            OnSelect: |-
+                =UpdateContext({locSpinner:true});
+                ClearCollect(
+                    LanguageLocales,
+                    [
+                        "af-za/",
+                        "sq-al/",
+                        "ar-dz/",
+                        "ar-bh/",
+                        "ar-eg/",
+                        "ar-iq/",
+                        "ar-jo/",
+                        "ar-kw/",
+                        "ar-lb/",
+                        "ar-ly/",
+                        "ar-ma/",
+                        "ar-om/",
+                        "ar-qa/",
+                        "ar-sa/",
+                        "ar-sy/",
+                        "ar-tn/",
+                        "ar-ae/",
+                        "ar-ye/",
+                        "hy-am/",
+                        "az-az/",
+                        "eu-es/",
+                        "be-by/",
+                        "bn-bd/",
+                        "bs-ba/",
+                        "bg-bg/",
+                        "my-mm/",
+                        "ca-es/",
+                        "zh-cn/",
+                        "zh-hk/",
+                        "zh-mo/",
+                        "zh-sg/",
+                        "zh-tw/",
+                        "hr-hr/",
+                        "cs-cz/",
+                        "da-dk/",
+                        "dv-mv/",
+                        "nl-be/",
+                        "nl-nl/",
+                        "en-au/",
+                        "en-bz/",
+                        "en-ca/",
+                        "en-gb/",
+                        "en-in/",
+                        "en-ie/",
+                        "en-jm/",
+                        "en-my/",
+                        "en-nz/",
+                        "en-ph/",
+                        "en-sg/",
+                        "en-za/",
+                        "en-tt/",
+                        "en-us/",
+                        "en-zw/",
+                        "et-ee/",
+                        "fo-fo/",
+                        "fa-ir/",
+                        "fi-fi/",
+                        "fr-be/",
+                        "fr-ca/",
+                        "fr-fr/",
+                        "fr-lu/",
+                        "fr-mc/",
+                        "fr-ch/",
+                        "gl-es/",
+                        "ka-ge/",
+                        "de-at/",
+                        "de-de/",
+                        "de-li/",
+                        "de-lu/",
+                        "de-ch/",
+                        "el-gr/",
+                        "gu-in/",
+                        "he-il/",
+                        "hi-in/",
+                        "hu-hu/",
+                        "is-is/",
+                        "id-id/",
+                        "it-it/",
+                        "it-ch/",
+                        "ja-jp/",
+                        "kn-in/",
+                        "kk-kz/",
+                        "kok-in/",
+                        "ko-kr/",
+                        "ky-kg/",
+                        "lv-lv/",
+                        "lt-lt/",
+                        "mk-mk/",
+                        "ms-bn/",
+                        "ms-my/",
+                        "mr-in/",
+                        "mn-mn/",
+                        "nb-no/",
+                        "nn-no/",
+                        "pl-pl/",
+                        "pt-br/",
+                        "pt-pt/",
+                        "pa-in/",
+                        "ro-ro/",
+                        "ru-ru/",
+                        "sa-in/",
+                        "sr-sp-cyrl/",
+                        "sr-sp-latn/",
+                        "sk-sk/",
+                        "sl-si/",
+                        "es-ar/",
+                        "es-bo/",
+                        "es-cl/",
+                        "es-co/",
+                        "es-cr/",
+                        "es-do/",
+                        "es-ec/",
+                        "es-sv/",
+                        "es-gt/",
+                        "es-hn/",
+                        "es-mx/",
+                        "es-ni/",
+                        "es-pa/",
+                        "es-py/",
+                        "es-pe/",
+                        "es-pr/",
+                        "es-es/",
+                        "es-uy/",
+                        "es-ve/",
+                        "sw-ke/",
+                        "sv-fi/",
+                        "sv-se/",
+                        "syr-sy/",
+                        "tg-cyrl-tj/",
+                        "tzm-latn-dz/",
+                        "ta-in/",
+                        "tt-ru/",
+                        "te-in/",
+                        "th-th/",
+                        "tr-tr/",
+                        "uk-ua/",
+                        "ur-pk/",
+                        "uz-uz-cyrl/",
+                        "uz-uz-latn/",
+                        "vi-vn/",
+                        "cy-gb/",
+                        "wo-sn/",
+                        "xh-za/",
+                        "yi-il/",
+                        "zu-za/"
+                    ]
+                );
+                Clear(colURL);
+                ForAll(
+                    LanguageLocales,
+                    If(
+                        ThisRecord.Value in TextInputCanvas1.Value,
+                        Collect(
+                            colURL,
+                            Substitute(
+                                TextInputCanvas1.Value,
+                                ThisRecord.Value,
+                                ""
+                            )
+                        ),
+                        If(
+                        Substitute(
+                            ThisRecord.Value,
+                            "/",
+                            ""
+                        ) in TextInputCanvas1.Value,
+                        Collect(
+                            colURL,
+                            Substitute(
+                                TextInputCanvas1.Value,
+                                Substitute(
+                                    ThisRecord.Value,
+                                    "/",
+                                    ""
+                                ),
+                                ""
+                            )
+                        )
+                    )
+                    )
+                );
+                UpdateContext(
+                    {
+                        locGeneratedLink: 
+                        Label2.Text
+                        & 
+                        If(
+                            "?" in Label2.Text,
+                            "&" & DropdownCanvas1.Selected.Value,
+                            "?" & DropdownCanvas1.Selected.Value
+                        )
+                    }
+                );
+                UpdateContext({locSpinner:false});
+            Text: ="Generate Link"
+            Width: =156
+            X: =0
+            Y: =0
+            ZIndex: =5
+
+        TextCanvas4 As Text:
+            DisplayMode: =DisplayMode.Edit
+            Height: =12
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            Text: =
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =6
+
+        "TextInputCanvas1_1 As 'Text input'":
+            AccessibleLabel: ="Link"
+            DisplayMode: =DisplayMode.Disabled
+            Height: =32
+            LayoutMinHeight: =32
+            LayoutMinWidth: =320
+            OnChange: =false
+            Value: =locGeneratedLink
+            Visible: =!IsBlank(locGeneratedLink)
+            Width: =320
+            X: =0
+            Y: =0
+            ZIndex: =7
+
+        Icon1 As icon.Copy:
+            AccessibleLabel: ="Icon"
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Color: =RGBA(0, 120, 212, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Height: =32
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Copy
+            OnSelect: =Copy(locGeneratedLink)
+            PaddingBottom: =3
+            PaddingLeft: =3
+            PaddingRight: =3
+            PaddingTop: =3
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            TabIndex: =0
+            Visible: =!IsBlank(locGeneratedLink)
+            Width: =32
+            ZIndex: =8
+
+    Gallery1 As gallery.BrowseLayout_Vertical_OneTextVariant_pcfCore:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        BorderThickness: =1
+        DelayItemLoading: =true
+        Fill: =RGBA(255, 255, 255, 1)
+        FocusedBorderColor: =RGBA(0, 120, 212, 1)
+        FocusedBorderThickness: =2
+        Height: =Self.TemplateHeight*(CountRows(Self.AllItems)+1)
+        Items: |-
+            =[
+                "learn.microsoft.com",
+                "code.visualstudio.com/docs",
+                "azure.microsoft.com",
+                "techcommunity.microsoft.com",
+                "social.technet.microsoft.com",
+                "social.msdn.microsoft.com",
+                "devblogs.microsoft.com",
+                "developer.microsoft.com",
+                "cloudblogs.microsoft.com"
+            ]
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =40
+        Visible: =locAllowedUrls
+        Width: =ButtonCanvas2.Width-5
+        X: =ButtonCanvas2.X+2.5
+        Y: =ButtonCanvas2.Y-Self.Height
+        ZIndex: =1
+
+        Rectangle4 As rectangle:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(0,0,0,0)
+            Fill: =RGBA(0,0,0,0)
+            FocusedBorderColor: =RGBA(0, 120, 212, 1)
+            Height: =Parent.TemplateHeight
+            HoverFill: =RGBA(0,0,0,0)
+            OnSelect: =Select(Parent)
+            PressedFill: =RGBA(0,0,0,0)
+            TabIndex: =0
+            Width: =Parent.TemplateWidth
+            ZIndex: =1
+
+        Title3 As Label:
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =10.5
+            FontWeight: =FontWeight.Normal
+            Height: =24
+            OnSelect: =Select(Parent)
+            TabIndex: =-1
+            Text: =ThisItem.Value
+            VerticalAlignment: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 24
+            X: =12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2) - 2
+            ZIndex: =2
+
+    DropdownCanvas1 As Dropdown.pcfdataset:
+        AccessibleLabel: ="Dropdown"
+        DefaultSelectedItems: =Filter(Configurations,Key = "KEY_SHARING_ID")
+        DisplayMode: =If( !IsBlank(DropdownCanvas1.Selected), DisplayMode.Edit,DisplayMode.Disabled)
+        Height: =40
+        Items: =Filter(Configurations,Key = "KEY_SHARING_ID" && Status = 'Status (Configurations)'.Active)
+        Width: =If(Parent.Width>Parent.Height, 320,Parent.Width- (Icon2.Width*2)-40)
+        X: =Parent.Width-Self.Width-10
+        Y: =10
+        ZIndex: =2
+
+        Value1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Value"
+            FieldName: ="sa_value"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =9
+
+    Icon2 As icon.Add:
+        AccessibleLabel: ="Icon"
+        BorderColor: =RGBA(0, 0, 0, 0)
+        Color: =RGBA(0, 120, 212, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        Height: =32
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.Add
+        OnSelect: |-
+            =UpdateContext({locPopUp:true});NewForm(Form1)
+        PaddingBottom: =3
+        PaddingLeft: =3
+        PaddingRight: =3
+        PaddingTop: =3
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        TabIndex: =
+        Width: =32
+        X: =DropdownCanvas1.X-Self.Width-10
+        Y: =DropdownCanvas1.Y+5
+        ZIndex: =3
+
+    Icon2_1 As icon.Add:
+        AccessibleLabel: ="Icon"
+        BorderColor: =RGBA(0, 0, 0, 0)
+        Color: =RGBA(0, 120, 212, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        Height: =32
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.Reload
+        OnSelect: |-
+            =UpdateContext({locSpinner:true});Refresh(Configurations);UpdateContext({locSpinner:false});
+        PaddingBottom: =4
+        PaddingLeft: =3
+        PaddingRight: =3
+        PaddingTop: =5
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        TabIndex: =
+        Width: =32
+        X: =DropdownCanvas1.X-Self.Width-10-Self.Width
+        Y: =DropdownCanvas1.Y+5
+        ZIndex: =4
+
+    Container2 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.6)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutJustifyContent: =LayoutJustifyContent.Center
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =locPopUp
+        Width: =Parent.Width
+        ZIndex: =5
+
+        Form1 As form:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            BorderColor: =RGBA(166, 166, 166, 1)
+            DataSource: =Configurations
+            Fill: =Color.White
+            FillPortions: =0
+            Height: =250
+            LayoutMinHeight: =250
+            LayoutMinWidth: =400
+            Width: =If(Parent.Width>Parent.Height, 400, Parent.Width)
+            ZIndex: =1
+
+            Value_DataCard1 As typedDataCard.pcfCoreTextualEditCard:
+                BorderColor: =RGBA(166, 166, 166, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="sa_value"
+                Default: =ThisItem.Value
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@Configurations],DataSourceInfo.DisplayName,"sa_value")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@Configurations], DataSourceInfo.MaxLength, "sa_value")
+                Required: =false
+                Update: =DataCardValue3.Value
+                Width: =Parent.Width
+                WidthFit: =true
+                X: =1
+                Y: =0
+                ZIndex: =1
+
+                DataCardKey3 As Label:
+                    AutoHeight: =true
+                    DisplayMode: =DisplayMode.Edit
+                    FontSize: =9
+                    Height: =22
+                    Text: |-
+                        ="Add your new sharing ID here:"
+                    Tooltip: =Parent.DisplayName
+                    VerticalAlignment: =VerticalAlign.Bottom
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue3 As 'Text box'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =10.5
+                    Height: =32
+                    Mode: ="SingleLine"
+                    Required: =Parent.Required
+                    Tooltip: =Parent.DisplayName
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey3.Y + DataCardKey3.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage2 As Label:
+                    AutoHeight: =true
+                    Color: =Color.Red
+                    DisplayMode: =DisplayMode.Edit
+                    FontSize: =9
+                    Height: =30
+                    Text: =Parent.Error
+                    Tooltip: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue3.Y + DataCardValue3.Height
+                    ZIndex: =3
+
+                StarVisible2 As Label:
+                    Alignment: =Align.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey3.Y
+                    ZIndex: =4
+
+                "InfoButtonCanvas1 As 'Information button'":
+                    Content: |-
+                        ="For Example: wt.mc_id=stdamb_234234"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =DataCardKey3.Height
+                    Width: =Self.Height
+                    X: =343
+                    Y: =DataCardKey3.Y
+                    ZIndex: =5
+
+            Key_DataCard2 As typedDataCard.pcfCoreTextualEditCard:
+                BorderColor: =RGBA(166, 166, 166, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: =
+                Default: =
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@Configurations], DataSourceInfo.MaxLength, "sa_key")
+                Required: =true
+                Update: =
+                Width: =133
+                WidthFit: =true
+                X: =2
+                Y: =0
+                ZIndex: =1
+
+                Button1 As Button:
+                    AccessibleLabel: ="Button"
+                    DisplayMode: =If(!IsBlank(DataCardValue3.Value),  DisplayMode.Edit,DisplayMode.Disabled)
+                    Height: =32
+                    OnSelect: |-
+                        =UpdateContext({locSpinner:true});SubmitForm(Form1);Refresh(Configurations);UpdateContext({locPopUp:false});UpdateContext({locSpinner:false});
+                    Text: ="Add Sharing ID"
+                    Width: =126
+                    X: =(Parent.Width-Self.Width)/2
+                    Y: =40
+                    ZIndex: =1
+
+            "'Display Name_DataCard1' As typedDataCard.pcfCoreTextualEditCard":
+                BorderColor: =RGBA(166, 166, 166, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="sa_displayname"
+                Default: =ThisItem.'Display Name'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@Configurations],DataSourceInfo.DisplayName,"sa_displayname")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@Configurations], DataSourceInfo.MaxLength, "sa_displayname")
+                Required: =false
+                Update: =DataCardValue2.Value
+                Visible: =false
+                Width: =133
+                WidthFit: =true
+                X: =0
+                Y: =1
+                ZIndex: =1
+
+                DataCardKey2 As Label:
+                    AutoHeight: =true
+                    DisplayMode: =DisplayMode.Edit
+                    FontSize: =9
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Tooltip: =Parent.DisplayName
+                    VerticalAlignment: =VerticalAlign.Bottom
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue2 As 'Text box'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =10.5
+                    Height: =32
+                    Mode: ="SingleLine"
+                    Required: =Parent.Required
+                    Tooltip: =Parent.DisplayName
+                    Value: ="Sharing Key"
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey2.Y + DataCardKey2.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage3 As Label:
+                    AutoHeight: =true
+                    Color: =Color.Red
+                    DisplayMode: =DisplayMode.Edit
+                    FontSize: =9
+                    Height: =30
+                    Text: =Parent.Error
+                    Tooltip: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue2.Y + DataCardValue2.Height
+                    ZIndex: =3
+
+                StarVisible1 As Label:
+                    Alignment: =Align.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey2.Y
+                    ZIndex: =4
+
+            Icon_DataCard1 As typedDataCard.addLargePictureCard:
+                BorderColor: =RGBA(166, 166, 166, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="sa_icon"
+                Default: =ThisItem.Icon
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@Configurations],DataSourceInfo.DisplayName,"sa_icon")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =50
+                Required: =false
+                Update: =Image2.Image
+                Visible: =false
+                Width: =133
+                X: =1
+                Y: =1
+                ZIndex: =1
+
+                DataCardKey4 As label:
+                    AutoHeight: =true
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =RGBA(51, 51, 51, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    FocusedBorderThickness: =2
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Height: =34
+                    PaddingLeft: =0
+                    Size: =10.5
+                    Text: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                Image2 As image:
+                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =AddPicture1.Height
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverFill: =RGBA(0, 0, 0, 0)
+                    Image: ='807241'
+                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    Tooltip: =Parent.DisplayName
+                    Width: =AddPicture1.Width
+                    X: =AddPicture1.X
+                    Y: =AddPicture1.Y
+                    ZIndex: =2
+
+                AddPicture1 As addMedia:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(0, 120, 212, 1)
+                    Font: =Font.'Segoe UI'
+                    Height: =200
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    Size: =15
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey4.Y + DataCardKey4.Height + 5
+                    ZIndex: =3
+
+                ErrorMessage4 As label:
+                    AutoHeight: =true
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =RGBA(168, 0, 0, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(168, 0, 0, 1)
+                    FocusedBorderThickness: =2
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =10.5
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =Image2.Y + Image2.Height
+                    ZIndex: =4
+
+                StarVisible3 As label:
+                    Align: =Align.Center
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =RGBA(51, 51, 51, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    FocusedBorderThickness: =2
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Height: =DataCardKey4.Height
+                    PaddingLeft: =0
+                    Size: =10.5
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey4.Y
+                    ZIndex: =5
+
+            "'Show in App_DataCard1' As typedDataCard.pcfCoreComboBoxOptionSetSingleEditCard":
+                BorderColor: =RGBA(166, 166, 166, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="sa_showinapp"
+                Default: =ThisItem.'Show In App'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@Configurations],DataSourceInfo.DisplayName,"sa_showinapp")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: ='Show In App (Configurations)'.Yes
+                Visible: =false
+                Width: =133
+                WidthFit: =true
+                X: =2
+                Y: =1
+                ZIndex: =1
+
+                DataCardKey5 As Label:
+                    AutoHeight: =true
+                    DisplayMode: =DisplayMode.Edit
+                    FontSize: =9
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Tooltip: =Parent.DisplayName
+                    VerticalAlignment: =VerticalAlign.Bottom
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                DataCardValue4 As combobox:
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    ChevronBackground: =RGBA(255, 255, 255, 1)
+                    ChevronDisabledBackground: =RGBA(244, 244, 244, 1)
+                    ChevronDisabledFill: =RGBA(166, 166, 166, 1)
+                    ChevronFill: =RGBA(33, 33, 33, 1)
+                    ChevronHoverBackground: =RGBA(212, 212, 212, 1)
+                    ChevronHoverFill: =RGBA(33, 33, 33, 1)
+                    Color: =RGBA(51, 51, 51, 1)
+                    DefaultSelectedItems: =[Parent.Default]
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    DisplayFields: =["Value"]
+                    DisplayMode: =Parent.DisplayMode
+                    FocusedBorderColor: =RGBA(0, 120, 212, 1)
+                    FocusedBorderThickness: =2
+                    Font: =Font.'Segoe UI'
+                    Height: =32
+                    HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    HoverColor: =RGBA(51, 51, 51, 1)
+                    HoverFill: =RGBA(212, 212, 212, 1)
+                    IsSearchable: =false
+                    Items: =Choices('Show In App (Configurations)')
+                    PaddingLeft: =12
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =RGBA(212, 212, 212, 1)
+                    SearchFields: =["Value"]
+                    SearchItems: =[]
+                    SelectionColor: =RGBA(51, 51, 51, 1)
+                    SelectionFill: =RGBA(0, 120, 212, 1)
+                    SelectMultiple: =false
+                    Size: =10.5
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey5.Y + DataCardKey5.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage5 As Label:
+                    AutoHeight: =true
+                    Color: =Color.Red
+                    DisplayMode: =DisplayMode.Edit
+                    FontSize: =9
+                    Height: =30
+                    Text: =Parent.Error
+                    Tooltip: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue4.Y + DataCardValue4.Height
+                    ZIndex: =3
+
+                StarVisible4 As Label:
+                    Alignment: =Align.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    Text: ="*"
+                    VerticalAlignment: =VerticalAlign.Bottom
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey5.Y
+                    ZIndex: =4
+
+            Key_DataCard1 As typedDataCard.pcfCoreTextualEditCard:
+                BorderColor: =RGBA(166, 166, 166, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="sa_key"
+                Default: =ThisItem.Key
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@Configurations],DataSourceInfo.DisplayName,"sa_key")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@Configurations], DataSourceInfo.MaxLength, "sa_key")
+                Required: =true
+                Update: =DataCardValue1.Value
+                Width: =266
+                WidthFit: =true
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+                DataCardKey1 As Label:
+                    Alignment: =Align.Center
+                    AutoHeight: =true
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.Arial
+                    FontSize: =18
+                    FontWeight: =FontWeight.Semibold
+                    Height: =22
+                    Text: ="New Sharing ID"
+                    TextRole: ='Label.TextRole'.Default
+                    Tooltip: =Parent.DisplayName
+                    VerticalAlignment: =VerticalAlign.Bottom
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =30
+                    ZIndex: =1
+
+                "DataCardValue1 As 'Text box'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =10.5
+                    Height: =32
+                    Mode: ="SingleLine"
+                    Required: =Parent.Required
+                    Tooltip: =Parent.DisplayName
+                    Value: ="KEY_SHARING_ID"
+                    Visible: =false
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey1.Y + DataCardKey1.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage1 As Label:
+                    AutoHeight: =true
+                    Color: =Color.Red
+                    DisplayMode: =DisplayMode.Edit
+                    FontSize: =9
+                    Height: =30
+                    Text: =Parent.Error
+                    Tooltip: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue1.Y + DataCardValue1.Height
+                    ZIndex: =3
+
+                Icon3 As icon.Cancel:
+                    AccessibleLabel: ="Icon"
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(220, 220, 220, 1)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    Height: =32
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    HoverFill: =RGBA(0, 0, 0, 0)
+                    Icon: =Icon.Cancel
+                    OnSelect: |-
+                        =UpdateContext({locPopUp:false})
+                    PaddingBottom: =3
+                    PaddingLeft: =3
+                    PaddingRight: =3
+                    PaddingTop: =3
+                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                    PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    TabIndex: =
+                    Width: =32
+                    X: =Parent.Width-Self.Width-5
+                    Y: =5
+                    ZIndex: =4
+
+    Rectangle1 As rectangle:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        BorderStyle: =BorderStyle.None
+        DisabledFill: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        FocusedBorderColor: =RGBA(0, 120, 212, 1)
+        Height: =Parent.Height
+        HoverFill: =RGBA(0, 120, 212, 1)
+        PressedFill: =RGBA(0, 120, 212, 1)
+        Visible: =locSpinner
+        Width: =Parent.Width
+        ZIndex: =6
+
+    Spinner1 As Spinner:
+        Appearance: ='Spinner.Appearance'.Primary
+        DisplayMode: =DisplayMode.Edit
+        Height: =Parent.Height
+        Label: ="Loading"
+        SpinnerSize: ='Spinner.SpinnerSize'.Huge
+        Visible: =locSpinner
+        Width: =Parent.Width
+        X: =0
+        Y: =0
+        ZIndex: =7
+
+    Label2 As Label:
+        DisplayMode: =DisplayMode.Edit
+        Height: =32
+        OnSelect: =
+        Text: =If(IsBlank(First(colURL).Value),TextInputCanvas1.Value,First(colURL).Value)
+        Visible: =!true
+        Width: =320
+        Wrap: =false
+        X: =28
+        Y: =168
+        ZIndex: =9
+
+    ButtonCanvas2 As Button:
+        Appearance: ='ButtonCanvas.Appearance'.Secondary
+        DisplayMode: =DisplayMode.Edit
+        Height: =40
+        OnSelect: |-
+            =UpdateContext({locAllowedUrls:!locAllowedUrls})
+        Text: ="View Allowed URLs"
+        Width: =If(Parent.Width>Parent.Height, 320,Parent.Width-40)
+        X: =(Parent.Width-Self.Width)/2
+        Y: =Parent.Height-Self.Height-10
+        ZIndex: =10
+
+    Icon4 As icon.Cancel:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        Color: =RGBA(0, 120, 212, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        Height: =32
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.Cancel
+        OnSelect: |-
+            =UpdateContext({locAllowedUrls:!locAllowedUrls})
+        PaddingBottom: =3
+        PaddingLeft: =3
+        PaddingRight: =7
+        PaddingTop: =7
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Visible: =locAllowedUrls
+        Width: =32
+        X: =Gallery1.X+Gallery1.Width-Self.Width
+        Y: =Gallery1.Y
+        ZIndex: =11
+

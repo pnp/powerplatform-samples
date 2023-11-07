@@ -1,0 +1,121 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "sa_configurationses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "sa_configurations",
+    "Name": "Configurations",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "sa_configurations_AsyncOperations": "System Jobs",
+      "sa_configurations_BulkDeleteFailures": "Bulk Delete Failures",
+      "sa_configurations_DuplicateBaseRecord": "Duplicate Records (sa_configurations_DuplicateBaseRecord)",
+      "sa_configurations_DuplicateMatchingRecord": "Duplicate Records (sa_configurations_DuplicateMatchingRecord)",
+      "sa_configurations_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "sa_configurations_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "sa_configurations_ProcessSession": "Process Sessions",
+      "sa_configurations_SyncErrors": "Sync Errors",
+      "sa_configurationsid": "Configurations",
+      "sa_displayname": "Display Name",
+      "sa_icon": "Icon",
+      "sa_iconid": "sa_IconId",
+      "sa_key": "Key",
+      "sa_showinapp": "Show In App",
+      "sa_value": "Value",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Configurations",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Configurations (Views)",
+    "Name": "_sa_configurations_views",
+    "RelatedEntityName": "Configurations",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "319fa9be-cc5a-422f-bfa9-20d1231d1c0d": "Active Configurations",
+      "7046b916-09b8-4ca3-9af1-00337977de81": "Configurations Associated View",
+      "92cc139a-b538-4f59-ba08-0dea87773d71": "Configurations Advanced Find View",
+      "a402bf35-43e3-45a3-af47-984b11beb61a": "Inactive Configurations",
+      "d8f5ab52-fcfb-4d1a-b52a-6ea368f0e651": "Configurations Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Show In App (Configurations)",
+    "Name": "sa_configurations_sa_showinapp",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "sa_showinapp",
+        "OptionSetReferenceEntityName": "Configurations"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "sa_showinapp",
+    "RelatedEntityName": "Configurations",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Configurations)",
+    "Name": "sa_configurations_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Configurations"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Configurations",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Configurations)",
+    "Name": "sa_configurations_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Configurations"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Configurations",
+    "Type": "OptionSetInfo"
+  }
+]
