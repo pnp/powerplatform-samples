@@ -24,11 +24,11 @@ The SharePoint REST APIs are used to retrieve followed sites, search for sites a
 
 ![Preview - Follow sites in SPO page](./assets/followsitespage.png)  
 
-
 ## Applies to
 
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
 ![Power Fx](https://img.shields.io/badge/Power%20Fx-Yes-green "Yes")
+![Power Automate](https://img.shields.io/badge/Power%20Automate-Yes-green "Yes")
 
 ## Compatibility
 
@@ -115,15 +115,17 @@ It is worth noting that the deployment instructions below assume a proficient le
 Set(gblMyToolsColor,"#0078d4");
 `
 
-7. Get the unique Id for the **Follow Sites** Power App from your tenant - Navigate to the Power Apps portal, select the app and click **Details** on the menu bar. Copy the **App ID** value.
+7. Add ALL users who will use the app as 'Run only users' for each Power Automate flow - 'Find sites', 'Get user followed sites', 'Follow Unfollow site'. This is required so they can be triggered by users from the app and will ensure the REST API calls are executed in the context of their accounts. You can use an AD group containing all users in your organization if you wish.
 
-8. Embed the app in a SharePoint page. You can use the following embed code, replace the GUID after /apps/ with the Id you copied above. Feel free to change the size as you see fit (size below is for a horizontal layout).
+8. Get the unique Id for the **Follow Sites** Power App from your tenant - Navigate to the Power Apps portal, select the app and click **Details** on the menu bar. Copy the **App ID** value.
+
+9. Embed the app in a SharePoint page. You can use the following embed code, replace the GUID after /apps/ with the Id you copied above. Feel free to change the size as you see fit (size below is for a horizontal layout).
 
 `<iframe width="1024px" height="170px" src="https://web.powerapps.com/webplayer/iframeapp?source=iframe&amp;screenColor=rgba(104,101,171,1)&amp;appId=/providers/Microsoft.PowerApps/apps/6cfd9913-5dac-48f8-b096-520fdf9ece6c"></iframe>`
 
-9. Republish your SharePoint page.
+10. Republish your SharePoint page.
 
-10. Share the app with ALL users that have access to/will use your SharePoint site.
+11. Share the app with ALL users that have access to/will use your SharePoint site.
 
 
 ## Using the Source Code
