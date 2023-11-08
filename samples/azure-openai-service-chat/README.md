@@ -39,7 +39,7 @@ Below you can find a summary of the steps that are required to make this solutio
 
 1. Deploy Azure OpenAI Service to a resource group
 2. Deploy the gpt-35-turbo model
-3. Create the AzureOpenAIService custom connector and [setup the connection](https://github.com/microsoft/PowerPlatformConnectors/tree/dev/custom-connectors/).
+3. Create the AzureOpenAIService custom connector and [setup the connection](https://github.com/microsoft/PowerPlatformConnectors/tree/master/custom-connectors/AzureOpenAIService).
    > The Custom Connector can easily be installed by selecting Import from GitHub when creating a new custom connector.
 4. Install [Creator Kit](https://learn.microsoft.com/en-us/power-platform/guidance/creator-kit/setup)
 5. Install the [Prompt Library](https://github.com/pnp/powerplatform-samples/tree/main/samples/prompt-library) solution
