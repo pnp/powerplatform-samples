@@ -42,7 +42,7 @@ Below you can find a summary of the steps that are required to make this solutio
 3. Create the AzureOpenAIService custom connector and [setup the connection](https://github.com/microsoft/PowerPlatformConnectors/tree/dev/custom-connectors/).
    > The Custom Connector can easily be installed by selecting Import from GitHub when creating a new custom connector.
 4. Install [Creator Kit](https://learn.microsoft.com/en-us/power-platform/guidance/creator-kit/setup)
-5. Install the [Prompt Library]() solution
+5. Install the [Prompt Library](https://github.com/pnp/powerplatform-samples/tree/main/samples/prompt-library) solution
 
 ## Minimal path to awesome
 
