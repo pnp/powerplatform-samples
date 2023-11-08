@@ -1,4 +1,4 @@
-# SharePoint 'Follow Sites'
+# SharePoint 'Follow/Discover Sites'
 
 ## Summary
 
