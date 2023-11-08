@@ -22,7 +22,7 @@ QNA app is all about making communication smoother between users and different d
 
 ## Prerequisites
 
-None
+Complete Setup - https://lnkd.in/dKxxwiJQ
 
 ## Data Sources
 
