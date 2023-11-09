@@ -1,0 +1,37 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnSelectIntent
+  id: main
+  actions:
+    - kind: SetVariable
+      id: setVariable_M6434i
+      variable: init:Topic.IntentOptions
+      value: =System.Recognizer.IntentOptions
+
+    - kind: EditTable
+      id: sendMessage_g5Ls09
+      changeType: Add
+      itemsVariable: Topic.IntentOptions
+      value: "={ DisplayName: \"None of these\", TopicId: \"NoTopic\", TriggerId: \"NoTrigger\", Score: 1.0 }"
+
+    - kind: Question
+      id: question_zf2HhP
+      interruptionPolicy:
+        allowInterruption: false
+
+      alwaysPrompt: true
+      variable: System.Recognizer.SelectedIntent
+      prompt: "To clarify, did you mean:"
+      entity:
+        kind: DynamicClosedListEntity
+        items: =Topic.IntentOptions
+
+    - kind: ConditionGroup
+      id: conditionGroup_60PuXb
+      conditions:
+        - id: conditionItem_rs7GgM
+          condition: =System.Recognizer.SelectedIntent.TopicId = "NoTopic"
+          actions:
+            - kind: ReplaceDialog
+              id: YZXRDb
+              dialog: cr961_hackathonHealthcareBot.topic.Fallback

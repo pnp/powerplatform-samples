@@ -1,0 +1,49 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Untitled
+    triggerQueries:
+      - call an ambulance
+      - roadside assistance
+      - I need help
+      - send me an ambulance
+      - im in an accident
+      - send help
+
+  actions:
+    - kind: Question
+      id: question_AdsWd5
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Name
+      prompt: What is your name?
+      entity: PersonNamePrebuiltEntity
+
+    - kind: Question
+      id: question_XPG91t
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Location
+      prompt: What is your current location?
+      entity: CityPrebuiltEntity
+
+    - kind: Question
+      id: question_kb8SxB
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Phone
+      prompt: What's the phone number where we can reach you?
+      entity: PhoneNumberPrebuiltEntity
+
+    - kind: SendActivity
+      id: sendActivity_kV79k8
+      activity: Hang on {Topic.Name}. Help is on the way. An ambulance is enroute your location. Please remain calm and wait for the paramedics.
+
+    - kind: SendActivity
+      id: sendActivity_6EipAl
+      activity: _Prank and fraudulent calls are punishable under the law._
