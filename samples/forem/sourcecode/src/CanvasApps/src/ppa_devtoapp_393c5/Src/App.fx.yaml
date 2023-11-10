@@ -1,0 +1,78 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =Set(
+            AppTheme,
+            {
+                palette: {
+                    themePrimary: "#000000",
+                    themeLighterAlt: "#898989",
+                    themeLighter: "#737373",
+                    themeLight: "#595959",
+                    themeTertiary: "#373737",
+                    themeSecondary: "#2f2f2f",
+                    themeDarkAlt: "#252525",
+                    themeDark: "#151515",
+                    themeDarker: "#0b0b0b",
+                    neutralLighterAlt: "#faf9f8",
+                    neutralLighter: "#f3f2f1",
+                    neutralLight: "#edebe9",
+                    neutralQuaternaryAlt: "#e1dfdd",
+                    neutralQuaternary: "#d0d0d0",
+                    neutralTertiaryAlt: "#c8c6c4",
+                    neutralTertiary: "#595959",
+                    neutralSecondary: "#373737",
+                    neutralPrimaryAlt: "#2f2f2f",
+                    neutralPrimary: "#000000",
+                    neutralDark: "#151515",
+                    black: "#0b0b0b",
+                    white: "#ffffff"
+                }
+            }
+        );
+        Set(
+            AppThemeJson,
+            JSON(
+                AppTheme,
+                JSONFormat.IndentFour
+            )
+        );
+        ClearCollect(
+            colArticles,
+            SortByColumns(
+                AddColumns(
+                    'Forem(IndependentPublisher)'.GetArticles(
+                        1, 1000, "", 
+                        {
+                            tags:"powerplatform, powerapps, dotnet, azure"
+                        }
+                    ),
+                    "author_name",
+                    user.name,
+                    "org_name",
+                    organization.name,
+                    "formatted_date",
+                    Text(
+                        DateTimeValue(
+                            Substitute(
+                                published_at,
+                                "Z",
+                                ""
+                            )
+                        ),
+                        DateTimeFormat.ShortDateTime
+                    )
+                ),
+                "published_at",
+                SortOrder.Descending
+            )
+        )
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
