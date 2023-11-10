@@ -1,0 +1,44 @@
+{
+  "92732224-53de-4ae4-9e24-59378b9fc5c5": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/henryorsborn/partial-builds/asev3migrations-with-resourceTemplate/1.0.1653.3414/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://s134q.sharepoint.com/sites/ForMyWorks": {
+        "dataSources": {
+          "tbl_Tickets": {
+            "tableName": "fcfff0f6-9d86-45d5-adf9-5c0c3c4dc5ec"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "tbl_Tickets"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "92732224-53de-4ae4-9e24-59378b9fc5c5"
+  },
+  "c5baff1a-9103-4113-87be-0d693d87f06a": {
+    "connectionRef": {
+      "displayName": "Office 365 Outlook",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/henryorsborn/partial-builds/asev3migrations-with-resourceTemplate/1.0.1653.3414/office365/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365"
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Outlook"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "c5baff1a-9103-4113-87be-0d693d87f06a"
+  }
+}

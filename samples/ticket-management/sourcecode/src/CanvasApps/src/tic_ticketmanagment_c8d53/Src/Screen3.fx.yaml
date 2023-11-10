@@ -1,0 +1,334 @@
+Screen3 As screen:
+
+    HeaderContainer_2 As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(175, 191, 224, 1)
+        Height: =80
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Label1_2 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(136, 160, 209, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =Parent.Height
+            Size: =24
+            Text: ="Ticket Details"
+            Width: =Parent.Width
+            ZIndex: =1
+
+        Icon4 As icon.Save:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =60
+            Icon: =Icon.Save
+            OnSelect: |-
+                =If(Dropdown1_2.Selected.Value = "Closed",
+                
+                Patch(tbl_Tickets,LookUp(tbl_Tickets,Index_ID=varID),
+                    {
+                        Priority: {Value:Dropdown1_1.Selected.Value},
+                        Department:{Value:Dropdown2_1.Selected.Value},
+                        Status: {Value:Dropdown1_2.Selected.Value},
+                        'Assigned To':Dropdown1_3.Selected.Value,
+                        Comment: TextInput4_2.Text,
+                        'Date Closed':Now(),
+                        Title:"Updated record"
+                    }
+                ),
+                Patch(tbl_Tickets,LookUp(tbl_Tickets,Index_ID=varID),
+                    {
+                        Priority: {Value:Dropdown1_1.Selected.Value},
+                        Department:{Value:Dropdown2_1.Selected.Value},
+                        Status: {Value:Dropdown1_2.Selected.Value},
+                        'Assigned To':Dropdown1_3.Selected.Value,
+                        Comment: TextInput4_2.Text,
+                        Title:"Updated record"
+                    }
+                )
+                );
+                ClearCollect(col_Ticket,tbl_Tickets);
+                Notify("Ticket has been updated Successfully!", NotificationType.Success);
+                Navigate(Screen1,ScreenTransition.Fade);
+                Office365Outlook.SendEmailV2("aqeelkhalid63@gmail.com",Label9_4.Text&"'s Ticket has been Uplated!","Hi Aqeel, Ticket for " & Label9_4.Text &" has been updated. Now the new priority is "&Dropdown1_1.Selected.Value & ". The Ticket has been Assigned to " & Dropdown1_3.Selected.Value & " Thank You!")
+            Width: =60
+            X: =1301
+            Y: =10
+            ZIndex: =2
+
+    BodyContainer_1 As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height-Self.Y
+        Width: =Parent.Width
+        Y: =80
+        ZIndex: =2
+
+        FillterContainer_1 As groupContainer.manualLayoutContainer:
+            Fill: =RGBA(215, 223, 240, 1)
+            Height: =Parent.Height-Self.Y
+            Width: =Parent.Width*.25
+            ZIndex: =2
+
+            Label9 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =45
+                Size: =18
+                Text: ="Ticket ID"
+                Width: =300
+                X: =20
+                Y: =25
+                ZIndex: =1
+
+            Label10 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =45
+                Size: =18
+                Text: ="Created Date"
+                Width: =300
+                X: =20
+                Y: =122
+                ZIndex: =2
+
+            Label11 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =45
+                Size: =18
+                Text: ="Close Date"
+                Width: =300
+                X: =20
+                Y: =322
+                ZIndex: =3
+
+            Label12 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =45
+                Size: =18
+                Text: ="Created by"
+                Width: =300
+                X: =20
+                Y: =221
+                ZIndex: =4
+
+            Label9_1 As label:
+                Height: =45
+                Size: =16
+                Text: =varID
+                Width: =300
+                X: =20
+                Y: =70
+                ZIndex: =5
+
+            Label9_2 As label:
+                Height: =45
+                Size: =16
+                Text: =varCreateddate
+                Width: =300
+                X: =20
+                Y: =168
+                ZIndex: =6
+
+            Label9_3 As label:
+                Height: =45
+                Size: =16
+                Text: =varClosedate
+                Width: =300
+                X: =20
+                Y: =370
+                ZIndex: =7
+
+            Label9_4 As label:
+                Height: =45
+                Size: =16
+                Text: =varowner
+                Width: =300
+                X: =20
+                Y: =267
+                ZIndex: =8
+
+        GalleryContainer_1 As groupContainer.manualLayoutContainer:
+            BorderColor: =RGBA(241, 244, 249, 1)
+            DropShadow: =DropShadow.Regular
+            Fill: =RGBA(241, 244, 249, 1)
+            Height: =Parent.Height-Self.Y
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width*.75
+            X: =FillterContainer_1.Width
+            ZIndex: =3
+
+            Label9_5 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =45
+                Size: =16
+                Text: ="Subject"
+                Width: =300
+                X: =15
+                Y: =8
+                ZIndex: =1
+
+            Label10_1 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =45
+                Size: =16
+                Text: ="Description"
+                Width: =300
+                X: =15
+                Y: =105
+                ZIndex: =2
+
+            Label12_1 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =45
+                Size: =16
+                Text: ="Internal Comments"
+                Width: =300
+                X: =15
+                Y: =236
+                ZIndex: =3
+
+            TextInput4 As text:
+                BorderColor: =RGBA(116, 116, 116, 1)
+                BorderThickness: =0
+                Default: =varSubject
+                DisplayMode: =DisplayMode.View
+                Height: =50
+                Width: =974
+                X: =15
+                Y: =53
+                ZIndex: =4
+
+            TextInput4_1 As text:
+                BorderColor: =RGBA(116, 116, 116, 1)
+                BorderThickness: =0
+                Default: =varDescription
+                DisplayMode: =DisplayMode.View
+                Height: =90
+                Mode: =TextMode.MultiLine
+                Width: =974
+                X: =15
+                Y: =150
+                ZIndex: =5
+
+            TextInput4_2 As text:
+                BorderColor: =RGBA(116, 116, 116, 1)
+                BorderThickness: =0
+                Default: =LookUp(col_Ticket,Index_ID = varID, Comment)
+                DisplayMode: =If(varStatus = "Closed",DisplayMode.View,DisplayMode.Edit)
+                Height: =90
+                Mode: =TextMode.MultiLine
+                Width: =974
+                X: =15
+                Y: =280
+                ZIndex: =6
+
+            Rectangle5 As rectangle:
+                Height: =3
+                Width: =Parent.Width
+                Y: =386
+                ZIndex: =7
+
+            Label9_6 As label:
+                FontWeight: =FontWeight.Bold
+                Size: =16
+                Text: ="Ticket Status"
+                Width: =200
+                X: =174
+                Y: =406
+                ZIndex: =8
+
+            Label10_2 As label:
+                FontWeight: =FontWeight.Bold
+                Size: =16
+                Text: ="Assigned to"
+                Width: =200
+                X: =174
+                Y: =466
+                ZIndex: =9
+
+            Label11_1 As label:
+                FontWeight: =FontWeight.Bold
+                Size: =16
+                Text: ="Priority"
+                Width: =200
+                X: =174
+                Y: =599
+                ZIndex: =10
+
+            Label12_2 As label:
+                FontWeight: =FontWeight.Bold
+                Size: =16
+                Text: ="Department"
+                Width: =200
+                X: =174
+                Y: =534
+                ZIndex: =11
+
+            Dropdown1_1 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =varPriority
+                DisplayMode: =If(varStatus = "Closed",DisplayMode.View,DisplayMode.Edit)
+                FocusedBorderThickness: =2
+                HoverBorderColor: =RGBA(214, 223, 238, 1)
+                HoverFill: =RGBA(204, 231, 246, 1)
+                Items: =["Low","Medium","High"]
+                PressedFill: =RGBA(204, 231, 246, 1)
+                SelectionFill: =RGBA(0, 134, 208, 1)
+                Width: =320
+                X: =428
+                Y: =603
+                ZIndex: =16
+
+            Dropdown2_1 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =vardepar
+                DisplayMode: =If(varStatus = "Closed",DisplayMode.View,DisplayMode.Edit)
+                FocusedBorderThickness: =2
+                HoverBorderColor: =RGBA(214, 223, 238, 1)
+                HoverFill: =RGBA(204, 231, 246, 1)
+                Items: =["IT","HR","Facilities"]
+                PressedFill: =RGBA(204, 231, 246, 1)
+                SelectionFill: =RGBA(0, 134, 208, 1)
+                Width: =320
+                X: =428
+                Y: =538
+                ZIndex: =17
+
+            Dropdown1_2 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =varStatus
+                DisplayMode: =If(varStatus = "Closed",DisplayMode.View,DisplayMode.Edit)
+                FocusedBorderThickness: =2
+                HoverBorderColor: =RGBA(214, 223, 238, 1)
+                HoverFill: =RGBA(204, 231, 246, 1)
+                Items: =["New","In Progress","On Hold","Closed"]
+                PressedFill: =RGBA(204, 231, 246, 1)
+                SelectionFill: =RGBA(0, 134, 208, 1)
+                Width: =320
+                X: =428
+                Y: =401
+                ZIndex: =18
+
+            Dropdown1_3 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =If(IsBlank(varAssigned),"None",varAssigned)
+                DisplayMode: =If(varStatus = "Closed",DisplayMode.View,DisplayMode.Edit)
+                FocusedBorderThickness: =2
+                HoverBorderColor: =RGBA(214, 223, 238, 1)
+                HoverFill: =RGBA(204, 231, 246, 1)
+                Items: =["None","Aqeel Khalid","Shaheer Ahmed","Naveed Ali","Ali Sadiq","Ali Hassan"]
+                PressedFill: =RGBA(204, 231, 246, 1)
+                SelectionFill: =RGBA(0, 134, 208, 1)
+                Width: =320
+                X: =428
+                Y: =469
+                ZIndex: =19
+
+    Arrow1_1 As arrow.backArrow:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =70
+        OnSelect: =Back()
+        Width: =70
+        X: =6
+        Y: =4
+        ZIndex: =3
+
