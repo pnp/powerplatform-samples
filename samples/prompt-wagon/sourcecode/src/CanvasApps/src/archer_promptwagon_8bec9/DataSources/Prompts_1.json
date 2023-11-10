@@ -1,0 +1,113 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "archer_promptses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "archer_prompts",
+    "MaxGetRowsCount": 500,
+    "Name": "Prompts_1",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "archer_category": "Category",
+      "archer_description": "Description",
+      "archer_descriptionde": "DescriptionDE",
+      "archer_descriptionfr": "DescriptionFR",
+      "archer_frequencypenalty": "Frequency Penalty",
+      "archer_icon": "Icon",
+      "archer_iconid": "archer_IconId",
+      "archer_maxtokens": "Max Tokens",
+      "archer_name": "Name",
+      "archer_namede": "NameDE",
+      "archer_namefr": "NameFR",
+      "archer_presencepenalty": "Presence Penalty",
+      "archer_prompt": "Prompt",
+      "archer_prompts_AsyncOperations": "System Jobs",
+      "archer_prompts_BulkDeleteFailures": "Bulk Delete Failures",
+      "archer_prompts_DuplicateBaseRecord": "Duplicate Records (archer_prompts_DuplicateBaseRecord)",
+      "archer_prompts_DuplicateMatchingRecord": "Duplicate Records (archer_prompts_DuplicateMatchingRecord)",
+      "archer_prompts_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "archer_prompts_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "archer_prompts_ProcessSession": "Process Sessions",
+      "archer_prompts_SyncErrors": "Sync Errors",
+      "archer_promptsid": "Prompts",
+      "archer_rolesystem": "RoleSystem",
+      "archer_stop": "Stop",
+      "archer_temperature": "Temperature",
+      "archer_topp": "Top P",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Prompts_1",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Prompts_1 (Views)",
+    "Name": "_archer_prompts_views",
+    "RelatedEntityName": "Prompts_1",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "48852687-a5da-4ebc-9361-fb137c95cbc1": "Prompts Lookup View",
+      "5753017f-4597-423a-817f-c1aa0bf02f61": "Prompts Advanced Find View",
+      "6c538d61-da61-4031-a3fb-1b6f48bf2ad5": "Active Prompts",
+      "c08fafbf-2072-42ba-954a-d5b02a87ae81": "Inactive Prompts",
+      "ec64bea9-8850-482f-b0e6-14a832920dc1": "Prompts Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Prompts_1)",
+    "Name": "archer_prompts_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Prompts_1"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Prompts_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Prompts_1)",
+    "Name": "archer_prompts_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Prompts_1"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Prompts_1",
+    "Type": "OptionSetInfo"
+  }
+]
