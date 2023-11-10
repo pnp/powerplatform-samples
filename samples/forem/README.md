@@ -35,7 +35,7 @@ Version|Date|Comments
 
 ## Prerequisites
 
-* Install the creator kit before installing this solution
+* Install the [Creator Kit](https://learn.microsoft.com/power-platform/guidance/creator-kit/setup) before installing this solution
 * When prompted to connect to the Forem (Independent Publisher) connector, use dev.to as hostname for [Dev.To](https://dev.to) and enter the API key (Which you can generate in the [extension](https://dev.to/settings/extensions) section in the settings on [Dev.To](https://dev.to)).
 
 ## Minimal path to awesome
