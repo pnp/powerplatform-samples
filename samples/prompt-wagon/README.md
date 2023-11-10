@@ -2,7 +2,7 @@
 
 ## Summary
 
-This app is designed for organizations seeking to seamlessly integrate AI technologies, with features catering to beginners and administrators. 
+This app is designed for organizations seeking to seamlessly integrate AI technologies, with features catering to beginners and administrators.
 
 ![Screenshot](assets/PromptWagonScreenshot.png)
 
@@ -33,9 +33,11 @@ Version|Date|Comments
 * Azure OpenAI resource
 * GPT-4 model deployed in the Azure OpenAI resource
 * Save the following information from your GPT-4 model deployment (this will be needed during the solution import process):
+
 1) AzureOpenAI Host
 2) AzureOpenAI Key
 3) AzureOpenAI URL
+
 ![Prerequisites](assets/prerequisites.png)
 
 ## Minimal path to awesome
@@ -52,7 +54,7 @@ Version|Date|Comments
 * Select **Next** on the **Details** screen.
 ![2](assets/2.png)
 
-* On the **Environment Variables** screen enter values for all environment variables. Once you are ready, seelct **Import**
+* On the **Environment Variables** screen enter values for all environment variables. Once you are ready, select **Import**
 ![3](assets/3.png)
 
 * Wait till the end of the import process.
@@ -88,15 +90,15 @@ Version|Date|Comments
 On the initial launch, users will encounter a pop-up prompting them to grant permission for connections to Azure OpenAI. Once authorized, this pop-up will not appear in subsequent launches.
 ![20](assets/20.png)
 
-
 ### Import sample data
 
 This step is optional. You have the option to populate the Dataverse tables with your content, such as interface text, images, prompts, and translations into two other languages. If you'd prefer to begin with sample data, follow the steps outlined below.
 
 * [Download](./sample-data/PromptWagonSampleData.zip) the `.zip` from the `sample-data` folder.
 
-* Make sure that you have version 1.19.3 (or newer) of [Power Platform CLI](https://learn.microsoft.com/en-us/power-platform/developer/cli/introduction).
+* Make sure that you have version 1.19.3 (or newer) of [Power Platform CLI](https://learn.microsoft.com/power-platform/developer/cli/introduction).
 To install the latest version:
+
   ```bash
   pac install latest
   ```
@@ -130,12 +132,11 @@ To install the latest version:
 * Select your target environment and select **Login**
 ![8](assets/8.png)
 
-* In the fiels **Zip File** select **PromptWagonSampleData.zip** downloaded earlier, and select **Import Data**.
+* In the files **Zip File** select **PromptWagonSampleData.zip** downloaded earlier, and select **Import Data**.
 ![9](assets/9.png)
 
 * Once the import process will be completed, select **Exit**.
 ![10](assets/10.png)
-
 
 ## Features
 
@@ -144,7 +145,6 @@ To install the latest version:
 * The interface supports multiple languages: English, German, and French.
 * Administrative features empower admins to adjust prompts directly within the app. They can edit text for both system and user roles, modify the super prompt, and tweak request parameters like temperature, top p, and more.
 * A super prompt enables the provision of overarching instructions to GPT-4, which apply to all prompts. This can include company style guidelines, restrictions, and more.
-
 
 <!--
 RESERVED FOR REPO MAINTAINERS
@@ -160,14 +160,11 @@ We'll add the video from the community call recording here
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=prompt-wagon&authors=@ArtemChern&title=
-prompt-wagon%20-%20).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=prompt-wagon&authors=@ArtemChern&title=prompt-wagon%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=prompt-wagon&authors=@ArtemChern&title=
-prompt-wagon%20-%20).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=prompt-wagon&authors=@ArtemChern&title=prompt-wagon%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=prompt-wagon&authors=@ArtemChernNAME&title=
-prompt-wagon%20-%20).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=prompt-wagon&authors=@ArtemChern&title=prompt-wagon%20-%20).
 
 ## Disclaimer
 
