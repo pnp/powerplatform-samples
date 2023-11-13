@@ -1,0 +1,258 @@
+Screen1 As screen:
+    Fill: =RGBA(219, 219, 219, 1)
+    OnVisible: |-
+        =ClearCollect(colTemplate,Table(
+            {Column:"New Parent",Value:"Child Item 1,Child Item 2,Child Item 3"}
+        ))
+
+    "Gallery1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =645
+        Items: =colTemplate
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =132
+        Width: =1366
+        Y: =123
+        ZIndex: =1
+
+        Separator2 As rectangle:
+            Height: =3
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - Self.Height
+            ZIndex: =3
+
+        Gallery2 As gallery.galleryHorizontal:
+            DelayItemLoading: =true
+            Height: =54
+            Items: |-
+                =ForAll(
+                    Split(
+                        ThisItem.Value,
+                        ","
+                    ),
+                    {
+                        Value: ThisItem.Value,
+                        Child: ThisRecord.Value,
+                        Record: ThisItem
+                    }
+                )
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplateSize: =200
+            Width: =1350
+            X: =16
+            Y: =54
+            ZIndex: =5
+
+            Icon1 As icon.Trash:
+                Height: =44
+                Icon: =Icon.Trash
+                OnSelect: |-
+                    =UpdateContext({locValue: ThisItem.Value});
+                    UpdateContext({locChild: ThisItem.Child});
+                    UpdateContext(
+                        {
+                            locNewValue: Substitute(
+                                Substitute(
+                                    locValue,
+                                    "," & locChild,
+                                    ""
+                                ),
+                                locChild & ",",
+                                ""
+                            )
+                        }
+                    );
+                    Patch(
+                        colTemplate,
+                        ThisItem.Record,
+                        {Value: locNewValue}
+                    )
+                PaddingBottom: =12
+                PaddingTop: =7
+                Width: =40
+                X: =150
+                ZIndex: =2
+
+            TextInput1 As text:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderThickness: =0
+                Default: =ThisItem.Child
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                OnChange: |-
+                    =If(
+                        Self.Text = "",
+                        Notify("Please provide a child item name");
+                        Reset(Self),
+                        If(
+                            locOld = "",
+                            Patch(
+                                colTemplate,
+                                ThisItem.Record,
+                                {Value: ThisItem.Value & Self.Text}
+                            ),
+                            Patch(
+                                colTemplate,
+                                ThisItem.Record,
+                                {
+                                    Value: Substitute(
+                                        ThisItem.Value,
+                                        locOldChild,
+                                        Self.Text
+                                    )
+                                }
+                            )
+                        )
+                    )
+                OnSelect: |-
+                    =UpdateContext({locOldChild:ThisItem.Child});
+                    UpdateContext({locOld:Self.Text})
+                Size: =11
+                Width: =150
+                ZIndex: =3
+
+        Icon2 As icon.Add:
+            Height: =32
+            Icon: =Icon.Add
+            OnSelect: |-
+                =Patch(
+                    colTemplate,
+                    ThisItem,
+                    {Value: ThisItem.Value & ",Child Item " & Gallery2.AllItemsCount + 1}
+                )
+            Visible: =Not("" in Split(ThisItem.Value,","))
+            Width: =40
+            X: =1326
+            Y: =5
+            ZIndex: =6
+
+        TextInput2 As text:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderThickness: =0
+            Default: =ThisItem.Column
+            Fill: =RGBA(0, 0, 0, 0)
+            FontWeight: =FontWeight.Semibold
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            OnChange: |-
+                = If(Self.Text in colTemplate.Column,
+                 Notify("Parent Already Exists!"),
+                 Patch(colTemplate,ThisItem,{Column:Substitute(ThisItem.Column,locOldParent,Self.Text)})
+                 )
+            OnSelect: |-
+                =UpdateContext({locOldParent:ThisItem.Column})
+            X: =5
+            Y: =5
+            ZIndex: =7
+
+        Icon2_1 As icon.Add:
+            Height: =32
+            Icon: =Icon.Trash
+            OnSelect: =Remove(colTemplate,ThisItem)
+            PaddingBottom: =3
+            PaddingTop: =3
+            Width: =40
+            X: =1286
+            Y: =5
+            ZIndex: =8
+
+    Button3 As button:
+        BorderThickness: =0
+        OnSelect: |-
+            =Set(templateJSON,JSON(colTemplate,JSONFormat.Compact));
+            UpdateContext({locPopup:true});
+        Size: =12
+        Text: ="Generate Template"
+        Width: =210
+        X: =1128
+        Y: =42
+        ZIndex: =2
+
+    Button2_1 As button:
+        BorderThickness: =0
+        OnSelect: |-
+            =Patch(colTemplate,Defaults(colTemplate),{Column:"New Parent "&Gallery1.AllItemsCount+1 ,Value:"Child Item 1,Child Item 2,Child Item 3"})
+        Size: =12
+        Text: ="Add Parent"
+        Width: =210
+        X: =897
+        Y: =42
+        ZIndex: =3
+
+    Button1 As button:
+        OnSelect: |-
+            =ClearCollect(colTemplate,Table(
+                {Column:"New Parent",Value:"Child Item 1,Child Item 2,Child Item 3"}
+            ))
+        Size: =12
+        Text: ="Reset Template"
+        Width: =210
+        X: =664
+        Y: =42
+        ZIndex: =4
+
+    TextInput3 As text:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderThickness: =0
+        Default: ="New Template"
+        Fill: =RGBA(0, 0, 0, 0)
+        FontWeight: =FontWeight.Bold
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        Size: =14
+        X: =30
+        Y: =42
+        ZIndex: =5
+
+    Rectangle3 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.5)
+        Height: =768
+        Visible: =locPopup
+        Width: =1366
+        ZIndex: =6
+
+    Label2 As label:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =235
+        PaddingLeft: =25
+        PaddingRight: =25
+        Text: =templateJSON
+        Visible: =locPopup
+        Width: =404
+        X: =521
+        Y: =308
+        ZIndex: =7
+
+    Label6 As label:
+        FontWeight: =FontWeight.Semibold
+        PaddingLeft: =15
+        Text: =TextInput3.Text
+        Visible: =locPopup
+        Width: =402
+        X: =521
+        Y: =308
+        ZIndex: =8
+
+    Icon3 As icon.Cancel:
+        Height: =26
+        Icon: =Icon.Cancel
+        OnSelect: |-
+            =UpdateContext({locPopup:false});
+        Visible: =locPopup
+        Width: =21
+        X: =895
+        Y: =313
+        ZIndex: =9
+
+    Icon4 As icon.Copy:
+        Height: =34
+        Icon: =Icon.Copy
+        OnSelect: |-
+            =Copy(templateJSON);
+            Notify("JSON  Copied")
+        Visible: =locPopup
+        Width: =45
+        X: =700
+        Y: =490
+        ZIndex: =10
+
