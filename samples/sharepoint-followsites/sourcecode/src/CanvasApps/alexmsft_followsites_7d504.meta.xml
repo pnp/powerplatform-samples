@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>alexmsft_followsites_7d504</Name>
+  <AppVersion>2023-11-07T11:59:39Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.23104.17.0</CreatedByClientVersion>
+  <MinClientVersion>3.23104.17.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","sienaVersion":"20231107T112028Z-3.23104.17.0","deviceCapabilities":"","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","publisherVersion":"3.23104.17","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","showStatusBar":"false"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>rgba(0, 120, 212, 1)</BackgroundColor>
+  <DisplayName>Follow Sites</DisplayName>
+  <Description>Follow sites displays SharePoint sites a user follows, allows them to discover sites and provides the ability to follow/unfollow them.</Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher xsi:nil="true"></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{"d564f7b7-9c38-417a-b033-2f855b475ed5":{"id":"/providers/microsoft.powerapps/apis/shared_sharepointonline","displayName":"SharePoint","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1664/1.0.1664.3477/sharepointonline/icon.png","dataSources":["Sites"],"dependencies":[],"dependents":["9d164608-57c3-4de1-8aee-d49ba137c2c7","68d63eae-5877-4fef-ac4b-36e0e1ad628b","df298ebe-b39a-42f2-85d9-17207e8dd6c6"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{"https://m365x765471.sharepoint.com/":{"dataSources":{"Sites":{"tableName":"308bcc00-64c4-44e7-8098-eda0574391ce"}}}},"apiTier":"Standard"},"9d164608-57c3-4de1-8aee-d49ba137c2c7":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1664/1.0.1664.3477/logicflows/icon.png","dataSources":["Getuserfollowedsites"],"dependencies":["d564f7b7-9c38-417a-b033-2f855b475ed5"],"dependents":[],"parameterHints":{"workflowName":{"value":"88a304b2-ea53-42aa-8777-45b666379f34"},"workflowEntityId":{"value":"8e45d378-817a-ee11-8178-002248c6b93d"},"d564f7b7-9c38-417a-b033-2f855b475ed5":{"value":"shared_sharepointonline"}},"parameterHintsV2":{"workflowName":{"value":"88a304b2-ea53-42aa-8777-45b666379f34"},"workflowEntityId":{"value":"8e45d378-817a-ee11-8178-002248c6b93d"},"shared_sharepointonline":{"value":"d564f7b7-9c38-417a-b033-2f855b475ed5"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"68d63eae-5877-4fef-ac4b-36e0e1ad628b":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1664/1.0.1664.3477/logicflows/icon.png","dataSources":["FollowUnfollowsite"],"dependencies":["d564f7b7-9c38-417a-b033-2f855b475ed5"],"dependents":[],"parameterHints":{"workflowName":{"value":"9cf0d973-aa05-4549-8013-4fb88b0a02a1"},"workflowEntityId":{"value":"3ae68a7e-c078-ee11-8179-002248c6b93d"},"d564f7b7-9c38-417a-b033-2f855b475ed5":{"value":"shared_sharepointonline_1"}},"parameterHintsV2":{"workflowName":{"value":"9cf0d973-aa05-4549-8013-4fb88b0a02a1"},"workflowEntityId":{"value":"3ae68a7e-c078-ee11-8179-002248c6b93d"},"shared_sharepointonline_1":{"value":"d564f7b7-9c38-417a-b033-2f855b475ed5"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"df298ebe-b39a-42f2-85d9-17207e8dd6c6":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1664/1.0.1664.3477/logicflows/icon.png","dataSources":["Findsites"],"dependencies":["d564f7b7-9c38-417a-b033-2f855b475ed5"],"dependents":[],"parameterHints":{"workflowName":{"value":"aa91b72a-0b96-425a-870c-3a56698a20bf"},"workflowEntityId":{"value":"3e587800-9a7c-ee11-8178-002248c6b93d"},"d564f7b7-9c38-417a-b033-2f855b475ed5":{"value":"shared_sharepointonline_1"}},"parameterHintsV2":{"workflowName":{"value":"aa91b72a-0b96-425a-870c-3a56698a20bf"},"workflowEntityId":{"value":"3e587800-9a7c-ee11-8178-002248c6b93d"},"shared_sharepointonline_1":{"value":"d564f7b7-9c38-417a-b033-2f855b475ed5"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]}}</ConnectionReferences>
+  <DatabaseReferences>{}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>0</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"dependencyid":"8e45d378-817a-ee11-8178-002248c6b93d","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"3ae68a7e-c078-ee11-8179-002248c6b93d","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"3e587800-9a7c-ee11-8178-002248c6b93d","componenttype":29,"componenttypeplatformname":"Workflow"}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/alexmsft_followsites_7d504_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/alexmsft_followsites_7d504_DocumentUri.msapp</DocumentUri>
+</CanvasApp>

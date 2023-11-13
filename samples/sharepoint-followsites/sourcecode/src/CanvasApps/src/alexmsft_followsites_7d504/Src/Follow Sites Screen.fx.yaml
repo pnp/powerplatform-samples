@@ -1,0 +1,476 @@
+"'Follow Sites Screen' As screen":
+    Height: =App.Height
+    Width: =App.Width
+
+    galSites As gallery.galleryHorizontal:
+        AccessibleLabel: ="Sites"
+        FocusedBorderThickness: =0
+        Height: |
+            =60
+        Items: |-
+            =If(
+                gblIsSearching,
+                colFoundSites,
+                colFollowedSites
+            )
+        LoadingSpinner: =LoadingSpinner.Data
+        ShowNavigation: =true
+        ShowScrollbar: =false
+        TabIndex: =1
+        TemplateSize: =220
+        Visible: |
+            =!galVertSites.Visible
+        Width: =Parent.Width - Self.X * 2
+        X: =lblFollowSitesHeader.X
+        Y: =txtSearch.Y + txtSearch.Height + 10
+        ZIndex: =1
+
+        contTile As groupContainer.horizontalAutoLayoutContainer:
+            BorderColor: =ColorValue(gblTileBorderColor)
+            BorderThickness: =1
+            Height: =Parent.TemplateHeight
+            LayoutMode: =LayoutMode.Auto
+            Width: =220
+            ZIndex: =9
+
+            contSiteInitials As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.Semibold
+                Fill: =LookUp(colSiteColors,Value = RandBetween(1,7), Color)
+                FillPortions: =0
+                Height: =Parent.Height
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                Width: =50
+                ZIndex: =1
+
+                lblSiteInitials As label:
+                    Align: =Align.Center
+                    Color: =RGBA(255, 255,255, 1)
+                    Fill: =RGBA(255, 255, 255, 0)
+                    Font: =Font.'Segoe UI'
+                    OnSelect: =
+                    Size: =15
+                    Text: =Upper(Left(ThisItem.siteTitle,1) & Right(First(Split(ThisItem.siteTitle," ")).Value,1))
+                    Width: =60
+                    X: =Parent.Width / 2 - Self.Width / 2
+                    Y: =Parent.Height / 2 - Self.Height / 2
+                    ZIndex: =1
+
+            contSiteTile As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                FillPortions: =0
+                Height: =contTile.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                Width: =contTile.Width - contSiteInitials.Width
+                ZIndex: =2
+
+                lblSiteTitle As label:
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Size: =10
+                    TabIndex: =1
+                    Text: |-
+                        =If(
+                            Len(ThisItem.siteTitle) <= 40,
+                            ThisItem.siteTitle,
+                            Concatenate(
+                                Left(
+                                    ThisItem.siteTitle,
+                                    30
+                                ),
+                                "..."
+                            )
+                        )
+                    Width: =140
+                    X: =5
+                    Y: =shpTileHover.Height / 2 - Self.Height / 2
+                    ZIndex: =1
+
+                shpTileHover As rectangle:
+                    AccessibleLabel: ="Open site"
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =contTile.Height
+                    HoverFill: =RGBA(0,0,0,0.1)
+                    OnSelect: =Launch(ThisItem.siteUri)
+                    TabIndex: =1
+                    Width: =Parent.Width
+                    X: |
+                        =0
+                    ZIndex: =2
+
+                shpFollowUnfollow As star:
+                    AccessibleLabel: ="Follow/unfollow site"
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderThickness: =1
+                    Fill: =If(!IsBlank(LookUp(colUserFollowedSites,siteUri = ThisItem.siteUri)), RGBA(0, 0, 0, 1),RGBA(255,255,255,1))
+                    Height: =16
+                    OnSelect: |-
+                        =If(
+                            IsBlank(
+                                LookUp(
+                                    colFollowedSites,
+                                    siteUri = ThisItem.siteUri
+                                )
+                            ),
+                            FollowUnfollowsite.Run(
+                                "Follow",
+                                ThisItem.siteUri
+                            );
+                            ClearCollect(
+                                colFollowedSites,
+                                ForAll(
+                                    Table(ParseJSON(Getuserfollowedsites.Run().sites)),
+                                    {
+                                        siteTitle: Text(Value.siteTitle),
+                                        siteUri: Text(Value.siteUri)
+                                    }
+                                )
+                            );
+                            ClearCollect(
+                                colUserFollowedSites,
+                                colFollowedSites
+                            );
+                            Notify(
+                                "Followed site " & ThisItem.siteTitle,
+                                NotificationType.Success,
+                                5000
+                            );
+                            Collect(
+                                colUserFollowedSites,
+                                ThisItem
+                            ),
+                            FollowUnfollowsite.Run(
+                                "Unfollow",
+                                ThisItem.siteUri
+                            );
+                            Notify(
+                                "Unfollowed site " & ThisItem.siteTitle,
+                                NotificationType.Success,
+                                5000
+                            );
+                            RemoveIf(
+                                colUserFollowedSites,
+                                siteUri = ThisItem.siteUri
+                            );
+                            
+                        )
+                    TabIndex: =1
+                    Tooltip: =If(Self.Fill = RGBA(0,0,0,1), "Click to unfollow", "Click to follow")
+                    Width: =16
+                    X: =Parent.Width - Self.Width - 7
+                    Y: =5
+                    ZIndex: =3
+
+    lblFollowSitesHeader As label:
+        AutoHeight: =true
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Size: =16
+        Text: ="My followed sites"
+        Width: =Parent.Width - Self.X * 2
+        X: =10
+        Y: =10
+        ZIndex: =2
+
+    lblInstructions As label:
+        AutoHeight: =true
+        Font: =Font.'Segoe UI'
+        Size: =12
+        Text: ="Update your followed sites using the tiles below. Click the star icon to follow/unfollow a site. Use the search box to discover new sites."
+        Width: =Parent.Width - Self.X * 2
+        X: =lblFollowSitesHeader.X
+        Y: =lblFollowSitesHeader.Y + lblFollowSitesHeader.Height
+        ZIndex: =3
+
+    txtSearch As text:
+        AccessibleLabel: ="Search for a site"
+        BorderColor: =ColorValue(gblFollowSitesColor)
+        BorderThickness: =1.5
+        Default: =""
+        FocusedBorderThickness: =2
+        Font: =Font.'Segoe UI'
+        HintText: ="Search for a site"
+        HoverBorderColor: =Self.BorderColor
+        HoverFill: =RGBA(255,255,255,1)
+        OnChange: |-
+            =Set(
+                gblIsSearching,
+                true
+            );
+            Set(
+                gblStartSearch,
+                true
+            );
+            ClearCollect(
+                colFoundSites,
+                ForAll(
+                    Table(ParseJSON(Findsites.Run(txtSearch.Text).sites)),
+                    {
+                        siteTitle: Text(Value.siteTitle),
+                        siteUri: Text(Value.siteUri)
+                    }
+                )
+            );
+            Set(
+                gblStartSearch,
+                false
+            )
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =300
+        X: =Parent.Width / 2 - Self.Width / 2
+        Y: =lblInstructions.Y + lblInstructions.Height + 10
+        ZIndex: =4
+
+    shpSearch As circle:
+        AccessibleLabel: ="Search"
+        Fill: =ColorValue(gblFollowSitesColor)
+        Height: =txtSearch.Height - 10
+        OnSelect: =Select(txtSearch)
+        TabIndex: =1
+        Width: =Self.Height
+        X: =txtSearch.X + txtSearch.Width - Self.Width - 5
+        Y: =txtSearch.Y + txtSearch.Height / 2 - Self.Height / 2
+        ZIndex: =6
+
+    icoSearch As icon.Search:
+        AccessibleLabel: ="Search"
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =shpSearch.Height - 5
+        Icon: =Icon.Search
+        OnSelect: =Select(shpSearch)
+        PaddingBottom: =4
+        PaddingLeft: =4
+        PaddingRight: =3
+        PaddingTop: =4
+        TabIndex: =1
+        Width: =Self.Height
+        X: =shpSearch.X + shpSearch.Width / 2 - Self.Width / 2
+        Y: =shpSearch.Y + shpSearch.Height / 2 - Self.Height / 2
+        ZIndex: =7
+
+    icoClear As icon.Search:
+        AccessibleLabel: ="Clear search"
+        Color: =RGBA(0, 0, 0, 1)
+        Height: =shpSearch.Height - 5
+        Icon: =Icon.Cancel
+        OnSelect: |-
+            =Set(
+                gblIsSearching,
+                false
+            );
+            Set(
+                gblStartSearch,
+                false
+            );
+            Reset(txtSearch)
+        PaddingBottom: =4
+        PaddingLeft: =4
+        PaddingRight: =3
+        PaddingTop: =4
+        TabIndex: =1
+        Visible: =!IsBlankOrError(txtSearch.Text)
+        Width: =Self.Height
+        X: =shpSearch.X - shpSearch.Width
+        Y: =shpSearch.Y + shpSearch.Height / 2 - Self.Height / 2
+        ZIndex: =8
+
+    lblNoResults As label:
+        Align: =Align.Center
+        AutoHeight: =true
+        Font: =Font.'Segoe UI'
+        Text: |-
+            =If(
+                !IsBlank(txtSearch.Text),
+                "No sites found.",
+                "You are not following any sites. Why not find a site to follow using the search box?"
+            )
+        Visible: =galSites.AllItemsCount = 0 && !gblStartSearch && !gblLoading
+        Width: =Parent.Width
+        X: =galSites.X + galSites.Width / 2 - Self.Width / 2
+        Y: =galSites.Y + galSites.Height / 2 - Self.Height / 2
+        ZIndex: =10
+
+    imgLoader As image:
+        Height: =galSites.Height
+        Image: =loader
+        Visible: =gblStartSearch
+        Width: =Self.Height
+        X: =galSites.Width / 2 - Self.Width / 2
+        Y: |-
+            =If(
+                galVertSites.Visible,
+                galVertSites.Y + galVertSites.Height / 2 - Self.Height / 2,
+                galSites.Y + galSites.Height / 2 - Self.Height / 2
+            )
+        ZIndex: =11
+
+    "galVertSites As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+        AccessibleLabel: ="Sites"
+        BorderColor: |-
+            =ColorValue("#a19f9d")
+        DelayItemLoading: =true
+        Height: ='Follow Sites Screen'.Height - lblFollowSitesHeader.Height - lblInstructions.Height - txtSearch.Height - 40
+        Items: |-
+            =If(
+                gblIsSearching,
+                colFoundSites,
+                colFollowedSites
+            )
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        ShowNavigation: =true
+        ShowScrollbar: =false
+        TabIndex: =1
+        TemplatePadding: =0
+        TemplateSize: =60
+        Visible: |
+            ='Follow Sites Screen'.Size <= 1
+        Width: =txtSearch.Width + 7
+        X: =Parent.Width / 2 - Self.Width / 2 + 2
+        Y: =txtSearch.Y + txtSearch.Height + 10
+        ZIndex: =12
+
+        contTileVer As groupContainer.horizontalAutoLayoutContainer:
+            BorderColor: =ColorValue(gblTileBorderColor)
+            BorderThickness: =1
+            Height: =50
+            LayoutMode: =LayoutMode.Auto
+            Width: =Parent.TemplateWidth - 5
+            Y: =5
+            ZIndex: =6
+
+            contSiteInitialsVert As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.Semibold
+                Fill: =LookUp(colSiteColors,Value = RandBetween(1,7), Color)
+                FillPortions: =0
+                Height: =Parent.Height
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                Width: =50
+                ZIndex: =1
+
+                lblSiteInitialsVert As label:
+                    Align: =Align.Center
+                    Color: =RGBA(255, 255,255, 1)
+                    Fill: =RGBA(255, 255, 255, 0)
+                    Font: =Font.'Segoe UI'
+                    OnSelect: =
+                    Size: =15
+                    Text: =Upper(Left(ThisItem.siteTitle,1) & Right(First(Split(ThisItem.siteTitle," ")).Value,1))
+                    Width: =60
+                    X: =Parent.Width / 2 - Self.Width / 2
+                    Y: =Parent.Height / 2 - Self.Height / 2
+                    ZIndex: =1
+
+            contSiteTileVert As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                FillPortions: =0
+                Height: =contTileVer.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                Width: =contTileVer.Width - contSiteInitialsVert.Width
+                ZIndex: =2
+
+                lblSiteTitleVert As label:
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Size: =10
+                    TabIndex: =1
+                    Text: |-
+                        =If(
+                            Len(ThisItem.siteTitle) <= 40,
+                            ThisItem.siteTitle,
+                            Concatenate(
+                                Left(
+                                    ThisItem.siteTitle,
+                                    30
+                                ),
+                                "..."
+                            )
+                        )
+                    Width: =Parent.Width - shpFollowUnfollowVert.Width - 10
+                    X: =5
+                    Y: =shpTileHoverVert.Height / 2 - Self.Height / 2
+                    ZIndex: =1
+
+                shpTileHoverVert As rectangle:
+                    AccessibleLabel: ="Open site"
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =contTileVer.Height
+                    HoverFill: =RGBA(0,0,0,0.1)
+                    OnSelect: =Launch(ThisItem.siteUri)
+                    TabIndex: =1
+                    Width: =contSiteTileVert.Width
+                    X: |
+                        =0
+                    ZIndex: =2
+
+                shpFollowUnfollowVert As star:
+                    AccessibleLabel: ="Follow/unfollow site"
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderThickness: =1
+                    Fill: =If(!IsBlank(LookUp(colUserFollowedSites,siteUri = ThisItem.siteUri)), RGBA(0, 0, 0, 1),RGBA(255,255,255,1))
+                    Height: =16
+                    OnSelect: |-
+                        =If(
+                            IsBlank(
+                                LookUp(
+                                    colFollowedSites,
+                                    siteUri = ThisItem.siteUri
+                                )
+                            ),
+                            FollowUnfollowsite.Run(
+                                "Follow",
+                                ThisItem.siteUri
+                            );
+                            ClearCollect(
+                                colFollowedSites,
+                                ForAll(
+                                    Table(ParseJSON(Getuserfollowedsites.Run().sites)),
+                                    {
+                                        siteTitle: Text(Value.siteTitle),
+                                        siteUri: Text(Value.siteUri)
+                                    }
+                                )
+                            );
+                            ClearCollect(
+                                colUserFollowedSites,
+                                colFollowedSites
+                            );
+                            Notify(
+                                "Followed site " & ThisItem.siteTitle,
+                                NotificationType.Success,
+                                5000
+                            );
+                            Collect(
+                                colUserFollowedSites,
+                                ThisItem
+                            ),
+                            FollowUnfollowsite.Run(
+                                "Unfollow",
+                                ThisItem.siteUri
+                            );
+                            Notify(
+                                "Unfollowed site " & ThisItem.siteTitle,
+                                NotificationType.Success,
+                                5000
+                            );
+                            RemoveIf(
+                                colUserFollowedSites,
+                                siteUri = ThisItem.siteUri
+                            );
+                            
+                        )
+                    TabIndex: =1
+                    Tooltip: =If(Self.Fill = RGBA(0,0,0,1), "Click to unfollow", "Click to follow")
+                    Width: =16
+                    X: =Parent.Width - Self.Width - 7
+                    Y: =5
+                    ZIndex: =3
+
