@@ -1,0 +1,98 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "archer_applanguages",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "archer_applanguage",
+    "MaxGetRowsCount": 500,
+    "Name": "App Languages",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "archer_applanguage_AsyncOperations": "System Jobs",
+      "archer_applanguage_BulkDeleteFailures": "Bulk Delete Failures",
+      "archer_applanguage_DuplicateBaseRecord": "Duplicate Records (archer_applanguage_DuplicateBaseRecord)",
+      "archer_applanguage_DuplicateMatchingRecord": "Duplicate Records (archer_applanguage_DuplicateMatchingRecord)",
+      "archer_applanguage_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "archer_applanguage_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "archer_applanguage_ProcessSession": "Process Sessions",
+      "archer_applanguage_SyncErrors": "Sync Errors",
+      "archer_applanguageid": "App Language",
+      "archer_code": "Code",
+      "archer_name": "Name",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "App Languages",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "App Languages (Views)",
+    "Name": "_archer_applanguage_views",
+    "RelatedEntityName": "App Languages",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "063c4de7-fa89-4713-bc00-ef7edc78c779": "Active App Languages",
+      "0e2afffa-c0bd-43f4-b6e6-2aee6ac9da26": "App Language Lookup View",
+      "aff60b88-98c2-4c4b-b8e9-e86cb6d6532d": "Inactive App Languages",
+      "e5655f32-607e-4ca4-987e-0d12c24ab609": "App Language Advanced Find View",
+      "efd52972-e1a4-4c5a-91ae-aad34d3e5fda": "App Language Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (App Languages)",
+    "Name": "archer_applanguage_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "App Languages"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "App Languages",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (App Languages)",
+    "Name": "archer_applanguage_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "App Languages"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "App Languages",
+    "Type": "OptionSetInfo"
+  }
+]

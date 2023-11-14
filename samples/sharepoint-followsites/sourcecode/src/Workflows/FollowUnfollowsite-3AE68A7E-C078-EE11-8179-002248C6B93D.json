@@ -1,0 +1,141 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "alexmsft_SharePointConnectionFollowSites"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Follow Sites SPO Site (alexmsft_FollowSitesSPOSite)": {
+          "defaultValue": "https://m365x765471.sharepoint.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alexmsft_FollowSitesSPOSite",
+            "description": "SharePoint site for the Follow Sites solution"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "fedd5b03-e011-4496-8dee-2ff30b7c8e14"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text_2": {
+                  "title": "Operation",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "SiteUri",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text_2",
+                "text_3"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Check_operation": {
+          "runAfter": {},
+          "cases": {
+            "Case_follow": {
+              "case": "Follow",
+              "actions": {
+                "Follow_site": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "43c819eb-07f6-4370-9d7a-0be260461b4c"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline_1",
+                      "operationId": "HttpRequest",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "@parameters('Follow Sites SPO Site (alexmsft_FollowSitesSPOSite)')",
+                      "parameters/method": "POST",
+                      "parameters/uri": "_api/social.following/follow",
+                      "parameters/body": "{\"actor\":{\n  \"ActorType\":2,\n  \"ContentUri\":\"@{triggerBody()['text_3']}\",\n  \"Id\":null\n}}"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            },
+            "Case_unfollow": {
+              "case": "Unfollow",
+              "actions": {
+                "Unfollow_site": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "13336752-bfc3-4a5c-9a9a-006daed22d91"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline_1",
+                      "operationId": "HttpRequest",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "@parameters('Follow Sites SPO Site (alexmsft_FollowSitesSPOSite)')",
+                      "parameters/method": "POST",
+                      "parameters/uri": "_api/social.following/stopfollowing",
+                      "parameters/body": "{\"actor\":{\n  \"ActorType\":2,\n  \"ContentUri\":\"@{triggerBody()['text_3']}\",\n  \"Id\":null\n}}"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerBody()['text_2']",
+          "metadata": {
+            "operationMetadataId": "da561dea-4a26-4d2d-b923-cbcd7f169674"
+          },
+          "type": "Switch"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

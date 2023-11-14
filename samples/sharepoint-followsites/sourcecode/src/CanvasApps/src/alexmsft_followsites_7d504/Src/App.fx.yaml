@@ -1,0 +1,85 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |
+        =Set(
+            gblLoading,
+            true
+        );
+        Set(
+            gblStartSearch,
+            false
+        );
+        Set(
+            gblIsSearching,
+            false
+        );
+        Concurrent(
+        // Collection of fluent ui colors for the tile background
+            ClearCollect(
+                colSiteColors,
+                {
+                    Value: 1,
+                    Color: ColorValue("#0f6cbd")
+                },
+                {
+                    Value: 2,
+                    Color: ColorValue("#d13438")
+                },
+                {
+                    Value: 3,
+                    Color: ColorValue("#107c10")
+                },
+                {
+                    Value: 4,
+                    Color: ColorValue("#3f3682")
+                },
+                {
+                    Value: 5,
+                    Color: ColorValue("#5b5fc7")
+                },
+                {
+                    Value: 6,
+                    Color: ColorValue("#eaa300")
+                },
+                {
+                    Value: 7,
+                    Color: ColorValue("#817400")
+                }
+            ),
+        // App colors
+            Set(
+                gblFollowSitesColor,
+                "#0078d4"
+            );
+            Set(
+                gblTileBorderColor,
+                "#d2d0ce"
+            ),
+            ClearCollect(
+                colFollowedSites,
+                ForAll(
+                    Table(ParseJSON(Getuserfollowedsites.Run().sites)),
+                    {
+                        siteTitle: Text(Value.siteTitle),
+                        siteUri: Text(Value.siteUri)
+                    }
+                )
+            )
+        );
+        ClearCollect(
+            colUserFollowedSites,
+            colFollowedSites
+        );
+        Set(
+            gblLoading,
+            false
+        );
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
