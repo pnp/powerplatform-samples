@@ -1,0 +1,968 @@
+"'Accounts Screen' As screen":
+    Fill: =RGBA(255, 255, 255, 1)
+
+    Rectangle1 As rectangle:
+        BorderColor: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(243, 242, 241,1)
+        Height: =Parent.Height
+        Width: =If(App.Width>App.Height,Nav2.Width,Nav2.Width+5)
+        ZIndex: =2
+
+    "FluentDetailsList1_1 As 'Fluent Details List (1.0.22)'.pcfdataset":
+        AlternateRowColor: =""
+        columns_Items: |-
+            =Table(
+                {
+                    ColName: "name",
+                    ColDisplayName: "Name",
+                    ColWidth: If(App.Width>App.Height,Self.Width-200-200-100,Parent.Width-Nav2.Width-50),
+                    ColSortable: true,
+                    ColIsBold: true,
+                    ColResizable: true
+                },
+                {
+                    ColName: "address1_city",
+                    ColWidth: 200,
+                    ColDisplayName: "City:",
+                    ColShowAsSubTextOf: "name"
+                },
+                {
+                    ColName: "address1_country",
+                    ColDisplayName: "Country:",
+                    ColShowAsSubTextOf: "name"
+                },
+                {
+                    ColName: "telephone1",
+                    ColDisplayName: "Telephone",
+                    ColWidth: 200,
+                    ColSortable: true,
+                    ColResizable: true
+                },
+                {
+                    ColName: "primarycontactid",
+                    ColDisplayName: "Primary Contact",
+                    ColWidth: 200,
+                    ColSortable: true,
+                    ColSortBy: "_primarycontactid_value",
+                    ColResizable: true,
+                    ColCellType: "link"
+                },
+                {
+                    ColName: "expand",
+                    ColDisplayName: "",
+                    ColCellType: "expand",
+                    ColRightAligned: true,
+                    ColWidth: 32
+                }
+            )
+        Compact: =false
+        CurrentSortDirection: ='PowerCAT.FluentDetailsList.CurrentSortDirection'.Ascending
+        DisplayMode: =DisplayMode.Edit
+        HeaderVisible: =true
+        Height: =Parent.Height-SearchBox2.Y-SearchBox2.Height-15
+        Items: =Accounts
+        LargeDatasetPaging: =true
+        PageSize: =50
+        SelectionAlwaysVisible: =false
+        SelectionType: ='PowerCAT.FluentDetailsList.SelectionType'.Multiple
+        SelectRowsOnFocus: =false
+        Width: =Parent.Width-Rectangle1.Width
+        X: =Rectangle1.Width
+        Y: =SearchBox2.Y+SearchBox2.Height+15
+        ZIndex: =3
+
+        "'Account Name3_1' As pcfDataField.textualColumn":
+            FieldDisplayName: ="Account Name"
+            FieldName: ="name"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =7
+
+        "'Main Phone3_1' As pcfDataField.textualColumn":
+            FieldDisplayName: ="Main Phone"
+            FieldName: ="telephone1"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =8
+
+        "'Address 1: City3_1' As pcfDataField.textualColumn":
+            FieldDisplayName: |-
+                ="Address 1: City"
+            FieldName: ="address1_city"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =3
+            ZIndex: =9
+
+        "'Primary Contact3_1' As pcfDataField":
+            FieldDisplayName: ="Primary Contact"
+            FieldName: ="primarycontactid"
+            FieldType: ="E"
+            FieldVariantName: ="complexTypeColumn"
+            Order: =4
+            ZIndex: =10
+
+    "CommandBar1_1 As 'Fluent Command Bar (1.0.22)'.pcfdataset":
+        DisplayMode: =DisplayMode.Edit
+        Height: =44
+        Items: |-
+            =Filter(
+                Table(
+                    {
+                        ItemKey: "back",
+                        ItemDisplayName: "",
+                        ItemIconName: "Back",
+                        Visible: true
+                    },
+                    {
+                        ItemKey: "new",
+                        ItemDisplayName: "New",
+                        ItemIconName: "Add",
+                        Visible: true
+                    },
+                    {
+                        ItemKey: "edit",
+                        ItemDisplayName: "Edit",
+                        ItemIconName: "Edit",
+                        Visible: CountRows(FluentDetailsList1_1.SelectedItems) = 1
+                    },
+                    {
+                        ItemKey: "deleteall",
+                        ItemDisplayName: "Delete All",
+                        ItemIconName: "Delete",
+                        Visible: CountRows(FluentDetailsList1_1.SelectedItems) > 1
+                    },
+                    {
+                        ItemKey: "delete",
+                        ItemDisplayName: "Delete",
+                        ItemIconName: "Delete",
+                        Visible: CountRows(FluentDetailsList1_1.SelectedItems) = 1
+                    },
+                    {
+                        ItemKey: "refresh",
+                        ItemDisplayName: "Refresh",
+                        ItemIconName: "refresh",
+                        Visible: true
+                    },
+                    {
+                        ItemKey: "duplicate",
+                        ItemDisplayName: "Duplicate",
+                        ItemIconName: "Copy",
+                        Visible: CountRows(FluentDetailsList1_1.SelectedItems) = 1
+                    },
+                    {
+                        ItemKey: "duplicateall",
+                        ItemDisplayName: "Duplicate All",
+                        ItemIconName: "Copy",
+                        Visible: CountRows(FluentDetailsList1_1.SelectedItems) > 1
+                    },
+                    {
+                        ItemKey: "deactivate",
+                        ItemDisplayName: "Deactivate",
+                        ItemIconName: "DeactivateOrders",
+                        Visible: CountRows(FluentDetailsList1_1.SelectedItems) = 1 
+                    },
+                    {
+                        ItemKey: "activate",
+                        ItemDisplayName: "Activate",
+                        ItemIconName: "ActivateOrders",
+                        Visible: CountRows(FluentDetailsList1_1.SelectedItems) = 1 
+                    },
+                    {
+                        ItemKey: "help",
+                        ItemDisplayName: "Help",
+                        ItemIconName: "help",
+                        Visible: true
+                    }
+                ),
+                ThisRecord.Visible = true
+            )
+        OnSelect: |-
+            =Switch(
+                Self.Selected.ItemKey,
+                "delete",
+                Set(
+                    varSpinner,
+                    true
+                );
+                Remove(
+                    Accounts,
+                    First(FluentDetailsList1_1.SelectedItems)
+                );
+                Notify(
+                    "Item Deleted",
+                    NotificationType.Information,
+                    500
+                );
+                Set(
+                    varSpinner,
+                    false
+                );
+                ,
+                "refresh",
+                Set(
+                    varSpinner,
+                    true
+                );
+                Refresh(Accounts);
+                Set(
+                    varSpinner,
+                    false
+                );
+                ,
+                "deleteall",
+                Set(
+                    varSpinner,
+                    true
+                );
+                ForAll(
+                    FluentDetailsList1_1.SelectedItems,
+                    Remove(
+                        Accounts,
+                        ThisRecord
+                    )
+                );
+                Notify(
+                    "All Items Deleted",
+                    NotificationType.Information,
+                    500
+                );
+                Set(
+                    varSpinner,
+                    false
+                );
+                ,
+                "new",
+                Set(
+                    varNewAccount,
+                    true
+                ),
+                "back",
+                Back(ScreenTransition.Fade),
+                "duplicate",
+                Set(
+                    varSpinner,
+                    true
+                );
+                UpdateContext({locDuplicateAcc: First(FluentDetailsList1_1.SelectedItems)});
+                Patch(
+                    Accounts,
+                    Defaults(Accounts),
+                    {
+                        'Account Name': locDuplicateAcc.'Account Name' & " - Copy",
+                        'Main Phone': locDuplicateAcc.'Main Phone',
+                        'Primary Contact': locDuplicateAcc.'Primary Contact',
+                        Email:locDuplicateAcc.Email,
+                        Website: locDuplicateAcc.Website
+                    }
+                );
+                Notify(
+                    "Account Successfully Duplicated",
+                    NotificationType.Success,
+                    500
+                );
+                Set(
+                    varSpinner,
+                    false
+                );,
+                "duplicateall",
+                Set(
+                    varSpinner,
+                    true
+                );
+                ForAll(
+                    FluentDetailsList1_1.SelectedItems,
+                    Patch(
+                        Accounts,
+                        Defaults(
+                            Accounts
+                        ),
+                        {
+                            'Account Name': ThisRecord.'Account Name' & " - Copy",
+                            'Main Phone': ThisRecord.'Main Phone',
+                            'Primary Contact': ThisRecord.'Primary Contact',
+                            Email:ThisRecord.Email,
+                            Website: ThisRecord.Website
+                        }
+                    )
+                );
+                Notify(
+                    "All Records Duplicated",
+                    NotificationType.Information,
+                    500
+                );
+                Set(
+                    varSpinner,
+                    false
+                );,
+                "activate",
+                Set(varSpinner,true);
+                Patch(
+                    Accounts,
+                    FluentDetailsList1_1.Selected,
+                    {
+                        Status:'Status (Accounts)'.Active
+                    }
+                );
+                Notify("Record Activated",NotificationType.Success,500);
+                Set(varSpinner,false),
+                "deactivate",
+                Set(varSpinner,true);
+                Patch(
+                    Accounts,
+                    FluentDetailsList1_1.Selected,
+                    {
+                        Status:'Status (Accounts)'.Inactive
+                    }
+                );
+                Notify("Record Deactivated",NotificationType.Success,500);
+                Set(varSpinner,false)
+                
+            )
+        Width: =Parent.Width-Rectangle1.Width
+        X: =Rectangle1.Width
+        Y: =49
+        ZIndex: =4
+
+    "ContextMenu1_1 As 'Fluent Context Menu (1.0.22)'.pcfdataset":
+        BorderColor: ="Transparent"
+        Chevron: =true
+        DisplayMode: =DisplayMode.Edit
+        FillColor: =
+        FontSize: =18
+        Height: =46
+        Items: |-
+            =Table(
+                  {
+                      ItemKey: "File",
+                      ItemIconName: "",
+                      ItemDisplayName: "Accounts - All Accounts",
+                      ItemOverflow:true,
+                      Filter: Accounts
+                  },
+                   {
+                      ItemKey: "Delete",
+                      ItemIconName: "",
+                      ItemDisplayName: "Accounts - My Accounts",
+                      ItemOverflow:true,
+                      Filter: Filter(Accounts, 'Owning User'.'Primary Email' = User().Email)
+                  }
+              )
+        TextAlignment: ='PowerCAT.ContextMenu.TextAlignment'.Left
+        Width: =292
+        X: =Rectangle1.Width
+        Y: =94
+        ZIndex: =5
+
+        "'Account Name5_1' As pcfDataField.textualColumn":
+            FieldDisplayName: ="Account Name"
+            FieldName: ="name"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =15
+
+        "'Main Phone5_1' As pcfDataField.textualColumn":
+            FieldDisplayName: ="Main Phone"
+            FieldName: ="telephone1"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =16
+
+        "'Address 1: City5_1' As pcfDataField.textualColumn":
+            FieldDisplayName: |-
+                ="Address 1: City"
+            FieldName: ="address1_city"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =3
+            ZIndex: =17
+
+        "'Primary Contact5_1' As pcfDataField":
+            FieldDisplayName: ="Primary Contact"
+            FieldName: ="primarycontactid"
+            FieldType: ="E"
+            FieldVariantName: ="complexTypeColumn"
+            Order: =4
+            ZIndex: =18
+
+    "SearchBox2 As 'Fluent SearchBox (1.0.22) Preview'":
+        DisplayMode: =DisplayMode.Edit
+        Height: =33
+        Underlined: =true
+        Width: =If(App.Width>App.Height,250,App.Width-Rectangle1.Width-20)
+        X: =If(App.Width>App.Height,Parent.Width-Self.Width-10,Rectangle1.Width+10)
+        Y: =If(App.Width>App.Height,101,150)
+        ZIndex: =6
+
+    Rectangle2 As rectangle:
+        Fill: =RGBA(116, 39, 116,1)
+        Height: =49
+        Width: =Parent.Width
+        ZIndex: =7
+
+    "Icon1 As 'Fluent Icon (1.0.22)'":
+        DisplayMode: =DisplayMode.Edit
+        FillColor: =""
+        FontColor: ="white"
+        FontSize: =15
+        Height: =49
+        IconName: ="Waffle"
+        IconSize: =27
+        IconType: ='PowerCAT.Icon.IconType'.ActionButton
+        Text: =If(App.Width>App.Height,"Creator Kit Template | "& App.ActiveScreen.Name)
+        TextAlignment: ='PowerCAT.Icon.TextAlignment'.Left
+        Width: =309
+        X: =0
+        Y: =0
+        ZIndex: =8
+
+    "Nav2 As 'Fluent Nav (1.0.22)'.pcfdataset":
+        CollapseByDefault: =true
+        DisplayMode: =DisplayMode.Edit
+        Height: =Parent.Height-Rectangle2.Height
+        Items: |-
+            =If(
+                App.Width > App.Height,
+                Table(
+                    {
+                        ItemKey: "1",
+                        ItemDisplayName: "",
+                        ItemIconName: "CollapseMenu",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "Home Screen",
+                        ItemDisplayName: "Home Screen",
+                        ItemIconName: "HomeSolid",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "Documents Screen",
+                        ItemDisplayName: "Documents",
+                        ItemExpanded: true,
+                        ItemIconName: "Document",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "3",
+                        ItemDisplayName: "Customers"
+                    },
+                    {
+                        ItemKey: "Accounts Screen",
+                        ItemDisplayName: "Accounts",
+                        ItemParentKey: "3",
+                        ItemIconName: "Accounts",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "Contacts Screen",
+                        ItemDisplayName: "Contacts",
+                        ItemParentKey: "3",
+                        ItemIconName: "People",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "4",
+                        ItemDisplayName: "Employees"
+                    },
+                    {
+                        ItemKey: "Users Screen",
+                        ItemDisplayName: "Users",
+                        ItemParentKey: "4",
+                        ItemIconName: "PeopleAlert",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "5",
+                        ItemDisplayName: "Settings"
+                    },
+                    {
+                        ItemKey: "Profile Screen",
+                        ItemDisplayName: "My Profile",
+                        ItemParentKey: "5",
+                        ItemIconName: "UserOptional",
+                        ItemVisible: true
+                    }
+                ),
+                Table(
+                    {
+                        ItemKey: "1",
+                        ItemDisplayName: "",
+                        ItemIconName: "CollapseMenu",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "Home Screen",
+                        ItemDisplayName: "Home Screen",
+                        ItemIconName: "HomeSolid",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "Documents Screen",
+                        ItemDisplayName: "Documents",
+                        ItemExpanded: true,
+                        ItemIconName: "Document",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "Accounts Screen",
+                        ItemDisplayName: "Accounts",
+                        ItemIconName: "Accounts",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "Contacts Screen",
+                        ItemDisplayName: "Contacts",
+                        ItemIconName: "People",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "Users Screen",
+                        ItemDisplayName: "Users",
+                        ItemIconName: "PeopleAlert",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "Profile Screen",
+                        ItemDisplayName: "My Profile",
+                        ItemIconName: "UserOptional",
+                        ItemVisible: true
+                    }
+                )
+            )
+        OnSelect: |-
+            =Switch(
+                Self.Selected.ItemKey,
+                "Contacts Screen",
+                Navigate(
+                    'Contacts Screen',
+                    ScreenTransition.Fade
+                ),
+                "Profile Screen",
+                Navigate(
+                    'Profile Screen',
+                    ScreenTransition.Fade
+                ),
+                "Documents Screen",
+                Navigate(
+                    'Documents Screen',
+                    ScreenTransition.Fade
+                ),
+                "Users Screen",
+                Navigate(
+                    'Users Screen',
+                    ScreenTransition.Fade
+                )
+            )
+        SelectedKey: =App.ActiveScreen.Name
+        Width: =If(App.Width>App.Height,241,35)
+        X: =0
+        Y: =Rectangle2.Height
+        ZIndex: =9
+
+    Image1 As image:
+        Height: =36
+        Image: =User().Image
+        RadiusBottomLeft: =100
+        RadiusBottomRight: =100
+        RadiusTopLeft: =100
+        RadiusTopRight: =100
+        Width: =36
+        X: =Parent.Width-Self.Width-10
+        Y: =6
+        ZIndex: =10
+
+    Label1 As label:
+        Align: =Align.Right
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =49
+        Size: =10
+        Text: =User().FullName
+        X: =Image1.X-Self.Width-10
+        ZIndex: =11
+
+    Rectangle3 As rectangle:
+        Fill: =RGBA(202, 202, 202, 1)
+        Height: =1
+        Width: =Parent.Width-Rectangle1.Width
+        X: =Rectangle1.Width
+        Y: =93
+        ZIndex: =12
+
+    Rectangle3_1 As rectangle:
+        Fill: =RGBA(202, 202, 202, 1)
+        Height: =CommandBar1_1.Height
+        Width: =1
+        X: =CommandBar1_1.X+40
+        Y: =CommandBar1_1.Y
+        ZIndex: =13
+
+    "ContextMenu1_4 As 'Fluent Context Menu (1.0.22)'.pcfdataset":
+        BorderColor: |-
+            ="#dadada"
+        Chevron: =true
+        DisplayMode: =DisplayMode.Edit
+        FillColor: |-
+            ="#f3f2f1"
+        FontSize: =18
+        Height: =46
+        IconColor: |-
+            ="#742774"
+        Items: |-
+            =Table(
+                  {
+                      ItemKey: "File",
+                      ItemIconName: "Shop",
+                      ItemDisplayName: "Sales",
+                      ItemOverflow:true
+                  },
+                  {
+                      ItemKey: "File",
+                      ItemIconName: "People",
+                      ItemDisplayName: "Customers",
+                      ItemOverflow:true
+                  }
+              )
+        TextAlignment: ='PowerCAT.ContextMenu.TextAlignment'.Left
+        Visible: =Self.Width>80
+        Width: =Nav2.Width
+        X: =0
+        Y: =App.Height-Self.Height
+        ZIndex: =14
+
+        "'Account Name5_4' As pcfDataField.textualColumn":
+            FieldDisplayName: ="Account Name"
+            FieldName: ="name"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =15
+
+        "'Main Phone5_4' As pcfDataField.textualColumn":
+            FieldDisplayName: ="Main Phone"
+            FieldName: ="telephone1"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =16
+
+        "'Address 1: City5_4' As pcfDataField.textualColumn":
+            FieldDisplayName: |-
+                ="Address 1: City"
+            FieldName: ="address1_city"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =3
+            ZIndex: =17
+
+        "'Primary Contact5_4' As pcfDataField":
+            FieldDisplayName: ="Primary Contact"
+            FieldName: ="primarycontactid"
+            FieldType: ="E"
+            FieldVariantName: ="complexTypeColumn"
+            Order: =4
+            ZIndex: =18
+
+    Rectangle4 As rectangle:
+        Fill: =RGBA(256, 256, 256, 0.6)
+        Height: =Parent.Height-Rectangle2.Height
+        Visible: =varNewAccount
+        Width: =Parent.Width-Rectangle1.Width
+        X: =Rectangle1.Width
+        Y: =Rectangle2.Height
+        ZIndex: =15
+
+    Container2 As groupContainer.verticalAutoLayoutContainer:
+        BorderColor: =RGBA(202, 202, 202, 1)
+        BorderThickness: =0.5
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =Parent.Height-Rectangle2.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =10
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =30
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        Visible: =varNewAccount
+        Width: =If(App.Width>App.Height,350,Parent.Width-Rectangle1.Width)
+        X: =Parent.Width-Self.Width
+        Y: =Rectangle2.Height
+        ZIndex: =16
+
+        Label2 As label:
+            AlignInContainer: =AlignInContainer.Stretch
+            FontWeight: =FontWeight.Semibold
+            Height: =90
+            Size: =12
+            Text: ="New Account"
+            VerticalAlign: =VerticalAlign.Top
+            ZIndex: =1
+
+        TextCanvas1 As Text:
+            Align: ="Start"
+            AlignInContainer: =AlignInContainer.Stretch
+            AutoHeight: =false
+            DisplayMode: =DisplayMode.Edit
+            Height: =20
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            Size: =14
+            Text: ="Account Name"
+            VerticalAlign: ="Middle"
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+        "TextInputCanvas2 As 'Text input'":
+            AlignInContainer: =AlignInContainer.Stretch
+            DisplayMode: =DisplayMode.Edit
+            Height: =32
+            LayoutMinHeight: =32
+            MaxLength: =-1
+            Placeholder: =""
+            Type: ="Text"
+            ValidationState: ="None"
+            Width: =320
+            X: =0
+            Y: =0
+            ZIndex: =3
+
+        TextCanvas1_1 As Text:
+            Align: ='TextCanvas.Align'.Start
+            AlignInContainer: =AlignInContainer.Stretch
+            AutoHeight: =false
+            DisplayMode: =DisplayMode.Edit
+            Height: =20
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            Size: =14
+            Text: ="Phone"
+            VerticalAlign: ="Middle"
+            Weight: ='TextCanvas.Weight'.Regular
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =4
+
+        "TextInputCanvas2_1 As 'Text input'":
+            AlignInContainer: =AlignInContainer.Stretch
+            DisplayMode: =DisplayMode.Edit
+            Height: =32
+            LayoutMinHeight: =32
+            MaxLength: =-1
+            Placeholder: =""
+            Type: ="Text"
+            ValidationState: ="None"
+            Width: =320
+            X: =0
+            Y: =0
+            ZIndex: =5
+
+        TextCanvas1_2 As Text:
+            Align: ='TextCanvas.Align'.Start
+            AlignInContainer: =AlignInContainer.Stretch
+            AutoHeight: =false
+            DisplayMode: =DisplayMode.Edit
+            Height: =20
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            Size: =14
+            Text: ="Email"
+            VerticalAlign: ="Middle"
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =6
+
+        "TextInputCanvas2_2 As 'Text input'":
+            AlignInContainer: =AlignInContainer.Stretch
+            DisplayMode: =DisplayMode.Edit
+            Height: =32
+            LayoutMinHeight: =32
+            MaxLength: =-1
+            Placeholder: =""
+            Type: ="Text"
+            ValidationState: ="None"
+            Width: =320
+            X: =0
+            Y: =0
+            ZIndex: =7
+
+        TextCanvas1_3 As Text:
+            Align: ='TextCanvas.Align'.Start
+            AlignInContainer: =AlignInContainer.Stretch
+            AutoHeight: =false
+            DisplayMode: =DisplayMode.Edit
+            Height: =20
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            Size: =14
+            Text: ="Website"
+            VerticalAlign: ="Middle"
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =8
+
+        "TextInputCanvas2_3 As 'Text input'":
+            AlignInContainer: =AlignInContainer.Stretch
+            DisplayMode: =DisplayMode.Edit
+            Height: =32
+            LayoutMinHeight: =32
+            MaxLength: =-1
+            Placeholder: =""
+            Type: ="Text"
+            ValidationState: ="None"
+            Width: =320
+            X: =0
+            Y: =0
+            ZIndex: =9
+
+        TextCanvas1_4 As Text:
+            Align: ='TextCanvas.Align'.Start
+            AlignInContainer: =AlignInContainer.Stretch
+            AutoHeight: =false
+            DisplayMode: =DisplayMode.Edit
+            Height: =20
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            Size: =14
+            Text: ="Primary Contact"
+            VerticalAlign: ="Middle"
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =10
+
+        DropdownCanvas1 As Dropdown.pcfdataset:
+            AlignInContainer: =AlignInContainer.Stretch
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =0
+            Height: =32
+            Items: =Filter(Contacts, 'Contacts (Views)'.'All Contacts')
+            LayoutMinHeight: =32
+            ValidationState: ="None"
+            Width: =0
+            X: =0
+            Y: =0
+            ZIndex: =11
+
+            "'Full Name1' As pcfDataField.textualColumn":
+                FieldDisplayName: ="Full Name"
+                FieldName: ="fullname"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =1
+                ZIndex: =19
+
+            Email1 As pcfDataField.textualColumn:
+                FieldDisplayName: ="Email"
+                FieldName: ="emailaddress1"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =2
+                ZIndex: =20
+
+            "'Business Phone1' As pcfDataField.textualColumn":
+                FieldDisplayName: ="Business Phone"
+                FieldName: ="telephone1"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =4
+                ZIndex: =21
+
+        Rectangle6 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =1
+            ZIndex: =12
+
+        Container3 As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =30
+            LayoutJustifyContent: =LayoutJustifyContent.End
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =13
+
+            ButtonCanvas1 As Button:
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                OnSelect: |-
+                    =
+                    Set(
+                        varNewAccount,
+                        false
+                    );
+                    Reset(TextInputCanvas2);
+                    Reset(TextInputCanvas2_1);
+                    Reset(TextInputCanvas2_2);
+                    Reset(TextInputCanvas2_3);
+                    Reset(DropdownCanvas1)
+                Text: ="Close"
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+            ButtonCanvas2 As Button:
+                Appearance: ='ButtonCanvas.Appearance'.Primary
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                OnSelect: |
+                    =Set(
+                        varSpinner,
+                        true
+                    );
+                    Patch(
+                        Accounts,
+                        Defaults(Accounts),
+                        {
+                            'Account Name': TextInputCanvas2.Value,
+                            'Main Phone': TextInputCanvas2_1.Value,
+                            Email: TextInputCanvas2_2.Value,
+                            Website: TextInputCanvas2_3.Value,
+                            'Primary Contact': DropdownCanvas1.Selected
+                        }
+                    );
+                    Reset(TextInputCanvas2);
+                    Reset(TextInputCanvas2_1);
+                    Reset(TextInputCanvas2_2);
+                    Reset(TextInputCanvas2_3);
+                    Reset(DropdownCanvas1);
+                    Set(
+                        varNewAccount,
+                        false
+                    );
+                    Set(
+                        varSpinner,
+                        false
+                    );
+                Text: ="Save"
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+    "Spinner1_1 As 'Fluent Spinner (1.0.22) Preview'":
+        BackgroundColor: |-
+            ="#ffffffa3"
+        DisplayMode: =DisplayMode.Edit
+        Height: =Parent.Height-Rectangle2.Height
+        SpinnerSize: ='PowerCAT.Spinner.SpinnerSize'.Large
+        Visible: =varSpinner
+        Width: =App.Width-Nav2.Width
+        X: =Nav2.Width
+        Y: =Rectangle2.Height
+        ZIndex: =17
+
