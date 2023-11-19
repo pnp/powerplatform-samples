@@ -1,0 +1,30 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Untitled1
+    triggerQueries:
+      - benefits
+      - company benefits
+      - perks
+      - discounts
+      - language course
+      - moving company
+
+  actions:
+    - kind: SendActivity
+      id: sendActivity_geVVTA
+      activity: Our company has teamed up with some fantastic partners to make your relocation journey even smoother! 
+
+    - kind: SendActivity
+      id: sendActivity_EhZY0A
+      activity: We're thrilled to offer you exclusive discounts with top-tier moving companies, as well as special rates for language courses and more. 
+
+    - kind: SendActivity
+      id: sendActivity_KgdpjG
+      activity: It's our way of ensuring you feel right at home, no matter where you're headed. Dive in and explore these perks today! 
+
+    - kind: SendActivity
+      id: sendActivity_fIV9xO
+      activity: You can find information about our company benefits at www.companyxyz.benefits.com. Dive in and explore these perks today! 📦🌍🗣️
