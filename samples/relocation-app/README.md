@@ -32,6 +32,7 @@ This Power App leverages AI to assist individuals starting a new job in a new ci
 Version|Date|Comments
 -------|----|--------
 1.0|September 24, 2023|Initial release
+1.0|November 19, 2023|Update sourcecode
 
 ## Minimal path to awesome
 
