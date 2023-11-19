@@ -1,0 +1,91 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Greeting
+    includeInOnSelectIntent: false
+    triggerQueries:
+      - Good afternoon
+      - Good morning
+      - Hello
+      - Hey
+      - Hi
+
+  actions:
+    - kind: SendActivity
+      id: sendMessage_abmysR
+      activity:
+        text:
+          - Whether you have questions about **company benefits**, need details on **required documents**, or wish to **connect with HR.**
+        speak:
+          - Hello, <break strength="medium" /> how can I help?
+
+    - kind: Question
+      id: question_WZJ7CM
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Var1
+      prompt: I’ve got you covered. How can I assist you today?
+      entity:
+        kind: EmbeddedEntity
+        definition:
+          kind: ClosedListEntity
+          items:
+            - id: Benefits
+              displayName: Benefits
+
+            - id: Documents
+              displayName: Documents
+
+            - id: Connect with HR
+              displayName: Connect with HR
+
+    - kind: ConditionGroup
+      id: conditionGroup_9vNliF
+      conditions:
+        - id: conditionItem_1zOvPZ
+          condition: =Topic.Var1 = 'cre85_bot1.topic.Greeting.main.question_WZJ7CM'.Benefits
+          actions:
+            - kind: BeginDialog
+              id: h0S6DR
+              dialog: cre85_bot1.topic.CompanyBenefits
+
+            - kind: Question
+              id: question_KwGUE3
+              interruptionPolicy:
+                allowInterruption: true
+
+              variable: init:Topic.Var2
+              prompt: Do you have any further question?
+              entity: BooleanPrebuiltEntity
+
+        - id: conditionItem_Vx58T8
+          condition: =Topic.Var1 = 'cre85_bot1.topic.Greeting.main.question_WZJ7CM'.Documents
+          actions:
+            - kind: Question
+              id: question_xxCtpK
+              interruptionPolicy:
+                allowInterruption: true
+
+              variable: init:Topic.VarUserInputDocumentOption
+              prompt: Tell me what do you want to know about relocating to Switzerland?
+              entity: StringPrebuiltEntity
+
+            - kind: SearchAndSummarizeContent
+              id: searchAndSummarizeContent_5Bmngy
+              userInput: =Topic.VarUserInputDocumentOption
+              publicDataSource:
+                kind: PublicSiteSearchDataSource
+                sites:
+                  - "https://switzerlandadvisor.com/"
+
+              sharePointSearchDataSource: {}
+              customDataSource: {}
+
+        - id: conditionItem_SJahqY
+          condition: =Topic.Var1 = 'cre85_bot1.topic.Greeting.main.question_WZJ7CM'.'Connect with HR'
+
+    - kind: CancelAllDialogs
+      id: cancelAllDialogs_01At22

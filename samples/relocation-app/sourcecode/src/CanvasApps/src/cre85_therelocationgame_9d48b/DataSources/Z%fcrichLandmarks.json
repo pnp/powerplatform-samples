@@ -1,0 +1,102 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cre85_zurichlandmarkses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cre85_zurichlandmarks",
+    "MaxGetRowsCount": 500,
+    "Name": "ZürichLandmarks",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cre85_landmarkdescription": "LandmarkDescription",
+      "cre85_landmarkimage": "Landmark Image",
+      "cre85_landmarkimageid": "cre85_LandmarkImageId",
+      "cre85_landmarkname": "LandmarkName",
+      "cre85_secondaryimage": "Secondary Image",
+      "cre85_secondaryimageid": "cre85_SecondaryImageId",
+      "cre85_zurichlandmarks_AsyncOperations": "System Jobs",
+      "cre85_zurichlandmarks_BulkDeleteFailures": "Bulk Delete Failures",
+      "cre85_zurichlandmarks_DuplicateBaseRecord": "Duplicate Records (cre85_zurichlandmarks_DuplicateBaseRecord)",
+      "cre85_zurichlandmarks_DuplicateMatchingRecord": "Duplicate Records (cre85_zurichlandmarks_DuplicateMatchingRecord)",
+      "cre85_zurichlandmarks_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cre85_zurichlandmarks_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cre85_zurichlandmarks_ProcessSession": "Process Sessions",
+      "cre85_zurichlandmarks_SyncErrors": "Sync Errors",
+      "cre85_zurichlandmarksid": "ZürichLandmarks ",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "ZürichLandmarks",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "ZürichLandmarks (Views)",
+    "Name": "_cre85_zurichlandmarks_views",
+    "RelatedEntityName": "ZürichLandmarks",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "6a40aa53-87bf-4bba-8b8e-0a315230520b": "ZürichLandmarks  Associated View",
+      "8c9de83b-444d-421a-97fb-9ff27d5ad5d1": "Active ZürichLandmarks",
+      "bce9f194-9298-433e-ab7c-d05555c4c7dc": "ZürichLandmarks  Lookup View",
+      "e9e29989-ad7e-4d64-811d-3f86794e0758": "Inactive ZürichLandmarks",
+      "ee95120c-3b63-4d6f-9c40-a0e1cead9fb0": "ZürichLandmarks  Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (ZürichLandmarks)",
+    "Name": "cre85_zurichlandmarks_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "ZürichLandmarks"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "ZürichLandmarks",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (ZürichLandmarks)",
+    "Name": "cre85_zurichlandmarks_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "ZürichLandmarks"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "ZürichLandmarks",
+    "Type": "OptionSetInfo"
+  }
+]
