@@ -1,0 +1,151 @@
+"scrWelcome As screen.'phoneLayout_Tutorial_ver3.0'":
+    Fill: =RGBA(31, 31, 31, 1)
+    LoadingSpinnerColor: =RGBA(255, 200, 61, 1)
+
+    TutorialNavigator1 As gallery.TutorialGalleryHorizontal:
+        AccessibleLabel: ="Layouts_Tutorial_Gallery_Accessible_Text"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Height: =85
+        Items: |-
+            =Table(           
+             {Step: 0, Text:"Cheers to Your New Beginnings, 
+             " & User().FullName & "!", Image: geography},    
+             {Step: 1, Text:"New in town? Let's tackle the essentials together!", Image: 'passport (1)'},       
+             {Step: 2, Text:"Ready to immerse yourself in the wonders of your new habitat?", Image: mountains},                      
+             {Step: 3, Text:"Don't miss out on cataloging your new adventures!", Image:'hot-air-balloon' }
+            )
+        ShowScrollbar: =false
+        TemplatePadding: =8
+        TemplateSize: =25
+        Width: =CountRows(Self.AllItems) * (Self.TemplateWidth + Self.TemplatePadding) + 8
+        X: =Parent.Width/2 - Self.Width/2
+        Y: =1051
+        ZIndex: =1
+
+        Circle1 As circle:
+            BorderColor: =RGBA(109, 109, 109, 1)
+            BorderThickness: =2
+            DisabledFill: =RGBA(255, 200, 61, 1)
+            Fill: =If(Or(ThisItem.Step = 0 && IsBlank(_guideStep), ThisItem.Step = _guideStep), iconPrev1.Color, RGBA(0,0,0,0))
+            FocusedBorderThickness: =4
+            Height: =Circle1.Width
+            HoverFill: =RGBA(255, 200, 61, 1)
+            OnSelect: =Set(_guideStep, ThisItem.Step)
+            PressedFill: =RGBA(255, 200, 61, 1)
+            TabIndex: =0
+            Width: =Parent.TemplateWidth - 5
+            X: =Parent.TemplateWidth/2 - Self.Width/2
+            Y: =Parent.TemplateHeight/2 - Self.Height/2
+            ZIndex: =1
+
+    TutorialImage1 As image:
+        AccessibleLabel: ="Layouts_Tutorial_Image_Accessible_Text"
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =450
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Image: =If(IsBlank(_guideStep), First(TutorialNavigator1.AllItems).Image, LookUp(TutorialNavigator1.AllItems, Step = _guideStep).Image)
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Width: =Parent.Width
+        Y: =105
+        ZIndex: =2
+
+    TutorialText1 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Font: =Font.'Segoe UI'
+        Height: =270
+        LineHeight: =1.3
+        PaddingLeft: =20
+        PaddingRight: =20
+        Size: =20
+        Text: =If(IsBlank(_guideStep), First(TutorialNavigator1.AllItems).Text, LookUp(TutorialNavigator1.AllItems, Step = _guideStep).Text)
+        Width: =420
+        X: =(Parent.Width - Self.Width)/2
+        Y: =650
+        ZIndex: =3
+
+    iconPrev1 As icon.ChevronLeft:
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Color: =RGBA(255, 200, 61, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Set(_guideStep, Max(_guideStep-1, First(TutorialNavigator1.AllItems).Step))
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        TabIndex: =0
+        Tooltip: ="Previous step"
+        Visible: =_guideStep > 0
+        X: =TutorialText1.X - iconPrev1.Width
+        Y: =TutorialText1.Y + TutorialText1.Height / 2 - Self.Height/2
+        ZIndex: =4
+
+    iconNext1 As icon.ChevronRight:
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Color: =RGBA(255, 200, 61, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.ChevronRight
+        OnSelect: =Set(_guideStep, Min(_guideStep+1, Last(TutorialNavigator1.AllItems).Step))
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        TabIndex: =0
+        Tooltip: ="Next step"
+        Visible: =Last(TutorialNavigator1.AllItems).Step > _guideStep
+        X: =TutorialText1.X + TutorialText1.Width
+        Y: =iconPrev1.Y
+        ZIndex: =5
+
+    Button1 As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        Color: =RGBA(31, 31, 31, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(255, 200, 61, 1)
+        FocusedBorderColor: =ColorFade(Self.Fill, 75%)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =70
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =RGBA(31, 31, 31, 1)
+        HoverFill: =ColorFade(RGBA(255, 200, 61, 1), 10%)
+        OnSelect: =Navigate(scrHome)
+        PaddingBottom: =15
+        PaddingLeft: =15
+        PaddingRight: =15
+        PaddingTop: =15
+        PressedBorderColor: =ColorFade(RGBA(255, 200, 61, 1), 50%)
+        PressedColor: =RGBA(31, 31, 31, 1)
+        PressedFill: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        RadiusBottomLeft: =15
+        RadiusBottomRight: =15
+        RadiusTopLeft: =15
+        RadiusTopRight: =15
+        Size: =24
+        Text: ="Get Started"
+        Width: =280
+        X: =185
+        Y: =920
+        ZIndex: =7
+
