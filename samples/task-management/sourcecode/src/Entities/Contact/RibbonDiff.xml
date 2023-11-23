@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="wa.contact.Button4.Button.CustomAction" Location="Mscrm.Form.contact.MainTab.Save.Controls._children" Sequence="55">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:wa.contact.Button4.Button.Alt" Command="wa.contact.Command1.Command" Id="wa.contact.Button4.Button" LabelText="$LocLabels:wa.contact.Button4.Button.LabelText" Sequence="55" TemplateAlias="o1" ToolTipTitle="$LocLabels:wa.contact.Button4.Button.ToolTipTitle" ToolTipDescription="$LocLabels:wa.contact.Button4.Button.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="wa.contact.Command1.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="getAccountDetails" Library="$webresource:wa_ribbonbutton">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules />
+    <EnableRules />
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="wa.contact.Button4.Button.Alt">
+      <Titles>
+        <Title description="RibbonButton" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="wa.contact.Button4.Button.LabelText">
+      <Titles>
+        <Title description="RibbonButton" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="wa.contact.Button4.Button.ToolTipDescription">
+      <Titles>
+        <Title description="RibbonButton" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="wa.contact.Button4.Button.ToolTipTitle">
+      <Titles>
+        <Title description="RibbonButton" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

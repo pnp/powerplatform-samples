@@ -1,0 +1,135 @@
+AppHeader As CanvasComponent:
+    Fill: =RGBA(40, 112, 134, 1)
+    Height: =80
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Header_3 As rectangle:
+        Fill: =theme.darkFont
+        Height: =80
+        Width: =Parent.Width
+        ZIndex: =1
+
+    Image13_3 As image:
+        Height: =59
+        Image: =clipboard
+        Width: =70
+        X: =80
+        Y: =10
+        ZIndex: =2
+
+    Label9_3 As label:
+        Color: =theme.contrastColor
+        Font: =Font.'Patrick Hand'
+        Height: =43
+        Size: =22
+        Text: ="Task Managment App"
+        Width: =254
+        X: =145
+        Y: =20
+        ZIndex: =3
+
+    user_profileImage_4 As image:
+        BorderColor: =RGBA(255, 255, 255, 1)
+        BorderThickness: =2
+        Height: =60
+        Image: =If(IsBlank(activeUser.ProfileImage), 'add-user', activeUser.ProfileImage)
+        ImagePosition: =ImagePosition.Fill
+        OnSelect: =
+        PaddingRight: =5
+        RadiusBottomLeft: =60
+        RadiusBottomRight: =60
+        RadiusTopLeft: =60
+        RadiusTopRight: =60
+        Width: =60
+        X: =1221
+        Y: =11
+        ZIndex: =4
+
+    Label2_3 As label:
+        Align: =Align.Right
+        Color: =theme.lightFont
+        Font: =Font.'Patrick Hand'
+        Height: =42
+        Size: =12
+        Text: =If(IsBlank(activeUser.UserName),"User Name", activeUser.UserName)
+        Width: =181
+        X: =1033
+        Y: =21
+        ZIndex: =5
+
+    Image9 As image:
+        Height: =80
+        Image: ='icons8-back-96 (1)'
+        OnSelect: =Back()
+        Width: =47
+        X: =12
+        ZIndex: =6
+
+    Icon1 As icon.VerticalLine:
+        Color: =ColorFade(theme.darkFont,0.4)
+        FocusedBorderThickness: =1
+        Height: =Parent.Height -10
+        Icon: =Icon.VerticalLine
+        Width: =4
+        X: =72
+        Y: =6
+        ZIndex: =7
+
+    Image8 As image:
+        Height: =76
+        Image: ='icons8-rounded-square-100'
+        Width: =54
+        X: =1301
+        Y: =2
+        ZIndex: =8
+
+    "TabList1 As 'Tab list'.pcfdataset":
+        Alignment: ='TabList.Alignment'.Vertical
+        BasePaletteColor: =RGBA(15, 84, 140, 1)
+        DefaultSelectedItems: |-
+            =LookUp(
+                MenuData,
+                Screen = App.ActiveScreen
+            )
+        DisplayMode: =DisplayMode.Edit
+        FontSize: =16
+        Height: =25
+        Items: =MenuData
+        OnSelect: |-
+            =Switch(
+                Self.Selected.Action,
+                "Navigate",
+                Navigate(Self.Selected.Screen),
+                "Logout",
+                Set(
+                    activeUser,
+                    Blank()
+                );
+                Navigate(Self.Selected.Screen);
+                Set(
+                    manager_access,
+                    false
+                );
+                Set(
+                    showErr,
+                    false
+                )
+            )
+        Size: ='TabList.Size'.Large
+        Visible: =true
+        Width: =32
+        X: =1312
+        Y: =32
+        ZIndex: =9
+
+        Name1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Name"
+            FieldName: ="Name"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =1
+

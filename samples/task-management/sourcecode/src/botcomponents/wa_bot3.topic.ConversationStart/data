@@ -1,0 +1,27 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnConversationStart
+  id: main
+  actions:
+    - kind: SendActivity
+      id: sendMessage_M0LuhV
+      activity:
+        text:
+          - Hello, I'm {System.Bot.Name}. How can I help?
+        speak:
+          - Thanks for calling, how can I help?
+
+    - kind: Question
+      id: question_ytMBjX
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Var1
+      prompt: what is your age ?
+      entity:
+        kind: ClosedListEntityReference
+        entityId: wa_bot3.entity.AgeGroup
+
+    - kind: SendActivity
+      id: sendActivity_guxaIp
+      activity: "{Topic.Var1}"

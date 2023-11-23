@@ -1,0 +1,47 @@
+function LeadFilterChoice(executionContext) {
+  let parentChoiceColumn = "wa_status";
+  let childChoiceColumn = "wa_statusreason";
+  let veriable = null
+
+  let formContext = executionContext.getFormContext(); // get form context
+  let parentValue = formContext.getAttribute(parentChoiceColumn).getValue(); // get the selected value in the parent choice column
+  let parentOptions = formContext.getAttribute(parentChoiceColumn).getOptions(); // get the option sets of the parent choice column
+ 
+//   get choices values from parent choice column
+  let parentValue1 = parentOptions[0].value;
+  let parentValue2 = parentOptions[1].value;
+  let parentValue3 = parentOptions[2].value;
+
+
+  let childOptions = formContext.getAttribute(childChoiceColumn).getOptions(); // get the option sets of the child choice column
+  // get choices of child choice column
+
+    // get choices of child choice column
+    let childOption1 = childOptions[0];
+    let childOption2 = childOptions[1];
+    let childOption3 = childOptions[2];
+    let childOption4 = childOptions[3];
+    let childOption5 = childOptions[4];
+    let childOption6 = childOptions[5];
+  // clear the choices of child choice column
+  formContext.getControl(childChoiceColumn).clearOptions();
+
+  if (parentValue === parentValue1) {
+    // check if first option is selected
+    // add the options we need
+    formContext.getControl(childChoiceColumn).addOption(childOption1);
+    formContext.getControl(childChoiceColumn).addOption(childOption2);
+  } 
+  else if (parentValue === parentValue2) {
+    // check if second option is selected
+    // add the options we need
+    formContext.getControl(childChoiceColumn).addOption(childOption3);
+  }
+  else if (parentValue === parentValue3) {
+    // check if second option is selected
+    // add the options we need
+    formContext.getControl(childChoiceColumn).addOption(childOption4);
+    formContext.getControl(childChoiceColumn).addOption(childOption5);
+    formContext.getControl(childChoiceColumn).addOption(childOption6);
+  }
+}

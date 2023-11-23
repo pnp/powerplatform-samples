@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{195ad884-dab1-45e3-a924-617ca6857c9d}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="true">
+      <tabs>
+        <tab verticallayout="true" id="{2fc68399-2059-4b28-8e95-087604fc9156}" IsUserDefined="1" name="cardForm">
+          <labels>
+            <label description="Main Form" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="40%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{35c3e392-31f2-45e5-905d-31befc535ba7}" columns="1" name="mainform_opp">
+                  <labels>
+                    <label description="MainForm" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{d1fdd812-eaaa-4c69-98ba-014359248640}">
+                        <labels>
+                          <label description="Topic" languagecode="1033" />
+                        </labels>
+                        <control id="wa_topic" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="wa_topic" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1b5653a8-4af8-4767-a43e-e503df4e726f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Budget Amount " languagecode="1033" />
+                        </labels>
+                        <control id="wa_budgetamount" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="wa_budgetamount" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6ab1b588-0f30-4162-b647-5ffe4a216bf8}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Contact" languagecode="1033" />
+                        </labels>
+                        <control id="wa_contact" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="wa_contact" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{23e9bd29-c9bb-4abd-b91a-b770c4b09705}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Lead" languagecode="1033" />
+                        </labels>
+                        <control id="wa_lead" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="wa_lead" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{46a074cf-b9bf-46cc-9d3c-536e749a579c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                        </labels>
+                        <control id="wa_status" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="wa_status" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fb22ec68-03bf-4140-888a-2fd6801d43fc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Status Reason " languagecode="1033" />
+                        </labels>
+                        <control id="wa_statusreason" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="wa_statusreason" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{61b7973f-d9d2-4959-abe0-a4231dec40be}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{acc39bac-20f3-4e87-b0d8-5d785619f2f0}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{fce41dcd-cf35-4725-9ebb-7516e0285c82}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{83c2cf25-48d5-4ece-80b2-a0103d3b9c5c}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{4a6e750c-e3ef-4749-b609-fee93eb7d742}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e0abe136-e140-4941-8bda-de773a8426b1}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Complete Final Proposal " languagecode="1033" />
+                        </labels>
+                        <control id="wa_completefinalproposal" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="wa_completefinalproposal" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5e006f76-0a3a-4454-822d-9e8f5fdb44d9}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Opp Qualified" languagecode="1033" />
+                        </labels>
+                        <control id="wa_oppqualified" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="wa_oppqualified" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0c753849-2145-4500-b0b1-6846819e8acc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Present Proposal " languagecode="1033" />
+                        </labels>
+                        <control id="wa_presentproposal" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="wa_presentproposal" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fe98beb3-c67a-46c9-8a11-761b35ba02a3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Currency" languagecode="1033" />
+                        </labels>
+                        <control id="transactioncurrencyid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="transactioncurrencyid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b1d855d1-3a79-46c8-928c-a2563dc727f1}" locklevel="0" colspan="1" rowspan="5">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                        </labels>
+                        <control id="wa_description" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="wa_description" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="_section_498" id="e6afa133-76fd-48ca-951d-d049bcb354b5" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="ACCOUNT" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{3c7c3032-dcf0-4889-9783-343022f64db6}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="New QV control 1688928125783" languagecode="1033" />
+                        </labels>
+                        <control id="QuickviewControl1688928125783" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="wa_contact">
+                          <parameters>
+                            <DisplayAsCustomer360Tile>false</DisplayAsCustomer360Tile>
+                            <QuickForms>&lt;QuickFormIds&gt;&lt;QuickFormId entityname="contact"&gt;707fc57b-c5e6-471b-a180-e37ed28a38e2&lt;/QuickFormId&gt;&lt;/QuickFormIds&gt;</QuickForms>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="25%">
+              <sections>
+                <section name="timeline" id="aaa39259-581c-4c65-b076-9298c6233fb0" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell showlabel="false" locklevel="0" id="{4f2b3baa-5f04-4d03-8e73-6f7feff5f1d9}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{ef99a27b-5d39-40b2-bc16-07933be3cfd2}" rowspan="15" colspan="1">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-C143-495E-A496-C962E5B4488E}" disabled="false">
+                          <parameters>
+                            <UClientActivities>email</UClientActivities>
+                            <UClientDisplayActivityUsing>defaultfields</UClientDisplayActivityUsing>
+                            <UClientActivityCardMap>appointment:4201:,email:4202:,fax:4204:,letter:4207:,phonecall:4210:,recurringappointmentmaster:4251:,socialactivity:4216:,task:4212:,chat:10094:,msfp_alert:10409:,msfp_surveyinvite:10410:,msfp_surveyresponse:10411:,</UClientActivityCardMap>
+                            <UClientActivitiesConfigurationJSON>{"appointment":{"showTopDate":true,"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"phonecall":{"showTopDate":true,"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"recurringappointmentmaster":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"socialactivity":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"task":{"showTopDate":true,"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"chat":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_alert":{"showTopDate":true,"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"msfp_surveyinvite":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_surveyresponse":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"}}</UClientActivitiesConfigurationJSON>
+                            <UClientNotesConfigurationJSON>{"hideNoteTitleForAuthoringMode":false,"fieldsConfig":{"labelOverride":false,"header":{"labelOption":"Hide","displayOption":"Hide"},"body":[{"labelOption":"Hide","displayOption":"AlwaysShow"},{"labelOption":"Hide","displayOption":"AlwaysShow"}],"footer":{"labelOption":"Hide","displayOption":"AlwaysShow"}}}</UClientNotesConfigurationJSON>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="35%">
+              <sections>
+                <section name="cardForm_section_4" id="9599254a-2cf0-48b3-9462-dbfa2629ee95" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="COMPITITORS" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell showlabel="false" locklevel="0" id="{cbccc0d1-8385-4e1b-9019-6104b4d97cd4}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{00755bb6-d158-467e-bd26-212207d98fd8}" rowspan="4" colspan="1" auto="false" showlabel="true">
+                        <labels>
+                          <label description="COMPITITORS" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>5</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>wa_competitor</TargetEntityType>
+                            <ViewId>{6B84D6E5-B13E-41E5-8A0B-59664FF83FB8}</ViewId>
+                            <ViewIds>{6B84D6E5-B13E-41E5-8A0B-59664FF83FB8}</ViewIds>
+                            <RelationshipName>wa_Opportunity_wa_Competitor_wa_Competito</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="cardForm_section_5" id="3c36ae9a-8952-4b00-bfab-a9a861ac2bf7" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="true">
+                  <labels>
+                    <label description="PRODUCTS" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell showlabel="false" locklevel="0" id="{3fa461f8-749d-499a-a511-6f143b60c54b}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{e81334a0-4fc0-488c-97c3-391af59ed6c9}" colspan="1" rowspan="1" showlabel="true">
+                        <labels>
+                          <label description="PRODUCTS" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="cc_1688754313759" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{6bb309e6-9fb3-462b-a6ee-1ca9d525fef0}">
+                          <parameters>
+                            <TargetEntityType>wa_product</TargetEntityType>
+                            <ViewId>{1812661C-890D-4F9C-9642-8A059D5D1E81}</ViewId>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>wa_Opportunity_wa_Product_wa_Product</RelationshipName>
+                            <ViewIds>{1812661C-890D-4F9C-9642-8A059D5D1E81}</ViewIds>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <EnableQuickFind>false</EnableQuickFind>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_3" id="2da98f53-7ff9-4ac3-844b-269332f7523c" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Detail Form" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_3_section_3" id="7ca6368d-ffab-4c44-af4e-d9942ad0277b" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="11" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{0b8a89d0-379b-45e5-bf22-08ef8523a521}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Account" languagecode="1033" />
+                        </labels>
+                        <control id="wa_account" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="wa_account" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0bb6b976-1f3b-4703-a1bb-a76e24a1a62f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Referral name " languagecode="1033" />
+                        </labels>
+                        <control id="wa_referralname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="wa_referralname" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b8bb1fe0-a269-43b7-bb35-2e7aa53d563b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Current Situation " languagecode="1033" />
+                        </labels>
+                        <control id="wa_currentsituation" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="wa_currentsituation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c15ac748-fb8f-4bfa-8b1a-91b56e3c359c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Customer Need " languagecode="1033" />
+                        </labels>
+                        <control id="wa_customerneed" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="wa_customerneed" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{dfe04115-2aba-4d0b-8909-2cdd0f616bbc}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{c8718b58-82fc-43d4-bc6c-daae541f220d}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{3521c166-0f14-4634-a147-2227d4832727}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{0fff1de5-3fff-497f-976c-bc12cede103c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell locklevel="0" id="{28bc385b-2032-4e09-bb8f-8a9289c4a19f}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{282c4e4b-26cf-4f9e-a621-b760dafb6200}" colspan="1" rowspan="1" showlabel="true" visible="true">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{5ec85dc7-354e-4aa6-ab5f-5b55010aa692}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{db330e1d-8126-46e2-b9a7-caace590c1da}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{c847d367-95e0-4eee-aefd-2bfe00896d32}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{54b34e2f-1b70-4e2d-b1fd-09de9130ccd9}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+      <controlDescriptions>
+        <controlDescription forControl="{6bb309e6-9fb3-462b-a6ee-1ca9d525fef0}">
+          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+            <parameters />
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <TargetEntityType>wa_product</TargetEntityType>
+                <ViewId>{1812661c-890d-4f9c-9642-8a059d5d1e81}</ViewId>
+                <IsUserView>false</IsUserView>
+                <EnableViewPicker>false</EnableViewPicker>
+                <RelationshipName>wa_Opportunity_wa_Product_wa_Product</RelationshipName>
+                <FilteredViewIds>{1812661C-890D-4F9C-9642-8A059D5D1E81}</FilteredViewIds>
+              </data-set>
+              <data-set name="SubGrid">
+                <TargetEntityType>wa_product</TargetEntityType>
+                <ViewId>{1812661c-890d-4f9c-9642-8a059d5d1e81}</ViewId>
+                <IsUserView>false</IsUserView>
+              </data-set>
+              <EnableGroupBy type="Enum" static="true">no</EnableGroupBy>
+              <EnableEditing type="Enum" static="true">yes</EnableEditing>
+              <ReflowBehavior type="Enum" static="true">GridOnly</ReflowBehavior>
+              <ListLayoutDirection type="Enum" static="true">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse type="Enum" static="true">false</EnableSubGridAutoCollapse>
+              <EnableFiltering type="Enum" static="true">no</EnableFiltering>
+              <HideNestedGridColumnHeader type="Enum" static="true">yes</HideNestedGridColumnHeader>
+              <EnableJumpBar type="Enum" static="true">no</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <TargetEntityType>wa_product</TargetEntityType>
+                <ViewId>{1812661c-890d-4f9c-9642-8a059d5d1e81}</ViewId>
+                <IsUserView>false</IsUserView>
+                <EnableViewPicker>false</EnableViewPicker>
+                <RelationshipName>wa_Opportunity_wa_Product_wa_Product</RelationshipName>
+                <FilteredViewIds>{1812661C-890D-4F9C-9642-8A059D5D1E81}</FilteredViewIds>
+              </data-set>
+              <data-set name="SubGrid">
+                <TargetEntityType>wa_product</TargetEntityType>
+                <ViewId>{1812661c-890d-4f9c-9642-8a059d5d1e81}</ViewId>
+                <IsUserView>false</IsUserView>
+              </data-set>
+              <EnableGroupBy type="Enum" static="true">no</EnableGroupBy>
+              <EnableEditing type="Enum" static="true">yes</EnableEditing>
+              <ReflowBehavior type="Enum" static="true">GridOnly</ReflowBehavior>
+              <ListLayoutDirection type="Enum" static="true">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse type="Enum" static="true">false</EnableSubGridAutoCollapse>
+              <EnableFiltering type="Enum" static="true">no</EnableFiltering>
+              <HideNestedGridColumnHeader type="Enum" static="true">yes</HideNestedGridColumnHeader>
+              <EnableJumpBar type="Enum" static="true">no</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <TargetEntityType>wa_product</TargetEntityType>
+                <ViewId>{1812661c-890d-4f9c-9642-8a059d5d1e81}</ViewId>
+                <IsUserView>false</IsUserView>
+                <EnableViewPicker>false</EnableViewPicker>
+                <RelationshipName>wa_Opportunity_wa_Product_wa_Product</RelationshipName>
+                <FilteredViewIds>{1812661C-890D-4F9C-9642-8A059D5D1E81}</FilteredViewIds>
+              </data-set>
+              <data-set name="SubGrid">
+                <TargetEntityType>wa_product</TargetEntityType>
+                <ViewId>{1812661c-890d-4f9c-9642-8a059d5d1e81}</ViewId>
+                <IsUserView>false</IsUserView>
+              </data-set>
+              <EnableGroupBy type="Enum" static="true">no</EnableGroupBy>
+              <EnableEditing type="Enum" static="true">yes</EnableEditing>
+              <ReflowBehavior type="Enum" static="true">GridOnly</ReflowBehavior>
+              <ListLayoutDirection type="Enum" static="true">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse type="Enum" static="true">false</EnableSubGridAutoCollapse>
+              <EnableFiltering type="Enum" static="true">no</EnableFiltering>
+              <HideNestedGridColumnHeader type="Enum" static="true">yes</HideNestedGridColumnHeader>
+              <EnableJumpBar type="Enum" static="true">no</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <formLibraries>
+        <Library name="wa_filterStatusChoices" libraryUniqueId="{ff9b2d33-8a38-4b38-9cbc-cbd1f1e397f8}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="false" active="false" attribute="wa_status">
+          <Handlers>
+            <Handler functionName="filterStatusChoices" libraryName="wa_filterStatusChoices" handlerUniqueId="{45979f17-ad06-4028-b072-0861e419eaa2}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="filterStatusChoices" libraryName="wa_filterStatusChoices" handlerUniqueId="{1041322f-0e60-4985-bb79-09cf4ccefd67}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

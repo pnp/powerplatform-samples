@@ -1,0 +1,167 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "wa_cruiseses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "wa_cruises",
+    "MaxGetRowsCount": 2000,
+    "Name": "Cruises",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr9a5_arraystring": "array string",
+      "cr9a5_birthdate": "Birth Date",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "wa_boatname": "Boat Name",
+      "wa_captain": "Captain",
+      "wa_cruisedate": "Cruise date",
+      "wa_cruiseid": "Cruise ID",
+      "wa_cruises_AsyncOperations": "System Jobs",
+      "wa_cruises_BulkDeleteFailures": "Bulk Delete Failures",
+      "wa_cruises_DuplicateBaseRecord": "Duplicate Records (wa_cruises_DuplicateBaseRecord)",
+      "wa_cruises_DuplicateMatchingRecord": "Duplicate Records (wa_cruises_DuplicateMatchingRecord)",
+      "wa_cruises_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "wa_cruises_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "wa_cruises_ProcessSession": "Process Sessions",
+      "wa_cruises_SyncErrors": "Sync Errors",
+      "wa_cruisesid": "Cruises ",
+      "wa_destination": "Destination",
+      "wa_wa_passengers_CruiseID_wa_cruises": "Passengers"
+    },
+    "PreferredName": "Cruises",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Cruises (Views)",
+    "Name": "_wa_cruises_views",
+    "RelatedEntityName": "Cruises",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1b3f15cc-ac52-474e-9b7f-b04f13c26bb0": "Cruises  Associated View",
+      "2a4b298b-d049-4194-8a3b-d9cfbe1459f3": "Cruises  Advanced Find View",
+      "572a65cd-5d87-4265-84dd-8260ba24df7c": "Inactive Cruises",
+      "728b199f-578e-403f-a685-d9b89551fff6": "Active Cruises",
+      "fb2be02f-7b90-40b0-bc42-dc3ac8bbabc9": "Cruises  Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (Cruises)",
+    "Name": "wa_cruises_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Cruises"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Cruises",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Cruises)",
+    "Name": "wa_cruises_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Cruises"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Cruises",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Boat Name (Cruises)",
+    "Name": "wa_cruises_wa_boatname",
+    "OptionSetInfoNameMapping": {
+      "127620000": "Mudskipper ",
+      "127620001": "Sunshine",
+      "127620002": "Holiday"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "wa_boatname",
+        "OptionSetReferenceEntityName": "Cruises"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "wa_boatname",
+    "RelatedEntityName": "Cruises",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Captain (Cruises)",
+    "Name": "wa_cruises_wa_captain",
+    "OptionSetInfoNameMapping": {
+      "127620000": "Renny",
+      "127620001": "Blye",
+      "127620002": "Jones"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "wa_captain",
+        "OptionSetReferenceEntityName": "Cruises"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "wa_captain",
+    "RelatedEntityName": "Cruises",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Destination (Cruises)",
+    "Name": "wa_cruises_wa_destination",
+    "OptionSetInfoNameMapping": {
+      "127620000": "Catalina",
+      "127620001": "Santa Cruz",
+      "127620002": "Santa Rosa"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "wa_destination",
+        "OptionSetReferenceEntityName": "Cruises"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "wa_destination",
+    "RelatedEntityName": "Cruises",
+    "Type": "OptionSetInfo"
+  }
+]
