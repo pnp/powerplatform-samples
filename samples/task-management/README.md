@@ -2,7 +2,7 @@
 
 ## Summary
 
-This Canvas app provedes a seamless way of adding, assigning, and managing tasks. All in one place.
+This Canvas app provides a seamless way of adding, assigning, and managing tasks. All in one place.
 
 📢 This project has been a labor of love, and it's now ready for you to explore. With this app, you can:
 
