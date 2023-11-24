@@ -1,0 +1,244 @@
+Screen2 As screen:
+
+    HeaderContainer_1 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Bold
+        Fill: =RGBA(175, 191, 224, 1)
+        Height: =80
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Label1_1 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(136, 160, 209, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =Parent.Height
+            Size: =24
+            Text: ="Create New Ticket"
+            Width: =Parent.Width
+            ZIndex: =1
+
+    Arrow1 As arrow.backArrow:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =70
+        OnSelect: =Back()
+        Width: =70
+        X: =6
+        Y: =4
+        ZIndex: =2
+
+    CardContainer_1 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Bold
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =Parent.Height*.2
+        Width: =Parent.Width
+        Y: =80
+        ZIndex: =3
+
+        Button1_1 As button:
+            Color: =RGBA(54, 176, 75, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =100
+            Text: =CountRows(col_Ticket) & Char(10)& "All Ticket "
+            Width: =Parent.Width/5 - Parent.Width*.030
+            X: =27
+            Y: =18
+            ZIndex: =1
+
+        Button2_1 As button:
+            Color: =RGBA(39, 113, 194, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =100
+            Text: |-
+                =CountRows(Filter(col_Ticket,Status.Value="New"))&Char(10)&
+                "New"
+            Width: =Parent.Width/5 - Parent.Width*.030
+            X: =294
+            Y: =Parent.Height/2 - Self.Height/2
+            ZIndex: =2
+
+        Button3_1 As button:
+            Color: =RGBA(255, 191, 0, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =100
+            Text: |-
+                =CountRows(Filter(col_Ticket,Status.Value="In Progress"))&Char(10)&
+                "In Progress"
+            Width: =Parent.Width/5 - Parent.Width*.030
+            X: =560
+            Y: =Parent.Height/2 - Self.Height/2
+            ZIndex: =3
+
+        Button4_1 As button:
+            Color: =RGBA(255, 0, 0, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =100
+            Text: |-
+                =CountRows(Filter(col_Ticket
+                ,Status.Value="Closed"))&Char(10)&
+                "Closed"
+            Width: =Parent.Width/5 - Parent.Width*.030
+            X: =827
+            Y: =Parent.Height/2 - Self.Height/2
+            ZIndex: =4
+
+        Button5_1 As button:
+            Color: =RGBA(109, 49, 162, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =100
+            Text: |-
+                =CountRows(Filter(col_Ticket,Status.Value="On Hold"))&Char(10)&
+                "On Hold"
+            Width: =Parent.Width/5 - Parent.Width*.030
+            X: =1093
+            Y: =Parent.Height/2 - Self.Height/2
+            ZIndex: =5
+
+        Rectangle2_1 As rectangle:
+            Height: =5
+            Width: =Parent.Width
+            Y: =Parent.Height-Self.Height
+            ZIndex: =6
+
+    Label4 As label:
+        FontWeight: =FontWeight.Bold
+        Height: =41
+        Size: =17
+        Text: ="Created by *"
+        Width: =161
+        X: =88
+        Y: =268
+        ZIndex: =4
+
+    Label5 As label:
+        FontWeight: =FontWeight.Bold
+        Size: =17
+        Text: ="Area *"
+        X: =88
+        Y: =530
+        ZIndex: =5
+
+    Label6 As label:
+        FontWeight: =FontWeight.Bold
+        Height: =50
+        Size: =17
+        Text: ="Description *"
+        Width: =160
+        X: =809
+        Y: =391
+        ZIndex: =6
+
+    Label7 As label:
+        FontWeight: =FontWeight.Bold
+        Size: =17
+        Text: ="Priority *"
+        X: =88
+        Y: =394
+        ZIndex: =7
+
+    Label8 As label:
+        FontWeight: =FontWeight.Bold
+        Size: =17
+        Text: ="Subject *"
+        X: =809
+        Y: =268
+        ZIndex: =8
+
+    TextInput1 As text:
+        BorderColor: =RGBA(116, 116, 116, 1)
+        Default: =""
+        FocusedBorderThickness: =2
+        Height: =50
+        HoverBorderColor: =RGBA(116, 116, 116, 1)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Width: =420
+        X: =95
+        Y: =315
+        ZIndex: =9
+
+    TextInput2 As text:
+        BorderColor: =RGBA(116, 116, 116, 1)
+        Default: =""
+        FocusedBorderThickness: =2
+        Height: =50
+        HoverBorderColor: =RGBA(116, 116, 116, 1)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Width: =420
+        X: =809
+        Y: =315
+        ZIndex: =10
+
+    TextInput3 As text:
+        BorderColor: =RGBA(116, 116, 116, 1)
+        Default: =""
+        FocusedBorderThickness: =2
+        Height: =219
+        HoverBorderColor: =RGBA(116, 116, 116, 1)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Mode: =TextMode.MultiLine
+        Width: =420
+        X: =818
+        Y: =441
+        ZIndex: =11
+
+    Dropdown1 As dropdown:
+        ChevronBackground: =RGBA(0, 134, 208, 1)
+        FocusedBorderThickness: =2
+        Height: =50
+        HoverBorderColor: =RGBA(214, 223, 238, 1)
+        HoverFill: =RGBA(204, 231, 246, 1)
+        Items: =["Low","Medium","High"]
+        PressedFill: =RGBA(204, 231, 246, 1)
+        SelectionFill: =RGBA(0, 134, 208, 1)
+        Width: =420
+        X: =97
+        Y: =450
+        ZIndex: =12
+
+    Dropdown2 As dropdown:
+        ChevronBackground: =RGBA(0, 134, 208, 1)
+        FocusedBorderThickness: =2
+        Height: =50
+        HoverBorderColor: =RGBA(214, 223, 238, 1)
+        HoverFill: =RGBA(204, 231, 246, 1)
+        Items: =["IT","HR","Facilities"]
+        PressedFill: =RGBA(204, 231, 246, 1)
+        SelectionFill: =RGBA(0, 134, 208, 1)
+        Width: =420
+        X: =97
+        Y: =583
+        ZIndex: =13
+
+    Button7 As button:
+        Fill: =RGBA(152, 107, 191, 1)
+        FontWeight: =FontWeight.Normal
+        Height: =75
+        HoverFill: =RGBA(180, 127, 227, 1)
+        OnSelect: |
+            =Patch(tbl_Tickets,Defaults(tbl_Tickets),
+                {
+                    Index_ID: If(IsEmpty(tbl_Tickets),1,First(Sort(tbl_Tickets,ID,SortOrder.Descending)).ID+1),
+                    Owner: TextInput1.Text,
+                    Subject: TextInput2.Text,
+                    Priority: {Value:Dropdown1.Selected.Value},
+                    Description: TextInput3.Text,
+                    Department: {Value:Dropdown2.Selected.Value},
+                    'Date Created': Now(),
+                    Status: {Value:"New"},
+                    Title:"New Record"
+                }
+            );
+            ClearCollect(col_Ticket,tbl_Tickets);
+            Notify("Ticket has been created Successfully!", NotificationType.Success);
+            Navigate(Screen1,ScreenTransition.Fade)
+        Size: =24
+        Text: ="Create Task"
+        Width: =Parent.Width
+        Y: =693
+        ZIndex: =14
+

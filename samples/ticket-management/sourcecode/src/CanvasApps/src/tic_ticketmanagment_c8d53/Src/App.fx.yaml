@@ -1,0 +1,62 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =ClearCollect(
+            col_TicketTypes,
+            {
+                ID: 1,
+                Ticket_Type: "All Tickets",
+                Status: "All"
+            },
+            {
+                ID: 1,
+                Ticket_Type: "New Tickets",
+                Status: "New"
+            },
+            {
+                ID: 1,
+                Ticket_Type: "Tickets in Progress",
+                Status: "In Progress"
+            },
+            {
+                ID: 1,
+                Ticket_Type: "Tickets on Hold",
+                Status: "On Hold"
+            },
+            {
+                ID: 1,
+                Ticket_Type: "Tickets Closed",
+                Status: "Closed"
+            },
+            {
+                ID: 1,
+                Ticket_Type: "Tickets older than 3 days",
+                Status: "Other"
+            },
+            {
+                ID: 1,
+                Ticket_Type: "Tickets opened today",
+                Status: "Opened Today"
+            },
+            {
+                ID: 1,
+                Ticket_Type: "Tickets closed today",
+                Status: "Closed Today"
+            }
+        );
+        
+        ClearCollect(col_Ticket,tbl_Tickets);
+        
+        Set(
+            varCurrentStatus,
+            "All"
+        )
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

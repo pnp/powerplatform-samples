@@ -1,0 +1,1864 @@
+"Chat As screen.'autoLayout_HeaderFooter_ver1.0'":
+
+    "'Chat screen container' As groupContainer.verticalAutoLayoutContainer":
+        DropShadow: =DropShadow.None
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =Parent.Width
+        ZIndex: =1
+
+        "'Chat Header container' As groupContainer.horizontalAutoLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =47
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            ZIndex: =2
+
+        "'Chat Main header container' As groupContainer.verticalAutoLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =53
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =3
+
+            "'Chat Main header group' As groupContainer.manualLayoutContainer":
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =50
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Width: |-
+                    =If(
+                        Parent.Width > 390,
+                        Parent.Width - 40,
+                        Parent.Width - 12
+                    )
+                X: |-
+                    =/*If(
+                        Parent.Width > 390,
+                        20,
+                        6
+                    )*/
+                ZIndex: =1
+
+                "'Chat Settings icon' As image":
+                    Height: ='Chat Settings button'.Height
+                    Image: |-
+                        ="data:image/svg+xml;utf8, "&EncodeUrl("
+                        
+                            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='"& _textRegular &"' class='bi bi-gear-fill' viewBox='0 0 16 16'>
+                                <path d='M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z'/>
+                                <path d='M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z'/>
+                            </svg>
+                        
+                        ")
+                    Visible: |-
+                        =If(
+                            Or(
+                                Lower(User().Email) = Lower(_admin1),
+                                Lower(User().Email) = Lower(_admin2),
+                                Lower(User().Email) = Lower(_admin3)
+                            ),
+                            true,
+                            false
+                        )
+                    Width: ='Chat Settings button'.Width - 15
+                    X: ='Chat Settings button'.X + 'Chat Settings button'.Width/2 - Self.Width/2
+                    Y: ='Chat Settings button'.Y
+                    ZIndex: =1
+
+                "'Chat Back icon' As image":
+                    Height: ='Chat Back button'.Height
+                    Image: |-
+                        ="data:image/svg+xml;utf8, "&EncodeUrl("
+                            
+                            <svg width='7' height='12' viewBox='0 0 7 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                            <path d='M6 11.234L0.884615 6.117L6 1' stroke='"& _textRegular &"' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/>
+                            </svg>
+                        
+                        ")
+                    Width: =12
+                    X: ='Chat Back button'.Width/2 - Self.Width/2
+                    Y: ='Chat Back button'.Y
+                    ZIndex: =2
+
+                "'Chat Name' As label":
+                    Align: =Align.Center
+                    Font: =Font.'Lato Black'
+                    Height: =Parent.Height
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =18
+                    Text: |-
+                        ='Prompt Gallery'.Selected.Name
+                        
+                        /*MicrosoftTranslator.Translate(
+                            'Prompt Gallery'.Selected.Name,
+                            _languageSelected
+                        )*/
+                    Width: =Parent.Width
+                    ZIndex: =3
+
+                "'Chat Back button' As button":
+                    BorderColor: =ColorValue(_textRegular)
+                    BorderThickness: =1
+                    Color: =Color.Transparent
+                    DisabledBorderColor: =ColorValue(_textRegular)
+                    DisabledColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =ColorValue(_textRegular)
+                    FocusedBorderThickness: =1
+                    Height: =35
+                    HoverBorderColor: =ColorValue(_textRegular)
+                    HoverColor: =Color.Transparent
+                    HoverFill: =Color.Transparent
+                    OnSelect: =Navigate(Prompts); Set(_settingsPopup, false)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    PressedBorderColor: =ColorValue(_textRegular)
+                    PressedColor: =Color.Transparent
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =8
+                    RadiusBottomRight: =8
+                    RadiusTopLeft: =8
+                    RadiusTopRight: =8
+                    Text: =""
+                    Width: =35
+                    X: =2
+                    Y: =7
+                    ZIndex: =4
+
+                "'Chat Settings button' As button":
+                    BorderColor: =ColorValue(_textRegular)
+                    BorderThickness: =1
+                    Color: =Color.Transparent
+                    DisabledBorderColor: =ColorValue(_textRegular)
+                    DisabledColor: =Color.Transparent
+                    DisabledFill: =Color.Transparent
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =ColorValue(_textRegular)
+                    FocusedBorderThickness: =1
+                    Height: =35
+                    HoverBorderColor: =ColorValue(_textRegular)
+                    HoverColor: =Color.Transparent
+                    HoverFill: =Color.Transparent
+                    OnSelect: |
+                        =Set(_settingsPopup, true)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    PressedBorderColor: =ColorValue(_textRegular)
+                    PressedColor: =Color.Transparent
+                    PressedFill: =Color.Transparent
+                    RadiusBottomLeft: =8
+                    RadiusBottomRight: =8
+                    RadiusTopLeft: =8
+                    RadiusTopRight: =8
+                    Text: =""
+                    Visible: |-
+                        =If(
+                            Or(
+                                Lower(User().Email) = Lower(_admin1),
+                                Lower(User().Email) = Lower(_admin2),
+                                Lower(User().Email) = Lower(_admin3)
+                            ),
+                            true,
+                            false
+                        )
+                    Width: =35
+                    X: =Parent.Width - Self.Width - 2
+                    Y: ='Chat Back button'.Y
+                    ZIndex: =5
+
+        "'Chat Main Dialogue' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.Center
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: |-
+                =If(
+                    App.Width < 1400,
+                    Parent.Width,
+                    Parent.Width - 700
+                )
+            ZIndex: =5
+
+            "'Chat Main Dialogue elements' As groupContainer.verticalAutoLayoutContainer":
+                DropShadow: =DropShadow.None
+                Height: =Parent.Height
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Width: =Parent.Width
+                ZIndex: =3
+
+                "'Chat Dialogue container' As groupContainer.manualLayoutContainer":
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    Height: =50
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Width: |-
+                        =If(
+                            Parent.Width > 390,
+                            Parent.Width - 40,
+                            Parent.Width - 12
+                        )
+                    X: |-
+                        =/*If(
+                            Parent.Width > 390,
+                            20,
+                            6
+                        )*/
+                    ZIndex: =1
+
+                    "'Chat Dialogue Gallery' As gallery.variableTemplateHeightGallery":
+                        DelayItemLoading: =true
+                        Height: =Parent.Height - 20
+                        Items: |-
+                            =Sort(
+                                Filter(
+                                    _conversation,
+                                    And(
+                                        Or(
+                                            role = "user",
+                                            role = "assistant"
+                                        ),
+                                        id > 2
+                                    )
+                                ),
+                                id,
+                                SortOrder.Ascending
+                            )
+                        Layout: =Layout.Vertical
+                        LoadingSpinner: =LoadingSpinner.Data
+                        TemplatePadding: =10
+                        TemplateSize: =40
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                        "'Chat Dialogue  Button' As button":
+                            BorderColor: =Color.Transparent
+                            BorderThickness: =0
+                            Color: =Color.Transparent
+                            DisabledBorderColor: =Color.Transparent
+                            DisabledColor: =Color.Transparent
+                            DisabledFill: |-
+                                =If(
+                                    ThisItem.role = "assistant",
+                                    ColorValue(_buttonMain),
+                                    ColorValue(_tileBackground)
+                                )
+                            Fill: |-
+                                =If(
+                                    ThisItem.role = "assistant",
+                                    ColorValue(_buttonMain),
+                                    ColorValue(_tileBackground)
+                                )
+                            FocusedBorderColor: =Color.Transparent
+                            FocusedBorderThickness: =0
+                            Height: ='Chat Dialogue Label'.Height
+                            HoverBorderColor: =Color.Transparent
+                            HoverColor: =Color.Transparent
+                            HoverFill: |-
+                                =If(
+                                    ThisItem.role = "assistant",
+                                    ColorValue(_buttonMain),
+                                    ColorValue(_tileBackground)
+                                )
+                            PressedBorderColor: =Color.Transparent
+                            PressedColor: =Color.Transparent
+                            PressedFill: |-
+                                =If(
+                                    ThisItem.role = "assistant",
+                                    ColorValue(_buttonMain),
+                                    ColorValue(_tileBackground)
+                                )
+                            RadiusBottomLeft: |-
+                                =If(
+                                    ThisItem.role = "assistant",
+                                    0,
+                                    11
+                                )
+                            RadiusBottomRight: |-
+                                =If(
+                                    ThisItem.role = "assistant",
+                                    11,
+                                    0
+                                )
+                            RadiusTopLeft: =11
+                            RadiusTopRight: =11
+                            Text: =""
+                            Width: ='Chat Dialogue Label'.Width
+                            X: ='Chat Dialogue Label'.X
+                            Y: ='Chat Dialogue Label'.Y
+                            ZIndex: =1
+
+                        "'Chat Dialogue Label' As label":
+                            AutoHeight: =true
+                            Color: |-
+                                =If(
+                                    ThisItem.role = "assistant",
+                                    Color.White,
+                                    ColorValue(_textRegular)
+                                )
+                            Font: =Font.Lato
+                            OnSelect: =Select(Parent)
+                            PaddingBottom: =10
+                            PaddingLeft: =10
+                            PaddingRight: =10
+                            PaddingTop: =10
+                            Size: =12
+                            Text: =ThisItem.content
+                            Width: =Parent.Width/3*2
+                            X: |-
+                                =If(
+                                    ThisItem.role = "assistant",
+                                    0,
+                                    Parent.Width/3 - 30
+                                )
+                            ZIndex: =2
+
+                        "'Chat Copy icon' As image":
+                            Height: =18
+                            Image: |-
+                                ="data:image/svg+xml;utf8, "&EncodeUrl("
+                                
+                                <svg width='15' height='15' viewBox='0 0 15 15' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                                <path d='M5.55005 9.45005C5.55005 7.61157 5.55005 6.69233 6.12119 6.12119C6.69233 5.55005 7.61157 5.55005 9.45005 5.55005L10.1001 5.55005C11.9385 5.55005 12.8578 5.55005 13.4289 6.12119C14.0001 6.69233 14.0001 7.61157 14 9.45005V10.1C14 11.9385 14 12.8578 13.4289 13.4289C12.8578 14 11.9385 14 10.1 14H9.45005C7.61157 14 6.69233 14 6.12119 13.4289C5.55005 12.8578 5.55005 11.9385 5.55005 10.1L5.55005 9.45005Z' stroke='"&_iconBackground&"' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/>
+                                <path d='M10.7499 5.55C10.7484 3.62789 10.7193 2.63229 10.1598 1.95058C10.0518 1.81893 9.93107 1.69821 9.79942 1.59017C9.0803 1 8.01186 1 5.875 1C3.73814 1 2.66971 1 1.95058 1.59017C1.81893 1.69821 1.69821 1.81893 1.59017 1.95058C1 2.6697 1 3.73814 1 5.875C1 8.01186 1 9.08029 1.59017 9.79942C1.69821 9.93107 1.81893 10.0518 1.95058 10.1598C2.63228 10.7193 3.62789 10.7484 5.55 10.7499' stroke='"&_iconBackground&"' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/>
+                                </svg>
+                                
+                                
+                                ")
+                            OnSelect: =Copy(ThisItem.content)
+                            Width: =18
+                            X: |-
+                                =If(
+                                    ThisItem.role = "assistant",
+                                    'Chat Dialogue Label'.X + 'Chat Dialogue Label'.Width + 10,
+                                    'Chat Dialogue Label'.X - Self.Width - 10
+                                )
+                            Y: ='Chat Dialogue Label'.Y + 5
+                            ZIndex: =3
+
+                        "'Chat Copy button' As button":
+                            BorderColor: =Color.Transparent
+                            BorderThickness: =0
+                            Color: =Color.Transparent
+                            DisabledBorderColor: =Color.Transparent
+                            DisabledColor: =Color.Transparent
+                            DisabledFill: =Color.Transparent
+                            Fill: =Color.Transparent
+                            FocusedBorderColor: =Color.Transparent
+                            FocusedBorderThickness: =0
+                            Height: ='Chat Copy icon'.Height + 6
+                            HoverBorderColor: =Color.Transparent
+                            HoverColor: =Color.Transparent
+                            HoverFill: =ColorValue(Concatenate(_tileBackground,"66"))
+                            OnSelect: =Copy(ThisItem.content)
+                            PressedBorderColor: =Color.Transparent
+                            PressedColor: =Color.Transparent
+                            PressedFill: =Color.Transparent
+                            RadiusBottomLeft: =5
+                            RadiusBottomRight: =5
+                            RadiusTopLeft: =5
+                            RadiusTopRight: =5
+                            Text: ="Button"
+                            Width: ='Chat Copy icon'.Width + 6
+                            X: ='Chat Copy icon'.X - 3
+                            Y: ='Chat Copy icon'.Y - 3
+                            ZIndex: =4
+
+                "'Chat Input Main container' As groupContainer.manualLayoutContainer":
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =55
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Width: |-
+                        =If(
+                            Parent.Width > 390,
+                            Parent.Width - 40,
+                            Parent.Width - 12
+                        )
+                    X: |-
+                        =/*If(
+                            Parent.Width > 390,
+                            20,
+                            6
+                        )*/
+                    ZIndex: =2
+
+                    "'Chat Input container' As groupContainer.horizontalAutoLayoutContainer":
+                        DropShadow: =DropShadow.None
+                        Height: =Parent.Height
+                        LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                        LayoutMode: =LayoutMode.Auto
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: =Parent.Width
+                        ZIndex: =4
+
+                        "'Clean container' As groupContainer.manualLayoutContainer":
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            DropShadow: =DropShadow.None
+                            FillPortions: =0
+                            Height: =Parent.Height
+                            LayoutMinHeight: =50
+                            LayoutMinWidth: =50
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Width: =52
+                            ZIndex: =1
+
+                            "'Chat Clean button' As button":
+                                BorderColor: =ColorValue(_textRegular)
+                                BorderThickness: =1
+                                Color: =Color.Transparent
+                                DisabledBorderColor: =ColorValue(_textRegular)
+                                DisabledColor: =Color.Transparent
+                                DisabledFill: =Color.Transparent
+                                Fill: =Color.Transparent
+                                FocusedBorderColor: =ColorValue(_textRegular)
+                                FocusedBorderThickness: =1
+                                Height: =50
+                                HoverBorderColor: =ColorValue(_textRegular)
+                                HoverColor: =Color.Transparent
+                                HoverFill: =Color.Transparent
+                                OnSelect: |
+                                    =ClearCollect(
+                                        _conversation,
+                                        {
+                                            id: 1,
+                                            role: "system",
+                                            content: 'Prompt Gallery'.Selected.RoleSystem & " " & _superPrompt
+                                        },
+                                        {
+                                            id: 2,
+                                            role: "user",
+                                            content: /*_superPrompt &" "&*/ 'Prompt Gallery'.Selected.Prompt
+                                        }
+                                    );
+                                PaddingBottom: =0
+                                PaddingLeft: =0
+                                PaddingRight: =0
+                                PaddingTop: =0
+                                PressedBorderColor: =ColorValue(_textRegular)
+                                PressedColor: =Color.Transparent
+                                PressedFill: =Color.Transparent
+                                Text: =""
+                                Width: =50
+                                X: =1
+                                Y: =1
+                                ZIndex: =1
+
+                            "'Chat Clean icon' As image":
+                                Height: =18
+                                Image: |-
+                                    ="data:image/svg+xml;utf8, "&EncodeUrl("
+                                    
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='"& _textRegular &"' class='bi bi-trash3-fill' viewBox='0 0 16 16'>
+                                      <path d='M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z'/>
+                                    </svg>
+                                    
+                                    ")
+                                OnSelect: |
+                                    =ClearCollect(
+                                        _conversation,
+                                        {
+                                            id: 1,
+                                            role: "system",
+                                            content: 'Prompt Gallery'.Selected.RoleSystem & " " & _superPrompt
+                                        },
+                                        {
+                                            id: 2,
+                                            role: "user",
+                                            content: /*_superPrompt &" "&*/ 'Prompt Gallery'.Selected.Prompt
+                                        }
+                                    );
+                                Width: =18
+                                X: ='Chat Clean button'.X + 'Chat Clean button'.Width/2 - Self.Width/2
+                                Y: ='Chat Clean button'.Y + 'Chat Clean button'.Height/2 - Self.Height/2
+                                ZIndex: =2
+
+                        "'Input container' As groupContainer.manualLayoutContainer":
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            DropShadow: =DropShadow.None
+                            Height: =Parent.Height
+                            LayoutMinHeight: =50
+                            LayoutMinWidth: =250
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            ZIndex: =2
+
+                            "'Chat Input' As text":
+                                BorderColor: =ColorValue(_iconBackground)
+                                BorderThickness: =1
+                                Color: =ColorValue(_textRegular)
+                                Default: =""
+                                DisabledBorderColor: =ColorValue(_iconBackground)
+                                DisabledColor: =ColorValue(_textRegular)
+                                DisabledFill: =ColorValue(_tileBackground)
+                                Fill: =ColorValue(_tileBackground)
+                                FocusedBorderColor: =ColorValue(_buttonMain)
+                                FocusedBorderThickness: =1
+                                Font: =Font.Lato
+                                Height: =Parent.Height-5
+                                HintText: |-
+                                    =//"Type your message"
+                                    
+                                    Switch(
+                                        _appLanguageSelected,
+                                        "EN", 
+                                        First(
+                                            Filter(
+                                                'UI Multilanguages',
+                                                Control = "Chat Input"
+                                            )
+                                        ).TextEN,
+                                        
+                                        "DE", 
+                                        First(
+                                            Filter(
+                                                'UI Multilanguages',
+                                                Control = "Chat Input"
+                                            )
+                                        ).TextDE,
+                                    
+                                        "FR", 
+                                        First(
+                                            Filter(
+                                                'UI Multilanguages',
+                                                Control = "Chat Input"
+                                            )
+                                        ).TextFR
+                                    )
+                                HoverBorderColor: =ColorValue(_buttonMain)
+                                HoverColor: =ColorValue(_textRegular)
+                                HoverFill: =ColorValue(_tileBackground)
+                                Mode: =TextMode.MultiLine
+                                PaddingBottom: =3
+                                PaddingRight: =12
+                                PaddingTop: =3
+                                PressedBorderColor: =ColorValue(_buttonMain)
+                                PressedColor: =ColorValue(_textRegular)
+                                PressedFill: =ColorValue(_tileBackground)
+                                RadiusBottomLeft: =11
+                                RadiusBottomRight: =11
+                                RadiusTopLeft: =11
+                                RadiusTopRight: =11
+                                Size: =10
+                                Width: =Parent.Width - 20
+                                X: =10
+                                Y: =1
+                                ZIndex: =1
+
+                        "'Send container' As groupContainer.manualLayoutContainer":
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            DropShadow: =DropShadow.None
+                            FillPortions: =0
+                            Height: =Parent.Height
+                            LayoutMinHeight: =50
+                            LayoutMinWidth: =250
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Width: =52
+                            ZIndex: =3
+
+                            "'Chat Send button' As button":
+                                BorderColor: =Color.Transparent
+                                BorderThickness: =0
+                                Color: =Color.Transparent
+                                DisabledBorderColor: =Color.Transparent
+                                DisabledColor: =Color.Transparent
+                                DisabledFill: =ColorValue(_textRegular)
+                                DisplayMode: |-
+                                    =If(
+                                        IsBlank('Chat Input'),
+                                        DisplayMode.Disabled,
+                                        DisplayMode.Edit
+                                    )
+                                Fill: =ColorValue(_buttonMain)
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0
+                                Height: =50
+                                HoverBorderColor: =Color.Transparent
+                                HoverColor: =Color.Transparent
+                                HoverFill: =ColorValue(_buttonHover)
+                                OnSelect: |-
+                                    =If(
+                                        !IsBlank('Chat Input'),
+                                        Patch(
+                                            _conversation,
+                                            Defaults(_conversation),
+                                            {
+                                                id: CountRows(_conversation)+1,
+                                                role: "user",
+                                                content: 'Chat Input'.Text
+                                            }
+                                        );
+                                        Reset('Chat Input')
+                                    );
+                                    
+                                    Set(
+                                        _botResponse,
+                                        First(
+                                            Defaulttitle_1.RequestToAzureOpenAI(
+                                                800,0.7,0.95,
+                                                {
+                                                    messages:
+                                                    DropColumns(
+                                                        Sort(
+                                                            _conversation,
+                                                            id,
+                                                            SortOrder.Ascending
+                                                        ),
+                                                        "id"
+                                                    )
+                                                }
+                                            ).choices
+                                        ).message.content
+                                    );
+                                    
+                                    Patch(
+                                        _conversation,
+                                        Defaults(_conversation),
+                                        {
+                                            id: CountRows(_conversation)+1,
+                                            role: "assistant",
+                                            content: _botResponse
+                                        }
+                                    )
+                                PaddingBottom: =0
+                                PaddingLeft: =0
+                                PaddingRight: =0
+                                PaddingTop: =0
+                                PressedBorderColor: =Color.Transparent
+                                PressedColor: =Color.Transparent
+                                PressedFill: =ColorValue(_buttonPressed)
+                                Text: =""
+                                Width: =50
+                                X: =1
+                                Y: =1
+                                ZIndex: =1
+
+                            "'Chat Send icon' As image":
+                                Height: =16
+                                Image: |-
+                                    ="data:image/svg+xml;utf8, "&EncodeUrl("
+                                        
+                                        <svg width='16' height='16' viewBox='0 0 16 16' fill='
+                                        
+                                        " & 
+                                            If(
+                                                IsBlank('Chat Input'), 
+                                                _iconBackground,
+                                                "#ffffff"
+                                            ) 
+                                        & "
+                                        
+                                        ' xmlns='http://www.w3.org/2000/svg'>
+                                    <path d='M15.5483 0.465586C15.1481 0.0548785 14.5559 -0.0981303 14.0037 0.0629316L1.1264 3.80762C0.543759 3.96949 0.13079 4.43415 0.0195441 5.02444C-0.0941024 5.6252 0.30286 6.38783 0.821472 6.70673L4.84792 9.18145C5.26089 9.43512 5.79391 9.3715 6.13565 9.02683L10.7463 4.38744C10.9784 4.14585 11.3626 4.14585 11.5947 4.38744C11.8268 4.62098 11.8268 4.99948 11.5947 5.24107L6.97599 9.88126C6.63345 10.2251 6.56943 10.7607 6.82153 11.1762L9.28174 15.243C9.56985 15.7262 10.0661 16 10.6103 16C10.6743 16 10.7463 16 10.8104 15.9919C11.4346 15.9114 11.9308 15.4846 12.1149 14.8806L15.9325 2.01983C16.1005 1.47222 15.9485 0.876294 15.5483 0.465586Z'/>
+                                    </svg>
+                                    
+                                    
+                                    
+                                    
+                                    ")
+                                OnSelect: |-
+                                    =If(
+                                        !IsBlank('Chat Input'),
+                                        Patch(
+                                            _conversation,
+                                            Defaults(_conversation),
+                                            {
+                                                id: CountRows(_conversation)+1,
+                                                role: "user",
+                                                content: 'Chat Input'.Text
+                                            }
+                                        );
+                                        Reset('Chat Input')
+                                    );
+                                    
+                                    Set(
+                                        _botResponse,
+                                        First(
+                                            Defaulttitle_1.RequestToAzureOpenAI(
+                                                800,0.7,0.95,
+                                                {
+                                                    messages:
+                                                    DropColumns(
+                                                        Sort(
+                                                            _conversation,
+                                                            id,
+                                                            SortOrder.Ascending
+                                                        ),
+                                                        "id"
+                                                    )
+                                                }
+                                            ).choices
+                                        ).message.content
+                                    );
+                                    
+                                    Patch(
+                                        _conversation,
+                                        Defaults(_conversation),
+                                        {
+                                            id: CountRows(_conversation)+1,
+                                            role: "assistant",
+                                            content: _botResponse
+                                        }
+                                    )
+                                Width: =16
+                                X: ='Chat Send button'.X + 'Chat Send button'.Width/2 - Self.Width/2
+                                Y: ='Chat Send button'.Y + 'Chat Send button'.Height/2 - Self.Height/2
+                                ZIndex: =2
+
+            "'Chat Main Settings container' As groupContainer.manualLayoutContainer":
+                DropShadow: =DropShadow.None
+                Height: =Parent.Height
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Visible: =_settingsPopup
+                Width: =Parent.Width
+                ZIndex: =4
+
+                "'Chat Main Settings Background' As htmlViewer":
+                    Height: =Parent.Height
+                    HtmlText: |
+                        ="<div style='
+                            width:"& Parent.Width-0 &"px;
+                            height:"& Parent.Height-1 &"px;
+                            background: rgba(255, 255, 255, 0.2);
+                            border-radius: 0px;
+                            backdrop-filter: blur(2px);
+                            -webkit-backdrop-filter: blur(2px);
+                            border: 1px solid rgba(255, 255, 255, 0.3);
+                        '></div>"
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                "'Chat Main Settings Popup' As groupContainer.verticalAutoLayoutContainer":
+                    BorderColor: =RGBA(255, 255, 255, 1)
+                    BorderThickness: =1
+                    DropShadow: =DropShadow.Bold
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =Parent.Height-80
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    LayoutOverflowY: =LayoutOverflow.Scroll
+                    PaddingBottom: =20
+                    PaddingLeft: =20
+                    PaddingRight: =20
+                    PaddingTop: =20
+                    RadiusBottomLeft: =20
+                    RadiusBottomRight: =20
+                    RadiusTopLeft: =20
+                    RadiusTopRight: =20
+                    Width: |-
+                        =Parent.Width -
+                        If(
+                            App.Width < 361,
+                            20,
+                            If(
+                                And(
+                                    App.Width > 360,
+                                    App.Width < 541
+                                ),
+                                40,
+                                If(
+                                    And(
+                                        App.Width > 540,
+                                        App.Width < 1601
+                                    ),
+                                    120,
+                                    370
+                                )
+                            )
+                        )
+                    X: =Parent.Width/2 - Self.Width/2
+                    Y: =40
+                    ZIndex: =3
+
+                    "'Chat Main Settings Close' As button":
+                        AlignInContainer: =AlignInContainer.End
+                        BorderColor: =Color.Transparent
+                        BorderThickness: =0
+                        Color: =ColorValue(_textRegular)
+                        DisabledBorderColor: =Color.Transparent
+                        DisabledColor: =ColorValue(_textRegular)
+                        DisabledFill: =Color.Transparent
+                        Fill: =Color.Transparent
+                        FocusedBorderColor: =Color.Transparent
+                        FocusedBorderThickness: =0
+                        Font: =Font.Lato
+                        FontWeight: =FontWeight.Normal
+                        Height: =35
+                        HoverBorderColor: =Color.Transparent
+                        HoverColor: =ColorValue(_textRegular)
+                        HoverFill: =Color.Transparent
+                        OnSelect: =Set(_settingsPopup, false);
+                        PressedBorderColor: =Color.Transparent
+                        PressedColor: =ColorValue(_textRegular)
+                        PressedFill: =Color.Transparent
+                        Size: =12
+                        Text: ="x"
+                        Width: =35
+                        ZIndex: =1
+
+                    "'Chat Main Settings Prompt Name label' As label":
+                        Font: =Font.'Lato Black'
+                        Text: ="Name"
+                        VerticalAlign: =VerticalAlign.Bottom
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =30
+                        ZIndex: =2
+
+                    "'Chat Main Settings Prompt Name input' As text":
+                        BorderColor: =ColorValue(_iconBackground)
+                        BorderThickness: =1
+                        Color: =ColorValue(_textRegular)
+                        Default: |-
+                            =//'Prompt Gallery'.Selected.Name
+                            
+                            Switch(
+                                _appLanguageSelected,
+                                "EN", 
+                                'Prompt Gallery'.Selected.Name,
+                                
+                                "DE", 
+                                'Prompt Gallery'.Selected.NameDE,
+                            
+                                "FR", 
+                                'Prompt Gallery'.Selected.NameFR
+                            )
+                        DisabledBorderColor: =ColorValue(_iconBackground)
+                        DisabledColor: =ColorValue(_textRegular)
+                        DisabledFill: =ColorValue(_tileBackground)
+                        Fill: =Color.White//ColorValue(_tileBackground)
+                        FocusedBorderColor: =ColorValue(_buttonMain)
+                        FocusedBorderThickness: =1
+                        Font: =Font.Lato
+                        Height: =30
+                        HintText: ="Type your message"
+                        HoverBorderColor: =ColorValue(_buttonMain)
+                        HoverColor: =ColorValue(_textRegular)
+                        HoverFill: =ColorValue(_tileBackground)
+                        Mode: =TextMode.MultiLine
+                        PaddingBottom: =3
+                        PaddingRight: =12
+                        PaddingTop: =7
+                        PressedBorderColor: =ColorValue(_buttonMain)
+                        PressedColor: =ColorValue(_textRegular)
+                        PressedFill: =ColorValue(_tileBackground)
+                        RadiusBottomLeft: =11
+                        RadiusBottomRight: =11
+                        RadiusTopLeft: =11
+                        RadiusTopRight: =11
+                        Size: =10
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        Y: ='Chat Main Settings Prompt Name label'.Y + 'Chat Main Settings Prompt Name label'.Height
+                        ZIndex: =3
+
+                    "'Chat Main Settings Prompt Description label' As label":
+                        Font: =Font.'Lato Black'
+                        Text: ="Description"
+                        VerticalAlign: =VerticalAlign.Bottom
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        Y: ='Chat Main Settings Prompt Name input'.Y + 'Chat Main Settings Prompt Name input'.Height + 20
+                        ZIndex: =4
+
+                    "'Chat Main Settings Prompt Description input' As text":
+                        BorderColor: =ColorValue(_iconBackground)
+                        BorderThickness: =1
+                        Color: =ColorValue(_textRegular)
+                        Default: |-
+                            =//'Prompt Gallery'.Selected.Description
+                            
+                            Switch(
+                                _appLanguageSelected,
+                                "EN", 
+                                'Prompt Gallery'.Selected.Description,
+                                
+                                "DE", 
+                                'Prompt Gallery'.Selected.DescriptionDE,
+                            
+                                "FR", 
+                                'Prompt Gallery'.Selected.DescriptionFR
+                            )
+                        DisabledBorderColor: =ColorValue(_iconBackground)
+                        DisabledColor: =ColorValue(_textRegular)
+                        DisabledFill: =ColorValue(_tileBackground)
+                        Fill: =Color.White //ColorValue(_tileBackground)
+                        FocusedBorderColor: =ColorValue(_buttonMain)
+                        FocusedBorderThickness: =1
+                        Font: =Font.Lato
+                        Height: =60
+                        HintText: ="Type your message"
+                        HoverBorderColor: =ColorValue(_buttonMain)
+                        HoverColor: =ColorValue(_textRegular)
+                        HoverFill: =ColorValue(_tileBackground)
+                        Mode: =TextMode.MultiLine
+                        PaddingBottom: =3
+                        PaddingRight: =12
+                        PaddingTop: =7
+                        PressedBorderColor: =ColorValue(_buttonMain)
+                        PressedColor: =ColorValue(_textRegular)
+                        PressedFill: =ColorValue(_tileBackground)
+                        RadiusBottomLeft: =11
+                        RadiusBottomRight: =11
+                        RadiusTopLeft: =11
+                        RadiusTopRight: =11
+                        Size: =10
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        Y: ='Chat Main Settings Prompt Description label'.Y + 'Chat Main Settings Prompt Description label'.Height
+                        ZIndex: =5
+
+                    "'Chat Main Settings System label' As label":
+                        Font: =Font.'Lato Black'
+                        Text: ="System"
+                        VerticalAlign: =VerticalAlign.Bottom
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        Y: ='Chat Main Settings Prompt Description input'.Y + 'Chat Main Settings Prompt Description input'.Height + 20
+                        ZIndex: =6
+
+                    "'Chat Main Settings System input' As text":
+                        BorderColor: =ColorValue(_iconBackground)
+                        BorderThickness: =1
+                        Color: =ColorValue(_textRegular)
+                        Default: ='Prompt Gallery'.Selected.RoleSystem
+                        DisabledBorderColor: =ColorValue(_iconBackground)
+                        DisabledColor: =ColorValue(_textRegular)
+                        DisabledFill: =ColorValue(_tileBackground)
+                        Fill: =Color.White //ColorValue(_tileBackground)
+                        FocusedBorderColor: =ColorValue(_buttonMain)
+                        FocusedBorderThickness: =1
+                        Font: =Font.Lato
+                        Height: =120
+                        HintText: ="Type your message"
+                        HoverBorderColor: =ColorValue(_buttonMain)
+                        HoverColor: =ColorValue(_textRegular)
+                        HoverFill: =ColorValue(_tileBackground)
+                        Mode: =TextMode.MultiLine
+                        PaddingBottom: =3
+                        PaddingRight: =12
+                        PaddingTop: =7
+                        PressedBorderColor: =ColorValue(_buttonMain)
+                        PressedColor: =ColorValue(_textRegular)
+                        PressedFill: =ColorValue(_tileBackground)
+                        RadiusBottomLeft: =11
+                        RadiusBottomRight: =11
+                        RadiusTopLeft: =11
+                        RadiusTopRight: =11
+                        Size: =10
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        Y: ='Chat Main Settings System label'.Y + 'Chat Main Settings System label'.Height
+                        ZIndex: =7
+
+                    "'Chat Main Settings Super Prompt label' As label":
+                        Font: =Font.'Lato Black'
+                        Text: ="Super Prompt"
+                        VerticalAlign: =VerticalAlign.Bottom
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        Y: ='Chat Main Settings Prompt Name input'.Y + 'Chat Main Settings Prompt Name input'.Height + 20
+                        ZIndex: =8
+
+                    "'Chat Main Settings Super Prompt input' As text":
+                        BorderColor: =ColorValue(_iconBackground)
+                        BorderThickness: =1
+                        Color: =ColorValue(_textRegular)
+                        Default: |-
+                            =LookUp(
+                                'Environment Variable Values',
+                                'Environment Variable Definition'.'Schema Name' = "archer_SuperPrompt"
+                            ).Value
+                        DisabledBorderColor: =ColorValue(_iconBackground)
+                        DisabledColor: =ColorValue(_textRegular)
+                        DisabledFill: =ColorValue(_tileBackground)
+                        Fill: =Color.White //ColorValue(_tileBackground)
+                        FocusedBorderColor: =ColorValue(_buttonMain)
+                        FocusedBorderThickness: =1
+                        Font: =Font.Lato
+                        Height: =60
+                        HintText: ="Type your message"
+                        HoverBorderColor: =ColorValue(_buttonMain)
+                        HoverColor: =ColorValue(_textRegular)
+                        HoverFill: =ColorValue(_tileBackground)
+                        Mode: =TextMode.MultiLine
+                        PaddingBottom: =3
+                        PaddingRight: =12
+                        PaddingTop: =7
+                        PressedBorderColor: =ColorValue(_buttonMain)
+                        PressedColor: =ColorValue(_textRegular)
+                        PressedFill: =ColorValue(_tileBackground)
+                        RadiusBottomLeft: =11
+                        RadiusBottomRight: =11
+                        RadiusTopLeft: =11
+                        RadiusTopRight: =11
+                        Size: =10
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        Y: ='Chat Main Settings Super Prompt label'.Y + 'Chat Main Settings Super Prompt label'.Height
+                        ZIndex: =9
+
+                    "'Chat Main Settings Prompt label' As label":
+                        Font: =Font.'Lato Black'
+                        Text: ="Prompt"
+                        VerticalAlign: =VerticalAlign.Bottom
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        Y: ='Chat Main Settings Prompt Description input'.Y + 'Chat Main Settings Prompt Description input'.Height + 20
+                        ZIndex: =10
+
+                    "'Chat Main Settings Prompt input' As text":
+                        BorderColor: =ColorValue(_iconBackground)
+                        BorderThickness: =1
+                        Color: =ColorValue(_textRegular)
+                        Default: ='Prompt Gallery'.Selected.Prompt
+                        DisabledBorderColor: =ColorValue(_iconBackground)
+                        DisabledColor: =ColorValue(_textRegular)
+                        DisabledFill: =ColorValue(_tileBackground)
+                        Fill: =Color.White //ColorValue(_tileBackground)
+                        FocusedBorderColor: =ColorValue(_buttonMain)
+                        FocusedBorderThickness: =1
+                        Font: =Font.Lato
+                        Height: =120
+                        HintText: ="Type your message"
+                        HoverBorderColor: =ColorValue(_buttonMain)
+                        HoverColor: =ColorValue(_textRegular)
+                        HoverFill: =ColorValue(_tileBackground)
+                        Mode: =TextMode.MultiLine
+                        PaddingBottom: =3
+                        PaddingRight: =12
+                        PaddingTop: =7
+                        PressedBorderColor: =ColorValue(_buttonMain)
+                        PressedColor: =ColorValue(_textRegular)
+                        PressedFill: =ColorValue(_tileBackground)
+                        RadiusBottomLeft: =11
+                        RadiusBottomRight: =11
+                        RadiusTopLeft: =11
+                        RadiusTopRight: =11
+                        Size: =10
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        Y: ='Chat Main Settings Prompt label'.Y + 'Chat Main Settings Prompt label'.Height
+                        ZIndex: =11
+
+                    "'Chat Main Settings Token and Stop Container' As groupContainer.horizontalAutoLayoutContainer":
+                        AlignInContainer: =AlignInContainer.Start
+                        DropShadow: =DropShadow.None
+                        FillPortions: =0
+                        Height: |-
+                            =72
+                            /*If(
+                                App.Width < 428,
+                                141,
+                                72
+                            )*/
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =150
+                        LayoutMode: =LayoutMode.Auto
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        ZIndex: =12
+
+                        "'Chat Main Settings Token Container' As groupContainer.manualLayoutContainer":
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            DropShadow: =DropShadow.None
+                            Height: =72
+                            LayoutMinHeight: =71
+                            LayoutMinWidth: =50
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Width: ='Chat Main Settings Prompt Name label'.Width / 2
+                            ZIndex: =1
+
+                            "'Chat Main Settings Token label' As label":
+                                Font: =Font.'Lato Black'
+                                Size: |-
+                                    =If(
+                                        App.Width < 400,
+                                        10,
+                                        13
+                                    )
+                                Text: ="Max tokens"
+                                VerticalAlign: =VerticalAlign.Bottom
+                                Width: =Parent.Width - 5
+                                X: =1
+                                ZIndex: =1
+
+                            "'Chat Main Settings Token input' As text":
+                                BorderColor: =ColorValue(_iconBackground)
+                                BorderThickness: =1
+                                Color: =ColorValue(_textRegular)
+                                Default: ='Prompt Gallery'.Selected.'Max Tokens'
+                                DisabledBorderColor: =ColorValue(_iconBackground)
+                                DisabledColor: =ColorValue(_textRegular)
+                                DisabledFill: =ColorValue(_tileBackground)
+                                Fill: =Color.White//ColorValue(_tileBackground)
+                                FocusedBorderColor: =ColorValue(_buttonMain)
+                                FocusedBorderThickness: =1
+                                Font: =Font.Lato
+                                Format: =TextFormat.Number
+                                Height: =30
+                                HintText: =""
+                                HoverBorderColor: =ColorValue(_buttonMain)
+                                HoverColor: =ColorValue(_textRegular)
+                                HoverFill: =ColorValue(_tileBackground)
+                                Mode: =TextMode.MultiLine
+                                PaddingBottom: =3
+                                PaddingRight: =12
+                                PaddingTop: =7
+                                PressedBorderColor: =ColorValue(_buttonMain)
+                                PressedColor: =ColorValue(_textRegular)
+                                PressedFill: =ColorValue(_tileBackground)
+                                RadiusBottomLeft: =11
+                                RadiusBottomRight: =11
+                                RadiusTopLeft: =11
+                                RadiusTopRight: =11
+                                Size: =10
+                                Width: ='Chat Main Settings Token label'.Width
+                                X: ='Chat Main Settings Token label'.X
+                                Y: ='Chat Main Settings Token label'.Y + 'Chat Main Settings Token label'.Height
+                                ZIndex: =2
+
+                        "'Chat Main Settings Stop Container' As groupContainer.manualLayoutContainer":
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            DropShadow: =DropShadow.None
+                            Height: =72
+                            LayoutMinHeight: =71
+                            LayoutMinWidth: =50
+                            PaddingLeft: =1
+                            Width: ='Chat Main Settings Prompt Name label'.Width / 2
+                            ZIndex: =2
+
+                            "'Chat Main Settings Stop label' As label":
+                                Font: =Font.'Lato Black'
+                                Size: |-
+                                    =If(
+                                        App.Width < 400,
+                                        10,
+                                        13
+                                    )
+                                Text: ="Stop"
+                                VerticalAlign: =VerticalAlign.Bottom
+                                Width: =Parent.Width - 5
+                                X: =Parent.Width - Self.Width -1
+                                ZIndex: =1
+
+                            "'Chat Main Settings Stop input' As text":
+                                BorderColor: =ColorValue(_iconBackground)
+                                BorderThickness: =1
+                                Color: =ColorValue(_textRegular)
+                                Default: ='Prompt Gallery'.Selected.Stop
+                                DisabledBorderColor: =ColorValue(_iconBackground)
+                                DisabledColor: =ColorValue(_textRegular)
+                                DisabledFill: =ColorValue(_tileBackground)
+                                Fill: =Color.White//ColorValue(_tileBackground)
+                                FocusedBorderColor: =ColorValue(_buttonMain)
+                                FocusedBorderThickness: =1
+                                Font: =Font.Lato
+                                Height: =30
+                                HintText: =""
+                                HoverBorderColor: =ColorValue(_buttonMain)
+                                HoverColor: =ColorValue(_textRegular)
+                                HoverFill: =ColorValue(_tileBackground)
+                                Mode: =TextMode.MultiLine
+                                PaddingBottom: =3
+                                PaddingRight: =12
+                                PaddingTop: =7
+                                PressedBorderColor: =ColorValue(_buttonMain)
+                                PressedColor: =ColorValue(_textRegular)
+                                PressedFill: =ColorValue(_tileBackground)
+                                RadiusBottomLeft: =11
+                                RadiusBottomRight: =11
+                                RadiusTopLeft: =11
+                                RadiusTopRight: =11
+                                Size: =10
+                                Width: ='Chat Main Settings Stop label'.Width
+                                X: ='Chat Main Settings Stop label'.X
+                                Y: ='Chat Main Settings Stop label'.Y + 'Chat Main Settings Stop label'.Height
+                                ZIndex: =2
+
+                    "'Chat Main Settings Temperature and TopP Container' As groupContainer.horizontalAutoLayoutContainer":
+                        AlignInContainer: =AlignInContainer.Start
+                        DropShadow: =DropShadow.None
+                        FillPortions: =0
+                        Height: |-
+                            =72
+                            /*If(
+                                App.Width < 428,
+                                141,
+                                72
+                            )*/
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =150
+                        LayoutMode: =LayoutMode.Auto
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        ZIndex: =13
+
+                        "'Chat Main Settings Temperature Container' As groupContainer.manualLayoutContainer":
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            DropShadow: =DropShadow.None
+                            Height: =72
+                            LayoutMinHeight: =71
+                            LayoutMinWidth: =50
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Width: ='Chat Main Settings Prompt Name label'.Width / 2
+                            ZIndex: =1
+
+                            "'Chat Main Settings Temperature label' As label":
+                                Font: =Font.'Lato Black'
+                                Size: |-
+                                    =If(
+                                        App.Width < 400,
+                                        10,
+                                        13
+                                    )
+                                Text: ="Temperature"
+                                VerticalAlign: =VerticalAlign.Bottom
+                                Width: =Parent.Width - 5
+                                X: =1
+                                ZIndex: =1
+
+                            "'Chat Main Settings Temperature input' As text":
+                                BorderColor: =ColorValue(_iconBackground)
+                                BorderThickness: =1
+                                Color: =ColorValue(_textRegular)
+                                Default: ='Prompt Gallery'.Selected.Temperature
+                                DisabledBorderColor: =ColorValue(_iconBackground)
+                                DisabledColor: =ColorValue(_textRegular)
+                                DisabledFill: =ColorValue(_tileBackground)
+                                Fill: =Color.White//ColorValue(_tileBackground)
+                                FocusedBorderColor: =ColorValue(_buttonMain)
+                                FocusedBorderThickness: =1
+                                Font: =Font.Lato
+                                Format: =TextFormat.Number
+                                Height: =30
+                                HintText: =""
+                                HoverBorderColor: =ColorValue(_buttonMain)
+                                HoverColor: =ColorValue(_textRegular)
+                                HoverFill: =ColorValue(_tileBackground)
+                                Mode: =TextMode.MultiLine
+                                PaddingBottom: =3
+                                PaddingRight: =12
+                                PaddingTop: =7
+                                PressedBorderColor: =ColorValue(_buttonMain)
+                                PressedColor: =ColorValue(_textRegular)
+                                PressedFill: =ColorValue(_tileBackground)
+                                RadiusBottomLeft: =11
+                                RadiusBottomRight: =11
+                                RadiusTopLeft: =11
+                                RadiusTopRight: =11
+                                Size: =10
+                                Width: ='Chat Main Settings Temperature label'.Width
+                                X: ='Chat Main Settings Temperature label'.X
+                                Y: ='Chat Main Settings Temperature label'.Y + 'Chat Main Settings Temperature label'.Height
+                                ZIndex: =2
+
+                        "'Chat Main Settings TopP Container' As groupContainer.manualLayoutContainer":
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            DropShadow: =DropShadow.None
+                            Height: =72
+                            LayoutMinHeight: =71
+                            LayoutMinWidth: =50
+                            PaddingLeft: =1
+                            Width: ='Chat Main Settings Prompt Name label'.Width / 2
+                            ZIndex: =2
+
+                            "'Chat Main Settings TopP label' As label":
+                                Font: =Font.'Lato Black'
+                                Size: |-
+                                    =If(
+                                        App.Width < 400,
+                                        10,
+                                        13
+                                    )
+                                Text: ="Top P"
+                                VerticalAlign: =VerticalAlign.Bottom
+                                Width: =Parent.Width - 5
+                                X: =Parent.Width - Self.Width -1
+                                ZIndex: =1
+
+                            "'Chat Main Settings TopP input' As text":
+                                BorderColor: =ColorValue(_iconBackground)
+                                BorderThickness: =1
+                                Color: =ColorValue(_textRegular)
+                                Default: ='Prompt Gallery'.Selected.'Top P'
+                                DisabledBorderColor: =ColorValue(_iconBackground)
+                                DisabledColor: =ColorValue(_textRegular)
+                                DisabledFill: =ColorValue(_tileBackground)
+                                Fill: =Color.White//ColorValue(_tileBackground)
+                                FocusedBorderColor: =ColorValue(_buttonMain)
+                                FocusedBorderThickness: =1
+                                Font: =Font.Lato
+                                Height: =30
+                                HintText: =""
+                                HoverBorderColor: =ColorValue(_buttonMain)
+                                HoverColor: =ColorValue(_textRegular)
+                                HoverFill: =ColorValue(_tileBackground)
+                                Mode: =TextMode.MultiLine
+                                PaddingBottom: =3
+                                PaddingRight: =12
+                                PaddingTop: =7
+                                PressedBorderColor: =ColorValue(_buttonMain)
+                                PressedColor: =ColorValue(_textRegular)
+                                PressedFill: =ColorValue(_tileBackground)
+                                RadiusBottomLeft: =11
+                                RadiusBottomRight: =11
+                                RadiusTopLeft: =11
+                                RadiusTopRight: =11
+                                Size: =10
+                                Width: ='Chat Main Settings TopP label'.Width
+                                X: ='Chat Main Settings TopP label'.X
+                                Y: ='Chat Main Settings TopP label'.Y + 'Chat Main Settings TopP label'.Height
+                                ZIndex: =2
+
+                    "'Chat Main Settings FrequencyPenalty and PresencePenalty Container' As groupContainer.horizontalAutoLayoutContainer":
+                        AlignInContainer: =AlignInContainer.Start
+                        DropShadow: =DropShadow.None
+                        FillPortions: =0
+                        Height: |-
+                            =72
+                            /*If(
+                                App.Width < 428,
+                                141,
+                                72
+                            )*/
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =150
+                        LayoutMode: =LayoutMode.Auto
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: ='Chat Main Settings Prompt Name label'.Width
+                        X: ='Chat Main Settings Prompt Name label'.X
+                        ZIndex: =14
+
+                        "'Chat Main Settings FrequencyPenalty Container' As groupContainer.manualLayoutContainer":
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            DropShadow: =DropShadow.None
+                            Height: =72
+                            LayoutMinHeight: =71
+                            LayoutMinWidth: =50
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Width: ='Chat Main Settings Prompt Name label'.Width / 2
+                            ZIndex: =1
+
+                            "'Chat Main Settings FrequencyPenalty label' As label":
+                                Font: =Font.'Lato Black'
+                                Size: |-
+                                    =If(
+                                        App.Width < 400,
+                                        10,
+                                        13
+                                    )
+                                Text: ="Frequency Penalty"
+                                VerticalAlign: =VerticalAlign.Bottom
+                                Width: =Parent.Width - 5
+                                X: =1
+                                ZIndex: =1
+
+                            "'Chat Main Settings FrequencyPenalty input' As text":
+                                BorderColor: =ColorValue(_iconBackground)
+                                BorderThickness: =1
+                                Color: =ColorValue(_textRegular)
+                                Default: ='Prompt Gallery'.Selected.'Frequency Penalty'
+                                DisabledBorderColor: =ColorValue(_iconBackground)
+                                DisabledColor: =ColorValue(_textRegular)
+                                DisabledFill: =ColorValue(_tileBackground)
+                                Fill: =Color.White//ColorValue(_tileBackground)
+                                FocusedBorderColor: =ColorValue(_buttonMain)
+                                FocusedBorderThickness: =1
+                                Font: =Font.Lato
+                                Format: =TextFormat.Number
+                                Height: =30
+                                HintText: =""
+                                HoverBorderColor: =ColorValue(_buttonMain)
+                                HoverColor: =ColorValue(_textRegular)
+                                HoverFill: =ColorValue(_tileBackground)
+                                Mode: =TextMode.MultiLine
+                                PaddingBottom: =3
+                                PaddingRight: =12
+                                PaddingTop: =7
+                                PressedBorderColor: =ColorValue(_buttonMain)
+                                PressedColor: =ColorValue(_textRegular)
+                                PressedFill: =ColorValue(_tileBackground)
+                                RadiusBottomLeft: =11
+                                RadiusBottomRight: =11
+                                RadiusTopLeft: =11
+                                RadiusTopRight: =11
+                                Size: =10
+                                Width: ='Chat Main Settings FrequencyPenalty label'.Width
+                                X: ='Chat Main Settings FrequencyPenalty label'.X
+                                Y: ='Chat Main Settings FrequencyPenalty label'.Y + 'Chat Main Settings FrequencyPenalty label'.Height
+                                ZIndex: =2
+
+                        "'Chat Main Settings PresencePenalty Container' As groupContainer.manualLayoutContainer":
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            DropShadow: =DropShadow.None
+                            Height: =72
+                            LayoutMinHeight: =71
+                            LayoutMinWidth: =50
+                            PaddingLeft: =1
+                            Width: ='Chat Main Settings Prompt Name label'.Width / 2
+                            ZIndex: =2
+
+                            "'Chat Main Settings PresencePenalty label' As label":
+                                Font: =Font.'Lato Black'
+                                Size: |-
+                                    =If(
+                                        App.Width < 400,
+                                        10,
+                                        13
+                                    )
+                                Text: ="Presence Penalty"
+                                VerticalAlign: =VerticalAlign.Bottom
+                                Width: =Parent.Width - 5
+                                X: =Parent.Width - Self.Width -1
+                                ZIndex: =1
+
+                            "'Chat Main Settings PresencePenalty input' As text":
+                                BorderColor: =ColorValue(_iconBackground)
+                                BorderThickness: =1
+                                Color: =ColorValue(_textRegular)
+                                Default: ='Prompt Gallery'.Selected.'Presence Penalty'
+                                DisabledBorderColor: =ColorValue(_iconBackground)
+                                DisabledColor: =ColorValue(_textRegular)
+                                DisabledFill: =ColorValue(_tileBackground)
+                                Fill: =Color.White//ColorValue(_tileBackground)
+                                FocusedBorderColor: =ColorValue(_buttonMain)
+                                FocusedBorderThickness: =1
+                                Font: =Font.Lato
+                                Height: =30
+                                HintText: =""
+                                HoverBorderColor: =ColorValue(_buttonMain)
+                                HoverColor: =ColorValue(_textRegular)
+                                HoverFill: =ColorValue(_tileBackground)
+                                Mode: =TextMode.MultiLine
+                                PaddingBottom: =3
+                                PaddingRight: =12
+                                PaddingTop: =7
+                                PressedBorderColor: =ColorValue(_buttonMain)
+                                PressedColor: =ColorValue(_textRegular)
+                                PressedFill: =ColorValue(_tileBackground)
+                                RadiusBottomLeft: =11
+                                RadiusBottomRight: =11
+                                RadiusTopLeft: =11
+                                RadiusTopRight: =11
+                                Size: =10
+                                Width: ='Chat Main Settings PresencePenalty label'.Width
+                                X: ='Chat Main Settings PresencePenalty label'.X
+                                Y: ='Chat Main Settings PresencePenalty label'.Y + 'Chat Main Settings PresencePenalty label'.Height
+                                ZIndex: =2
+
+                    "'Chat Main Settings Separator' As groupContainer.horizontalAutoLayoutContainer":
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.None
+                        FillPortions: =0
+                        Height: =20
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutGap: =10
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        LayoutWrap: =true
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: =Parent.Width - 40
+                        ZIndex: =15
+
+                    "'Chat Main Settings Buttons container' As groupContainer.horizontalAutoLayoutContainer":
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.None
+                        FillPortions: =0
+                        Height: =72
+                        LayoutAlignItems: =LayoutAlignItems.End
+                        LayoutGap: =10
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =52
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingBottom: =20
+                        Width: =Parent.Width-60
+                        ZIndex: =16
+
+                        "'Chat Main Settings Save' As button":
+                            BorderColor: =Color.Transparent
+                            BorderThickness: =0
+                            Color: =ColorValue(_buttonMain)
+                            DisabledBorderColor: =Color.Transparent
+                            DisabledColor: =ColorValue(_buttonText)
+                            DisabledFill: =ColorValue(_textRegular)
+                            Fill: |-
+                                =ColorValue("#0286F226")
+                            FocusedBorderColor: =Color.Transparent
+                            FocusedBorderThickness: =0
+                            Font: =Font.Lato
+                            Height: =50
+                            HoverBorderColor: =Color.Transparent
+                            HoverColor: =ColorValue(_buttonText)
+                            HoverFill: =ColorValue(_buttonHover)
+                            OnSelect: |-
+                                =Switch(
+                                    _appLanguageSelected,
+                                
+                                    "EN",
+                                    Patch(
+                                        Prompts_1,
+                                        {Prompts: 'Prompt Gallery'.Selected.Prompts},
+                                        {
+                                            Name: 'Chat Main Settings Prompt Name input'.Text,
+                                            Description: 'Chat Main Settings Prompt Description input'.Text,
+                                            RoleSystem: 'Chat Main Settings System input'.Text,
+                                            Prompt: 'Chat Main Settings Prompt input'.Text,
+                                            'Max Tokens': Value('Chat Main Settings Token input'.Text),
+                                            Stop: 'Chat Main Settings Stop input'.Text,
+                                            Temperature: Value('Chat Main Settings Temperature input'.Text),
+                                            'Top P': Value('Chat Main Settings TopP input'.Text),
+                                            'Frequency Penalty': Value('Chat Main Settings FrequencyPenalty input'.Text),
+                                            'Presence Penalty': Value('Chat Main Settings PresencePenalty input'.Text)
+                                        }
+                                    ),
+                                
+                                    "DE",
+                                    Patch(
+                                        Prompts_1,
+                                        {Prompts: 'Prompt Gallery'.Selected.Prompts},
+                                        {
+                                            NameDE: 'Chat Main Settings Prompt Name input'.Text,
+                                            DescriptionDE: 'Chat Main Settings Prompt Description input'.Text,
+                                            RoleSystem: 'Chat Main Settings System input'.Text,
+                                            Prompt: 'Chat Main Settings Prompt input'.Text,
+                                            'Max Tokens': Value('Chat Main Settings Token input'.Text),
+                                            Stop: 'Chat Main Settings Stop input'.Text,
+                                            Temperature: Value('Chat Main Settings Temperature input'.Text),
+                                            'Top P': Value('Chat Main Settings TopP input'.Text),
+                                            'Frequency Penalty': Value('Chat Main Settings FrequencyPenalty input'.Text),
+                                            'Presence Penalty': Value('Chat Main Settings PresencePenalty input'.Text)
+                                        }
+                                    ),
+                                
+                                    "FR",
+                                    Patch(
+                                        Prompts_1,
+                                        {Prompts: 'Prompt Gallery'.Selected.Prompts},
+                                        {
+                                            NameFR: 'Chat Main Settings Prompt Name input'.Text,
+                                            DescriptionFR: 'Chat Main Settings Prompt Description input'.Text,
+                                            RoleSystem: 'Chat Main Settings System input'.Text,
+                                            Prompt: 'Chat Main Settings Prompt input'.Text,
+                                            'Max Tokens': Value('Chat Main Settings Token input'.Text),
+                                            Stop: 'Chat Main Settings Stop input'.Text,
+                                            Temperature: Value('Chat Main Settings Temperature input'.Text),
+                                            'Top P': Value('Chat Main Settings TopP input'.Text),
+                                            'Frequency Penalty': Value('Chat Main Settings FrequencyPenalty input'.Text),
+                                            'Presence Penalty': Value('Chat Main Settings PresencePenalty input'.Text)
+                                        }
+                                    )
+                                
+                                );
+                                
+                                Refresh(Prompts_1);
+                                
+                                Patch(
+                                    'Environment Variable Values',
+                                    LookUp(
+                                        'Environment Variable Values',
+                                        'Environment Variable Definition'.'Schema Name' = "archer_SuperPrompt"
+                                    ),
+                                    {
+                                        Value: 'Chat Main Settings Super Prompt input'.Text
+                                    }
+                                );
+                                
+                                Set(
+                                    _superPrompt,
+                                    'Chat Main Settings Super Prompt input'.Text
+                                )
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            PressedBorderColor: =Color.Transparent
+                            PressedColor: =ColorValue(_buttonMain)
+                            PressedFill: =ColorValue(_buttonPressed)
+                            Size: =12
+                            Text: ="Save"
+                            Width: =(Parent.Width-40)/2 
+                            ZIndex: =1
+
+                        "'Chat Main Settings Save and run' As button":
+                            BorderColor: =Color.Transparent
+                            BorderThickness: =0
+                            Color: =ColorValue(_buttonText)
+                            DisabledBorderColor: =Color.Transparent
+                            DisabledColor: =ColorValue(_buttonText)
+                            DisabledFill: =ColorValue(_textRegular)
+                            Fill: =ColorValue(_buttonMain)
+                            FocusedBorderColor: =Color.Transparent
+                            FocusedBorderThickness: =0
+                            Font: =Font.Lato
+                            Height: =50
+                            HoverBorderColor: =Color.Transparent
+                            HoverColor: =ColorValue(_buttonText)
+                            HoverFill: =ColorValue(_buttonHover)
+                            OnSelect: |-
+                                =Switch(
+                                    _appLanguageSelected,
+                                
+                                    "EN",
+                                    Patch(
+                                        Prompts_1,
+                                        {Prompts: 'Prompt Gallery'.Selected.Prompts},
+                                        {
+                                            Name: 'Chat Main Settings Prompt Name input'.Text,
+                                            Description: 'Chat Main Settings Prompt Description input'.Text,
+                                            RoleSystem: 'Chat Main Settings System input'.Text,
+                                            Prompt: 'Chat Main Settings Prompt input'.Text,
+                                            'Max Tokens': Value('Chat Main Settings Token input'.Text),
+                                            Stop: 'Chat Main Settings Stop input'.Text,
+                                            Temperature: Value('Chat Main Settings Temperature input'.Text),
+                                            'Top P': Value('Chat Main Settings TopP input'.Text),
+                                            'Frequency Penalty': Value('Chat Main Settings FrequencyPenalty input'.Text),
+                                            'Presence Penalty': Value('Chat Main Settings PresencePenalty input'.Text)
+                                        }
+                                    ),
+                                
+                                    "DE",
+                                    Patch(
+                                        Prompts_1,
+                                        {Prompts: 'Prompt Gallery'.Selected.Prompts},
+                                        {
+                                            NameDE: 'Chat Main Settings Prompt Name input'.Text,
+                                            DescriptionDE: 'Chat Main Settings Prompt Description input'.Text,
+                                            RoleSystem: 'Chat Main Settings System input'.Text,
+                                            Prompt: 'Chat Main Settings Prompt input'.Text,
+                                            'Max Tokens': Value('Chat Main Settings Token input'.Text),
+                                            Stop: 'Chat Main Settings Stop input'.Text,
+                                            Temperature: Value('Chat Main Settings Temperature input'.Text),
+                                            'Top P': Value('Chat Main Settings TopP input'.Text),
+                                            'Frequency Penalty': Value('Chat Main Settings FrequencyPenalty input'.Text),
+                                            'Presence Penalty': Value('Chat Main Settings PresencePenalty input'.Text)
+                                        }
+                                    ),
+                                
+                                    "FR",
+                                    Patch(
+                                        Prompts_1,
+                                        {Prompts: 'Prompt Gallery'.Selected.Prompts},
+                                        {
+                                            NameFR: 'Chat Main Settings Prompt Name input'.Text,
+                                            DescriptionFR: 'Chat Main Settings Prompt Description input'.Text,
+                                            RoleSystem: 'Chat Main Settings System input'.Text,
+                                            Prompt: 'Chat Main Settings Prompt input'.Text,
+                                            'Max Tokens': Value('Chat Main Settings Token input'.Text),
+                                            Stop: 'Chat Main Settings Stop input'.Text,
+                                            Temperature: Value('Chat Main Settings Temperature input'.Text),
+                                            'Top P': Value('Chat Main Settings TopP input'.Text),
+                                            'Frequency Penalty': Value('Chat Main Settings FrequencyPenalty input'.Text),
+                                            'Presence Penalty': Value('Chat Main Settings PresencePenalty input'.Text)
+                                        }
+                                    )
+                                
+                                );
+                                Refresh(Prompts_1);
+                                
+                                Patch(
+                                    'Environment Variable Values',
+                                    LookUp(
+                                        'Environment Variable Values',
+                                        'Environment Variable Definition'.'Schema Name' = "archer_SuperPrompt"
+                                    ),
+                                    {
+                                        Value: 'Chat Main Settings Super Prompt input'.Text
+                                    }
+                                );
+                                
+                                Set(
+                                    _superPrompt,
+                                    'Chat Main Settings Super Prompt input'.Text
+                                );
+                                
+                                ClearCollect(
+                                    _conversation,
+                                    {
+                                        id: 1,
+                                        role: "system",
+                                        content: 'Chat Main Settings System input'.Text & " " & 'Chat Main Settings Super Prompt input'.Text  & " Please answer me in " & First(Filter('App Languages', Code = _appLanguageSelected)).Name & " language only"
+                                    },
+                                    {
+                                        id: 2,
+                                        role: "user",
+                                        content: 'Chat Main Settings Prompt input'.Text
+                                    }
+                                );
+                                
+                                Set(_settingsPopup, false);
+                                
+                                Set(
+                                    _botResponse,
+                                    First(
+                                        Defaulttitle_1.RequestToAzureOpenAI(
+                                            Value('Chat Main Settings Token input'.Text),
+                                            Value('Chat Main Settings Temperature input'.Text),
+                                            Value('Chat Main Settings TopP input'.Text),
+                                            {
+                                                messages:
+                                                DropColumns(
+                                                    Sort(
+                                                        _conversation,
+                                                        id,
+                                                        SortOrder.Ascending
+                                                    ),
+                                                    "id"
+                                                ),
+                                                
+                                                frequency_penalty:
+                                                Value('Chat Main Settings FrequencyPenalty input'.Text),
+                                                
+                                                presence_penalty:
+                                                Value('Chat Main Settings PresencePenalty input'.Text),
+                                                
+                                                stop:
+                                                'Chat Main Settings Stop input'.Text
+                                            }
+                                        ).choices
+                                    ).message.content
+                                );
+                                
+                                Patch(
+                                    _conversation,
+                                    Defaults(_conversation),
+                                    {
+                                        id: CountRows(_conversation)+1,
+                                        role: "assistant",
+                                        content: _botResponse
+                                    }
+                                )
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            PressedBorderColor: =Color.Transparent
+                            PressedColor: =ColorValue(_buttonMain)
+                            PressedFill: =ColorValue(_buttonPressed)
+                            Size: =12
+                            Text: ="Save and run"
+                            Width: =(Parent.Width-40)/2 
+                            Y: ='Onboarding Tip'.Y + 'Onboarding Tip'.Height + 10
+                            ZIndex: =2
+
+        "'Chat Footer container' As groupContainer.horizontalAutoLayoutContainer":
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =34
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Y: =40
+            ZIndex: =6
+
