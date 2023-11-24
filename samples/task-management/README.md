@@ -41,6 +41,8 @@ None
 The following solution components are used in this sample:
 
 * Task Management (Canvas App) 
+* Users, Task Tracker, Pods, Projects   (SharePoint Lists)|
+* Users, Task Tracker, Pods, Projects  (Environment variables)
 
 
 ## Minimal Path to Awesome
@@ -67,6 +69,9 @@ This sample illustrates the following concepts:
 * Streamlined messaging process
 * Visually appealing phone layout UI/UX
 * Real-time collaboration
+* Add teams and users
+* Create Events Using Calender
+
 
 ## Help
 

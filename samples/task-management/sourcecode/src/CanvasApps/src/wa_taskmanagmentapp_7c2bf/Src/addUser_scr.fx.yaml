@@ -1,0 +1,340 @@
+addUser_scr As screen:
+    OnVisible: |
+        =UpdateContext({timeStart: true});
+        //Timer2.AutoStart = true
+
+    Image3 As image:
+        Height: =Parent.Height
+        Image: =CS_BG
+        ImagePosition: =ImagePosition.Fill
+        Width: =Parent.Width
+        ZIndex: =1
+
+    Button3 As button:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =140
+        RadiusBottomLeft: =30
+        RadiusBottomRight: =30
+        RadiusTopLeft: =30
+        RadiusTopRight: =30
+        Text: =""
+        Width: =150
+        X: =229
+        Y: =242
+        ZIndex: =2
+
+    Reg_form_cnt As groupContainer.manualLayoutContainer:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        ContentLanguage: =
+        DropShadow: =DropShadow.Bold
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =622
+        PaddingBottom: =10
+        PaddingLeft: =10
+        PaddingRight: =10
+        PaddingTop: =10
+        Width: =673
+        X: =636
+        Y: =114
+        ZIndex: =3
+
+        firstName As text:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Default: =""
+            Height: |
+                =47
+            HintText: ="First Name"
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width/2.2
+            X: =10
+            Y: =41
+            ZIndex: =2
+
+        lastName As text:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Default: =""
+            Height: |
+                =47
+            HintText: ="Last Name"
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width/2.2
+            X: =Parent.Width - (lastName.Width + 13)
+            Y: =41
+            ZIndex: =3
+
+        userEmail As text:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Default: =
+            Height: =47
+            HintText: ="Email Address"
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width-23
+            X: =10
+            Y: =181
+            ZIndex: =4
+
+        dob As datepicker:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            DefaultDate: =
+            Height: |
+                =47
+            IconBackground: =theme.primaryDark
+            IconFill: =theme.lightFont
+            InputTextPlaceholder: ="-- Date of Birth --"
+            Width: =Parent.Width/2.2
+            X: =13
+            Y: =442
+            ZIndex: =6
+
+        btn_reg As button:
+            BorderThickness: =0
+            Color: =theme.darkFont
+            DisplayMode: =If(IsBlank(userEmail) Or IsBlank(userName) Or IsBlank(reg_pswd),DisplayMode.Disabled)
+            Fill: =theme.contrastColor
+            Height: =62
+            HoverColor: =theme.lightFont
+            HoverFill: =ColorFade(theme.contrastColor, -30%)
+            OnSelect: |
+                =If(IsBlank(userEmail),Exit(),If(IsBlank(userName),Exit(),If(IsBlank(reg_pswd),Exit())));
+                
+                Patch(
+                    Users,
+                    Defaults(Users),
+                    {
+                        Title: firstName.Text,
+                        LastName: lastName.Text,
+                        Email: userEmail.Text,
+                        Password: reg_pswd.Text,
+                        UserName: userName.Text,
+                        Dob: dob.SelectedDate,
+                        Gender: gender.SelectedText,
+                        JobTitle: jobtitle.SelectedText,
+                        Role: role.SelectedText,
+                        Project:projects.SelectedText
+                        //AssignedBy : activeUser.Title &" "& activeUser.LastName
+                    }
+                );
+                Notify(
+                    "User added successfully",
+                    NotificationType.Success,
+                    300
+                );
+                Reset(firstName);
+                Reset(lastName);
+                Reset(userEmail);
+                Reset(role);
+                Reset(projects);
+                Reset(pods);
+                Reset(gender);
+                Reset(jobtitle);
+                Reset(dob);
+                Reset(reg_pswd);
+                Reset(userName);
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="ADD USER"
+            Width: =344
+            X: =163
+            Y: =541
+            ZIndex: =7
+
+        reg_pswd As text:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Default: =
+            Height: =47
+            HintText: ="Password"
+            Mode: =If(password_Reg_Hide,TextMode.SingleLine,TextMode.Password)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width-23
+            X: =10
+            Y: =244
+            ZIndex: =10
+
+        hide_1 As icon.Hide:
+            Color: =RGBA(166, 166, 166, 1)
+            Height: =25
+            Icon: =Icon.View
+            OnSelect: |-
+                =If(
+                  password_Reg_Hide,
+                    Set(
+                        password_Reg_Hide,
+                        false
+                    ),
+                    Set(
+                    password_Reg_Hide,
+                    true
+                )
+                )
+            Visible: =If(password_Reg_Hide,true, false )
+            Width: =25
+            X: =615
+            Y: =253
+            ZIndex: =11
+
+        show_1 As icon.Hide:
+            Color: =RGBA(166, 166, 166, 1)
+            Height: =25
+            Icon: =Icon.Hide
+            OnSelect: |-
+                =If(
+                   password_Reg_Hide,
+                    Set(
+                      password_Reg_Hide,
+                        false
+                    ),
+                    Set(
+                  password_Reg_Hide,
+                    true
+                )
+                )
+            Visible: =If(password_Reg_Hide,false, true )
+            Width: =25
+            X: =615
+            Y: =255
+            ZIndex: =12
+
+        gender As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(166, 166, 166, 1)
+            ChevronBackground: =theme.primaryDark
+            Default: ="Male"
+            Fill: =Color.White
+            Height: =47
+            HoverFill: =Color.Transparent
+            Items: =Choices([@Users].Gender)
+            Width: =Parent.Width/2.2
+            X: =Parent.Width - (jobtitle.Width + 13)
+            Y: =442
+            ZIndex: =13
+
+        jobtitle As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(166, 166, 166, 1)
+            ChevronBackground: =theme.primaryDark
+            ChevronFill: =theme.lightFont
+            Default: ="Associate"
+            Fill: =Color.White
+            Height: =47  
+            HoverFill: =
+            Items: =Choices([@Users].JobTitle)
+            PressedFill: =Color.Transparent
+            Width: =Parent.Width/2.2
+            X: |
+                =10
+            Y: =308
+            ZIndex: =15
+
+        role As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(166, 166, 166, 1)
+            ChevronBackground: =theme.primaryDark
+            Default: ="User"
+            Fill: =Color.White
+            Height: =47  
+            HoverFill: =Color.Transparent
+            Items: =Choices([@Users].Role)
+            Width: =Parent.Width/2.2
+            X: =Parent.Width - (jobtitle.Width + 13)
+            Y: =308
+            ZIndex: =17
+
+        userName As text:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Default: =""
+            Height: =47
+            HintText: ="User Name"
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width-23
+            X: =10
+            Y: =110
+            ZIndex: =18
+
+        pods As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(166, 166, 166, 1)
+            ChevronBackground: =theme.primaryDark
+            ChevronFill: =theme.lightFont
+            Default: ="Associate"
+            Fill: =Color.White
+            Height: =47  
+            HoverFill: =
+            Items: =Choices([@Users].POD)
+            PressedFill: =Color.Transparent
+            Width: =Parent.Width/2.2
+            X: =13
+            Y: =376
+            ZIndex: =19
+
+        projects As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(166, 166, 166, 1)
+            ChevronBackground: =theme.primaryDark
+            Default: ="User"
+            Fill: =Color.White
+            Height: =47  
+            HoverFill: =Color.Transparent
+            Items: =Choices([@Users].Project)
+            Width: =Parent.Width/2.2
+            X: =Parent.Width - (jobtitle.Width + 13)
+            Y: =376
+            ZIndex: =20
+
+    lbl_addUser As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.None
+        Height: =301
+        X: =54
+        Y: =205
+        ZIndex: =4
+
+        Label3 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =119
+            Size: =42
+            Text: ="Add New User"
+            Width: =464
+            X: =36
+            Y: =182
+            ZIndex: =1
+
+        Image7 As image:
+            Height: =105
+            Image: ='add-user'
+            Width: =113
+            X: =198
+            Y: =58
+            ZIndex: =2
+
+    AppHeader_1 As AppHeader:
+        ZIndex: =11
+
+    Timer2 As timer:
+        AutoStart: =timeStart
+        Duration: =10000
+        OnTimerEnd: =Label14.Text = Timer2.Duration
+        OnTimerStart: |
+            =If(!manager_access, Navigate(userTask_scr));
+        Start: =timeStart
+        Visible: =false
+        X: =292
+        Y: =608
+        ZIndex: =12
+
