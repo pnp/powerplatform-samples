@@ -1,8 +1,8 @@
-# ChuckNorrisIO
+# Live Avatar
 
 ## Summary
 
-This sample illustrates how to get a Chuck Norris joke via the **Chuck Norris IO (IndependentPublisher)** connector.
+This sample illustrates how to use OpenAI services in Power Apps to generate answers to questions and visualize them with **Live Avatars** generated with the Text-to-Speech services on Azure.
 
 ![picture of the sample](assets/ChuckNorris.png)
 
@@ -27,6 +27,7 @@ This sample illustrates how to get a Chuck Norris joke via the **Chuck Norris IO
 ## Contributors
 
 - [Iona Varga](https://github.com/Ionavoss)
+- [Daniel Laskewitz](https://github.com/laskewitz)
 
 ## Version history
 
