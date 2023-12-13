@@ -48,7 +48,8 @@ This sample illustrates how to send a prompt to OpenAI services in Azure with Po
 * [Download](./solution/LiveAvatar_1_0_0_1.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * Set the environment variables to the values inserted into the `DeployBicep.ps1` file.
-* In Azure OpenAI, copy the API Token and paste in the Environment Token
+* In Azure OpenAI, copy the API Key and paste in the Environment variable
+* In Azure AI Services, copy the API Key for the TTS-service and paste it in the Environment variable
 
 The environment variables are as follow:
 
