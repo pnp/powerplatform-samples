@@ -4,13 +4,13 @@
 
 This sample illustrates how to use OpenAI services in Power Apps to generate answers to questions and visualize them with **Live Avatars** generated with the Text-to-Speech services on Azure.
 
-![picture of the sample](assets/ChuckNorris.png)
+![video of the sample](assets/avatardemo.mp4)
 
 ## Applies to
 
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
-![Power Automate](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
-![Azure](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
+![Power Automate](https://img.shields.io/badge/Power%automate-Yes-green "Yes")
+![Azure](https://img.shields.io/badge/Azure-Yes-green "Yes")
 ![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
 ![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
 ![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
@@ -21,8 +21,8 @@ This sample illustrates how to use OpenAI services in Power Apps to generate ans
 
 ## Compatibility
 
-![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-green.svg "Premium Power Apps license required")
-![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-green.svg "Does rely on experimental features")
+![Premium License](https://img.shields.io/badge/Premium%20License-Required-green.svg "Premium license required")
+![Experimental Features](https://img.shields.io/badge/Experimental%20Features-Yes-green.svg "Does rely on experimental features")
 
 ## Contributors
 
