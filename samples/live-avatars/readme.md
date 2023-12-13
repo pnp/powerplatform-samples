@@ -4,7 +4,7 @@
 
 This sample illustrates how to use OpenAI services in Power Apps to generate answers to questions and visualize them with **Live Avatars** generated with the Text-to-Speech services on Azure.
 
-![video of the sample](assets/avatardemo.mp4)
+https://github.com/Ionavoss/powerplatform-samples/assets/46789417/aca2939c-9dc5-4c00-bf41-ba5b224cda20
 
 ## Applies to
 
@@ -37,11 +37,7 @@ Version|Date|Comments
 
 ## Features
 
-This sample illustrates how to get a Chuck Norris joke via the **Chuck Norris IO (IndependentPublisher)** connector.
-
-## Data Sources
-
-* **Chuck Norris IO (IndependentPublisher)**
+This sample illustrates how to send a prompt to OpenAI services in Azure with Power Automate and visualize the response with the **Live Avatar** service from Azure. 
 
 ## Minimal Path to Awesome
 
