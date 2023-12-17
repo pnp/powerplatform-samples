@@ -1,0 +1,55 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: HR
+    triggerQueries:
+      - What are the HR policies?
+      - What is the recruitment process?
+      - What is the onboarding process like?
+      - How can I contact HR about a question?
+      - What benefits do you offer employees?
+      - Can I get more information about employee benefits?
+      - How can I find out more about HR policies?
+      - hr
+
+  actions:
+    - kind: SendActivity
+      id: sendActivity_A3mV5N
+      activity: Our HR superheroes are ready to assist! Reach out to us anytime at **[hr@companyxyzhr.com](mailto:hr@companyxyzhr.com)** or give us a ring at 1-800-HR-HEROES. We've got your back! 😄📞
+
+    - kind: Question
+      id: question_ChVtXM
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Var1
+      prompt: Would you like to speak with HR now?
+      entity:
+        kind: EmbeddedEntity
+        definition:
+          kind: ClosedListEntity
+          items:
+            - id: Yes
+              displayName: Yes
+
+            - id: No
+              displayName: No
+
+    - kind: ConditionGroup
+      id: conditionGroup_dGsFpy
+      conditions:
+        - id: conditionItem_tElwaA
+          condition: =Topic.Var1 = 'cre85_bot1.topic.Untitled1.main.question_ChVtXM'.Yes
+
+        - id: conditionItem_qadXp2
+          condition: =Topic.Var1 = 'cre85_bot1.topic.Untitled1.main.question_ChVtXM'.No
+          actions:
+            - kind: BeginDialog
+              id: eviXLt
+              dialog: cre85_bot1.topic.Goodbye
+
+    - kind: SendActivity
+      id: SendActivity_wQ0evM
+      activity: Connecting you to HR. Please wait while we connect you...

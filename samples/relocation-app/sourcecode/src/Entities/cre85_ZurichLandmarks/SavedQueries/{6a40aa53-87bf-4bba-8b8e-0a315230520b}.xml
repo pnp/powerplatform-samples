@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{6a40aa53-87bf-4bba-8b8e-0a315230520b}</savedqueryid>
+    <layoutxml>
+      <grid name="cre85_zurichlandmarkses" jump="cre85_landmarkname" select="1" icon="1" preview="1">
+        <row name="cre85_zurichlandmarks" id="cre85_zurichlandmarksid">
+          <cell name="cre85_landmarkname" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="cre85_zurichlandmarks">
+          <attribute name="cre85_zurichlandmarksid" />
+          <attribute name="cre85_landmarkname" />
+          <attribute name="createdon" />
+          <order attribute="cre85_landmarkname" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="ZürichLandmarks  Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
