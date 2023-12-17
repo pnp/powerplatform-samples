@@ -1,0 +1,36 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Documents and Administrative Questions
+    triggerQueries:
+      - What documents do I need to submit?
+      - How do I access administrative forms?
+      - Where can I find the necessary paperwork?
+      - What are the requirements for filing documents?
+      - How long does it take to process my request?
+      - Can you help me with document submission?
+      - Do you have any tips for completing administrative tasks quickly and accurately?
+      - What is the best way to submit my documents online?
+      - Are there any deadlines for submitting paperwork?
+      - Can you provide me with a list of required documents?
+      - documents
+      - work permit
+      - swiss work permit
+
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: searchAndSummarizeContent_vHAjXe
+      userInput: =System.Activity.Text
+      additionalInstructions:
+      publicDataSource:
+        kind: PublicSiteSearchDataSource
+        sites:
+          - "https://immigration-switzerland.co/"
+          - "https://www.internations.org/switzerland-expats/guide/moving-to"
+          - "https://www.swissinfo.ch/eng/switzerland-as-an-immigration-country/45810060"
+          - "https://www.ch.ch/en/foreign-nationals-in-switzerland/living-in-switzerland/moving-to-switzerland/"
+
+      sharePointSearchDataSource: {}
+      customDataSource: {}

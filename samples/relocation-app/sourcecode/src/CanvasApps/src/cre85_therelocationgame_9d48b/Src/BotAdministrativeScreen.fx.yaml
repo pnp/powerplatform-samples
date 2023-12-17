@@ -1,0 +1,51 @@
+BotAdministrativeScreen As screen:
+    Fill: =RGBA(31, 31, 31, 1)
+    LoadingSpinnerColor: =RGBA(255, 200, 61, 1)
+
+    "Chatbot1 As 'Chatbot (preview)'":
+        DisplayMode: =DisplayMode.Edit
+        EnvironmentId: ="6e3a47ea-d448-e40e-a6d3-cfe7260a4c0a"
+        HeaderLabel: ="Welcome!"
+        Height: =1005
+        SchemaName: ="cre85_bot1"
+        Width: =638
+        X: =0
+        Y: =131
+        ZIndex: =1
+
+    Icon1 As icon.BackArrow:
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Color: =RGBA(255, 200, 61, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.BackArrow
+        OnSelect: =Back()
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        X: =11
+        Y: =42
+        ZIndex: =3
+
+    Image4 As image:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =149
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Image: ='travel-agent'
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Width: =117
+        X: =255
+        ZIndex: =4
+
