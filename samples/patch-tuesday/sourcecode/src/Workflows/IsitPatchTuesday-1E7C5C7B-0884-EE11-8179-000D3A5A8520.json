@@ -1,0 +1,91 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Week",
+            "interval": 1,
+            "timeZone": "Central Standard Time",
+            "startTime": "2023-11-15T16:00:00Z",
+            "schedule": {
+              "weekDays": [
+                "Tuesday"
+              ],
+              "hours": [
+                "8"
+              ],
+              "minutes": [
+                0
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "d86ea9ed-77be-46e8-b891-7c2a79eb1151"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "Compose": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f6991d23-da7e-42a9-a8f0-ab2a58de3081"
+              },
+              "type": "Compose",
+              "inputs": "It's Patch Tuesday!"
+            }
+          },
+          "runAfter": {},
+          "else": {
+            "actions": {
+              "Compose_2": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "7e4a2779-430b-4faf-8e9d-a0440284cf8a"
+                },
+                "type": "Compose",
+                "inputs": "It's not Patch Tuesday!"
+              }
+            }
+          },
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@startOfMonth(utcNow())",
+                  "@startOfMonth(addDays(utcNow(),-7))"
+                ]
+              },
+              {
+                "not": {
+                  "equals": [
+                    "@startOfMonth(utcNow())",
+                    "@startOfMonth(addDays(utcNow(),-14))"
+                  ]
+                }
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "de6b35d0-b85f-4a74-a4d5-9bd42f5c5adf"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,42 @@
+"'Get Patch Tuesday' As screen":
+
+    DatePicker As datepicker:
+        AccessibleLabel: ="Date Picker"
+        OnChange: =Set(PatchTuesdayVar,PatchTuesdayArbitraryDateFlow.Run(DatePicker.SelectedDate))
+        Width: =187
+        X: =61
+        Y: =134
+        ZIndex: =1
+
+    Result As label:
+        BorderThickness: =2
+        FocusedBorderThickness: =1
+        TabIndex: =0
+        Text: =PatchTuesdayVar.patchtuesday
+        Width: =271
+        X: =281
+        Y: =134
+        ZIndex: =2
+
+    Select_label As label:
+        FocusedBorderThickness: =1
+        Height: =23
+        TabIndex: =0
+        Text: |-
+            ="Select Date:"
+        Width: =187
+        X: =61
+        Y: =85
+        ZIndex: =3
+
+    Result_label As label:
+        FocusedBorderThickness: =1
+        Height: =23
+        TabIndex: =0
+        Text: |-
+            ="Timestamp for Patch Tuesday:"
+        Width: =271
+        X: =281
+        Y: =85
+        ZIndex: =4
+
