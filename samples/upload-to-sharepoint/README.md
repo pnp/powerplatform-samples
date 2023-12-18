@@ -31,7 +31,7 @@ Version|Date|Comments
 
 ## Prerequisites
 
-none
+* A SharePoint site
 
 ## Solution Components
 
@@ -48,7 +48,7 @@ The following solution components are used in this sample:
 1. [Download](./solution/upload-to-sharepoint.zip) the solution `.zip` from the `solution` folder.
 2. Within **https://make.powerapps.com**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
 3. Follow the on-screen instructions to deploy the application.
-4. Access the Incident Reporting Canvas App and start reporting incidents.
+4. Access the **Attachment Upload** Canvas App and start reporting incidents.
 
 ## Using the Source Code
 
@@ -57,7 +57,7 @@ You can also use the [Power Apps CLI](https://aka.ms/pac/docs) to pack the sourc
 1. Clone the repository to a local drive.
 2. Pack the source files back into `.zip` file:
    ```bash
-   pac solution pack --folder pathtosourcefolder --zipfile pathtosolution  --processCanvasApps
+   pac solution pack --folder pathtosourcefolder --zipfile pathtosolution --processCanvasApps
    ```
 
 ## Features
