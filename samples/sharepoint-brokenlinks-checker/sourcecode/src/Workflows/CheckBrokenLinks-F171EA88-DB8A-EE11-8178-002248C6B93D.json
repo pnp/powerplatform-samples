@@ -1,0 +1,514 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline-2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "alexmsft_BrokenLinksSharePointConnection"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_conversionservice-2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "alexmsft_BrokenLinksContentConversionConnection"
+        },
+        "api": {
+          "name": "shared_conversionservice"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "Broken Links SPO Site (alexmsft_BrokenLinksSPOSite)": {
+          "defaultValue": "https://m365x765471.sharepoint.com/",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alexmsft_BrokenLinksSPOSite",
+            "description": "SharePoint site for the Broken Links solution"
+          }
+        },
+        "Broken Links List (alexmsft_BrokenLinksList)": {
+          "defaultValue": "f41d98d8-a3ba-495f-b40c-87364970f182",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alexmsft_BrokenLinksList",
+            "description": "Broken links list"
+          }
+        },
+        "Broken Links SPO Tenant Name (alexmsft_BrokenLinksSPOTenantName)": {
+          "defaultValue": "m365x765471",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alexmsft_BrokenLinksSPOTenantName",
+            "description": "SharePoint tenant name"
+          }
+        },
+        "Broken Links SPO Root Site (alexmsft_BrokenLinksSPORootSite)": {
+          "defaultValue": "https://m365x765471.sharepoint.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alexmsft_BrokenLinksSPORootSite",
+            "description": "SharePoint root site"
+          }
+        }
+      },
+      "triggers": {
+        "When_a_file_is_created_or_modified_(properties_only)": {
+          "recurrence": {
+            "frequency": "Minute",
+            "interval": 1
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "dataset": "@parameters('Broken Links SPO Site (alexmsft_BrokenLinksSPOSite)')",
+              "table": "Site Pages"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "operationId": "GetOnUpdatedFileItems",
+              "connectionName": "shared_sharepointonline-2"
+            }
+          }
+        }
+      },
+      "actions": {
+        "Initialize_SharePointTenantName_variable": {
+          "runAfter": {},
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SharePointTenantName",
+                "type": "string",
+                "value": "@parameters('Broken Links SPO Tenant Name (alexmsft_BrokenLinksSPOTenantName)')"
+              }
+            ]
+          }
+        },
+        "Initialize_BrokenLinks_variable": {
+          "runAfter": {
+            "Initialize_SharePointRootSiteURL_variable": [
+              "Succeeded"
+            ]
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "BrokenLinks",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Initialize_SharePointRootSiteURL_variable": {
+          "runAfter": {
+            "Initialize_SharePointTenantName_variable": [
+              "Succeeded"
+            ]
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SharePointRootSiteURL",
+                "type": "string",
+                "value": "@parameters('Broken Links SPO Root Site (alexmsft_BrokenLinksSPORootSite)')"
+              }
+            ]
+          }
+        },
+        "Check_page_version_number": {
+          "actions": {
+            "Get_item_from_broken_links_list": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@parameters('Broken Links SPO Site (alexmsft_BrokenLinksSPOSite)')",
+                  "table": "@parameters('Broken Links List (alexmsft_BrokenLinksList)')",
+                  "$filter": "PageId eq '@{triggerOutputs()?['body/ID']}'"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "GetItems",
+                  "connectionName": "shared_sharepointonline-2"
+                }
+              },
+              "description": "Get the item for this page in the broken links list."
+            },
+            "Check_broken_link_item_status": {
+              "actions": {
+                "Get_page_content": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "dataset": "@parameters('Broken Links SPO Site (alexmsft_BrokenLinksSPOSite)')",
+                      "parameters/method": "GET",
+                      "parameters/uri": "_api/web/lists/GetByTitle('Site%20Pages')/items(@{triggerOutputs()?['body/ID']})/CanvasContent1"
+                    },
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                      "operationId": "HttpRequest",
+                      "connectionName": "shared_sharepointonline-2"
+                    }
+                  }
+                },
+                "Parse_page_content_JSON": {
+                  "runAfter": {
+                    "Get_page_content": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@outputs('Get_page_content')?['body']",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "properties": {
+                          "type": "object",
+                          "properties": {
+                            "d": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "properties": {
+                                  "type": "object",
+                                  "properties": {
+                                    "CanvasContent1": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Convert_page_content_to_plain_text": {
+                  "runAfter": {
+                    "Parse_page_content_JSON": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "Content": "<p>@{body('Parse_page_content_JSON')?['d']?['CanvasContent1']}</p>"
+                    },
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_conversionservice",
+                      "operationId": "HtmlToText",
+                      "connectionName": "shared_conversionservice-2"
+                    }
+                  }
+                },
+                "Extract_possible_links": {
+                  "runAfter": {
+                    "Convert_page_content_to_plain_text": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "Compose",
+                  "inputs": "@split(outputs('Convert_page_content_to_plain_text')?['body'],'[')"
+                },
+                "Loop_through_possible_links": {
+                  "foreach": "@outputs('Extract_possible_links')",
+                  "actions": {
+                    "Check_if_link_contains_a_title": {
+                      "actions": {
+                        "Extract_link": {
+                          "type": "Compose",
+                          "inputs": "@substring(item(),0,indexOf(item(),']'))",
+                          "description": "Extract the link by removing the remaining characters after the ] character."
+                        },
+                        "Check_if_this_is_a_SharePoint_link": {
+                          "actions": {
+                            "Get_link_content_-_file": {
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "dataset": "@parameters('Broken Links SPO Site (alexmsft_BrokenLinksSPOSite)')",
+                                  "path": "@outputs('Extract_link')"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                  "operationId": "GetFileMetadataByPath",
+                                  "connectionName": "shared_sharepointonline-2"
+                                }
+                              },
+                              "description": "Try to get the content at the link path, this assumes the link is to a file."
+                            },
+                            "Send_http_request_to_link_-_site": {
+                              "runAfter": {
+                                "Get_link_content_-_file": [
+                                  "Failed"
+                                ]
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "dataset": "@{variables('SharePointRootSiteURL')}@{outputs('Extract_link')}",
+                                  "parameters/method": "GET",
+                                  "parameters/uri": "_api/web"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                  "operationId": "HttpRequest",
+                                  "connectionName": "shared_sharepointonline-2"
+                                },
+                                "retryPolicy": {
+                                  "type": "none"
+                                }
+                              },
+                              "description": "Use the send http request to SharePoint action to send a request to the link source. This assumes the link is to a site and not a file."
+                            },
+                            "Append_to_BrokenLinks_variable_-_SharePoint_link": {
+                              "runAfter": {
+                                "Send_http_request_to_link_-_site": [
+                                  "Failed"
+                                ]
+                              },
+                              "type": "AppendToArrayVariable",
+                              "inputs": {
+                                "name": "BrokenLinks",
+                                "value": "@outputs('Extract_link')"
+                              }
+                            }
+                          },
+                          "runAfter": {
+                            "Extract_link": [
+                              "Succeeded"
+                            ]
+                          },
+                          "else": {
+                            "actions": {
+                              "Send_http_request_to_the_link_source": {
+                                "type": "Http",
+                                "inputs": {
+                                  "uri": "@{outputs('Extract_link')}",
+                                  "method": "GET",
+                                  "retryPolicy": {
+                                    "type": "none"
+                                  }
+                                }
+                              },
+                              "Append_to_BrokenLinks_variable_": {
+                                "runAfter": {
+                                  "Send_http_request_to_the_link_source": [
+                                    "Failed"
+                                  ]
+                                },
+                                "type": "AppendToArrayVariable",
+                                "inputs": {
+                                  "name": "BrokenLinks",
+                                  "value": "@outputs('Extract_link')"
+                                }
+                              }
+                            }
+                          },
+                          "expression": {
+                            "or": [
+                              {
+                                "contains": [
+                                  "@outputs('Extract_link')",
+                                  "@variables('SharePointTenantName')"
+                                ]
+                              },
+                              {
+                                "equals": [
+                                  "@startsWith(outputs('Extract_link'),'/')",
+                                  "@true"
+                                ]
+                              }
+                            ]
+                          },
+                          "type": "If",
+                          "description": "Check if the link source is a relative link on the current site or other content in the same SharePoint tenant. We will need to use the Send HTTP request to SharePoint action for SharePoint links which will handle authentication for us."
+                        }
+                      },
+                      "runAfter": {
+                        "Compose": [
+                          "Succeeded"
+                        ]
+                      },
+                      "else": {
+                        "actions": {}
+                      },
+                      "expression": {
+                        "equals": [
+                          "@contains(item(),']')",
+                          "@true"
+                        ]
+                      },
+                      "type": "If",
+                      "description": "Title will appear after the link so we need to find the last ] and remove the rest of the characters from the string. This will leave the link only."
+                    },
+                    "Compose": {
+                      "type": "Compose",
+                      "inputs": "@item()"
+                    }
+                  },
+                  "runAfter": {
+                    "Extract_possible_links": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "Foreach"
+                },
+                "Check_if_BrokenLinks_array_contains_items": {
+                  "actions": {
+                    "Check_if_a_broken_link_item_was_found": {
+                      "actions": {
+                        "Update_item_in_broken_links_list": {
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "dataset": "@parameters('Broken Links SPO Site (alexmsft_BrokenLinksSPOSite)')",
+                              "table": "@parameters('Broken Links List (alexmsft_BrokenLinksList)')",
+                              "id": "@first(outputs('Get_item_from_broken_links_list')?['body/value'])?['ID']",
+                              "item/PageTitle": "@triggerBody()?['Title']",
+                              "item/PageId": "@triggerBody()?['ID']",
+                              "item/PageAuthor/Claims": "@triggerBody()?['Author']?['Claims']",
+                              "item/Links": "@{join(variables('BrokenLinks'),';')}",
+                              "item/Status/Value": "Pending Validation"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                              "operationId": "PatchItem",
+                              "connectionName": "shared_sharepointonline-2"
+                            }
+                          }
+                        }
+                      },
+                      "else": {
+                        "actions": {
+                          "Create_item_in_broken_links_list": {
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "parameters": {
+                                "dataset": "@parameters('Broken Links SPO Site (alexmsft_BrokenLinksSPOSite)')",
+                                "table": "@parameters('Broken Links List (alexmsft_BrokenLinksList)')",
+                                "item/PageTitle": "@triggerBody()?['Title']",
+                                "item/PageId": "@triggerBody()?['ID']",
+                                "item/PageAuthor/Claims": "@triggerBody()?['Author']?['Claims']",
+                                "item/Links": "@{join(variables('BrokenLinks'),';')}",
+                                "item/Status/Value": "Pending Validation"
+                              },
+                              "host": {
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                "operationId": "PostItem",
+                                "connectionName": "shared_sharepointonline-2"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "expression": {
+                        "greater": [
+                          "@length(outputs('Get_item_from_broken_links_list')?['body/value'])",
+                          0
+                        ]
+                      },
+                      "type": "If",
+                      "description": "Update the existing broken link list item if one already exists otherwise create a new item."
+                    }
+                  },
+                  "runAfter": {
+                    "Loop_through_possible_links": [
+                      "Succeeded"
+                    ]
+                  },
+                  "else": {
+                    "actions": {}
+                  },
+                  "expression": {
+                    "greater": [
+                      "@length(variables('BrokenLinks'))",
+                      0
+                    ]
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "Get_item_from_broken_links_list": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {}
+              },
+              "expression": {
+                "or": [
+                  {
+                    "equals": [
+                      "@length(outputs('Get_item_from_broken_links_list')?['body/value'])",
+                      0
+                    ]
+                  },
+                  {
+                    "not": {
+                      "equals": [
+                        "@first(outputs('Get_item_from_broken_links_list')?['body/value'])?['Status']?['Value']",
+                        "Pending Validation"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "type": "If",
+              "description": "Check if an item for this page was found in the broken links list. If an item was found, check that it is in 'Pending Validation' status. We will only create new items for pages that have not been validated or where validation is complete."
+            }
+          },
+          "runAfter": {
+            "Initialize_BrokenLinks_variable": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {}
+          },
+          "expression": {
+            "endsWith": [
+              "@triggerOutputs()?['body/{VersionNumber}']",
+              ".0"
+            ]
+          },
+          "type": "If",
+          "description": "Check that the page is published. We want to check for broken links when the author publishes the page to ensure we have all possible links in the page."
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
