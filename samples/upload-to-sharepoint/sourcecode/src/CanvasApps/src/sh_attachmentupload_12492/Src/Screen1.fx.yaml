@@ -1,0 +1,91 @@
+Screen1 As screen:
+
+    DataCardValue18 As attachments:
+        BorderColor: =
+        BorderThickness: =1
+        Height: =191
+        HoverFill: =RGBA(237, 237, 237, 1)
+        IsInDataCard: =true
+        ItemFill: =RGBA(149, 149, 149, 1)
+        ItemHoverFill: =RGBA(237, 237, 237, 1)
+        Items: =
+        MaxAttachments: =1
+        PaddingBottom: =5
+        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 15, 10)
+        PaddingRight: =5
+        PaddingTop: =5
+        PressedFill: =RGBA(237, 237, 237, 1)
+        Tooltip: =
+        Width: =If(App.Width>App.Height,300,Parent.Width-40)
+        X: =(Parent.Width-Self.Width)/2
+        Y: =(Parent.Height-Self.Height)/2
+        ZIndex: =1
+
+    Container1 As groupContainer.horizontalAutoLayoutContainer:
+        Height: =40
+        LayoutAlignItems: =LayoutAlignItems.End
+        LayoutGap: =10
+        LayoutJustifyContent: =LayoutJustifyContent.End
+        LayoutMode: =LayoutMode.Auto
+        Width: =DataCardValue18.Width
+        X: =DataCardValue18.X
+        Y: =DataCardValue18.Y+DataCardValue18.Height
+        ZIndex: =2
+
+        ButtonCanvas3 As Button:
+            BasePaletteColor: =
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =0
+            Height: =32
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            OnSelect: =Set(varDocUpload,false)
+            Text: ="Close"
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+        ButtonCanvas4 As Button:
+            Appearance: ='ButtonCanvas.Appearance'.Primary
+            BasePaletteColor: =
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =0
+            Height: =32
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            OnSelect: |-
+                =Set(varSpinner,true);
+                UpdateContext({locImage:JSON(Image3.Image,JSONFormat.IncludeBinaryData)});
+                UpdateContext({
+                    locBase64Only: 
+                    Mid(
+                        locImage,
+                        Find(",", locImage) + 1,
+                        Len(locImage) - Find(",", locImage)-1 
+                    )   
+                });
+                Set(varFlow,UploadaFiletoSharePoint.Run(First(DataCardValue18.Attachments).Name,locBase64Only).success);
+                Set(varSpinner,false);
+                Reset(DataCardValue18)
+            Text: ="Upload"
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+    Image3 As image:
+        Image: =First(DataCardValue18.Attachments).Value
+        Visible: =false
+        X: =40
+        Y: =40
+        ZIndex: =3
+
+    Label1 As label:
+        Align: =Align.Center
+        Height: =768
+        Text: ="uploading..."
+        Visible: =varSpinner
+        Width: =1366
+        ZIndex: =4
+
