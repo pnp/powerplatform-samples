@@ -1,0 +1,27 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnUnknownIntent
+  id: main
+  priority: -1
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: search-content
+      userInput: =System.Activity.Text
+      moderationLevel: High
+      tone: Friendly
+      variable: Topic.Answer
+      publicDataSource:
+        kind: PublicSiteSearchDataSource
+        sites:
+          - "https://www.ch.ch/en/foreign-nationals-in-switzerland/"
+          - "https://ggba.swiss/en/working-in-switzerland-visa-residence-permit-and-work-permit/"
+          - "https://www.expatica.com/ch/moving/"
+          - "https://immigration-switzerland.co/"
+
+      sharePointSearchDataSource: {}
+
+    - kind: ConditionGroup
+      id: has-answer-conditions
+      conditions:
+        - id: has-answer
+          condition: =!IsBlank(Topic.Answer)
