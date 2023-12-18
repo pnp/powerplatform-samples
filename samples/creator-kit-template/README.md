@@ -36,6 +36,7 @@ Version|Date|Comments
 ## Prerequisites
 
 * [Creator Kit](https://learn.microsoft.com/power-platform/guidance/creator-kit/overview?wt.mc_id=studentamb_280505)
+* SharePoint Site (For Document Upload)
 
 ## Solution Components
 
@@ -52,7 +53,7 @@ The following solution components are used in this sample:
 1. [Download](./solution/creator-kit-template.zip) the solution `.zip` from the `solution` folder.
 2. Within **https://make.powerapps.com**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
 3. Follow the on-screen instructions to deploy the application.
-4. Access the Incident Reporting Canvas App and start reporting incidents.
+4. Access the Creator Kit Template Canvas App.
 
 ## Using the Source Code
 
