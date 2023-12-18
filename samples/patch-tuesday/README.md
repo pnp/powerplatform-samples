@@ -1,91 +1,138 @@
-[
-  {
-    "name": "pnp-powerplatform-samples-patchtuesday",
-    "source": "pnp",
-    "title": "patchtuesday",
-    "shortDescription": "Methods for calculating Microsoft Patch Tuesday values",
-    "url": "https://github.com/pnp/powerplatform-samples/tree/main/samples/patch-tuesday",
-    "downloadUrl": "https://pnp.github.io/download-partial/?url=https://github.com/pnp/powerplatform-samples/tree/main/samples/patch-tuesday",
-    "longDescription": [
-"Methods for calculating Microsoft Patch Tuesday values. Sample includes (1) an instant cloud flow that will provide a timestamp for Patch Tuesday in the current month, (2) a scheduled cloud flow to run every Tuesday that will determine if it is running on Patch Tuesday, (3) a canvas app that will return a timestamp for Patch Tueday when selecting an arbitrary date, and (4) an instant cloud flow, to support the arbitrary date app.
+# Patch Tuesday
 
-(1) Instant cloud flow that will provide a timestamp for Patch Tuesday in the current month (see https://github.com/pnp/powerplatform-samples/tree/main/samples/patch-tuesday/assets/PatchTuesday.png)
+## Methods for calculating Microsoft Patch Tuesday values
 
-This is a manually-triggered cloud flow that uses built-in PowerFx functions to get the start date for the current month and the day-of-the-week associated with that start date.  The flow then references an array (DaysToAddArray) to look up the number of days to add to the month start date (taking into account the day-of-the-week) to arrive at Patch Tuesday.  This is the most straight-forward way I've found to calculate the Patch Tuesday date without a kludgy set of if/then statements or loops.  Instead, the day-of-week value is used as the index number of the array.  The array values are:
-0,0
-1,8
-2,7
-3,13
-4,12
-5,11
-6,10
-7,9
-For example, if the 1st day of the current month is on a Wednesday, the PowerFx function returns a "3".  The number "13" is stored in index 3 of the array, so 13 days are added to the 1st day of the month.  The final flow statement composes the output text string in timestamp format, which can be used in any necessary subsequent steps.
+Sample includes (1) an instant cloud flow that will provide a timestamp for Patch Tuesday in the current month, (2) a scheduled cloud flow to run every Tuesday that will determine if it is running on Patch Tuesday, (3) a canvas app that will return a timestamp for Patch Tueday when selecting an arbitrary date, and (4) an instant cloud flow, to support the arbitrary date app.
 
-(2) Scheduled cloud flow to run every Tuesday (see https://github.com/pnp/powerplatform-samples/tree/main/samples/patch-tuesday/assets/IsItPatchTuesdayFlow.png)
+Patch Tuesday This Month
 
-This is a cloud flow that must be scheduled to run only on every Tuesday.  The purpose is to automate actions that must occur on Patch Tuesday.  Rather than use the method in (1) above to calculate the date of Patch Tuesday, scheduling the flow to run on Tuesdays allows a simple check to be made against today's date to see if today is the "right" Tuesday.  The true/false condition in this flow simply asks if two conditions are met (for a true result):
--Is the start of month date now the same date as the start of month was 7 days ago?
-AND
--Is the start of month date now a different date than the start of month was 14 days ago?
+![Patch Tuesday This Month](assets/PatchTuesday.png)
 
-(3) Canvas app that will return a timestamp for Patch Tuesday when selecting an arbitrary date (see https://github.com/pnp/powerplatform-samples/tree/main/samples/patch-tuesday/assets/ArbitraryPatchTuesdayApp.png)
+Is it Patch Tuesday?
 
-This is a very simple canvas app that has a date picker control.  Once you select a date, the "On Change" property of the date picker runs a Power Automate flow (see (4) below) to obtain the timestamp associated with Patch Tuesday, relative to the selected date.  That timestamp is returned to a label control in Power Apps".
+![Is it Patch Tuesday](assets/IsItPatchTuesday.png)
 
-(4) Instant cloud flow to support the arbitrary date app (see https://github.com/pnp/powerplatform-samples/tree/main/samples/patch-tuesday/assets/ArbitraryPatchTuesdayFlow.png)
+Patch Tuesday for an Arbitrary Date
 
-This is the cloud flow that is run by the app in (3) above.  The logic is identical to (1) above, with the exception that the date selected in the app's date picker control is used, rather than today's date, to get the first day of the month."
-    ],
-    "creationDateTime": "2023-11-16",
-    "updateDateTime": "2023-11-16",
-    "products": [
-      "Power Apps",
-      "Power Automate"
-    ],
-    "tags": [
-      "Patch Tuesday"
-    ],
-    "categories": [
-      "CANVAS",
-      "CLOUD-FLOW",
-    ],
-    "metadata": [
-      {
-        "key": "POWERAPPS-EXPERIMENTAL",
-        "value": "No"
-      },
-      {
-        "key": "POWERAPPS-PREMIUM",
-        "value": "No"
-      },
-      {
-        "key": "POWERAPPS-ONPREM",
-        "value": "No"
-      },
-      {
-        "key": "POWERAPPS-CUSTOMCONNECTOR",
-        "value": "No"
-      }
-    ],
-    "thumbnails": [
-      {
-        "type": "image",
-        "order": 100,
-        "url": "https://github.com/pnp/powerplatform-samples/raw/main/samples/patch-tuesday/assets/PatchTuesday.png",
-        "alt": "Flow preview"
-      }
-    ],
-    "authors": [
-      {
-        "gitHubAccount": "korebreach",
-        "pictureUrl": "https://avatars.githubusercontent.com/u/16405579?v=4",
-        "name": "Bob Lamaster"
-      }
-    ],
-    "references": [
-      {
-      }
-    ]
-  }
-]
+![Patch Tueday Arbitrary Date](assets/PatchTuesdayArbitraryDate.png)
+
+## Applies to
+
+![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
+![Power Automate](https://img.shields.io/badge/Power%20Automate-Yes-green "Yes")
+![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
+![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
+![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
+![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
+![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
+![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
+![Power Fx](https://img.shields.io/badge/Power%20Fx-No-red "No")
+
+## Compatibility
+
+![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
+![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
+
+## Contributors
+
+* [Bob Lamaster](https://github.dev/korebreach)
+
+## Version history
+
+Version|Date|Comments
+-------|----|--------
+1.1|December 18, 2023|Initial release
+
+## Prerequisites
+
+There are no prerequisites to use the included samples.
+
+## Minimal path to awesome
+
+The included samples may be used in the following ways:
+
+- If you have a need within your own Power Automate flow to determine the date of Patch Tuesday in the current month, incorporate the flow steps found in the flow, "Patch Tuesday This Month".
+
+- If you have a need to launch specific actions from Power Automate on Patch Tuesday, start your own flow with the steps found in the flow, "Is it Patch Tuesday".  This is a scheduled (recurring) flow that runs on every Tuesday to determine if it is Patch Tuesday.  You can put your own steps at the bottom of this flow to replace the example branching step.
+
+- If you have a need to calculate the date of Patch Tuesday related to any past, current or future date, you can use "Patch Tuesday Arbitrary Date Flow".  To use this flow, you need to supply any date (which will be used to calculate the Patch Tuesday date relative to the supplied date).  The example Power App, "Patch Tuesday Arbitrary Date" and the flow, "Patch Tuesday Arbitrary Date Flow" are designed to work together, and should only be used as an example of how to send the date to the flow and get results back to the app.
+
+### Using the solution zip
+
+* [Download](./solution/solution.zip) the `.zip` from the `solution` folder
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+* Review the provided app and flows to determine which function you need (based on "Minimal path to awesome" above), and copy the steps/code to your own flows.
+
+### Using the source code
+
+You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps:
+
+* Clone the repository to a local drive
+* Pack the source files back into a solution `.zip` file:
+
+  ```bash
+  pac solution pack --zipfile pathtodestinationfile --folder pathtosourcefolder --processCanvasApps
+  ```
+
+  Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+
+## Features
+
+Summary of features:
+
+* Determine the date of Patch Tuesday in the current month
+* Determine if today is Patch Tuesday and take separate actions depending on the result
+* Determine the date of Patch Tuesday corresponding to any date
+
+This solution illustrates the following concepts on top of the Power Platform:
+
+* Sending information from a Power App, processing that information in a flow, and returning the result back to the Power App
+
+<!--
+RESERVED FOR REPO MAINTAINERS
+
+We'll add the video from the community call recording here
+
+## Video
+
+[![YouTube video title](./assets/video-thumbnail.jpg)](https://www.youtube.com/watch?v=XXXXX "YouTube video title")
+-->
+
+## Help
+
+<!--
+You can just search and replace this page with the following values:
+
+Search for:
+YOUR-SOLUTION-NAME
+
+Replace with your sample folder name. E.g.: my-cool-sample
+
+Search for:
+@YOURGITHUBUSERNAME
+
+Replace with your GitHub username, prefixed with an "@". If you have more than one author, use %20 to separate them, making sure to prefix everyone's username individually with an "@".
+
+Example:
+@hugoabernier
+
+Or:
+@hugoabernier%20@VesaJuvonen%20@PopWarner
+-->
+
+> Note: don't worry about this section, we'll update the links.
+
+We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
+
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
+
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
+
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
+
+## Disclaimer
+
+**THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
+
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/YOUR-SOLUTION-NAME" />
