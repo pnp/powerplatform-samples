@@ -1,0 +1,29 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Company support
+    triggerQueries:
+      - How can I get help?
+      - What services do you offer?
+      - I need assistance
+      - Can you help me?
+      - What are my options?
+      - I'm having a problem
+      - I need support
+      - How do I contact customer service?
+      - What is your customer service number?
+      - Where can I find more information?
+      - How can my company help?
+
+  actions:
+    - kind: SendActivity
+      id: SendActivity_QRRRFq
+      activity: Welcome to the company! We are proud to support our international employees with a range of benefits and discounts to help make your onboarding journey easier. Our relocation services provide discounts on flights, hotels, and other travel expenses. We also offer discounts on language classes, cultural activities, and more. Please visit our benefits website or reach out to our HR team for more information.
+
+    - kind: ConditionGroup
+      id: conditionGroup_RqvkTf
+      conditions:
+        - id: conditionItem_Yi2jQs
+          condition: false
