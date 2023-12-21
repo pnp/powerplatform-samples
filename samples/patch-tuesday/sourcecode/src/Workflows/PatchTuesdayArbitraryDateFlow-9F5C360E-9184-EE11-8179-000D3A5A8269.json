@@ -1,0 +1,185 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "616aef9e-b261-4513-a2c3-6e75791046b4"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "date",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Compose_-_Start_of_Month": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5b9afe6b-df87-40c1-a548-9d02eb918741"
+          },
+          "type": "Compose",
+          "inputs": "@startOfMonth(parseDateTime(body('Parse_JSON')?['text']))"
+        },
+        "Parse_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "e5c5bf68-fadd-4b74-a554-c1b116ee606c"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerBody()",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable_-_DayOfWeek1stDay": {
+          "runAfter": {
+            "Compose_-_Start_of_Month": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c7bb664e-5f05-42de-a839-82314f48d169"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "DayOfWeek1stDay",
+                "type": "integer",
+                "value": "@dayOfWeek(outputs('Compose_-_Start_of_Month'))"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_DaysToAddArray": {
+          "runAfter": {
+            "Initialize_variable_-_DayOfWeek1stDay": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f22b81c1-22b8-40d0-b4fa-d2afdb253054"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "DaysToAddArray",
+                "type": "array",
+                "value": [
+                  0,
+                  8,
+                  7,
+                  13,
+                  12,
+                  11,
+                  10,
+                  9
+                ]
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_DaysToAdd": {
+          "runAfter": {
+            "Initialize_variable_-_DaysToAddArray": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d703f1de-7955-4476-9b79-5fc205893eef"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "DaysToAdd",
+                "type": "integer",
+                "value": "@variables('DaysToAddArray')?[variables('DayOfWeek1stDay')]"
+              }
+            ]
+          }
+        },
+        "Compose_-_Patch_Tuesday": {
+          "runAfter": {
+            "Initialize_variable_-_DaysToAdd": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "79dff25b-a0bb-43f4-ab00-da9999d1e76a"
+          },
+          "type": "Compose",
+          "inputs": "@addDays(outputs('Compose_-_Start_of_Month'),variables('DaysToAdd'))"
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Compose_-_Patch_Tuesday": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "19e915e5-1ada-4ecc-8f9f-0f088824d993"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "patchtuesday": "@{outputs('Compose_-_Patch_Tuesday')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "patchtuesday": {
+                  "title": "PatchTuesday",
+                  "x-ms-dynamically-added": true,
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,124 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "52d3d3a1-121e-49f8-8f31-f5931a301664"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Compose_-_Start_of_Month": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "bd8ead29-fec8-4aaa-91fa-d8821c5c95dd"
+          },
+          "type": "Compose",
+          "inputs": "@startOfMonth(utcNow())"
+        },
+        "Initialize_variable_-_DayOfWeek1stDay": {
+          "runAfter": {
+            "Compose_-_Start_of_Month": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "44982204-13fe-4176-a483-9b52821f3d17"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "DayOfWeek1stDay",
+                "type": "integer",
+                "value": "@dayOfWeek(outputs('Compose_-_Start_of_Month'))"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_DaysToAddArray": {
+          "runAfter": {
+            "Initialize_variable_-_DayOfWeek1stDay": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e1b0e27a-dadd-4e40-bc2f-b44a5769d6e0"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "DaysToAddArray",
+                "type": "array",
+                "value": [
+                  0,
+                  8,
+                  7,
+                  13,
+                  12,
+                  11,
+                  10,
+                  9
+                ]
+              }
+            ]
+          }
+        },
+        "Compose_-_Patch_Tuesday": {
+          "runAfter": {
+            "Initialize_variable_-_DaysToAdd": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "30e8bda9-0cc8-4b04-895b-e19396ec11e7"
+          },
+          "type": "Compose",
+          "inputs": "@addDays(outputs('Compose_-_Start_of_Month'),variables('DaysToAdd'))"
+        },
+        "Initialize_variable_-_DaysToAdd": {
+          "runAfter": {
+            "Initialize_variable_-_DaysToAddArray": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4fc1b43c-8aef-45ca-8933-8d67d69048a2"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "DaysToAdd",
+                "type": "integer",
+                "value": "@variables('DaysToAddArray')?[variables('DayOfWeek1stDay')]"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
