@@ -59,7 +59,7 @@ The included samples may be used in the following ways:
 
 ### Using the solution zip
 
-* [Download](./solution/PatchTuesday.zip) the `.zip` from the `solution` folder
+* [Download](./solution/solution.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * Review the provided app and flows to determine which function you need (based on "Minimal path to awesome" above), and copy the steps/code to your own flows.
 
