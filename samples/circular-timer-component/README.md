@@ -33,7 +33,7 @@ A control that performs a countdown  and triggers a specific action after a cert
 
 Version|Date|Comments
 -------|----|--------
-1.0|January 05, 2023|Initial release
+1.0|January 06, 2024|Initial release
 
 <!--## Prerequisites
 
