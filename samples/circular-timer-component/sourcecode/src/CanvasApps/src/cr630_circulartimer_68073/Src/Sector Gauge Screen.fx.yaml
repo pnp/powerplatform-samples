@@ -1,0 +1,30 @@
+"'Sector Gauge Screen' As screen":
+
+    cmp_CircularTimer_mmsector As cmp_CircularTimer:
+        CircleFill: =RGBA(51, 51, 51, 1)
+        Color: =Color.Orange
+        Duration: =5000
+        Fill: =RGBA(0,0,0,0)
+        Font: =Font.'Lato Black'
+        Height: =Self.Width
+        HoverColor: =Color.DarkRed
+        InnerCircleVisibility: =false
+        InnerFill: =RGBA(255, 255, 255, 1)
+        OnTimerEnd: =
+        OnTimerStart: =
+        Start: =true
+        Y: =496
+
+    cmp_CircularTimer_hhsector As cmp_CircularTimer:
+        CircleFill: =Color.Orange
+        Color: =Color.White
+        Duration: =5400000
+        Font: =Font.'Segoe UI'
+        Height: =Self.Width
+        InnerCircleVisibility: =false
+        InnerFill: =Color.DarkCyan
+        NullCircleFill: =Color.DarkOrange
+        OnTimerEnd: =
+        OnTimerStart: =
+        ZIndex: =2
+

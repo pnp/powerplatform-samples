@@ -1,0 +1,95 @@
+cmp_CircularTimer As CanvasComponent:
+    OnTimerEnd():
+        ThisProperty:
+            Default: =
+    OnTimerStart():
+        ThisProperty:
+            Default: =
+    AutoPause: =true
+    AutoStart: =true
+    CircleFill: =Color.Black
+    Color: =Color.Black
+    DisplayMode: =DisplayMode.Edit
+    Duration: =60000
+    Fill: =RGBA(0, 0, 0, 0)
+    Font: =Font.'Open Sans'
+    Height: =640
+    HoverColor: =RGBA(50, 50, 50, 1)
+    InnerCircleVisibility: =true
+    InnerFill: =Color.White
+    NullCircleFill: =Color.White
+    OnReset: =
+    Repeat: =false
+    Reset: =true
+    Start: =false
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    chr_PieChart As pieChart:
+        Color: =RGBA(0, 0, 0, 0)
+        DisplayMode: =DisplayMode.View
+        Height: =Parent.Height
+        ItemBorderColor: =RGBA(0,0,0,0)
+        ItemColorSet: =[Parent.NullCircleFill,shp_Circle.BorderColor]
+        Items: |-
+            =Table({Time:tmr_Timer.Value},{Time:tmr_Timer.Duration-tmr_Timer.Value})
+        ShowLabels: =false
+        Width: =Parent.Width
+        ZIndex: =1
+
+    shp_Circle As circle:
+        BorderColor: =Parent.CircleFill
+        BorderThickness: =4
+        Fill: =Parent.Fill
+        Height: =380/640*(If(Parent.Height>Parent.Width,Parent.Width,Parent.Height))
+        Width: =Self.Height
+        X: =(Parent.Width-Self.Width)/2
+        Y: =(Parent.Height-Self.Height)/2
+        ZIndex: =2
+
+    shp_InnerCircle As circle:
+        BorderColor: =Parent.CircleFill
+        BorderThickness: =3
+        Fill: =Parent.InnerFill
+        Height: =320/640*(If(Parent.Height>Parent.Width,Parent.Width,Parent.Height))
+        Visible: =Parent.InnerCircleVisibility
+        Width: =Self.Height
+        X: =(Parent.Width-Self.Width)/2
+        Y: =(Parent.Height-Self.Height)/2
+        ZIndex: =3
+
+    tmr_Timer As timer:
+        AutoPause: =Parent.AutoPause
+        AutoStart: =Parent.AutoStart
+        BorderThickness: =0
+        Color: =Parent.Color
+        DisplayMode: =Parent.DisplayMode
+        Duration: =Parent.Duration
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Parent.Font
+        FontWeight: =FontWeight.Bold
+        Height: =Self.Width
+        HoverColor: =Parent.HoverColor
+        HoverFill: =ColorFade(Self.Fill, -20%)
+        OnSelect: =tmr_Timer.Start
+        OnTimerEnd: =Parent.OnTimerEnd()
+        OnTimerStart: =Parent.OnTimerStart()
+        PressedColor: =Self.HoverColor
+        PressedFill: =Self.Fill
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Repeat: =Parent.Repeat
+        Reset: =Parent.Reset
+        Size: =If(Self.Duration<3600000,0.125,0.09)*(If(Parent.Height>Parent.Width,Parent.Width,Parent.Height))
+        Start: =Parent.Start
+        Text: |-
+            =If(Self.Duration<3600000,Text(Time(0, 0, (Self.Duration-Self.Value)/1000), "mm:ss"),Text(Time(0, 0, (Self.Duration-Self.Value)/1000), "hh:mm:ss"))
+        Width: =shp_Circle.Width
+        X: =shp_Circle.X
+        Y: =shp_Circle.Y+0.5*shp_Circle.Height-0.52*Self.Height
+        ZIndex: =4
+
