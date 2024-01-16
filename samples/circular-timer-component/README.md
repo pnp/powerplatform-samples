@@ -47,9 +47,8 @@ Please describe the steps to configure the pre-requisites. Feel free to add scre
 
 ### Using the solution zip
 
-* [Download](./solution/circular-timer.msapp) the `.msapp` from the `solution` folder
-* Use the `.msapp` file using **File** > **Open** > **Browse** within Power Apps Studio.
-* Save and Publish
+* [Download](./solution/circular-timer-component.zip) the `.zip` from the `solution` folder
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just downloaded.
 
 ### Using the source code
 
