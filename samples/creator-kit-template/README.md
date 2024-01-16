@@ -14,6 +14,7 @@ Discover a seamless experience with our responsive canvas app – Enjoy a famili
 
 ![Screenshot 2023-09-02 130516](./assets/Screenshot%202023-10-21%20160340.png)
 
+
 ## Applies to
 
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
@@ -87,4 +88,4 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-<img src="./assets/Screenshot 2023-10-21 160406.png" />
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/creator-kit-template" />
