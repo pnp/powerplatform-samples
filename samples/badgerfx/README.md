@@ -37,7 +37,7 @@ The following solution components are used in this sample:
 
 ## Minimal Path to Awesome
 
-1. [Download](./solution/BadgerFX_1_0_0_0.zip) the solution `.zip` from the `solution` folder.
+1. [Download](./solution/bodgerfx.zip) the solution `.zip` from the `solution` folder.
 2. Within **https://make.powerapps.com**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
 3. Follow the on-screen instructions to deploy the application.
 4. Access the Incident Reporting Canvas App and start reporting incidents.
@@ -63,11 +63,11 @@ This sample illustrates the following concepts:
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerplatform-samples/issues/new?assignees=&labels=type%3Abug&projects=&template=bug.md&title=).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=badgerfx&authors=@angelogulisano&title=badgerfx%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerplatform-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Aquestion&projects=&template=question.yml).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=badgerfx&authors=@angelogulisano&title=badgerfx%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerplatform-samples/issues/new?assignees=&labels=type%3Aenhancement&projects=&template=enhancement.md&title=Let%27s+make+SAMPLE+even+better).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=badgerfx&authors=@angelogulisano&title=badgerfx%20-%20).
 
 ## Disclaimer
 
@@ -78,3 +78,5 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 * [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
 * [Power Apps canvas apps documentation](https://docs.microsoft.com/powerapps/maker/canvas-apps/)
 * [Read my blog or contact me - https://angelogulisano.com](https://angelogulisano.com/)
+
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/badgerfx" />
