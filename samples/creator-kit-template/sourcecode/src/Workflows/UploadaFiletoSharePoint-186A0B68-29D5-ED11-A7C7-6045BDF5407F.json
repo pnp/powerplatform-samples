@@ -1,0 +1,128 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "cr30a_SharePoint8cb8f896383644af839131d8674b47c3"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "SharePoint Site (new_shared_sharepointonline_9dd4154be54c4270af9569b1ecd0f18f)": {
+          "defaultValue": "https://optimallogicscom.sharepoint.com/sites/ShaheerAhmad'sSite",
+          "type": "String",
+          "metadata": {
+            "schemaName": "new_shared_sharepointonline_9dd4154be54c4270af9569b1ecd0f18f"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "bbbc202a-6b3e-4116-a633-3deb872333b7"
+          },
+          "type": "Request",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Createfile_FileName": {
+                  "type": "string",
+                  "description": "Name of the file.",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "Createfile_FileContent": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "Content of the file.",
+                  "x-ms-powerflows-param-ispartial": false
+                }
+              },
+              "required": [
+                "Createfile_FileName",
+                "Createfile_FileContent"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Create_file": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "844259b1-94a8-4b77-8088-bea3b37e2273"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "CreateFile",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('SharePoint Site (new_shared_sharepointonline_9dd4154be54c4270af9569b1ecd0f18f)')",
+              "folderPath": "Shared Documents/",
+              "name": "@triggerBody()['Createfile_FileName']",
+              "body": "@triggerBody()['Createfile_FileContent']"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          },
+          "runtimeConfiguration": {
+            "contentTransfer": {
+              "transferMode": "Chunked"
+            }
+          }
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Create_file": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d318b84a-22f1-4055-b8fa-7fcd4b821e5d"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "success": "true"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "title": "success",
+                  "x-ms-dynamically-added": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
