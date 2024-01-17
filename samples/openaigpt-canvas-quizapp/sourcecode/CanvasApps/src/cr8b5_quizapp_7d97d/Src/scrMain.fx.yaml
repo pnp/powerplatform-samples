@@ -2,12 +2,13 @@ scrMain As screen:
 
     txtPrompt As text:
         Default: =varPromt
-        Height: =84
+        Height: =81
         HintText: ="Enter Prompt."
         HoverColor: =Self.Color
         HoverFill: =Self.Fill
         Mode: =TextMode.MultiLine
-        Width: =1357
+        Width: =1329
+        X: =28
         Y: =18
         ZIndex: =1
 
@@ -23,7 +24,7 @@ scrMain As screen:
         Width: =935
         WrapCount: =2
         X: =28
-        Y: =237
+        Y: =367
         ZIndex: =1
 
         lblAns As label:
@@ -51,9 +52,9 @@ scrMain As screen:
             Y: =Parent.TemplateHeight - Self.Height
             ZIndex: =3
 
-    btnTest As button:
+    btnGenerate As button:
         OnSelect: |-
-            =Set(varResponse, 'OpenAIGPT(IndependentPublisher)'.CompletionPost("text-davinci-003",{prompt:txtPrompt.Text,max_tokens:4000,temperature:0.7,top_p:1,n:1}).first_completion);
+            =Set(varResponse, 'OpenAIGPT(IndependentPublisher)'.CompletionPost("gpt-3.5-turbo-instruct",{prompt:txtPrompt.Text & Char(10) & "Topic: " & txtTopic.Text,max_tokens:3500,temperature:0.7,top_p:1,n:1}).first_completion);
             /*Set(varResponse, "[
                 {
                     ""question"": ""What is the capital of France?"",
@@ -149,7 +150,7 @@ scrMain As screen:
             
             ClearCollect(
               colQuestions,
-              Table(ParseJSON(varResponse));
+              Table(ParseJSON(Substitute(PlainText(varResponse),"trivia","")));
             );
             
             Set(varIndex,1);
@@ -165,16 +166,16 @@ scrMain As screen:
             );
         Text: ="Generate"
         X: =28
-        Y: =125
+        Y: =197
         ZIndex: =2
 
     lblSelQuestion As label:
-        Height: =72
+        Height: =57
         Text: =Text(Index(colQuestions,varIndex).Value.question) 
         Visible: =If(lblSelQuestion.Text = "None", false, true)
-        Width: =425
+        Width: =892
         X: =28
-        Y: =165
+        Y: =266
         ZIndex: =5
 
     btnNext As button:
@@ -192,7 +193,16 @@ scrMain As screen:
             );
         Text: ="Next"
         Visible: =If(lblSelQuestion.Text = "None" || varIndex >= 10, false, true)
-        X: =788
-        Y: =442
+        X: =816
+        Y: =593
         ZIndex: =6
+
+    txtTopic As text:
+        Default: =""
+        Height: =47
+        HintText: ="Enter Topic, e.g. animal, technology, sports"
+        Width: =442
+        X: =28
+        Y: =129
+        ZIndex: =7
 

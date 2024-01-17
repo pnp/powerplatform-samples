@@ -44,6 +44,36 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "scrMain.txtTopic.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scrMain.txtTopic.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "scrMain",
+                "type": "scrMain.txtTopic"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "scrMain.galQuestionAnswers.AccessibleLabel"
                 }
               ],
@@ -104,36 +134,6 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "scrMain.galQuestionAnswers.lblAns.TabIndex"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "scrMain.galQuestionAnswers.lblAns.TabIndex",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "TabIndex",
-                "module": "scrMain",
-                "type": "scrMain.galQuestionAnswers.lblAns"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 1
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
                   "fullyQualifiedName": "scrMain.galQuestionAnswers.lblAns.FocusedBorderThickness"
                 }
               ],
@@ -158,6 +158,36 @@
           },
           "ruleId": "acc-FocusBorderShouldBeVisible",
           "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "scrMain.galQuestionAnswers.lblAns.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scrMain.galQuestionAnswers.lblAns.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "scrMain",
+                "type": "scrMain.galQuestionAnswers.lblAns"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 1
         }
       ],
       "tool": {
@@ -217,7 +247,7 @@
               }
             }
           ],
-          "version": "1.334"
+          "version": "1.336"
         }
       }
     }
