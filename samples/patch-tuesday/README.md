@@ -1,6 +1,6 @@
 # Patch Tuesday
 
-## Methods for calculating Microsoft Patch Tuesday values
+## Methods for calculating Microsoft Patch Tuesday dates
 
 Everyone knows about Microsoft's "Patch Tuesday", and that it falls on the 2nd Tuesday of every month.  It's easy for humans to calculate when Patch Tuesday occurs.  All you have to do is look at a calendar and look for the 2nd Tuesday.  However, what is easy for humans is a bit more difficult for computers to do.  This sample shows a few ways to calculate Patch Tuesday in Power Automate.  With these flows (all included in one sample), you can kick-off other processes that need to occur on Patch Tuesday.
 
