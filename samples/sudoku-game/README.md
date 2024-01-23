@@ -4,7 +4,7 @@
 
 Sudoku App is a Japanese puzzle game made for Power Apps.
 
-![Preview](./assets/SudokuAppIntro.gif)  
+![Preview](./assets/sudoku-screenshot.jpg)  
 
 ## Features
 
