@@ -1,4 +1,4 @@
-# License Calculator
+# Power Apps License Calculator
 
 ## Summary
 
