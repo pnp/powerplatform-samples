@@ -1,0 +1,439 @@
+compLicenseCalculator As CanvasComponent:
+    activeUsers: =50
+    currency: ="$"
+    Data: =galLicenses.AllItems
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =665
+    LicensePAYG: =10
+    LicensePerApp: =5
+    LicensePerUser: =20
+    OnReset: |+
+        =ClearCollect(
+            colUsers,
+            Table(
+                {userCount: 1},
+                {userCount: 10},
+                {userCount: 50},
+                {userCount: 100},
+                {userCount: 1000},
+                {userCount: 2000},
+                {userCount: 3000},
+                {userCount: 5000}
+            )
+        );
+        ClearCollect(
+            colApps,
+            Table(
+                {appCount: 1},
+                {appCount: 2},
+                {appCount: 3},
+                {appCount: 4},
+                {appCount: 10},
+                {appCount: 50},
+                {appCount: 100},
+                {appCount: 1000},
+                {appCount: 2000},
+                {appCount: 3000},
+                {appCount: 5000}
+            )
+        );
+        
+        Set(maxLicensePrice, 
+            With({
+                maxUserCount:Max(colUsers,userCount),
+                maxAppCount:Max(colApps,appCount)
+            },
+                Min(Table(
+                    {Val:maxUserCount* compLicenseCalculator.LicensePerUser},
+                    {Val: maxUserCount*maxAppCount*compLicenseCalculator.LicensePerApp},
+                    {Val:RoundUp(Max(colUsers,userCount) * slActiveUsersPerc.Value / 100,0)*maxAppCount*compLicenseCalculator.LicensePAYG}
+                )
+                ,Val) 
+            )
+        );
+        
+        Clear(colLicenses);
+        ForAll(
+            colApps ,
+            ForAll(
+                colUsers,
+                Collect(
+                    colLicenses,
+                    With(
+                        {
+                            license: SortByColumns(
+                                Table(
+                                    {
+                                        type: "User",
+                                        price: userCount * compLicenseCalculator.LicensePerUser
+                                    },
+                                    {
+                                        type: "App",
+                                        price: appCount * userCount * compLicenseCalculator.LicensePerApp
+                                    },
+                                    {
+                                        type: "PAYG",
+                                        price: appCount * compLicenseCalculator.LicensePAYG * RoundUp(userCount * slActiveUsersPerc.Value / 100,0)
+                                    }
+                                ),
+                                "price"
+                            )
+                        },
+                        With(
+                            {
+                                matches: Filter(license,price = Min(license,Value(price)))
+                            },
+                            {
+                                Type: If(CountRows(matches)>1,Concat(matches,Left(type,1),"/"),First(matches).type) ,
+                                Price: First(matches).price,
+                                countrows:CountRows(matches),
+                                Color: If( CountRows(matches)=1,
+                                        Switch( 
+                                            First(matches).type,
+                                            "User",ColorValue("#EBE7E8"),
+                                            "App",ColorValue("#E7E2DA"),
+                                            "payg",ColorValue("#E7E8E7")
+                                            ),
+                                        ColorValue("#FFFFFF")
+                                       ),
+                                       Opacity:First(matches).price/maxLicensePrice,
+                                ColorHeatmap:RGBA( 227, 214, 209, Round( First(matches).price/maxLicensePrice,2)),
+        
+                                perUser: userCount * compLicenseCalculator.LicensePerUser,
+                                perApp: appCount * userCount * compLicenseCalculator.LicensePerApp,
+                                payg: appCount * compLicenseCalculator.LicensePAYG * RoundUp(userCount * slActiveUsersPerc.Value / 100,0),
+                                userCount: userCount,
+                                activeUsers: RoundUp(userCount * slActiveUsersPerc.Value / 100,0),
+                                appCount: appCount
+                            }
+                        )
+                    )
+                )
+            )
+        );
+        
+    showInfo: =true
+    Width: =590
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Icon1 As icon.Add:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        Color: =RGBA(184, 0, 0, 1)
+        DisabledBorderColor: =RGBA(243, 242, 241, 1)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        Height: =44
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(98, 100, 167, 1), -30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.Reload
+        OnSelect: =Reset(compLicenseCalculator)
+        PaddingBottom: =5
+        PaddingLeft: =5
+        PaddingRight: =5
+        PaddingTop: =5
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(98, 100, 167, 1), -30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Visible: =false
+        Width: =39
+        X: =545
+        Y: =10
+        ZIndex: =1
+
+    htmlLegend As htmlViewer:
+        AutoHeight: =true
+        Color: =RGBA(128, 128, 128, 1)
+        Font: =Font.'Segoe UI'
+        Height: =30
+        HtmlText: |-
+            =$"If multiple licensing models result in the same monthly price, they will be all displayed. To conserve space, acronyms are used: per <b>A</b>pp, per <b>U</b>ser, <b>P</b>ay-as-you-go
+            "
+        Size: =9
+        Visible: =compLicenseCalculator.showInfo
+        Width: =587
+        Y: =620
+        ZIndex: =2
+
+    htmlLicenseInfo As htmlViewer:
+        AutoHeight: =true
+        Color: =RGBA(128, 128, 128, 1)
+        Font: =Font.'Segoe UI'
+        Height: =49
+        HtmlText: |-
+            =$"License prices: <b>per user: {compLicenseCalculator.currency}{ Text(compLicenseCalculator.LicensePerUser,"0.00")}</b>/user/month | 
+            <b>per app: {compLicenseCalculator.currency}{ Text(compLicenseCalculator.LicensePerApp,"0.00")}</b>/app/user/month | 
+            <b>pay-as-you-go: {compLicenseCalculator.currency}{ Text(compLicenseCalculator.LicensePAYG,"0.00")}</b>/active user/month
+            "
+        Size: =9
+        Width: =587
+        Y: =576
+        ZIndex: =3
+
+    galLicenses As gallery.galleryVertical:
+        BorderColor: =RGBA(230, 230, 230, 1)
+        BorderThickness: =2
+        DelayItemLoading: =true
+        FocusedBorderColor: =RGBA(98, 100, 167, 1)
+        FocusedBorderThickness: =2
+        Height: =galApps.Height
+        Items: =colLicenses
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        ShowScrollbar: =false
+        TemplatePadding: =0
+        TemplateSize: =40
+        Width: =520
+        WrapCount: =8
+        X: =65
+        Y: =136
+        ZIndex: =4
+
+        shLicense As rectangle:
+            BorderColor: =RGBA(243, 242, 241, 1)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledFill: =If(tglDisplay.Checked, ThisItem.Color ,ThisItem.ColorHeatmap)
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(244, 244, 243, 1)
+            FocusedBorderColor: =RGBA(98, 100, 167, 1)
+            Height: =38
+            HoverFill: =RGBA(98, 100, 167, 1)
+            OnSelect: =Select(Parent)
+            PressedFill: =RGBA(98, 100, 167, 1)
+            Width: =63
+            X: =2
+            Y: =2
+            ZIndex: =1
+
+        lblLicense As Label:
+            Alignment: =Align.Center
+            Color: =RGBA(34, 35, 58, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =9.5
+            Height: =40
+            OnChange: =false
+            OnSelect: =Select(Parent)
+            Text: |-
+                =If(tglDisplay.Checked, ThisItem.Type,Text(ThisItem.Price, "[$-en-US]#,##0"))
+            Tooltip: =""
+            Width: =65
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+    galApps As gallery.galleryVertical:
+        BorderColor: =RGBA(99, 139, 44, 1)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        DelayItemLoading: =true
+        FocusedBorderColor: =RGBA(98, 100, 167, 1)
+        FocusedBorderThickness: =2
+        Height: =Self.AllItemsCount*40
+        Items: =colApps
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        ShowScrollbar: =false
+        TemplatePadding: =0
+        TemplateSize: =40
+        Width: =65
+        Y: =136
+        ZIndex: =10
+
+        lbAppCount As Label:
+            Alignment: =Align.Center
+            Color: =RGBA(48, 49, 81, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontWeight: =FontWeight.Semibold
+            Height: =40
+            OnChange: =false
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.appCount
+            Width: =65
+            Wrap: =false
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+    galUsers As gallery.galleryHorizontal:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        DelayItemLoading: =true
+        FocusedBorderColor: =RGBA(98, 100, 167, 1)
+        FocusedBorderThickness: =2
+        Height: =65
+        Items: =colUsers
+        LoadingSpinner: =LoadingSpinner.Data
+        ShowScrollbar: =false
+        TemplatePadding: =0
+        TemplateSize: =65
+        Width: =520
+        X: =65
+        Y: =71
+        ZIndex: =11
+
+        lblUsers As Label:
+            Alignment: =Align.Center
+            Color: =RGBA(48, 49, 81, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnChange: =false
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.userCount
+            Width: =65
+            X: =0
+            Y: =33
+            ZIndex: =2
+
+    grSettings As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =15
+
+        tglDisplay As Toggle:
+            DisplayMode: =DisplayMode.Edit
+            HandleOffFillColor: =
+            HandleOnFillColor: =
+            Height: =37
+            OffFillColor: =
+            OffHoverFillColor: =
+            OffText: =$"show price [{compLicenseCalculator.currency}]"
+            OnCheck: =false
+            OnFillColor: =RGBA(148, 140, 139, 1)
+            OnHoverFillColor: =RGBA(156, 148, 147, 1)
+            OnText: ="show license type"
+            OnUncheck: =false
+            TextColor: =
+            Width: =185
+            X: =321
+            Y: =32
+            ZIndex: =12
+
+        lblActiveUsersPerc As Label:
+            Alignment: =Align.Center
+            Color: =
+            DisplayMode: =DisplayMode.Edit
+            FontWeight: =FontWeight.Bold
+            Height: =37
+            OnChange: =false
+            Text: =$"{slActiveUsersPerc.Value} %"
+            VerticalAlignment: =VerticalAlign.Top
+            Width: =54
+            X: =248
+            Y: =32
+            ZIndex: =13
+
+        slActiveUsersPerc As Slider:
+            Color: =
+            DisplayMode: =DisplayMode.Edit
+            Height: =37
+            LineActiveColor: =RGBA(115, 87, 85, 1)
+            LineActiveHoverColor: =RGBA(115, 87, 85, 1)
+            LineInactiveColor: =
+            LineInactiveHoverColor: =RGBA(217, 197, 197, 1)
+            Max: =100
+            OnChange: =Reset(compLicenseCalculator)
+            ShowValue: =false
+            Step: =10
+            ThumbBorderColor: =RGBA(222, 221, 220, 1)
+            ThumbBorderInteractiveColor: =RGBA(217, 197, 197, 1)
+            ThumbFillColor: =
+            ThumbFillInteractiveColor: =
+            Value: =compLicenseCalculator.activeUsers
+            Width: =243
+            X: =5
+            Y: =32
+            ZIndex: =14
+
+        lblActiveUsers As Label:
+            Color: =
+            DisplayMode: =DisplayMode.Edit
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnChange: =false
+            Text: ="Active users"
+            Width: =291
+            X: =5
+            Y: =0
+            ZIndex: =15
+
+    Group5 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =17
+
+        recVertical As rectangle:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =2
+            DisabledFill: =RGBA(230, 230, 230, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(232, 244, 217, 1)
+            FocusedBorderColor: =RGBA(98, 100, 167, 1)
+            Height: =galLicenses.Height
+            HoverFill: =RGBA(98, 100, 167, 1)
+            PressedFill: =RGBA(98, 100, 167, 1)
+            Width: =65
+            Y: =recHoriz.Y+recHoriz.Height
+            ZIndex: =5
+
+        recHoriz As rectangle:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledFill: =RGBA(230, 230, 230, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(204, 231, 246, 1)
+            FocusedBorderColor: =RGBA(98, 100, 167, 1)
+            Height: =65
+            HoverFill: =RGBA(98, 100, 167, 1)
+            PressedFill: =RGBA(98, 100, 167, 1)
+            Width: =586
+            Y: =71
+            ZIndex: =6
+
+        shApps As triangle.rightAngled:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =2
+            DisabledFill: =RGBA(230, 230, 230, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(232, 244, 217, 1)
+            Height: =65
+            HoverFill: =RGBA(127, 178, 57, 1)
+            PressedFill: =RGBA(127, 178, 57, 1)
+            Width: =65
+            Y: =71
+            ZIndex: =7
+
+        lblUserCount As Label:
+            Color: =RGBA(48, 49, 81, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            OnChange: =false
+            Text: |-
+                ="#Users"
+            Width: =44
+            X: =65
+            Y: =71
+            ZIndex: =8
+
+        lblAppCount As Label:
+            Color: =RGBA(48, 49, 81, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            OnChange: =false
+            Text: |-
+                ="#Apps"
+            Width: =44
+            X: =5
+            Y: =108
+            ZIndex: =9
+
