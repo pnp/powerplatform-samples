@@ -22,11 +22,10 @@ In this app, various functions of Power Apps are used, and the methods of creati
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-green.svg "Does not rely on experimental features")
 ![On-Premises Connectors](https://img.shields.io/badge/On--Premises%20Connectors-No-green.svg "Does not use on-premise connectors")
 
-## Authors
+## Contributors
 
-Solution|Author(s)
---------|---------
-Sudoku  | [Arash Aghajani](https://github.com/ArashAghajani/) ([@AghajaniArash](https://www.twitter.com/aghajaniarash) )
+* [Arash Aghajani](https://github.com/ArashAghajani)
+
 
 ## Version history
 
@@ -46,7 +45,7 @@ No configuration is needed to use this sample. The only connector required is th
 
 ## Minimal Path to Awesome
 
-1. [Download](./solution/Sudoku_1_0_0_2.zip) the solution `.zip` from the `solution` folder.
+1. [Download](./solution/sudoku-game.zip) the solution `.zip` from the `solution` folder.
 2. Within **https://make.powerapps.com**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
 3. Follow the on-screen instructions to deploy the app.
 
@@ -65,12 +64,14 @@ You can also use the [Power Apps CLI](https://aka.ms/pac/docs) to pack the sourc
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=upload-to-sharepoint&authors=@shaheerahmadch&title=upload-to-sharepoint%20-%20).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=sudoku-game&authors=@ArashAghajani&title=sudoku-game%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=upload-to-sharepoint&authors=@shaheerahmadch&title=upload-to-sharepoint%20-%20).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=sudoku-game&authors=@ArashAghajani&title=sudoku-game%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=upload-to-sharepoint&authors=@shaheerahmadch&title=upload-to-sharepoint%20-%20).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=sudoku-game&authors=@ArashAghajani&title=sudoku-game%20-%20).
 
 ## Disclaimer
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
+
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/sudoku-game" />
