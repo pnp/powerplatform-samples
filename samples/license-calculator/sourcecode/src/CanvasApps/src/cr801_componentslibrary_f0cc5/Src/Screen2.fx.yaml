@@ -1,0 +1,147 @@
+Screen2 As screen:
+    LoadingSpinnerColor: =RGBA(98, 100, 167, 1)
+
+    DataTable1 As dataTable.datatable:
+        BorderColor: =RGBA(243, 242, 241, 1)
+        BorderStyle: =BorderStyle.Solid
+        Color: =RGBA(37, 36, 35, 1)
+        DisabledColor: =RGBA(200, 198, 196, 1)
+        DisplayMode: =DisplayMode.Edit
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Normal
+        HeadingColor: =RGBA(255, 255, 255, 1)
+        HeadingFill: =RGBA(98, 100, 167, 1)
+        HeadingFont: =Font.'Segoe UI'
+        HeadingFontWeight: =FontWeight.Normal
+        HeadingSize: =10.5
+        Height: =768
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =RGBA(98, 100, 167, 1)
+        InputFill: =RGBA(243, 242, 241, 1)
+        InvertedColor: =RGBA(255, 255, 255, 1)
+        Items: =cLicenceCalc.Data
+        LinkColor: =RGBA(0, 134, 208, 1)
+        PrimaryColor1: =RGBA(98, 100, 167, 1)
+        PrimaryColor2: =ColorFade(RGBA(98, 100, 167, 1), -30%)
+        PrimaryColor3: =ColorFade(RGBA(98, 100, 167, 1), -50%)
+        SelectedColor: =RGBA(37, 36, 35, 1)
+        SelectedFill: =RGBA(98, 100, 167, .2)
+        Size: =10.5
+        Width: =1366
+        X: =0
+        Y: =0
+        ZIndex: =1
+
+        userCount_Column1 As dataTableColumn.textualColumn:
+            DisplayMode: =DisplayMode.Edit
+            FieldDisplayName: ="userCount"
+            FieldName: ="userCount"
+            FieldVariantName: ="textualColumn"
+            Height: =Parent.Height
+            LayoutHeight: =Parent.Height
+            Order: =1
+            Text: =ThisItem.userCount
+            Width: =100
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+        activeUsers_Column1 As dataTableColumn.textualColumn:
+            DisplayMode: =DisplayMode.Edit
+            FieldDisplayName: ="activeUsers"
+            FieldName: ="activeUsers"
+            FieldVariantName: ="textualColumn"
+            Height: =Parent.Height
+            LayoutHeight: =Parent.Height
+            Order: =2
+            Text: =ThisItem.activeUsers
+            Width: =100
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+        appCount_Column1 As dataTableColumn.textualColumn:
+            DisplayMode: =DisplayMode.Edit
+            FieldDisplayName: ="appCount"
+            FieldName: ="appCount"
+            FieldVariantName: ="textualColumn"
+            Height: =Parent.Height
+            LayoutHeight: =Parent.Height
+            Order: =3
+            Text: =ThisItem.appCount
+            Width: =100
+            X: =0
+            Y: =0
+            ZIndex: =3
+
+        payg_Column1 As dataTableColumn.textualColumn:
+            DisplayMode: =DisplayMode.Edit
+            FieldDisplayName: ="payg"
+            FieldName: ="payg"
+            FieldVariantName: ="textualColumn"
+            Height: =Parent.Height
+            LayoutHeight: =Parent.Height
+            Order: =4
+            Text: =ThisItem.payg
+            Width: =100
+            X: =0
+            Y: =0
+            ZIndex: =4
+
+        perApp_Column1 As dataTableColumn.textualColumn:
+            DisplayMode: =DisplayMode.Edit
+            FieldDisplayName: ="perApp"
+            FieldName: ="perApp"
+            FieldVariantName: ="textualColumn"
+            Height: =Parent.Height
+            LayoutHeight: =Parent.Height
+            Order: =5
+            Text: =ThisItem.perApp
+            Width: =100
+            X: =0
+            Y: =0
+            ZIndex: =5
+
+        perUser_Column1 As dataTableColumn.textualColumn:
+            DisplayMode: =DisplayMode.Edit
+            FieldDisplayName: ="perUser"
+            FieldName: ="perUser"
+            FieldVariantName: ="textualColumn"
+            Height: =Parent.Height
+            LayoutHeight: =Parent.Height
+            Order: =6
+            Text: =ThisItem.perUser
+            Width: =100
+            X: =0
+            Y: =0
+            ZIndex: =6
+
+        Price_Column1 As dataTableColumn.textualColumn:
+            DisplayMode: =DisplayMode.Edit
+            FieldDisplayName: ="Price"
+            FieldName: ="Price"
+            FieldVariantName: ="textualColumn"
+            Height: =Parent.Height
+            LayoutHeight: =Parent.Height
+            Order: =7
+            Text: =ThisItem.Price
+            Width: =100
+            X: =0
+            Y: =0
+            ZIndex: =7
+
+        Type_Column1 As dataTableColumn.textualColumn:
+            DisplayMode: =DisplayMode.Edit
+            FieldDisplayName: ="Type"
+            FieldName: ="Type"
+            FieldVariantName: ="textualColumn"
+            Height: =Parent.Height
+            LayoutHeight: =Parent.Height
+            Order: =8
+            Text: =ThisItem.Type
+            Width: =100
+            X: =0
+            Y: =0
+            ZIndex: =8
+
