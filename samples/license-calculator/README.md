@@ -16,9 +16,9 @@ These licensing models and their impact on the final license cost may be confusi
 > Please note that licensing is not that simple, and the license you chose will also depend on which licenses are already in use. This calculator may give you a general feeling about what may happen in the future, as more and more applications are used in your company. Make sure to consult your procurement department and Microsoft sales representative before making decisions. Remember that this calculator is just a toy 😁
 
 By default, the application displays a matrix of the **license prices** for different number of users and applications, assuming that the cheapest option is choosen.
-![Show prices](./assets/licenseCalc_1.png)
+![Show license type](./assets/licensePrice.gif)
 Users may switch the calculator mode to see the **licensing type**, and can also see how a number of **active monthly users** will impact the final cost.
-![Show license type](./assets/licenseCalc_2.png)
+![Show license type](./assets/licenseType.gif)
 
 The prices may change, and some companies may benefit from Volume Licensing. The component is configurable and allows defining current prices, along with the currency:
 ![properties](./assets/props.png)
@@ -94,4 +94,4 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-<img src="./assets/Screenshot 2023-11-06 191309.png" />
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/license-calculator" />
