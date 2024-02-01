@@ -82,7 +82,7 @@ The second list is **TimeEntries** which is the main list that stores all of the
 
 ## Installation
 
-* [Download](./solution/WeeklyTimesheetTemplateSP_1_0_0_2.zip) the `.zip` from the `solution` folder
+* [Download](./solution/weekly-timesheet-sharepoint.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * Open the Timesheet Template app in Edit mode
 * Go to the datasources tab and remove the BillTo and TimeEntries tables
@@ -99,11 +99,11 @@ The second list is **TimeEntries** which is the main list that stores all of the
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=weekly-timesheet-sharepoint&authors=@aprildunnam&title=weekly-timesheet-sharepoint%20-%20).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerplatform-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=weekly-timesheet-sharepoint&authors=@aprildunnam&title=weekly-timesheet-sharepoint%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=weekly-timesheet-sharepoint&authors=@aprildunnam&title=weekly-timesheet-sharepoint%20-%20).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerplatform-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=weekly-timesheet-sharepoint&authors=@aprildunnam&title=weekly-timesheet-sharepoint%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=weekly-timesheet-sharepoint&authors=@aprildunnam&title=weekly-timesheet-sharepoint%20-%20).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerplatform-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=weekly-timesheet-sharepoint&authors=@aprildunnam&title=weekly-timesheet-sharepoint%20-%20).
 
 
 ## Disclaimer
