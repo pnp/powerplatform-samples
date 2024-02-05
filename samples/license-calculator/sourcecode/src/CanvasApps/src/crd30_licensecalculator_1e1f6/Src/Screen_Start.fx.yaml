@@ -1,0 +1,156 @@
+"Screen_Start As screen.'autoLayout_HeaderFooter_ver1.0'":
+
+    ScreenContainer1 As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer1 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =55
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            Label1 As label:
+                FillPortions: =1
+                Text: ="License Calculator"
+                ZIndex: =1
+
+        MainContainer1 As groupContainer.verticalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =3
+
+            licenseCalculator As compLicenseCalculator:
+                LayoutMinHeight: =640
+                LayoutMinWidth: =640
+                OnReset: |+
+                    =ClearCollect(
+                        colUsers,
+                        Table(
+                            {userCount: 1},
+                            {userCount: 10},
+                            {userCount: 50},
+                            {userCount: 100},
+                            {userCount: 1000},
+                            {userCount: 2000},
+                            {userCount: 3000},
+                            {userCount: 5000}
+                        )
+                    );
+                    ClearCollect(
+                        colApps,
+                        Table(
+                            {appCount: 1},
+                            {appCount: 2},
+                            {appCount: 3},
+                            {appCount: 4},
+                            {appCount: 10},
+                            {appCount: 50},
+                            {appCount: 100},
+                            {appCount: 1000},
+                            {appCount: 2000},
+                            {appCount: 3000},
+                            {appCount: 5000}
+                        )
+                    );
+                    
+                    Set(maxLicensePrice, 
+                        With({
+                            maxUserCount:Max(colUsers,userCount),
+                            maxAppCount:Max(colApps,appCount)
+                        },
+                            Min(Table(
+                                {Val:maxUserCount* licenseCalculator.LicensePerUser},
+                                {Val: maxUserCount*maxAppCount*licenseCalculator.LicensePerApp},
+                                {Val:RoundUp(Max(colUsers,userCount) * slActiveUsersPerc.Value / 100,0)*maxAppCount*licenseCalculator.LicensePAYG}
+                            )
+                            ,Val) 
+                        )
+                    );
+                    
+                    Clear(colLicenses);
+                    ForAll(
+                        colApps ,
+                        ForAll(
+                            colUsers,
+                            Collect(
+                                colLicenses,
+                                With(
+                                    {
+                                        license: SortByColumns(
+                                            Table(
+                                                {
+                                                    type: "User",
+                                                    price: userCount * licenseCalculator.LicensePerUser
+                                                },
+                                                {
+                                                    type: "App",
+                                                    price: appCount * userCount * licenseCalculator.LicensePerApp
+                                                },
+                                                {
+                                                    type: "PAYG",
+                                                    price: appCount * licenseCalculator.LicensePAYG * RoundUp(userCount * slActiveUsersPerc.Value / 100,0)
+                                                }
+                                            ),
+                                            "price"
+                                        )
+                                    },
+                                    With(
+                                        {
+                                            matches: Filter(license,price = Min(license,Value(price)))
+                                        },
+                                        {
+                                            Type: If(CountRows(matches)>1,Concat(matches,Left(type,1),"/"),First(matches).type) ,
+                                            Price: First(matches).price,
+                                            countrows:CountRows(matches),
+                                            Color: If( CountRows(matches)=1,
+                                                    Switch( 
+                                                        First(matches).type,
+                                                        "User",ColorValue("#EBE7E8"),
+                                                        "App",ColorValue("#E7E2DA"),
+                                                        "payg",ColorValue("#E7E8E7")
+                                                        ),
+                                                    ColorValue("#FFFFFF")
+                                                   ),
+                                                   Opacity:First(matches).price/maxLicensePrice,
+                                            ColorHeatmap:RGBA( 227, 214, 209, Round( First(matches).price/maxLicensePrice,2)),
+                    
+                                            perUser: userCount * licenseCalculator.LicensePerUser,
+                                            perApp: appCount * userCount * licenseCalculator.LicensePerApp,
+                                            payg: appCount * licenseCalculator.LicensePAYG * RoundUp(userCount * slActiveUsersPerc.Value / 100,0),
+                                            userCount: userCount,
+                                            activeUsers: RoundUp(userCount * slActiveUsersPerc.Value / 100,0),
+                                            appCount: appCount
+                                        }
+                                    )
+                                )
+                            )
+                        )
+                    );
+                    
+

@@ -1,0 +1,82 @@
+{
+  "5a9583eb-e742-4957-b264-6a5c631563b9": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1636/1.0.1636.3297/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "8be93c8c-d46e-440a-87e2-5da7e5f9da9e": {
+          "value": "shared_sharepointonline"
+        },
+        "workflowEntityId": {
+          "value": "186a0b68-29d5-ed11-a7c7-6045bdf5407f"
+        },
+        "workflowName": {
+          "value": "e09d523b-d3f0-45b2-8269-28842d36f4f8"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_sharepointonline": {
+          "value": "8be93c8c-d46e-440a-87e2-5da7e5f9da9e"
+        },
+        "workflowEntityId": {
+          "value": "186a0b68-29d5-ed11-a7c7-6045bdf5407f"
+        },
+        "workflowName": {
+          "value": "e09d523b-d3f0-45b2-8269-28842d36f4f8"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "UploadaFiletoSharePoint"
+    ],
+    "dependencies": {
+      "shared_sharepointonline": "8be93c8c-d46e-440a-87e2-5da7e5f9da9e"
+    },
+    "dependents": [],
+    "id": "5a9583eb-e742-4957-b264-6a5c631563b9"
+  },
+  "8be93c8c-d46e-440a-87e2-5da7e5f9da9e": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1636/1.0.1636.3297/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://optimallogicscom.sharepoint.com/sites/ShaheerAhmad'sSite": {
+        "datasetOverride": {
+          "environmentVariableName": "new_shared_sharepointonline_9dd4154be54c4270af9569b1ecd0f18f",
+          "name": "https://optimallogicscom.sharepoint.com/sites/ShaheerAhmad'sSite"
+        },
+        "dataSources": {
+          "Documents": {
+            "tableName": "acd2d55d-5d15-4b75-9f4b-45806a47355d",
+            "tableNameOverride": {
+              "environmentVariableName": "new_shared_sharepointonline_91da2fc856aa4063b552c1d9a2635eb1",
+              "name": "acd2d55d-5d15-4b75-9f4b-45806a47355d"
+            }
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Documents"
+    ],
+    "dependencies": {},
+    "dependents": [
+      "5a9583eb-e742-4957-b264-6a5c631563b9"
+    ],
+    "id": "8be93c8c-d46e-440a-87e2-5da7e5f9da9e"
+  }
+}

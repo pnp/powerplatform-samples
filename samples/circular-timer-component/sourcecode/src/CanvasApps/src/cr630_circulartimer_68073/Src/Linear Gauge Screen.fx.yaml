@@ -1,0 +1,28 @@
+"'Linear Gauge Screen' As screen":
+    Fill: =RGBA(51, 51, 51, 1)
+
+    cmp_CircularTimer_mmlinear As cmp_CircularTimer:
+        CircleFill: =Color.White
+        Color: =Color.DarkOrange
+        Duration: =10000
+        Font: =Font.Arial
+        Height: =Self.Width
+        HoverColor: =Color.DarkRed
+        InnerFill: =Color.Wheat
+        NullCircleFill: =RGBA(51, 51, 51, 1)
+        OnTimerEnd: =
+        OnTimerStart: =
+        Y: =496
+
+    cmp_CircularTimer_hhlinear As cmp_CircularTimer:
+        CircleFill: =Color.DarkOrange
+        Color: =Color.White
+        Duration: =3600000
+        Font: =Font.'Open Sans Condensed'
+        Height: =Self.Width
+        HoverColor: =Color.Gray
+        InnerFill: =RGBA(51, 51, 51, 1)
+        OnTimerEnd: =
+        OnTimerStart: =
+        ZIndex: =2
+
