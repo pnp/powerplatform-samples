@@ -1,0 +1,677 @@
+Screen1 As screen:
+
+    "Gallery9 As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =700
+        Items: =Sort(Filter(Notes, "de" in Title),'Created On',SortOrder.Descending)
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =147
+        Width: =693
+        X: =673
+        Y: =68
+        ZIndex: =1
+
+        Rectangle7 As rectangle:
+            Fill: =RGBA(219, 219, 219, 1)
+            Height: =147
+            OnSelect: =Select(Parent)
+            Width: =689
+            X: =4
+            ZIndex: =1
+
+        Title6 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Title
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 86
+            X: =16
+            Y: =(Parent.TemplateHeight - (Self.Size*1.8 + HtmlText1.Size*1.8 + 2 + Body1.Size*1.8)) / 2
+            ZIndex: =2
+
+        Body1 As label:
+            Fill: =RGBA(237, 237, 237, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 2.2
+            OnSelect: |-
+                =UpdateContext({locFileContents:ThisItem.Document });
+                UpdateContext({locMimeType:ThisItem.'Mime Type'  });
+                UpdateContext({locFileame:ThisItem.'File Name'});
+                Set(DownloadFile,true);
+            PaddingLeft: =15
+            Text: =ThisItem.'File Name'
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =ThisItem.'Is Document'
+            Width: =Title6.Width/2
+            X: =Title6.X
+            Y: =HtmlText1.Y + HtmlText1.Height+10
+            ZIndex: =4
+
+        NextArrow6 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(166, 166, 166, 1)
+            Height: =50
+            Icon: =Icon.View
+            OnSelect: =ViewForm(Form1_1)
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =50
+            X: =Parent.TemplateWidth - Self.Width - 12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =5
+
+        Separator6 As rectangle:
+            Height: =8
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - Self.Height
+            ZIndex: =6
+
+        Rectangle6 As rectangle:
+            Height: =Parent.TemplateHeight - Separator6.Height
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.IsSelected
+            Width: =4
+            ZIndex: =7
+
+        HtmlText1 As htmlViewer:
+            Height: =Self.Size * 2.5
+            HtmlText: =ThisItem.Description
+            OnSelect: =Select(Parent)
+            Width: =Title6.Width
+            X: =Title6.X
+            Y: =Title6.Y + Title6.Height
+            ZIndex: =9
+
+        Rectangle6_1 As rectangle:
+            Height: =Body1.Height
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.'Is Document'
+            Width: =4
+            X: =Body1.X
+            Y: =Body1.Y
+            ZIndex: =10
+
+    Form1_1 As form:
+        DataSource: =Notes
+        Height: =768
+        Item: =Gallery9.Selected
+        NumberOfColumns: =1
+        OnFailure: =Notify("Error",NotificationType.Error,500);
+        OnSuccess: =Notify("Success",NotificationType.Success,500);EditForm(Self);
+        Width: =672
+        ZIndex: =2
+
+        Regarding_DataCard3_1 As typedDataCard.blankPolymorphicEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="_objectid_value"
+            Default: =ThisItem.Regarding
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Notes],DataSourceInfo.DisplayName,"_objectid_value")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =127
+            Required: =false
+            Update: =ComboBox1_1.Selected
+            Width: =672
+            X: =0
+            Y: =2
+            ZIndex: =1
+
+            ComboBox1_1 As combobox:
+                DefaultSelectedItems: =If(IsType(ThisItem.Regarding,Accounts),LookUp(Accounts, Account =  AsType(ThisItem.Regarding,Accounts).Account))
+                DisplayFields: =["name"]
+                DisplayMode: =Parent.DisplayMode
+                IsSearchable: =false
+                Items: =Accounts
+                SearchFields: =["name"]
+                SearchItems: =[]
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey15_2.Y + DataCardKey15_2.Height + 5
+                ZIndex: =1
+
+            DataCardKey15_3 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        "'File Name_DataCard1_1' As typedDataCard.textualEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="filename"
+            Default: =ThisItem.'File Name'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Notes],DataSourceInfo.DisplayName,"filename")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@Notes], DataSourceInfo.MaxLength, "filename")
+            Required: =false
+            Update: =DataCardValue16_1.Text
+            Visible: =true
+            Width: =672
+            X: =0
+            Y: =3
+            ZIndex: =1
+
+            DataCardKey17_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue16_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =First(DataCardValue12_2.Attachments).Name
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey17_1.Y + DataCardKey17_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage14_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue16_1.Y + DataCardValue16_1.Height
+                ZIndex: =3
+
+            StarVisible14_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey17_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey17_1.Y
+                ZIndex: =4
+
+        Document_DataCard1_1 As typedDataCard.textualMultiLineEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="documentbody"
+            Default: =ThisItem.Document
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Notes],DataSourceInfo.DisplayName,"documentbody")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue17_1.Text
+            Visible: =true
+            Width: =672
+            X: =0
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey18_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue17_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =If(Form1_1.Mode = FormMode.New, If(CountRows(DataCardValue12_2.Attachments) > 0, Last(Split(If( Substitute( locdATA,"""","")="null","",Substitute( locdATA,"""","")),",")).Value),ThisItem.Document)
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Height: =80
+                Mode: =TextMode.MultiLine
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey18_1.Y + DataCardKey18_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage16_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue17_1.Y + DataCardValue17_1.Height
+                ZIndex: =3
+
+            StarVisible16_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey18_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey18_1.Y
+                ZIndex: =4
+
+        "'Mime Type_DataCard1_1' As typedDataCard.textualEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="mimetype"
+            Default: =ThisItem.'Mime Type'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Notes],DataSourceInfo.DisplayName,"mimetype")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@Notes], DataSourceInfo.MaxLength, "mimetype")
+            Required: =false
+            Update: =DataCardValue18_1.Text
+            Visible: =true
+            Width: =672
+            X: =0
+            Y: =5
+            ZIndex: =1
+
+            DataCardKey19_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue18_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: |-
+                    =If(Form1_1.Mode = FormMode.New, If(CountRows(DataCardValue12_2.Attachments) > 0, First(Split(Last(Split(locdATA,":")   ).Value,";")).Value   ),ThisItem.'Mime Type')
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey19_1.Y + DataCardKey19_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage17_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue18_1.Y + DataCardValue18_1.Height
+                ZIndex: =3
+
+            StarVisible17_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey19_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey19_1.Y
+                ZIndex: =4
+
+        "'Is Document_DataCard1_1' As typedDataCard.comboBoxOptionSetSingleEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="isdocument"
+            Default: =ThisItem.'Is Document'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Notes],DataSourceInfo.DisplayName,"isdocument")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =true
+            Update: =DataCardValue20_1.Selected.Value
+            Visible: =true
+            Width: =672
+            X: =0
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey21_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue20_1 As combobox:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultSelectedItems: =If( CountRows(DataCardValue12_2.Attachments) = 0, LookUp(Choices('Is Document (Notes)'), Text(Value) = "No"), LookUp(Choices('Is Document (Notes)'), Text(Value) = "Yes"))
+                DisplayFields: =["Value"]
+                DisplayMode: =DisplayMode.View
+                IsSearchable: =false
+                Items: =Choices('Is Document (Notes)')
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                SearchFields: =["Value"]
+                SearchItems: =[]
+                SelectMultiple: =false
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey21_1.Y + DataCardKey21_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage18_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue20_1.Y + DataCardValue20_1.Height
+                ZIndex: =3
+
+            StarVisible18_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey21_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey21_1.Y
+                ZIndex: =4
+
+        Document_DataCard34 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: =
+            Default: =
+            DisplayMode: =DisplayMode.Edit
+            DisplayName: ="Attachments"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Width: =672
+            X: =0
+            Y: =7
+            ZIndex: =1
+
+            DataCardKey23_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue22_1 As label:
+                AutoHeight: =true
+                DisplayMode: =Parent.DisplayMode
+                Height: =27
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =105
+                ZIndex: =2
+
+            DataCardValue12_2 As attachments:
+                BorderColor: =
+                BorderStyle: =BorderStyle.None
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(245, 245, 245, 1)
+                Height: =99
+                IsInDataCard: =true
+                Items: |-
+                    =If(Form1_1.Mode <> FormMode.New, Table({DisplayName:ThisItem.'File Name',Value:ThisItem.Document}))
+                MaxAttachments: =1
+                OnAddFile: |-
+                    =UpdateContext({locdATA:JSON(Image5_1.Image, JSONFormat.IncludeBinaryData )})
+                OnRemoveFile: |-
+                    =UpdateContext({locdATA:JSON(Image5_1.Image, JSONFormat.IncludeBinaryData )})
+                OnUndoRemoveFile: |-
+                    =UpdateContext({locdATA:JSON(Image5_1.Image, JSONFormat.IncludeBinaryData )})
+                PaddingBottom: =5
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                PaddingRight: =5
+                PaddingTop: =5
+                Tooltip: =
+                Visible: =Form1_1.Mode = FormMode.New
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey15_2.Y + DataCardKey15_2.Height + 5
+                ZIndex: =3
+
+            Image5_1 As image:
+                Height: =9
+                Image: =First(DataCardValue12_2.Attachments).Value
+                Visible: =false
+                Width: =16
+                X: =123
+                Y: =40
+                ZIndex: =4
+
+            Body1_1 As label:
+                Fill: =RGBA(237, 237, 237, 1)
+                FontWeight: =
+                Height: =Self.Size * 2.2
+                OnSelect: |-
+                    =UpdateContext({locFileContents:ThisItem.Document });
+                    UpdateContext({locMimeType:ThisItem.'Mime Type'  });
+                    UpdateContext({locFileame:ThisItem.'File Name'});
+                    Set(DownloadFile,true);
+                PaddingLeft: =15
+                Text: =ThisItem.'File Name'
+                VerticalAlign: =VerticalAlign.Top
+                Visible: =Form1_1.Mode <> FormMode.New && !IsBlank(DataCardValue17_1.Text)
+                Width: =Title6.Width/2
+                X: =(Parent.Width-Self.Width)/2
+                Y: =50
+                ZIndex: =6
+
+        Title_DataCard1_1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="subject"
+            Default: =ThisItem.Title
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Notes],DataSourceInfo.DisplayName,"subject")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@Notes], DataSourceInfo.MaxLength, "subject")
+            Required: =true
+            Update: =DataCardValue10_1.Text
+            Width: =672
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+            DataCardKey10_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue10_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey10_1.Y + DataCardKey10_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage11_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue10_1.Y + DataCardValue10_1.Height
+                ZIndex: =3
+
+            StarVisible11_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey10_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey10_1.Y
+                ZIndex: =4
+
+        Description_DataCard2_1 As typedDataCard.textualMultiLineEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="notetext"
+            Default: =ThisItem.Description
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Notes],DataSourceInfo.DisplayName,"notetext")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue14_1.Text
+            Width: =672
+            X: =0
+            Y: =1
+            ZIndex: =2
+
+            DataCardKey15_2 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue14_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Height: =80
+                Mode: =TextMode.MultiLine
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey15_2.Y + DataCardKey15_2.Height + 5
+                ZIndex: =2
+
+            ErrorMessage13_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue14_1.Y + DataCardValue14_1.Height
+                ZIndex: =3
+
+            StarVisible13_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey15_2.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey15_2.Y
+                ZIndex: =4
+
+    Button3_1 As button:
+        OnSelect: =SubmitForm(Form1_1)
+        Text: ="Save"
+        Visible: =Form1_1.Mode = FormMode.New
+        X: =1020
+        ZIndex: =3
+
+    Button4 As button:
+        OnSelect: =NewForm(Form1_1)
+        Text: ="New Note"
+        X: =1206
+        ZIndex: =4
+
+    Timer1_1 As timer:
+        Duration: =1000
+        OnTimerEnd: =Set(DownloadFile,false);
+        Start: =DownloadFile
+        Visible: =false
+        X: =899
+        Y: =40
+        ZIndex: =5
+
