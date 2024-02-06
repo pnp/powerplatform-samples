@@ -12,7 +12,7 @@ Binary data of attached images is captured and stored.
 
 The app supports various document types.
 
-![Screenshot 2023-09-02 130516](./assets/Screenshot%202023-10-21%20160340.png)
+![Screenshot 2023-09-02 130516](./assets/Screenshot%202024-02-06%20113544.png)
 
 
 ## Applies to
