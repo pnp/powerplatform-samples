@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml version="9.2.23102.222" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SolutionManifest>
+    <UniqueName>ChatGPT</UniqueName>
+    <LocalizedNames>
+      <LocalizedName description="Azure OpenAI Service Chat" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions />
+    <Version>1.0.0.3</Version>
+    <Managed>2</Managed>
+    <Publisher>
+      <UniqueName>powerplatformchallenge</UniqueName>
+      <LocalizedNames>
+        <LocalizedName description="Power Platform Challenge" languagecode="1033" />
+      </LocalizedNames>
+      <Descriptions />
+      <EMailAddress xsi:nil="true"></EMailAddress>
+      <SupportingWebsiteUrl>www.powerplatformchallenge.com</SupportingWebsiteUrl>
+      <CustomizationPrefix>ppchal</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>38132</CustomizationOptionValuePrefix>
+      <Addresses>
+        <Address>
+          <AddressNumber>1</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+        <Address>
+          <AddressNumber>2</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+      </Addresses>
+    </Publisher>
+    <RootComponents>
+      <RootComponent type="1" schemaName="cr84c_promptlibrary" behavior="1" />
+      <RootComponent type="1" schemaName="ppchal_chat" behavior="0" />
+      <RootComponent type="1" schemaName="ppchal_message" behavior="0" />
+      <RootComponent type="20" id="{b2e42a0e-9c19-ee11-8f6d-000d3a292ad4}" behavior="0" />
+      <RootComponent type="29" id="{718b1c3a-6a13-ee11-8f6d-000d3a292ad4}" behavior="0" />
+      <RootComponent type="29" id="{7c90eb1e-2013-ee11-8f6d-000d3a292ad4}" behavior="0" />
+      <RootComponent type="300" schemaName="ppchal_chatgpt_0a0e7" behavior="0" />
+      <RootComponent type="372" id="{76b87ad4-2b1d-44cf-965c-df67c01b8666}" schemaName="ppchal_azureopenaiservice" behavior="0" />
+    </RootComponents>
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="1" schemaName="cr84c_promptlibrary" displayName="Prompt Library" solution="PromptManager (1.0.0.6)" />
+        <Dependent type="1" schemaName="cr84c_promptlibrary" displayName="Prompt Library" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="cr84c_promptlibrary" displayName="Prompt Library" solution="PromptManager (1.0.0.6)" />
+        <Dependent type="10" schemaName="ppchal_ppchal_chat_Prompt_cr84c_promptlibrary" displayName="ppchal_ppchal_chat_Prompt_cr84c_promptlibrary" parentSchemaName="cr84c_promptlibrary" parentDisplayName="Prompt Library" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="cr84c_promptlibrary" displayName="Prompt Library" solution="PromptManager (1.0.0.6)" />
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="environmentvariabledefinition" displayName="Environment Variable Definition" solution="EnvironmentVariables (1.0.2.293)" />
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="environmentvariablevalue" displayName="Environment Variable Value" solution="EnvironmentVariables (1.0.2.293)" />
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="cr84c_name" displayName="Name" parentSchemaName="cr84c_promptlibrary" parentDisplayName="Prompt Library" solution="PromptManager (1.0.0.6)" />
+        <Dependent type="10" schemaName="ppchal_ppchal_chat_Prompt_cr84c_promptlibrary" displayName="ppchal_ppchal_chat_Prompt_cr84c_promptlibrary" parentSchemaName="cr84c_promptlibrary" parentDisplayName="Prompt Library" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="cr84c_promptlibraryid" displayName="Prompt Library" parentSchemaName="cr84c_promptlibrary" parentDisplayName="Prompt Library" solution="PromptManager (1.0.0.6)" />
+        <Dependent type="10" schemaName="ppchal_ppchal_chat_Prompt_cr84c_promptlibrary" displayName="ppchal_ppchal_chat_Prompt_cr84c_promptlibrary" parentSchemaName="cr84c_promptlibrary" parentDisplayName="Prompt Library" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.Breadcrumb" displayName="cat_PowerCAT.Breadcrumb" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.Calendar" displayName="cat_PowerCAT.Calendar" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.CommandBar" displayName="cat_PowerCAT.CommandBar" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.ContextMenu" displayName="cat_PowerCAT.ContextMenu" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.Elevation" displayName="cat_PowerCAT.Elevation" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.Facepile" displayName="cat_PowerCAT.Facepile" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.Icon" displayName="cat_PowerCAT.Icon" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.Nav" displayName="cat_PowerCAT.Nav" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.PeoplePicker" displayName="cat_PowerCAT.PeoplePicker" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.Persona" displayName="cat_PowerCAT.Persona" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.Picker" displayName="cat_PowerCAT.Picker" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.Pivot" displayName="cat_PowerCAT.Pivot" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.ProgressIndicator" displayName="cat_PowerCAT.ProgressIndicator" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.SearchBox" displayName="cat_PowerCAT.SearchBox" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.Shimmer" displayName="cat_PowerCAT.Shimmer" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.SpinButton" displayName="cat_PowerCAT.SpinButton" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.Spinner" displayName="cat_PowerCAT.Spinner" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="cat_PowerCAT.SubwayNav" displayName="cat_PowerCAT.SubwayNav" solution="CreatorKitCore (1.0.20230421.1)">
+          <package>CreatorKitCore (1.0.20230421.1)</package>
+          <package>DataverseAccelerator_Anchor (1.0.2.123)</package>
+        </Required>
+        <Dependent type="300" schemaName="ppchal_chatgpt_0a0e7" displayName="Azure OpenAI Service Chat" />
+      </MissingDependency>
+    </MissingDependencies>
+  </SolutionManifest>
+</ImportExportXml>
