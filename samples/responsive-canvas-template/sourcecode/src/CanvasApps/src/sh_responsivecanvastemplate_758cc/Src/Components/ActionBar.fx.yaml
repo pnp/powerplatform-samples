@@ -1,0 +1,142 @@
+ActionBar As CanvasComponent:
+    Color: =
+    ContentWidth: =App.Width
+    Fill: =Color.Transparent
+    HeaderFill: =
+    Height: =58
+    OnBackSelect: |-
+        =Switch(
+            Self.SelectedButton,
+            1,
+            NewForm(Form1_3);Navigate('Edit Contact',ScreenTransition.Fade),
+            2,
+            Refresh(Contacts),
+            3,
+            Notify(3)
+        )
+    OnLeftButtonSelect: =true
+    OnReset: =
+    OnRightButtonSelect: =true
+    SelectedButton: =Gallery6.Selected.Value
+    Theme: |-
+        ={
+        	palette: {
+        		themePrimary: "#0078d4",
+        		themeLighterAlt: "#eff6fc",
+        		themeLighter: "#deecf9",
+        		themeLight: "#c7e0f4",
+        		themeTertiary: "#71afe5",
+        		themeSecondary: "#2b88d8",
+        		themeDarkAlt: "#106ebe",
+        		themeDark: "#005a9e",
+        		themeDarker: "#004578",
+        		neutralLighterAlt: "#faf9f8",
+        		neutralLighter: "#f3f2f1",
+        		neutralLight: "#edebe9",
+        		neutralQuaternaryAlt: "#e1dfdd",
+        		neutralQuaternary: "#d0d0d0",
+        		neutralTertiaryAlt: "#c8c6c4",
+        		neutralTertiary: "#a19f9d",
+        		neutralSecondary: "#605e5c",
+        		neutralPrimaryAlt: "#3b3a39",
+        		neutralPrimary: "#323130",
+        		neutralDark: "#201f1e",
+        		black: "#000000",
+        		white: "#ffffff"
+        	}
+        }
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    htmlDropShadow_2 As htmlViewer:
+        Font: =Font.'Segoe UI'
+        Height: =69
+        HtmlText: |-
+            ="<div style=' transform: translate(-50%, -70%);position:absolute;top:50%;left:50%;margin:auto;box-shadow:rgba(0, 0, 0, 0.22) 0px 0.6px 7.6px 0px, rgba(0, 0, 0, 0.18) 0px 4.8px 14.4px 0px;border-radius:2px;padding:0;background:none" &  ";width:"& ActionBar.Width &"px;height:" & HeaderContainer_2.Height-22  &"px'></div>"
+        Width: =ActionBar.Width
+        ZIndex: =1
+
+    HeaderContainer_2 As groupContainer.horizontalAutoLayoutContainer:
+        Fill: =Coalesce(ActionBar.HeaderFill, ColorValue(ActionBar.Theme.palette.neutralLight))
+        Height: =40
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutGap: =10
+        LayoutMode: =LayoutMode.Auto
+        PaddingLeft: =10
+        Width: =ActionBar.Width
+        ZIndex: =5
+
+        Icon3_1 As icon.Add:
+            Color: =RGBA(0, 0, 0, 1)
+            Height: =40
+            Icon: =Icon.ArrowLeft
+            OnSelect: =Back()
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            Width: =Self.Height
+            X: =35
+            ZIndex: =1
+
+        Gallery6 As gallery.galleryHorizontal:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =40
+            Items: |-
+                =Table(
+                {Icon: Icon.Add, Label: "Add", Tooltip:"Adde", Value:1}, 
+                {Icon: Icon.Reload, Label: "Refresh", Tooltip:"Refresh", Value:2}, 
+                {Icon: Icon.Trash, Label: "Delete", Tooltip:"Delete", Value:3}
+                )
+            LayoutMinHeight: =287
+            LayoutMinWidth: =0
+            OnSelect: =ActionBar.OnBackSelect()
+            TemplatePadding: =0
+            TemplateSize: =Self.Width/CountRows(Gallery6.AllItems)
+            Width: =If(App.Width>App.Height, Parent.Width/2, Parent.Width-50)
+            ZIndex: =2
+
+            lbLabel_2 As label:
+                Align: =Align.Center
+                BorderColor: =
+                Color: =ColorValue(ActionBar.Theme.palette.neutralPrimary)
+                DisabledFill: =RGBA(0,0,0,0)
+                Fill: =If(ThisItem.IsSelected,Self.HoverFill,RGBA(0,0,0,0))
+                Font: =Font.'Segoe UI'
+                HoverFill: =ColorValue(ActionBar.Theme.palette.neutralLight)
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =11
+                Text: =ThisItem.Label
+                Tooltip: =ThisItem.Tooltip
+                Visible: =App.Width>App.Height
+                Width: =Parent.TemplateWidth
+                ZIndex: =2
+
+            Icon3 As icon.Add:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =40
+                Icon: =ThisItem.Icon
+                OnSelect: =Select(Parent)
+                PaddingBottom: =10
+                PaddingLeft: =10
+                PaddingRight: =10
+                PaddingTop: =10
+                Width: =Self.Height
+                X: =If(App.Width>App.Height, 10, (Parent.TemplateWidth-Self.Width)/2)
+                ZIndex: =3
+
+            Rectangle2 As rectangle:
+                Fill: =RGBA(128, 128, 128, 1)
+                Height: =24
+                OnSelect: =Select(Parent)
+                Width: =1
+                Y: =8
+                ZIndex: =4
+
