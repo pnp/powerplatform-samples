@@ -1,0 +1,410 @@
+"'Profile Screen' As screen":
+
+    Rectangle1_2 As rectangle:
+        BorderColor: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(243, 242, 241,1)
+        Height: =Parent.Height
+        Width: =If(App.Width>App.Height,Nav2_2.Width,Nav2_2.Width+5)
+        ZIndex: =1
+
+    Rectangle2_2 As rectangle:
+        Fill: =RGBA(116, 39, 116,1)
+        Height: =49
+        Width: =Parent.Width
+        ZIndex: =6
+
+    "Icon1_2 As 'Fluent Icon (1.0.22)'":
+        DisplayMode: =DisplayMode.Edit
+        FillColor: =""
+        FontColor: ="white"
+        FontSize: =15
+        Height: =49
+        IconName: ="Waffle"
+        IconSize: =27
+        IconType: ='PowerCAT.Icon.IconType'.ActionButton
+        Text: =If(App.Width>App.Height,"Creator Kit Template | "& App.ActiveScreen.Name)
+        TextAlignment: ='PowerCAT.Icon.TextAlignment'.Left
+        Width: =309
+        X: =0
+        Y: =0
+        ZIndex: =7
+
+    "Nav2_2 As 'Fluent Nav (1.0.22)'.pcfdataset":
+        CollapseByDefault: =true
+        DisplayMode: =DisplayMode.Edit
+        Height: =Parent.Height-Rectangle2_2.Height
+        Items: |-
+            =If(
+                App.Width > App.Height,
+                Table(
+                    {
+                        ItemKey: "1",
+                        ItemDisplayName: "",
+                        ItemIconName: "CollapseMenu",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "Home Screen",
+                        ItemDisplayName: "Home Screen",
+                        ItemIconName: "HomeSolid",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "Documents Screen",
+                        ItemDisplayName: "Documents",
+                        ItemExpanded: true,
+                        ItemIconName: "Document",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "3",
+                        ItemDisplayName: "Customers"
+                    },
+                    {
+                        ItemKey: "Accounts Screen",
+                        ItemDisplayName: "Accounts",
+                        ItemParentKey: "3",
+                        ItemIconName: "Accounts",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "Contacts Screen",
+                        ItemDisplayName: "Contacts",
+                        ItemParentKey: "3",
+                        ItemIconName: "People",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "4",
+                        ItemDisplayName: "Employees"
+                    },
+                    {
+                        ItemKey: "Users Screen",
+                        ItemDisplayName: "Users",
+                        ItemParentKey: "4",
+                        ItemIconName: "PeopleAlert",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "5",
+                        ItemDisplayName: "Settings"
+                    },
+                    {
+                        ItemKey: "Profile Screen",
+                        ItemDisplayName: "My Profile",
+                        ItemParentKey: "5",
+                        ItemIconName: "UserOptional",
+                        ItemVisible: true
+                    }
+                ),
+                Table(
+                    {
+                        ItemKey: "1",
+                        ItemDisplayName: "",
+                        ItemIconName: "CollapseMenu",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "Home Screen",
+                        ItemDisplayName: "Home Screen",
+                        ItemIconName: "HomeSolid",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "Documents Screen",
+                        ItemDisplayName: "Documents",
+                        ItemExpanded: true,
+                        ItemIconName: "Document",
+                        ItemIconColor: "black"
+                    },
+                    {
+                        ItemKey: "Accounts Screen",
+                        ItemDisplayName: "Accounts",
+                        ItemIconName: "Accounts",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "Contacts Screen",
+                        ItemDisplayName: "Contacts",
+                        ItemIconName: "People",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "Users Screen",
+                        ItemDisplayName: "Users",
+                        ItemIconName: "PeopleAlert",
+                        ItemVisible: true
+                    },
+                    {
+                        ItemKey: "Profile Screen",
+                        ItemDisplayName: "My Profile",
+                        ItemIconName: "UserOptional",
+                        ItemVisible: true
+                    }
+                )
+            )
+        OnSelect: |-
+            =Switch(
+                Self.Selected.ItemKey,
+                "Contacts Screen",
+                Navigate(
+                    'Contacts Screen',
+                    ScreenTransition.Fade
+                ),
+                "Accounts Screen",
+                Navigate(
+                    'Accounts Screen',
+                    ScreenTransition.Fade
+                ),
+                "Documents Screen",
+                Navigate(
+                    'Documents Screen',
+                    ScreenTransition.Fade
+                ),
+                "Users Screen",
+                Navigate(
+                    'Users Screen',
+                    ScreenTransition.Fade
+                )
+            )
+        SelectedKey: =App.ActiveScreen.Name
+        Width: =If(App.Width>App.Height,241,35)
+        X: =0
+        Y: =Rectangle2_2.Height
+        ZIndex: =8
+
+    Image1_2 As image:
+        Height: =36
+        Image: =User().Image
+        RadiusBottomLeft: =100
+        RadiusBottomRight: =100
+        RadiusTopLeft: =100
+        RadiusTopRight: =100
+        Width: =36
+        X: =Parent.Width-Self.Width-10
+        Y: =6
+        ZIndex: =9
+
+    Label1_2 As label:
+        Align: =Align.Right
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =49
+        Size: =10
+        Text: =User().FullName
+        X: =Image1_2.X-Self.Width-10
+        ZIndex: =10
+
+    "ContextMenu1_6 As 'Fluent Context Menu (1.0.22)'.pcfdataset":
+        BorderColor: |-
+            ="#dadada"
+        Chevron: =true
+        DisplayMode: =DisplayMode.Edit
+        FillColor: |-
+            ="#f3f2f1"
+        FontSize: =18
+        Height: =46
+        IconColor: |-
+            ="#742774"
+        Items: |-
+            =Table(
+                  {
+                      ItemKey: "File",
+                      ItemIconName: "Shop",
+                      ItemDisplayName: "Sales",
+                      ItemOverflow:true
+                  },
+                  {
+                      ItemKey: "File",
+                      ItemIconName: "People",
+                      ItemDisplayName: "Customers",
+                      ItemOverflow:true
+                  }
+              )
+        TextAlignment: ='PowerCAT.ContextMenu.TextAlignment'.Left
+        Visible: =Self.Width>80
+        Width: =Nav2_2.Width
+        X: =0
+        Y: =App.Height-Self.Height
+        ZIndex: =13
+
+        "'Account Name5_6' As pcfDataField.textualColumn":
+            FieldDisplayName: ="Account Name"
+            FieldName: ="name"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =15
+
+        "'Main Phone5_6' As pcfDataField.textualColumn":
+            FieldDisplayName: ="Main Phone"
+            FieldName: ="telephone1"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =16
+
+        "'Address 1: City5_6' As pcfDataField.textualColumn":
+            FieldDisplayName: |-
+                ="Address 1: City"
+            FieldName: ="address1_city"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =3
+            ZIndex: =17
+
+        "'Primary Contact5_6' As pcfDataField":
+            FieldDisplayName: ="Primary Contact"
+            FieldName: ="primarycontactid"
+            FieldType: ="E"
+            FieldVariantName: ="complexTypeColumn"
+            Order: =4
+            ZIndex: =18
+
+    "Spinner1_3 As 'Fluent Spinner (1.0.22) Preview'":
+        BackgroundColor: |-
+            ="#ffffffa3"
+        DisplayMode: =DisplayMode.Edit
+        Height: =Parent.Height-Rectangle2_2.Height
+        SpinnerSize: ='PowerCAT.Spinner.SpinnerSize'.Large
+        Visible: =varSpinner
+        Width: =App.Width-Nav2_2.Width
+        X: =Nav2_2.Width
+        Y: =Rectangle2_2.Height
+        ZIndex: =16
+
+    "Persona1_1 As 'Fluent Persona (1.0.22) Preview'":
+        DisplayMode: =DisplayMode.Edit
+        Height: =Parent.Height-Self.Y
+        HidePersonaDetails: =true
+        ImageInitials: =""
+        ImageUrl: =User().Image
+        OptionalText: ="N/A"
+        PersonaInitialsColor: ='PowerCAT.Persona.PersonaInitialsColor'.Blue
+        PersonaSize: ='PowerCAT.Persona.PersonaSize'.Size120
+        Presence: =DropdownCanvas2.Selected.Value
+        SecondaryText: =User().Email
+        TertiaryText: ="N/A"
+        Text: =User().FullName
+        Width: =Parent.Width-Rectangle1_2.Width-60
+        X: =Rectangle1_2.Width+30
+        Y: =Pivot1.Height+Pivot1.Y+20
+        ZIndex: =17
+
+    Label4 As label:
+        FontWeight: =FontWeight.Semibold
+        Size: =14
+        Text: =User().FullName
+        Visible: =Pivot1.Selected.ItemKey = "myprofile"
+        Width: =Parent.Width-Rectangle1_2.Width-60
+        X: =Rectangle1_2.Width+30
+        Y: =290
+        ZIndex: =18
+
+    Label4_1 As label:
+        Height: =20
+        Size: =11
+        Text: =User().Email
+        Visible: =Pivot1.Selected.ItemKey = "myprofile"
+        Width: =Parent.Width-Rectangle1_2.Width-60
+        X: =Rectangle1_2.Width+30
+        Y: =Label4.Height+Label4.Y
+        ZIndex: =19
+
+    "Pivot1 As 'Fluent Pivot (1.0.22)'.pcfdataset":
+        DisplayMode: =DisplayMode.Edit
+        Height: =60
+        Items: |-
+            =Table(
+                {
+                    ItemKey: "myprofile",
+                    ItemDisplayName: "My Profile",
+                    ItemIconName: "Emoji2"
+                },
+                {
+                    ItemKey: "myroles",
+                    ItemDisplayName: "My Roles",
+                    ItemIconName: "UserEvent"
+                }
+            )
+        RenderSize: ='PowerCAT.Pivot.RenderSize'.Normal
+        RenderType: ='PowerCAT.Pivot.RenderType'.PivotLinks
+        SelectedKey: ="myprofile"
+        Theme: =
+        Width: =Parent.Width-Rectangle1_2.Width-60
+        X: =Rectangle1_2.Width+30
+        Y: =Rectangle2_2.Height+30
+        ZIndex: =20
+
+    DropdownCanvas2 As Dropdown.pcfdataset:
+        DefaultSelectedItems: |-
+            ={Key:"Online",Value:"2"}
+        DisplayMode: =DisplayMode.Edit
+        FontSize: =0
+        Height: =32
+        Items: |-
+            =[{Key:"None",Value:"0"},{Key:"Offline",Value:"1"},{Key:"Online",Value:"2"},{Key:"Away",Value:"3"},{Key:"Dnd",Value:"4"},{Key:"Blocked",Value:"5"},{Key:"Busy",Value:"6"}]
+        ValidationState: ="None"
+        Visible: =Pivot1.Selected.ItemKey = "myprofile"
+        Width: =If(App.Width>App.Height,320,Parent.Width-Rectangle1_2.Width-60)
+        X: =Persona1_1.X
+        Y: =Label4_2.Y+Label4_2.Height
+        ZIndex: =21
+
+        Key1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Key"
+            FieldName: ="Key"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =19
+
+    Label4_2 As label:
+        FontWeight: =FontWeight.Semibold
+        Size: =11
+        Text: |-
+            ="Status:"
+        Visible: =Pivot1.Selected.ItemKey = "myprofile"
+        Width: =Parent.Width-Rectangle1_2.Width-60
+        X: =Rectangle1_2.Width+30
+        Y: =Label4_1.Height+Label4_1.Y+40
+        ZIndex: =22
+
+    "FluentDetailsList2 As 'Fluent Details List (1.0.22)'.pcfdataset":
+        columns_Items: |-
+            =Table(
+                {
+                    ColName: "name",
+                    ColDisplayName: "Name",
+                    ColWidth: Self.Width-100,
+                    ColSortable: true,
+                    ColIsBold: true,
+                    ColResizable: true
+                }
+            )
+        DisplayMode: =DisplayMode.Edit
+        Height: =Parent.Height-Self.Y-30
+        Items: =Gallery1.AllItems
+        Visible: =Pivot1.Selected.ItemKey = "myroles"
+        Width: =Parent.Width-Rectangle1_2.Width
+        X: =Rectangle1_2.Width
+        Y: =300
+        ZIndex: =23
+
+        name1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="name"
+            FieldName: ="name"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =20
+
+    "Gallery1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Items: =LookUp(Users,'Primary Email' = User().Email).'Security Roles (systemuserroles_association)'
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =Min(160, Self.Height - 60)
+        Visible: =false
+        X: =726
+        Y: =193
+        ZIndex: =24
+

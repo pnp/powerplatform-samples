@@ -177,7 +177,7 @@ Type: Person or Group
 
 ### Import Power Apps solution
 
-1. Download the **[Unmanaged](./solution/MyTools_1_0_0_0.zip)** solution `.zip` from the **solution** folder.
+1. Download the **[Unmanaged](./solution/sharepoint-mytools.zip)** solution `.zip` from the **solution** folder.
 
 2. Within **<https://make.powerapps.com>**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
 

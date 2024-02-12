@@ -1,0 +1,247 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline-2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "alexmsft_BrokenLinksSharePointConnection"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_teams-2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "alexmsft_BrokenLinksTeamsConnection"
+        },
+        "api": {
+          "name": "shared_teams"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "Broken Links SPO Site (alexmsft_BrokenLinksSPOSite)": {
+          "defaultValue": "https://m365x765471.sharepoint.com/",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alexmsft_BrokenLinksSPOSite",
+            "description": "SharePoint site for the Broken Links solution"
+          }
+        },
+        "Broken Links List (alexmsft_BrokenLinksList)": {
+          "defaultValue": "f41d98d8-a3ba-495f-b40c-87364970f182",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alexmsft_BrokenLinksList",
+            "description": "Broken links list"
+          }
+        }
+      },
+      "triggers": {
+        "When_a_broken_link_item_is_created_or_modified": {
+          "recurrence": {
+            "frequency": "Minute",
+            "interval": 1
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "dataset": "@parameters('Broken Links SPO Site (alexmsft_BrokenLinksSPOSite)')",
+              "table": "@parameters('Broken Links List (alexmsft_BrokenLinksList)')"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "operationId": "GetOnUpdatedItems",
+              "connectionName": "shared_sharepointonline-2"
+            }
+          },
+          "conditions": [
+            {
+              "expression": "@equals(triggerBody()?['Status']?['Value'],'Pending Validation')"
+            }
+          ]
+        }
+      },
+      "actions": {
+        "Get_page_details": {
+          "runAfter": {
+            "Initialize_Links_variable": [
+              "Succeeded"
+            ]
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "dataset": "@parameters('Broken Links SPO Site (alexmsft_BrokenLinksSPOSite)')",
+              "table": "Site Pages",
+              "id": "@triggerOutputs()?['body/PageId']"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "operationId": "GetFileItem",
+              "connectionName": "shared_sharepointonline-2"
+            }
+          }
+        },
+        "Initialize_Links_variable": {
+          "runAfter": {},
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Links",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Loop_through_links_and_append_to_links_array": {
+          "foreach": "@split(triggerOutputs()?['body/Links'],';')",
+          "actions": {
+            "Append_to_links_array": {
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "Links",
+                "value": {
+                  "title": "Link:",
+                  "value": "@{item()}"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Get_page_details": [
+              "Succeeded"
+            ]
+          },
+          "type": "Foreach"
+        },
+        "Post_broken_links_adaptive_card": {
+          "runAfter": {
+            "Loop_through_links_and_append_to_links_array": [
+              "Succeeded"
+            ]
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "parameters": {
+              "UserFlowContinuationSubscriptionRequest/body/recipient/to": "@{outputs('Get_page_details')?['body/Author/Email']};",
+              "UserFlowContinuationSubscriptionRequest/body/messageBody": "{\n    \"type\": \"AdaptiveCard\",\n    \"body\": [\n        {\n            \"type\": \"Container\",\n            \"style\": \"emphasis\",\n            \"items\": [\n                {\n                    \"type\": \"ColumnSet\",\n                    \"columns\": [\n                        {\n                            \"type\": \"Column\",\n                            \"width\": \"auto\",\n                            \"items\": [\n                                {\n                                    \"type\": \"Image\",\n                                    \"url\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAVRSURBVHhe7ZtXqCRFFEDHrKioiCjmACYMP4pZwZwwrTlHFBT1xw9zwIyiGBAjusY1KwqKmFHECCpmMWEABXOO54D9uFtbPeFN98y8oQ+cD7e7q3qqu6vuvfVsNTQ0NDQ0NDQ0NDQ0dGB1PBgvwBvxNry1D73+Wjwdd8alcOSYBw/FZ/BP/LdGv8X7cGscCbbF1zB3s3U7A5fDoXEG5m5skH6JPoSBcyXmbugvfALPwYNwrwo8Ei/HVzHXp5/dnjgwTsPcjVyNa2JdzIY74guY9v0HboK1szmmnX+B2+OgmAvPxfQ+PsKFsTbmxbcwdvoVrobD4GiM96IXYW0cjrGzf3DYy9GlGO/pZ6xlZfD7exFjZwYow8a38kOM93UKVs4q6AxfdPIbroyjwPEYB+B5rBzD29jJYzgqGB776hf39j0ugZVyIcYBMAgaBGtgkVvcjHf870YYeQnj/a2HkWOxuPYGPBV3wiWxK+w8dmCQUxdz4iH4HMbPLuqgRO7BeNx4IfIQxuOF5hZ34RbYljsxXmiEVgfb4CsY+8q5D0bMGuPx3TBi3hCP57wbl8csRnnx5KOwanrJLQ7ESPqEHcjIAxiPl2lusR3OwokYT3T9rZKy3OJ3dMI9Gw9Dn/z+GJ/U7PgOxuvWwohzxgG4Lx6DV+AbGK8p9LPbA2diB4wnebEdV4HFjth2Ybe5xdoY6xCf44LYCeca35QnMfarDvyGOMFi+B3Gk7bCfnHyiW2quUX2NSzBTDFefz/2ykkY29B3cQGcIJ1InKX7wSjubYxt+g1aVusWg7GfMLYx2dTYtDu2o+fhBBtjekI/YecRGNv6G9PJqx1mhT6E2Mb76MBOlosxtufgLoMTuFTEE9TJqVfmwJcxtnM9dot1yNzStjv2w/z4McY2XQAmWBq/xniCWgGaD7vF19xssrjeSWdV7AavfQpj/3o7VsEJGNu1ADMTTn65CM3v+ThcFjthFTle+zi2w9d9XXTC+xHjtWphtqpiyEr4KxZtm2fMgutkPCn6A/p634u3oPH3+hhJv7WzMGKxw+u8/mFM1/motULfzKpweX8PYx9ZnBTTClGZBiGR6RiPp7lFt5Gb88AiWDUOfuynFF87M0WferwgNc0d0g7SyCuN7VPfxP2wLox74grTEb8bIzqLEbnBSN+A6zAedw2OPIjxuBoj+Gbsja4CdePDLSrQPWGBYlN0SSpq++nEeCbGH3cZRjbA4tpdcB2steJbwqLoll/l7IpxAKrMLarG2KBy6sotphRpkaXf3GLK4VZWHAC1Vlcli2MvmWXB3OhnWju53MIkqQpMZZ9F27SI0gtFDdTJulbMtL7BOADq3l8/k4/tPo1Fe+Yd6VJchhs+8V7Ox1opyy2MMt30WAF7xc3atD3TbUti7Uhrn+r+Z+0YM/yCaedqMmKl2NzCCDLVsDq3S+UTjxmnOtAGUjmuwXiuuuM8sM1fJ8V2SU87P8AVMcVw2Scfz3UQ0tC87Md3m6JXhtGemWIu5e2k1aBuB8H/noZyFcZjalHE/dCh4Q85Gc0t3OtLb7BMizWGzSm+9ukg+Gk9mvybfooDf/LtcEb38zBj9Gk6kZXpEroZ5rBYmg5C6tCffN24ZZZbdvV1HOsfX/AI5gbAvYGxJzfhFfpHH+5Kjy25pS7nWA5CLsIz5vC1T4MlrfPvHwZO7snH2d6t9rEdhDSx0dw677Z7ep5O2UFYCG/C9Ae1W+eNI3JxQlXp+UCxkJr+kE+w0zqfixjdIJ1y+McP8e+JTWy6DXKMOIs/uLDEPzL/c8ZkuAR98r3G9qbSn+GWrVar9R9T8z+wZ0MVVwAAAABJRU5ErkJggg==\",\n                                    \"size\": \"Small\"\n                                }\n                            ]\n                        },\n                        {\n                            \"type\": \"Column\",\n                            \"width\": \"auto\",\n                            \"items\": [\n                                {\n                                    \"type\": \"TextBlock\",\n                                    \"size\": \"ExtraLarge\",\n                                    \"weight\": \"Bolder\",\n                                    \"text\": \"Validate broken links\",\n                                    \"wrap\": true\n                                }\n                            ]\n                        },\n                        {\n                            \"type\": \"Column\",\n                            \"width\": \"stretch\",\n                            \"items\": [\n                                {\n                                    \"type\": \"Image\",\n                                    \"url\": \"https://adaptivecards.io/content/pending.png\",\n                                    \"altText\": \"Pending\",\n                                    \"height\": \"30px\",\n                                    \"horizontalAlignment\": \"Right\"\n                                }\n                            ]\n                        }\n                    ]\n                }\n            ],\n            \"bleed\": true\n        },\n        {\n            \"type\": \"Container\",\n            \"items\": [\n                {\n                    \"type\": \"ColumnSet\",\n                    \"columns\": [\n                        {\n                            \"type\": \"Column\",\n                            \"items\": [\n                                {\n                                    \"type\": \"TextBlock\",\n                                    \"size\": \"Large\",\n                                    \"text\": \"Page: @{outputs('Get_page_details')?['body/Title']}\",\n                                    \"wrap\": true\n                                }\n                            ],\n                            \"width\": \"stretch\"\n                        }\n                    ]\n                },\n                {\n                    \"type\": \"TextBlock\",\n                    \"text\": \"Potential broken links have been found on your page. Please review the links, update the page if necessary and click 'Done' once complete.\",\n                    \"wrap\": true,\n                    \"separator\": true\n                },\n                {\n                    \"type\": \"TextBlock\",\n                    \"text\": \"Links:\",\n                    \"wrap\": true,\n                    \"size\": \"Medium\"\n                },\n                {\n                    \"type\": \"FactSet\",\n                    \"spacing\": \"Large\",\n                    \"facts\": @{variables('Links')}\n                }\n            ]\n        },\n        {\n            \"type\": \"Container\",\n          \"items\": [\n                {\n                    \"type\": \"ActionSet\",\n                    \"actions\": [\n                     {\n                            \"type\": \"Action.OpenUrl\",\n                            \"title\": \"Edit page\",\n\"url\":\"@{outputs('Get_page_details')?['body/{Link}']}?Mode=Edit\"\n                        }\n                    ]\n            \n                },\n                {\n                    \"type\": \"ActionSet\",\n                    \"actions\": [\n                       \n                        {\n                            \"type\": \"Action.Submit\",\n                            \"title\": \"Done\",\n                            \"style\": \"positive\",\n                            \"data\": {\n                                \"id\": \"approve\",\n                                \"action\": \"approve\"\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    ],\n    \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n    \"version\": \"1.2\",\n    \"fallbackText\": \"This card requires Adaptive Cards v1.2 support to be rendered properly.\"\n}",
+              "UserFlowContinuationSubscriptionRequest/body/updateMessage": "Broken link validation complete for '@{outputs('Get_page_details')?['body/Title']}'",
+              "UserFlowContinuationSubscriptionRequest/body/shouldUpdateCard": true
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+              "operationId": "SubscribeUserFlowContinuation",
+              "connectionName": "shared_teams-2"
+            }
+          }
+        },
+        "Check_adaptive_card_response": {
+          "actions": {
+            "Update_broken_link_item_to_validation_complete": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@parameters('Broken Links SPO Site (alexmsft_BrokenLinksSPOSite)')",
+                  "table": "@parameters('Broken Links List (alexmsft_BrokenLinksList)')",
+                  "id": "@triggerOutputs()?['body/ID']",
+                  "item/Status/Value": "Validation Complete"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "PatchItem",
+                  "connectionName": "shared_sharepointonline-2"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Parse_adaptive_card_JSON_response": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {}
+          },
+          "expression": {
+            "equals": [
+              "@body('Parse_adaptive_card_JSON_response')?['submitActionId']",
+              "Done"
+            ]
+          },
+          "type": "If"
+        },
+        "Parse_adaptive_card_JSON_response": {
+          "runAfter": {
+            "Post_broken_links_adaptive_card": [
+              "Succeeded"
+            ]
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Post_broken_links_adaptive_card')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "responseTime": {
+                  "type": "string"
+                },
+                "responder": {
+                  "type": "object",
+                  "properties": {
+                    "objectId": {
+                      "type": "string"
+                    },
+                    "tenantId": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "userPrincipalName": {
+                      "type": "string"
+                    },
+                    "displayName": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "submitActionId": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "action": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

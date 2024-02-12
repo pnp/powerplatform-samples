@@ -1,0 +1,533 @@
+"'frm Home' As screen":
+    BackgroundImage: =
+    Fill: =RGBA(214, 221, 224, 1)
+    ImagePosition: =ImagePosition.Fill
+    OnVisible: |-
+        =UpdateContext(
+            {
+                ctxShowConvertContainer: true,
+                ctxShowCurrenciesContainer: false,
+                ctxShowInfoContainer: false
+            }
+        );
+
+    mainContainer As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =1
+        PaddingLeft: =1
+        PaddingRight: =1
+        PaddingTop: =1
+        Width: =Parent.Width
+        ZIndex: =3
+
+        Header1 As Header:
+            BasePaletteColor: =
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =75
+            LayoutMinHeight: =75
+            LayoutMinWidth: =Parent.Width
+            Logo: =badger
+            OnSelectLogo: =false
+            Title: ="Badger FX"
+            TitleFontSize: =gblFontSize.header
+            UserEmail: =User().Email
+            UserImage: =User().Image
+            UserName: =User().FullName
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+        "TabList1 As 'Tab list'.pcfdataset":
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =gblFontSize.header
+            FontWeight: =FontWeight.Bold
+            Height: =80
+            Items: =["Convert", "Currencies", "Info"]
+            LayoutMinHeight: =55
+            LayoutMinWidth: =280
+            OnSelect: |-
+                =UpdateContext(
+                    {
+                        ctxShowConvertContainer: false,
+                        ctxShowCurrenciesContainer: false,
+                        ctxShowInfoContainer: false
+                    }
+                );
+                Switch(
+                    Self.Selected.Value,
+                    "Convert",
+                    UpdateContext({ctxShowConvertContainer: true}),
+                    "Currencies",
+                    UpdateContext({ctxShowCurrenciesContainer: true}),
+                    "Info",
+                    UpdateContext({ctxShowInfoContainer: true})
+                )
+            Width: =280
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+        convertContainer As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            BorderThickness: =1
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =30
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            Visible: =ctxShowConvertContainer
+            Width: =Parent.Width
+            ZIndex: =3
+
+            TextCanvas1 As Text:
+                Align: ='TextCanvas.Align'.Center
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =gblFontSize.header
+                Text: |-
+                    ="Convert:"
+                Weight: ='TextCanvas.Weight'.Medium
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+            "txtValueToConvert As 'Text input'":
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                FontSize: =gblFontSize.text
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =320
+                Width: =320
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+            TextCanvas1_2 As Text:
+                Align: ='TextCanvas.Align'.Center
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =gblFontSize.header
+                Text: |-
+                    ="Convert to:"
+                Weight: ='TextCanvas.Weight'.Medium
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =3
+
+            cmbTo As Combobox.pcfdataset:
+                DisplayMode: =DisplayMode.Edit
+                FontSize: =gblFontSize.text
+                Height: =32
+                Items: =collCurrencies
+                LayoutMinHeight: =32
+                LayoutMinWidth: =320
+                Width: =320
+                X: =93
+                Y: =456
+                ZIndex: =4
+
+                name1 As pcfDataField.textualColumn:
+                    FieldDisplayName: ="name"
+                    FieldName: ="name"
+                    FieldType: ="s"
+                    FieldVariantName: ="textualColumn"
+                    Order: =1
+                    ZIndex: =9
+
+                rate1 As pcfDataField.textualColumn:
+                    FieldDisplayName: ="rate"
+                    FieldName: ="rate"
+                    FieldType: ="n"
+                    FieldVariantName: ="textualColumn"
+                    Order: =2
+                    ZIndex: =10
+
+            btnConvert As Button:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                FontSize: =gblFontSize.header
+                Height: =40
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                OnSelect: |-
+                    =UpdateContext(
+                        {
+                            ctxResultOtherCurrencyToEUR: Value(txtValueToConvert.Value / cmbTo.Selected.rate)
+                        }
+                    )
+                Text: ="Convert"
+                Width: =Parent.Width / 2
+                X: =0
+                Y: =0
+                ZIndex: =5
+
+            lblResult As Text:
+                Align: ='TextCanvas.Align'.Center
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =gblFontSize.header
+                Text: =$"{txtValueToConvert.Value} {cmbTo.Selected.name} correspondes to {Round(ctxResultOtherCurrencyToEUR,2)} EUR"
+                Weight: ='TextCanvas.Weight'.Medium
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =6
+
+        appInfoContainer As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            BorderThickness: =1
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =30
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            Visible: =ctxShowInfoContainer
+            Width: =Parent.Width
+            ZIndex: =4
+
+            TextCanvas1_3 As Text:
+                Align: ='TextCanvas.Align'.Center
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =gblFontSize.header
+                Text: ="INFO"
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+            txtValue_1 As Text:
+                DisplayMode: =DisplayMode.Edit
+                FillPortions: =1
+                FontColor: =
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =gblFontSize.text
+                Text: |-
+                    ="This example application was created because I needed it for an upcoming trip :-) and because I took the opportunity to experiment with some modern controls and the use of SaveData and Load data to save some data to device.
+                    
+                    Sharing is caring!"
+                VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                Width: =Parent.Width / 2
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+            LinkCanvas1 As Link:
+                Align: ='LinkCanvas.Align'.Center
+                AutoHeight: =true
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontSize: =gblFontSize.text
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =320
+                Text: |-
+                    ="Visit my site:
+                    https://angelogulisano.com/"
+                URL: |-
+                    ="https://angelogulisano.com/"
+                VerticalAlign: ='LinkCanvas.VerticalAlign'.Middle
+                Width: =320
+                X: =0
+                Y: =0
+                ZIndex: =3
+
+            Image1 As image:
+                Height: =320
+                Image: ='angelo-elegante-small'
+                LayoutMinHeight: =320
+                LayoutMinWidth: =320
+                Width: =320
+                ZIndex: =4
+
+        currencyContainer As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            BorderThickness: =1
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =30
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            Visible: =ctxShowCurrenciesContainer
+            Width: =Parent.Width
+            ZIndex: =5
+
+            TextCanvas1_6 As Text:
+                Align: ='TextCanvas.Align'.Center
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =gblFontSize.header
+                Text: ="MANAGE CURRENCIES (€ Based)"
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+            TextCanvas1_7 As Text:
+                Align: ='TextCanvas.Align'.Center
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =gblFontSize.header
+                Text: |-
+                    ="New currency name:"
+                Weight: ='TextCanvas.Weight'.Medium
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+            "txtCurrencyName As 'Text input'":
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                FontSize: =gblFontSize.text
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =320
+                OnChange: |-
+                    =UpdateContext({ctxCurrentCurrencyName: Self.Value})
+                Placeholder: ="add currency name..."
+                Value: =ctxCurrentCurrencyName
+                Width: =320
+                X: =0
+                Y: =0
+                ZIndex: =3
+
+            TextCanvas1_8 As Text:
+                Align: ='TextCanvas.Align'.Center
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =gblFontSize.header
+                Text: |-
+                    ="Change rate (Value of 1 euro):"
+                Weight: ='TextCanvas.Weight'.Medium
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =4
+
+            "txtCurrencyRate As 'Text input'":
+                BasePaletteColor: =
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                FontSize: =gblFontSize.text
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =320
+                OnChange: |-
+                    =UpdateContext({ctxCurrentCurrencyRate: Value(Self.Value,"it-IT")})
+                Placeholder: ="add currency rate for 1€"
+                Value: =ctxCurrentCurrencyRate
+                Width: =320
+                X: =0
+                Y: =0
+                ZIndex: =5
+
+            btnSave As Button:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                OnSelect: |-
+                    =//Save new (ore edited) currency
+                    UpdateContext(
+                        {
+                            ctxCurrency: {
+                                name: Text(ctxCurrentCurrencyName),
+                                rate: Value(ctxCurrentCurrencyRate)
+                            }
+                        }
+                    );
+                    //Remove item from collection
+                    Remove(collCurrencies,LookUp(collCurrencies, name  =ctxCurrency.name ));
+                    //Store in collection
+                    Collect(
+                        collCurrencies,
+                        ctxCurrency
+                    );
+                    UpdateContext(
+                        {
+                            ctxCurrentCurrencyName: "",
+                            ctxCurrentCurrencyRate: Value(0)
+                        }
+                    );
+                    //Save if we're in mobile
+                    If(
+                        isMobile,
+                        SaveData(
+                            collCurrencies,
+                            currencyVarStoreName
+                        )
+                    )
+                Text: ="Save"
+                Width: =Parent.Width / 2
+                X: =0
+                Y: =0
+                ZIndex: =6
+
+            TextCanvas1_9 As Text:
+                Align: ='TextCanvas.Align'.Center
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =gblFontSize.header
+                Text: ="STORED CURRENCIES"
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =7
+
+            "galCurrencies As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DelayItemLoading: =true
+                Items: =collCurrencies
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =287
+                LayoutMinWidth: =320
+                LoadingSpinner: =LoadingSpinner.Data
+                OnSelect: |-
+                    =UpdateContext(
+                        {
+                            ctxCurrentCurrencyName: galCurrencies.Selected.name,
+                            ctxCurrentCurrencyRate: Value(galCurrencies.Selected.rate)
+                        }
+                    )
+                TemplatePadding: =0
+                TemplateSize: =104
+                ZIndex: =8
+
+                lblStoredCurrency As label:
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =gblFontSize.text
+                    Text: |-
+                        =$"{ThisItem.name} - rate: {ThisItem.rate}"
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 173
+                    X: =30
+                    Y: =35
+                    ZIndex: =2
+
+                NextArrow1 As icon.ChevronRight:
+                    AccessibleLabel: =Self.Tooltip
+                    Color: =RGBA(166, 166, 166, 1)
+                    Height: =50
+                    Icon: =Icon.ChevronRight
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =16
+                    PaddingLeft: =16
+                    PaddingRight: =16
+                    PaddingTop: =16
+                    Tooltip: ="View item details"
+                    Width: =50
+                    X: =Parent.TemplateWidth - Self.Width - 12
+                    Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                    ZIndex: =4
+
+                Separator1 As rectangle:
+                    Height: =8
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - Self.Height
+                    ZIndex: =5
+
+                Rectangle1 As rectangle:
+                    Height: =Parent.TemplateHeight - Separator1.Height
+                    OnSelect: =Select(Parent)
+                    Visible: =ThisItem.IsSelected
+                    Width: =4
+                    ZIndex: =6
+
+                NextArrow1_1 As icon.ChevronRight:
+                    AccessibleLabel: =Self.Tooltip
+                    Color: =RGBA(166, 166, 166, 1)
+                    Height: =50
+                    Icon: =Icon.Cancel
+                    OnSelect: |-
+                        =//Remove item from collection
+                        Remove(
+                            collCurrencies,
+                            LookUp(
+                                collCurrencies,
+                                name = ThisItem.name
+                            )
+                        );
+                        //Save if we're in mobile
+                        If(
+                            isMobile,
+                            SaveData(
+                                collCurrencies,
+                                currencyVarStoreName
+                            )
+                        )
+                    PaddingBottom: =16
+                    PaddingLeft: =16
+                    PaddingRight: =16
+                    PaddingTop: =16
+                    Tooltip: ="View item details"
+                    Width: =50
+                    X: =490
+                    Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                    ZIndex: =7
+

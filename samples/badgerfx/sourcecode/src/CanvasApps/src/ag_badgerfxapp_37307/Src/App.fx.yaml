@@ -1,0 +1,28 @@
+App As appinfo:
+    BackEnabled: =true
+    Formulas: |
+        =currencyVarStoreName = "storedCurrencies";
+        //Trick to check if we're mobile or desktop
+        isMobile = Location.Altitude > 0 || Acceleration.X > 0;
+        gblFontSize = {
+            header: 28,
+            text: 24
+        };
+    OnStart: |-
+        =If(
+            isMobile,
+            LoadData(
+                collCurrencies,
+                currencyVarStoreName,
+                true
+            )
+        )
+    Theme: =SteelTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
