@@ -1,6 +1,8 @@
 # Patch Tuesday
 
-## Methods for calculating Microsoft Patch Tuesday dates
+## Summary
+
+### Methods for calculating Microsoft Patch Tuesday dates
 
 Everyone knows about Microsoft's "Patch Tuesday", and that it falls on the 2nd Tuesday of every month.  It's easy for humans to calculate when Patch Tuesday occurs.  All you have to do is look at a calendar and look for the 2nd Tuesday.  However, what is easy for humans is a bit more difficult for computers to do.  This sample shows a few ways to calculate Patch Tuesday in Power Automate.  With these flows (all included in one sample), you can kick-off other processes that need to occur on Patch Tuesday.
 
@@ -61,7 +63,7 @@ The included samples may be used in the following ways:
 
 ### Using the solution zip
 
-* [Download](./solution/solution.zip) the `.zip` from the `solution` folder
+* [Download](./solution/patch-tuesday.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * Review the provided app and flows to determine which function you need (based on "Minimal path to awesome" above), and copy the steps/code to your own flows.
 
@@ -112,7 +114,7 @@ YOUR-SOLUTION-NAME
 Replace with your sample folder name. E.g.: my-cool-sample
 
 Search for:
-@YOURGITHUBUSERNAME
+@korebreach
 
 Replace with your GitHub username, prefixed with an "@". If you have more than one author, use %20 to separate them, making sure to prefix everyone's username individually with an "@".
 
@@ -127,11 +129,11 @@ Or:
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=patch-tuesday&authors=@korebreach&title=patch-tuesday%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=patch-tuesday&authors=@korebreach&title=patch-tuesday%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=patch-tuesday&authors=@korebreach&title=patch-tuesday%20-%20).
 
 ## Disclaimer
 
