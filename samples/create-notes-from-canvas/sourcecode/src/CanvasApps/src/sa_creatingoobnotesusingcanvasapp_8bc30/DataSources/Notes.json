@@ -1,0 +1,151 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "annotations",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "annotation",
+    "Name": "Notes",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_objectid_value": "Regarding",
+      "_ownerid_value": "Owner",
+      "Annotation_AsyncOperations": "System Jobs",
+      "Annotation_BulkDeleteFailures": "Bulk Delete Failures",
+      "Annotation_ProcessSessions": "Process Sessions",
+      "Annotation_SyncErrors": "Sync Errors",
+      "annotationid": "Note",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "documentbody": "Document",
+      "filename": "File Name",
+      "filesize": "File Size (Bytes)",
+      "importsequencenumber": "Import Sequence Number",
+      "isdocument": "Is Document",
+      "langid": "Language ID",
+      "mimetype": "Mime Type",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "msft_datastate": "msft_DataState",
+      "notetext": "Description",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "prefix": "Prefix",
+      "stepid": "Step Id",
+      "subject": "Title",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Notes",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Notes (Views)",
+    "Name": "_annotation_views",
+    "RelatedEntityName": "Notes",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "00000000-0000-0000-00aa-000010002000": "Notes Associated View",
+      "30a66576-2399-4630-852c-472579c0f42f": "Notes Lookup View",
+      "8a9a0d47-51ac-454e-98c4-b3cf4ef50f2b": "All Notes",
+      "dddff6ae-2f52-4640-b2bb-2ba59da0777c": "Notes Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Is Document (Notes)",
+    "Name": "annotation_isdocument",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "isdocument",
+        "OptionSetReferenceEntityName": "Notes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "isdocument",
+    "RelatedEntityName": "Notes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "IsPrivate (Notes)",
+    "Name": "annotation_isprivate",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "isprivate",
+        "OptionSetReferenceEntityName": "Notes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "isprivate",
+    "RelatedEntityName": "Notes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Object Type  (Notes)",
+    "Name": "annotation_objecttypecode",
+    "OptionSetInfoNameMapping": {
+      "1": "Account",
+      "1010": "Contract",
+      "1011": "Contract Line",
+      "1024": "Product",
+      "1084": "Quote",
+      "1088": "Order",
+      "1090": "Invoice",
+      "112": "Case",
+      "123": "Competitor",
+      "2": "Contact",
+      "3": "Opportunity",
+      "4": "Lead",
+      "4000": "Facility/Equipment",
+      "4001": "Service",
+      "4003": "Calendar",
+      "4006": "Resource Specification",
+      "4201": "Appointment",
+      "4202": "Email",
+      "4204": "Fax",
+      "4206": "Case Resolution",
+      "4207": "Letter",
+      "4208": "Opportunity Close",
+      "4209": "Order Close",
+      "4210": "Phone Call",
+      "4211": "Quote Close",
+      "4212": "Task",
+      "4214": "Service Activity",
+      "4215": "Commitment",
+      "4300": "Marketing List",
+      "4400": "Campaign",
+      "4401": "Campaign Response",
+      "4402": "Campaign Activity",
+      "4407": "Bulk Import",
+      "8181": "Routing Rule",
+      "8199": "Routing Rule Item"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "objecttypecode",
+        "OptionSetReferenceEntityName": "Notes"
+      }
+    },
+    "OptionSetTypeKey": "EntityNameType",
+    "RelatedColumnInvariantName": "objecttypecode",
+    "RelatedEntityName": "Notes",
+    "Type": "OptionSetInfo"
+  }
+]
