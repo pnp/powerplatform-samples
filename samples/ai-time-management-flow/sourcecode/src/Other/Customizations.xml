@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Entities />
+  <Roles />
+  <Workflows />
+  <FieldSecurityProfiles />
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <AIModels>
+    <AIModel>
+      <msdyn_aimodelid>{65320871-cfe9-42a6-9785-7858b6967c6f}</msdyn_aimodelid>
+      <msdyn_name>Time Management</msdyn_name>
+      <msdyn_templateid>{edfdb190-3791-45d8-9a6c-8f90a37c278a}</msdyn_templateid>
+      <statecode>1</statecode>
+      <statuscode>1</statuscode>
+      <IsCustomizable>1</IsCustomizable>
+      <msdyn_activerunconfigurationid>{0f574678-cad9-ee11-904d-0022482a4279}</msdyn_activerunconfigurationid>
+      <AIConfigurations>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{0f574678-cad9-ee11-904d-0022482a4279}</msdyn_aiconfigurationid>
+          <msdyn_customconfiguration>{"version":"GptDynamicPrompt-1","prompt":[{"type":"literal","text":"Create a time management plan for a workday, given these tasks and priorities "},{"type":"inputVariable","id":"priorities","text":"priorities"},{"type":"literal","text":". Take into account the meetings already in place for the day "},{"type":"inputVariable","id":"meetings","text":"meetings"},{"type":"literal","text":" and display a breakdown of focus allocations by time. Format response as HTML.\n\n\n\n"}]}</msdyn_customconfiguration>
+          <msdyn_majoriterationnumber>6</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_name>65320871-cfe9-42a6-9785-7858b6967c6f_2024-03-04T01:56:53.893Z</msdyn_name>
+          <msdyn_modelrundataspecification>H4sIAAAAAAAACoWRSwvCMBCE/4rsORdBPPTmE7woaPEe7aoLbRKSDVhK/7tJK75S8BYyM98usw0cDJ7X2laSj2gdaQXZWMBGGc97rXmlmLiGrIElOVPKeisrhAwoGkDAjNnSyTO66JFFQRwYslxoxXjnNDhLLAJ2pv+BjK1HAXltonUuHU4nhzBAXaEVYCxpG8L9rG/sh/bJu8jSvYFvVIXI4TkAein/MW0A7Tz/aUp3jqSq4XbyvpBk3wspcrc9ShcP9Jtad+roKQ/s2T4AOtmtIOgBAAA=</msdyn_modelrundataspecification>
+          <msdyn_type>190690001</msdyn_type>
+          <msdyn_aimodelid>{65320871-cfe9-42a6-9785-7858b6967c6f}</msdyn_aimodelid>
+          <msdyn_trainedmodelaiconfigurationpareid>{ed5cdadd-22d8-ee11-9079-0022482a45d2}</msdyn_trainedmodelaiconfigurationpareid>
+          <statecode>2</statecode>
+          <statuscode>7</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{ed5cdadd-22d8-ee11-9079-0022482a45d2}</msdyn_aiconfigurationid>
+          <msdyn_majoriterationnumber>1</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_modeldata>28c3c42f-82e1-4a8e-9f8a-6f31f2806724</msdyn_modeldata>
+          <msdyn_name>65320871-cfe9-42a6-9785-7858b6967c6f_2024-03-01T23:24:45.020Z</msdyn_name>
+          <msdyn_modelrundataspecification>
+        {
+          "schemaVersion": 2,
+          "input": {},
+          "output": {}
+        }
+      </msdyn_modelrundataspecification>
+          <msdyn_type>190690000</msdyn_type>
+          <msdyn_aimodelid>{65320871-cfe9-42a6-9785-7858b6967c6f}</msdyn_aimodelid>
+          <statecode>2</statecode>
+          <statuscode>6</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+      </AIConfigurations>
+    </AIModel>
+  </AIModels>
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="ms_sharedcommondataserviceforapps_bbd3e">
+      <connectionreferencedisplayname>Microsoft Dataverse AITimeManagementFlow-bbd3e</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ms_sharedoffice365_f3c08">
+      <connectionreferencedisplayname>Office 365 Outlook AITimeManagementFlow-f3c08</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ms_sharedtodo_18ea2">
+      <connectionreferencedisplayname>Microsoft To-Do (Business) AITimeManagementFlow-18ea2</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_todo</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>
