@@ -1,0 +1,162 @@
+{
+  "ControlStates": {
+    "UserDefinedFunctions": {
+      "AllowAccessToGlobals": false,
+      "ControlPropertyState": [
+        "Fill",
+        "Height",
+        "Width",
+        "X",
+        "Y",
+        "ZIndex",
+        "ValidateEmail_IsRequired",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "With(\n    {\n        response: [\n            If(\n                IsBlank(Text),\n                {\n                    Text: \"Does Not Contain Text\",\n                    Color: Color.Orange,\n                    Icon: Icon.Warning,\n                    NotificationType: NotificationType.Warning,\n                    IsError: false\n                },\n                If(\n                    IsMatch(\n                        Text,\n                        \"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\"\n                    ),\n                    {\n                        Text: \"Email is Valid\",\n                        Color: Color.Green,\n                        Icon: Icon.Check,\n                        NotificationType: NotificationType.Success,\n                        IsError: false\n                    },\n                    {\n                        Text: \"Email is Not Valid\",\n                        Color: Color.Red,\n                        Icon: Icon.Cancel,\n                        NotificationType: NotificationType.Error,\n                        IsError: true\n                    }\n                )\n            )\n        ]\n    },\n    {\n        Response: response,\n        IsValid: IsMatch(\n            Text,\n            \"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\"\n        ),\n        FirstError: {\n            Text: \"Error: \" & First(\n                Filter(\n                    response,\n                    IsError\n                )\n            ).Text,\n            NotificationType: First(\n                Filter(\n                    response,\n                    IsError\n                )\n            ).NotificationType\n        }\n    }\n)",
+          "InvariantPropertyName": "ValidateEmail",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        "ValidatePassword_IsRequired",
+        "ValidatePassword_Text",
+        "ValidatePhoneNumber_IsRequired",
+        "ValidatePhoneNumber_Text",
+        "ValidateURL_IsRequired",
+        "ValidateURL_Text",
+        "ValidateEmail_Text",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "With(\n    {\n        response: If(\n            IsBlank(Text),\n            [\n                {\n                    Text: \"Does Not Contain Text\",\n                    Color: Color.Orange,\n                    Icon: Icon.Warning,\n                    NotificationType: NotificationType.Warning,\n                    IsError: false\n                }\n            ],\n            [\n                If(\n                    IsMatch(\n                        Text,\n                        \"^(?=.*[a-z]).+$\"\n                    ),\n                    {\n                        Text: \"Contains atleast one Lower Case\",\n                        Color: Color.Green,\n                        Icon: Icon.Check,\n                        NotificationType: NotificationType.Success,\n                        IsError: false\n                    },\n                    {\n                        Text: \"Does Not Contain atleast one Lower Case\",\n                        Color: Color.Red,\n                        Icon: Icon.Cancel,\n                        NotificationType: NotificationType.Error,\n                        IsError: true\n                    }\n                ),\n                If(\n                    IsMatch(\n                        Text,\n                        \"^(?=.*[A-Z]).+$\"\n                    ),\n                    {\n                        Text: \"Contains atleast one Upper Case\",\n                        Color: Color.Green,\n                        Icon: Icon.Check,\n                        NotificationType: NotificationType.Success,\n                        IsError: false\n                    },\n                    {\n                        Text: \"Does Not Contain atleast one Upper Case\",\n                        Color: Color.Red,\n                        Icon: Icon.Cancel,\n                        NotificationType: NotificationType.Error,\n                        IsError: true\n                    }\n                ),\n                If(\n                    IsMatch(\n                        Text,\n                        \"^(?=.*\\d).+$\"\n                    ),\n                    {\n                        Text: \"Contains atleast one Digit\",\n                        Color: Color.Green,\n                        Icon: Icon.Check,\n                        NotificationType: NotificationType.Success,\n                        IsError: false\n                    },\n                    {\n                        Text: \"Does Not Contain atleast one Digit\",\n                        Color: Color.Red,\n                        Icon: Icon.Cancel,\n                        NotificationType: NotificationType.Error,\n                        IsError: true\n                    }\n                ),\n                If(\n                    IsMatch(\n                        Text,\n                        \"^(?=.*[^a-zA-Z0-9]).+$\"\n                    ),\n                    {\n                        Text: \"Contains atleast one Symbol\",\n                        Color: Color.Green,\n                        Icon: Icon.Check,\n                        NotificationType: NotificationType.Success,\n                        IsError: false\n                    },\n                    {\n                        Text: \"Does Not Contain atleast one Symbol\",\n                        Color: Color.Red,\n                        Icon: Icon.Cancel,\n                        NotificationType: NotificationType.Error,\n                        IsError: true\n                    }\n                ),\n                If(\n                    IsMatch(\n                        Text,\n                        \"^.{8,}$\"\n                    ),\n                    {\n                        Text: \"Contains atleast one 8 Characters\",\n                        Color: Color.Green,\n                        Icon: Icon.Check,\n                        NotificationType: NotificationType.Success,\n                        IsError: false\n                    },\n                    {\n                        Text: \"Does Not Contain atleast 8 Characters\",\n                        Color: Color.Red,\n                        Icon: Icon.Cancel,\n                        NotificationType: NotificationType.Error,\n                        IsError: true\n                    }\n                )\n            ]\n        )\n    },\n    {\n        IsValid: IsMatch(\n            Text,\n            \"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\w\\s]).{8,}$\"\n        ),\n        Response: response,\n        FirstError: {\n            Text: \"Error: \" & First(\n                Filter(\n                    response,\n                    IsError\n                )\n            ).Text,\n            NotificationType: First(\n                Filter(\n                    response,\n                    IsError\n                )\n            ).NotificationType\n        }\n    }\n)",
+          "InvariantPropertyName": "ValidatePassword",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "With(\n    {\n        response: [\n            If(\n                IsBlank(Text),\n                {\n                    Text: \"Does Not Contain Text\",\n                    Color: Color.Orange,\n                    Icon: Icon.Warning,\n                    IsError: false,\n                    NotificationType: NotificationType.Warning\n                },\n                If(\n                    IsMatch(\n                        Text,\n                        \"^(?:\\+\\d{1,3}\\s?)?(?:\\(\\d{1,4}\\)|\\d{1,4})[-\\s]?\\d{1,6}[-\\s]?\\d{1,6}$\"\n                    ),\n                    {\n                        Text: \"Phone Number is Valid\",\n                        Color: Color.Green,\n                        Icon: Icon.Check,\n                        IsError: false,\n                        NotificationType: NotificationType.Success\n                    },\n                    {\n                        Text: \"Phone Number is Not Valid\",\n                        Color: Color.Red,\n                        Icon: Icon.Cancel,\n                        IsError: true,\n                        NotificationType: NotificationType.Error\n                    }\n                )\n            )\n        ]\n    },\n    {\n        Response: response,\n        IsValid: IsMatch(\n            Text,\n            \"^(?:\\+\\d{1,3}\\s?)?(?:\\(\\d{1,4}\\)|\\d{1,4})[-\\s]?\\d{1,6}[-\\s]?\\d{1,6}$\"\n        ),\n        FirstError: {\n            Text: \"Error: \" & First(\n                Filter(\n                    response,\n                    IsError\n                )\n            ).Text,\n            NotificationType: First(\n                Filter(\n                    response,\n                    IsError\n                )\n            ).NotificationType\n        }\n    }\n)",
+          "InvariantPropertyName": "ValidatePhoneNumber",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "With(\n    {\n        response: [\n            If(\n                IsBlank(Text),\n                {\n                    Text: \"Does Not Contain Text\",\n                    Color: Color.Orange,\n                    Icon: Icon.Warning,\n                    IsError: false,\n                    NotificationType: NotificationType.Warning\n                },\n                If(\n                    IsMatch(\n                        Text,\n                        \"^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$\"\n                    ),\n                    {\n                        Text: \"URL is Valid\",\n                        Color: Color.Green,\n                        Icon: Icon.Check,\n                        IsError: false,\n                        NotificationType: NotificationType.Success\n                    },\n                    {\n                        Text: \"URL is Not Valid\",\n                        Color: Color.Red,\n                        Icon: Icon.Cancel,\n                        IsError: true,\n                        NotificationType: NotificationType.Error\n                    }\n                )\n            )\n        ]\n    },\n    {\n        Response: response,\n        IsValid: IsMatch(\n            Text,\n            \"^(?:(?:https?|ftp):\\/\\/)?[^\\s/$.?#].[^\\s]*$\"\n        ),\n        FirstError: {\n            Text: \"Error: \" & First(\n                Filter(\n                    response,\n                    IsError\n                )\n            ).Text,\n            NotificationType: First(\n                Filter(\n                    response,\n                    IsError\n                )\n            ).NotificationType\n        }\n    }\n)",
+          "InvariantPropertyName": "ValidateURL",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        }
+      ],
+      "IsAutoGenerated": false,
+      "IsComponentDefinition": true,
+      "IsDataControl": false,
+      "IsFromScreenLayout": false,
+      "IsGroupControl": false,
+      "IsLocked": false,
+      "LayoutName": "",
+      "MetaDataIDKey": "",
+      "Name": "UserDefinedFunctions",
+      "OptimizeForDevices": "Off",
+      "ParentIndex": 0,
+      "PersistMetaDataIDKey": false,
+      "Properties": [
+        {
+          "Category": "Data",
+          "PropertyName": "ValidateEmail",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "ValidateEmail_IsRequired",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "ValidatePassword_IsRequired",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "ValidatePassword_Text",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "ValidatePhoneNumber_IsRequired",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "ValidatePhoneNumber_Text",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "ValidateURL_IsRequired",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "ValidateURL_Text",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "ValidateEmail_Text",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "ValidatePassword",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "ValidatePhoneNumber",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "ValidateURL",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Fill",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Height",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Width",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "X",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Y",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "ZIndex",
+          "RuleProviderType": "Unknown"
+        }
+      ],
+      "StyleName": "",
+      "Type": "ControlInfo"
+    }
+  },
+  "TopParentName": "UserDefinedFunctions"
+}
