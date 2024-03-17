@@ -30,7 +30,6 @@ Version|Date|Comments
 
 ## Prerequisites
 
-* [Advanced Validations UDF](https://github.com/yourrepository/advanced-validations-udf)
 * Power Apps Environment
 
 ## Solution Components
