@@ -1,0 +1,187 @@
+"'Validate Email' As screen":
+
+    Container1 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =40
+        LayoutJustifyContent: =LayoutJustifyContent.Center
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =40
+        PaddingLeft: =40
+        PaddingRight: =40
+        PaddingTop: =40
+        Width: =Parent.Width
+        ZIndex: =2
+
+        Label2_2 As label:
+            Align: =Align.Center
+            AlignInContainer: =AlignInContainer.Stretch
+            Fill: =RGBA(237, 237, 237, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =70
+            LayoutMinHeight: =70
+            LayoutMinWidth: =0
+            Size: =21
+            Text: ="Validate Email"
+            Width: =560
+            ZIndex: =1
+
+        Container2 As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.Semibold
+            FillPortions: =0
+            Height: =260
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =20
+            LayoutMinHeight: =112
+            LayoutMinWidth: =0
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            ZIndex: =2
+
+            TextInput1 As text:
+                AlignInContainer: =AlignInContainer.Stretch
+                BorderColor: =RGBA(237, 237, 237, 1)
+                Default: =""
+                Height: =80
+                HintText: ="Text to Validate"
+                LayoutMinHeight: =70
+                LayoutMinWidth: =
+                OnChange: =
+                Size: =21
+                Width: =640
+                ZIndex: =1
+
+            Button1 As button:
+                AlignInContainer: =AlignInContainer.End
+                Height: =60
+                LayoutMinHeight: =70
+                LayoutMinWidth: =280
+                OnSelect: |-
+                    =UpdateContext({locValidateEmail: UDF.ValidateEmail(TextInput1.Text,Toggle2_1.Checked)});
+                    If(
+                        !locValidateEmail.IsValid,
+                        Notify(
+                            locValidateEmail.FirstError.Text,
+                            locValidateEmail.FirstError.NotificationType,
+                            1000
+                        )
+                    )
+                Size: =18
+                Text: ="Validate"
+                Width: =200
+                ZIndex: =2
+
+            Toggle2_1 As Toggle:
+                AlignInContainer: =AlignInContainer.Stretch
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =35
+                Label: |-
+                    ="Required: "& Self.Checked
+                LayoutMinHeight: =35
+                LayoutMinWidth: =110
+                OnCheck: =false
+                OnUncheck: =false
+                Width: =110
+                X: =0
+                Y: =0
+                ZIndex: =3
+
+        Container2_1 As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.Semibold
+            Height: =225
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =20
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            ZIndex: =3
+
+            Label2 As label:
+                Align: =Align.Center
+                AlignInContainer: =AlignInContainer.Stretch
+                Fill: =RGBA(237, 237, 237, 1)
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                LayoutMinHeight: =70
+                LayoutMinWidth: =0
+                Size: =21
+                Text: |-
+                    ="Response:"
+                Width: =560
+                ZIndex: =1
+
+            Label1_2 As label:
+                AlignInContainer: =AlignInContainer.Stretch
+                Height: =70
+                LayoutMinHeight: =70
+                LayoutMinWidth: =0
+                Size: =21
+                Text: |-
+                    ="Is Email: "&locValidateEmail.IsValid
+                Width: =560
+                Y: =91
+                ZIndex: =3
+
+            Label1_6 As label:
+                AlignInContainer: =AlignInContainer.Stretch
+                FontWeight: =FontWeight.Lighter
+                Height: =70
+                LayoutMinHeight: =70
+                LayoutMinWidth: =0
+                Size: =21
+                Text: |-
+                    ="Response:"
+                Width: =560
+                Y: =237
+                ZIndex: =4
+
+            "Gallery1_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver5.0'":
+                DelayItemLoading: =true
+                Items: =locValidateEmail.Response
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =287
+                LayoutMinWidth: =320
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =0
+                TemplateSize: =40
+                ZIndex: =5
+
+                Title4_1 As label:
+                    Color: =ThisItem.Color
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =15
+                    Text: =ThisItem.Text
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 86
+                    X: =16
+                    Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                    ZIndex: =1
+
+                "Icon1_1 As icon.'3DPrinting'":
+                    Color: =ThisItem.Color
+                    Height: =40
+                    Icon: =ThisItem.Icon
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =5
+                    PaddingLeft: =5
+                    PaddingRight: =5
+                    PaddingTop: =5
+                    Width: =Self.Height
+                    X: =Parent.Width-Self.Width
+                    ZIndex: =2
+
