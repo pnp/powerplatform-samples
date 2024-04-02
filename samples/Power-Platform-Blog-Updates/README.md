@@ -5,7 +5,7 @@ A Power Platform solution that will consolidate all Power Platform blogs weekly 
 ## Summary
 Having multiple RSS flows per Power Platform product can get messy. More over, it's not always user-friendly to access these updates through the Power Automate notifications. This weekly flow will retrieve all Power Platform product blog updates and summarize them into product categories through a neat HTML template. Then, once a week, users can receive a summary of all blog updates via email with links to each individual blog post.
 
-![Blog update flow](assets/images/Flow.gif)
+![Blog update flow](assets/images/Flow.png)
 
 ## Applies to
 * [Microsoft Power Automate](https://docs.microsoft.com/power-automate)
