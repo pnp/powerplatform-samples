@@ -40,7 +40,7 @@ The following solution components are included in this library:
 
 ## Minimal Path to Awesome
 
-1. Clone the repository or download the component library files.
+1. Clone the repository or [download](./solution/advanced-validations-udf.zip) the component library files.
 2. Import the component library into your Power Apps environment.
 3. Access the advanced validation functions within your canvas apps.
 
@@ -54,12 +54,13 @@ The Advanced Validations UDF component library offers the following features:
 
 ## Help
 
-For support or inquiries related to this component library, please refer to the [GitHub repository](https://github.com/yourrepository/advanced-validations-udf) or create a new issue.
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=advanced-validations-udf&authors=@shaheerahmadch&title=advanced-validations-udf%20-%20).
 
 ## Disclaimer
 
-**THIS COMPONENT LIBRARY IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
+**THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-![Visitor Stats](https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/advanced-validations-udf)
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/advanced-validations-udf" />
+
 
 Feel free to leverage the Advanced Validations UDF component library to enhance your canvas apps with sophisticated validation techniques! 🚀✨
