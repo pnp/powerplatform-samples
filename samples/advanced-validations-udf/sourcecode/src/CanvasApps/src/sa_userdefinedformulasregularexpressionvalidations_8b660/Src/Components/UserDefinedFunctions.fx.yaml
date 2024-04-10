@@ -1,0 +1,394 @@
+UserDefinedFunctions As CanvasComponent:
+    ValidateEmail(Text As String, IsRequired As Boolean):
+        Text:
+            Default: ="Text"
+        IsRequired:
+            Default: =true
+        ThisProperty:
+            Default: |-
+                =With(
+                    {
+                        response: [
+                            If(
+                                IsBlank(Text),
+                                {
+                                    Text: "Does Not Contain Text",
+                                    Color: If(
+                                        IsRequired,
+                                        Color.Red,
+                                        Color.Orange
+                                    ),
+                                    Icon: If(
+                                        IsRequired,
+                                        Icon.Cancel,
+                                        Icon.Warning
+                                    ),
+                                    NotificationType: If(
+                                        IsRequired,
+                                        NotificationType.Error,
+                                        NotificationType.Warning
+                                    ),
+                                    IsError: false || IsRequired
+                                },
+                                If(
+                                    IsMatch(
+                                        Text,
+                                        "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                    ),
+                                    {
+                                        Text: "Email is Valid",
+                                        Color: Color.Green,
+                                        Icon: Icon.Check,
+                                        NotificationType: NotificationType.Success,
+                                        IsError: false
+                                    },
+                                    {
+                                        Text: "Email is Not Valid",
+                                        Color: Color.Red,
+                                        Icon: Icon.Cancel,
+                                        NotificationType: NotificationType.Error,
+                                        IsError: true
+                                    }
+                                )
+                            )
+                        ]
+                    },
+                    {
+                        Response: response,
+                        IsValid: IsMatch(
+                            Text,
+                            "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                        ),
+                        FirstError: {
+                            Text: "Error: " & First(
+                                Filter(
+                                    response,
+                                    IsError
+                                )
+                            ).Text,
+                            NotificationType: First(
+                                Filter(
+                                    response,
+                                    IsError
+                                )
+                            ).NotificationType
+                        }
+                    }
+                )
+    ValidatePassword(Text As String, IsRequired As Boolean):
+        Text:
+            Default: ="Text"
+        IsRequired:
+            Default: =true
+        ThisProperty:
+            Default: |-
+                =With(
+                    {
+                        response: If(
+                            IsBlank(Text),
+                            [
+                                {
+                                    Text: "Does Not Contain Text",
+                                    Color: If(
+                                        IsRequired,
+                                        Color.Red,
+                                        Color.Orange
+                                    ),
+                                    Icon: If(
+                                        IsRequired,
+                                        Icon.Cancel,
+                                        Icon.Warning
+                                    ),
+                                    NotificationType: If(
+                                        IsRequired,
+                                        NotificationType.Error,
+                                        NotificationType.Warning
+                                    ),
+                                    IsError: false || IsRequired
+                                }
+                            ],
+                            [
+                                If(
+                                    IsMatch(
+                                        Text,
+                                        "^(?=.*[a-z]).+$"
+                                    ),
+                                    {
+                                        Text: "Contains atleast one Lower Case",
+                                        Color: Color.Green,
+                                        Icon: Icon.Check,
+                                        NotificationType: NotificationType.Success,
+                                        IsError: false
+                                    },
+                                    {
+                                        Text: "Does Not Contain atleast one Lower Case",
+                                        Color: Color.Red,
+                                        Icon: Icon.Cancel,
+                                        NotificationType: NotificationType.Error,
+                                        IsError: true
+                                    }
+                                ),
+                                If(
+                                    IsMatch(
+                                        Text,
+                                        "^(?=.*[A-Z]).+$"
+                                    ),
+                                    {
+                                        Text: "Contains atleast one Upper Case",
+                                        Color: Color.Green,
+                                        Icon: Icon.Check,
+                                        NotificationType: NotificationType.Success,
+                                        IsError: false
+                                    },
+                                    {
+                                        Text: "Does Not Contain atleast one Upper Case",
+                                        Color: Color.Red,
+                                        Icon: Icon.Cancel,
+                                        NotificationType: NotificationType.Error,
+                                        IsError: true
+                                    }
+                                ),
+                                If(
+                                    IsMatch(
+                                        Text,
+                                        "^(?=.*\d).+$"
+                                    ),
+                                    {
+                                        Text: "Contains atleast one Digit",
+                                        Color: Color.Green,
+                                        Icon: Icon.Check,
+                                        NotificationType: NotificationType.Success,
+                                        IsError: false
+                                    },
+                                    {
+                                        Text: "Does Not Contain atleast one Digit",
+                                        Color: Color.Red,
+                                        Icon: Icon.Cancel,
+                                        NotificationType: NotificationType.Error,
+                                        IsError: true
+                                    }
+                                ),
+                                If(
+                                    IsMatch(
+                                        Text,
+                                        "^(?=.*[^a-zA-Z0-9]).+$"
+                                    ),
+                                    {
+                                        Text: "Contains atleast one Symbol",
+                                        Color: Color.Green,
+                                        Icon: Icon.Check,
+                                        NotificationType: NotificationType.Success,
+                                        IsError: false
+                                    },
+                                    {
+                                        Text: "Does Not Contain atleast one Symbol",
+                                        Color: Color.Red,
+                                        Icon: Icon.Cancel,
+                                        NotificationType: NotificationType.Error,
+                                        IsError: true
+                                    }
+                                ),
+                                If(
+                                    IsMatch(
+                                        Text,
+                                        "^.{8,}$"
+                                    ),
+                                    {
+                                        Text: "Contains atleast one 8 Characters",
+                                        Color: Color.Green,
+                                        Icon: Icon.Check,
+                                        NotificationType: NotificationType.Success,
+                                        IsError: false
+                                    },
+                                    {
+                                        Text: "Does Not Contain atleast 8 Characters",
+                                        Color: Color.Red,
+                                        Icon: Icon.Cancel,
+                                        NotificationType: NotificationType.Error,
+                                        IsError: true
+                                    }
+                                )
+                            ]
+                        )
+                    },
+                    {
+                        IsValid: IsMatch(
+                            Text,
+                            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$"
+                        ),
+                        Response: response,
+                        FirstError: {
+                            Text: "Error: " & First(
+                                Filter(
+                                    response,
+                                    IsError
+                                )
+                            ).Text,
+                            NotificationType: First(
+                                Filter(
+                                    response,
+                                    IsError
+                                )
+                            ).NotificationType
+                        }
+                    }
+                )
+    ValidatePhoneNumber(Text As String, IsRequired As Boolean):
+        Text:
+            Default: ="Text"
+        IsRequired:
+            Default: =true
+        ThisProperty:
+            Default: |-
+                =With(
+                    {
+                        response: [
+                            If(
+                                IsBlank(Text),
+                                {
+                                    Text: "Does Not Contain Text",
+                                    Color: If(
+                                        IsRequired,
+                                        Color.Red,
+                                        Color.Orange
+                                    ),
+                                    Icon: If(
+                                        IsRequired,
+                                        Icon.Cancel,
+                                        Icon.Warning
+                                    ),
+                                    NotificationType: If(
+                                        IsRequired,
+                                        NotificationType.Error,
+                                        NotificationType.Warning
+                                    ),
+                                    IsError: false || IsRequired
+                                },
+                                If(
+                                    IsMatch(
+                                        Text,
+                                        "^(?:\+\d{1,3}\s?)?(?:\(\d{1,4}\)|\d{1,4})[-\s]?\d{1,6}[-\s]?\d{1,6}$"
+                                    ),
+                                    {
+                                        Text: "Phone Number is Valid",
+                                        Color: Color.Green,
+                                        Icon: Icon.Check,
+                                        IsError: false,
+                                        NotificationType: NotificationType.Success
+                                    },
+                                    {
+                                        Text: "Phone Number is Not Valid",
+                                        Color: Color.Red,
+                                        Icon: Icon.Cancel,
+                                        IsError: true,
+                                        NotificationType: NotificationType.Error
+                                    }
+                                )
+                            )
+                        ]
+                    },
+                    {
+                        Response: response,
+                        IsValid: IsMatch(
+                            Text,
+                            "^(?:\+\d{1,3}\s?)?(?:\(\d{1,4}\)|\d{1,4})[-\s]?\d{1,6}[-\s]?\d{1,6}$"
+                        ),
+                        FirstError: {
+                            Text: "Error: " & First(
+                                Filter(
+                                    response,
+                                    IsError
+                                )
+                            ).Text,
+                            NotificationType: First(
+                                Filter(
+                                    response,
+                                    IsError
+                                )
+                            ).NotificationType
+                        }
+                    }
+                )
+    ValidateURL(Text As String, IsRequired As Boolean):
+        Text:
+            Default: ="Text"
+        IsRequired:
+            Default: =true
+        ThisProperty:
+            Default: |-
+                =With(
+                    {
+                        response: [
+                            If(
+                                IsBlank(Text),
+                                {
+                                    Text: "Does Not Contain Text",
+                                    Color: If(
+                                        IsRequired,
+                                        Color.Red,
+                                        Color.Orange
+                                    ),
+                                    Icon: If(
+                                        IsRequired,
+                                        Icon.Cancel,
+                                        Icon.Warning
+                                    ),
+                                    NotificationType: If(
+                                        IsRequired,
+                                        NotificationType.Error,
+                                        NotificationType.Warning
+                                    ),
+                                    IsError: false || IsRequired
+                                },
+                                If(
+                                    IsMatch(
+                                        Text,
+                                        "^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$"
+                                    ),
+                                    {
+                                        Text: "URL is Valid",
+                                        Color: Color.Green,
+                                        Icon: Icon.Check,
+                                        IsError: false,
+                                        NotificationType: NotificationType.Success
+                                    },
+                                    {
+                                        Text: "URL is Not Valid",
+                                        Color: Color.Red,
+                                        Icon: Icon.Cancel,
+                                        IsError: true,
+                                        NotificationType: NotificationType.Error
+                                    }
+                                )
+                            )
+                        ]
+                    },
+                    {
+                        Response: response,
+                        IsValid: IsMatch(
+                            Text,
+                            "^(?:(?:https?|ftp):\/\/)?[^\s/$.?#].[^\s]*$"
+                        ),
+                        FirstError: {
+                            Text: "Error: " & First(
+                                Filter(
+                                    response,
+                                    IsError
+                                )
+                            ).Text,
+                            NotificationType: First(
+                                Filter(
+                                    response,
+                                    IsError
+                                )
+                            ).NotificationType
+                        }
+                    }
+                )
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =640
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
