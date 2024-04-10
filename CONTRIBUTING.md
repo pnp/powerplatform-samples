@@ -40,7 +40,7 @@ To unpack the source code for your solution, you will need to use the Power Plat
 
 When you are submitting a new sample, it has to follow up below guidelines
 
-* You will need to have a `README.md` file for your contribution, which is based on [the provided template](templates\sample-template\README.md) under the `samples` folder. Please copy this template to your project and update it accordingly. Your `README.md` must be named exactly `README.md` -- with capital letters -- as this is the information we use to make your sample public.
+* You will need to have a `README.md` file for your contribution, which is based on [the provided template](templates/sample-template/README.md) under the `samples` folder. Please copy this template to your project and update it accordingly. Your `README.md` must be named exactly `README.md` -- with capital letters -- as this is the information we use to make your sample public.
   * You will need to have a screenshot picture of your sample in action in the `README.md` file ("pics or it didn't happen"). The preview image must be located in the `/assets/` folder in the root your you solution.
 * The `README` template contains a specific tracking image at the bottom of the file with an `img` tag, where the `src` attribute points to our telemetry tracker. This is a transparent image which is used to track viewership of individual samples in GitHub.
   * Update the image `src` attribute according with the repository name and folder information. For example, if your sample is named `YOUR-SOLUTION-NAME` in the `samples` folder, you should update the `src` attribute to `https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/YOUR-SOLUTION-NAME`
