@@ -83,3 +83,9 @@ Version|Date|Comments
     * The project will then open in Visual Studio.
 
 ## Minimal path to awesome
+
+### Using the solution zip file
+
+* [Download](solution/PodcastCopilotSolution_1_0_0_2.zip) the `.zip` from the `solution` folder
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just downloaded
+* 
