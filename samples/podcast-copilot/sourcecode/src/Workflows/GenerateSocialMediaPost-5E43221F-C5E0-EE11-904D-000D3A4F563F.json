@@ -1,15 +1,15 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_new-5fpodcastcopilot-5fconnector-5fb697511ee35570e9": {
-        "runtimeSource": "embedded",
-        "connection": {
-          "connectionReferenceLogicalName": "cr51e_sharednew5fpodcastcopilot5fconnector5fb697511ee35570e9_702f5"
-        },
+      "shared_new-5fpodcastcopilot-5fconnector-5fb697511ee35570e9-1": {
         "api": {
           "name": "shared_new-5fpodcastcopilot-5fconnector-5fb697511ee35570e9",
           "logicalName": "new_podcastcopilot-5Fconnector"
-        }
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "gm_sharednew5fpodcastcopilot5fconnector5fb697511ee35570e9_b6939"
+        },
+        "runtimeSource": "embedded"
       }
     },
     "definition": {
@@ -93,14 +93,14 @@
             "host": {
               "apiId": "",
               "operationId": "GetSocialMediaPost",
-              "connectionName": "shared_new-5fpodcastcopilot-5fconnector-5fb697511ee35570e9"
+              "connectionName": "shared_new-5fpodcastcopilot-5fconnector-5fb697511ee35570e9-1"
             }
           }
         }
       },
       "outputs": {}
     },
-    "templateName": "c9cd2c4e691a4646adc8aa592c88489b"
+    "templateName": null
   },
   "schemaVersion": "1.0.0.0"
 }

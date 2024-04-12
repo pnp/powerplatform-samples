@@ -6,7 +6,7 @@
       <LocalizedName description="Podcast Copilot Solution" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.1</Version>
+    <Version>1.0.0.2</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>GomolemoMohapi</UniqueName>
@@ -80,16 +80,8 @@
     <RootComponents>
       <RootComponent type="29" id="{5e43221f-c5e0-ee11-904d-000d3a4f563f}" behavior="0" />
       <RootComponent type="300" schemaName="cr51e_podcastcopilotapp_8b13a" behavior="0" />
+      <RootComponent type="372" id="{7332c389-a6df-ee11-904d-000d3a4f563f}" schemaName="new_podcastcopilot-5Fconnector" behavior="0" />
     </RootComponents>
-    <MissingDependencies>
-      <MissingDependency>
-        <Required type="372" schemaName="new_podcastcopilot-5Fconnector" displayName="PodcastCopilot_Connector" solution="Active" id="{7332c389-a6df-ee11-904d-000d3a4f563f}" />
-        <Dependent type="29" displayName="Generate Social Media Post" id="{5e43221f-c5e0-ee11-904d-000d3a4f563f}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="cr51e_sharednew5fpodcastcopilot5fconnector5fb697511ee35570e9_702f5" solution="Active" id.connectionreferencelogicalname="cr51e_sharednew5fpodcastcopilot5fconnector5fb697511ee35570e9_702f5" />
-        <Dependent type="29" displayName="Generate Social Media Post" id="{5e43221f-c5e0-ee11-904d-000d3a4f563f}" />
-      </MissingDependency>
-    </MissingDependencies>
+    <MissingDependencies />
   </SolutionManifest>
 </ImportExportXml>
