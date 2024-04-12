@@ -1,0 +1,642 @@
+"'Color Converter Screen' As screen.'autoLayout_Sidebar_ver1.0'":
+
+    conPage As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        conHeader As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            Header As Header:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =75
+                IsLogoVisible: =true
+                IsProfilePictureVisible: =false
+                LayoutMinHeight: =75
+                LayoutMinWidth: =Parent.Width
+                Logo: ='color-wheel'
+                OnSelectLogo: =false
+                Title: ="Color Converter"
+                UserEmail: =User().Email
+                UserImage: =User().Image
+                UserName: =User().FullName
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+        conBody As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(245, 245, 245, 1)
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =16
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            ZIndex: =3
+
+            conInputs As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                Fill: =RGBA(255, 255, 255, 1)
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =16
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =16
+                PaddingLeft: =16
+                PaddingRight: =16
+                PaddingTop: =16
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =4
+
+                lblEnterColor As Text:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Enter your color code here"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                conEnterColor As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =32
+                    LayoutGap: =16
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    ZIndex: =2
+
+                    lblHexOrRGBA As Text:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Hex or RGBA"
+                        Width: =112
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    "txtColorInput As 'Text input'":
+                        AccessibleLabel: ="Enter the colour to be converted"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        OnChange: |-
+                            =If(
+                                // Short Hex
+                                IsMatch(txtColorInput.Value, "#[0-9a-fA-F]{3}"),
+                                With(
+                                    {
+                                        Result: Match(txtColorInput.Value, "#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})").SubMatches
+                                    },
+                                    ClearCollect(
+                                        colColor,
+                                        {
+                                            r: Text(Hex2Dec(Index(Result, 1).Value & Index(Result, 1).Value)),
+                                            g: Text(Hex2Dec(Index(Result, 2).Value & Index(Result, 2).Value)),
+                                            b: Text(Hex2Dec(Index(Result, 3).Value & Index(Result, 3).Value)),
+                                            a: "100%"
+                                        }
+                                    )
+                                ),
+                                // Hex
+                                IsMatch(txtColorInput.Value, "#[0-9a-fA-F]{6}"),
+                                With(
+                                    {
+                                        Result: Match(txtColorInput.Value, "#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})").SubMatches
+                                    },
+                                    ClearCollect(
+                                        colColor,
+                                        {
+                                            r: Text(Hex2Dec(Index(Result, 1).Value)),
+                                            g: Text(Hex2Dec(Index(Result, 2).Value)),
+                                            b: Text(Hex2Dec(Index(Result, 3).Value)),
+                                            a: "100%"
+                                        }
+                                    )
+                                ),
+                                // Hex with alpha channel
+                                IsMatch(txtColorInput.Value, "#[0-9a-fA-F]{8}"),
+                                With(
+                                    {
+                                        Result: Match(txtColorInput.Value, "#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})").SubMatches
+                                    },
+                                    ClearCollect(
+                                        colColor,
+                                        {
+                                            r: Text(Hex2Dec(Index(Result, 1).Value)),
+                                            g: Text(Hex2Dec(Index(Result, 2).Value)),
+                                            b: Text(Hex2Dec(Index(Result, 3).Value)),
+                                            a: Text(Round(Hex2Dec(Index(Result, 4).Value) / 255 * 100, 0)) & "%"
+                                        }
+                                    )
+                                ),
+                                // RGBA
+                                IsMatch(txtColorInput.Value, "RGBA\(\s*([0-9]{1,3}),\s*([0-9]{1,3}),\s*([0-9]{1,3}),\s*([0-9.]{1,3}%?)\s*\)", MatchOptions.IgnoreCase),
+                                With(
+                                    {
+                                        Result: Match(txtColorInput.Value, "RGBA\(\s*([0-9]{1,3}),\s*([0-9]{1,3}),\s*([0-9]{1,3}),\s*([0-9.]{1,3}%?)\s*\)", MatchOptions.IgnoreCase).SubMatches
+                                    },
+                                    ClearCollect(
+                                        colColor,
+                                        {
+                                            r: Index(Result, 1).Value,
+                                            g: Index(Result, 2).Value,
+                                            b: Index(Result, 3).Value,
+                                            a: Index(Result, 4).Value
+                                        }
+                                    )
+                                ),
+                                // No colour selected
+                                Clear(colColor);
+                            );
+                        Placeholder: |-
+                            ="#ffffff or RGBA(255, 255, 255, 100%)"
+                        Width: =320
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    lblError As Text:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        FontColor: =Color.IndianRed
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Invalid color"
+                        Visible: =Len(txtColorInput.Value) > 0 And IsBlank(First(colColor))
+                        Weight: ='TextCanvas.Weight'.Bold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                lblChooseTransparency As Text:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Choose your transparency here"
+                    VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                conSlider As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =32
+                    LayoutGap: =16
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    ZIndex: =5
+
+                    Slider As Slider:
+                        AccessibleLabel: ="Choose the transparency value for the colour"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        Height: =35
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =200
+                        OnChange: |-
+                            =Patch(colColor, First(colColor), { a: Self.Value & "%" })
+                        Value: |-
+                            =// Is it a percentage?
+                            If(
+                                IsMatch(First(colColor).a, "[0-9]{1,3}%"),
+                                Substitute(First(colColor).a, "%", ""),
+                                First(colColor).a * 100
+                            )
+                        Width: =200
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    "txtPercentage As 'Text input'":
+                        AccessibleLabel: ="Enter the transparency percentage value for the colour"
+                        Align: ='TextInputCanvas.Align'.End
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =App.Theme.Colors.Primary
+                        FontWeight: =FontWeight.Bold
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        OnChange: |-
+                            =Patch(colColor, First(colColor), { a: Self.Value & "%" })
+                        Value: =Slider.Value
+                        Width: =50
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    "'lbl%' As Text":
+                        AlignInContainer: =AlignInContainer.Stretch
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =App.Theme.Colors.Primary
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="%"
+                        Weight: ='TextCanvas.Weight'.Bold
+                        Width: =24
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+            conOutput As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                Fill: =RGBA(255, 255, 255, 1)
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =16
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =16
+                PaddingLeft: =16
+                PaddingRight: =16
+                PaddingTop: =16
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =6
+
+                lblCopyColor As Text:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Copy your color code here"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                conHex As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =32
+                    LayoutGap: =16
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    ZIndex: =2
+
+                    lblHex As Text:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Hex"
+                        Width: =112
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    "txtHex As 'Text input'":
+                        AccessibleLabel: ="The resulting hex colour code"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.View
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        Placeholder: |-
+                            ="#ffffff"
+                        Value: |-
+                            =If(
+                                IsBlank(First(colColor)),
+                                "",
+                                $"#{Dec2Hex(First(colColor).r, 2)}{Dec2Hex(First(colColor).g, 2)}{Dec2Hex(First(colColor).b, 2)}"
+                            )
+                        Width: =320
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    btnHexCopy As Button:
+                        AccessibleLabel: ="Copy the resulting hex colour code"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        Appearance: ='ButtonCanvas.Appearance'.Secondary
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: =Copy(txtHex.Value); Notify($"Copied {txtHex.Value}", NotificationType.Success, 2000);
+                        Text: ="📚 Copy"
+                        Visible: =Len(txtHex.Value) > 0
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                conHexAlpha As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =32
+                    LayoutGap: =16
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    ZIndex: =3
+
+                    lblHexAlpha As Text:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Hex w/ alpha"
+                        Width: =112
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    "txtHexAlpha As 'Text input'":
+                        AccessibleLabel: ="The resulting hex colour code with alpha transparency"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.View
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        Placeholder: |-
+                            ="#ffffff"
+                        Value: |-
+                            =If(
+                                IsBlank(First(colColor)),
+                                "",
+                                $"#{Dec2Hex(First(colColor).r, 2)}{Dec2Hex(First(colColor).g, 2)}{Dec2Hex(First(colColor).b, 2)}{Dec2Hex(RoundUp(Substitute(First(colColor).a, "%", "") / 100 * 255, 0), 2)}"
+                            )
+                        Width: =320
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    btnHexAlphaCopy As Button:
+                        AccessibleLabel: ="Copy the hex colour code with alpha transparency"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        Appearance: ='ButtonCanvas.Appearance'.Secondary
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: =Copy(txtHexAlpha.Value); Notify($"Copied {txtHexAlpha.Value}", NotificationType.Success, 2000);
+                        Text: ="📚 Copy"
+                        Visible: =Len(txtHexAlpha.Value) > 0
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                conRGBA As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =32
+                    LayoutGap: =16
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    ZIndex: =4
+
+                    lblRGBA As Text:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="RGBA"
+                        Width: =112
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    "txtRGBA As 'Text input'":
+                        AccessibleLabel: ="The resulting RGBA colour code"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.View
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        Placeholder: ="RGBA(255, 255, 255, 1)"
+                        Value: |-
+                            =If(
+                                IsBlank(First(colColor)),
+                                "",
+                                $"RGBA({First(colColor).r}, {First(colColor).g}, {First(colColor).b}, {First(colColor).a})"
+                            )
+                        Width: =320
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    btnRGBACopy As Button:
+                        AccessibleLabel: ="Copy the resulting RGBA colour code"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        Appearance: ='ButtonCanvas.Appearance'.Secondary
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: =Copy(txtRGBA.Value); Notify($"Copied {txtRGBA.Value}", NotificationType.Success, 2000);
+                        Text: ="📚 Copy"
+                        Visible: =Len(txtRGBA.Value) > 0
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                lblResult As Text:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="The resulting color"
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =5
+
+                conResult As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    Height: =300
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Width: =Self.Height
+                    ZIndex: =6
+
+                    imgBackground As image:
+                        Height: =recColor.Height
+                        Image: ='171573129'
+                        ImagePosition: =ImagePosition.Fill
+                        Width: =recColor.Width
+                        X: =Parent.Width - Self.Width
+                        Y: =Parent.Height - Self.Height
+                        ZIndex: =1
+
+                    recColor As rectangle:
+                        BorderColor: =Color.Black
+                        Fill: =If(IsBlank(First(colColor)), Color.Transparent, RGBA(First(colColor).r, First(colColor).g, First(colColor).b, First(colColor).a))
+                        Height: =Parent.Height / 1.3
+                        Width: =Parent.Width / 1.3
+                        ZIndex: =2
+
+        conFooter As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =40
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =8
+            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =16
+            PaddingRight: =16
+            ZIndex: =4
+
+            imgLogo As image:
+                Image: |-
+                    ="data:image/svg+xml;utf8, "&EncodeUrl("<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 251.7 240' style='enable-background:new 0 0 251.7 240;' xml:space='preserve' width='2.2rem'><style type='text/css'>.st0 {
+                          fill: url(#SVGID_1_);
+                        }
+                      </style><g><linearGradient id='SVGID_1_' gradientUnits='userSpaceOnUse' x1='2.76' y1='119.9' x2='248.91' y2='119.9' gradientTransform='matrix(1 0 0 -1 0 239.89)'><stop offset='0' style='stop-color:#F7B733'></stop><stop offset='1' style='stop-color:#FC4A1A'></stop></linearGradient><path class='st0' d='M169.3,152.7h-6.2c-4.6,0-8.3,3.7-8.3,8.3v0.1c0,35.6-29.7,64.3-65.7,62.7c-32.1-1.5-58.2-27.6-59.7-59.7
+                    		c-1.7-36,27-65.7,62.7-65.7c19,0,36,8.4,47.5,21.8c2.8,3.3,7,5.1,11.3,5.1c12.1,0,19.3-13.5,12.5-23.6c-0.7-1.1-1.5-2.2-2.3-3.2
+                    		h87.8c-9.2-95.2-94.1-96.6-94.1-96.6V26c-10.2-2.8-20.9-4.3-32-4.3C56.5,21.6,2.8,75.4,2.8,141.7c0,49,31.3,96.4,87.8,96.4
+                    		c44.5,0,81.3-33.2,87-76.2C178.2,157.1,174.3,152.7,169.3,152.7z M166.2,57.2c1-7.7,7.2-13.9,14.9-14.9
+                    		c11.3-1.4,20.8,8.1,19.4,19.4c-1,7.7-7.2,13.9-14.9,14.9C174.3,78,164.8,68.5,166.2,57.2z'></path></g></svg>")
+                LayoutMinHeight: =32
+                Width: =24
+                ZIndex: =1
+
+            htmCharlie As htmlViewer:
+                AlignInContainer: =AlignInContainer.Stretch
+                Height: =32
+                HtmlText: |-
+                    =$"<div style='
+                        background-color: #FC4A1A;
+                        background: linear-gradient(118deg, #FC4A1A 0%, #F7B733 51%);
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                        -moz-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        -moz-text-fill-color: transparent;
+                        width: {Self.Width}px;
+                        height: {Self.Height-1}px;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                    '>by&nbsp;<strong>Charles Sexton</strong></div>"
+                LayoutMinHeight: =24
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =14
+                Width: =166
+                ZIndex: =2
+
