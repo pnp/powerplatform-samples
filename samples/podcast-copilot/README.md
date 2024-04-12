@@ -83,8 +83,3 @@ Version|Date|Comments
     * The project will then open in Visual Studio.
 
 ## Minimal path to awesome
-
-
-
-
-
