@@ -1,0 +1,73 @@
+"'Home Screen' As screen":
+
+    lblTitle As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(109, 49, 162, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =80
+        Size: =24
+        Text: ="Podcast Copilot"
+        Width: =1366
+        ZIndex: =1
+
+    lblSocialPost As label:
+        BorderColor: =RGBA(109, 49, 162, 1)
+        BorderThickness: =2
+        Height: =405
+        Overflow: =Overflow.Scroll
+        PaddingBottom: =12
+        PaddingLeft: =15
+        PaddingRight: =15
+        PaddingTop: =15
+        Size: =16
+        Text: =socialMediaBlurb
+        Width: =877
+        X: =444
+        Y: =318
+        ZIndex: =2
+
+    btnGeneratePost As button:
+        Fill: =RGBA(109, 49, 162, 1)
+        Height: =46
+        OnSelect: |-
+            =//Generate a social media blurb / post
+            Set(
+                socialMediaBlurb,
+                PodcastCopilot_Connector.GetSocialMediaPost(txtPodcastURL.Text).blurb
+            );
+            
+            //Generate a social media image
+            Set(
+                socialImage,
+                PodcastCopilot_Connector.GetSocialMediaPost(txtPodcastURL.Text).imageUrl
+            );
+        Size: =18
+        Text: ="Generate Post"
+        Width: =223
+        X: =571
+        Y: =236
+        ZIndex: =3
+
+    txtPodcastURL As text:
+        AccessibleLabel: ="Text Label for Inserting Podcast URL"
+        BorderColor: =RGBA(109, 49, 162, 1)
+        Default: =""
+        Height: =55
+        HintText: ="Insert Podcast Url"
+        Size: =16
+        Width: =1119
+        X: =123
+        Y: =131
+        ZIndex: =4
+
+    imgSocialImage As image:
+        BorderColor: =RGBA(109, 49, 162, 1)
+        BorderThickness: =2
+        Height: =360
+        Image: =socialImage
+        Width: =360
+        X: =49
+        Y: =318
+        ZIndex: =5
+

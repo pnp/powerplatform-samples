@@ -51,4 +51,40 @@ podcast-copilot | [Gomolemo Mohapi](https://github.com/gomomohapi), Microsoft
 
 Version|Date|Comments
 -------|----|--------
-1.0|April 11, 2024|Initial release
+1.0|April 12, 2024|Initial release
+
+## Prerequisites
+
+* Make sure you have access to Power Apps, Power Automate and Copilot Studio.
+* Create an [Azure account](https://azure.microsoft.com/free/) and select **Start Free** and then fill in profile details to complete the sign up process.
+
+    ![Azure account start free page](assets/azure-start-free.png)
+
+* To use all the Azure OpenAI Service AI Models, you'll need to request access by completing [this form](https://aka.ms/oai/access). For the question; **Which Azure OpenAI service features are you requesting access for?**, select GPT-3.5, GPT-3.5 Turbo, GPT-4, GPT-4 Turbo, and/or Embeddings Models, DALL-E 2 and/or DALL-E 3 models, and OpenAI Whisper model.
+
+    ![Azure OpenAI Service models to select](assets/selected-openai-models.png)
+
+* To use this sample, you will create your own Custom Connector using the [Visual Studio Connected Service for the Power Platform](https://learn.microsoft.com/en-us/power-platform/developer/visual-studio-connected-service). For this; download and install [Visual Studio (Community Edition)](https://visualstudio.microsoft.com/vs/features/net-development/)
+
+    ![Visual Studio Community Edition download page](assets/visual-studio-download.png)
+
+    This installer comes pre-packaged with all the components you need for .NET development.
+* Finally, clone the [PodcastAppAPI Sample Project](https://github.com/gomomohapi/PodcastAppAPI) to your local machine and open with Visual Studio.
+    * Once you follow the link to the project, select **Code** and then copy the git URL.
+
+        ![PodcastAppAPI Sample Project code page](assets/copy-git-url.png) 
+
+    * Open Visual Studio and select **Clone a repository**.
+
+        ![Visual Studio Clone a repository option](assets/clone-repository.png)
+
+    * Then paste in the link you copied from GitHub and select **Clone**.
+
+    * The project will then open in Visual Studio.
+
+## Minimal path to awesome
+
+
+
+
+

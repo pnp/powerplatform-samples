@@ -1,0 +1,106 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_new-5fpodcastcopilot-5fconnector-5fb697511ee35570e9": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr51e_sharednew5fpodcastcopilot5fconnector5fb697511ee35570e9_702f5"
+        },
+        "api": {
+          "name": "shared_new-5fpodcastcopilot-5fconnector-5fb697511ee35570e9",
+          "logicalName": "new_podcastcopilot-5Fconnector"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "description": "Url of the podcast episode",
+                  "title": "podcastURL",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Generate_Social_Media_Post": [
+              "Succeeded"
+            ]
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "blurb": {
+                  "title": "blurb",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "imageurl": {
+                  "title": "imageUrl",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "additionalProperties": {}
+            },
+            "statusCode": 200,
+            "body": {
+              "blurb": "@outputs('Generate_Social_Media_Post')?['body/blurb']",
+              "imageurl": "@outputs('Generate_Social_Media_Post')?['body/imageUrl']"
+            }
+          }
+        },
+        "Generate_Social_Media_Post": {
+          "runAfter": {},
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "podcastUrl": "@triggerBody()?['text']"
+            },
+            "host": {
+              "apiId": "",
+              "operationId": "GetSocialMediaPost",
+              "connectionName": "shared_new-5fpodcastcopilot-5fconnector-5fb697511ee35570e9"
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": "c9cd2c4e691a4646adc8aa592c88489b"
+  },
+  "schemaVersion": "1.0.0.0"
+}
