@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{1e391a37-58fb-497e-b0c5-3e3dee5d8918}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ad_title" select="1" icon="1" preview="1">
+        <row name="result" id="ad_leaverequestsid">
+          <cell name="ad_id" width="100" />
+          <cell name="ad_title" width="300" />
+          <cell name="ad_employee" width="100" />
+          <cell name="ad_manager" width="100" />
+          <cell name="ad_leavetype" width="106" />
+          <cell name="ad_from" width="100" />
+          <cell name="ad_to" width="100" />
+          <cell name="ad_days" width="100" />
+          <cell name="ad_hours" width="100" />
+          <cell name="ad_detail" width="100" />
+          <cell name="ad_leavestatus" width="112" />
+          <cell name="ad_approvalnotes" width="130" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ad_leaverequests">
+          <attribute name="ad_leaverequestsid" />
+          <attribute name="ad_title" />
+          <attribute name="createdon" />
+          <order attribute="ad_title" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ad_employee" />
+          <attribute name="ad_manager" />
+          <attribute name="ad_leavetype" />
+          <attribute name="ad_leavestatus" />
+          <attribute name="ad_approvalnotes" />
+          <attribute name="ad_from" />
+          <attribute name="ad_to" />
+          <attribute name="ad_days" />
+          <attribute name="ad_hours" />
+          <attribute name="ad_detail" />
+          <attribute name="ad_id" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Leave Requests" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

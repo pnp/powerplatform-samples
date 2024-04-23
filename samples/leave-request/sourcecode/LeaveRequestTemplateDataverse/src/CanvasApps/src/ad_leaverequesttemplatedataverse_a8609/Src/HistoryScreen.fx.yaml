@@ -1,0 +1,275 @@
+"HistoryScreen As screen.'autoLayout_Sidebar_ver1.0'":
+    BackgroundImage: ='157503709'
+    ImagePosition: =ImagePosition.Fill
+    OnVisible: |-
+        =UpdateContext({varTab:{name:"History",Screen:HistoryScreen}});
+
+    ScreenContainer1_4 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer1_4 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            Header1_13 As Header:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =75
+                LayoutMinHeight: =75
+                LayoutMinWidth: =Parent.Width
+                Logo: =stickeromgunicorn
+                OnSelectLogo: =false
+                Title: ="My Request History"
+                TitleFontSize: =26
+                UserEmail: =User().Email
+                UserImage: =User().Image
+                UserName: =User().FullName
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+        BottomContainer1_4 As groupContainer.horizontalAutoLayoutContainer:
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =16
+            LayoutMinHeight: =75
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            ZIndex: =3
+
+            SidebarContainer1_4 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =3
+                Height: =If(HistoryScreen.Size = ScreenSize.Small,80,Parent.Height)
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =20
+                PaddingTop: =5
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =4
+
+                "TabList1_8 As 'Tab list'.pcfdataset":
+                    AccessibleLabel: ="Navigation Menu"
+                    Alignment: =If(HistoryScreen.Size = ScreenSize.Small, 'TabList.Alignment'.Horizontal ,'TabList.Alignment'.Vertical)
+                    DefaultSelectedItems: =varTab
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    FontSize: =0
+                    Height: =Parent.Height - 20
+                    Items: =tabListItems
+                    LayoutMinHeight: =55
+                    LayoutMinWidth: =280
+                    OnSelect: |-
+                        =UpdateContext({varTab: Self.Selected});Navigate(TabList1_8.Selected.Screen)
+                    Width: =Parent.Width - 40
+                    X: =18
+                    Y: =123
+                    ZIndex: =2
+
+                    name1_8 As pcfDataField.textualColumn:
+                        FieldDisplayName: ="name"
+                        FieldName: ="name"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =5
+
+            MainContainer1_4 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =12
+                Height: =Parent.Height
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =15
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowY: =LayoutOverflow.Scroll
+                PaddingLeft: =20
+                PaddingRight: =20
+                PaddingTop: =10
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =5
+
+                "TabList1_1 As 'Tab list'.pcfdataset":
+                    AccessibleLabel: ="Navigation Menu"
+                    AlignInContainer: =AlignInContainer.Stretch
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =55
+                    Items: =Choices('Leave Status (Leave Requests)')
+                    LayoutMinHeight: =55
+                    LayoutMinWidth: =280
+                    Width: =280
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                "Gallery3 As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver5.0'":
+                    AccessibleLabel: ="Approvals List"
+                    DelayItemLoading: =true
+                    Items: |-
+                        =Switch(
+                            TabList1_1.Selected.Value,
+                            'Leave Status (Leave Requests)'.'Pending Manager Approval',
+                            SortByColumns(
+                                Filter(
+                                    'Leave Requests',
+                                    'Created By'.'Primary Email' = curUser.Email && 'Leave Status' = 'Leave Status (Leave Requests)'.'Pending Manager Approval'
+                                ),
+                                "ad_from",
+                                SortOrder.Descending
+                            ),
+                            'Leave Status (Leave Requests)'.Approved,
+                            SortByColumns(
+                                Filter(
+                                    'Leave Requests',
+                                    'Created By'.'Primary Email' = curUser.Email && 'Leave Status' = 'Leave Status (Leave Requests)'.Approved
+                                ),
+                                "ad_from",
+                                SortOrder.Descending
+                            ),
+                            'Leave Status (Leave Requests)'.Rejected,
+                            SortByColumns(
+                                Filter(
+                                    'Leave Requests',
+                                    'Created By'.'Primary Email' = curUser.Email && 'Leave Status' = 'Leave Status (Leave Requests)'.Rejected
+                                ),
+                                "ad_from",
+                                SortOrder.Descending
+                            )
+                        )
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =287
+                    LayoutMinWidth: =320
+                    LoadingSpinner: =LoadingSpinner.Data
+                    OnSelect: |-
+                        =Navigate(EditScreen,ScreenTransition.Fade,{selectedItem:Gallery3.Selected})
+                    TabIndex: =0
+                    TemplatePadding: =0
+                    TemplateSize: =116
+                    ZIndex: =2
+
+                    Title2 As label:
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =Self.Size * 1.8
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Text(ThisItem.From,DateTimeFormat.LongDate) & " to " & Text(ThisItem.To,DateTimeFormat.LongDate)
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.TemplateWidth - 86
+                        X: =16
+                        Y: =(Parent.TemplateHeight - (Self.Size*1.8 + Subtitle2.Size*1.8 + 2 + Body1.Size*1.8)) / 2
+                        ZIndex: =1
+
+                    Subtitle2 As label:
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =Self.Size * 1.8
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =ThisItem.Days & If(ThisItem.Days <=1,"Day"," Days") & " ("&ThisItem.Hours&" hours)"
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Title2.Width
+                        X: =Title2.X
+                        Y: =Title2.Y + Title2.Height
+                        ZIndex: =2
+
+                    Body1 As label:
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =Self.Size * 1.8
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =ThisItem.'Leave Status'
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Title2.Width
+                        X: =Title2.X
+                        Y: =Subtitle2.Y + Subtitle2.Height
+                        ZIndex: =3
+
+                    NextArrow2 As icon.ChevronRight:
+                        AccessibleLabel: =Self.Tooltip
+                        Color: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =NextArrow2.Fill
+                        Height: =50
+                        HoverBorderColor: =ColorFade(NextArrow2.BorderColor, 20%)
+                        HoverColor: =ColorFade(NextArrow2.Color, 20%)
+                        HoverFill: =NextArrow2.Fill
+                        Icon: =Icon.ChevronRight
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =16
+                        PaddingLeft: =16
+                        PaddingRight: =16
+                        PaddingTop: =16
+                        PressedBorderColor: =ColorFade(NextArrow2.BorderColor, -20%)
+                        PressedColor: =ColorFade(NextArrow2.Color, -20%)
+                        PressedFill: =NextArrow2.Fill
+                        Tooltip: ="View item details"
+                        Width: =50
+                        X: =Parent.TemplateWidth - Self.Width - 12
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =4
+
+                    Separator4 As rectangle:
+                        Fill: =App.Theme.Colors.Lighter70
+                        Height: =2
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Body1.Y + Body1.Height + 15
+                        ZIndex: =5
+
+                    Rectangle5 As rectangle:
+                        Fill: =App.Theme.Colors.Darker30
+                        Height: =Parent.TemplateHeight - Separator4.Height - 30
+                        OnSelect: =Select(Parent)
+                        Visible: =ThisItem.IsSelected
+                        Width: =3
+                        Y: =Title2.Y - 10
+                        ZIndex: =6
+

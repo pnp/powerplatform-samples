@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{41e63915-1574-49c6-81f2-adcde7b18fda}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{4e57dfe4-4fd5-490e-b79f-6c2d344d4dd8}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{996e2a75-524a-4381-8965-6496eca4f053}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{8d865c28-250c-48b5-ba38-13d0836edf84}">
+                        <labels>
+                          <label description="Title" languagecode="1033" />
+                        </labels>
+                        <control id="ad_title" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ad_title" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7f85573c-6f9d-46e5-b46c-f6aceed99adf}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Employee" languagecode="1033" />
+                        </labels>
+                        <control id="ad_employee" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ad_employee" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3eb985d1-d8a1-4b1f-a7e0-c91443f02be5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Requested" languagecode="1033" />
+                        </labels>
+                        <control id="ad_requested" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ad_requested" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7f0e2718-7867-4158-bd25-7d8f08fd00ab}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Approved" languagecode="1033" />
+                        </labels>
+                        <control id="ad_approved" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ad_approved" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0f2669e7-4dbd-4d09-9627-73aa79b9c9a6}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Leave Type" languagecode="1033" />
+                        </labels>
+                        <control id="ad_leavetype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ad_leavetype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a3cba594-8546-4143-8408-efddba6b06d0}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{9c225fb6-b9e4-4a66-b74c-565f16fe1f04}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{454e6a04-d440-48cb-aea3-e23feeca7772}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{597edc92-faba-467e-b38c-d40ecdae9f39}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{66f14685-2b3a-4f3d-9e60-c853d51f1224}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{787a5209-e507-4040-9d6b-dea5fdb6e45f}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{65f35edf-4dfc-46cf-b76f-1372b95502e6}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{78cb9e7b-5f8a-40f7-a7d2-957ffb388f02}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d72cdd6b-fc2e-4ce9-a25e-99c8275b93b1}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -1,0 +1,127 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "ad_leaverequestses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "ad_leaverequests",
+    "MaxGetRowsCount": 500,
+    "Name": "Leave Requests",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "ad_approvalnotes": "Approval Notes",
+      "ad_days": "Days",
+      "ad_detail": "Detail",
+      "ad_Employee": "Employee",
+      "ad_from": "From",
+      "ad_hours": "Hours",
+      "ad_id": "ID",
+      "ad_leaverequests_AsyncOperations": "System Jobs",
+      "ad_leaverequests_BulkDeleteFailures": "Bulk Delete Failures",
+      "ad_leaverequests_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "ad_leaverequests_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "ad_leaverequests_ProcessSession": "Process Sessions",
+      "ad_leaverequests_SyncErrors": "Sync Errors",
+      "ad_leaverequestsid": "Leave Requests",
+      "ad_leavestatus": "Leave Status",
+      "ad_LeaveType": "Leave Type",
+      "ad_Manager": "Manager",
+      "ad_title": "Title",
+      "ad_to": "To",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Leave Requests",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Leave Requests (Views)",
+    "Name": "_ad_leaverequests_views",
+    "RelatedEntityName": "Leave Requests",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1e391a37-58fb-497e-b0c5-3e3dee5d8918": "Active Leave Requests",
+      "55417901-83bc-479a-b331-fc5b1ddbce0f": "Inactive Leave Requests",
+      "891fc0fd-e087-4cd8-a8f9-4a8e9506176b": "Leave Requests Advanced Find View",
+      "9f8e71e8-d8a7-4a36-b229-d9ca59ab3ecb": "Leave Requests Associated View",
+      "c495a253-5425-4783-8c83-564096761c60": "Leave Requests Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Leave Status (Leave Requests)",
+    "Name": "ad_leaverequests_ad_leavestatus",
+    "OptionSetInfoNameMapping": {
+      "0": "Pending Manager Approval",
+      "1": "Approved",
+      "2": "Rejected"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "ad_leavestatus",
+        "OptionSetReferenceEntityName": "Leave Requests"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "ad_leavestatus",
+    "RelatedEntityName": "Leave Requests",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Leave Requests)",
+    "Name": "ad_leaverequests_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Leave Requests"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Leave Requests",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Leave Requests)",
+    "Name": "ad_leaverequests_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Leave Requests"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Leave Requests",
+    "Type": "OptionSetInfo"
+  }
+]

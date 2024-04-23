@@ -1,0 +1,98 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "ad_leavetypeses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "ad_leavetypes",
+    "MaxGetRowsCount": 500,
+    "Name": "Leave Types",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "ad_leavebalances_LeaveType_ad_leavetypes": "Leave Balances",
+      "ad_leaverequests_LeaveType_ad_leavetypes": "Leave Requests",
+      "ad_leavetypes_AsyncOperations": "System Jobs",
+      "ad_leavetypes_BulkDeleteFailures": "Bulk Delete Failures",
+      "ad_leavetypes_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "ad_leavetypes_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "ad_leavetypes_ProcessSession": "Process Sessions",
+      "ad_leavetypes_SyncErrors": "Sync Errors",
+      "ad_leavetypesid": "Leave Types",
+      "ad_standardhours": "Standard Hours",
+      "ad_title": "Title",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Leave Types",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Leave Types (Views)",
+    "Name": "_ad_leavetypes_views",
+    "RelatedEntityName": "Leave Types",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "02e7dfb6-0b05-4ae3-9e52-16f3b3ca8f33": "Leave Types Advanced Find View",
+      "33e9407b-77be-4c47-b824-4d6a32195934": "Leave Types Associated View",
+      "8b04bdb6-4aa0-4c43-875a-4feaaeff2f56": "Inactive Leave Types",
+      "c23be75d-ff06-4c4f-9678-842d1fe5a43a": "Leave Types Lookup View",
+      "d6af8dba-4b3a-4c4f-ae2e-48fb07931b73": "Active Leave Types"
+    }
+  },
+  {
+    "DisplayName": "Status (Leave Types)",
+    "Name": "ad_leavetypes_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Leave Types"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Leave Types",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Leave Types)",
+    "Name": "ad_leavetypes_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Leave Types"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Leave Types",
+    "Type": "OptionSetInfo"
+  }
+]

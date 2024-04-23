@@ -1,0 +1,28 @@
+"'3a3470af-3d8a-4c27-89e6-1c4a53d16991' As TestSuite":
+    Description: =""
+    DisplayName: ="Suite"
+
+    "'5ad2b2df-a057-4a50-9b8a-49952b499a55' As TestCase":
+        Description: =""
+        DisplayName: ="Case"
+
+        Step1 As TestStep:
+            Description: ="Select 'Icon3_1'"
+            Screen: =Summary
+            Value: =Select(Icon3_1)
+
+        Step2 As TestStep:
+            Description: ="Select 'Button2_3' in row 1 in 'galleryAllRequests_1'"
+            Screen: =SuccessScreen
+            Value: =Select(galleryAllRequests_1, 1, Button2_3)
+
+        Step3 As TestStep:
+            Description: ="Set 'tbApprovalNotes'.Text to ""Looks good"""
+            Screen: =SuccessScreen
+            Value: =SetProperty(tbApprovalNotes.Text, "Looks good")
+
+        Step4 As TestStep:
+            Description: ="Select 'btnSubmit'"
+            Screen: =SuccessScreen
+            Value: =Select(btnSubmit)
+

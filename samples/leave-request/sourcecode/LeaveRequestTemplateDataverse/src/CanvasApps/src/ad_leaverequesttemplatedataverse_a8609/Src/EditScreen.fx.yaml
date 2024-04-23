@@ -1,0 +1,998 @@
+"EditScreen As screen.'autoLayout_Sidebar_ver1.0'":
+    BackgroundImage: ='157503709'
+    ImagePosition: =ImagePosition.Fill
+    OnVisible: |-
+        =If(!IsBlank(Param("ID")),
+            Set(
+                selectedItem,
+                LookUp(
+                    'Leave Requests',
+                    ID = Param("ID")
+                )
+            ));UpdateContext({varTab:{name:"Edit Leave",Screen:EditScreen}});
+
+    ScreenContainer1_3 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer1_3 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            Header1_12 As Header:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =75
+                LayoutMinHeight: =75
+                LayoutMinWidth: =Parent.Width
+                Logo: =stickeromgunicorn
+                OnSelectLogo: =false
+                Title: ="Request Details"
+                TitleFontSize: =26
+                UserEmail: =User().Email
+                UserImage: =User().Image
+                UserName: =User().FullName
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+        BottomContainer1_3 As groupContainer.horizontalAutoLayoutContainer:
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =16
+            LayoutMinHeight: =75
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            ZIndex: =3
+
+            SidebarContainer1_3 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =3
+                Height: =If(EditScreen.Size = ScreenSize.Small,80,Parent.Height)
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =20
+                PaddingTop: =5
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =4
+
+                "TabList1_7 As 'Tab list'.pcfdataset":
+                    AccessibleLabel: ="Navigation Menu"
+                    Alignment: =If(EditScreen.Size = ScreenSize.Small, 'TabList.Alignment'.Horizontal ,'TabList.Alignment'.Vertical)
+                    DefaultSelectedItems: =varTab
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    FontSize: =0
+                    Height: =Parent.Height - 20
+                    Items: =tabListItems
+                    LayoutMinHeight: =55
+                    LayoutMinWidth: =280
+                    OnSelect: |-
+                        =UpdateContext({varTab: Self.Selected});Navigate(TabList1_7.Selected.Screen)
+                    Width: =Parent.Width - 40
+                    X: =18
+                    Y: =123
+                    ZIndex: =2
+
+                    name1_7 As pcfDataField.textualColumn:
+                        FieldDisplayName: ="name"
+                        FieldName: ="name"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =5
+
+            MainContainer1_3 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =12
+                Height: =Parent.Height
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowY: =LayoutOverflow.Scroll
+                PaddingBottom: =20
+                PaddingLeft: =20
+                PaddingRight: =20
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =5
+
+                Form1_1 As form.PowerApps_CoreControls_Form:
+                    AcceptsFocus: =true
+                    DataSource: ='Leave Requests'
+                    FillPortions: =9
+                    Height: =490
+                    Item: =selectedItem
+                    LayoutMinHeight: =250
+                    LayoutMinWidth: =400
+                    NumberOfColumns: =2
+                    UseFluentV9Cards: =true
+                    Width: =1102
+                    X: =252
+                    Y: =126
+                    ZIndex: =1
+
+                    Employee_DataCard1 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ad_Employee"
+                        Default: =ThisItem.Employee
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Leave Requests'],DataSourceInfo.DisplayName,"ad_Employee")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue20.Selected
+                        Width: =379
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                        DataCardKey20 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue20 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            DefaultSelectedItems: =[Parent.Default]
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Items: =Choices([@'Leave Requests'].ad_Employee)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey20.Y + DataCardKey20.Height + 4
+                            ZIndex: =2
+
+                            "'Invitation Status2' As pcfDataField.textualColumn":
+                                FieldDisplayName: ="Invitation Status"
+                                FieldName: ="invitestatuscode"
+                                FieldType: ="l"
+                                FieldVariantName: ="textualColumn"
+                                Order: =4
+                                ZIndex: =22
+
+                            "'Full Name2' As pcfDataField.textualColumn":
+                                FieldDisplayName: ="Full Name"
+                                FieldName: ="fullname"
+                                FieldType: ="s"
+                                FieldVariantName: ="textualColumn"
+                                Order: =1
+                                ZIndex: =23
+
+                            "'Last Name2' As pcfDataField.textualColumn":
+                                FieldDisplayName: ="Last Name"
+                                FieldName: ="lastname"
+                                FieldType: ="s"
+                                FieldVariantName: ="textualColumn"
+                                Order: =3
+                                ZIndex: =24
+
+                            "'First Name2' As pcfDataField.textualColumn":
+                                FieldDisplayName: ="First Name"
+                                FieldName: ="firstname"
+                                FieldType: ="s"
+                                FieldVariantName: ="textualColumn"
+                                Order: =2
+                                ZIndex: =25
+
+                    "'Leave Type_DataCard1' As typedDataCard.fluentV9ComboBoxEditCard":
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ad_LeaveType"
+                        Default: =ThisItem.'Leave Type'
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Leave Requests'],DataSourceInfo.DisplayName,"ad_LeaveType")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue18.Selected
+                        Width: =379
+                        X: =1
+                        Y: =0
+                        ZIndex: =1
+
+                        DataCardKey18 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue18 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            DefaultSelectedItems: =[Parent.Default]
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Items: =Choices([@'Leave Requests'].ad_LeaveType)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey18.Y + DataCardKey18.Height + 4
+                            ZIndex: =2
+
+                            "'Standard Hours3' As pcfDataField.textualColumn":
+                                FieldDisplayName: ="Standard Hours"
+                                FieldName: ="ad_standardhours"
+                                FieldType: ="n"
+                                FieldVariantName: ="textualColumn"
+                                Order: =2
+                                ZIndex: =20
+
+                            Title4 As pcfDataField.textualColumn:
+                                FieldDisplayName: ="Title"
+                                FieldName: ="ad_title"
+                                FieldType: ="s"
+                                FieldVariantName: ="textualColumn"
+                                Order: =1
+                                ZIndex: =21
+
+                    Manager_DataCard1 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ad_Manager"
+                        Default: =ThisItem.Manager
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Leave Requests'],DataSourceInfo.DisplayName,"ad_Manager")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue19.Selected
+                        Width: =379
+                        X: =0
+                        Y: =4
+                        ZIndex: =1
+
+                        DataCardKey19 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue19 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            DefaultSelectedItems: =[Parent.Default]
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Items: =Choices([@'Leave Requests'].ad_Manager)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey19.Y + DataCardKey19.Height + 4
+                            ZIndex: =2
+
+                            "'Invitation Status1' As pcfDataField.textualColumn":
+                                FieldDisplayName: ="Invitation Status"
+                                FieldName: ="invitestatuscode"
+                                FieldType: ="l"
+                                FieldVariantName: ="textualColumn"
+                                Order: =4
+                                ZIndex: =16
+
+                            "'Full Name1' As pcfDataField.textualColumn":
+                                FieldDisplayName: ="Full Name"
+                                FieldName: ="fullname"
+                                FieldType: ="s"
+                                FieldVariantName: ="textualColumn"
+                                Order: =1
+                                ZIndex: =17
+
+                            "'Last Name1' As pcfDataField.textualColumn":
+                                FieldDisplayName: ="Last Name"
+                                FieldName: ="lastname"
+                                FieldType: ="s"
+                                FieldVariantName: ="textualColumn"
+                                Order: =3
+                                ZIndex: =18
+
+                            "'First Name1' As pcfDataField.textualColumn":
+                                FieldDisplayName: ="First Name"
+                                FieldName: ="firstname"
+                                FieldType: ="s"
+                                FieldVariantName: ="textualColumn"
+                                Order: =2
+                                ZIndex: =19
+
+                    From_DataCard1 As typedDataCard.fluentV9DateEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ad_from"
+                        Default: =ThisItem.From
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Leave Requests'],DataSourceInfo.DisplayName,"ad_from")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue3.SelectedDate
+                        Width: =379
+                        X: =0
+                        Y: =1
+                        ZIndex: =2
+
+                        DataCardKey3 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue3 As 'Date picker'":
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            BasePaletteColor: =
+                            DisplayMode: =Parent.DisplayMode
+                            EndDate: =Date(Year(Today())+100, 12, 31)
+                            FontColor: =
+                            Height: =32
+                            SelectedDate: =Parent.Default
+                            StartDate: =Date(1900, 1, 1)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey3.Y + DataCardKey3.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage3 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue3.Y + DataCardValue3.Height
+                            ZIndex: =3
+
+                        StarVisible3 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey3.Y
+                            ZIndex: =4
+
+                    To_DataCard1 As typedDataCard.fluentV9DateEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ad_to"
+                        Default: =ThisItem.To
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Leave Requests'],DataSourceInfo.DisplayName,"ad_to")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue4.SelectedDate
+                        Width: =379
+                        X: =1
+                        Y: =1
+                        ZIndex: =2
+
+                        DataCardKey4 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue4 As 'Date picker'":
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            BasePaletteColor: =
+                            DisplayMode: =Parent.DisplayMode
+                            EndDate: =Date(Year(Today())+100, 12, 31)
+                            FontColor: =
+                            Height: =32
+                            SelectedDate: =Parent.Default
+                            StartDate: =Date(1900, 1, 1)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey4.Y + DataCardKey4.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage4 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue4.Y + DataCardValue4.Height
+                            ZIndex: =3
+
+                        StarVisible4 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey4.Y
+                            ZIndex: =4
+
+                    Hours_DataCard1 As typedDataCard.fluentV9NumberEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ad_hours"
+                        Default: =ThisItem.Hours
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Leave Requests'],DataSourceInfo.DisplayName,"ad_hours")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =Value(DataCardValue5.Value)
+                        Width: =379
+                        X: =0
+                        Y: =2
+                        ZIndex: =2
+
+                        DataCardKey5 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue5 As 'Text input'":
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            BasePaletteColor: =
+                            DisplayMode: =Parent.DisplayMode
+                            FontColor: =
+                            Height: =32
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey5.Y + DataCardKey5.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage5 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue5.Y + DataCardValue5.Height
+                            ZIndex: =3
+
+                        StarVisible5 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey5.Y
+                            ZIndex: =4
+
+                    Days_DataCard1 As typedDataCard.fluentV9NumberEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ad_days"
+                        Default: =ThisItem.Days
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Leave Requests'],DataSourceInfo.DisplayName,"ad_days")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =Value(DataCardValue6.Value)
+                        Width: =379
+                        X: =1
+                        Y: =2
+                        ZIndex: =2
+
+                        DataCardKey6 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue6 As 'Text input'":
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            BasePaletteColor: =
+                            DisplayMode: =Parent.DisplayMode
+                            FontColor: =
+                            Height: =32
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey6.Y + DataCardKey6.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage6 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue6.Y + DataCardValue6.Height
+                            ZIndex: =3
+
+                        StarVisible6 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey6.Y
+                            ZIndex: =4
+
+                    Detail_DataCard1 As typedDataCard.fluentV9TextualMultiLineEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ad_detail"
+                        Default: =ThisItem.Detail
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Leave Requests'],DataSourceInfo.DisplayName,"ad_detail")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =118
+                        Required: =false
+                        Update: =DataCardValue8.Value
+                        Width: =758
+                        X: =0
+                        Y: =3
+                        ZIndex: =2
+
+                        DataCardKey8 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue8 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            BasePaletteColor: =
+                            DisplayMode: =Parent.DisplayMode
+                            FontColor: =
+                            Height: =80
+                            Mode: ='TextInputCanvas.Mode'.Multiline
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey8.Y + DataCardKey8.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage8 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue8.Y + DataCardValue8.Height
+                            ZIndex: =3
+
+                        StarVisible8 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey8.Y
+                            ZIndex: =4
+
+                    "'Leave Status_DataCard1' As typedDataCard.fluentV9ComboBoxOptionSetSingleEditCard":
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ad_leavestatus"
+                        Default: =ThisItem.'Leave Status'
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Leave Requests'],DataSourceInfo.DisplayName,"ad_leavestatus")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue9.Selected.Value
+                        Width: =379
+                        X: =1
+                        Y: =4
+                        ZIndex: =2
+
+                        DataCardKey9 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue9 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            DefaultSelectedItems: =[Parent.Default]
+                            DisplayMode: =DisplayMode.View
+                            Height: =32
+                            Items: =Choices('Leave Status (Leave Requests)')
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey9.Y + DataCardKey9.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage9 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue9.Y + DataCardValue9.Height
+                            ZIndex: =3
+
+                        StarVisible9 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =20
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey9.Y
+                            ZIndex: =4
+
+                    "'Approval Notes_DataCard2' As typedDataCard.fluentV9TextualMultiLineEditCard":
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ad_approvalnotes"
+                        Default: =ThisItem.'Approval Notes'
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Leave Requests'],DataSourceInfo.DisplayName,"ad_approvalnotes")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =150
+                        Required: =false
+                        Update: =DataCardValue7.Value
+                        Width: =758
+                        X: =0
+                        Y: =5
+                        ZIndex: =2
+
+                        DataCardKey7 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue7 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            BasePaletteColor: =
+                            DisplayMode: =DisplayMode.View
+                            FontColor: =
+                            Height: =80
+                            Mode: ='TextInputCanvas.Mode'.Multiline
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey7.Y + DataCardKey7.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage7 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue7.Y + DataCardValue7.Height
+                            ZIndex: =3
+
+                        StarVisible7 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey7.Y
+                            ZIndex: =4
+
+                Container2 As groupContainer.horizontalAutoLayoutContainer:
+                    LayoutGap: =15
+                    LayoutJustifyContent: =LayoutJustifyContent.End
+                    LayoutMinHeight: =75
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingRight: =15
+                    ZIndex: =4
+
+                    ButtonCanvas1_10 As Button:
+                        AccessibleLabel: ="Submit"
+                        AlignInContainer: =AlignInContainer.Center
+                        Appearance: ='ButtonCanvas.Appearance'.Secondary
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: =Back()
+                        Text: ="Cancel"
+                        Width: =96
+                        X: =12
+                        Y: =19
+                        ZIndex: =1
+
+                    ButtonCanvas1_5 As Button:
+                        AccessibleLabel: ="Submit"
+                        AlignInContainer: =AlignInContainer.Center
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =37
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: |-
+                            =SubmitForm(Form1_1);Navigate(SuccessScreen,ScreenTransition.Fade,{varMessage:"Leave Request Updated Successfully"})
+                        Text: ="Submit"
+                        Width: =96
+                        X: =957
+                        Y: =542
+                        ZIndex: =2
+
+            SidebarContainer2_1 As groupContainer.verticalAutoLayoutContainer:
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =2
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =16
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingTop: =15
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                Visible: =If(EditScreen.Size = ScreenSize.Small, false, true)
+                ZIndex: =6
+
+                ReviewersText1_1 As Text:
+                    Align: ='TextCanvas.Align'.End
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Size: =20
+                    Text: ="Reviewers"
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =115
+                    X: =0
+                    Y: =0
+                    ZIndex: =10
+
+                ReviewersGallery1_1 As gallery.galleryVertical:
+                    AccessibleLabel: ="Reviewers gallery"
+                    DelayItemLoading: =true
+                    Items: |-
+                        =[
+                            {
+                                Step: 1,
+                                Name: "Request Submitted",
+                                Title: Text(
+                                    selectedItem.'Created On',
+                                    DateTimeFormat.ShortDate
+                                ),
+                                Status: "Approved"
+                            },
+                            {
+                                Step: 2,
+                                Name: "Pending Approval",
+                                Title: Text(
+                                    selectedItem.'Modified On',
+                                    DateTimeFormat.ShortDate
+                                ),
+                                Status: "Pending",
+                                Current: If(
+                                    selectedItem.'Leave Status' = 'Leave Status (Leave Requests)'.'Pending Manager Approval',
+                                    true,
+                                    false
+                                )
+                            },
+                            Switch(
+                                selectedItem.'Leave Status',
+                                'Leave Status (Leave Requests)'.Approved,
+                                {
+                                    Step: 3,
+                                    Name: "Approved",
+                                    Title: "Title",
+                                    Status: "Approved",
+                                    Current: If(
+                                        selectedItem.'Leave Status' = 'Leave Status (Leave Requests)'.Approved,
+                                        true,
+                                        false
+                                    )
+                                },
+                                'Leave Status (Leave Requests)'.Rejected,
+                                {
+                                    Step: 3,
+                                    Name: "Rejected",
+                                    Title: "Title",
+                                    Status: "Denied",
+                                    Current: If(
+                                        selectedItem.'Leave Status' = 'Leave Status (Leave Requests)'.Rejected,
+                                        true,
+                                        false
+                                    )
+                                },
+                                {
+                                    Step: 3,
+                                    Name: "Approval",
+                                    Title: "Pending",
+                                    Status: "Not Started"
+                                }
+                            )
+                        ]
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =Parent.Width
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TabIndex: =0
+                    TemplatePadding: =0
+                    TemplateSize: =If(EditScreen.Size = ScreenSize.Small, 80, 140)
+                    ZIndex: =11
+
+                    RectangleShape1_1 As rectangle:
+                        DisabledFill: =RectangleShape1_1.Fill
+                        DisplayMode: =DisplayMode.Disabled
+                        Fill: =RGBA(214, 221, 224, 1)
+                        Height: =If(ThisItem.Step = 1, Parent.TemplateHeight - BadgeStatus1_1.Height - BadgeStatus1_1.Y, ThisItem.Step <> Parent.AllItemsCount, Parent.TemplateHeight, BadgeStatus1_1.Y)
+                        HoverFill: =RectangleShape1_1.Fill
+                        OnSelect: =Select(Parent)
+                        PressedFill: =RectangleShape1_1.Fill
+                        Width: =2
+                        X: =BadgeStatus1_1.X + (BadgeStatus1_1.Width / 2)
+                        Y: =If(ThisItem.Step = 1, BadgeStatus1_1.Height + BadgeStatus1_1.Y, 0)
+                        ZIndex: =12
+
+                    BadgeStatus1_1 As Badge:
+                        AccessibleLabel: ="Review status badge"
+                        BasePaletteColor: =Switch(ThisItem.Status, "Pending", Color.DarkGoldenRod, "Approved", Color.DarkGreen, "Rejected", Color.Red)
+                        Content: =Left(ThisItem.Status, 1)
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =47
+                        Width: =49
+                        X: =30
+                        Y: =((Parent.TemplateHeight - Self.Height) / 2) - 32
+                        ZIndex: =13
+
+                    ReviewerNameText1_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =26
+                        Text: =ThisItem.Name
+                        Weight: =If(ThisItem.Current, "Bold", "Regular")
+                        Width: =147
+                        X: =BadgeStatus1_1.X + BadgeStatus1_1.Width + 10
+                        Y: =BadgeStatus1_1.Y
+                        ZIndex: =14
+
+                    ReviewTypeText1_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =63
+                        Text: =ThisItem.Title
+                        VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                        Weight: =If(ThisItem.Current, "Bold", "Regular")
+                        Width: =135
+                        X: =ReviewerNameText1_1.X
+                        Y: =ReviewerNameText1_1.Y + ReviewerNameText1_1.Height
+                        ZIndex: =15
+

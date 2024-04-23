@@ -1,0 +1,61 @@
+App As appinfo:
+    BackEnabled: =true
+    Formulas: |
+        =curUser = User();
+        curUserMgr = Office365Users.ManagerV2(curUser.EntraObjectId);
+        isApprover = !IsBlank(
+            LookUp(
+                'Leave Approvers',
+                Name.'Primary Email' = curUser.Email
+            ).Name
+        );
+        tabListItems = If(
+            isApprover,
+            Table(
+                {
+                    name: "Dashboard",
+                    Screen: Landing
+                },
+                {
+                    name: "Request Leave",
+                    Screen: Type
+                },
+                {
+                    name: "History",
+                    Screen: HistoryScreen
+                },
+                {
+                    name: "Approvals",
+                    Screen: ApprovalScreen
+                }
+            ),
+            Table(
+                {
+                    name: "Dashboard",
+                    Screen: Landing
+                },
+                {
+                    name: "Request Leave",
+                    Screen: Type
+                },
+                {
+                    name: "History",
+                    Screen: HistoryScreen
+                }
+            )
+        );
+    OnStart: =
+    StartScreen: |-
+        =If(
+            !IsBlank(Param("ID")),
+            EditScreen,Landing
+        )
+    Theme: =RedTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
