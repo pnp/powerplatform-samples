@@ -43,9 +43,7 @@ The copilot then calls the Power Automate cloud flow which in turn invokes the c
 
 ## Contributors
 
-Solution|Author(s)
---------|---------
-podcast-copilot | [Gomolemo Mohapi](https://github.com/gomomohapi), Microsoft
+* [Gomolemo Mohapi](https://github.com/gomomohapi)
 
 ## Version history
 
@@ -92,7 +90,7 @@ Version|Date|Comments
 ### Using the solution zip file
 
 **Step 1: Import the solution into your Power Apps environment.**
-* [Download](solution/PodcastCopilotSolution_1_0_0_5.zip) the `.zip` from the `solution` folder.
+* [Download](solution/podcast-copilot.zip) the `.zip` from the `solution` folder.
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just downloaded.
 * Once the solution has been imported, leave the **Solutions** tab open and then open Visual Studio with the cloned PodcastAppAPI project.
 
@@ -170,45 +168,17 @@ Starting from the podcast URL provided by the user in either Power Apps or Copil
 * With the social media blurb, you generate a relevant DALL-E prompt with GPT
 * Finally, you use DALL-E to generate an image for the social media post with the prompt
 
-<!--
-RESERVED FOR REPO MAINTAINERS
-
-We'll add the video from the community call recording here
-
-## Video
-
-[![YouTube video title](./assets/video-thumbnail.jpg)](https://www.youtube.com/watch?v=XXXXX "YouTube video title")
--->
 
 ## Help
 
-<!--
-You can just search and replace this page with the following values:
-
-Search for:
-YOUR-SOLUTION-NAME
-
-Replace with your sample folder name. E.g.: my-cool-sample
-
-Search for:
-@YOURGITHUBUSERNAME
-
-Replace with your GitHub username, prefixed with an "@". If you have more than one author, use %20 to separate them, making sure to prefix everyone's username individually with an "@".
-
-Example:
-@hugoabernier
-
-Or:
-@hugoabernier%20@VesaJuvonen%20@PopWarner
--->
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=podcast-copilot&authors=@gomomohapi&title=podcast-copilot%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=podcast-copilot&authors=@gomomohapi&title=podcast-copilot%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=podcast-copilot&authors=@gomomohapi&title=podcast-copilot%20-%20).
 
 ## Disclaimer
 
