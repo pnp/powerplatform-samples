@@ -31,7 +31,7 @@ This template provides you with a solid foundation for a leave request system, c
 
 Version|Date|Comments
 -------|----|--------
-1.0|September 25, 2023|Initial release
+1.0|April 22, 2024|Initial release
 
 ## Features
 
@@ -57,9 +57,9 @@ This template not only gives you a good foundation for customizing your own leav
 
 ## Minimal Path to Awesome
 
-* [Download](./solution/LeaveRequestTemplateDataverse_1_0_0_1.zip) the `.zip` from the `solution` folder
+* [Download](./solution/leave-request.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-* Open the Leave Request Administration App and add in your data in the Company Holidays, Leave Types, Leave Approvers and Leave Balances tables.  See examples of the data below:
+* Open the Leave Request Management App and add in your data in the Company Holidays, Leave Types, Leave Approvers and Leave Balances tables.  See examples of the data below:
 ![Model Driven Holidays Table](assets/ModelDriven_Holidays.png)
 ![Model Driven Leave Types Table](assets/ModelDriven_LeaveTypes.png)
 ![Model Driven Approvers Table](assets/ModelDriven_Approvers.png)
@@ -87,17 +87,18 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 We do not support samples, but we this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=Laskewitz&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=ChuckNorrisIO&authors=@Laskewitz&title=ChuckNorrisIO%20-%20).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=Laskewitz&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=leave-request&authors=@aprildunnam&title=leave-request%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=Laskewitz&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=ChuckNorrisIO&authors=@Laskewitz&title=ChuckNorrisIO%20-%20).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=Laskewitz&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=leave-request&authors=@aprildunnam&title=leave-request%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=Laskewitz&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=ChuckNorrisIO&authors=@Laskewitz&title=ChuckNorrisIO%20-%20).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=Laskewitz&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=leave-request&authors=@aprildunnam&title=leave-request%20-%20).
 
 ## For more information
 
 * [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
 * [Power Apps canvas apps documentation](https://docs.microsoft.com/powerapps/maker/canvas-apps/)
 
-<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/readme-template" />
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/leave-request" />
+
 
 ---
