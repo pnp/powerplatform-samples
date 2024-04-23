@@ -1,0 +1,647 @@
+"Landing As screen.'autoLayout_Sidebar_ver1.0'":
+    BackgroundImage: ='157503709'
+    ImagePosition: =ImagePosition.Fill
+    OnHidden: |-
+        =UpdateContext({varSelectedTab:{name:"Dashboard",Screen:Landing}})
+    OnVisible: |-
+        =UpdateContext({varTab:{name:"Dashboard",Screen:Landing}})
+
+    ScreenContainer1 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer1 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            Header1_9 As Header:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =75
+                LayoutMinHeight: =75
+                LayoutMinWidth: =Parent.Width
+                Logo: =stickeromgunicorn
+                OnSelectLogo: =false
+                Title: ="Leave Requests"
+                TitleFontSize: =26
+                UserEmail: =User().Email
+                UserImage: =User().Image
+                UserName: =User().FullName
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+        BottomContainer1 As groupContainer.horizontalAutoLayoutContainer:
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =12
+            LayoutMinHeight: =75
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            LayoutWrap: =true
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            ZIndex: =3
+
+            SidebarContainer1 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.Bold
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =3
+                Height: =If(Landing.Size = ScreenSize.Small,80,Parent.Height)
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =20
+                PaddingTop: =5
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =4
+
+                "TabList1_4 As 'Tab list'.pcfdataset":
+                    AccessibleLabel: ="Navigation Menu"
+                    Alignment: =If(Landing.Size = ScreenSize.Small, 'TabList.Alignment'.Horizontal ,'TabList.Alignment'.Vertical)
+                    DefaultSelectedItems: =varTab
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    FontSize: =0
+                    Height: =Parent.Height - 20
+                    Items: =tabListItems
+                    LayoutMinHeight: =55
+                    LayoutMinWidth: =280
+                    OnChange: =
+                    OnSelect: |-
+                        =UpdateContext({varTab: Self.Selected});Navigate(TabList1_4.Selected.Screen)
+                    Width: =Parent.Width - 40
+                    X: =18
+                    Y: =123
+                    ZIndex: =1
+
+                    name1_4 As pcfDataField.textualColumn:
+                        FieldDisplayName: ="name"
+                        FieldName: ="name"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =5
+
+            MainContainer1 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.Light
+                FillPortions: =12
+                Height: =Parent.Height
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowY: =LayoutOverflow.Scroll
+                PaddingLeft: =20
+                PaddingRight: =20
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =5
+
+                Container1 As groupContainer.horizontalAutoLayoutContainer:
+                    FillPortions: =0
+                    Height: =280
+                    LayoutMinHeight: =90
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    ZIndex: =1
+
+                    "Gallery1 As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0'":
+                        AccessibleLabel: ="Leave Remaining Gallery"
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        DelayItemLoading: =true
+                        Height: =270
+                        Items: =Filter('Leave Balances',Employee.'Primary Email' = curUser.Email)
+                        LayoutMinHeight: =270
+                        LayoutMinWidth: =320
+                        LoadingSpinner: =LoadingSpinner.Data
+                        ShowNavigation: =true
+                        ShowScrollbar: =false
+                        TabIndex: =0
+                        TemplatePadding: =0
+                        TemplateSize: =Min(225, Self.Height - 60)
+                        ZIndex: =1
+
+                        Container4 As groupContainer.manualLayoutContainer:
+                            DropShadow: =DropShadow.Regular
+                            Fill: =RGBA(255, 255, 255, 1)
+                            Height: =251
+                            RadiusBottomLeft: =15
+                            RadiusBottomRight: =15
+                            RadiusTopLeft: =15
+                            RadiusTopRight: =15
+                            Width: =203
+                            ZIndex: =1
+
+                        Image1 As image:
+                            Height: =150
+                            HoverBorderColor: =ColorFade(Image1.BorderColor, 20%)
+                            HoverFill: =ColorFade(Image1.Fill, 20%)
+                            Image: |
+                                =
+                                "data:image/svg+xml," & EncodeUrl(
+                                    "<svg width='100%' height='100%' viewBox='0 0 42 42' class='donut' xmlns='http://www.w3.org/2000/svg'>
+                                  <circle class='donut-hole' cx='21' cy='21' r='15.91549430918954' fill='#fff'></circle>
+                                  <circle class='donut-ring' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='#74b741' stroke-width='5'></circle>
+                                  <circle class='donut-segment' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='#808080' stroke-width='5' stroke-dasharray='" &  IfError(ThisItem.Approved /Value(ThisItem.'Leave Type'.'Standard Hours')*100,0) & " "&IfError((100-ThisItem.Approved/ThisItem.'Leave Type'.'Standard Hours'*100),0) &"' stroke-dashoffset='25'></circle>
+                                </svg>"
+                                )
+                            ImagePosition: =ImagePosition.Fill
+                            OnSelect: =Select(Parent)
+                            PressedBorderColor: =ColorFade(Image1.BorderColor, -20%)
+                            PressedFill: =ColorFade(Image1.Fill, -20%)
+                            RadiusBottomLeft: =8
+                            RadiusBottomRight: =8
+                            RadiusTopLeft: =8
+                            RadiusTopRight: =8
+                            Width: =150
+                            X: =27
+                            Y: =46
+                            ZIndex: =2
+
+                        TextCanvas2_6 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =32
+                            Text: =ThisItem.'Leave Type'.Title
+                            Weight: ='TextCanvas.Weight'.Bold
+                            Width: =173
+                            X: =13
+                            Y: =14
+                            ZIndex: =6
+
+                        TextCanvas2_7 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =31
+                            Size: =12
+                            Text: ="*"&ThisItem.Requested - ThisItem.Approved &" Hours Pending"
+                            Weight: ='TextCanvas.Weight'.Regular
+                            Width: =173
+                            X: =16
+                            Y: =196
+                            ZIndex: =7
+
+                        TextCanvas2_8 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =32
+                            Size: =16
+                            Text: =ThisItem.'Leave Type'.'Standard Hours' - ThisItem.Approved &"/"&Value(ThisItem.'Leave Type'.'Standard Hours') & " hrs"
+                            Weight: ='TextCanvas.Weight'.Bold
+                            Width: =101
+                            X: =53
+                            Y: =98
+                            ZIndex: =8
+
+                        TextCanvas2_12 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =31
+                            Size: =12
+                            Text: ="Approved"
+                            Weight: ='TextCanvas.Weight'.Regular
+                            Width: =173
+                            X: =17
+                            Y: =126
+                            ZIndex: =9
+
+                Container12 As groupContainer.verticalAutoLayoutContainer:
+                    LayoutDirection: =If(Landing.Size = ScreenSize.Small,LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                    LayoutGap: =30
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =20
+                    ZIndex: =3
+
+                    Container13 As groupContainer.horizontalAutoLayoutContainer:
+                        Fill: =RGBA(255, 255, 255, 1)
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =200
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingBottom: =10
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =10
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                        ZIndex: =1
+
+                        Container3 As groupContainer.verticalAutoLayoutContainer:
+                            FillPortions: =0
+                            Height: =30
+                            LayoutAlignItems: =LayoutAlignItems.Center
+                            LayoutMinHeight: =100
+                            LayoutMinWidth: =250
+                            LayoutMode: =LayoutMode.Auto
+                            ZIndex: =1
+
+                            TextCanvas2 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =32
+                                LayoutMinHeight: =32
+                                LayoutMinWidth: =96
+                                Text: ="Company Holidays"
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =140
+                                X: =0
+                                Y: =0
+                                ZIndex: =1
+
+                            Icon1 As icon.Calendar:
+                                AccessibleLabel: ="Add Company Holidays to Calendar"
+                                Color: =App.Theme.Colors.Lighter30
+                                DisabledFill: =Icon1.Fill
+                                Height: =25
+                                HoverBorderColor: =ColorFade(Icon1.BorderColor, 20%)
+                                HoverColor: =ColorFade(Icon1.Color, 20%)
+                                HoverFill: =Icon1.Fill
+                                Icon: =Icon.AddToCalendar
+                                OnSelect: |-
+                                    =IfError(
+                                        ForAll(
+                                            'Company Holidays',
+                                            Office365Outlook.V4CalendarPostItem(
+                                                LookUp(Office365Outlook.CalendarGetTablesV2().value, 
+                                               name="Calendar").id,
+                                                ThisRecord.Title,
+                                                DateTimeValue(ThisRecord.Date),
+                                                DateAdd(ThisRecord.Date,24,TimeUnit.Hours)  ,"(UTC) Coordinated Universal Time"
+                                                ,
+                                                {
+                                                    isAllDay: true,
+                                                    showAs: "Out of Office"
+                                                }
+                                            )
+                                        ),
+                                        Notify(
+                                            ErrorResult,
+                                            NotificationType.Error
+                                        ),
+                                        Notify(
+                                            "Company Holidays added to your calendar!",
+                                            NotificationType.Success
+                                        )
+                                    )
+                                PressedBorderColor: =ColorFade(Icon1.BorderColor, -20%)
+                                PressedColor: =ColorFade(Icon1.Color, -20%)
+                                PressedFill: =Icon1.Fill
+                                TabIndex: =0
+                                Tooltip: ="Add to Calendar"
+                                Width: =25
+                                ZIndex: =2
+
+                        "Gallery2 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver5.0'":
+                            AccessibleLabel: ="Company Holidays List"
+                            AlignInContainer: =AlignInContainer.Center
+                            DelayItemLoading: =true
+                            Height: =Parent.Height
+                            Items: ='Company Holidays'
+                            Layout: =Layout.Vertical
+                            LayoutMinHeight: =287
+                            LayoutMinWidth: =320
+                            LoadingSpinner: =LoadingSpinner.Data
+                            TabIndex: =0
+                            TemplatePadding: =0
+                            TemplateSize: =65
+                            Width: =Parent.Width
+                            ZIndex: =4
+
+                            Separator3 As rectangle:
+                                Fill: =RGBA(255, 255, 255, 1)
+                                Height: =8
+                                OnSelect: =Select(Parent)
+                                Width: =Parent.TemplateWidth
+                                Y: =Parent.TemplateHeight - Self.Height
+                                ZIndex: =4
+
+                            TextCanvas2_2 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =Self.Size * 1.8
+                                Text: =ThisItem.Title
+                                Weight: ='TextCanvas.Weight'.Regular
+                                Width: =Parent.TemplateWidth - 100
+                                X: =86
+                                Y: =24
+                                ZIndex: =6
+
+                            BadgeCanvas1_1 As Badge:
+                                AccessibleLabel: ="Date"
+                                BasePaletteColor: =
+                                Content: |-
+                                    =Day(ThisItem.Date) & Char(13) & Text(
+                                        ThisItem.Date,
+                                        "mmm"
+                                    )
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =40
+                                Shape: ='BadgeCanvas.Shape'.Rounded
+                                ThemeColor: ='BadgeCanvas.ThemeColor'.Brand
+                                Width: =55
+                                X: =18
+                                Y: =14
+                                ZIndex: =8
+
+                    Container14 As groupContainer.horizontalAutoLayoutContainer:
+                        Fill: =RGBA(255, 255, 255, 1)
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =200
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingBottom: =10
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =10
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                        ZIndex: =2
+
+                        TextCanvas2_1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: ="Who's on Leave"
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =120
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        TextCanvas7 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            AlignInContainer: =AlignInContainer.Start
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =45
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: ="There are no upcoming leave's scheduled in your team"
+                            Visible: =If(CountRows(Gallery2_1.AllItems) = 0,true,false)
+                            Width: =Parent.Width - 15
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                        "Gallery2_1 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver5.0'":
+                            AccessibleLabel: ="Team Member Leave List"
+                            AlignInContainer: =AlignInContainer.Center
+                            DelayItemLoading: =true
+                            Height: =Parent.Height
+                            Items: |-
+                                =Sort(
+                                    Filter(
+                                        'Leave Requests',
+                                        To >= Today() && Manager.'Primary Email' = curUserMgr.mail  && 'Leave Status' = 'Leave Status (Leave Requests)'.Approved
+                                    ),From,
+                                    SortOrder.Ascending
+                                )
+                            Layout: =Layout.Vertical
+                            LayoutMinHeight: =287
+                            LayoutMinWidth: =320
+                            LoadingSpinner: =LoadingSpinner.Data
+                            TabIndex: =0
+                            TemplatePadding: =0
+                            TemplateSize: =80
+                            Width: =Parent.Width
+                            ZIndex: =3
+
+                            Separator3_2 As rectangle:
+                                Fill: =RGBA(255, 255, 255, 1)
+                                Height: =8
+                                OnSelect: =Select(Parent)
+                                Width: =Parent.TemplateWidth
+                                Y: =Parent.TemplateHeight - Self.Height
+                                ZIndex: =4
+
+                            TextCanvas2_4 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =Self.Size * 1.8
+                                Text: =ThisItem.Title
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.TemplateWidth - 86
+                                X: =BadgeCanvas1.X + BadgeCanvas1.Width + 10
+                                Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + TextCanvas2_5.Size * 1.8)) / 2
+                                ZIndex: =6
+
+                            TextCanvas2_5 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =Self.Size * 1.8
+                                Text: =Text(ThisItem.From,"mmmm dd") & " - " & Text(ThisItem.To,"mmmm dd")
+                                Weight: ='TextCanvas.Weight'.Regular
+                                Width: =Parent.TemplateWidth - 86
+                                X: =TextCanvas2_4.X
+                                Y: =TextCanvas2_4.Y + TextCanvas2_4.Height
+                                ZIndex: =7
+
+                            BadgeCanvas1 As Badge:
+                                AccessibleLabel: ="Team Member Initials"
+                                BasePaletteColor: =
+                                Content: |-
+                                    =Left(ThisItem.Employee.'Full Name', 1) &
+                                    Mid(
+                                        ThisItem.Employee.'Full Name',
+                                        Find(" ", ThisItem.Employee.'Full Name') + 1,
+                                        1)
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =32
+                                Width: =32
+                                X: =14
+                                Y: =14
+                                ZIndex: =8
+
+                    Container13_1 As groupContainer.horizontalAutoLayoutContainer:
+                        Fill: =RGBA(255, 255, 255, 1)
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =200
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingBottom: =10
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =10
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                        ZIndex: =3
+
+                        TextCanvas2_9 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: ="Notifications"
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =140
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        TextCanvas7_1 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            AlignInContainer: =AlignInContainer.Start
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =45
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: ="You have no notifications"
+                            Visible: =If(CountRows(Gallery2_2.AllItems) = 0,true,false)
+                            Width: =Parent.Width - 15
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                        "Gallery2_2 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver5.0'":
+                            AccessibleLabel: ="Notifcations List"
+                            AlignInContainer: =AlignInContainer.Center
+                            DelayItemLoading: =true
+                            Height: =Parent.Height
+                            Items: |-
+                                =If(isApprover,
+                                FirstN(
+                                    Sort(
+                                        Filter(
+                                            'Leave Requests',
+                                            Employee.'Primary Email' = curUser.Email || Manager.'Primary Email' = curUser.Email
+                                        ),
+                                        'Modified On',
+                                        SortOrder.Descending
+                                    ),
+                                    5
+                                ),
+                                FirstN(
+                                    Sort(
+                                        Filter(
+                                            'Leave Requests',
+                                            Employee.'Primary Email' = curUser.Email
+                                        ),
+                                        'Modified On',
+                                        SortOrder.Descending
+                                    ),
+                                    5
+                                ))
+                            Layout: =Layout.Vertical
+                            LayoutMinHeight: =287
+                            LayoutMinWidth: =320
+                            LoadingSpinner: =LoadingSpinner.Data
+                            OnSelect: |-
+                                =Navigate(EditScreen,ScreenTransition.Fade,{selectedItem:Gallery2_2.Selected})
+                            TabIndex: =0
+                            TemplatePadding: =0
+                            TemplateSize: =88
+                            Width: =Parent.Width
+                            ZIndex: =3
+
+                            Separator3_3 As rectangle:
+                                Fill: =RGBA(255, 255, 255, 1)
+                                Height: =8
+                                OnSelect: =Select(Parent)
+                                Width: =Parent.TemplateWidth
+                                Y: =Parent.TemplateHeight - Self.Height
+                                ZIndex: =4
+
+                            TextCanvas2_10 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =63
+                                Text: |-
+                                    =If(
+                                        ThisItem.Manager.'Primary Email' = curUser.Email,
+                                        ThisItem.Employee.'Full Name' &"'s leave request for " & Text(
+                                            ThisItem.From,
+                                            DateTimeFormat.ShortDate
+                                        ) & " is " & ThisItem.'Leave Status',
+                                        "Your leave for " & Text(
+                                            ThisItem.From,
+                                            DateTimeFormat.ShortDate
+                                        ) & " is " & ThisItem.'Leave Status'
+                                    )
+                                VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                                Weight: ='TextCanvas.Weight'.Medium
+                                Width: =245
+                                X: =Icon3.X + Icon3.Width + 15
+                                Y: =5
+                                ZIndex: =6
+
+                            TextCanvas2_11 As Text:
+                                Align: ='TextCanvas.Align'.End
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =23
+                                Size: =12
+                                Text: =ThisItem.'Modified On'
+                                Weight: ='TextCanvas.Weight'.Medium
+                                Width: =Parent.TemplateWidth - 86
+                                X: =TextCanvas2_10.X
+                                Y: =56
+                                ZIndex: =7
+
+                            Icon3 As icon.CheckBadge:
+                                Color: =App.Theme.Colors.Lighter30
+                                DisabledFill: =Icon3.Fill
+                                Height: =20
+                                HoverBorderColor: =ColorFade(Icon3.BorderColor, 20%)
+                                HoverColor: =ColorFade(Icon3.Color, 20%)
+                                HoverFill: =Icon3.Fill
+                                Icon: =Switch(ThisItem.'Leave Status', 'Leave Status (Leave Requests)'.Approved, Icon.CheckBadge,'Leave Status (Leave Requests)'.Rejected,Icon.CancelBadge,'Leave Status (Leave Requests)'.'Pending Manager Approval',Icon.Warning)
+                                OnSelect: =Select(Parent)
+                                PressedBorderColor: =ColorFade(Icon3.BorderColor, -20%)
+                                PressedColor: =ColorFade(Icon3.Color, -20%)
+                                PressedFill: =Icon3.Fill
+                                Width: =20
+                                X: =15
+                                Y: =14
+                                ZIndex: =8
+

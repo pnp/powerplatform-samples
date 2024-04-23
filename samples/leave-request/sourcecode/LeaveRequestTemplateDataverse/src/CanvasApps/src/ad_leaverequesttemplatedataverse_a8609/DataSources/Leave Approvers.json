@@ -1,0 +1,96 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "ad_leaveapproverses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "ad_leaveapprovers",
+    "MaxGetRowsCount": 500,
+    "Name": "Leave Approvers",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "ad_leaveapprovers_AsyncOperations": "System Jobs",
+      "ad_leaveapprovers_BulkDeleteFailures": "Bulk Delete Failures",
+      "ad_leaveapprovers_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "ad_leaveapprovers_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "ad_leaveapprovers_ProcessSession": "Process Sessions",
+      "ad_leaveapprovers_SyncErrors": "Sync Errors",
+      "ad_leaveapproversid": "Leave Approvers",
+      "ad_Name": "Name",
+      "ad_title": "Title",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Leave Approvers",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Leave Approvers (Views)",
+    "Name": "_ad_leaveapprovers_views",
+    "RelatedEntityName": "Leave Approvers",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "00ab86bc-660f-42ac-be89-d437e1886e66": "Leave Approvers Advanced Find View",
+      "3dc8d3f9-d974-43f4-b07e-6a4bd7d10f46": "Inactive Leave Approvers",
+      "b8882874-2e80-4e96-90e2-e6c11b1870e4": "Leave Approvers Lookup View",
+      "cdab2d13-d59e-461c-8a5a-89d17c08a2b7": "Leave Approvers Associated View",
+      "f6caab48-846d-4251-9725-42224c798df4": "Active Leave Approvers"
+    }
+  },
+  {
+    "DisplayName": "Status (Leave Approvers)",
+    "Name": "ad_leaveapprovers_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Leave Approvers"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Leave Approvers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Leave Approvers)",
+    "Name": "ad_leaveapprovers_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Leave Approvers"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Leave Approvers",
+    "Type": "OptionSetInfo"
+  }
+]

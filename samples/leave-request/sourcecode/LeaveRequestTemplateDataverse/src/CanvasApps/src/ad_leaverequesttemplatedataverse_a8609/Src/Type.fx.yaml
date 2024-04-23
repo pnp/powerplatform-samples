@@ -1,0 +1,435 @@
+"Type As screen.'autoLayout_Sidebar_ver1.0'":
+    BackgroundImage: ='157503709'
+    ImagePosition: =ImagePosition.Fill
+    OnVisible: |-
+        =UpdateContext({varTab:{name:"Request Leave",Screen:Type}});Reset(DatePickerFrom);Reset(DatePickerTo)
+
+    ScreenContainer1_1 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer1_1 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            Header1_10 As Header:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =75
+                LayoutMinHeight: =75
+                LayoutMinWidth: =Parent.Width
+                Logo: =stickeromgunicorn
+                OnSelectLogo: =false
+                Title: ="New Request"
+                TitleFontSize: =26
+                UserEmail: =User().Email
+                UserImage: =User().Image
+                UserName: =User().FullName
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+        BottomContainer1_1 As groupContainer.horizontalAutoLayoutContainer:
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =16
+            LayoutMinHeight: =75
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            LayoutWrap: =true
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            ZIndex: =3
+
+            SidebarContainer1_1 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =3
+                Height: =If(Type.Size = ScreenSize.Small,80,Parent.Height)
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =20
+                PaddingTop: =5
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =4
+
+                "TabList1_5 As 'Tab list'.pcfdataset":
+                    AccessibleLabel: ="Navigation Menu"
+                    Alignment: =If(Type.Size = ScreenSize.Small, 'TabList.Alignment'.Horizontal ,'TabList.Alignment'.Vertical)
+                    DefaultSelectedItems: =varTab
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    FontSize: =0
+                    Height: =Parent.Height - 20
+                    Items: =tabListItems
+                    LayoutMinHeight: =55
+                    LayoutMinWidth: =280
+                    OnSelect: |-
+                        =UpdateContext({varTab: Self.Selected});Navigate(TabList1_5.Selected.Screen)
+                    Width: =Parent.Width - 40
+                    X: =18
+                    Y: =123
+                    ZIndex: =2
+
+                    name1_5 As pcfDataField.textualColumn:
+                        FieldDisplayName: ="name"
+                        FieldName: ="name"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =5
+
+            MainContainer1_1 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =12
+                Height: =Parent.Height
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowY: =LayoutOverflow.Scroll
+                PaddingLeft: =20
+                PaddingRight: =20
+                PaddingTop: =10
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =5
+
+                "Progress1 As 'Progress Bar'":
+                    AccessibleLabel: ="Progress Indicator"
+                    BasePaletteColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =45
+                    LayoutMinHeight: =45
+                    LayoutMinWidth: =450
+                    Shape: ='Progress.Shape'.Rounded
+                    Thickness: ='Progress.Thickness'.Large
+                    Value: =50
+                    Width: =Parent.Width - 50
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                TextCanvas3 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="What type of leave are you requesting?"
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+                "Gallery1_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver5.0'":
+                    AccessibleLabel: ="Leave Type List"
+                    DelayItemLoading: =true
+                    Items: =Choices([@'Leave Requests'].'Leave Type')
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =300
+                    LayoutMinWidth: =320
+                    LoadingSpinner: =LoadingSpinner.Data
+                    OnSelect: |
+                        =Set(
+                            selectedType,
+                            ThisItem
+                        );
+                        ClearCollect(
+                            selectedBalance,
+                            LookUp(
+                                'Leave Requests',
+                                Employee.'Primary Email' = curUser.Email && 'Leave Type'.Title = selectedType.Title
+                            )
+                        );
+                    TabIndex: =0
+                    TemplatePadding: =0
+                    TemplateSize: =75
+                    Width: =1254
+                    WrapCount: =If(Type.Size = ScreenSize.Small,2,3)
+                    X: =56
+                    Y: =97
+                    ZIndex: =3
+
+                    ButtonCanvas2 As Button:
+                        AccessibleLabel: ="Leave Type Selection - " & ThisItem.Title
+                        Appearance: =If(ThisItem.IsSelected,'ButtonCanvas.Appearance'.Primary,'ButtonCanvas.Appearance'.Secondary)
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        FontSize: =0
+                        FontWeight: =FontWeight.Bold
+                        Height: =50
+                        OnSelect: =Select(Parent)
+                        Text: =ThisItem.Title
+                        Width: =Gallery1_1.TemplateWidth - 20
+                        X: =0
+                        Y: =9
+                        ZIndex: =5
+
+                TextCanvas3_1 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="What days are you requesting off?"
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                Container20 As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =80
+                    LayoutDirection: =If(Type.Size = ScreenSize.Small,LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                    LayoutGap: =10
+                    LayoutMinHeight: =50
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =10
+                    ZIndex: =5
+
+                    "DatePickerFrom As 'Date picker'":
+                        AccessibleLabel: ="Start Date"
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        Placeholder: ="Select start date..."
+                        Width: =300
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    TextCanvas10 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: =" to "
+                        Width: =80
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    "DatePickerTo As 'Date picker'":
+                        AccessibleLabel: ="End Date"
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        Placeholder: ="Select end date..."
+                        Width: =300
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                    TextCanvas5 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =RGBA(255, 0, 0, 1)
+                        Height: =40
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="* End Date can't be less than Start Date"
+                        Visible: =!IsBlank(DatePickerTo.SelectedDate) && DatePickerTo.SelectedDate < DatePickerFrom.SelectedDate
+                        Width: =250
+                        X: =0
+                        Y: =0
+                        ZIndex: =4
+
+                Container17_1 As groupContainer.verticalAutoLayoutContainer:
+                    FillPortions: =0
+                    Height: =65
+                    LayoutAlignItems: =LayoutAlignItems.Center
+                    LayoutGap: =20
+                    LayoutJustifyContent: =LayoutJustifyContent.End
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =20
+                    PaddingRight: =20
+                    ZIndex: =6
+
+                    TextCanvas8_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: |-
+                            =//Exclude Weekends from total days calculation
+                            /*
+                            With({
+                                    // create a table of all dates between selected start date & end date
+                            DateRange:ForAll(Sequence(DatePickerTo.SelectedDate-DatePickerFrom.SelectedDate+1),DatePickerFrom.SelectedDate+Value-1)},
+                                    // include only dates Monday to Friday in the total
+                            CountIf(DateRange,Weekday(Value) in [2,3,4,5,6])&" work days selected")*/
+                        Width: =155
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    ButtonCanvas1_8 As Button:
+                        AccessibleLabel: ="Cancel"
+                        Appearance: ='ButtonCanvas.Appearance'.Secondary
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: =Reset(DatePickerTo);Reset(DatePickerFrom);Back()
+                        Text: ="Cancel"
+                        Width: =96
+                        X: =969
+                        Y: =19
+                        ZIndex: =3
+
+                    ButtonCanvas1_7 As Button:
+                        AccessibleLabel: ="Submit"
+                        BasePaletteColor: =
+                        DisplayMode: |-
+                            =If(
+                                IsBlank(DatePickerFrom.SelectedDate) || IsBlank(DatePickerTo.SelectedDate) || DatePickerTo.SelectedDate < DatePickerFrom.SelectedDate,
+                                DisplayMode.Disabled,
+                                DisplayMode.Edit
+                            )
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: |
+                            =If(
+                                IsBlank(
+                                    LookUp(
+                                        'Leave Requests',
+                                        Employee.'Primary Email' = curUser.Email && To >= DatePickerFrom.SelectedDate && From <= DatePickerTo.SelectedDate
+                                    )
+                                ),
+                                With(
+                                    {
+                                        // create a table of all dates and their week numbers between selected start date & end date
+                                        varDateRange: ForAll(
+                                            Sequence(DatePickerTo.SelectedDate - DatePickerFrom.SelectedDate + 1),
+                                            {
+                                                Value: DatePickerFrom.SelectedDate + Value - 1,
+                                                WeekNumb: Weekday(DatePickerFrom.SelectedDate + Value - 1)
+                                            }
+                                        )
+                                    },
+                                    Set(
+                                        dates,
+                                        Filter(
+                                            varDateRange,
+                                            WeekNumb >= 2 && WeekNumb <= 6
+                                        )
+                                    );
+                                    ClearCollect(
+                                        DateRange,
+                                    //dynamically add the amount of columns needed in the collection based on date range
+                                        AddColumns(
+                                            FirstN(
+                                                dates,
+                                                CountRows(dates)
+                                            ),
+                                            "Day",
+                                            "Day " & (WeekNumb + 1),
+                                            "Date",
+                                            Value,
+                                            "Type",
+                                            selectedType.Title,
+                                            "Hours",
+                                            "8",
+                                            "Person",
+                                            curUser
+                                        )
+                                    );
+                                    Navigate(
+                                        Summary,
+                                        ScreenTransition.Fade,
+                                        {
+                                            daysRequested: // include only dates Monday to Friday in the total
+                            CountIf(
+                                                varDateRange,
+                                                Weekday(Value) in [
+                                                    2,
+                                                    3,
+                                                    4,
+                                                    5,
+                                                    6
+                                                ]
+                                            ),
+                                            hoursRequested: CountIf(
+                                                varDateRange,
+                                                Weekday(Value) in [
+                                                    2,
+                                                    3,
+                                                    4,
+                                                    5,
+                                                    6
+                                                ]
+                                            ) * 8,
+                                            hoursAvailable: Text(
+                                                LookUp(
+                                                    'Leave Balances',
+                                                    Employee.'Primary Email' = curUser.Email && 'Leave Type'.Title = selectedType.Title
+                                                ).'Leave Type'.'Standard Hours' * 1,
+                                                "[$-en-US]#"
+                                            )
+                                        }
+                                    )
+                                ),
+                                Notify(
+                                    "You already have a leave request for these dates",
+                                    NotificationType.Warning
+                                )
+                            );
+                        Text: ="Continue"
+                        Width: =96
+                        X: =1144
+                        Y: =19
+                        ZIndex: =4
+

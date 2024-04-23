@@ -1,0 +1,480 @@
+"Summary As screen.'autoLayout_Sidebar_ver1.0'":
+    BackgroundImage: ='157503709'
+    ImagePosition: =ImagePosition.Fill
+    OnVisible: |-
+        =UpdateContext({varTab:{name:"Request Leave",Screen:Type}});
+
+    ScreenContainer1_2 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer1_2 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            Header1_11 As Header:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =75
+                LayoutMinHeight: =75
+                LayoutMinWidth: =Parent.Width
+                Logo: =stickeromgunicorn
+                OnSelectLogo: =false
+                Title: ="Confirmation"
+                TitleFontSize: =26
+                UserEmail: =User().Email
+                UserImage: =User().Image
+                UserName: =User().FullName
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+        BottomContainer1_2 As groupContainer.horizontalAutoLayoutContainer:
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =16
+            LayoutMinHeight: =75
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            ZIndex: =3
+
+            SidebarContainer1_2 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =3
+                Height: =If(Summary.Size = ScreenSize.Small,80,Parent.Height)
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =20
+                PaddingTop: =5
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =4
+
+                "TabList1_6 As 'Tab list'.pcfdataset":
+                    AccessibleLabel: ="Navigation Menu"
+                    Alignment: =If(Summary.Size = ScreenSize.Small, 'TabList.Alignment'.Horizontal ,'TabList.Alignment'.Vertical)
+                    DefaultSelectedItems: =varTab
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    FontSize: =0
+                    Height: =Parent.Height - 20
+                    Items: =tabListItems
+                    LayoutMinHeight: =55
+                    LayoutMinWidth: =280
+                    OnSelect: |-
+                        =UpdateContext({varTab: Self.Selected});Navigate(TabList1_6.Selected.Screen)
+                    Width: =Parent.Width - 40
+                    X: =18
+                    Y: =123
+                    ZIndex: =2
+
+                    name1_6 As pcfDataField.textualColumn:
+                        FieldDisplayName: ="name"
+                        FieldName: ="name"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =5
+
+            MainContainer1_2 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =12
+                Height: =Parent.Height
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowY: =LayoutOverflow.Scroll
+                PaddingLeft: =20
+                PaddingRight: =20
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =5
+
+                Container6 As groupContainer.horizontalAutoLayoutContainer:
+                    FillPortions: =2
+                    Height: =198
+                    LayoutGap: =15
+                    LayoutMinHeight: =80
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingTop: =20
+                    X: =40
+                    ZIndex: =1
+
+                    Container5 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Start
+                        DropShadow: =DropShadow.Regular
+                        Fill: =App.Theme.Colors.Lighter80
+                        Height: =Parent.Height - 30
+                        LayoutMinHeight: =80
+                        LayoutMinWidth: =200
+                        Width: =Parent.Width/3
+                        ZIndex: =1
+
+                        TextCanvas4 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Size: =18
+                            Text: ="Requested Hours"
+                            Weight: ='TextCanvas.Weight'.Bold
+                            Width: =Parent.Width
+                            X: =0
+                            Y: =15
+                            ZIndex: =3
+
+                        TextCanvas4_1 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Size: =18
+                            Text: =Sum(DateRange,Hours) & " (" & Sum(DateRange,Hours)/8 &" days)"  //hoursRequested
+                            Width: =Parent.Width
+                            X: =0
+                            Y: =TextCanvas4.Y + TextCanvas4.Height + 10
+                            ZIndex: =4
+
+                    Container7 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.Regular
+                        Fill: =Container5.Fill
+                        Height: =Container5.Height
+                        LayoutMinHeight: =80
+                        LayoutMinWidth: =250
+                        Width: =Parent.Width/3
+                        ZIndex: =3
+
+                        TextCanvas4_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Size: =18
+                            Text: ="Available Hours"
+                            Weight: ='TextCanvas.Weight'.Bold
+                            Width: =Parent.Width
+                            X: =0
+                            Y: =TextCanvas4.Y
+                            ZIndex: =3
+
+                        TextCanvas4_3 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Size: =18
+                            Text: =hoursAvailable
+                            Width: =Parent.Width
+                            X: =0
+                            Y: =TextCanvas4_1.Y
+                            ZIndex: =4
+
+                    Container8 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.Regular
+                        Fill: =Container5.Fill
+                        Height: =Container5.Height
+                        LayoutMinHeight: =80
+                        LayoutMinWidth: =250
+                        Width: =Parent.Width/3
+                        ZIndex: =4
+
+                        TextCanvas4_4 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Size: =18
+                            Text: ="New Balance (Hours)"
+                            Weight: ='TextCanvas.Weight'.Bold
+                            Width: =Parent.Width
+                            X: =0
+                            Y: =TextCanvas4.Y
+                            ZIndex: =3
+
+                        TextCanvas4_5 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            Size: =18
+                            Text: =hoursAvailable - Sum(DateRange,Hours)
+                            Width: =Parent.Width
+                            X: =0
+                            Y: =TextCanvas4_1.Y
+                            ZIndex: =4
+
+                Container10 As groupContainer.horizontalAutoLayoutContainer:
+                    LayoutAlignItems: =LayoutAlignItems.Center
+                    LayoutMinHeight: =50
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =10
+                    ZIndex: =3
+
+                    TextCanvas1_2 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =36
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Size: =18
+                        Text: ="Summary"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 40
+                        X: =15
+                        Y: =12
+                        ZIndex: =1
+
+                Container9 As groupContainer.horizontalAutoLayoutContainer:
+                    FillPortions: =5
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    ZIndex: =4
+
+                    "galleryDays_1 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                        AccessibleLabel: ="Gallery Time Off Days Requested Summary"
+                        Height: =401
+                        Items: =DateRange
+                        Layout: =Layout.Vertical
+                        LayoutMinHeight: =287
+                        LayoutMinWidth: =320
+                        TabIndex: =15
+                        TemplatePadding: =0
+                        TemplateSize: =85
+                        Width: =1013
+                        X: =24
+                        Y: =4
+                        ZIndex: =1
+
+                        NextArrow5_1 As icon.ChevronRight:
+                            AccessibleLabel: =Self.Tooltip
+                            Color: =App.Theme.Colors.Darker20
+                            DisabledFill: =NextArrow5_1.Fill
+                            Height: =45
+                            HoverBorderColor: =ColorFade(NextArrow5_1.BorderColor, 20%)
+                            HoverColor: =ColorFade(NextArrow5_1.Color, 20%)
+                            HoverFill: =NextArrow5_1.Fill
+                            Icon: =Icon.Trash
+                            OnSelect: =Select(Parent);Remove(DateRange,ThisItem)
+                            PaddingBottom: =10
+                            PaddingLeft: =10
+                            PaddingRight: =10
+                            PaddingTop: =10
+                            PressedBorderColor: =ColorFade(NextArrow5_1.BorderColor, -20%)
+                            PressedColor: =ColorFade(NextArrow5_1.Color, -20%)
+                            PressedFill: =NextArrow5_1.Fill
+                            TabIndex: =20
+                            Tooltip: ="Delete item"
+                            Width: =45
+                            X: =403
+                            Y: =15
+                            ZIndex: =3
+
+                        Separator7_1 As rectangle:
+                            Fill: =App.Theme.Colors.Darker10
+                            Height: =1
+                            OnSelect: =Select(Parent)
+                            Width: =Parent.TemplateWidth
+                            Y: =Parent.TemplateHeight - 1
+                            ZIndex: =4
+
+                        "TextInputCanvas1 As 'Text input'":
+                            AccessibleLabel: ="Hours"
+                            Align: ='TextInputCanvas.Align'.Center
+                            BasePaletteColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            FontSize: =18
+                            Height: =32
+                            OnChange: |-
+                                =UpdateIf(
+                                    DateRange,
+                                    Date = ThisItem.Date,
+                                    {Hours: TextInputCanvas1.Value}
+                                );
+                                Set(
+                                    hoursRequested,
+                                    Sum(
+                                        DateRange,
+                                        Hours
+                                    )
+                                );
+                                Set(
+                                    daysRequested,
+                                    Sum(
+                                        DateRange,
+                                        Hours
+                                    ) / 8
+                                )
+                            Value: =ThisItem.Hours
+                            Width: =50
+                            X: =280
+                            Y: =22
+                            ZIndex: =7
+
+                        TextCanvas1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =36
+                            Text: =Text(ThisItem.Date,DateTimeFormat.LongDate)
+                            Width: =203
+                            X: =15
+                            Y: =12
+                            ZIndex: =8
+
+                        TextCanvas1_1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =36
+                            Text: =ThisItem.Type
+                            Width: =203
+                            X: =15
+                            Y: =40
+                            ZIndex: =9
+
+                        TextCanvas1_3 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =36
+                            Text: ="HRS"
+                            Width: =67
+                            X: =336
+                            Y: =19
+                            ZIndex: =10
+
+                Container11 As groupContainer.verticalAutoLayoutContainer:
+                    LayoutAlignItems: =LayoutAlignItems.Center
+                    LayoutGap: =15
+                    LayoutJustifyContent: =LayoutJustifyContent.End
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingRight: =20
+                    ZIndex: =5
+
+                    ButtonCanvas1_9 As Button:
+                        AccessibleLabel: ="Cancel"
+                        Appearance: ='ButtonCanvas.Appearance'.Secondary
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: =Clear(DateRange);Back()
+                        Text: ="Cancel"
+                        Width: =96
+                        X: =969
+                        Y: =19
+                        ZIndex: =1
+
+                    ButtonCanvas1_4 As Button:
+                        AccessibleLabel: ="Submit"
+                        BasePaletteColor: =
+                        DisplayMode: =If(TextCanvas4_3.Text - daysRequested*8 < 0, DisplayMode.Disabled, DisplayMode.Edit)
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: |-
+                            =//Add the Request to the SP List
+                            Patch(
+                                'Leave Requests',
+                                {
+                                    Title: curUser.FullName,
+                                    From: First(DateRange).Date,
+                                    To: Last(DateRange).Date,
+                                    'Leave Type': LookUp('Leave Types',Title = selectedType.Title),
+                                    Days: Sum(
+                                        DateRange,
+                                        Hours
+                                    ) / 8,
+                                    Hours: Sum(
+                                        DateRange,
+                                        Hours
+                                    ),
+                                    Employee: LookUp(Users,'Primary Email' = curUser.Email),
+                                    Manager: LookUp(Users,'Primary Email' = curUserMgr.mail),
+                                    Detail: Concat(
+                                        DateRange,
+                                        Text(
+                                            Date,
+                                            "mmmm dd yyyy"
+                                        ) & " - " & Hours & " hours",
+                                        ", "
+                                    )
+                                }
+                            );
+                            //Update Their Time Off Balance
+                            Patch(
+                                'Leave Balances',
+                                LookUp(
+                                    'Leave Balances',
+                                    Employee.'Primary Email' = curUser.Email && 'Leave Type'.Title = selectedType.Title
+                                ),
+                                {
+                                    Requested: LookUp(
+                                        'Leave Balances',
+                                        Employee.'Primary Email' = curUser.Email && 'Leave Type'.Title = selectedType.Title
+                                    ).Requested + Sum(
+                                        DateRange,
+                                        Hours
+                                    )
+                                }
+                            );
+                            Navigate(
+                                SuccessScreen,
+                                ScreenTransition.Fade,
+                                {varMessage: "Leave Request Submitted Successfully"}
+                            )
+                            //If you want to skip approval process and automatically reduce balance uncomment this
+                            //Patch('Leave Requests',LookUp('Leave Requests',Employee.'Primary Email'=curUserEmail&&TimeOffType.Value=selectedType.Title),{RequestedTimeOff:LookUp('Leave Requests',Employee.'Primary Email'=curUserEmail&&TimeOffType.Value=selectedType.Title).RequestedTimeOff+daysRequested});
+                        Text: ="Submit"
+                        Width: =96
+                        X: =1200
+                        Y: =20
+                        ZIndex: =2
+

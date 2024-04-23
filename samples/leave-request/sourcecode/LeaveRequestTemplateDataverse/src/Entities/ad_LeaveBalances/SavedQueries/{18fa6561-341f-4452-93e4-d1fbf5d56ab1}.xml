@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{18fa6561-341f-4452-93e4-d1fbf5d56ab1}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ad_title" select="1" icon="1" preview="1">
+        <row name="result" id="ad_leavebalancesid">
+          <cell name="ad_title" width="300" />
+          <cell name="ad_employee" width="100" />
+          <cell name="ad_requested" width="100" />
+          <cell name="ad_approved" width="100" />
+          <cell name="ad_leavetype" width="106" />
+          <cell name="a_364875a64e1e48f68a8dc31d07bd07f0.ad_standardhours" width="206" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ad_leavebalances">
+          <attribute name="ad_leavebalancesid" />
+          <attribute name="ad_title" />
+          <attribute name="createdon" />
+          <order attribute="ad_title" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ad_employee" />
+          <attribute name="ad_requested" />
+          <attribute name="ad_approved" />
+          <attribute name="ad_leavetype" />
+          <link-entity alias="a_364875a64e1e48f68a8dc31d07bd07f0" name="ad_leavetypes" to="ad_leavetype" from="ad_leavetypesid" link-type="outer" visible="false">
+            <attribute name="ad_standardhours" />
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Leave Balances" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "ad_leavebalanceses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "ad_leavebalances",
+    "MaxGetRowsCount": 500,
+    "Name": "Leave Balances",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "ad_approved": "Approved",
+      "ad_Employee": "Employee",
+      "ad_leavebalances_AsyncOperations": "System Jobs",
+      "ad_leavebalances_BulkDeleteFailures": "Bulk Delete Failures",
+      "ad_leavebalances_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "ad_leavebalances_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "ad_leavebalances_ProcessSession": "Process Sessions",
+      "ad_leavebalances_SyncErrors": "Sync Errors",
+      "ad_leavebalancesid": "Leave Balances",
+      "ad_LeaveType": "Leave Type",
+      "ad_requested": "Requested",
+      "ad_title": "Title",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Leave Balances",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Leave Balances (Views)",
+    "Name": "_ad_leavebalances_views",
+    "RelatedEntityName": "Leave Balances",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "18fa6561-341f-4452-93e4-d1fbf5d56ab1": "Active Leave Balances",
+      "410afff2-b27c-4315-a33f-167e895b7af1": "Leave Balances Associated View",
+      "88818f30-9ecf-427d-985a-295d9d143e2e": "Leave Balances Lookup View",
+      "da9f633f-d49b-4c76-9fd3-b74189901e70": "Leave Balances Advanced Find View",
+      "e2bd3362-a1fe-471f-8ebc-36403cc614c3": "Inactive Leave Balances"
+    }
+  },
+  {
+    "DisplayName": "Status (Leave Balances)",
+    "Name": "ad_leavebalances_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Leave Balances"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Leave Balances",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Leave Balances)",
+    "Name": "ad_leavebalances_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Leave Balances"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Leave Balances",
+    "Type": "OptionSetInfo"
+  }
+]
