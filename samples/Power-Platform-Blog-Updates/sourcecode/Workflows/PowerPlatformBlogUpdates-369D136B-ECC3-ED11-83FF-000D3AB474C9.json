@@ -1,0 +1,1208 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_rss_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "natiturt_RSSConnection"
+        },
+        "api": {
+          "name": "shared_rss"
+        }
+      },
+      "shared_office365_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "natiturt_OutlookConnection"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Send To Address (natiturt_SendToAddress)": {
+          "defaultValue": "nati@natiturts.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_SendToAddress",
+            "description": "An email or group that the blog updates will be sent to"
+          }
+        },
+        "Social Icon 1 (natiturt_SocialIcon1)": {
+          "defaultValue": "https://nati-turtledove.com/wp-content/uploads/2023/08/linkedin.png",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_SocialIcon1"
+          }
+        },
+        "Social Icon 2 (natiturt_SocialIcon2)": {
+          "defaultValue": "https://nati-turtledove.com/wp-content/uploads/2023/08/github.png",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_SocialIcon2"
+          }
+        },
+        "Social Icon 3 (natiturt_SocialIcon3)": {
+          "defaultValue": "https://nati-turtledove.com/wp-content/uploads/2023/08/youtube.png",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_SocialIcon3"
+          }
+        },
+        "Social Icon 4 (natiturt_SocialIcon4)": {
+          "defaultValue": "https://nati-turtledove.com/wp-content/uploads/2023/08/megaphone-fill.png",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_SocialIcon4"
+          }
+        },
+        "Website Link (natiturt_WebsiteLink)": {
+          "defaultValue": "www.nati-turtledove.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_WebsiteLink"
+          }
+        },
+        "Header Logo (natiturt_HeaderLogo)": {
+          "defaultValue": "https://nati-turtledove.com/wp-content/uploads/2023/08/cropped-Mascot-Logo.png",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_HeaderLogo"
+          }
+        },
+        "Social Link 1 (natiturt_SocialLink1)": {
+          "defaultValue": "https://www.linkedin.com/in/nati-turtledove/",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_SocialLink1"
+          }
+        },
+        "Social Link 3 (natiturt_SocialLink3)": {
+          "defaultValue": "https://www.youtube.com/@natiturts",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_SocialLink3"
+          }
+        },
+        "Social Link 4 (natiturt_SocialLink4)": {
+          "defaultValue": "https://nati-turtledove.com/blog/",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_SocialLink4"
+          }
+        },
+        "Email Subject (natiturt_EmailSubject)": {
+          "defaultValue": "Power Platform Weekly Blog Updates",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_EmailSubject"
+          }
+        },
+        "Social Link 2 (natiturt_SocialLink2)": {
+          "defaultValue": "https://github.com/NatiTurts",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_SocialLink2"
+          }
+        },
+        "Footer Text (natiturt_FooterText)": {
+          "defaultValue": "&copy;2024 Nati Turtledove",
+          "type": "String",
+          "metadata": {
+            "schemaName": "natiturt_FooterText"
+          }
+        }
+      },
+      "triggers": {
+        "Scheduled_Run": {
+          "recurrence": {
+            "frequency": "Week",
+            "interval": 1,
+            "schedule": {
+              "weekDays": [
+                "Monday"
+              ],
+              "hours": [
+                "6"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "8707bcf2-7f2a-4a9c-bf0a-2eb26370f639"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "Check_if_there_were_any_posts_this_week_Power_Automate": {
+          "actions": {
+            "Compose_the_links_for_each_blog_post_Power_Automate": {
+              "foreach": "@body('Filter_array_Power_Automate')",
+              "actions": {
+                "Compose_Power_Automate_Blog": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "220731bf-ff07-4950-a054-64b8660467be"
+                  },
+                  "type": "Compose",
+                  "inputs": "<tr><td><h3><a href=\"@{items('Compose_the_links_for_each_blog_post_Power_Automate')?['primaryLink']}@{variables('varContributorID')}\">@{items('Compose_the_links_for_each_blog_post_Power_Automate')?['title']}</a></h3></td></tr><tr><td style=\"color: #777777;\">Posted on @{items('Compose_the_links_for_each_blog_post_Power_Automate')?['publishDate']}</td></tr><tr><td>@{items('Compose_the_links_for_each_blog_post_Power_Automate')?['summary']}</td></tr>"
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ffd7c708-3ad0-4114-832c-2697dc448fca"
+              },
+              "type": "Foreach"
+            },
+            "Set_Power_Automate_Body_-_Updates": {
+              "runAfter": {
+                "Compose_the_links_for_each_blog_post_Power_Automate": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e2105b1c-194f-46b6-b11f-0c1f6a1c42f3"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "varPowerAutomateEmailBody",
+                "value": "@{join(outputs('Compose_Power_Automate_Blog'),'')}"
+              }
+            }
+          },
+          "runAfter": {
+            "Filter_array_Power_Automate": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Power_Automate_No_updates": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "8e12239b-dc2a-4078-aae0-a3fcd834f073"
+                },
+                "type": "Compose",
+                "inputs": "<tr><td><h3>No new Power Automate updates this week</h3></td></tr><tr><td style=\"color: #777777;\"> </td></tr>"
+              },
+              "Set_Power_Automate_Body_-_No_Updates": {
+                "runAfter": {
+                  "Power_Automate_No_updates": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "bba564f0-e9e1-459d-893e-1c6f8e4cd461"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "varPowerAutomateEmailBody",
+                  "value": "@{outputs('Power_Automate_No_updates')}"
+                }
+              }
+            }
+          },
+          "expression": "@greater(length(body('Filter_array_Power_Automate')), 0)",
+          "metadata": {
+            "operationMetadataId": "3d28dfb7-60d2-445b-80c7-d69cb829fb08"
+          },
+          "type": "If"
+        },
+        "Filter_array_Power_Automate": {
+          "runAfter": {
+            "List_all_RSS_feed_items_Power_Automate": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cab3aaa9-0ec1-4986-964a-f3cecf081ee9"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@body('List_all_RSS_feed_items_Power_Automate')",
+            "where": "@greater(item()?['publishDate'], variables('varDateRange'))"
+          }
+        },
+        "List_all_RSS_feed_items_Power_Automate": {
+          "runAfter": {
+            "Power_App_Icon": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "flowSystemMetadata": {
+              "swaggerOperationId": "ListFeedItems"
+            },
+            "operationMetadataId": "cc54aaed-42c9-4fa9-99c1-c0b754461313"
+          },
+          "type": "ApiConnection",
+          "inputs": {
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['shared_rss_1']['connectionId']"
+              }
+            },
+            "method": "get",
+            "path": "/ListFeedItems",
+            "queries": {
+              "feedUrl": "https://flow.microsoft.com/en-us/blog/feed/"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_all_RSS_feed_items_Power_Apps": {
+          "runAfter": {
+            "Power_Automate_Icon": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7221fa37-0266-4968-8266-3da4de46eaf0",
+            "flowSystemMetadata": {
+              "swaggerOperationId": "ListFeedItems"
+            }
+          },
+          "type": "ApiConnection",
+          "inputs": {
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['shared_rss_1']['connectionId']"
+              }
+            },
+            "method": "get",
+            "path": "/ListFeedItems",
+            "queries": {
+              "feedUrl": "https://powerapps.microsoft.com/en-us/blog/feed/",
+              "sinceProperty": "PublishDate"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Filter_array_Power_Apps": {
+          "runAfter": {
+            "List_all_RSS_feed_items_Power_Apps": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "629d53d2-33b1-4933-8b2e-fd3c9ecdcf9a"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@body('List_all_RSS_feed_items_Power_Apps')",
+            "where": "@greater(item()?['publishDate'], variables('varDateRange'))"
+          }
+        },
+        "Check_if_there_were_any_posts_this_week_Power_Apps": {
+          "actions": {
+            "Compose_the_links_for_each_blog_post_Power_Apps": {
+              "foreach": "@body('Filter_array_Power_Apps')",
+              "actions": {
+                "Compose_Power_Apps_Blog": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "220731bf-ff07-4950-a054-64b8660467be"
+                  },
+                  "type": "Compose",
+                  "inputs": "<tr><td><h3><a href=\"@{items('Compose_the_links_for_each_blog_post_Power_Apps')?['primaryLink']}@{variables('varContributorID')}\">@{items('Compose_the_links_for_each_blog_post_Power_Apps')?['title']}</a></h3></td></tr><tr><td style=\"color: #777777;\">Posted on @{items('Compose_the_links_for_each_blog_post_Power_Apps')?['publishDate']}</td></tr><tr><td>@{items('Compose_the_links_for_each_blog_post_Power_Apps')?['summary']}</td></tr>"
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ffd7c708-3ad0-4114-832c-2697dc448fca"
+              },
+              "type": "Foreach"
+            },
+            "Set_Power_Apps_Body_-_Updates": {
+              "runAfter": {
+                "Compose_the_links_for_each_blog_post_Power_Apps": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a5f7d5fb-d802-48cd-8d4d-b7e25051cf02"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "varPowerAppsEmailBody",
+                "value": "@{join(outputs('Compose_Power_Apps_Blog'),'')}"
+              }
+            }
+          },
+          "runAfter": {
+            "Filter_array_Power_Apps": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Power_Apps_No_Updates": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "4c61c9c8-bb86-4054-b5af-979699c3eeeb"
+                },
+                "type": "Compose",
+                "inputs": "<tr><td><h3>No new Power Apps updates this week</h3></td></tr><tr><td style=\"color: #777777;\"> </td></tr>"
+              },
+              "Set_Power_Apps_Body_-_No_Updates": {
+                "runAfter": {
+                  "Power_Apps_No_Updates": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "7d2eb002-62ba-41ab-8e97-63aaca4a46d6"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "varPowerAppsEmailBody",
+                  "value": "@{outputs('Power_Apps_No_Updates')}"
+                }
+              }
+            }
+          },
+          "expression": {
+            "greater": [
+              "@length(body('Filter_array_Power_Apps'))",
+              0
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f0a99b3f-70f4-4e70-b0ba-b5de6a111224"
+          },
+          "type": "If"
+        },
+        "Power_Automate_Email_Body": {
+          "runAfter": {
+            "Contributor_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "54196224-9e41-45b1-9c1d-bead22583bb5"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varPowerAutomateEmailBody",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Power_Apps_Email_Body": {
+          "runAfter": {
+            "Contributor_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cf2bb3fb-1640-45a8-987a-37a6f49d7707"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varPowerAppsEmailBody",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Power_BI_Email_Body": {
+          "runAfter": {
+            "Contributor_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2ab6a482-28a8-4be3-895e-6e13d50ecbce"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varPowerBIEmailBody",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Copilot_Studio_Email_Body": {
+          "runAfter": {
+            "Contributor_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "698242b9-43ad-4b7d-a87f-5bde8fc36fdb"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varCopilot StudioEmailBody",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Power_Pages_Email_Body": {
+          "runAfter": {
+            "Contributor_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f5880126-953e-42ee-9587-c0892cbd8dfe"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varPowerPagesEmailBody",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Power_Platform_Email_Body": {
+          "runAfter": {
+            "Contributor_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c09f2f4f-dbf4-480c-ac9a-a552fe16549d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varPowerPlatformEmailBody",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "List_all_RSS_feed_items_Power_BI": {
+          "runAfter": {
+            "Power_BI_Icon": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fb2585be-6f04-4c7e-bb1b-2427dcb283ea",
+            "flowSystemMetadata": {
+              "swaggerOperationId": "ListFeedItems"
+            }
+          },
+          "type": "ApiConnection",
+          "inputs": {
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['shared_rss_1']['connectionId']"
+              }
+            },
+            "method": "get",
+            "path": "/ListFeedItems",
+            "queries": {
+              "feedUrl": "https://powerbi.microsoft.com/en-us/blog/feed/",
+              "sinceProperty": "PublishDate"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_all_RSS_feed_items_Copilot_Studio": {
+          "runAfter": {
+            "Copilot_Studio_Icon": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a8bef40e-4776-4563-b8fd-bebbb19766be",
+            "flowSystemMetadata": {
+              "swaggerOperationId": "ListFeedItems"
+            }
+          },
+          "type": "ApiConnection",
+          "inputs": {
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['shared_rss_1']['connectionId']"
+              }
+            },
+            "method": "get",
+            "path": "/ListFeedItems",
+            "queries": {
+              "feedUrl": "https://microsoftcopilotstudio.microsoft.com/en-us/blog/feed/",
+              "sinceProperty": "PublishDate"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_all_RSS_feed_items_Power_Pages": {
+          "runAfter": {
+            "Power_Page_Icon": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1af3fbfb-8253-430e-83a7-ca52e6186753",
+            "flowSystemMetadata": {
+              "swaggerOperationId": "ListFeedItems"
+            }
+          },
+          "type": "ApiConnection",
+          "inputs": {
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['shared_rss_1']['connectionId']"
+              }
+            },
+            "method": "get",
+            "path": "/ListFeedItems",
+            "queries": {
+              "feedUrl": "https://powerpages.microsoft.com/en-us/blog/feed/",
+              "sinceProperty": "PublishDate"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_all_RSS_feed_items_Power_Platform": {
+          "runAfter": {
+            "Power_Platform_Icon": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4f4b3c4c-c865-4adc-9f6e-f9c8cd62f191",
+            "flowSystemMetadata": {
+              "swaggerOperationId": "ListFeedItems"
+            }
+          },
+          "type": "ApiConnection",
+          "inputs": {
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['shared_rss_1']['connectionId']"
+              }
+            },
+            "method": "get",
+            "path": "/ListFeedItems",
+            "queries": {
+              "feedUrl": "https://cloudblogs.microsoft.com/powerplatform/feed/",
+              "sinceProperty": "PublishDate"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Filter_array_Power_BI": {
+          "runAfter": {
+            "List_all_RSS_feed_items_Power_BI": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "93a1b57a-9d67-427b-aaad-cb2e66ddd1b4"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@body('List_all_RSS_feed_items_Power_BI')",
+            "where": "@greater(item()?['publishDate'], variables('varDateRange'))"
+          }
+        },
+        "Filter_array_Copilot_Studio": {
+          "runAfter": {
+            "List_all_RSS_feed_items_Copilot_Studio": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "086b0075-1df9-4ec6-a07f-0e735b29b46e"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@body('List_all_RSS_feed_items_Copilot_Studio')",
+            "where": "@greater(item()?['publishDate'], variables('varDateRange'))"
+          }
+        },
+        "Filter_array_Power_Pages": {
+          "runAfter": {
+            "List_all_RSS_feed_items_Power_Pages": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "639f4fc4-a00f-41a8-9a67-94631fbbc9ae"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@body('List_all_RSS_feed_items_Power_Pages')",
+            "where": "@greater(item()?['publishDate'], variables('varDateRange'))"
+          }
+        },
+        "Filter_array_Power_Platform": {
+          "runAfter": {
+            "List_all_RSS_feed_items_Power_Platform": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "34d34d41-2888-4603-87bc-ceef9b8d00a7"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@body('List_all_RSS_feed_items_Power_Platform')",
+            "where": "@greater(item()?['publishDate'], variables('varDateRange'))"
+          }
+        },
+        "Check_if_there_were_any_posts_this_week_Power_BI": {
+          "actions": {
+            "Compose_the_links_for_each_blog_post_Power_BI": {
+              "foreach": "@body('Filter_array_Power_BI')",
+              "actions": {
+                "Compose_Power_BI_Blog": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "220731bf-ff07-4950-a054-64b8660467be"
+                  },
+                  "type": "Compose",
+                  "inputs": "<tr><td><h3><a href=\"@{items('Compose_the_links_for_each_blog_post_Power_BI')?['primaryLink']}@{variables('varContributorID')}\">@{items('Compose_the_links_for_each_blog_post_Power_BI')?['title']}</a></h3></td></tr><tr><td style=\"color: #777777;\">Posted on @{items('Compose_the_links_for_each_blog_post_Power_BI')?['publishDate']}</td></tr><tr><td>@{items('Compose_the_links_for_each_blog_post_Power_BI')?['summary']}</td></tr>"
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ffd7c708-3ad0-4114-832c-2697dc448fca"
+              },
+              "type": "Foreach"
+            },
+            "Set_Power_BI_Body_-_Updates": {
+              "runAfter": {
+                "Compose_the_links_for_each_blog_post_Power_BI": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "dda9ae0b-c27f-4582-b3c5-edf3a5baee21"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "varPowerBIEmailBody",
+                "value": "@{join(outputs('Compose_Power_BI_Blog'),'')}"
+              }
+            }
+          },
+          "runAfter": {
+            "Filter_array_Power_BI": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "No_Power_BI_Update": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "24022bc6-e693-4643-a54c-2343a98025a9"
+                },
+                "type": "Compose",
+                "inputs": "<tr><td><h3>No new Power BI updates this week</h3></td></tr><tr><td style=\"color: #777777;\"> </td></tr>"
+              },
+              "Set_Power_BI_Body_-_No_Updates": {
+                "runAfter": {
+                  "No_Power_BI_Update": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "bc494085-318f-48d3-81fa-b23482927ccd"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "varPowerBIEmailBody",
+                  "value": "@{outputs('No_Power_BI_Update')}"
+                }
+              }
+            }
+          },
+          "expression": {
+            "greater": [
+              "@length(body('Filter_array_Power_BI'))",
+              0
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8fa5fac6-9d04-48fe-bce4-b660a6caf5c7"
+          },
+          "type": "If"
+        },
+        "Check_if_there_were_any_posts_this_week_Copilot_Studio": {
+          "actions": {
+            "Compose_the_links_for_each_blog_post_Copilot_Studio": {
+              "foreach": "@body('Filter_array_Copilot_Studio')",
+              "actions": {
+                "Compose_Copilot_Studio_Blog": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "220731bf-ff07-4950-a054-64b8660467be"
+                  },
+                  "type": "Compose",
+                  "inputs": "<tr><td><h3><a href=\"@{items('Compose_the_links_for_each_blog_post_Copilot_Studio')?['primaryLink']}@{variables('varContributorID')}\">@{items('Compose_the_links_for_each_blog_post_Copilot_Studio')?['title']}</a></h3></td></tr><tr><td style=\"color: #777777;\">Posted on @{items('Compose_the_links_for_each_blog_post_Copilot_Studio')?['publishDate']}</td></tr><tr><td>@{items('Compose_the_links_for_each_blog_post_Copilot_Studio')?['summary']}</td></tr>"
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ffd7c708-3ad0-4114-832c-2697dc448fca"
+              },
+              "type": "Foreach"
+            },
+            "Set_Copilot_Studio_Body_-_Updates": {
+              "runAfter": {
+                "Compose_the_links_for_each_blog_post_Copilot_Studio": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "213ed61a-ccb1-4cd0-90fb-923f6b6430b1"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "varCopilot StudioEmailBody",
+                "value": "@{join(outputs('Compose_Copilot_Studio_Blog'),'')}"
+              }
+            }
+          },
+          "runAfter": {
+            "Filter_array_Copilot_Studio": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Copilot_Studio_No_Update": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "c3c241d1-29f8-4745-b183-326e646facda"
+                },
+                "type": "Compose",
+                "inputs": "<tr><td><h3>No new Copilot Studio updates this week</h3></td></tr><tr><td style=\"color: #777777;\"> </td></tr>"
+              },
+              "Set_Copilot_Studio_Body_-_No_Updates": {
+                "runAfter": {
+                  "Copilot_Studio_No_Update": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "a857c50d-7b69-40a2-99ac-22b20cf55a0d"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "varCopilot StudioEmailBody",
+                  "value": "@{outputs('Copilot_Studio_No_Update')}"
+                }
+              }
+            }
+          },
+          "expression": {
+            "greater": [
+              "@length(body('Filter_array_Copilot_Studio'))",
+              0
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5607c65e-962a-4226-8ab3-5807fe293e57"
+          },
+          "type": "If"
+        },
+        "Check_if_there_were_any_posts_this_week_Power_Pages": {
+          "actions": {
+            "Compose_the_links_for_each_blog_post_Power_Pages": {
+              "foreach": "@body('Filter_array_Power_Pages')",
+              "actions": {
+                "Compose_Power_Pages_Blog": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "6b1a3eaa-2999-463b-b5ed-bdcfc1153ddd"
+                  },
+                  "type": "Compose",
+                  "inputs": "<tr><td><h3><a href=\"@{items('Compose_the_links_for_each_blog_post_Power_Pages')?['primaryLink']}@{variables('varContributorID')}\">@{items('Compose_the_links_for_each_blog_post_Power_Pages')?['title']}</a></h3></td></tr><tr><td style=\"color: #777777;\">Posted on @{items('Compose_the_links_for_each_blog_post_Power_Pages')?['publishDate']}</td></tr><tr><td>@{items('Compose_the_links_for_each_blog_post_Power_Pages')?['summary']}</td></tr>"
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ffd7c708-3ad0-4114-832c-2697dc448fca"
+              },
+              "type": "Foreach"
+            },
+            "Set_Power_Pages_Body_-_Updates": {
+              "runAfter": {
+                "Compose_the_links_for_each_blog_post_Power_Pages": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "84bbb7f1-d7ec-4f43-8312-d5bc5e152f0f"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "varPowerPagesEmailBody",
+                "value": "@{join(outputs('Compose_Power_Pages_Blog'),'')}"
+              }
+            }
+          },
+          "runAfter": {
+            "Filter_array_Power_Pages": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "No_Power_Pages_Update": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "c9bc8992-1973-40ac-af39-f0aba754f7e8"
+                },
+                "type": "Compose",
+                "inputs": "<tr><td><h3>No new Power Pages updates this week</h3></td></tr><tr><td style=\"color: #777777;\"> </td></tr>"
+              },
+              "Set_Power_Pages_Body_-_No_Updates": {
+                "runAfter": {
+                  "No_Power_Pages_Update": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "abe1456a-1825-4e99-b64c-c8112f2ec8e1"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "varPowerPagesEmailBody",
+                  "value": "@{outputs('No_Power_Pages_Update')}"
+                }
+              }
+            }
+          },
+          "expression": {
+            "greater": [
+              "@length(body('Filter_array_Power_Pages'))",
+              0
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e3148f68-0559-4d4f-ab3b-d856ebf7ff19"
+          },
+          "type": "If"
+        },
+        "Check_if_there_were_any_posts_this_week_Power_Platform": {
+          "actions": {
+            "Compose_the_links_for_each_blog_post_Power_Platform": {
+              "foreach": "@body('Filter_array_Power_Platform')",
+              "actions": {
+                "Compose_Power_Platform_Blog": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "aab97daf-620d-4b59-921f-bb95136dbf44"
+                  },
+                  "type": "Compose",
+                  "inputs": "<tr><td><h3><a href=\"@{items('Compose_the_links_for_each_blog_post_Power_Platform')?['primaryLink']}@{variables('varContributorID')}\">@{items('Compose_the_links_for_each_blog_post_Power_Platform')?['title']}</a></h3></td></tr><tr><td style=\"color: #777777;\">Posted on @{items('Compose_the_links_for_each_blog_post_Power_Platform')?['publishDate']}</td></tr><tr><td>@{items('Compose_the_links_for_each_blog_post_Power_Platform')?['summary']}</td></tr>"
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ffd7c708-3ad0-4114-832c-2697dc448fca"
+              },
+              "type": "Foreach"
+            },
+            "Set_Power_Platform_Body_-_Updates": {
+              "runAfter": {
+                "Compose_the_links_for_each_blog_post_Power_Platform": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "90948e4d-804e-4b3d-9191-af958bb62613"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "varPowerPlatformEmailBody",
+                "value": "@{join(outputs('Compose_Power_Platform_Blog'),'')}"
+              }
+            }
+          },
+          "runAfter": {
+            "Filter_array_Power_Platform": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "No_Platform_Updates": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "56728821-b505-42c8-8963-e04bcb421069"
+                },
+                "type": "Compose",
+                "inputs": "<tr><td><h3>No new Power Platform updates this week</h3></td></tr><tr><td style=\"color: #777777;\"> </td></tr>"
+              },
+              "Set_Power_Platform_Body_-_No_Updates": {
+                "runAfter": {
+                  "No_Platform_Updates": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "64555223-6421-4802-b8fa-7259b1105f4e"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "varPowerPlatformEmailBody",
+                  "value": "@{outputs('No_Platform_Updates')}"
+                }
+              }
+            }
+          },
+          "expression": {
+            "greater": [
+              "@length(body('Filter_array_Power_Platform'))",
+              0
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "88243bae-4730-4fd8-8dc7-d6ca327fc4f8"
+          },
+          "type": "If"
+        },
+        "Generate_Email_Body": {
+          "runAfter": {
+            "Check_if_there_were_any_posts_this_week_Copilot_Studio": [
+              "Succeeded"
+            ],
+            "Check_if_there_were_any_posts_this_week_Power_Apps": [
+              "Succeeded"
+            ],
+            "Check_if_there_were_any_posts_this_week_Power_Automate": [
+              "Succeeded"
+            ],
+            "Check_if_there_were_any_posts_this_week_Power_BI": [
+              "Succeeded"
+            ],
+            "Check_if_there_were_any_posts_this_week_Power_Pages": [
+              "Succeeded"
+            ],
+            "Check_if_there_were_any_posts_this_week_Power_Platform": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "23c3a404-9a20-42e4-aa8a-f0b4424db7db"
+          },
+          "type": "Compose",
+          "inputs": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n<head>\n<!--[if gte mso 9]>\n<xml>\n  <o:OfficeDocumentSettings>\n    <o:AllowPNG/>\n    <o:PixelsPerInch>96</o:PixelsPerInch>\n  </o:OfficeDocumentSettings>\n</xml>\n<![endif]-->\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <meta name=\"x-apple-disable-message-reformatting\">\n  <!--[if !mso]><!--><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><!--<![endif]-->\n  <title></title>\n  \n    <style type=\"text/css\">\n      @media only screen and (min-width: 620px) {\n  .u-row {\n    width: 600px !important;\n  }\n  .u-row .u-col {\n    vertical-align: top;\n  }\n\n  .u-row .u-col-100 {\n    width: 600px !important;\n  }\n\n}\n\n@media (max-width: 620px) {\n  .u-row-container {\n    max-width: 100% !important;\n    padding-left: 0px !important;\n    padding-right: 0px !important;\n  }\n  .u-row .u-col {\n    min-width: 320px !important;\n    max-width: 100% !important;\n    display: block !important;\n  }\n  .u-row {\n    width: calc(100% - 40px) !important;\n  }\n  .u-col {\n    width: 100% !important;\n  }\n  .u-col > div {\n    margin: 0 auto;\n  }\n}\nbody {\n  margin: 0;\n  padding: 0;\n}\n\ntable,\ntr,\ntd {\n  vertical-align: top;\n  border-collapse: collapse;\n}\n\np {\n  margin: 0;\n}\n\n.ie-container table,\n.mso-container table {\n  table-layout: fixed;\n}\n\n* {\n  line-height: inherit;\n}\n\na[x-apple-data-detectors='true'] {\n  color: inherit !important;\n  text-decoration: none !important;\n}\n\ntable, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } @media (max-width: 480px) { #u_content_image_8 .v-src-width { width: auto !important; } #u_content_image_8 .v-src-max-width { max-width: 40% !important; } #u_content_text_8 .v-container-padding-padding { padding: 10px 22px 70px !important; } #u_content_heading_6 .v-container-padding-padding { padding: 35px 10px 6px !important; } #u_content_heading_10 .v-container-padding-padding { padding: 35px 10px 6px !important; } #u_content_heading_9 .v-container-padding-padding { padding: 35px 10px 6px !important; } #u_content_heading_8 .v-container-padding-padding { padding: 35px 10px 6px !important; } #u_content_heading_7 .v-container-padding-padding { padding: 35px 10px 6px !important; } #u_content_heading_11 .v-container-padding-padding { padding: 35px 10px 6px !important; } }\n    </style>\n  \n  \n\n</head>\n\n<body class=\"clean-body u_body\" style=\"margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #dde5e7;color: #000000\">\n  <!--[if IE]><div class=\"ie-container\"><![endif]-->\n  <!--[if mso]><div class=\"mso-container\"><![endif]-->\n  <table style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: #dde5e7;width:100%\" cellpadding=\"0\" cellspacing=\"0\">\n  <tbody>\n  <tr style=\"vertical-align: top\">\n    <td style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n    <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td align=\"center\" style=\"background-color: #dde5e7;\"><![endif]-->\n    \n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: transparent;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <table height=\"0px\" align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 0px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n    <tbody>\n      <tr style=\"vertical-align: top\">\n        <td style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n          <span>&#160;</span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #ffffff;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table id=\"u_content_image_8\" style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:33px 10px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n  <tr>\n    <td style=\"padding-right: 0px;padding-left: 0px;\" align=\"center\">\n      <a href=\"@{parameters('Website Link (natiturt_WebsiteLink)')}\" target=\"_blank\">\n      <img align=\"center\" border=\"0\" src=\"@{parameters('Header Logo (natiturt_HeaderLogo)')}\" alt=\"Logo\" title=\"Logo\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 300px;\" width=\"300\" class=\"v-src-width v-src-max-width\"/>\n      </a><br><p style= \"font-weight: bold; font-size: 23px\">@{parameters('Email Subject (natiturt_EmailSubject)')}</p>\n    </td>\n  </tr>\n</table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n \n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table id=\"u_content_text_8\" style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #dde5e7;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #dde5e7;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:12px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <table height=\"0px\" align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 0px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n    <tbody>\n      <tr style=\"vertical-align: top\">\n        <td style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n          <span>&#160;</span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #ffffff;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n  <tr>\n    <td style=\"padding-right: 0px;padding-left: 0px;\" align=\"center\">\n      \n      <img align=\"center\" border=\"0\" src=\"@{variables('varPowerAppIcon')}\" alt=\"\" title=\"\" style=\"width: 64px; height: 64px;\"/>\n      \n    </td>\n  </tr>\n</table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<table id=\"u_content_heading_6\" style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:40px 10px 6px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <h1 style=\"margin: 0px; color: #000000; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: tahoma,arial,helvetica,sans-serif; font-size: 32px;\">\n    What's new in Microsoft Power Apps\n  </h1>\n<table>@{variables('varPowerAppsEmailBody')}</table>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #dde5e7;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #dde5e7;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:12px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <table height=\"0px\" align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 0px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n    <tbody>\n      <tr style=\"vertical-align: top\">\n        <td style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n          <span>&#160;</span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #ffffff;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n  <tr>\n    <td style=\"padding-right: 0px;padding-left: 0px;\" align=\"center\">\n      \n      <img align=\"center\" border=\"0\" src=\"@{variables('varPowerAutomateIcon')}\" alt=\"\" title=\"\" style=\"width: 64px; height: 64px;\"/>\n      \n    </td>\n  </tr>\n</table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<table id=\"u_content_heading_10\" style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:40px 10px 6px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <h1 style=\"margin: 0px; color: #000000; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: tahoma,arial,helvetica,sans-serif; font-size: 32px;\">\n    What's new in Microsoft Power Automate\n  </h1>\n<table>@{variables('varPowerAutomateEmailBody')}</table>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #dde5e7;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #dde5e7;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:12px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <table height=\"0px\" align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 0px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n    <tbody>\n      <tr style=\"vertical-align: top\">\n        <td style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n          <span>&#160;</span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #ffffff;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n  <tr>\n    <td style=\"padding-right: 0px;padding-left: 0px;\" align=\"center\">\n      \n      <img align=\"center\" border=\"0\" src=\"@{variables('varPowerBIIcon')}\" alt=\"\" title=\"\" style=\"width: 64px; height: 64px;\"/>\n      \n    </td>\n  </tr>\n</table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<table id=\"u_content_heading_9\" style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:40px 10px 6px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <h1 style=\"margin: 0px; color: #000000; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: tahoma,arial,helvetica,sans-serif; font-size: 32px;\">\n    What's new in Microsoft Power BI\n  </h1>\n<table>@{variables('varPowerBIEmailBody')}</table>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #dde5e7;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #dde5e7;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:12px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <table height=\"0px\" align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 0px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n    <tbody>\n      <tr style=\"vertical-align: top\">\n        <td style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n          <span>&#160;</span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #ffffff;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n  <tr>\n    <td style=\"padding-right: 0px;padding-left: 0px;\" align=\"center\">\n      \n      <img align=\"center\" border=\"0\" src=\"@{variables('varCopilotStudioIcon')}\" alt=\"\" title=\"\" style=\"width: 64px; height: 64px;\"/>\n      \n    </td>\n  </tr>\n</table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<table id=\"u_content_heading_8\" style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:40px 10px 6px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <h1 style=\"margin: 0px; color: #000000; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: tahoma,arial,helvetica,sans-serif; font-size: 32px;\">\n    What's new in Microsoft Copilot Studio\n  </h1>\n<table>@{variables('varCopilot StudioEmailBody')}</table>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #dde5e7;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #dde5e7;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:12px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <table height=\"0px\" align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 0px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n    <tbody>\n      <tr style=\"vertical-align: top\">\n        <td style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n          <span>&#160;</span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #ffffff;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n  <tr>\n    <td style=\"padding-right: 0px;padding-left: 0px;\" align=\"center\">\n      \n      <img align=\"center\" border=\"0\" src=\"@{variables('varPowerPageIcon')}\" alt=\"\" title=\"\" style=\"width: 64px; height: 64px;\"/>\n      \n    </td>\n  </tr>\n</table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<table id=\"u_content_heading_7\" style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:40px 10px 6px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <h1 style=\"margin: 0px; color: #000000; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: tahoma,arial,helvetica,sans-serif; font-size: 32px;\">\n    What's new in Microsoft Power Pages\n  </h1>\n<table>@{variables('varPowerPagesEmailBody')}</table>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #dde5e7;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #dde5e7;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:12px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <table height=\"0px\" align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 0px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n    <tbody>\n      <tr style=\"vertical-align: top\">\n        <td style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n          <span>&#160;</span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #ffffff;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n  <tr>\n    <td style=\"padding-right: 0px;padding-left: 0px;\" align=\"center\">\n      \n      <img align=\"center\" border=\"0\" src=\"@{variables('varPowerPlatformIcon')}\" alt=\"\" title=\"\" style=\"width: 64px; height: 64px;\"/>\n      \n    </td>\n  </tr>\n</table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<table id=\"u_content_heading_11\" style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:40px 10px 6px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <h1 style=\"margin: 0px; color: #000000; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: tahoma,arial,helvetica,sans-serif; font-size: 32px;\">\n    What's new in Microsoft Power Platform\n  </h1>\n<table>@{variables('varPowerPlatformEmailBody')}</table>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #dde5e7;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #dde5e7;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:12px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <table height=\"0px\" align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 0px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n    <tbody>\n      <tr style=\"vertical-align: top\">\n        <td style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%\">\n          <span>&#160;</span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: #34495e;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:60px 10px 0px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <div style=\"color: #000000; line-height: 150%; text-align: center; word-wrap: break-word;\">\n    <p style=\"font-size: 14px; line-height: 150%;\"><span style=\"font-family: arial, helvetica, sans-serif; font-size: 20px; line-height: 30px;\"><span style=\"line-height: 30px; font-size: 20px;\">@{parameters('Website Link (natiturt_WebsiteLink)')}</span></span></p>\n  </div>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:27px 10px 30px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n<div align=\"center\">\n  <div style=\"display: table; max-width:207px;\">\n  <!--[if (mso)|(IE)]><table width=\"207\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"border-collapse:collapse;\" align=\"center\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:207px;\"><tr><![endif]-->\n  \n    \n    <!--[if (mso)|(IE)]><td width=\"32\" style=\"width:32px; padding-right: 20px;\" valign=\"top\"><![endif]-->\n    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 20px\">\n      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n        <a href=\"@{parameters('Social Link 1 (natiturt_SocialLink1)')}\" title=\"\" target=\"_blank\">\n          <img src=\"@{parameters('Social Icon 1 (natiturt_SocialIcon1)')}\" alt=\"\" title=\"\" width=\"32\" height=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n        </a>\n      </td></tr>\n    </tbody></table>\n    <!--[if (mso)|(IE)]></td><![endif]-->\n    \n    <!--[if (mso)|(IE)]><td width=\"32\" style=\"width:32px; padding-right: 20px;\" valign=\"top\"><![endif]-->\n    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 20px\">\n      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n        <a href=\"@{parameters('Social Link 2 (natiturt_SocialLink2)')}\" title=\"\" target=\"_blank\">\n          <img src=\"@{parameters('Social Icon 2 (natiturt_SocialIcon2)')}\" alt=\"\" title=\"\" width=\"32\" height=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n        </a>\n      </td></tr>\n    </tbody></table>\n    <!--[if (mso)|(IE)]></td><![endif]-->\n    \n    <!--[if (mso)|(IE)]><td width=\"32\" style=\"width:32px; padding-right: 20px;\" valign=\"top\"><![endif]-->\n    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 20px\">\n      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n        <a href=\"@{parameters('Social Link 3 (natiturt_SocialLink3)')}\" title=\"\" target=\"_blank\">\n          <img src=\"@{parameters('Social Icon 3 (natiturt_SocialIcon3)')}\" alt=\"\" title=\"\" width=\"32\" height=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n        </a>\n      </td></tr>\n    </tbody></table>\n    <!--[if (mso)|(IE)]></td><![endif]-->\n    \n    <!--[if (mso)|(IE)]><td width=\"32\" style=\"width:32px; padding-right: 0px;\" valign=\"top\"><![endif]-->\n    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 0px\">\n      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n        <a href=\"@{parameters('Social Link 4 (natiturt_SocialLink4)')}\" title=\"\" target=\"_blank\">\n          <img src=\"@{parameters('Social Icon 4 (natiturt_SocialIcon4)')}\" alt=\"\" title=\"\" width=\"32\" height=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n        </a>\n      </td></tr>\n    </tbody></table>\n    <!--[if (mso)|(IE)]></td><![endif]-->\n    \n    \n    <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n  </div>\n</div>\n\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;\">\n    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\"><tr style=\"background-color: transparent;\"><![endif]-->\n      \n<!--[if (mso)|(IE)]><td align=\"center\" width=\"600\" style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\" valign=\"top\"><![endif]-->\n<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n  <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n  <!--[if (!mso)&(!IE)]><!--><div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"><!--<![endif]-->\n  \n<table style=\"font-family:arial,helvetica,sans-serif;\" role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n  <tbody>\n    <tr>\n      <td class=\"v-container-padding-padding\" style=\"overflow-wrap:break-word;word-break:break-word;padding:15px 10px;font-family:arial,helvetica,sans-serif;\" align=\"left\">\n        \n  <div style=\"color: #7e8c8d; line-height: 140%; text-align: center; word-wrap: break-word;\">\n    <p style=\"font-size: 14px; line-height: 140%;\"><span style=\"font-size: 14px; line-height: 19.6px; font-family: arial, helvetica, sans-serif;\">@{parameters('Footer Text (natiturt_FooterText)')}</span></p>\n  </div>\n  <div style=\"color: #7e8c8d; line-height: 140%; text-align: center; word-wrap: break-word;\">\n  </div>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n  </div>\n</div>\n<!--[if (mso)|(IE)]></td><![endif]-->\n      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n    </div>\n  </div>\n</div>\n\n\n    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->\n    </td>\n  </tr>\n  </tbody>\n  </table>\n  <!--[if mso]></div><![endif]-->\n  <!--[if IE]></div><![endif]-->\n</body>\n\n</html>"
+        },
+        "Power_Automate_Icon": {
+          "runAfter": {
+            "Power_Apps_Email_Body": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ab3f9f68-0bd8-4a3e-b082-e66f34be6c01"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varPowerAutomateIcon",
+                "type": "string",
+                "value": "data:image/png;base64,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"
+              }
+            ]
+          }
+        },
+        "Power_App_Icon": {
+          "runAfter": {
+            "Power_Automate_Email_Body": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "643ff4c4-4238-4c98-96f6-41873cdbd2e0"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varPowerAppIcon",
+                "type": "string",
+                "value": "data:image/png;base64,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"
+              }
+            ]
+          }
+        },
+        "Power_BI_Icon": {
+          "runAfter": {
+            "Power_BI_Email_Body": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4a0d4de7-85ad-47d8-bdbb-3f4e7f41a731"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varPowerBIIcon",
+                "type": "string",
+                "value": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAocSURBVBgZzcFB6qV7Ytfh5/uvEzAgscG5xJV43cHdQpagm3DYS+ih0ywhO3AogQwkk4AEbJw0drp+H9/3nKq6BiHnTgrqeR5+EP/wX3/zl58ffic/bV22yiamTGFulW2Kbeqkjco2/fXn/7P/9O//6vf/w7/g4QdxPvmt/ORSm6chZYqpbGqjwlan2lxmEyc/78/6Df6jf8HDDyJ+9kW5hOlsLsVs8pRLWyLzRcrTpn7yxsOPIvKLUVnlkkuZaNTmJTZf1OaryRsPP4gwKnPJUBibyiWXsxGTXMqlNsUksnnj4UcRh02xlWleKttIjbnkbGG6mEtmWeXXePhBlKdsbpFbniIpNrTlUrK5VDbVJpJ3Hn4o5dZmciyM0cVELhFGZW5R5pJf5+EHUcgYos2tsRIa0snLxNxyGetiorz18KMozMuIvHQ262ab29bFEIm5HUtGmDcefhhDacstl7S55VZZ5amLbUpuuWXZKu88/DC6bG5hU+aWy0Y3o44x5GSbypiXwrzx8IPoGGHCkhojkstmqnnqYi5lxYSJyVsPP4isMnmK2ZIJm1FZmKnGkGIIUzK/wsMP4k+fTbltYjpNbKN8bC7JkmIrbYQRya289fCD+OM/5SliG2Kbj2UuH4nNbJrUNiWSMkzYvPPwHfzhv//8l9Xvyk8bOiWznZO5JZdClFsilzyVP/z+f/n93/+9z3/6ow+KqW1SYqjMLXIp7zx8B9Vvq5/oYrJyOTZUZDg1l6FChlw6bn/+b36jf/fhH//2b/d4LJePjdCFeUmWl5E3Hr6H+rlC+5iSy5JFp5lLEZEMldxyq0z+/C/+tX/6zGYfSx8u20jE3PJVJ/PGw3dwOublnKaQW2Eo1chTyS0iIUNFfP5c58P2QYeNRi55Kk+bX+XhO1jU8ZJNHSNPpVyiDJWXJELJLbfPn+184tOHYqFjH1NMzORS5K2H7+KEkds5jcglUzJSJF+tEGEodTCfc6uYySVO5jK6zOUweevhO6jmVsi81LFN5ZKMDBVSLnmKylNZOsf6UHL7MJRLXgrzqzx8BxUyVF6SyG16cquQWy6FPOUS5dRqaku2SRdzGZWXKG89fA9lSFQYUUixNSKX3CpELnkqL8mQqflYJxujsuRSbVPbvPPwXSSXQnMrSi7lkqyO29yiPJWX3CpL2jrWsg+yrRLZ5qU2eevhe+iETZetjq1k5pKyykuezmGjkMpTMWKnRNvIKjG3aF226bJ54+F7yMipEdKxRJFLnsqt8tTxVG6TxEGarazk8rFJKLbaRsyv8fAd1PGLKJfGCmWjopBbLuWp4xbK5ahWaE7bx0gX0+YWzUTee/guCnPradjkJZVLWOWbQm6Vp3Ib1eaLZDFK2Exlbnnr4fuYUtmMiKSyURmjMIXcKnMpL7mdNi9NtKVRjC42YX6Vh+/hHLmVTJkuNunkadUxTxE5RG5RXvIUHTv49NHFtLlNdDHNVt54eOMP//Bf/vLTZ7+Ln+wk1MwXJ1I2VMhL21DShj/94X/60//+O/3pD05tKCZELiHyRSoiL8U5Ni+bztk8FdYxbzy88XH89jg/uXxIGVHCtMpG5SXkVnkqyad/9W/t45M//uN/s0iU3KK8pFzyEtVM2VyGSXaO+aKMMO88vNPnn+dW59ic2Ci1sEmNTHLLpPKSl3z82V/oHL+IyDEvlaey0QlzTmuzD8nK5lZubXIZK288vFOSy8hlHNU8RZYoyTakMuR4KuaS23SbpyySp0JuHZecGnMrNrmUsaUURsXmjYe3MkleUpnCEmq2hNRBbpWn5akQHYcNFfJUXqIwOcTSUFZ2YnPJLG0qMzZ56+Gt4zapJLe0uZQYBxmSp0KI8pRLyNCJoXxTEqIQ5Va2UGzkMpWMvBTmnYc36ngJuU0Xy2lDRpGnmqeQl8glpDK3qDDlVtnoHL/IactQ2eYX2dZlWzGT9x7eilyOjUqM0KTkMsXKU4gwFEKeSm6pNlSeSr4ouaUiTvYp8lWk8rQuNvLOwzsdLymXUNh0m0tlcpnyEqI85ZJESYbpYkQukUuSoTIqc4sRJjWzWRdWGXnj4a2Q6WJWLnM7KGwSpmie8lReQuYWxajmVm6VjYqSW8pclpqVjdyiEvNFNm88vHXcqm1UIym3mqc8dXxTkslLckuFdFxCbhWlvJRECR0aC6tsnua2yiZWeefhrVBYhS62Rc1TkaHa3PKShCjfdDB1bFSUf6aQ+SJGsaQ2wgzrwpxqzLzz8E7HZUS5bAsJczvYOG1SS+YW5bZRIaQyVBTyVMJMhShMTLOUdrEutrJRbCnmjYc3KhPyTSGLhDbhMBKRvISUS0TlViHyVDGURCGFolVW7WNLdthcUttEGuWNhzfmMJTKbZLmKVNYNbmE3IZkUnmJ8hK55CWKwpAKCWUkE1uFUba55DbVvPHwRo7lUrSNYk5eVo1sImVESW7JSwgRlY06vikvx0vmEqOyIpfcCsltqV2SNx7eGCrTti5GqnkKGcqIQgzlJUQuh1xCyku5VYZELkcxOtmnUJinyGWjFBU2bzy800FunUZeQl5SMVQ0t0KERfmqDlK5zaUkQ+WbPJ3MS4s028itk1HMrbzz8EYOxdhCN0NMeTnkNg5GeTnkkqeikLml8lRyKclQLtEUZW0WurARVmEuxbzx8E6ZULK0obKdjDJqLCcZIeSpvOQlFTKXQuSbofJUFI2msLC5xHyVYn6Fhze202UyIpKtOs1QNnLLS77peBo6bhWFnLKNvJREecltRMslXyQvSy65jcobD2/UIZeQ20a1rZLLKrdqGwohL+lkvihEmUvRcculkK/qOG3Musx8sdSssE1Fsnnj4Y05wpRLotwSGbmMoskl5KnkluSp46s6vilEGEqi0MUO+5SnWXVIjG7mKe88vFHNJU0up2yEVDaUyyYkrCTDJLeQRC4ZKkS+iKiQW9kqu9CiWeabfFPeenhjKqaQy+ykkC0yl8rWbZ4yt4RJ5akQkVuUyjak8lSIOG2fomj2Uclt+X+EyhsPb9SZp1BsnbMhmbxkKxkhuUUuSTYqRCgvSW51KL9IpahkYjPVJBsi5FY2bzy8UdlCycikshUp26g2l46XbCTk1glRlFuFPJWXiES5fdCHkUlYMVR+UZ7mnYc35qCLKZtLbVaNkGIqRoakQoYKuVUU8lS+KYlc8pKTnfhA2RSWTRc2ykt56+GtKMqtQnMrZFOsGiG5RS5JXsKsJE+lslGZS1G+2sgXEbJNkmEUahut8sbDG3Vsecltum3rYmVbxSaJ8pJfhLlVyFMhlZnOYS756pyMFjJzqZhLJ19tUyZ54+GNdf4G/0Exl5BbNSLSXCqEMP/cvISQypRMsSQOG5WXXJYv8lUxNl/l5ePjr73x8E791dZv4+ehkqYYU2lD5RdDmP/fcCqbbkMupyi3ivLVp60xX9RsqFS2qWyjv2l//M/e+L/kRk5lmj8lagAAAABJRU5ErkJggg=="
+              }
+            ]
+          }
+        },
+        "Power_Page_Icon": {
+          "runAfter": {
+            "Power_Pages_Email_Body": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "580ce082-3f94-4ff6-9e32-4bb92054522d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varPowerPageIcon",
+                "type": "string",
+                "value": "data:image/png;base64,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"
+              }
+            ]
+          }
+        },
+        "Power_Platform_Icon": {
+          "runAfter": {
+            "Power_Platform_Email_Body": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a719bf05-1530-4f72-97a6-5bda185694bc"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varPowerPlatformIcon",
+                "type": "string",
+                "value": "data:image/png;base64,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"
+              }
+            ]
+          }
+        },
+        "Copilot_Studio_Icon": {
+          "runAfter": {
+            "Copilot_Studio_Email_Body": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5dffd8eb-b4a0-43f7-a225-20a9fffe4c45"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varCopilotStudioIcon",
+                "type": "string",
+                "value": "data:image/png;base64,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"
+              }
+            ]
+          }
+        },
+        "Contributor_ID": {
+          "runAfter": {
+            "Set_Post_Date_Range": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "03347eb4-cd4c-4327-b175-3cf090a1bfa7"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varContributorID",
+                "type": "string",
+                "value": "?wt.mc_id=MVP_308952"
+              }
+            ]
+          }
+        },
+        "Send_an_email": {
+          "runAfter": {
+            "Generate_Email_Body": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b7f0258e-7b26-437d-9d3b-13aee69adf38",
+            "flowSystemMetadata": {
+              "swaggerOperationId": "SendEmailV2"
+            }
+          },
+          "type": "ApiConnection",
+          "inputs": {
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['shared_office365_1']['connectionId']"
+              }
+            },
+            "method": "post",
+            "body": {
+              "To": "@parameters('Send To Address (natiturt_SendToAddress)')",
+              "Subject": "@parameters('Email Subject (natiturt_EmailSubject)')",
+              "Body": "<p>@{outputs('Generate_Email_Body')}</p>",
+              "Importance": "Normal"
+            },
+            "path": "/v2/Mail",
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Set_Post_Date_Range": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "68e01c4b-3b80-4738-bfcd-96babb25d294"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varDateRange",
+                "type": "string",
+                "value": "@{adddays(utcnow(), -7)}"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
