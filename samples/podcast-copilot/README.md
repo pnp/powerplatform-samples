@@ -195,4 +195,4 @@ If you want to build everything above from scratch where you will:
 
 🔗 You can follow the full workshop here: [Podcast Copilot with Azure OpenAI Service, .NET, and Power Platform Workshop](https://aka.ms/PowerPodcastCopilot). 
 
-<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/podcast-copilot" />
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/podcast-copilot" aria-hidden="true" />

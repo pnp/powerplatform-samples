@@ -89,3 +89,5 @@ You can also use the [Power Apps CLI](https://aka.ms/pac/docs) to pack the sourc
 
 * [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
 * [Power Apps canvas apps documentation](https://docs.microsoft.com/powerapps/maker/canvas-apps/)
+
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/security-role-management" aria-hidden="true" />

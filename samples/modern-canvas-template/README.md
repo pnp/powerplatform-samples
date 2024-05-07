@@ -77,3 +77,5 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
 <img src="./assets/Screenshot 2023-10-21 122435.png" />
+
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/modern-canvas-template" aria-hidden="true" />

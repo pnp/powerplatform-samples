@@ -115,6 +115,4 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 * [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
 * [Power Apps canvas apps documentation](https://docs.microsoft.com/powerapps/maker/canvas-apps/)
 
-<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/weekly-timesheet-sharepoint" />
-
----
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/weekly-timesheet-sharepoint" aria-hidden="true" />
