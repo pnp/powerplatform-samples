@@ -23,7 +23,6 @@ A re-usable component that allows you to display events in  a calendar.
 
 ![Preview](./assets/preview.png)  
 
-
 ## Applies to
 
 * [Microsoft Power Apps](https://docs.microsoft.com/powerapps/)
@@ -47,7 +46,6 @@ Calendar Component | [April Dunnam](https://github.com/aprildunnam) ([@aprildunn
 Version|Date|Comments
 -------|----|--------
 1.0|May 5, 2021|Initial release
-
 
 ## Features
 
@@ -85,7 +83,7 @@ Table(
 ```
 
 ## Data Sources
- 
+
 None
 
 ## Minimal Path to Awesome
@@ -100,16 +98,17 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 * Clone the repository to a local drive
 * Pack the source files back into `.msapp` file:
+
   ```bash
   pac canvas pack --sources pathtosourcefolder --msapp pathtomsapp
   ```
+
   Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtomsapp` to point to the path of this solution's `.msapp` file (located under the `solution` folder)
 * Use the `.msapp` file using **File** > **Open** > **Browse** in Power Apps Studio.
 
 ## Disclaimer
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
-
 
 ## Support
 
@@ -121,8 +120,8 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 
 ## For more information
 
-- [Create a component for canvas apps](https://docs.microsoft.com/powerapps/maker/canvas-apps/create-component#components-in-canvas-apps)
-- [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
-- [Power Apps canvas apps documentation](https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/)
+* [Create a component for canvas apps](https://docs.microsoft.com/powerapps/maker/canvas-apps/create-component#components-in-canvas-apps)
+* [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
+* [Power Apps canvas apps documentation](https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/)
 
 <img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/calendar-component" />
