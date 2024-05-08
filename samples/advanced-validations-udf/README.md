@@ -15,6 +15,7 @@ Experience the power of advanced validation techniques with our User Defined Fun
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
 
 ## Compatibility
+
 ![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
 
@@ -60,7 +61,6 @@ For questions regarding this sample, [create a new question](https://github.com/
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/advanced-validations-udf" />
-
-
 Feel free to leverage the Advanced Validations UDF component library to enhance your canvas apps with sophisticated validation techniques! 🚀✨
+
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/advanced-validations-udf" />
