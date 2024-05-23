@@ -1,128 +1,95 @@
----
-page_type: sample
-languages:
-- powerapps-comma
-products:
-- powerapps
-- canvas
-name: Calendar Component
-description: A re-usable component that allows you to display events in  a calendar.
-urlFragment: powerapps-calendar-component
-ms.date: 5/5/2021
-author: aprildunnam
-ms.author: pnp
-level: intermediate
-ms.prod: power-apps
----
-
-# Calendar Component
+# Send Inline Image In Teams Channel
 
 ## Summary
 
-A re-usable component that allows you to display events in  a calendar.
+This sample gets the image from SharePoint document library and post it on *Microsoft Teams* channel using **Power Automate**. The flow utilizes standard **Send Microsoft graph request** action to overcome the payload size limit of 28 KB.
 
-![Preview](./assets/preview.png)  
+![Flow overview](/samples/Send-Inline-Image-In-Teams-Channel/assets/flow-overview.png "Flow overview")
 
 
 ## Applies to
 
-* [Microsoft Power Apps](https://docs.microsoft.com/powerapps/)
+* [Power Automate](https://docs.microsoft.com/power-automate/)
+* [Microsoft Teams](https://learn.microsoft.com/en-us/microsoftteams/)
 
 ## Compatibility
 
-![Power Apps Source File Pack and Unpack Utility 0.20](https://img.shields.io/badge/Packing%20Tool-0.20-green.svg)
-![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-green.svg "Premium Power Apps license not required")
-![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-green.svg "Does not rely on experimental features")
+![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-green.svg "Premium license not required")
 ![On-Premises Connectors](https://img.shields.io/badge/On--Premises%20Connectors-No-green.svg "Does not use on-premise connectors")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-Not%20Required-green.svg "Does not use custom connectors")
+
 
 ## Authors
 
 Solution|Author(s)
 --------|---------
-Calendar Component | [April Dunnam](https://github.com/aprildunnam) ([@aprildunnam](https://www.twitter.com/aprildunnam) )
+Send inline image in team message | [Manish Solanki](https://github.com/Solanki-Manish) ([@Manish Solanki](https://www.linkedin.com/in/manish-solanki-1058b7a))
+
 
 ## Version history
 
 Version|Date|Comments
 -------|----|--------
-1.0|May 5, 2021|Initial release
+1.0|May 21, 2024|Initial release
 
 
 ## Features
 
 This sample illustrates the following concepts:
 
-* Creating a Power Apps component
-* Using a Power Apps component
+* Post embed image in Teams Channel message
+* Overcome the payload size limit (28 KB)
+* Send a Microsoft Graph HTTP request using standard action 
+* Expression
+
 
 ## Prerequisites
 
-### Using the component
+* This Flow requires an image to be present in SharePoint document library (inside site asset).
+* A Microsoft Teams with a channel where image needs to be shared via message.
 
-To use the component in this sample, you'll need to pass events to display in the calendar.
-
-You can do this by connecting to a data source which provides a `Date`, a `Title` and a `Time` field, or you can manually create entries and pass them as a `Table`, as follows:
-
-```excel
-Table(
-    {
-        Date: "5/3/2021",
-        Title: "Meeting",
-        Time: "2:30pm"
-    },
-     {
-        Date: "5/4/2021",
-        Title: "MBAS PVA",
-        Time: "1:00pm"
-    },
-    {
-        Date: "5/5/2021",
-        Title: "PnP AMA Power Platform",
-        Time: "3:00pm"
-    }
-)
-```
-
-## Data Sources
- 
-None
 
 ## Minimal Path to Awesome
 
-* [Download](./solution/calendar-component.msapp) the `.msapp` from the `solution` folder
-* Use the `.msapp` file using **File** > **Open** > **Browse** within Power Apps Studio.
-* Save and Publish
+### Import Solution
 
-## Using the Source Code
+1.   Download the solution found under the "solution" folder
+1.   Import the Flow Solution. Open  [https://make.powerautomate.com/](https://make.powerautomate.com/). Open **My Flows**, **Import Package(Legacy)**.
+1.   Browse to the file you downloaded and select **Upload**.
+1.   In the **Import package** screen, under **Review Package Content** click **Select during import** and choose an existing connection or create a new connections for "SharePoint" and "Microsoft Teams"
+     ![Import](./assets/Import.png)
+1.   Once complete, select **Import**.
 
-You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps::
+### Configure Flow
 
-* Clone the repository to a local drive
-* Pack the source files back into `.msapp` file:
-  ```bash
-  pac canvas pack --sources pathtosourcefolder --msapp pathtomsapp
-  ```
-  Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtomsapp` to point to the path of this solution's `.msapp` file (located under the `solution` folder)
-* Use the `.msapp` file using **File** > **Open** > **Browse** in Power Apps Studio.
+1. Once the solution is imported, edit it
+1. Select **Get file content** action and replace the **Site Address** and the **File Identifier** to point to your SharePoint site and image file.
+   ![Configure Get file content action](./assets/config1.png)
+1. Select **Get team** action and choose a MS team from the drop down.
+   ![Configure Get team action](./assets/config2.png)
+1. Save and test the flow.
+
 
 ## Disclaimer
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
+## Help
 
-## Support
+We do not support samples, but we this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-While we don't support samples, if you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=calendar-component&authors=@aprildunnam&title=calendar-component%20-%20).
+If you encounter any issues while using this sample, [create a new issue](https://github.com/pnp/powerautomate-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=calendar-component&authors=@aprildunnam&title=calendar-component%20-%20).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerautomate-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=calendar-component&authors=@aprildunnam&title=calendar-component%20-%20).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerautomate-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=YOURSAMPLENAME&authors=@YOURGITHUBUSERNAME&title=YOURSAMPLENAME%20-%20).
 
 ## For more information
 
-- [Create a component for canvas apps](https://docs.microsoft.com/powerapps/maker/canvas-apps/create-component#components-in-canvas-apps)
-- [Overview of creating apps in Power Apps](https://docs.microsoft.com/powerapps/maker/)
-- [Power Apps canvas apps documentation](https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/)
+- [Create your first flow](https://docs.microsoft.com/en-us/power-automate/getting-started#create-your-first-flow)
+- [Microsoft Power Automate documentation](https://docs.microsoft.com/en-us/power-automate/)
 
-<img src="https://telemetry.sharepointpnp.com/powerapps-samples/samples/calendar-component" />
+
+<img src="https://telemetry.sharepointpnp.com/powerautomate-samples/samples/Send-Inline-Image-In-Teams-Channel" />
+
+---
