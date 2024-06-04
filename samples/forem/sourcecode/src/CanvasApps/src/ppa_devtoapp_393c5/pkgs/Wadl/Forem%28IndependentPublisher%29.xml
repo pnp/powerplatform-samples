@@ -1,0 +1,394 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://unitedstates-002.azure-apim.net/apim/foremip" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="Forem(IndependentPublisher)" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="Forem (Independent Publisher)">Forem is an open source platform for building modern, independent, and safe communities.</doc>
+  <grammars>
+    <jsonTypes targetNamespace="https://unitedstates-002.azure-apim.net/apim/foremip" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <integer name="DisplayAd_id_def" />
+      <boolean name="DisplayAd_approved_def" />
+      <string name="DisplayAd_body_markdown_def" />
+      <string name="DisplayAd_cached_tag_list_def" />
+      <integer name="DisplayAd_clicks_count_def" />
+      <string name="DisplayAd_created_at_def" />
+      <string name="DisplayAd_display_to_def" />
+      <integer name="DisplayAd_impressions_count_def" />
+      <string name="DisplayAd_name_def" />
+      <string name="DisplayAd_organization_id_def" />
+      <string name="DisplayAd_placement_area_def" />
+      <string name="DisplayAd_processed_html_def" />
+      <boolean name="DisplayAd_published_def" />
+      <integer name="DisplayAd_success_rate_def" />
+      <string name="DisplayAd_type_of_def" />
+      <string name="DisplayAd_updated_at_def" />
+      <string name="DisplayAd_tag_list_def" />
+      <object name="DisplayAd">
+        <property name="id" type="integer" />
+        <property name="approved" type="boolean" />
+        <property name="body_markdown" type="string" />
+        <property name="cached_tag_list" type="string" />
+        <property name="clicks_count" type="integer" />
+        <property name="created_at" type="string" />
+        <property name="display_to" type="string" />
+        <property name="impressions_count" type="integer" />
+        <property name="name" type="string" />
+        <property name="organization_id" type="string" />
+        <property name="placement_area" type="string" />
+        <property name="processed_html" type="string" />
+        <property name="published" type="boolean" />
+        <property name="success_rate" type="integer" />
+        <property name="type_of" type="string" />
+        <property name="updated_at" type="string" />
+        <property name="tag_list" type="string" />
+      </object>
+      <string name="Organization_name_def" />
+      <string name="Organization_username_def" />
+      <string name="Organization_slug_def" />
+      <string name="Organization_profile_image_def" />
+      <string name="Organization_profile_image_90_def" />
+      <object name="Organization">
+        <property name="name" type="string" />
+        <property name="username" type="string" />
+        <property name="slug" type="string" />
+        <property name="profile_image" type="string" />
+        <property name="profile_image_90" type="string" />
+      </object>
+      <string name="User_name_def" />
+      <integer name="User_id_def" />
+      <string name="User_username_def" />
+      <integer name="User_user_id_def" />
+      <string name="User_twitter_username_def" />
+      <string name="User_github_username_def" />
+      <string name="User_website_url_def" />
+      <string name="User_profile_image_def" />
+      <string name="User_profile_image_90_def" />
+      <object name="User">
+        <property name="name" type="string" />
+        <property name="id" type="integer" />
+        <property name="username" type="string" />
+        <property name="user_id" type="integer" />
+        <property name="twitter_username" type="string" />
+        <property name="github_username" type="string" />
+        <property name="website_url" type="string" />
+        <property name="profile_image" type="string" />
+        <property name="profile_image_90" type="string" />
+      </object>
+      <string name="responses_204_def" />
+      <string name="responses_Articles200_def_items_def_type_of_def" />
+      <integer name="responses_Articles200_def_items_def_id_def" />
+      <string name="responses_Articles200_def_items_def_title_def" />
+      <string name="responses_Articles200_def_items_def_description_def" />
+      <boolean name="responses_Articles200_def_items_def_published_def" />
+      <string name="responses_Articles200_def_items_def_published_at_def" />
+      <string name="responses_Articles200_def_items_def_slug_def" />
+      <string name="responses_Articles200_def_items_def_path_def" />
+      <string name="responses_Articles200_def_items_def_url_def" />
+      <integer name="responses_Articles200_def_items_def_comments_count_def" />
+      <integer name="responses_Articles200_def_items_def_public_reactions_count_def" />
+      <integer name="responses_Articles200_def_items_def_page_views_count_def" />
+      <string name="responses_Articles200_def_items_def_published_timestamp_def" />
+      <string name="responses_Articles200_def_items_def_body_markdown_def" />
+      <integer name="responses_Articles200_def_items_def_positive_reactions_count_def" />
+      <string name="responses_Articles200_def_items_def_cover_image_def" />
+      <string name="responses_Articles200_def_items_def_tag_list_def_items_def" />
+      <array type="string" name="responses_Articles200_def_items_def_tag_list_def" />
+      <string name="responses_Articles200_def_items_def_canonical_url_def" />
+      <integer name="responses_Articles200_def_items_def_reading_time_minutes_def" />
+      <object name="responses_Articles200_def_items_def">
+        <property name="type_of" type="string" />
+        <property name="id" type="integer" />
+        <property name="title" type="string" />
+        <property name="description" type="string" />
+        <property name="published" type="boolean" />
+        <property name="published_at" type="string" />
+        <property name="slug" type="string" />
+        <property name="path" type="string" />
+        <property name="url" type="string" />
+        <property name="comments_count" type="integer" />
+        <property name="public_reactions_count" type="integer" />
+        <property name="page_views_count" type="integer" />
+        <property name="published_timestamp" type="string" />
+        <property name="body_markdown" type="string" />
+        <property name="positive_reactions_count" type="integer" />
+        <property name="cover_image" type="string" />
+        <property name="tag_list" typeRef="responses_Articles200_def_items_def_tag_list_def" />
+        <property name="canonical_url" type="string" />
+        <property name="reading_time_minutes" type="integer" />
+        <property name="user" typeRef="User" />
+        <property name="organization" typeRef="Organization" />
+      </object>
+      <array typeRef="responses_Articles200_def_items_def" name="responses_Articles200_def" />
+      <string name="responses_GetPodcastEpisodes200_def_items_def_type_of_def" />
+      <string name="responses_GetPodcastEpisodes200_def_items_def_class_name_def" />
+      <integer name="responses_GetPodcastEpisodes200_def_items_def_id_def" />
+      <string name="responses_GetPodcastEpisodes200_def_items_def_path_def" />
+      <string name="responses_GetPodcastEpisodes200_def_items_def_title_def" />
+      <string name="responses_GetPodcastEpisodes200_def_items_def_image_url_def" />
+      <string name="responses_GetPodcastEpisodes200_def_items_def_podcast_def_title_def" />
+      <string name="responses_GetPodcastEpisodes200_def_items_def_podcast_def_slug_def" />
+      <string name="responses_GetPodcastEpisodes200_def_items_def_podcast_def_image_url_def" />
+      <object name="responses_GetPodcastEpisodes200_def_items_def_podcast_def">
+        <property name="title" type="string" />
+        <property name="slug" type="string" />
+        <property name="image_url" type="string" />
+      </object>
+      <object name="responses_GetPodcastEpisodes200_def_items_def">
+        <property name="type_of" type="string" />
+        <property name="class_name" type="string" />
+        <property name="id" type="integer" />
+        <property name="path" type="string" />
+        <property name="title" type="string" />
+        <property name="image_url" type="string" />
+        <property name="podcast" typeRef="responses_GetPodcastEpisodes200_def_items_def_podcast_def" />
+      </object>
+      <array typeRef="responses_GetPodcastEpisodes200_def_items_def" name="responses_GetPodcastEpisodes200_def" />
+      <string name="responses_GetProfileImages200_def_type_of_def" />
+      <string name="responses_GetProfileImages200_def_image_of_def" />
+      <string name="responses_GetProfileImages200_def_profile_image_def" />
+      <string name="responses_GetProfileImages200_def_profile_image_90_def" />
+      <object name="responses_GetProfileImages200_def">
+        <property name="type_of" type="string" />
+        <property name="image_of" type="string" />
+        <property name="profile_image" type="string" />
+        <property name="profile_image_90" type="string" />
+      </object>
+      <string name="responses_GetReadingList200_def_items_def_type_of_def" />
+      <integer name="responses_GetReadingList200_def_items_def_id_def" />
+      <string name="responses_GetReadingList200_def_items_def_status_def" />
+      <string name="responses_GetReadingList200_def_items_def_created_at_def" />
+      <string name="responses_GetReadingList200_def_items_def_article_def_type_of_def" />
+      <integer name="responses_GetReadingList200_def_items_def_article_def_id_def" />
+      <string name="responses_GetReadingList200_def_items_def_article_def_title_def" />
+      <string name="responses_GetReadingList200_def_items_def_article_def_description_def" />
+      <boolean name="responses_GetReadingList200_def_items_def_article_def_published_def" />
+      <string name="responses_GetReadingList200_def_items_def_article_def_published_at_def" />
+      <string name="responses_GetReadingList200_def_items_def_article_def_slug_def" />
+      <string name="responses_GetReadingList200_def_items_def_article_def_path_def" />
+      <string name="responses_GetReadingList200_def_items_def_article_def_url_def" />
+      <integer name="responses_GetReadingList200_def_items_def_article_def_comments_count_def" />
+      <integer name="responses_GetReadingList200_def_items_def_article_def_public_reactions_count_def" />
+      <integer name="responses_GetReadingList200_def_items_def_article_def_page_views_count_def" />
+      <string name="responses_GetReadingList200_def_items_def_article_def_published_timestamp_def" />
+      <string name="responses_GetReadingList200_def_items_def_article_def_body_markdown_def" />
+      <integer name="responses_GetReadingList200_def_items_def_article_def_positive_reactions_count_def" />
+      <string name="responses_GetReadingList200_def_items_def_article_def_cover_image_def" />
+      <string name="responses_GetReadingList200_def_items_def_article_def_canonical_url_def" />
+      <integer name="responses_GetReadingList200_def_items_def_article_def_reading_time_minutes_def" />
+      <object name="responses_GetReadingList200_def_items_def_article_def">
+        <property name="type_of" type="string" />
+        <property name="id" type="integer" />
+        <property name="title" type="string" />
+        <property name="description" type="string" />
+        <property name="published" type="boolean" />
+        <property name="published_at" type="string" />
+        <property name="slug" type="string" />
+        <property name="path" type="string" />
+        <property name="url" type="string" />
+        <property name="comments_count" type="integer" />
+        <property name="public_reactions_count" type="integer" />
+        <property name="page_views_count" type="integer" />
+        <property name="published_timestamp" type="string" />
+        <property name="body_markdown" type="string" />
+        <property name="positive_reactions_count" type="integer" />
+        <property name="cover_image" type="string" />
+        <property name="canonical_url" type="string" />
+        <property name="reading_time_minutes" type="integer" />
+        <property name="user" typeRef="User" />
+      </object>
+      <object name="responses_GetReadingList200_def_items_def">
+        <property name="type_of" type="string" />
+        <property name="id" type="integer" />
+        <property name="status" type="string" />
+        <property name="created_at" type="string" />
+        <property name="article" typeRef="responses_GetReadingList200_def_items_def_article_def" />
+      </object>
+      <array typeRef="responses_GetReadingList200_def_items_def" name="responses_GetReadingList200_def" />
+      <string name="responses_Error_def_error_def" />
+      <integer name="responses_Error_def_status_def" />
+      <object name="responses_Error_def">
+        <property name="error" type="string" />
+        <property name="status" type="integer" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://unitedstates-002.azure-apim.net/apim/foremip">
+    <resource path="/{connectionId}/api/articles/me">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetMyArticles" actionName="GetMyArticles" siena:isDeprecated="false">
+        <doc title="Get my articles&#xA;Use this action to get your articles." />
+        <request>
+          <param style="query" name="page" type="xs:int" required="true" default="1">
+            <doc title="The pagination page of the results." />
+          </param>
+          <param style="query" name="per_page" type="xs:int" required="true" default="30">
+            <doc title="The page size of the results (the number of items to return per page)." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:responses_Articles200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/api/articles/me/published">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetMyPublishedArticles" actionName="GetMyPublishedArticles" siena:isDeprecated="false">
+        <doc title="Get my published articles&#xA;Use this action to get all your published articles." />
+        <request>
+          <param style="query" name="page" type="xs:int" required="true" default="1">
+            <doc title="The pagination page of the results." />
+          </param>
+          <param style="query" name="per_page" type="xs:int" required="true" default="30">
+            <doc title="The page size of the results (the number of items to return per page)." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:responses_Articles200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/api/articles/me/unpublished">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetMyUnpublishedArticles" actionName="GetMyUnpublishedArticles" siena:isDeprecated="false">
+        <doc title="Get my unpublished articles&#xA;Use this action to get all your unpublished articles." />
+        <request>
+          <param style="query" name="page" type="xs:int" required="true" default="1">
+            <doc title="The pagination page of the results." />
+          </param>
+          <param style="query" name="per_page" type="xs:int" required="true" default="30">
+            <doc title="The page size of the results (the number of items to return per page)." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:responses_Articles200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/api/articles/me/all">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetAllMyArticles" actionName="GetAllMyArticles" siena:isDeprecated="false">
+        <doc title="Get all my articles&#xA;Use this to get all your articles (both published and unpublished). By default it will return featured, published articles ordered by descending popularity." />
+        <request>
+          <param style="query" name="page" type="xs:int" required="true" default="1">
+            <doc title="The pagination page of the results." />
+          </param>
+          <param style="query" name="per_page" type="xs:int" required="true" default="30">
+            <doc title="The page size of the results (the number of items to return per page)." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:responses_Articles200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/api/articles">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetArticles" actionName="GetArticles" siena:isDeprecated="false">
+        <doc title="Get articles&#xA;Use this actions to get a list of articles." />
+        <request>
+          <param style="query" name="page" type="xs:int" required="true" default="1">
+            <doc title="The pagination page of the results." />
+          </param>
+          <param style="query" name="per_page" type="xs:int" required="true" default="30">
+            <doc title="The page size of the results (the number of items to return per page)." />
+          </param>
+          <param style="query" name="tag" type="xs:string" required="true" default="discuss">
+            <doc title="The tag you want to limit the query by (e.g. 'discuss' will return only articles with the tag discuss)." />
+          </param>
+          <param style="query" name="tags" type="xs:string">
+            <doc title="The tags you want to limit the query by, separated by a comma (e.g. 'javascript, css' will return only articles with the tags javascript and css)." />
+          </param>
+          <param style="query" name="tags_exclude" type="xs:string">
+            <doc title="The tags you want to exclude from the query, separated by a comma (e.g. 'node, java' will not return articles with the tags node and java)." />
+          </param>
+          <param style="query" name="username" type="xs:string">
+            <doc title="The username of the user or the username of the organization." />
+          </param>
+          <param style="query" name="state" type="xs:string" default="fresh">
+            <doc title="Using this parameter will allow the client to check which articles are fresh or rising. If state=fresh the server will return fresh articles. If state=rising the server will return rising articles. This param can be used in conjuction with username, only if set to all." />
+          </param>
+          <param style="query" name="top" type="xs:string" default="2">
+            <doc title="Using this parameter will allow the client to return the most popular articles in the last N days. top indicates the number of days since publication of the articles returned. This param can be used in conjuction with tag." />
+          </param>
+          <param style="query" name="collection_id" type="xs:string" default="99">
+            <doc title="Adding this will allow the client to return the list of articles belonging to the requested collection, ordered by ascending publication date." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:responses_Articles200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/api/users/{user-id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="user-id" type="xs:string" required="true" default="by_username">
+        <doc title="The user ID for the URL." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetUser" actionName="GetUser" siena:isDeprecated="false">
+        <doc title="Retrieve an user&#xA;Use this action to retrieve a single user by the user's username." />
+        <request>
+          <param style="query" name="url" type="xs:string" required="true">
+            <doc title="The URL (Username) of the user (e.g. for https://dev.to/azure use azure)." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:User" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/api/podcast_episodes">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetPodcastEpisodes" actionName="GetPodcastEpisodes" siena:isDeprecated="false">
+        <doc title="Retrieve podcast episodes&#xA;Use this action to retrieve a list of podcast episodes." />
+        <request>
+          <param style="query" name="page" type="xs:int" required="true" default="1">
+            <doc title="The pagination page of the results." />
+          </param>
+          <param style="query" name="per_page" type="xs:int" required="true" default="30">
+            <doc title="The page size of the results (the number of items to return per page)." />
+          </param>
+          <param style="query" name="username" type="xs:string">
+            <doc title="The username of the user or the username of the organization." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:responses_GetPodcastEpisodes200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/api/profile_images/{username}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="username" type="xs:string" required="true">
+        <doc title="The username of the user or the username of the organization." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetUserProfileImage" actionName="GetUserProfileImage" siena:isDeprecated="false">
+        <doc title="Get profile image&#xA;Use this action to retrieve a user or organization profile image information by its corresponding username." />
+        <request />
+        <response>
+          <representation mediaType="application/json" element="service:responses_GetProfileImages200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/api/readinglist">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetReadinglist" actionName="GetReadinglist" siena:isDeprecated="false">
+        <doc title="Get my reading list&#xA;Use this action to retrieve a list of articles that were saved to your readinglist." />
+        <request>
+          <param style="query" name="page" type="xs:int" required="true" default="1">
+            <doc title="The pagination page of the results." />
+          </param>
+          <param style="query" name="per_page" type="xs:int" required="true" default="30">
+            <doc title="The page size of the results (the number of items to return per page)." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:responses_GetReadingList200_def" />
+        </response>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="shared_foremip" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>
