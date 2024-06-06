@@ -1,0 +1,378 @@
+"'Home Screen' As screen":
+
+    imgDevTo As image:
+        Image: =devto
+        PaddingBottom: =10
+        PaddingLeft: =10
+        PaddingRight: =10
+        PaddingTop: =10
+        ZIndex: =1
+
+    "pivMenu As 'Fluent Pivot (1.0.22)'.pcfdataset":
+        DisplayMode: =DisplayMode.Edit
+        Height: =50
+        Items: |-
+            =Table(
+                {
+                    ItemKey: "Home",
+                    ItemDisplayName: "Home",
+                    ItemIconName: "Home"
+                },
+                {
+                    ItemKey: "Azure",
+                    ItemDisplayName: "Azure",
+                    ItemIconName: "AzureLogo"
+                },
+                {
+                    ItemKey: "DotNet",
+                    ItemDisplayName: ".NET",
+                    ItemIconName: "Code"
+                }
+            )
+        OnSelect: |-
+            =Switch(
+                Self.SelectedKey,
+                "Azure",
+                ClearCollect(
+                    colArticles,
+                    // SortByColumns(
+                    AddColumns(
+                        'Forem(IndependentPublisher)'.GetArticles(
+                            1,
+                            1000,
+                            "azure",
+                            {username: "azure"}
+                        ),
+                        "author_name",
+                        user.name,
+                        "org_name",
+                        organization.name,
+                        "formatted_date",
+                        Text(
+                            DateTimeValue(
+                                Substitute(
+                                    published_at,
+                                    "Z",
+                                    ""
+                                )
+                            ),
+                            DateTimeFormat.ShortDateTime
+                        )
+                    )// ,
+            // "created_by",
+            // SortOrder.Descending
+            // )
+                ),
+                "DotNet",
+                ClearCollect(
+                    colArticles,
+                    SortByColumns(
+                        AddColumns(
+                            'Forem(IndependentPublisher)'.GetArticles(
+                                1,
+                                1000,
+                                "dotnet",
+                                {username: "dotnet"}
+                            ),
+                            "author_name",
+                            user.name,
+                            "org_name",
+                            organization.name,
+                            "formatted_date",
+                            Text(
+                                DateTimeValue(
+                                    Substitute(
+                                        published_at,
+                                        "Z",
+                                        ""
+                                    )
+                                ),
+                                DateTimeFormat.ShortDateTime
+                            )
+                        ),
+                        "formatted_date",
+                        SortOrder.Descending
+                    )
+                ),
+                "Home",
+                ClearCollect(
+                    colArticles,
+                    SortByColumns(
+                        AddColumns(
+                            'Forem(IndependentPublisher)'.GetArticles(
+                                1,
+                                1000,
+                                "",
+                                {tags: "powerplatform, powerapps, dotnet, azure"}
+                            ),
+                            "author_name",
+                            user.name,
+                            "org_name",
+                            organization.name,
+                            "formatted_date",
+                            Text(
+                                DateTimeValue(
+                                    Substitute(
+                                        published_at,
+                                        "Z",
+                                        ""
+                                    )
+                                ),
+                                DateTimeFormat.ShortDateTime
+                            )
+                        ),
+                        "formatted_date",
+                        SortOrder.Descending
+                    )
+                ),
+                "MyUnpublishedArticles",
+                ClearCollect(
+                    colArticles,
+                    'Forem(IndependentPublisher)'.GetMyUnpublishedArticles(
+                        1,
+                        1000
+                    )
+                ),
+                "PowerPlatform",
+                ClearCollect(
+                    colArticles,
+                    SortByColumns(
+                        AddColumns(
+                            'Forem(IndependentPublisher)'.GetArticles(
+                                1,
+                                1000,
+                                "powerplatform"
+                            ),
+                            "author_name",
+                            user.name,
+                            "org_name",
+                            organization.name,
+                            "formatted_date",
+                            Text(
+                                DateTimeValue(
+                                    Substitute(
+                                        published_at,
+                                        "Z",
+                                        ""
+                                    )
+                                ),
+                                DateTimeFormat.ShortDateTime
+                            )
+                        ),
+                        "formatted_date",
+                        SortOrder.Descending
+                    )
+                )
+            )
+        SelectedKey: =Self.Selected.ItemKey
+        Theme: =AppThemeJson
+        Width: =600
+        X: =100
+        Y: =Self.Height/2
+        ZIndex: =2
+
+    "searchBox As 'Fluent SearchBox (1.0.22) Preview'":
+        AccessibilityLabel: ="a"
+        DisplayMode: =DisplayMode.Edit
+        Height: =30
+        Theme: =AppThemeJson
+        Width: =600
+        X: =700
+        Y: =30
+        ZIndex: =3
+
+    "detailListArticles As 'Fluent Details List (1.0.22)'.pcfdataset":
+        columns_Items: |-
+            =Switch(
+                pivMenu.Selected.ItemKey,
+                "MyUnpublishedArticles",
+                Table(
+                    {
+                        ColDisplayName: "📰 Title",
+                        ColName: "title",
+                        ColBold: true,
+                        ColWidth: Parent.Width-100,
+                        ColRowHeader: true,
+                        ColResizable: true
+                    }
+                ),
+                Table(
+                    {
+                        ColDisplayName: "📰 Title",
+                        ColName: "title",
+                        ColBold: true,
+                        ColWidth: 700,
+                        ColRowHeader: true,
+                        ColResizable: true
+                    },
+                    {
+                        ColDisplayName: "✍️ Author",
+                        ColName: "author_name",
+                        ColResizable: true,
+                        ColSortable: true,
+                        ColWidth: 200,
+                        ColRowHeader: true
+                    },
+                    {
+                        ColDisplayName: "🏢 Org",
+                        ColName: "org_name",
+                        ColResizable: true,
+                        ColSortable: true,
+                        ColWidth: 100,
+                        ColRowHeader: true
+                    },
+                    {
+                        ColDisplayName: "⏰ Published",
+                        ColName: "formatted_date",
+                        ColResizable: true,
+                        ColSortable: true,
+                        ColWidth: 150,
+                        ColRowHeader: true
+                    },
+                    {
+                        ColDisplayName: "💬",
+                        ColName: "comments_count",
+                        ColResizable: true,
+                        ColSortable: true,
+                        ColWidth: 50,
+                        ColRowHeader: true
+                    },
+                    {
+                        ColDisplayName: "❤️",
+                        ColName: "public_reactions_count",
+                        ColResizable: true,
+                        ColSortable: true,
+                        ColWidth: 50,
+                        ColRowHeader: true
+                    },
+                    {
+                        ColDisplayName: "🏷️",
+                        ColName: "tags",
+                        ColWidth: 250,
+                        ColFirstMultiValueBold: true,
+                        ColMultiValueDelimiter: " "
+                    }
+                )
+            )
+        DisplayMode: =DisplayMode.Edit
+        Height: =630
+        Items: |-
+            =If(
+                Len(searchBox.SearchText) >= 3,
+                SortByColumns(
+                    Search(
+                        colArticles,
+                        searchBox.SearchText,
+                        "title"
+                    ),
+                    ctxSortCol,
+                    If(
+                        ctxSortAsc,
+                        SortOrder.Ascending,
+                        SortOrder.Descending
+                    )
+                ),
+                SortByColumns(
+                    colArticles,
+                    ctxSortCol,
+                    If(
+                        ctxSortAsc,
+                        SortOrder.Ascending,
+                        SortOrder.Descending
+                    )
+                )
+            )
+        OnChange: |-
+            =If(Self.EventName="Sort", 
+            UpdateContext({
+                            ctxSortCol:Self.SortEventColumn,
+                            ctxSortAsc:If(Self.SortEventDirection='PowerCAT.FluentDetailsList.SortEventDirection'.Ascending,true,false)
+             })
+            );
+        OnSelect: =false
+        SelectionType: ='PowerCAT.FluentDetailsList.SelectionType'.Single
+        SelectRowsOnFocus: =true
+        Width: =Parent.Width
+        X: =0
+        Y: =137
+        ZIndex: =4
+
+        title1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="title"
+            FieldName: ="title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =1
+
+        author_name1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="author_name"
+            FieldName: ="author_name"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =2
+
+        org_name1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="org_name"
+            FieldName: ="org_name"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =3
+            ZIndex: =3
+
+        formatted_date1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="formatted_date"
+            FieldName: ="formatted_date"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =4
+            ZIndex: =4
+
+        comments_count1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="comments_count"
+            FieldName: ="comments_count"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =5
+            ZIndex: =5
+
+        public_reactions_count1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="public_reactions_count"
+            FieldName: ="public_reactions_count"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =6
+            ZIndex: =6
+
+        tags1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="tags"
+            FieldName: ="tags"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =7
+            ZIndex: =7
+
+    "cbArticles As 'Fluent Command Bar (1.0.22)'.pcfdataset":
+        DisplayMode: =DisplayMode.Edit
+        Height: =37
+        Items: |-
+            =Table(
+                {
+                    ItemKey: "open",
+                    ItemDisplayName: "Open",
+                    ItemIconName: "Link"
+                }
+            )
+        OnSelect: |-
+            =Switch(
+                Self.Selected.ItemKey,
+                "open",
+                Launch(detailListArticles.Selected.canonical_url)
+            )
+        Visible: =CountRows(detailListArticles.SelectedItems)>0
+        Width: =408
+        X: =100
+        Y: =100
+        ZIndex: =5
+
