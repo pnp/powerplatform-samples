@@ -1,0 +1,175 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "crfc6_sharedsharepointonline_383e5"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_teams_2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "crfc6_sharedteams_0aed3"
+        },
+        "api": {
+          "name": "shared_teams"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "955fbd0e-2cdf-400d-aa45-29096271ec0b"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Get_file_content": {
+          "runAfter": {},
+          "metadata": {
+            "%252fSiteAssets%252fgood_morning_PNG47.png": "/SiteAssets/good_morning_PNG47.png",
+            "operationMetadataId": "523d3560-92f9-4893-95ae-66256249fd8c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetFileContent",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "https://pslgrp.sharepoint.com/sites/TMP",
+              "id": "%252fSiteAssets%252fgood_morning_PNG47.png",
+              "inferContentType": true
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Get_a_team": {
+          "runAfter": {
+            "Get_file_content": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ab5eeee1-aae2-479f-abd9-6be01d1b9344"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_teams_2",
+              "operationId": "GetTeam",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+            },
+            "parameters": {
+              "teamId": "4bf06683-bcc7-43b9-82f8-1c7df2d76177"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "List_channels": {
+          "runAfter": {
+            "Get_a_team": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "47ef8e0c-3561-4f70-8b15-afca70057dec"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_teams_2",
+              "operationId": "GetChannelsForGroup",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+            },
+            "parameters": {
+              "groupId": "@body('Get_a_team')?['id']"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Filter_array": {
+          "runAfter": {
+            "List_channels": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "907f6247-ac40-4360-a6af-98809e679200"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@outputs('List_channels')?['body/value']",
+            "where": "@equals(item()?['displayName'], 'General')"
+          }
+        },
+        "Send_a_Microsoft_Graph_HTTP_request": {
+          "runAfter": {
+            "Filter_array": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0aefdaed-a27f-461a-90e2-76962753bd35"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_teams_2",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+            },
+            "parameters": {
+              "Uri": "https://graph.microsoft.com/v1.0/teams/@{outputs('Get_a_team')?['body/id']}/channels/@{first(body('Filter_array'))?['id']}/messages",
+              "Method": "POST",
+              "Body": "{\n\t\"body\": {\n        \"contentType\": \"html\",\n        \"content\": \"<div><div>\\n<div><span><img height=\\\"297\\\" src=\\\"../hostedContents/1/$value\\\" width=\\\"297\\\" style=\\\"vertical-align:bottom; width:297px; height:297px\\\"></span>\\n\\n</div>Good Morning!</div>\\n</div>\"\n    },\n    \"hostedContents\":[\n        {\n          \"@microsoft.graph.temporaryId\": \"1\",\n          \"contentBytes\": \"@{body('Get_file_content')?['$content']}\",\n            \"contentType\": \"@{body('Get_file_content')?['$content-type']}\"\n        }\n    ]\n}\n",
+              "ContentType": "application/json"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
