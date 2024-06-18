@@ -19,11 +19,9 @@ This sample gets the image from SharePoint document library and post it on *Micr
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-Not%20Required-green.svg "Does not use custom connectors")
 
 
-## Authors
+## Contributors
 
-Solution|Author(s)
---------|---------
-Send inline image in team message | [Manish Solanki](https://github.com/Solanki-Manish) ([@Manish Solanki](https://www.linkedin.com/in/manish-solanki-1058b7a))
+* [Manish Solanki](https://github.com/Solanki-Manish)
 
 
 ## Version history
@@ -57,7 +55,7 @@ The solution includes two connection references.
 
 ### Import Solution
 
-* [Download](./solution/power-platform-blog-update.zip) the `.zip` from the `solution` folder
+* [Download](./solution/send-inline-image-in-teams-channel.zip) the `.zip` from the `solution` folder
 * [Import](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/import-update-export-solutions) the `.zip` file using **Solutions** > **Import Solution**.
 
 ### Configure Flow
