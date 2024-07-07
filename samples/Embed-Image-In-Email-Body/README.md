@@ -2,7 +2,7 @@
 
 ## Summary
 
-This sample gets an image content from SharePoint document library and embed in it email body to share it with recepient(s). The flow calls graph API by utilizing premium **Invoke an HTTP request** action to overcome size limiation(~1 MB) when embeding image using URI method.
+This sample gets an image content from SharePoint document library and embed in it email body to share it with recipient(s). The flow calls graph API by utilizing premium **Invoke an HTTP request** action to overcome size limitation(~1 MB) when embedding image using URI method.
 
 ![Flow overview](/samples/Embed-Image-In-Email-Body/assets/flow-overview.png "Flow overview")
 
