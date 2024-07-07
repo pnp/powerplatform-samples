@@ -65,7 +65,7 @@ Recipient email address | String | Colon(;) seprated email address of all recpie
 
 ### Import Solution
 
-* [Download](./solution/power-platform-blog-update.zip) the `.zip` from the `solution` folder
+* [Download](./solution/EmbedImageinEmailBody.zip) the `.zip` from the `solution` folder
 * [Import](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/import-update-export-solutions) the `.zip` file using **Solutions** > **Import Solution**.
 
 
