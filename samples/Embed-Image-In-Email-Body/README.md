@@ -2,7 +2,7 @@
 
 ## Summary
 
-This sample gets an image content from SharePoint document library and embed in it email body to share it with recepient(s). The flow calls graph API by utilizing premium **Invoke an HTTP request** action to overcome size limiation(~1 MB) when embeding image using URI method.
+This sample gets an image content from SharePoint document library and embed in it email body to share it with recipient(s). The flow calls graph API by utilizing premium **Invoke an HTTP request** action to overcome size limitation(~1 MB) when embedding image using URI method.
 
 ![Flow overview](/samples/Embed-Image-In-Email-Body/assets/flow-overview.png "Flow overview")
 
@@ -15,7 +15,7 @@ This sample gets an image content from SharePoint document library and embed in 
 
 ## Compatibility
 
-![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-green.svg "Premium license is required")
+![Premium License](https://img.shields.io/badge/Premium%20License-Required-green.svg "Premium license is required")
 ![On-Premises Connectors](https://img.shields.io/badge/On--Premises%20Connectors-No-green.svg "Does not use on-premise connectors")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-Not%20Required-green.svg "Does not use custom connectors")
 
@@ -58,14 +58,14 @@ Variable|Type|Details
 -------|----|--------
 SharePoint Site URL | DataSource | URL of the SharePoint site where image is saved.
 Relative FilePath of Image | String | Relative path of the image in SharePoint library like 
-Recipient email address | String | Colon seprated email address of all recpients. Don't use conna in case of single recepient.
+Recipient email address | String | Colon(;) seprated email address of all recpients. Don't use colon in case of single recepient.
 
 
 ## Minimal Path to Awesome
 
 ### Import Solution
 
-* [Download](./solution/power-platform-blog-update.zip) the `.zip` from the `solution` folder
+* [Download](./solution/EmbedImageinEmailBody.zip) the `.zip` from the `solution` folder
 * [Import](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/import-update-export-solutions) the `.zip` file using **Solutions** > **Import Solution**.
 
 
