@@ -4,7 +4,7 @@
 
 This sample gets an image content from SharePoint document library and embed in it email body to share it with recipient(s). The flow calls graph API by utilizing premium **Invoke an HTTP request** action to overcome size limitation(~1 MB) when embedding image using URI method.
 
-![Flow overview](/samples/Embed-Image-In-Email-Body/assets/flow-overview.png "Flow overview")
+![Flow overview](./assets/flow-overview.png)
 
 
 ## Applies to
@@ -20,11 +20,9 @@ This sample gets an image content from SharePoint document library and embed in 
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-Not%20Required-green.svg "Does not use custom connectors")
 
 
-## Authors
+## Contributors
 
-Solution|Author(s)
---------|---------
-Embed Image In Email Body | [Manish Solanki](https://github.com/Solanki-Manish)
+* [Manish Solanki](https://github.com/Solanki-Manish)
 
 
 ## Version history
@@ -65,7 +63,7 @@ Recipient email address | String | Colon(;) seprated email address of all recpie
 
 ### Import Solution
 
-* [Download](./solution/EmbedImageinEmailBody.zip) the `.zip` from the `solution` folder
+* [Download](./solution/embed-image-in-email-body.zip the `.zip` from the `solution` folder
 * [Import](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/import-update-export-solutions) the `.zip` file using **Solutions** > **Import Solution**.
 
 
@@ -87,14 +85,14 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=Embed-Image-In-Email-Body&authors=@Solanki-Manish&title=Embed-Image-In-Email-Body).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=embed-image-in-email-body&authors=@Solanki-Manish&title=embed-image-in-email-body).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=Embed-Image-In-Email-Body&authors=@Solanki-Manish&title=Embed-Image-In-Email-Body).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=embed-image-in-email-body&authors=@Solanki-Manish&title=embed-image-in-email-body).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=Embed-Image-In-Email-Body&authors=@Solanki-Manish&title=Embed-Image-In-Email-Body).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=embed-image-in-email-body&authors=@Solanki-Manish&title=embed-image-in-email-body).
 
 ## Disclaimer
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/Embed-Image-In-Email-Body" aria-hidden="true" />
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/embed-image-in-email-body" aria-hidden="true" />
