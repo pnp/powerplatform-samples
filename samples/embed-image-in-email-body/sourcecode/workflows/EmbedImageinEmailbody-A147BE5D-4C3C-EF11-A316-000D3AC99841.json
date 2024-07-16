@@ -1,0 +1,178 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline": {
+        "api": {
+          "name": "shared_sharepointonline"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "crfc6_sharedsharepointonline_383e5"
+        },
+        "runtimeSource": "invoker"
+      },
+      "shared_webcontents": {
+        "api": {
+          "name": "shared_webcontents"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "crfc6_sharedwebcontents_6e89a"
+        },
+        "runtimeSource": "invoker"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "SharePoint Site URL (crfc6_SharePointSiteURL)": {
+          "defaultValue": "https://pslgrp.sharepoint.com/sites/TMP",
+          "type": "String",
+          "metadata": {
+            "schemaName": "crfc6_SharePointSiteURL",
+            "description": "URL of the SharePoint Site"
+          }
+        },
+        "Relative FilePath of Image (crfc6_RelativeFilePathofImage)": {
+          "defaultValue": "/SiteAssets/giphy.gif",
+          "type": "String",
+          "metadata": {
+            "schemaName": "crfc6_RelativeFilePathofImage",
+            "description": "Realtive file path of the image in SharePoint library. "
+          }
+        },
+        "Recipient email address  (crfc6_Recipientemailaddress)": {
+          "defaultValue": "msolanki@pslgrp.onmicrosoft.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "crfc6_Recipientemailaddress",
+            "description": "Colon separated email address of recipients"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "12099a48-dc5f-4573-9d9b-3821b0a020c1"
+          }
+        }
+      },
+      "actions": {
+        "Compose": {
+          "type": "Compose",
+          "inputs": "<img src='cid:@{outputs('Get_file_metadata_using_path')?['body/Name']}' />",
+          "runAfter": {
+            "Get_file_content": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9bf440eb-9f80-4f4b-bd63-ad15c83dec71"
+          }
+        },
+        "Get_file_metadata_using_path": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "dataset": "@parameters('SharePoint Site URL (crfc6_SharePointSiteURL)')",
+              "path": "@parameters('Relative FilePath of Image (crfc6_RelativeFilePathofImage)')"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "operationId": "GetFileMetadataByPath",
+              "connectionName": "shared_sharepointonline"
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "094c15df-1be1-4c82-acae-b915b5b9083a"
+          }
+        },
+        "Get_file_content": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "dataset": "@parameters('SharePoint Site URL (crfc6_SharePointSiteURL)')",
+              "id": "@outputs('Get_file_metadata_using_path')?['body/Id']",
+              "inferContentType": true
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "operationId": "GetFileContent",
+              "connectionName": "shared_sharepointonline"
+            }
+          },
+          "runAfter": {
+            "Get_file_metadata_using_path": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e0aad2a8-e1ce-45ac-9276-2f650027ccab"
+          }
+        },
+        "Invoke_an_HTTP_request": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "request/method": "POST",
+              "request/url": "https://graph.microsoft.com/v1.0/me/sendMail",
+              "request/headers": {
+                "Content-type": "application/json"
+              },
+              "request/body": "{\n  \"message\": {\n    \"subject\": \"Sample email with embedded image (size > 1 mb)\",\n    \"body\": {\n      \"contentType\": \"HTML\",\n      \"content\": \"@{outputs('Compose')}\"\n    },\n    \"toRecipients\": @{body('Select')},\n    \"attachments\": [\n      {\n        \"@odata.type\": \"#microsoft.graph.fileAttachment\",\n        \"name\": \"@{outputs('Get_file_metadata_using_path')?['body/DisplayName']}\",\n        \"contentType\": \"@{body('Get_file_content')?['$content-type']}\",\n        \"contentBytes\": \"@{body('Get_file_content')?['$content']}\",\n        \"isInline\": true,\n        \"contentId\": \"@{outputs('Get_file_metadata_using_path')?['body/DisplayName']}\"\n      }\n    ]\n  }\n}"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents",
+              "operationId": "InvokeHttp",
+              "connectionName": "shared_webcontents"
+            }
+          },
+          "runAfter": {
+            "Select": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "70f38ac9-85f4-4eb4-9115-65aafed48257"
+          }
+        },
+        "Select": {
+          "type": "Select",
+          "inputs": {
+            "from": "@split(parameters('Recipient email address  (crfc6_Recipientemailaddress)'),';')",
+            "select": {
+              "emailAddress": "@json(concat('{\"address\":\"',trim(item()),'\"}'))"
+            }
+          },
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e364b072-b81e-4d56-a704-af5aa45f4a57"
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
