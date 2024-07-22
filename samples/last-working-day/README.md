@@ -2,7 +2,7 @@
 
 ## Summary
 
-This sample flow calculates the last working date of the month taking into account the weekends. See more information on [my blog] (https://sudeepghatak.com/last-working-day-of-the-month/)
+This sample flow calculates the last working date of the month taking into account the weekends. See more information on ![my blog] (https://sudeepghatak.com/last-working-day-of-the-month/)
 
 
 ![image](./assets/flow1.png)
