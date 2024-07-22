@@ -36,7 +36,8 @@ The following solution components are used in this sample:
 
 Component|Type
 ---------|-----
-Date of the last working day of the month | Power Automate
+Getthelastworkingday_1_0_0_1.zip | Power Automate Solution
+Flow_Get-the-last-working-day.zip | Power Automate Flow
 
 ## Minimal Path to Awesome
 
