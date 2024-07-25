@@ -93,8 +93,39 @@ Version|Date|Comments
     * **Pricing Tier**: Select the `Standard S0` pricing tier
 
         ![Create Azure OpenAI Service resource](assets/create-openai-resource.png)
-        
+
     * Click on **Next** until you get to the **Review + Submit** page and then click on **Create** to create the resource.
+
+* Create a model deployment in Azure OpenAI Studio
+
+    * Open up your `ImageCreator` resource group in the Azure portal
+    * Select the `imagecreatorcopilot-{your initials}` resource
+    * Click on **Go to Azure OpenAI Studio**
+
+        ![Go to Azure OpenAI Studio](assets/go-to-openai-studio.png)
+
+    * In the Azure OpenAI Studio, click on **Deployments** on the left menu.
+    * Click on **+ Create New Deployment** and set the following parameters:
+        * **Select a model**: `dall-e-3`
+        * **Model version**: `Auto-update to default`
+        * **Deployment name**: `dalle3`
+    * Click **Create** to create the deployment.
+    * Select the **dalle3** deployment and click on **Open in Playground**.
+    * Select **View Code** and note down the endpoint and the key somewhere safe
+
+        ![Azure OpenAI Studio Playground](assets/openai-studio-playground.png)
+
+* Set up local environment variables to store the Azure OpenAI Service endpoint and key. Open up a command prompt on your computer and run this command:
+
+    ```bash
+    setx AZURE_OPENAI_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE"
+    ```
+
+    Then run this command:
+
+    ```bash
+    setx AZURE_OPENAI_ENDPOINT "https://imagecreatorcopilot-{your initials}.openai.azure.com/" 
+    ```
 
 <!--
 Any special pre-requisites? Include any lists, permissions, offerings to the demo gods, or whatever else needs to be done for this sample to work.
