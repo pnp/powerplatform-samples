@@ -1,34 +1,18 @@
 # Image Creator / Generator
 
-<!--
-This is how you want the sample to appear in the samples browser.
-When naming your sample, try to give it a friendly name that describes what it does. Avoid using terms like `Power Apps` and `Power Automate` -- because that's what all the samples in this repo is all about.
-GOOD 👍:
-  Kitten Videos
-BAD 👎:
-  power-apps-kittenvideos
-  Kitten Videos App for Power Platform using Creator Kit
--->
-
 ## Summary
 
-TODO: Short summary on functionality and used technologies and pictures of the solution.
+This sample allows the user to enter a prompt into a copilot and then it generates an image based on the prompt using the Azure OpenAI Service Dalle-3 model.
 
-<!--
-Please provide a high-quality screenshot of your solution below. It should be stored in a folder called `assets`. 
+Sample consists of a Power Automate flow and a Copilot Studio copilot.
 
-If possible, use a resolution of 1920x1080.
+🗣️ Start a simple conversation with the copilot by asking it how to generate an image. The copilot will prompt you to enter a description of the image you want to generate.
 
-If your solution uses a placeholder screen and requires the user to configure it, please use a screenshot of the solution as it appears **after** it has been configured.
+![Start a conversation with the copilot](./assets/Sample1.png)
 
-You can add as many screen shots as you'd like to help users understand your solution without having to download it and install it.
--->
+🤖 Once you enter the description, the copilot will generate an image based on the description you provided.
 
-![Example of a good preview](assets/goodpreview.png)
-
-![Also a good preview](assets/alsogoodpreview.png)
-
-![Not so good](assets/notsogood.gif)
+![Generates an image based on the description](./assets/Sample2.png)
 
 ## Applies to
 
