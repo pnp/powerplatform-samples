@@ -68,7 +68,7 @@ Version|Date|Comments
 
 ## Prerequisites
 
-* Make sure you have access to Power Automate and Copilot Studio.
+* Make sure you have access to Power Apps, Power Automate, and Copilot Studio.
 * Create an [Azure account](https://azure.microsoft.com/free/) and select **Start Free** and then fill in profile details to complete the sign up process.
 
     ![Azure account start free page](assets/azure-start-free.png)
@@ -127,33 +127,70 @@ Version|Date|Comments
     setx AZURE_OPENAI_ENDPOINT "https://imagecreatorcopilot-{your initials}.openai.azure.com/" 
     ```
 
-<!--
-Any special pre-requisites? Include any lists, permissions, offerings to the demo gods, or whatever else needs to be done for this sample to work.
+* To use this sample, you will create your own Custom Connector using the [Visual Studio Connected Service for the Power Platform](https://learn.microsoft.com/en-us/power-platform/developer/visual-studio-connected-service). For this; download and install [Visual Studio (Community Edition)](https://visualstudio.microsoft.com/vs/features/net-development/)
 
-Please describe the steps to configure the pre-requisites. Feel free to add screen shots, but make sure that there is a text description of the steps to perform.
- 
--->
+    ![Visual Studio Community Edition download page](assets/visual-studio-download.png)
+
+    This installer comes pre-packaged with all the components you need for .NET development.
+
+* Finally, clone the [ImageCreatorAPI Sample Project](https://github.com/gomomohapi/ImageCreatorAPI) to your local machine and open with Visual Studio.
+    * Once you follow the link to the project, select **Code** and then copy the git URL.
+
+        ![ImageCreatorAPI Sample Project code page](assets/copy-git-url.png)
+
+    * Open Visual Studio and select **Clone a repository**.
+
+        ![Visual Studio Clone a repository](assets/clone-repository.png)
+
+    * Then paste in the link you copied from GitHub and select **Clone**.
+
+    * The project will then open in Visual Studio.
 
 ## Minimal path to awesome
 
-<!-- 
-PRO TIP:
-
-For commands, use the `code syntax`
-
-For button labels, page names, dialog names, etc. as they appear on the screen, use **Bold**
-
-Don't use "click", use "select" or "use"
-
-As tempting as it may be, don't just use images to describe the steps. Let's be as inclusive as possible and think about accessibility.
-
--->
-
 ### Using the solution zip
 
-* [Download](./solution/solution.zip) the `.zip` from the `solution` folder
-* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-* Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
+**Step 1: Import the solution into your Power Apps environment.**
+
+* [Download](./solution/image-creator.zip) the `.zip` from the `solution` folder
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just downloaded.
+* Once the solution has been imported, leave the Solutions tab open and then open Visual Studio with the cloned ImageCreatorAPI project.
+
+**Step 2: Create a Custom Connector using the Visual Studio Connected Service for the Power Platform.**
+
+* In Visual Studio, open the solution explorer and right-click on **Connected Services** and select **Add** > **Microsoft Power Platform**.
+
+    ![Add Visual Studio Power Platform Connected Service](assets/add-connected-service.png)
+
+* Ensure you're signed in with the same Power Apps account you used to import the solution, and configure the following:
+    * **Power Platform environments**: Select the environment where you imported the solution
+    * **Solution**: Select the **Image Creator Solution**
+    * **Custom Connector**: Create a new custom connector and call it `ImageCreator_Connector`
+    * **OpenAPI specification**: Select the `Auto-generate the OpenAPI V2 Specification` option
+    * **Dev Tunnel**: Create a new dev tunnel and call it `ImageCreator_Tunnel`
+* Select **Finish** and the custom connector will be created.
+* Once complete, run the project in Visual Studio.
+* In the newly opened browser window, select **Continue** to connect to your Developer Tunnel.
+
+    ![Connect to Developer Tunnel](assets/visual-studio-connect-to-dev-tunnel.png)
+
+* Once connected, the custom connector will be active and available to use in your Power Apps environment. Don't close the browser window and navigate back to the **Solutions** tab in Power Apps Studio.
+
+**Step 3: Add the Custom Connector to the Power Automate flow.**
+
+* Open the **Image Creator Solution** and navigate to **Cloud Flows** > **Generate Image with AI**.
+* Open the flow in **Edit mode**.
+* Between the two nodes, add a new action and search for `imagecreator` and select **Generates Image**.
+
+    ![Add Generate Social Media Post action to Power Automate flow](assets/add-generate-image-action.png)
+
+* Create a connection to the `ImageCreator_Connector`.
+* Once the connection has been created, select the **Prompt** field and then select the **Dynamic Content** icon and select **Prompt** from the list of dynamic content.
+* Then select the **Respond to Copilot** node and select **body/imageUrl** from the Dynamic Content list for ImageUrl
+
+    ![Add Dynamic Content to Power Automate flow](assets/add-dynamic-content.png)
+
+* Publish the flow.
 
 ### Using the source code
 
