@@ -1,0 +1,65 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Lesson 2 - A simple topic with a condition and variable
+    triggerQueries:
+      - Find my nearest store
+      - Check store location
+      - Find a store
+      - Find me your nearest location
+      - Store near me
+
+  actions:
+    - kind: SendActivity
+      id: qvduia
+      activity: I'd be glad to help find a store near you.
+
+    - kind: Question
+      id: LbWwpD
+      alwaysPrompt: true
+      variable: init:Topic.StoreLocation
+      prompt: Which location are you interested in?
+      entity:
+        kind: EmbeddedEntity
+        definition:
+          kind: ClosedListEntity
+          smartMatchingEnabled: true
+          items:
+            - id: Redmond
+              displayName: Redmond
+
+            - id: Seattle
+              displayName: Seattle
+
+            - id: Kirkland
+              displayName: Kirkland
+
+    - kind: ConditionGroup
+      id: HE6JRU
+      conditions:
+        - id: 6G9Hhn
+          condition: =Topic.StoreLocation = 'cr41d_imageCreatorCopilot_93I3bW.topic.Lesson2.main.LbWwpD'.'Redmond'
+          actions:
+            - kind: SendActivity
+              id: khIIPE
+              activity: "Check out the Company Store at our Visitor Center. The address is: 4567 Main St., Redmond, 26132."
+
+        - id: dqf7pu
+          condition: =Topic.StoreLocation = 'cr41d_imageCreatorCopilot_93I3bW.topic.Lesson2.main.LbWwpD'.'Seattle'
+          actions:
+            - kind: SendActivity
+              id: X7eulp
+              activity: "Our {Topic.StoreLocation} store is located in the U District in the University Village. The address is: 1234 E. University Village St., Seattle, 34567."
+
+        - id: 1QMrFE
+          condition: =Topic.StoreLocation = 'cr41d_imageCreatorCopilot_93I3bW.topic.Lesson2.main.LbWwpD'.'Kirkland'
+          actions:
+            - kind: SendActivity
+              id: jtQo0O
+              activity: "Our {Topic.StoreLocation} is located in downtown Kirkland. The address is: 1234 Central Way, Kirkland, 98321."
+
+    - kind: BeginDialog
+      id: mJXqqY
+      dialog: cr41d_imageCreatorCopilot_93I3bW.topic.EndofConversation
