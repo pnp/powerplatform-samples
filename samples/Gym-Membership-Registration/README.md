@@ -83,6 +83,12 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
 
 ## Minimal path to awesome
 
+### Creating the Data Source
+*  [Download](./solution/gym-registration-data-source.stp) the Sharepoint template from the solution folder and import the template to your SharePoint environment by going to Site Settings > List templates and uploading the .stp file.
+
+## Requirements
+* Make sure Office 365 Outlook is enabled in your environment for E-mail sending
+* The Sharepoint list that was imported must be the Datasource, the app uses Sharepoint as the Datasource.
 <!--
 PRO TIP:
 
@@ -98,7 +104,7 @@ As tempting as it may be, don't just use images to describe the steps. Let's be 
 
 ### Using the solution zip
 
-- [Download](./solution/Gym-Membership-Registration.zip) the `.zip` from the `solution` folder
+- [Download](./solution/GymMembershipRegistration_1_0_0_2.zip) the `.zip` from the `solution` folder
 - Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 - Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
 
