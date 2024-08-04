@@ -1,0 +1,627 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline": {
+        "api": {
+          "name": "shared_sharepointonline"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "cr353_sharedsharepointonline_d2fb4"
+        },
+        "runtimeSource": "invoker"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "da9e7fd4-caab-4795-acc8-4638b65baba5"
+          }
+        }
+      },
+      "actions": {
+        "Compose_-__Get_current_date": {
+          "type": "Compose",
+          "inputs": "@utcNow()",
+          "runAfter": {
+            "Initialize_variable_-_Last_Day_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a9549860-f827-4e56-b59e-65dcf0e7d57e"
+          }
+        },
+        "Compose_-_Get_last_day": {
+          "type": "Compose",
+          "inputs": "@formatDateTime(subtractFromTime(startOfMonth(addToTime(outputs('Compose_-__Get_current_date'), 1, 'Month')), 1, 'Day'), 'yyyy-MM-dd')",
+          "runAfter": {
+            "Compose_-_Get_current_year": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e996f94a-d4b0-40e9-9e5a-bd17d3240195"
+          }
+        },
+        "Switch": {
+          "type": "Switch",
+          "expression": "@dayOfWeek(outputs('Compose_-_Get_last_day'))",
+          "default": {
+            "actions": {
+              "Set_variable_-_Last_day_2": {
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "Last Day",
+                  "value": "@outputs('Compose_-_Get_last_day')"
+                },
+                "metadata": {
+                  "operationMetadataId": "f15f9599-baa0-42fa-995f-9b07eda96d7b"
+                }
+              }
+            }
+          },
+          "cases": {
+            "Case_-_Sunday": {
+              "actions": {
+                "Set_variable_-_Last_day": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Last Day",
+                    "value": "@{addDays(outputs('Compose_-_Get_last_day'),-2)}"
+                  },
+                  "metadata": {
+                    "operationMetadataId": "f15f9599-baa0-42fa-995f-9b07eda96d7b"
+                  }
+                }
+              },
+              "case": 0
+            },
+            "Case_-_Saturday": {
+              "actions": {
+                "Set_variable_-_Last_Day_1": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Last Day",
+                    "value": "@{addDays(outputs('Compose_-_Get_last_day'),-1)}"
+                  },
+                  "metadata": {
+                    "operationMetadataId": "f15f9599-baa0-42fa-995f-9b07eda96d7b"
+                  }
+                }
+              },
+              "case": 6
+            }
+          },
+          "runAfter": {
+            "Compose_-_Get_last_day": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bfd77bf0-81a7-424d-80b5-34b7c65a9b75"
+          }
+        },
+        "Initialize_variable_-_Last_Day": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Last Day",
+                "type": "string"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_variable_-_Date_Array_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5987c86b-631c-4ca3-84b1-9d51a763f47d"
+          }
+        },
+        "HTTP": {
+          "type": "Http",
+          "inputs": {
+            "uri": "https://date.nager.at/api/v3/publicholidays/@{outputs('Compose_-_Get_current_year')}/@{outputs('Compose_-_Country_code')}",
+            "method": "GET"
+          },
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "be063eb3-0f3f-4cda-bbab-26f8fc76f70b"
+          }
+        },
+        "Compose_-_Country_code": {
+          "type": "Compose",
+          "inputs": "NZ",
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d0e9e116-cdb6-40e3-a04b-a1acc70d88a3"
+          }
+        },
+        "Compose_-_Get_current_year": {
+          "type": "Compose",
+          "inputs": "@utcNow('yyyy')",
+          "runAfter": {
+            "Compose_-__Get_current_date": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "34aa6a0e-265b-45b1-9acb-9ccf01704db7"
+          }
+        },
+        "Parse_JSON": {
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('HTTP')",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string"
+                  },
+                  "localName": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "countryCode": {
+                    "type": "string"
+                  },
+                  "fixed": {
+                    "type": "boolean"
+                  },
+                  "global": {
+                    "type": "boolean"
+                  },
+                  "counties": {},
+                  "launchYear": {},
+                  "types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "date",
+                  "localName",
+                  "name",
+                  "countryCode",
+                  "fixed",
+                  "global",
+                  "counties",
+                  "launchYear",
+                  "types"
+                ]
+              }
+            }
+          },
+          "runAfter": {
+            "HTTP": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "18615fc9-0f16-4872-91c6-9cc3708b39c1"
+          }
+        },
+        "Initialize_variable_-_Date_Array": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "DateArray",
+                "type": "array"
+              }
+            ]
+          },
+          "runAfter": {
+            "Compose_-_Country_code": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c4e827e5-c2cf-4e84-ad1d-c40b612fba1d"
+          }
+        },
+        "Apply_to_each": {
+          "type": "Foreach",
+          "foreach": "@body('Parse_JSON')",
+          "actions": {
+            "Append_to_array_variable": {
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "DateArray",
+                "value": "@items('Apply_to_each')['date']"
+              },
+              "metadata": {
+                "operationMetadataId": "0f2eef3f-f36c-41dc-b3ae-eeb7a1bb99c9"
+              }
+            }
+          },
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f1175c1e-c842-420f-a25e-ffdea1490e1a"
+          }
+        },
+        "Initialize_variable_-_Last_Day_2": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Last Day 2",
+                "type": "string"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_variable_-_Last_Day": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5987c86b-631c-4ca3-84b1-9d51a763f47d"
+          }
+        },
+        "Initialize_variable_-_Date_Array_2": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "DateArray 2",
+                "type": "array"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_variable_-_Date_Array": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a7ad3a18-dc3b-4e81-8e57-406fdb8d6675"
+          }
+        },
+        "Parse_JSON_2": {
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@outputs('Get_items')?['body/value']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "@@odata.etag": {
+                    "type": "string"
+                  },
+                  "ItemInternalId": {
+                    "type": "string"
+                  },
+                  "ID": {
+                    "type": "integer"
+                  },
+                  "Title": {
+                    "type": "string"
+                  },
+                  "HolidayDate": {
+                    "type": "string"
+                  },
+                  "Modified": {
+                    "type": "string"
+                  },
+                  "Created": {
+                    "type": "string"
+                  },
+                  "Author": {
+                    "type": "object",
+                    "properties": {
+                      "@@odata.type": {
+                        "type": "string"
+                      },
+                      "Claims": {
+                        "type": "string"
+                      },
+                      "DisplayName": {
+                        "type": "string"
+                      },
+                      "Email": {
+                        "type": "string"
+                      },
+                      "Picture": {
+                        "type": "string"
+                      },
+                      "Department": {
+                        "type": "string"
+                      },
+                      "JobTitle": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "Author#Claims": {
+                    "type": "string"
+                  },
+                  "Editor": {
+                    "type": "object",
+                    "properties": {
+                      "@@odata.type": {
+                        "type": "string"
+                      },
+                      "Claims": {
+                        "type": "string"
+                      },
+                      "DisplayName": {
+                        "type": "string"
+                      },
+                      "Email": {
+                        "type": "string"
+                      },
+                      "Picture": {
+                        "type": "string"
+                      },
+                      "Department": {
+                        "type": "string"
+                      },
+                      "JobTitle": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "Editor#Claims": {
+                    "type": "string"
+                  },
+                  "{Identifier}": {
+                    "type": "string"
+                  },
+                  "{IsFolder}": {
+                    "type": "boolean"
+                  },
+                  "{Thumbnail}": {
+                    "type": "object",
+                    "properties": {
+                      "Large": {},
+                      "Medium": {},
+                      "Small": {}
+                    }
+                  },
+                  "{Link}": {
+                    "type": "string"
+                  },
+                  "{Name}": {
+                    "type": "string"
+                  },
+                  "{FilenameWithExtension}": {
+                    "type": "string"
+                  },
+                  "{Path}": {
+                    "type": "string"
+                  },
+                  "{FullPath}": {
+                    "type": "string"
+                  },
+                  "{HasAttachments}": {
+                    "type": "boolean"
+                  },
+                  "{VersionNumber}": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@@odata.etag",
+                  "ItemInternalId",
+                  "ID",
+                  "Title",
+                  "HolidayDate",
+                  "Modified",
+                  "Created",
+                  "Author",
+                  "Author#Claims",
+                  "Editor",
+                  "Editor#Claims",
+                  "{Identifier}",
+                  "{IsFolder}",
+                  "{Thumbnail}",
+                  "{Link}",
+                  "{Name}",
+                  "{FilenameWithExtension}",
+                  "{Path}",
+                  "{FullPath}",
+                  "{HasAttachments}",
+                  "{VersionNumber}"
+                ]
+              }
+            }
+          },
+          "runAfter": {
+            "Get_items": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1aa862fc-22e4-4c1b-8e85-9ee7ba60260f"
+          }
+        },
+        "Set_variable_3": {
+          "type": "SetVariable",
+          "inputs": {
+            "name": "Last Day 2",
+            "value": "@variables('Last Day')"
+          },
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5ce511d5-4c80-4b85-aceb-9da8d449440c"
+          }
+        },
+        "Get_items": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "dataset": "https://thetaco1nz.sharepoint.com/sites/Sudeep",
+              "table": "616d84be-b476-4c54-9fbd-43124cf80a03"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "operationId": "GetItems",
+              "connectionName": "shared_sharepointonline"
+            }
+          },
+          "runAfter": {
+            "Set_variable_3": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0ab90089-62ce-4610-bcc9-efaec218d90b"
+          }
+        },
+        "Compose": {
+          "type": "Compose",
+          "inputs": "@variables('Last Day')",
+          "runAfter": {
+            "Do_until": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6a3b78ba-cf53-4a3f-ba39-69d5deb7d307"
+          }
+        },
+        "Do_until": {
+          "type": "Until",
+          "expression": "@not(contains(variables('DateArray'), variables('Last Day')))",
+          "limit": {
+            "count": 60,
+            "timeout": "PT1H"
+          },
+          "actions": {
+            "Compose_-_Last_Working_Day": {
+              "type": "Compose",
+              "inputs": "@variables('Last Day')",
+              "metadata": {
+                "operationMetadataId": "c197d387-f319-4426-84ba-6ca9508f05e3"
+              }
+            },
+            "Set_variable": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Last Day",
+                "value": "@{addDays(outputs('Compose_-_Last_Working_Day'), -1, 'yyyy-MM-dd')}"
+              },
+              "runAfter": {
+                "Compose_-_Last_Working_Day": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "dfbe71f0-fef8-481f-9e42-58dc7f80c61b"
+              }
+            }
+          },
+          "runAfter": {
+            "Set_variable_4": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "af74103d-fa67-44f2-bea5-5064685488f4"
+          }
+        },
+        "Compose_2": {
+          "type": "Compose",
+          "inputs": "@union(variables('DateArray'),variables('DateArray 2'))",
+          "runAfter": {
+            "Apply_to_each_2": [
+              "Succeeded"
+            ],
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "63252fb3-59f6-45e5-baa8-cdab4efce8d0"
+          }
+        },
+        "Set_variable_4": {
+          "type": "SetVariable",
+          "inputs": {
+            "name": "DateArray",
+            "value": "@outputs('Compose_2')"
+          },
+          "runAfter": {
+            "Compose_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "83a0ce1b-c94c-48df-af44-8b98f1d7ba3f"
+          }
+        },
+        "Apply_to_each_2": {
+          "type": "Foreach",
+          "foreach": "@body('Parse_JSON_2')",
+          "actions": {
+            "Append_to_array_variable_2": {
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "DateArray 2",
+                "value": "@items('Apply_to_each_2')['HolidayDate']"
+              },
+              "metadata": {
+                "operationMetadataId": "d26bdb14-39d1-4101-ae7a-a9009804c6e0"
+              }
+            }
+          },
+          "runAfter": {
+            "Parse_JSON_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1e73e2a0-752b-417b-84f4-6fca54c123dc"
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
