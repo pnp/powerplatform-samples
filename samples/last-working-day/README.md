@@ -2,23 +2,40 @@
 
 ## Summary
 
-This sample flow calculates the last working date of the month taking into account the weekends. See more information on [my blog](https://sudeepghatak.com/last-working-day-of-the-month/) 
+This sample flow calculates the last working date of the month, accounting for weekends and holidays. It utilizes the following key components:
+
+* The flow leverages an [API] (https://date.nager.at/swagger/index.html) to retrieve holidays for a specified year and country.
+* For holidays not included in the API's response, the flow allows for the addition of special holidays using a custom data store, such as SharePoint.
+* The flow takes into account weekends when determining the last working day.
+* This approach can be adapted to various countries and organizational needs.
 
 
-![image](./assets/flow1.png)
-![image](./assets/flow2.png)
+![image](./assets/1.jpg)
+![image](./assets/2.jpg)
+![image](./assets/3.jpg)
+![image](./assets/4.jpg)
 
 ## Applies to
 
-![Power Automate](https://img.shields.io/badge/Power%20Automate-yes-green "Yes")
+![Power Apps](https://img.shields.io/badge/Power%20Apps-No-red "No")
+![Power Automate](https://img.shields.io/badge/Power%20Automate-Yes-green "Yes")
+![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
+![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
+![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
+![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
+![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
+![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
+![Power Fx](https://img.shields.io/badge/Power%20Fx-No-red "No")
+
+
 
 ## Compatibility
 
-![Premium License](https://img.shields.io/badge/Premium%20License-not%20applicable-red.svg "Not applicable")
+![Premium License](https://img.shields.io/badge/Premium%20License-Required-green.svg "Premium license required")
 
 ## Contributors
 
-* [Sudeep Ghatak](https://www.linkedin.com/in/sudeepghatak/)
+* [Sudeep Ghatak](https://github.com/sudeepghatak) | [LinkedIn] (https://www.linkedin.com/in/sudeepghatak/)
 
 ## Version history
 
@@ -26,44 +43,68 @@ Version|Date|Comments
 -------|----|--------
 1.0|July 22, 2024|Initial release
 
+## Features
+
+This sample flow demonstrates the following key concepts:
+
+* Calling an External Web Service: Leverage an API to retrieve relevant data (e.g., public holidays).
+* Date Calculations: Perform date manipulations to determine specific days, such as the last working day of the month.
+* Usage of Arrays: Utilize arrays to store and manage lists of dates, such as holidays and weekends.
+* Do While Loops: Implement do while loops to iterate through dates until the desired condition is met.
+
+
 ## Prerequisites
 
-None
+You must have a Power Automate premium license to call external web service.
+You must have a list provisioned to store additional holidays.
+![image](./assets/5.jpg)
 
-## Solution Components
+### Connection References
+The solution includes two connection references.
+* SharePoint Connection
+
+
+### Using the solution zip
 
 The following solution components are used in this sample:
 
 Component|Type
 ---------|-----
-Getthelastworkingday_1_0_0_1.zip | Power Automate Solution
-Flow_Get-the-last-working-day.zip | Power Automate Flow
+Getthelastworkingday_1_0_0_2.zip | Power Automate Solution
+
 
 ## Minimal Path to Awesome
 
-You can either import individual flows or entire solutions, depending on your needs. 
-
-
-### Import the solution
-1. [Download](./solution/Getthelastworkingday_1_0_0_1.zip) the solution `.zip` from the `solution` folder.
+### Using the solution zip
+1. [Download](./solution/Getthelastworkingday_1_0_0_2.zip) the solution `.zip` from the `solution` folder.
 2. Within **https://make.powerautomate.com**, import the `.zip` file via **Solutions** > **Import solution** > **Browse** and select the `.zip` file you just downloaded.
-3. Follow the on-screen instructions to deploy the application.
-4. Access the Power Automate flow from within the imported solution
+3. Once the solution is imported, edit it
 
-### Import the flow
-1. [Download](./flow/Flow_Get-the-last-working-day.zip) the flow `.zip` from the `flow` folder.
-2. Within **https://make.powerautomate.com**, import the `.zip` file by following the instructions below:
-3. Click on the “Upload” button and select the `.zip` file you downloaded.
-4. The package details will be displayed, showing the components included in the package.
-5. Map the resources in the package to existing resources or create new ones. This might include connections, custom connectors, or other dependent components.
-6. After configuring the necessary components, click “Import” to begin the import process.
-7. Wait for the import process to complete. This may take a few minutes depending on the complexity of the flow.
+### Using the source code
+
+You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps:
+
+* Clone the repository to a local drive
+* Pack the source files back into a solution `.zip` file:
+
+  ```bash
+  pac solution pack --zipfile pathtodestinationfile --folder pathtosourcefolder --processCanvasApps
+  ```
+
+  Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you 
+
+
+
 
 ## Features
 
 This sample illustrates the following concepts:
 
 * Calculating the last working day of the month
+* Calling an external web service to get holidays with Year and Country Codes as parameters
+* Getting holidays from an internal data store (SharePoint in this case)
+* Date calculations to deduce the last working day
 
 ## Help
 
