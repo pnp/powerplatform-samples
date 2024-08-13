@@ -1,0 +1,70 @@
+comp_topTitleBar_2 As CanvasComponent:
+    Fill: =Color.Transparent
+    Height: =80
+    ShowSubtitle: =true
+    Subtitle: ="Text"
+    Title: ="Text"
+    Width: =500
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    cont_topSection_3 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.None
+        Height: =80
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Greeting_3 As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =50
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =1
+
+            lbl_mainTitle_1 As label:
+                Color: =RGBA(255, 255, 255, 1)
+                DisplayMode: =DisplayMode.View
+                Font: =Font.'Segoe UI'
+                Height: =30
+                LineHeight: =0.5
+                Size: =20
+                Text: =comp_topTitleBar_2.Title
+                Width: =Parent.Width
+                ZIndex: =1
+
+            lbl_mainSubtitle_1 As label:
+                Color: =RGBA(160, 160, 160, 1)
+                FillPortions: =1
+                Font: =Font.'Segoe UI'
+                LayoutMinHeight: =20
+                Size: =12
+                Text: =comp_topTitleBar_2.Subtitle
+                Visible: =comp_topTitleBar_2.ShowSubtitle
+                Width: =Parent.Width
+                ZIndex: =2
+
+        Image4_3 As image:
+            AlignInContainer: =AlignInContainer.Stretch
+            BorderColor: =RGBA(0, 175, 206, 1)
+            BorderThickness: =2
+            Height: =32
+            Image: =User().Image
+            LayoutMinHeight: =48
+            RadiusBottomLeft: =100
+            RadiusBottomRight: =100
+            RadiusTopLeft: =100
+            RadiusTopRight: =100
+            Width: =48
+            ZIndex: =2
+
