@@ -32,15 +32,6 @@ Sample consists of a Power Automate flow and a Copilot Studio copilot.
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-Yes-green.svg "Does rely on experimental features")
 
 ## Contributors
-<!--
-We use this section to recognize and promote your contributions. Please provide one author per line -- even if you worked together on it.
-
-We'll only use the info you provided here. Make sure to include your full name, not just your GitHub username.
-
-Provide a link to your GitHub profile to help others find more cool things you have done. The only link we'll accept is a link to your GitHub profile.
-
-If you want to provide links to your social media, blog, and employer name, make sure to update your GitHub profile.
--->
 
 * [Gomolemo Mohapi](https://github.com/gomomohapi)
 
@@ -203,51 +194,15 @@ In the copilot, you can start a conversation by asking it how to generate an ima
 * This Custom Connector is connected to a .NET API that uses the Azure OpenAI Service Dalle3 model to generate an image based on the description you provided.
 * The image is then returned to the copilot and displayed in the chat as an adaptive card.
 
-<!--
-Note that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions in advance! You rock ❤.
--->
-
-<!--
-RESERVED FOR REPO MAINTAINERS
-
-We'll add the video from the community call recording here
-
-## Video
-
-[![YouTube video title](./assets/video-thumbnail.jpg)](https://www.youtube.com/watch?v=XXXXX "YouTube video title")
--->
-
 ## Help
-
-<!--
-You can just search and replace this page with the following values:
-
-Search for:
-YOUR-SOLUTION-NAME
-
-Replace with your sample folder name. E.g.: my-cool-sample
-
-Search for:
-@YOURGITHUBUSERNAME
-
-Replace with your GitHub username, prefixed with an "@". If you have more than one author, use %20 to separate them, making sure to prefix everyone's username individually with an "@".
-
-Example:
-@hugoabernier
-
-Or:
-@hugoabernier%20@VesaJuvonen%20@PopWarner
--->
-
-> Note: don't worry about this section, we'll update the links.
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=image-creator&authors=@YOURGITHUBUSERNAME&title=image-creator%20-%20).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=image-creator&authors=@gomomohapi&title=image-creator%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=image-creator&authors=@YOURGITHUBUSERNAME&title=image-creator%20-%20).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=image-creator&authors=@gomomohapi&title=image-creator%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=image-creator&authors=@YOURGITHUBUSERNAME&title=image-creator%20-%20).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=image-creator&authors=@gomomohapi&title=image-creator%20-%20).
 
 ## Disclaimer
 
