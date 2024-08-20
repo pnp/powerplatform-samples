@@ -1,0 +1,32 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Lesson 1 - A simple topic
+    triggerQueries:
+      - When are you closed
+      - When are you open
+      - Store hours
+      - Daily open hours
+
+  actions:
+    - kind: SendActivity
+      id: Ystyaa
+      activity: I'm happy to help with store hours.
+
+    - kind: SendActivity
+      id: 6Jn5pw
+      activity: |-
+        The Redmond hours are:
+        - Mon-Fri: 9am to 6pm
+        - Sat: 10am to 4pm
+        - Sun: Closed
+        
+        The Seattle hours are:
+        - Mon-Fri: 9am to 6pm
+        - Sat-Sun: 10am to 4pm
+
+    - kind: BeginDialog
+      id: Dj0B0N
+      dialog: cr41d_imageCreatorCopilot_93I3bW.topic.EndofConversation
