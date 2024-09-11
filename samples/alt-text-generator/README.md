@@ -66,7 +66,7 @@ Version|Date|Comments
 * Set up a local environment variables to store the OpenAI API key. Open up a command prompt on your computer and run this command:
 
     ```bash
-    setx AZURE_OPENAI_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE"
+    setx OPENAI_API_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE"
     ```
 
     Replace `REPLACE_WITH_YOUR_KEY_VALUE` with the key you copied earlier.
