@@ -8,11 +8,11 @@ Sample consists of a Power Automate flow and a Copilot Studio copilot.
 
 🗣️ Start a simple conversation with the copilot by asking it to generate alt text for you.
 
-**TODO: Add a screenshot of the copilot in action**
+![Start a conversation with the copilot](./assets/Sample1.png)
 
 🤖 Once you enter the image URL, the copilot will generate appropriate alt text for that image displaying both the image and the alt text in an adaptive card.
 
-**TODO: Add a screenshot of the adaptive card in copilot**
+![Generates alt text for an image](./assets/Sample2.png)
 
 ## Applies to
 
@@ -155,3 +155,30 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 
 * Once completed, follow along from **Step 2** above.
+
+## Features
+
+This solution illustrates the following concepts on top of the Power Platform. With the OpenAI, .NET, and the Power Platform, this solution demonstrates an easy way to generate alt text for images with AI through a copilot - improving accessibility for the web.
+
+In the copilot, you can start a conversation by asking it how to generate alt text:
+
+* The copilot will then trigger a topic that prompts you to enter a link to the image that you want to generate alt text for.
+* Once you enter the image URL, the copilot will call a Power Automate flow that connects to a Custom Connector.
+* This Custom Connector is connected to a .NET API that uses OpenAI's gpt-4o model to generate alt text for the image.
+* The image along with the generated alt text is then returned to the copilot and displayed in the chat as an adaptive card.
+
+## Help
+
+We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
+
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=alt-text-generator&authors=@gomomohapi&title=alt-text-generator%20-%20).
+
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=alt-text-generator&authors=@gomomohapi&title=alt-text-generator%20-%20).
+
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=alt-text-generator&authors=@gomomohapi&title=alt-text-generator%20-%20).
+
+## Disclaimer
+
+**THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
+
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/alt-text-generator"  aria-hidden="true" />
