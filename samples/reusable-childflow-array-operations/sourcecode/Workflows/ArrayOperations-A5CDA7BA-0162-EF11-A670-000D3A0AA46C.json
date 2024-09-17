@@ -1,0 +1,345 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "3aebd3fa-8e39-4dd5-8202-b1e616097b1e"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "description": "Please enter input json array",
+                  "title": "Array1",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_1": {
+                  "description": "Please enter input json array",
+                  "title": "Array2",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_2": {
+                  "description": "Please enter the key to compare",
+                  "title": "Key",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_3": {
+                  "description": "Please enter your input",
+                  "title": "Operation",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true,
+                  "enum": [
+                    "Union (All)",
+                    "Intersection (Common)",
+                    "Difference (Array1 - Array2)"
+                  ]
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2",
+                "text_3"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "822a0151-7bbb-490c-bd20-276b677b495e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "OutputArray",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Set_variable_4": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "99e66553-827d-4990-9260-a1c2329d54b7"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "OutputArray",
+                "value": []
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ],
+            "Initialize_variable_3": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Switch": {
+                "runAfter": {},
+                "cases": {
+                  "Union": {
+                    "case": "Union (All)",
+                    "actions": {
+                      "Set_variable": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "541f7f76-8a0a-4923-9d42-983ce2f67207"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "OutputArray",
+                          "value": "@union(outputs('Array1'),outputs('Array2'))"
+                        }
+                      }
+                    }
+                  },
+                  "Intersection": {
+                    "case": "Intersection (Common)",
+                    "actions": {
+                      "Select": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "3182f2e7-d8b0-494a-a4c9-10d9daabc34e"
+                        },
+                        "type": "Select",
+                        "inputs": {
+                          "from": "@outputs('Array2')",
+                          "select": "@item()?[triggerBody()['text_2']]"
+                        }
+                      },
+                      "Filter_array": {
+                        "runAfter": {
+                          "Select": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "a74c1436-fc13-4012-b554-0c7e8d74f779"
+                        },
+                        "type": "Query",
+                        "inputs": {
+                          "from": "@outputs('Array1')",
+                          "where": "@contains(body('Select'), item()?[triggerBody()['text_2']])"
+                        }
+                      },
+                      "Set_variable_2": {
+                        "runAfter": {
+                          "Filter_array": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "ffa1a350-af1c-4b4f-99b3-7f95f3991b45"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "OutputArray",
+                          "value": "@body('Filter_array')"
+                        }
+                      }
+                    }
+                  },
+                  "Difference": {
+                    "case": "Difference (Array1 - Array2)",
+                    "actions": {
+                      "Select_2": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "403445e3-bd46-4331-8df4-654738b8336a"
+                        },
+                        "type": "Select",
+                        "inputs": {
+                          "from": "@outputs('Array2')",
+                          "select": "@item()?[triggerBody()['text_2']]"
+                        }
+                      },
+                      "Filter_array_2": {
+                        "runAfter": {
+                          "Select_2": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "c3a5ba31-f135-4dce-aa56-1665fb9a8e23"
+                        },
+                        "type": "Query",
+                        "inputs": {
+                          "from": "@outputs('Array1')",
+                          "where": "@not(contains(body('Select_2'), item()?[triggerBody()['text_2']]))"
+                        }
+                      },
+                      "Set_variable_3": {
+                        "runAfter": {
+                          "Filter_array_2": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "4a004212-138b-45ba-b9c4-72095327afd6"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "OutputArray",
+                          "value": "@body('Filter_array_2')"
+                        }
+                      }
+                    }
+                  }
+                },
+                "default": {
+                  "actions": {}
+                },
+                "expression": "@triggerBody()['text_3']",
+                "metadata": {
+                  "operationMetadataId": "e947115f-5b0a-470b-88cc-5045c0aa0292"
+                },
+                "type": "Switch"
+              }
+            }
+          },
+          "expression": {
+            "or": [
+              {
+                "equals": [
+                  "@variables('KeyExistsinArray1')",
+                  "@false"
+                ]
+              },
+              {
+                "equals": [
+                  "@variables('KeyExistsinArray2')",
+                  "@false"
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "94c10a9c-fd39-40aa-ad9a-93684b50ac18"
+          },
+          "type": "If"
+        },
+        "Respond_to_a_Power_App_or_flow_2": {
+          "runAfter": {
+            "Condition": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9e055744-ba2a-4646-993d-20c03a953e78"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "output": "@{variables('OutputArray')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "output": {
+                  "title": "Output",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable_2": {
+          "runAfter": {
+            "Array2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a99af063-0e2c-4f30-a50c-390451c0d883"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "KeyExistsinArray1",
+                "type": "boolean",
+                "value": "@if(empty(xpath(xml(json(concat('{\"parent\":{\"root\":',outputs('Array1'),'}}'))),concat('//',triggerBody()['text_2'],'/text()'))),false,true)"
+              }
+            ]
+          }
+        },
+        "Array1": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "1079eaff-899c-4450-9e2b-69e04cc8fa80"
+          },
+          "type": "Compose",
+          "inputs": "@json(triggerBody()['text'])"
+        },
+        "Array2": {
+          "runAfter": {
+            "Array1": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "291e9a53-8aa9-4ab1-a34f-715fbead05f8"
+          },
+          "type": "Compose",
+          "inputs": "@json(triggerBody()['text_1'])"
+        },
+        "Initialize_variable_3": {
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a99af063-0e2c-4f30-a50c-390451c0d883"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "KeyExistsinArray2",
+                "type": "boolean",
+                "value": "@if(empty(xpath(xml(json(concat('{\"parent\":{\"root\":', outputs('Array2'), '}}'))), concat('//', triggerBody()['text_2'], '/text()'))), false, true)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
