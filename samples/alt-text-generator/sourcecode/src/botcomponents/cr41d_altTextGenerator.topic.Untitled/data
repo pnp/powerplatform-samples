@@ -1,0 +1,65 @@
+kind: AdaptiveDialog
+modelDescription: Generates alt text description for images
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: Question
+      id: question_4oisnk
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.ImageURL
+      prompt: Please provide a link to an image you want to generate alt text for.
+      entity: StringPrebuiltEntity
+
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_3Z5LLn
+      input:
+        binding:
+          text: =Topic.ImageURL
+
+      output:
+        binding:
+          alttext: Topic.altText
+
+      flowId: ac49b765-712a-d76f-e7d2-53a1aa818750
+
+    - kind: SendActivity
+      id: sendActivity_OCbMUt
+      activity:
+        attachments:
+          - kind: AdaptiveCardTemplate
+            cardContent: |-
+              ={
+              '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+              type: "AdaptiveCard",
+              version: "1.3",
+              body: [
+                  {
+                  type: "TextBlock",
+                  text: "Generated Alt Text",
+                  size: "Large",
+                  weight: "Bolder",
+                  horizontalAlignment: "Center",
+                  spacing: "Medium"
+                  },
+                  {
+                  type: "Image",
+                  size: "large",
+                  url: Topic.ImageURL,
+                  horizontalAlignment: "Center"
+                  },
+                  {
+                  type: "RichTextBlock",
+                  inlines: [
+                      {
+                      type: "TextRun",
+                      size: "medium",
+                      text: Topic.altText
+                      }
+                  ]
+                  }
+              ]
+              }
