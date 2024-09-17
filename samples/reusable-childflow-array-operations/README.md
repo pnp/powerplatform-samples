@@ -6,11 +6,9 @@ This sample is a reusable cloud flow that can be used for performing Union (All)
 
 ![Flow overview](/samples/reusable-childflow-array-operations/assets/flow-overview.png "Flow overview")
 
-
 ## Applies to
 
-* [Power Automate](https://docs.microsoft.com/power-automate/)
-
+![Power Automate](https://img.shields.io/badge/Power%20Automate-Yes-green "Yes")
 
 ## Compatibility
 
@@ -18,13 +16,9 @@ This sample is a reusable cloud flow that can be used for performing Union (All)
 ![On-Premises Connectors](https://img.shields.io/badge/On--Premises%20Connectors-No-green.svg "Does not use on-premise connectors")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-Not%20Required-green.svg "Does not use custom connectors")
 
+## Contributors
 
-## Authors
-
-Solution|Author(s)
---------|---------
-Reusable Child flow for Array Operations | [Manish Solanki](https://github.com/Solanki-Manish)
-
+* [Manish Solanki](https://github.com/Solanki-Manish)
 
 ## Version history
 
@@ -32,21 +26,9 @@ Version|Date|Comments
 -------|----|--------
 1.0|Aug 24, 2024|Initial release
 
-
-## Features
-
-This sample illustrates the following concepts:
-
-* Reusablility using child flow 
-* Perform common operations on input json arrays based on the operation selected - Union (All), Intersection (Common), Difference (Array1 - Array2)
-* Use of Select & Filter action
-* Expression
-
-
 ## Prerequisites
 
 The caller parent flow should be solution aware to call this child flow using "Run a Child Flow" action.
-
 
 ## Minimal Path to Awesome
 
@@ -54,7 +36,6 @@ The caller parent flow should be solution aware to call this child flow using "R
 
 * [Download](./solution/reusable-childflow-array-operations.zip) the `.zip` from the `solution` folder
 * [Import](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/import-update-export-solutions) the `.zip` file using **Solutions** > **Import Solution**.
-
 
 ### Using the source code
 
@@ -69,6 +50,15 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
   Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+
+## Features
+
+This sample illustrates the following concepts:
+
+* Reusablility using child flow 
+* Perform common operations on input json arrays based on the operation selected - Union (All), Intersection (Common), Difference (Array1 - Array2)
+* Use of Select & Filter action
+* Expression
 
 ## Help
 
