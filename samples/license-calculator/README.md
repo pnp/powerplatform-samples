@@ -41,6 +41,7 @@ The prices may change, and some companies may benefit from Volume Licensing. The
 |Version|Date|Comments|
 |-|-|-|
 |1.0|January 30, 2024|Initial release|
+|1.1|September 16, 2024|Fix: divide by 0|
 
 ## Prerequisites
 
