@@ -1,0 +1,135 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "glynn_sharedsharepointonline_a701f"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "470f91ea-51c2-49f7-aea7-eacb8719fced"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "List Name",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Name of the list to update",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "number": {
+                  "title": "List ID",
+                  "type": "number",
+                  "x-ms-dynamically-added": true,
+                  "description": "List item ID to update",
+                  "x-ms-content-hint": "NUMBER"
+                },
+                "text_1": {
+                  "title": "Created By Email",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Email address of the person to set as Author",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "Site Address",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Site address of the list",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "number",
+                "text_1",
+                "text_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Send_an_HTTP_request_to_SharePoint": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "f2ca745a-b93c-40f1-b189-55975d1ce485"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@triggerBody()['text_2']",
+              "parameters/method": "POST",
+              "parameters/uri": "_api/web/lists/getbytitle('@{triggerBody()['text']}')/items('@{triggerBody()['number']}')/validateUpdateListItem",
+              "parameters/body": "{\n\t\"formValues\":[\n\t\t{\n\t\t\t\"FieldName\": \"Author\",\n\t\t\t\"FieldValue\": \"[{'Key':'i:0#.f|membership|@{triggerBody()?['text_1']}'}]\"\n\t\t}\n\t]\n}"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Send_an_HTTP_request_to_SharePoint": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9a81b50e-41dd-4bc9-9ec0-77dc5d06453c"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "status": "Complete"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "title": "Status",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
