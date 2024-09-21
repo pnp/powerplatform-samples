@@ -63,7 +63,7 @@ This template not only gives you a good foundation for customizing your own Memb
 
 ## Data Sources
 
-- Sharepoint
+- Sharepoint List
 
 ## Automated Flow
 
@@ -84,7 +84,22 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
 ## Minimal path to awesome
 
 ### Creating the Data Source
-*  [Download](./solution/gym-registration-data-source.stp) the Sharepoint template from the solution folder and import the template to your SharePoint environment by going to Site Settings > List templates and uploading the .stp file.
+**STEP 1:**
+* Create a SharePoint List named **'703 Fitness Membership Reg'**  with the following columns:
+  | Column Name         | Column Type                                                                                   |
+  | ------------------  | ------------------------------------------------------------------------------------          |
+  | Date :              | Date and Time                                                                                 |
+  | Name :              | Single Line of Text                                                                           |
+  |E-mail Address :     | Single Line of Text                                                                           |
+  |Phone Number:        | Number                                                                                        |
+  |Membership Plan :    | Choice (Daily, Weekly, Monthly, Quarterly(3 Months), Half a year(6 Months), Yaerly(12 Months) |
+  |Personal Training :  | Choice(No, Daily, Silver, Diamond, Gold, VIP, Boxing                                          |
+  |Due Date :           | Calculated Column (Check how to crerat this below)                                            |
+  |Gender               | Choice (Male, Female)                                                                         |
+  |DueDate2             |  Date and Time                                                                                |
+**NOTE:** Some of the Column Names has the colon punctuation (:) and some doesn't, make sure your column names are exactly the way it is written above, and note that there is a space before the colon punctuation (:) (E.G: Name: is wrong, Name : is right) and note the ones that has no space before colon punctuation, like the Phone Number: column
+  
+
 
 ## Requirements
 * Make sure Office 365 Outlook is enabled in your environment for E-mail sending
