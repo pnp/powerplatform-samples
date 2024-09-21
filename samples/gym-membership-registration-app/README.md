@@ -21,7 +21,7 @@ The Gym Membership Registration App is designed to enhance efficiency and reduce
 ## Compatibility
 
 ![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
-![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
+![Experimental Features](https://img.shields.io/badge/Experimental%20Features-Yes-green.svg "Does rely on experimental features")
 
 ## Contributors
 
