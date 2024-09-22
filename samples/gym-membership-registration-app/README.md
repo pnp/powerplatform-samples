@@ -124,12 +124,16 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
 
 [Download](./solution/GymMembershipRegistration_1_0_0_2.zip) the `.zip` from the `solution` folder
 Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
+When importing the solution you will be prompted to connect a SharePoint site and Office 365 Outlook, kindly connect your SharePoint Site and Office365 Outlook. Use the SharePoint list you created in step 1 as the data source. 
+
+### STEP 3: Editing the Flows that comes with the Solution 
+
+To make the Automated Flows that come with the solution run, you will need to change the SharePoint site address to yours and change the list name to yours. Publish and turn it on.
 
 
   ## Requirements
 * Make sure Office 365 Outlook is enabled in your environment for E-mail sending
-* The Sharepoint list that was imported must be the Datasource, the app uses Sharepoint as the Datasource.
+* The Sharepoint list created in step 1 must be the Datasource, the app uses Sharepoint as the Datasource.
 <!--
 PRO TIP:
 
