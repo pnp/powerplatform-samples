@@ -83,8 +83,8 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
 
 ## Minimal path to awesome
 
-### Creating the Data Source
-**STEP 1:**
+### STEP 1: Creating the Data Source
+
 * Create a SharePoint List named **'703 Fitness Membership Reg'**  with the following columns:
   | Column Name         | Column Type                                                                                   |
   | ------------------  | ------------------------------------------------------------------------------------          |
@@ -119,6 +119,13 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
   Step 5: Scroll down to formula and paste in this formula: =IF([Membership Plan :]="Daily",[Date :]+1,IF([Membership Plan :]="Weekly",[Date :]+7,IF([Membership Plan :]="Monthly",[Date :]+30,IF([Membership Plan :]="Quarterly(3 Months)",[Date :]+90,IF([Membership Plan :]="Half a year(6 Months)",[Date :]+180,IF([Membership Plan :]="Yearly(12 Months)",[Date :]+365)))))) and scroll down to select Date and Time where it says 'The data type returned from this formula is: ' and change the Date and Time Format to Date Only
 
   ![Prompt Admin Products](assets/DueDateStep5.png)
+
+### STEP 2: Importing the Solution
+
+[Download](./solution/GymMembershipRegistration_1_0_0_2.zip) the `.zip` from the `solution` folder
+Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
+
 
   ## Requirements
 * Make sure Office 365 Outlook is enabled in your environment for E-mail sending
