@@ -122,7 +122,7 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
 
 ### STEP 2: Importing the Solution
 
-[Download](./solution/GymMembershipRegistration_1_0_0_2.zip) the `.zip` from the `solution` folder
+[Download](./solution/GymMembershipRegistration_1_0_0_1.zip) the `.zip` from the `solution` folder
 Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 When importing the solution you will be prompted to connect a SharePoint site and Office 365 Outlook, kindly connect your SharePoint Site and Office365 Outlook. Use the SharePoint list you created in step 1 as the data source. 
 
@@ -149,7 +149,7 @@ As tempting as it may be, don't just use images to describe the steps. Let's be 
 
 ### Using the solution zip
 
-- [Download](./solution/GymMembershipRegistration_1_0_0_2.zip) the `.zip` from the `solution` folder
+- [Download](./solution/GymMembershipRegistration_1_0_0_1.zip) the `.zip` from the `solution` folder
 - Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 - Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
 
