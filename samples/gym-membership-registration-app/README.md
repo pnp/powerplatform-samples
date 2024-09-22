@@ -75,7 +75,7 @@ This template not only gives you a good foundation for customizing your own Memb
 
 ![Prompt Admin Products](assets/SubscriptionRenewalFlow.png)
 
-**Due Date Flow:** (How i used a calculated column for Filter Query in Power Automate)
+**Due Date Flow:** (How I used a calculated column for Filter Query in Power Automate)
 
 ![Prompt Admin Products](assets/DueDateFlow.png)
 
@@ -94,10 +94,15 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
   |Phone Number:        | Number                                                                                        |
   |Membership Plan :    | Choice (Daily, Weekly, Monthly, Quarterly(3 Months), Half a year(6 Months), Yaerly(12 Months) |
   |Personal Training :  | Choice(No, Daily, Silver, Diamond, Gold, VIP, Boxing                                          |
-  |Due Date :           | Calculated Column (Check how to crerat this below)                                            |
+  |Due Date :           | Calculated Column (Check how to create this below)                                            |
   |Gender               | Choice (Male, Female)                                                                         |
   |DueDate2             |  Date and Time                                                                                |
-**NOTE:** Some of the Column Names has the colon punctuation (:) and some doesn't, make sure your column names are exactly the way it is written above, and note that there is a space before the colon punctuation (:) (E.G: Name: is wrong, Name : is right) and note the ones that has no space before colon punctuation, like the Phone Number: column
+**NOTE:** Some of the Column Names have colon punctuation (:) and some don't, make sure your column names are exactly the way it is written above, and note that there is a space before the colon punctuation (:) (E.G: Name: is wrong, Name : is right) and note the ones that have no space before colon punctuation, like the Phone Number: column
+  
+  ## How to Create Due Date Calculated Column
+  
+  Step 1:
+  ![Prompt Admin Products](assets/Due-Date-Step-1.png)
   
 
 
