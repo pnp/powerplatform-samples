@@ -101,12 +101,26 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
   
   ## How to Create Due Date Calculated Column
   
-  Step 1:
-  ![Prompt Admin Products](assets/Due-Date-Step-1.png)
-  
+  Step 1: Add a Column
+  ![Prompt Admin Products](assets/DueDateStep1.png)
 
+  Step 2: Scroll Down to select see all column types
 
-## Requirements
+  ![Prompt Admin Products](assets/DueDateStep2.png)
+
+  Step 3: Click on Next
+
+  ![Prompt Admin Products](assets/DueDateStep3.png)
+
+  Step 4: Select Calculated(Calculations based on other columns) and Due Date : as the column name 
+
+  ![Prompt Admin Products](assets/DueDateStep4.png)
+
+  Step 5: Scroll down to formula and paste in this formula: =IF([Membership Plan :]="Daily",[Date :]+1,IF([Membership Plan :]="Weekly",[Date :]+7,IF([Membership Plan :]="Monthly",[Date :]+30,IF([Membership Plan :]="Quarterly(3 Months)",[Date :]+90,IF([Membership Plan :]="Half a year(6 Months)",[Date :]+180,IF([Membership Plan :]="Yearly(12 Months)",[Date :]+365)))))) and scroll down to select Date and Time where it says 'The data type returned from this formula is: ' and change the Date and Time Format to Date Only
+
+  ![Prompt Admin Products](assets/DueDateStep5.png)
+
+  ## Requirements
 * Make sure Office 365 Outlook is enabled in your environment for E-mail sending
 * The Sharepoint list that was imported must be the Datasource, the app uses Sharepoint as the Datasource.
 <!--
