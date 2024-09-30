@@ -1,0 +1,55 @@
+kind: AdaptiveDialog
+modelDescription: Generates or creates an image with AI based on a prompt.
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: Question
+      id: question_WRRyDi
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Prompt
+      prompt: Please provide a prompt for your image.
+      entity: StringPrebuiltEntity
+
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_Ge7WrX
+      input:
+        binding:
+          text: =Topic.Prompt
+
+      output:
+        binding:
+          imageurl: Topic.ImageUrl
+
+      flowId: 2a98b538-5121-2e45-876f-c9ae1c68e3f8
+
+    - kind: SendActivity
+      id: sendActivity_vqYZfs
+      activity:
+        attachments:
+          - kind: AdaptiveCardTemplate
+            cardContent: |-
+              ={
+              '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+              type: "AdaptiveCard",
+              version: "1.3",
+              body: [
+                  {
+                  type: "TextBlock",
+                  text: "Generated Image",
+                  size: "Large",
+                  weight: "Bolder",
+                  horizontalAlignment: "Center",
+                  spacing: "Medium"
+                  },
+                  {
+                  type: "Image",
+                  size: "large",
+                  url: Topic.ImageUrl,
+                  horizontalAlignment: "Center"
+                  }
+              ]
+              }
