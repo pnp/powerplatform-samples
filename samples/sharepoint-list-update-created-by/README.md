@@ -90,8 +90,8 @@ _api/web/lists/getbytitle('List Name')/items('ID')/validateUpdateListItem
 ```
   
 > [!NOTE]
-> - If you've followed the exact sequence in step 5, you can use [Uri-Sample.html](sourcecode/Uri-Sample.html) without modification.
-> - If you configured your own inputs in Step 5, adjust [Uri.html](sourcecode/Uri.html) as needed.
+> - If you've followed the exact sequence in step 5, you can use [Uri-Sample.html](Uri-Sample.html) without modification.
+> - If you configured your own inputs in Step 5, adjust [Uri.html](Uri.html) as needed.
 
 - **Body**
 
@@ -107,8 +107,8 @@ _api/web/lists/getbytitle('List Name')/items('ID')/validateUpdateListItem
 ```
 
 > [!NOTE]
-> - If you've followed the exact sequence in step 5, you can use [Body-Sample.json](sourcecode/Body-Sample.json) without modification.
-> - If you configured your own inputs in Step 5, adjust [Body.json](sourcecode/Body.json) as needed.
+> - If you've followed the exact sequence in step 5, you can use [Body-Sample.json](Body-Sample.json) without modification.
+> - If you configured your own inputs in Step 5, adjust [Body.json](Body.json) as needed.
 
   ![Step 7](assets/Step%207.jpg)
 
