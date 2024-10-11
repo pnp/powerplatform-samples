@@ -181,4 +181,4 @@ I stumbled onto a Microsoft Community post titled "[Update 'Created By' and 'Mod
 
 - [Rob Elliott](https://techcommunity.microsoft.com/t5/user/viewprofilepage/user-id/174092#profile)
 
-<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/Sharepoint%20-%20List%20-%20Update%20Created%20By"  aria-hidden="true" />
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/sharepoint-list-update-created-by"  aria-hidden="true" />
