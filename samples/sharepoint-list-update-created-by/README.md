@@ -14,11 +14,9 @@ This Power Automate flow updates the “Created By” field of a Microsoft List 
 
 ![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required") ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
 
-## Authors
+## Contributors
 
-| Solution                              | Author                                        |
-| ------------------------------------- | --------------------------------------------- |
-| Sharepoint - List - Update Created By | [Glynn Pearson](https://github.com/Glynnryan) |
+* [Glynn Pearson](https://github.com/Glynnryan)
 
 ## Version history
 
@@ -32,6 +30,28 @@ This Power Automate flow updates the “Created By” field of a Microsoft List 
   - A configured Microsoft List
 
 ## Minimal path to awesome
+
+### Using the solution zip
+
+* [Download](./solution/sharepoint-list-update-created-by.zip) the `.zip` from the `solution` folder
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+* Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
+
+### Using the source code
+
+You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps:
+
+* Clone the repository to a local drive
+* Pack the source files back into a solution `.zip` file:
+
+  ```bash
+  pac solution pack --zipfile pathtodestinationfile --folder pathtosourcefolder --processCanvasApps
+  ```
+
+  Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+
+### Create from scratch
 
 > [!NOTE]
 > My solution uses a flow created within a Solution in Power Automate. You can still achieve the end goal by following the steps below in a dedicated flow. However, if you're not using solutions, I would recommend starting to do so, as there are several benefits, such as running a child flow.
@@ -90,8 +110,8 @@ _api/web/lists/getbytitle('List Name')/items('ID')/validateUpdateListItem
 ```
   
 > [!NOTE]
-> - If you've followed the exact sequence in step 5, you can use [Uri-Sample.html](Uri-Sample.html) without modification.
-> - If you configured your own inputs in Step 5, adjust [Uri.html](Uri.html) as needed.
+> - If you've followed the exact sequence in step 5, you can use [Uri-Sample.html](./assets/Uri-Sample.html) without modification.
+> - If you configured your own inputs in Step 5, adjust [Uri.html](./assets/Uri.html) as needed.
 
 - **Body**
 
@@ -107,8 +127,8 @@ _api/web/lists/getbytitle('List Name')/items('ID')/validateUpdateListItem
 ```
 
 > [!NOTE]
-> - If you've followed the exact sequence in step 5, you can use [Body-Sample.json](Body-Sample.json) without modification.
-> - If you configured your own inputs in Step 5, adjust [Body.json](Body.json) as needed.
+> - If you've followed the exact sequence in step 5, you can use [Body-Sample.json](./assets/Body-Sample.json) without modification.
+> - If you configured your own inputs in Step 5, adjust [Body.json](./assets/Body.json) as needed.
 
   ![Step 7](assets/Step%207.jpg)
 
@@ -131,26 +151,6 @@ _api/web/lists/getbytitle('List Name')/items('ID')/validateUpdateListItem
   - Select **Save**
 And that’s it! Now, whenever you need to update the “Created By” field in a Microsoft List item, use the **Run a Child Flow** action, select this automation, and input your dynamic content into the fields you set up in step 5.
 
-### Using the solution zip
-
-* [Download](./solution/UpdateCreatedBy_1_0_0_1.zip) the `.zip` from the `solution` folder
-* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-* Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
-
-### Using the source code
-
-You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps:
-
-* Clone the repository to a local drive
-* Pack the source files back into a solution `.zip` file:
-
-  ```bash
-  pac solution pack --zipfile pathtodestinationfile --folder pathtosourcefolder --processCanvasApps
-  ```
-
-  Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
-* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-
 ## Features
 
 I have several Power Automate flows that create items in various Microsoft Lists within the same SharePoint site using a service account. As a result, these list items have a "Created By" value that reflects the service account's name.
@@ -163,11 +163,11 @@ This Power Automate flow updates the “Created By” field in Microsoft Lists, 
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=Sharepoint%20-%20List%20-%20Update%20Created%20By&authors=@Glynnryan&title=Sharepoint%20-%20List%20-%20Update%20Created%20By%20-%20).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=sharepoint-list-update-created-by&authors=@Glynnryan&title=sharepoint-list-update-created-by%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=Sharepoint%20-%20List%20-%20Update%20Created%20By&authors=@Glynnryan&title=Sharepoint%20-%20List%20-%20Update%20Created%20By%20-%20).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=sharepoint-list-update-created-by&authors=@Glynnryan&title=sharepoint-list-update-created-by%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=Sharepoint%20-%20List%20-%20Update%20Created%20By&authors=@Glynnryan&title=Sharepoint%20-%20List%20-%20Update%20Created%20By%20-%20).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=sharepoint-list-update-created-by&authors=@Glynnryan&title=sharepoint-list-update-created-by%20-%20).
 
 ## Disclaimer
 
