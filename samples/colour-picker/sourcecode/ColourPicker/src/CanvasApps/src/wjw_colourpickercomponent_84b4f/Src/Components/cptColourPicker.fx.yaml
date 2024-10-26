@@ -1,0 +1,224 @@
+cptColourPicker As CanvasComponent:
+    HSLtoRGB(h As Number, s As Number, l As Number):
+        h:
+            Default: =100
+        s:
+            Default: =100
+        l:
+            Default: =100
+        ThisProperty:
+            Default: |-
+                =//Adapted to PowerFx from https://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion
+                If(
+                    s = 0,
+                    With({x:Round(l*255,0)},
+                        {R:x,G:x,B:x,A:1}
+                    ),
+                    With({q: If(l < 0.5, l * (1 + s), l + s - l * s)},
+                        With({p: 2 * l - q},
+                            {
+                                R:Round(cptColourPicker.HUEtoRGB(p, q, h + 1/3) * 255,0),
+                                G:Round(cptColourPicker.HUEtoRGB(p, q, h) * 255,0),
+                                B:Round(cptColourPicker.HUEtoRGB(p, q, h - 1/3) * 255,0),
+                                A:1
+                            }
+                        )
+                    )
+                )
+    HUEtoRGB(p As Number, q As Number, t As Number):
+        p:
+            Default: =100
+        q:
+            Default: =100
+        t:
+            Default: =100
+        ThisProperty:
+            Default: |-
+                =With({T:
+                    If(
+                        t < 0, t + 1,
+                        t > 1, t - 1,
+                        t
+                    )},
+                    If(
+                        T < 1/6, p + (q - p) * 6 * T,
+                        T < 1/2, q,
+                        T < 2/3, p + (q - p) * (2/3 - T) * 6,
+                        p
+                    )
+                )
+    NearestNumber(NumberTable As Table, TargetNumber As Number):
+        NumberTable:
+            Default: =[1,2,3,4]
+        TargetNumber:
+            Default: =100
+        ThisProperty:
+            Default: |-
+                =First(
+                    SortByColumns(
+                        AddColumns(
+                            NumberTable,
+                            Difference,
+                            Abs(ThisRecord.Value - TargetNumber)
+                        ),
+                        "Difference"
+                    )
+                ).Value
+    RGBtoHSL(r As Number, g As Number, b As Number):
+        r:
+            Default: =100
+        g:
+            Default: =100
+        b:
+            Default: =100
+        ThisProperty:
+            Default: |-
+                =//Adapted to PowerFx from https://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion
+                With({r1 : r/255, g1 : g/255, b1 : b/255},
+                With({vmax: Max(r1, g1, b1), vmin: Min(r1, g1, b1)},
+                With({a:(vmax + vmin) / 2, d: vmax-vmin},
+                    If(vmax=vmin,
+                        {H:0,S:0,L:a},
+                        {
+                            H:With({h1:If(vmax = r1,(g1 - b1) / d + (If(g1 < b1,6,0)),vmax = g1,(b1 - r1) / d + 2,vmax = b1,(r1 - g1) / d + 4)},h1/6),
+                            S:If(a > 0.5, d/(2-vmax-vmin), d/(vmax+vmin)),
+                            L:a
+                        }
+                    )
+                )))
+    ChosenColour: |-
+        =With({RGB:cptColourPicker.HSLtoRGB(varSelected.H,varSelected.S,galLightness.Selected.Value)},
+        RGBA(RGB.R,RGB.G,RGB.B,RGB.A)
+        )
+    ColourTable: |-
+        =ForAll(Sequence(cptColourPicker.Rows,cptColourPicker.Rows,-1) As S,
+            ForAll(Sequence(cptColourPicker.Rows,0) As H,
+                {
+                    H:H.Value/(cptColourPicker.Rows),
+                    S:(S.Value-1)/(cptColourPicker.Rows-1),
+                    L:0.5
+                }
+            )
+        )
+    DefaultColour: =RGBA(100, 100, 100, 1)
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =640
+    OnReset: |-
+        =Set(varDefaultColourRGB,With({ColourText:Text(ParseJSON(JSON(cptColourPicker.DefaultColour)))},{R:Hex2Dec(Mid(ColourText,2,2)),G:Hex2Dec(Mid(ColourText,4,2)),B:Hex2Dec(Mid(ColourText,6,2))}));
+        Set(varDefaultColourHSL,cptColourPicker.RGBtoHSL(varDefaultColourRGB.R,varDefaultColourRGB.G,varDefaultColourRGB.B));
+        Set(SL_Values,ForAll(Sequence(cptColourPicker.Rows,cptColourPicker.Rows,-1) As S,
+            (S.Value-1)/(cptColourPicker.Rows-1)
+        ));
+        Set(H_Values,ForAll(Sequence(cptColourPicker.Rows,0) As H,
+            H.Value/(cptColourPicker.Rows)
+        ));
+        Set(varSelected,
+            {
+                H:cptColourPicker.NearestNumber(H_Values,varDefaultColourHSL.H),
+                S:cptColourPicker.NearestNumber(SL_Values,varDefaultColourHSL.S),
+                L:0.5
+            }
+        );
+        Set(varDefaultL,
+            {Value:cptColourPicker.NearestNumber(SL_Values,varDefaultColourHSL.L)}
+        );
+        Set(varHasSelected,false);
+    Rows: =9
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    galLightness As gallery.galleryVertical:
+        Default: |-
+            =If(varHasSelected, 
+            Index(ShowColumns(Self.AllItems,Value),Round(Self.AllItemsCount/2,0)),
+            varDefaultL
+            )
+        DelayItemLoading: =true
+        Height: =RoundDown(Parent.Height*.9/cptColourPicker.Rows,0)*cptColourPicker.Rows
+        Items: |-
+            =ForAll(Sequence(cptColourPicker.Rows,cptColourPicker.Rows,-1),
+            (ThisRecord.Value-1)/(cptColourPicker.Rows-1)
+            )
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        ShowScrollbar: =false
+        TemplatePadding: =0
+        TemplateSize: =RoundDown(Self.Height/cptColourPicker.Rows,0)
+        Width: =Parent.Width*.1
+        X: =Parent.Width*0.9
+        ZIndex: =1
+
+        recColourChosenLightness As rectangle:
+            BorderColor: |-
+                =With({i:Min(255*(1.5-ThisItem.Value),255)},RGBA(i, i, i, 1))
+            BorderThickness: =RoundUp(If(ThisItem.IsSelected,Self.Width*0.2,0),0)
+            Fill: |-
+                =With({RGB:cptColourPicker.HSLtoRGB(varSelected.H,varSelected.S,ThisItem.Value)},
+                    RGBA(RGB.R,RGB.G,RGB.B,RGB.A)
+                )
+            Height: =Parent.TemplateHeight
+            TabIndex: =0
+            Width: =Parent.Width
+            ZIndex: =1
+
+    galSaturation As gallery.galleryVertical:
+        Default: =LookUp(cptColourPicker.ColourTable,varSelected in ThisRecord.Value)
+        DelayItemLoading: =true
+        Height: =Parent.Height*.9
+        Items: =cptColourPicker.ColourTable
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        ShowScrollbar: =false
+        TemplatePadding: =0
+        TemplateSize: =RoundDown(Self.Height/cptColourPicker.Rows,0)
+        Width: =Parent.Width*.9
+        ZIndex: =2
+
+        galHue As gallery.galleryHorizontal:
+            Default: =varSelected
+            DelayItemLoading: =true
+            Height: =Parent.TemplateHeight
+            Items: =ThisItem.Value
+            LoadingSpinner: =LoadingSpinner.Data
+            ShowScrollbar: =false
+            TemplatePadding: =0
+            TemplateSize: =RoundDown(Self.Width/cptColourPicker.Rows,0)
+            Width: =Parent.Width
+            ZIndex: =1
+
+            recColourFixedLightness As rectangle:
+                BorderColor: =RGBA(255, 255, 255, 1)
+                BorderThickness: =RoundUp(If(ThisItem.H=varSelected.H&&ThisItem.S=varSelected.S,Self.Width*0.2,0),0)
+                Fill: |-
+                    =With({RGB:cptColourPicker.HSLtoRGB(ThisItem.H,ThisItem.S,ThisItem.L)},
+                        RGBA(RGB.R,RGB.G,RGB.B,RGB.A)
+                    )
+                Height: =Parent.Height
+                OnSelect: =Set(varSelected,ThisItem);Set(varHasSelected,true);Reset(galLightness);
+                TabIndex: =0
+                Width: =Parent.TemplateWidth
+                ZIndex: =1
+
+    recColourChosen As rectangle:
+        Fill: =cptColourPicker.ChosenColour
+        Height: =Parent.Height*.1
+        Width: =Parent.Width*.5
+        X: =Parent.Width-Self.Width
+        Y: =Parent.Height-Self.Height
+        ZIndex: =3
+
+    lblColourChosen As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Semibold
+        Height: =Parent.Height*.1
+        Size: =If(Self.Width<100,6,Self.Width<200,8,Self.Width<300,12,Self.Width<400,16,Self.Width<500,20,24)
+        Text: |-
+            =With({RGB:cptColourPicker.HSLtoRGB(varSelected.H,varSelected.S,galLightness.Selected.Value)},
+            $"R:{RGB.R} G:{RGB.G} B:{RGB.B}{Char(10)}#{Dec2Hex(RGB.R,2)}{Dec2Hex(RGB.G,2)}{Dec2Hex(RGB.B,2)}"
+            )
+        Width: =Parent.Width*.5
+        Y: =Parent.Height-Self.Height
+        ZIndex: =4
+
