@@ -45,7 +45,28 @@ None
 
 ## Minimal path to awesome
 
-Open the sample app and copy and paste the component cptcolour-picker to your target app.
+### Using the solution zip
+
+* [Download](./solution/colour-picker.zip) the `.zip` from the `solution` folder
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+
+### Using the source code
+
+You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps:
+
+* Clone the repository to a local drive
+* Pack the source files back into a solution `.zip` file:
+
+  ```bash
+  pac solution pack --zipfile pathtodestinationfile --folder pathtosourcefolder --processCanvasApps
+  ```
+
+  Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+
+### Use the component in your app
+
+Open the sample app and export the component, and import the component **cptcolour-picker** to your target app.
 
 Set the Rows to an odd number divisible by 3 (default is 9).
 
@@ -69,28 +90,6 @@ As there are 256^3 possible RGB colours, and only Rows^3 possible colours in the
 
 ![Component Design](assets/ComponentDesign.png)
 
-### Using the solution zip
-
-* [Download](./solution/solution.zip) the `.zip` from the `solution` folder
-* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-* Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
-
-### Using the source code
-
-You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps:
-
-* Clone the repository to a local drive
-* Pack the source files back into a solution `.zip` file:
-
-  ```bash
-  pac solution pack --zipfile pathtodestinationfile --folder pathtosourcefolder --processCanvasApps
-  ```
-
-  Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
-* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-
-## Features
-
 This solution illustrates the following concepts:
 
 * Power Apps components
@@ -107,8 +106,6 @@ We'll add the video from the community call recording here
 -->
 
 ## Help
-
-> Note: don't worry about this section, we'll update the links.
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
