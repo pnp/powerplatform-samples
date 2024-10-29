@@ -48,7 +48,7 @@ None
 ### Using the solution zip
 
 * [Download](./solution/colour-picker.zip) the `.zip` from the `solution` folder
-* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just downloaded.
 
 ### Using the source code
 
@@ -66,13 +66,17 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 ### Use the component in your app
 
-Open the sample app and export the component, and import the component **cptcolour-picker** to your target app.
+Open your target app and click the **Get more components** icon from the **Insert** tab. On the **Import components** pane, select **cptColourPicker** from the **Colour Picker Component Library** and then click **Import** to import the component into your target app:
 
-Set the Rows to an odd number divisible by 3 (default is 9).
+![Component Import](assets/Import.png)
 
-Set the Default Colour property.
+Then select **cptColourPicker** from the **Library components** group on the **Insert** tab.
 
-Add logic to your app to retrieve the Chosen Colour property from the component instance.
+Set the **Rows** property of the component instance to an odd number divisible by 3 (default is 9).
+
+Set the **Default Colour** property.
+
+Add logic to your app to retrieve the **Chosen Colour** property from the component instance.
 
 ## Features
 
@@ -82,7 +86,7 @@ The items for the grid are records containing H (hue), S (saturation) and L (lig
 
 As Power Apps works with RGB colours, the component contains some functions to convert between RGB and HSL colour formats.
 
-The rectangle in each gallery has its fill colour set using the function property "HSLtoRGB", and its helper function "HUE to RGB".
+The rectangle in each gallery has its fill colour set using the function property "HSLtoRGB", and its helper function "HUEtoRGB".
 
 In addition, the component's Default Colour input property is an RGB colour which, when changed, triggers the OnReset action of the component, where it is converted to HSL by first extracting the R, G and B components by converting the colour to JSON and back to a text string, then using Mid and Hex2Dec to extract the values. These RGB values are then concerted to HSL using the "RGBtoHSL" function property.
 

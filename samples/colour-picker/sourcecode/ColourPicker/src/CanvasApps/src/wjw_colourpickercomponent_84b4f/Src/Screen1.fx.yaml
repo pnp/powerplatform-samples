@@ -141,26 +141,6 @@ Screen1 As screen:
                                 "Difference"
                             )
                         ).Value
-                    OnReset: |-
-                        =Set(varDefaultColourRGB,With({ColourText:Text(ParseJSON(JSON(cptColourPicker_1.DefaultColour)))},{R:Hex2Dec(Mid(ColourText,2,2)),G:Hex2Dec(Mid(ColourText,4,2)),B:Hex2Dec(Mid(ColourText,6,2))}));
-                        Set(varDefaultColourHSL,cptColourPicker.RGBtoHSL(varDefaultColourRGB.R,varDefaultColourRGB.G,varDefaultColourRGB.B));
-                        Set(SL_Values,ForAll(Sequence(cptColourPicker_1.Rows,cptColourPicker_1.Rows,-1) As S,
-                            (S.Value-1)/(cptColourPicker_1.Rows-1)
-                        ));
-                        Set(H_Values,ForAll(Sequence(cptColourPicker_1.Rows,0) As H,
-                            H.Value/(cptColourPicker_1.Rows)
-                        ));
-                        Set(varSelected,
-                            {
-                                H:cptColourPicker.NearestNumber(H_Values,varDefaultColourHSL.H),
-                                S:cptColourPicker.NearestNumber(SL_Values,varDefaultColourHSL.S),
-                                L:0.5
-                            }
-                        );
-                        Set(varDefaultL,
-                            {Value:cptColourPicker.NearestNumber(SL_Values,varDefaultColourHSL.L)}
-                        );
-                        Set(varHasSelected,false);
                     RGBtoHSL: |-
                         =//Adapted to PowerFx from https://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion
                         With({r1 : r/255, g1 : g/255, b1 : b/255},
@@ -175,5 +155,6 @@ Screen1 As screen:
                                 }
                             )
                         )))
+                    Rows: =15
                     X: =726
 
