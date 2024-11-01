@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.24093.212" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.24093.212" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.24094.00228">
+<ImportExportXml version="9.2.24095.208" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.24095.208" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.24095.00208">
   <SolutionManifest>
     <UniqueName>GymMembershipRegistration</UniqueName>
     <LocalizedNames>
@@ -83,6 +83,11 @@
       <RootComponent type="29" id="{cd7ad75f-f442-ef11-8409-0022480bf39e}" behavior="0" />
       <RootComponent type="300" schemaName="gym_703fitnessmembershipregapp_9e622" behavior="0" />
     </RootComponents>
-    <MissingDependencies />
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="gym_sharedoffice365_348d8" solution="Active" id.connectionreferencelogicalname="gym_sharedoffice365_348d8" />
+        <Dependent type="29" displayName="Subscription Reminder" id="{cd7ad75f-f442-ef11-8409-0022480bf39e}" />
+      </MissingDependency>
+    </MissingDependencies>
   </SolutionManifest>
 </ImportExportXml>
