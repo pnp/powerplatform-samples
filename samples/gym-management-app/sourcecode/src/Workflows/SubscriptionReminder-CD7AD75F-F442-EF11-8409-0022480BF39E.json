@@ -10,10 +10,10 @@
           "name": "shared_sharepointonline"
         }
       },
-      "shared_office365": {
+      "shared_office365_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "gym_sharedoffice365_348d8"
+          "connectionReferenceLogicalName": "marv_Office365Outlookconnection"
         },
         "api": {
           "name": "shared_office365"
@@ -147,7 +147,7 @@
                       "type": "OpenApiConnection",
                       "inputs": {
                         "host": {
-                          "connectionName": "shared_office365",
+                          "connectionName": "shared_office365_1",
                           "operationId": "SendEmailV2",
                           "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
                         },
@@ -197,7 +197,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_office365",
+                  "connectionName": "shared_office365_1",
                   "operationId": "SendEmailV2",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
                 },
