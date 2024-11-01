@@ -67,6 +67,9 @@ This template not only gives you a good foundation for customizing your own Memb
 
 ## Automated Flow
 
+\*\*NOTE:
+These are the required fields for flows in Copy Due Date flow : ID, Name:, Date:, E-mail Address:, Phone Number:
+
 **Automated Welcome Message**
 
 ![Prompt Admin Products](assets/FlowForWelcomeMessage.png)
