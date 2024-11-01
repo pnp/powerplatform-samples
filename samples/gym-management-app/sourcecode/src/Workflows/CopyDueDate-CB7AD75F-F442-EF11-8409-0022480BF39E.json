@@ -1,10 +1,10 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_sharepointonline": {
+      "shared_sharepointonline_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "gym_sharedsharepointonline_4e1f2"
+          "connectionReferenceLogicalName": "marv_SharePointconnection"
         },
         "api": {
           "name": "shared_sharepointonline"
@@ -36,14 +36,14 @@
           },
           "type": "OpenApiConnection",
           "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetOnNewItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
             "parameters": {
               "dataset": "https://1zvkt.sharepoint.com/sites/DRMARV",
               "table": "09aa8fc4-4921-4bf3-b46b-c01e666f9949"
-            },
-            "host": {
-              "connectionName": "shared_sharepointonline",
-              "operationId": "GetOnNewItems",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
             },
             "authentication": "@parameters('$authentication')"
           }
@@ -57,21 +57,20 @@
           },
           "type": "OpenApiConnection",
           "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "PatchItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
             "parameters": {
               "dataset": "https://1zvkt.sharepoint.com/sites/DRMARV",
               "table": "09aa8fc4-4921-4bf3-b46b-c01e666f9949",
               "id": "@triggerBody()?['ID']",
-              "item/Title": "@triggerBody()?['Title']",
+              "item/Title": "@triggerOutputs()?['body/Title']",
               "item/Date": "@triggerBody()?['Date']",
               "item/E_x002d_mail": "@triggerBody()?['E_x002d_mail']",
               "item/Phone": "@triggerBody()?['Phone']",
-              "item/PersonalTraining/Value": "@triggerBody()?['PersonalTraining']?['Value']",
-              "item/DueDate2": "@triggerBody()?['Due_x0020_Date']"
-            },
-            "host": {
-              "connectionName": "shared_sharepointonline",
-              "operationId": "PatchItem",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+              "item/DueDate2": "@triggerOutputs()?['body/Due_x0020_Date']"
             },
             "authentication": "@parameters('$authentication')"
           }
