@@ -1,10 +1,10 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_sharepointonline": {
+      "shared_sharepointonline_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "gym_sharedsharepointonline_4e1f2"
+          "connectionReferenceLogicalName": "marv_SharePointconnection"
         },
         "api": {
           "name": "shared_sharepointonline"
@@ -24,13 +24,13 @@
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "undefined",
       "parameters": {
-        "$authentication": {
-          "defaultValue": {},
-          "type": "SecureObject"
-        },
         "$connections": {
           "defaultValue": {},
           "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
         }
       },
       "triggers": {
@@ -38,8 +38,8 @@
           "recurrence": {
             "frequency": "Day",
             "interval": 1,
-            "startTime": "2024-03-21T07:00:00Z",
-            "timeZone": "W. Central Africa Standard Time"
+            "timeZone": "W. Central Africa Standard Time",
+            "startTime": "2024-03-21T07:00:00Z"
           },
           "metadata": {
             "operationMetadataId": "78454dd5-48f5-4d95-bc34-e7c12ab904f0"
@@ -93,15 +93,15 @@
           },
           "type": "OpenApiConnection",
           "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
             "parameters": {
               "dataset": "https://1zvkt.sharepoint.com/sites/DRMARV",
               "table": "09aa8fc4-4921-4bf3-b46b-c01e666f9949",
               "$filter": "DueDate2 eq'@{variables('var3days')}'"
-            },
-            "host": {
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
-              "connectionName": "shared_sharepointonline",
-              "operationId": "GetItems"
             },
             "authentication": "@parameters('$authentication')"
           }
@@ -117,15 +117,15 @@
           },
           "type": "OpenApiConnection",
           "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
             "parameters": {
               "dataset": "https://1zvkt.sharepoint.com/sites/DRMARV",
               "table": "09aa8fc4-4921-4bf3-b46b-c01e666f9949",
               "$filter": "DueDate2 eq'@{variables('var7days')}'"
-            },
-            "host": {
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
-              "connectionName": "shared_sharepointonline",
-              "operationId": "GetItems"
             },
             "authentication": "@parameters('$authentication')"
           }
@@ -140,11 +140,17 @@
                   "foreach": "@outputs('Get_items_3_days')?['body/value']",
                   "actions": {
                     "Send_an_email_(V2)": {
+                      "runAfter": {},
                       "metadata": {
                         "operationMetadataId": "53f39a6b-5274-42c6-b387-31d09d976626"
                       },
                       "type": "OpenApiConnection",
                       "inputs": {
+                        "host": {
+                          "connectionName": "shared_office365",
+                          "operationId": "SendEmailV2",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                        },
                         "parameters": {
                           "emailMessage/To": "@item()?['E_x002d_mail']",
                           "emailMessage/Subject": "Subscription Renewal Reminder!",
@@ -152,21 +158,18 @@
                           "emailMessage/From": "703fitness@1zvkt.onmicrosoft.com",
                           "emailMessage/Importance": "Normal"
                         },
-                        "host": {
-                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
-                          "connectionName": "shared_office365",
-                          "operationId": "SendEmailV2"
-                        },
                         "authentication": "@parameters('$authentication')"
                       }
                     }
                   },
+                  "runAfter": {},
                   "metadata": {
                     "operationMetadataId": "875ccbb6-469a-4e51-bcf2-18da273ca892"
                   },
                   "type": "Foreach"
                 }
               },
+              "runAfter": {},
               "metadata": {
                 "operationMetadataId": "096d3810-9c98-45b4-8425-73b84f6aafa1"
               },
@@ -187,22 +190,23 @@
           "foreach": "@outputs('Get_items_7_days')?['body/value']",
           "actions": {
             "Send_an_email_(V2)_1": {
+              "runAfter": {},
               "metadata": {
                 "operationMetadataId": "06b66a28-00ba-4a9d-9c9d-eff33e75bb25"
               },
               "type": "OpenApiConnection",
               "inputs": {
+                "host": {
+                  "connectionName": "shared_office365",
+                  "operationId": "SendEmailV2",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                },
                 "parameters": {
                   "emailMessage/To": "@item()?['E_x002d_mail']",
                   "emailMessage/Subject": "Subscription Renewal Reminder",
                   "emailMessage/Body": "Dear @{items('For_each_3')?['Title']},<br><br>We hope this email finds you well and enjoying your workouts at 703 Fitness Gym.<br>We wanted to remind you that your gym membership subscription will be due for renewal in 7 days. To ensure uninterrupted access to our facilities and services, we kindly request that you renew your subscription before the due date.<br>Renewing your membership is quick and easy. You can visit our front desk during our operating hours to make the payment, or you can conveniently renew your subscription online through our website.<br><br><br>Subscription Due Date: @{items('For_each_3')?['Due_x0020_Date']}<br><br><br>If you have any questions or need assistance with the renewal process, please don't hesitate to reach out to our friendly staff. We're here to help!<br>Thank you for choosing 703 Fitness Gym as your fitness destination. We look forward to continuing to support you on your fitness journey.<br><br>Best regards,<br>703 Fitness Gym",
                   "emailMessage/From": "703fitness@1zvkt.onmicrosoft.com",
                   "emailMessage/Importance": "Normal"
-                },
-                "host": {
-                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
-                  "connectionName": "shared_office365",
-                  "operationId": "SendEmailV2"
                 },
                 "authentication": "@parameters('$authentication')"
               }
@@ -220,7 +224,7 @@
         }
       }
     },
-    "templateName": null
+    "templateName": ""
   },
   "schemaVersion": "1.0.0.0"
 }
