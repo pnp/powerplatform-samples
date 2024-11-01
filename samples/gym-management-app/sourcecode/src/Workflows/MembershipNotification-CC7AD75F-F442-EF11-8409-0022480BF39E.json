@@ -1,22 +1,22 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_sharepointonline_1": {
+      "shared_office365_2": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "gym_sharedsharepointonline_4e1f2"
-        },
-        "api": {
-          "name": "shared_sharepointonline"
-        }
-      },
-      "shared_office365": {
-        "runtimeSource": "embedded",
-        "connection": {
-          "connectionReferenceLogicalName": "gym_sharedoffice365_348d8"
+          "connectionReferenceLogicalName": "marv_Office365Outlookconnection"
         },
         "api": {
           "name": "shared_office365"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "marv_SharePointconnection"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
         }
       }
     },
@@ -24,20 +24,20 @@
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",
       "parameters": {
-        "$authentication": {
-          "defaultValue": {},
-          "type": "SecureObject"
-        },
         "$connections": {
           "defaultValue": {},
           "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
         }
       },
       "triggers": {
         "When_a_new_item_is_created": {
           "recurrence": {
-            "frequency": "Minute",
-            "interval": 1
+            "interval": 1,
+            "frequency": "Minute"
           },
           "splitOn": "@triggerOutputs()?['body/value']",
           "metadata": {
@@ -45,14 +45,14 @@
           },
           "type": "OpenApiConnection",
           "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetOnNewItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
             "parameters": {
               "dataset": "https://1zvkt.sharepoint.com/sites/DRMARV",
               "table": "09aa8fc4-4921-4bf3-b46b-c01e666f9949"
-            },
-            "host": {
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
-              "connectionName": "shared_sharepointonline_1",
-              "operationId": "GetOnNewItems"
             },
             "authentication": "@parameters('$authentication')"
           }
@@ -61,8 +61,16 @@
       "actions": {
         "Send_an_email_(V2)": {
           "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "621fc679-185e-4f69-8a81-20a1065dc0f6"
+          },
           "type": "OpenApiConnection",
           "inputs": {
+            "host": {
+              "connectionName": "shared_office365_2",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
             "parameters": {
               "emailMessage/To": "@triggerBody()?['E_x002d_mail']",
               "emailMessage/Subject": "Welcome to 703 Fitness Gym!",
@@ -70,11 +78,6 @@
               "emailMessage/From": "703fitness@1zvkt.onmicrosoft.com",
               "emailMessage/ReplyTo": "Marvelous223@1zvkt.onmicrosoft.com",
               "emailMessage/Importance": "Normal"
-            },
-            "host": {
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
-              "connectionName": "shared_office365",
-              "operationId": "SendEmailV2"
             },
             "authentication": "@parameters('$authentication')"
           }
