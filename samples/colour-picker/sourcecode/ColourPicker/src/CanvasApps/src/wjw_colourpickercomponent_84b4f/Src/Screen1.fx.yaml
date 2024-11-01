@@ -1,0 +1,160 @@
+Screen1 As screen:
+    OnVisible: =Set(varColour,RGBA(64,191,149,1))
+
+    ScreenContainer1 As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =6
+
+        HeaderContainer1 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(0, 0, 0, 1)
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            Label1 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                FillPortions: =1
+                Font: =Font.'Lato Light'
+                Height: =Parent.Height
+                Size: =28
+                Text: ="Colour Picker"
+                ZIndex: =1
+
+        BottomContainer1 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(245, 245, 245, 1)
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =16
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            ZIndex: =3
+
+            LeftContainer1 As groupContainer.verticalAutoLayoutContainer:
+                Fill: =varColour
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutJustifyContent: =LayoutJustifyContent.End
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =50
+                PaddingLeft: =50
+                PaddingTop: =50
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =6
+
+                btnApplyColour As button:
+                    AlignInContainer: =AlignInContainer.Center
+                    Fill: =RGBA(0, 0, 0, 1)
+                    Font: =Font.'Lato Light'
+                    Height: =58
+                    HoverFill: =RGBA(50,50,50, 1)
+                    OnSelect: =Set(varColour,cptColourPicker_1.ChosenColour)
+                    Size: =18
+                    Text: ="Apply chosen colour"
+                    Width: =316
+                    X: =1050
+                    Y: =670
+                    ZIndex: =1
+
+            RightContainer1 As groupContainer.verticalAutoLayoutContainer:
+                Fill: =RGBA(255, 255, 255, 1)
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =7
+
+                cptColourPicker_1 As cptColourPicker:
+                    AlignInContainer: =AlignInContainer.Center
+                    DefaultColour: =LeftContainer1.Fill
+                    HSLtoRGB: |-
+                        =//Adapted to PowerFx from https://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion
+                        If(
+                            s = 0,
+                            With({x:Round(l*255,0)},
+                                {R:x,G:x,B:x,A:1}
+                            ),
+                            With({q: If(l < 0.5, l * (1 + s), l + s - l * s)},
+                                With({p: 2 * l - q},
+                                    {
+                                        R:Round(cptColourPicker.HUEtoRGB(p, q, h + 1/3) * 255,0),
+                                        G:Round(cptColourPicker.HUEtoRGB(p, q, h) * 255,0),
+                                        B:Round(cptColourPicker.HUEtoRGB(p, q, h - 1/3) * 255,0),
+                                        A:1
+                                    }
+                                )
+                            )
+                        )
+                    HUEtoRGB: |-
+                        =With({T:
+                            If(
+                                t < 0, t + 1,
+                                t > 1, t - 1,
+                                t
+                            )},
+                            If(
+                                T < 1/6, p + (q - p) * 6 * T,
+                                T < 1/2, q,
+                                T < 2/3, p + (q - p) * (2/3 - T) * 6,
+                                p
+                            )
+                        )
+                    NearestNumber: |-
+                        =First(
+                            SortByColumns(
+                                AddColumns(
+                                    NumberTable,
+                                    Difference,
+                                    Abs(ThisRecord.Value - TargetNumber)
+                                ),
+                                "Difference"
+                            )
+                        ).Value
+                    RGBtoHSL: |-
+                        =//Adapted to PowerFx from https://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion
+                        With({r1 : r/255, g1 : g/255, b1 : b/255},
+                        With({vmax: Max(r1, g1, b1), vmin: Min(r1, g1, b1)},
+                        With({a:(vmax + vmin) / 2, d: vmax-vmin},
+                            If(vmax=vmin,
+                                {H:0,S:0,L:a},
+                                {
+                                    H:With({h1:If(vmax = r1,(g1 - b1) / d + (If(g1 < b1,6,0)),vmax = g1,(b1 - r1) / d + 2,vmax = b1,(r1 - g1) / d + 4)},h1/6),
+                                    S:If(a > 0.5, d/(2-vmax-vmin), d/(vmax+vmin)),
+                                    L:a
+                                }
+                            )
+                        )))
+                    Rows: =15
+                    X: =726
+
