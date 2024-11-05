@@ -1,7 +1,7 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_sharepointonline_1": {
+      "shared_sharepointonline": {
         "runtimeSource": "embedded",
         "connection": {
           "connectionReferenceLogicalName": "marv_SharePointconnection"
@@ -22,6 +22,22 @@
         "$authentication": {
           "defaultValue": {},
           "type": "SecureObject"
+        },
+        "EnvVariables (marv_EnvVariables)": {
+          "defaultValue": "https://1zvkt.sharepoint.com/sites/DRMARV",
+          "type": "String",
+          "metadata": {
+            "schemaName": "marv_EnvVariables",
+            "description": "Environment Variables for SharePoint Site"
+          }
+        },
+        "ListVariables (marv_ListVariables)": {
+          "defaultValue": "09aa8fc4-4921-4bf3-b46b-c01e666f9949",
+          "type": "String",
+          "metadata": {
+            "schemaName": "marv_ListVariables",
+            "description": "Env Variables for SharePoint List"
+          }
         }
       },
       "triggers": {
@@ -32,18 +48,18 @@
           },
           "splitOn": "@triggerOutputs()?['body/value']",
           "metadata": {
-            "operationMetadataId": "161f016f-421c-46cc-8041-bb5d8647915a"
+            "operationMetadataId": "6982ce17-bd8f-408b-8294-ff5f59228857"
           },
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_sharepointonline_1",
+              "connectionName": "shared_sharepointonline",
               "operationId": "GetOnNewItems",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
             },
             "parameters": {
-              "dataset": "https://1zvkt.sharepoint.com/sites/DRMARV",
-              "table": "09aa8fc4-4921-4bf3-b46b-c01e666f9949"
+              "dataset": "@parameters('EnvVariables (marv_EnvVariables)')",
+              "table": "@parameters('ListVariables (marv_ListVariables)')"
             },
             "authentication": "@parameters('$authentication')"
           }
@@ -53,23 +69,20 @@
         "Update_item": {
           "runAfter": {},
           "metadata": {
-            "operationMetadataId": "770a9b4d-6ce5-4752-9068-d5637a81bd1e"
+            "operationMetadataId": "1f2e4c43-f1bf-4510-9647-02bca4e1f78d"
           },
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_sharepointonline_1",
+              "connectionName": "shared_sharepointonline",
               "operationId": "PatchItem",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
             },
             "parameters": {
-              "dataset": "https://1zvkt.sharepoint.com/sites/DRMARV",
-              "table": "09aa8fc4-4921-4bf3-b46b-c01e666f9949",
-              "id": "@triggerBody()?['ID']",
+              "dataset": "@parameters('EnvVariables (marv_EnvVariables)')",
+              "table": "@parameters('ListVariables (marv_ListVariables)')",
+              "id": "@triggerOutputs()?['body/ID']",
               "item/Title": "@triggerOutputs()?['body/Title']",
-              "item/Date": "@triggerBody()?['Date']",
-              "item/E_x002d_mail": "@triggerBody()?['E_x002d_mail']",
-              "item/Phone": "@triggerBody()?['Phone']",
               "item/DueDate2": "@triggerOutputs()?['body/Due_x0020_Date']"
             },
             "authentication": "@parameters('$authentication')"
@@ -78,7 +91,7 @@
       },
       "outputs": {}
     },
-    "templateName": ""
+    "templateName": "78720f54e49444d0bd456477288a7ef7"
   },
   "schemaVersion": "1.0.0.0"
 }
