@@ -68,7 +68,9 @@ This template not only gives you a good foundation for customizing your own Memb
 ## Automated Flow
 
 \*\*NOTE:
-These are the required fields for flows in Copy Due Date flow : ID, Name:, Date:, E-mail Address:, Phone Number:
+These are the required fields for flows in Copy Due Date flow under update itewm action step: ID >>> ID(TO BE SELECTED FROM THE DYNAMIC CONTENTS), Name: >>>>> Name:(TO BE SELECTED FROM THE DYNAMIC CONTENTS) and DueDate2: >>>>> Due Date: as shown in the image below:
+
+![Prompt Admin Products](assets/CopyDueDate.PNG)
 
 **Automated Welcome Message**
 
@@ -95,8 +97,8 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
   | Name : | Single Line of Text |
   |E-mail Address : | Single Line of Text |
   |Phone Number: | Number |
-  |Membership Plan : | Choice (Daily, Weekly, Monthly, Quarterly(3 Months), Half a year(6 Months), Yaerly(12 Months) |
-  |Personal Training : | Choice(No, Daily, Silver, Diamond, Gold, VIP, Boxing |
+  |Membership Plan : | Choice (Daily, Weekly, Monthly, Quarterly(3 Months), Half a year(6 Months), Yaerly(12 Months))|
+  |Personal Training : | Choice(No, Daily, Silver, Diamond, Gold, VIP, Boxing) |
   |Due Date : | Calculated Column (Check how to create this below) |
   |Gender | Choice (Male, Female) |
   |DueDate2 | Date and Time |
@@ -128,10 +130,6 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
 [Download](./solution/gym-management-app.zip) the `.zip` from the `solution` folder
 Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 When importing the solution you will be prompted to connect a SharePoint site and Office 365 Outlook, kindly connect your SharePoint Site and Office365 Outlook. Use the SharePoint list you created in step 1 as the data source.
-
-### STEP 3: Editing the Flows that comes with the Solution
-
-To make the Automated Flows that come with the solution run, you will need to change the SharePoint site address to yours and change the list name to yours. Publish and turn it on.
 
 ## Requirements
 
