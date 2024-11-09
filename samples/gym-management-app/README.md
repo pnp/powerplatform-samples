@@ -67,9 +67,6 @@ This template not only gives you a good foundation for customizing your own Memb
 
 ## Automated Flow
 
-\*\*NOTE:
-These are the required fields for flows in Copy Due Date flow under update itewm action step: ID >>> ID(TO BE SELECTED FROM THE DYNAMIC CONTENTS), Name: >>>>> Name:(TO BE SELECTED FROM THE DYNAMIC CONTENTS) and DueDate2: >>>>> Due Date: as shown in the image below:
-
 ![Prompt Admin Products](assets/CopyDueDate.PNG)
 
 **Automated Welcome Message**
@@ -90,19 +87,19 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
 
 ### STEP 1: Creating the Data Source
 
-- Create a SharePoint List named **'703 Fitness Membership Reg'** with the following columns:
+- Create a SharePoint List with the following columns:
   | Column Name | Column Type |
   | ------------------ | ------------------------------------------------------------------------------------ |
-  | Date : | Date and Time |
-  | Name : | Single Line of Text |
-  |E-mail Address : | Single Line of Text |
-  |Phone Number: | Number |
-  |Membership Plan : | Choice (Daily, Weekly, Monthly, Quarterly(3 Months), Half a year(6 Months), Yaerly(12 Months))|
-  |Personal Training : | Choice(No, Daily, Silver, Diamond, Gold, VIP, Boxing) |
-  |Due Date : | Calculated Column (Check how to create this below) |
+  | Date | Date and Time |
+  | Name | Single Line of Text |
+  |EmailAddress | Single Line of Text |
+  |PhoneNumber | Number |
+  |MembershipPlan | Choice (Daily, Weekly, Monthly, Quarterly(3 Months), Half a year(6 Months), Yaerly(12 Months))|
+  |PersonalTraining | Choice(No, Daily, Silver, Diamond, Gold, VIP, Boxing) |
+  |DueDate | Calculated Column (Check how to create this below) |
   |Gender | Choice (Male, Female) |
   |DueDate2 | Date and Time |
-  **NOTE:** Some of the Column Names have colon punctuation (:) and some don't, make sure your column names are exactly the way it is written above, and note that there is a space before the colon punctuation (:) (E.G: Name: is wrong, Name : is right) and note the ones that have no space before colon punctuation, like the Phone Number: column
+  **NOTE:** Make sure your column names are exactly the way it is written above.
 
   ## How to Create Due Date Calculated Column
 
@@ -121,7 +118,7 @@ Calculated columns can't be used for filter queries in Power Automate. Here's wh
 
   ![Prompt Admin Products](assets/DueDateStep4.png)
 
-  Step 5: Scroll down to formula and paste in this formula: =IF([Membership Plan :]="Daily",[Date :]+1,IF([Membership Plan :]="Weekly",[Date :]+7,IF([Membership Plan :]="Monthly",[Date :]+30,IF([Membership Plan :]="Quarterly(3 Months)",[Date :]+90,IF([Membership Plan :]="Half a year(6 Months)",[Date :]+180,IF([Membership Plan :]="Yearly(12 Months)",[Date :]+365)))))) and scroll down to select Date and Time where it says 'The data type returned from this formula is: ' and change the Date and Time Format to Date Only
+  Step 5: Scroll down to formula and paste in this formula: =IF([MembershipPlan]="Daily",[Date]+1,IF([MembershipPlan]="Weekly",[Date]+7,IF([MembershipPlan]="Monthly",[Date]+30,IF([MembershipPlan]="Quarterly(3 Months)",[Date]+90,IF([MembershipPlan]="Half a year(6 Months)",[Date]+180,IF([MembershipPlan]="Yearly(12 Months)",[Date]+365)))))) and scroll down to select Date and Time where it says 'The data type returned from this formula is: ' and change the Date and Time Format to Date Only
 
   ![Prompt Admin Products](assets/DueDateStep5.png)
 
