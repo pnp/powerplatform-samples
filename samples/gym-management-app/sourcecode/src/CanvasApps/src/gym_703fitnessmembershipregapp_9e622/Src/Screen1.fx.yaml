@@ -7,8 +7,7 @@ Screen1 As screen:
         BorderColor: =RGBA(85, 106, 129, 1)
         DelayItemLoading: =true
         Height: =521
-        Items: |-
-            =Search('703 Fitness Membership Reg', TextInput1.Text,'Full Path','Name :',Name,'E-mail Address :',Identifier)
+        Items: =Filter(ListVariables,StartsWith(Title,TextInput1.Text))
         Layout: =Layout.Vertical
         LoadingSpinner: =LoadingSpinner.Data
         TemplatePadding: =0
@@ -18,7 +17,7 @@ Screen1 As screen:
         Y: =209
         ZIndex: =1
 
-        Title3 As label:
+        Title5 As label:
             Color: =RGBA(255, 255, 255, 1)
             DisabledColor: =RGBA(166, 166, 166, 1)
             Font: =Font.'Segoe UI'
@@ -29,15 +28,14 @@ Screen1 As screen:
             PaddingLeft: =0
             PaddingRight: =0
             PaddingTop: =0
-            Text: |-
-                =ThisItem.'Name :'
+            Text: =ThisItem.Title
             VerticalAlign: =VerticalAlign.Top
             Width: =Parent.TemplateWidth - 86
             X: =16
-            Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle3.Size * 1.8)) / 2
+            Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle4.Size * 1.8)) / 2
             ZIndex: =1
 
-        Subtitle3 As label:
+        Subtitle4 As label:
             Color: =RGBA(255, 255, 255, 1)
             DisabledColor: =RGBA(166, 166, 166, 1)
             Font: =Font.'Segoe UI'
@@ -49,15 +47,41 @@ Screen1 As screen:
             PaddingRight: =0
             PaddingTop: =0
             Size: =12
-            Text: |-
-                =ThisItem.'E-mail Address :'
+            Text: =ThisItem.EmailAddress
             VerticalAlign: =VerticalAlign.Top
-            Width: =Title3.Width
-            X: =Title3.X
-            Y: =Title3.Y + Title3.Height
+            Width: =Title5.Width
+            X: =Title5.X
+            Y: =Title5.Y + Title5.Height
             ZIndex: =2
 
-        Separator3 As rectangle:
+        NextArrow5 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            BorderColor: =RGBA(85, 106, 129, 1)
+            Color: =RGBA(166, 166, 166, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =50
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(0, 188, 242, 1), 30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(Parent)
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(0, 188, 242, 1), 30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Tooltip: ="View item details"
+            Width: =50
+            X: =Parent.TemplateWidth - Self.Width - 12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =3
+
+        Separator5 As rectangle:
             BorderColor: =RGBA(0, 0, 0, 0)
             Fill: =RGBA(255, 255, 255, 1)
             Height: =8
@@ -66,35 +90,14 @@ Screen1 As screen:
             Y: =Parent.TemplateHeight - Self.Height
             ZIndex: =4
 
-        Rectangle4 As rectangle:
+        Rectangle8 As rectangle:
             BorderColor: =RGBA(0, 0, 0, 0)
             Fill: =ColorFade(RGBA(0, 188, 242, 1), 30%)
-            Height: =Parent.TemplateHeight - Separator3.Height
+            Height: =Parent.TemplateHeight - Separator5.Height
             OnSelect: =Select(Parent)
             Visible: =ThisItem.IsSelected
             Width: =4
             ZIndex: =5
-
-        Icon4 As icon.Trash:
-            BorderColor: =RGBA(85, 106, 129, 1)
-            Color: =RGBA(0, 188, 242, 1)
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledColor: =RGBA(220, 220, 220, 1)
-            DisabledFill: =RGBA(0, 0, 0, 0)
-            FocusedBorderThickness: =4
-            Height: =24
-            HoverBorderColor: =RGBA(0, 0, 0, 0)
-            HoverColor: =ColorFade(RGBA(0, 188, 242, 1), 30%)
-            HoverFill: =RGBA(0, 0, 0, 0)
-            Icon: =Icon.Trash
-            OnSelect: =Set(varShowDeletePopup, true);
-            PressedBorderColor: =RGBA(0, 0, 0, 0)
-            PressedColor: =ColorFade(RGBA(0, 188, 242, 1), 30%)
-            PressedFill: =RGBA(0, 0, 0, 0)
-            Width: =36
-            X: =587
-            Y: =46
-            ZIndex: =6
 
     TextInput1 As text:
         BorderColor: =RGBA(85, 106, 129, 1)
@@ -148,7 +151,7 @@ Screen1 As screen:
 
     FormViewer3 As formViewer:
         BorderColor: =RGBA(85, 106, 129, 1)
-        DataSource: ='703 Fitness Membership Reg'
+        DataSource: =ListVariables
         Item: =Gallery1.Selected
         NumberOfColumns: =1
         SnapToColumns: =false
@@ -161,11 +164,9 @@ Screen1 As screen:
             BorderColor: =RGBA(85, 106, 129, 1)
             BorderStyle: =BorderStyle.Solid
             DataField: ="Title"
-            Default: |-
-                =ThisItem.'Name :'
+            Default: =ThisItem.Title
             DisplayMode: =DisplayMode.View
-            DisplayName: |-
-                =DataSourceInfo([@'703 Fitness Membership Reg'],DataSourceInfo.DisplayName,'Name :')
+            DisplayName: =DataSourceInfo([@'ListVariables'],DataSourceInfo.DisplayName,'Title')
             Fill: =RGBA(0, 0, 0, 0)
             Height: =40
             Required: =true
@@ -188,7 +189,7 @@ Screen1 As screen:
                 Height: =34
                 PaddingLeft: =0
                 Size: =13
-                Text: =Parent.DisplayName
+                Text: =If(Parent.DisplayName = "Title", "Name", Parent.DisplayName)
                 Width: =(Parent.Width - 60) * 0.4
                 Wrap: =false
                 X: =30
@@ -221,11 +222,9 @@ Screen1 As screen:
             BorderColor: =RGBA(85, 106, 129, 1)
             BorderStyle: =BorderStyle.Solid
             DataField: ="Phone"
-            Default: |-
-                =ThisItem.'Phone Number:'
+            Default: =ThisItem.PhoneNumber
             DisplayMode: =DisplayMode.View
-            DisplayName: |-
-                =DataSourceInfo([@'703 Fitness Membership Reg'],DataSourceInfo.DisplayName,'Phone Number:')
+            DisplayName: =DataSourceInfo([@'ListVariables'],DataSourceInfo.DisplayName,'PhoneNumber')
             Fill: =RGBA(0, 0, 0, 0)
             Height: =40
             Required: =true
@@ -248,7 +247,8 @@ Screen1 As screen:
                 Height: =34
                 PaddingLeft: =0
                 Size: =13
-                Text: =Parent.DisplayName
+                Text: |
+                    =If(Parent.DisplayName = "PhoneNumber", "Phone Number:", Parent.DisplayName)
                 Width: =(Parent.Width - 60) * 0.4
                 Wrap: =false
                 X: =30
@@ -281,11 +281,9 @@ Screen1 As screen:
             BorderColor: =RGBA(85, 106, 129, 1)
             BorderStyle: =BorderStyle.Solid
             DataField: ="E_x002d_mail"
-            Default: |-
-                =ThisItem.'E-mail Address :'
+            Default: =ThisItem.'EmailAddress'
             DisplayMode: =DisplayMode.View
-            DisplayName: |-
-                =DataSourceInfo([@'703 Fitness Membership Reg'],DataSourceInfo.DisplayName,'E-mail Address :')
+            DisplayName: =DataSourceInfo([@'ListVariables'],DataSourceInfo.DisplayName,'EmailAddress')
             Fill: =RGBA(0, 0, 0, 0)
             Height: =40
             Required: =true
@@ -308,7 +306,8 @@ Screen1 As screen:
                 Height: =34
                 PaddingLeft: =0
                 Size: =13
-                Text: =Parent.DisplayName
+                Text: |
+                    =If(Parent.DisplayName = "EmailAddress", "E-mail Address:", Parent.DisplayName)
                 Width: =(Parent.Width - 60) * 0.4
                 Wrap: =false
                 X: =30
@@ -343,7 +342,7 @@ Screen1 As screen:
             DataField: ="Gender"
             Default: =ThisItem.Gender
             DisplayMode: =DisplayMode.View
-            DisplayName: =DataSourceInfo([@'703 Fitness Membership Reg'],DataSourceInfo.DisplayName,Gender)
+            DisplayName: =DataSourceInfo([@'ListVariables'],DataSourceInfo.DisplayName,Gender)
             Fill: =RGBA(0, 0, 0, 0)
             Height: =50
             Required: =true
@@ -460,11 +459,9 @@ Screen1 As screen:
             BorderColor: =RGBA(85, 106, 129, 1)
             BorderStyle: =BorderStyle.Solid
             DataField: ="Date"
-            Default: |-
-                =ThisItem.'Date :'
+            Default: =ThisItem.Date
             DisplayMode: =DisplayMode.View
-            DisplayName: |-
-                =DataSourceInfo([@'703 Fitness Membership Reg'],DataSourceInfo.DisplayName,'Date :')
+            DisplayName: =DataSourceInfo([@'ListVariables'],DataSourceInfo.DisplayName,'Date')
             Fill: =RGBA(0, 0, 0, 0)
             Height: =40
             Required: =true
@@ -520,11 +517,9 @@ Screen1 As screen:
             BorderColor: =RGBA(85, 106, 129, 1)
             BorderStyle: =BorderStyle.Solid
             DataField: ="MembershipPlan"
-            Default: |-
-                =ThisItem.'Membership Plan :'
+            Default: =ThisItem.MembershipPlan
             DisplayMode: =DisplayMode.View
-            DisplayName: |-
-                =DataSourceInfo([@'703 Fitness Membership Reg'],DataSourceInfo.DisplayName,'Membership Plan :')
+            DisplayName: =DataSourceInfo([@'ListVariables'],DataSourceInfo.DisplayName,'MembershipPlan')
             Fill: =RGBA(0, 0, 0, 0)
             Height: =50
             Required: =true
@@ -548,7 +543,8 @@ Screen1 As screen:
                 Height: =34
                 PaddingLeft: =0
                 Size: =13
-                Text: =Parent.DisplayName
+                Text: |
+                    =If(Parent.DisplayName = "MembershipPlan", "Membership Plan:", Parent.DisplayName)
                 Width: =(Parent.Width - 60) * 0.4
                 Wrap: =false
                 X: =30
@@ -575,15 +571,13 @@ Screen1 As screen:
                 HoverBorderColor: =ColorFade(RGBA(0, 188, 242, 1), 30%)
                 HoverColor: =RGBA(255, 255, 255, 1)
                 HoverFill: =RGBA(67, 85, 106, 1)
-                Items: |-
-                    =Choices([@'703 Fitness Membership Reg'].'Membership Plan :')
+                Items: =Choices([@'703 Fitness Membership Reg'].MembershipPlan)
                 PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
                 PressedBorderColor: =ColorFade(RGBA(0, 188, 242, 1), 30%)
                 PressedColor: =RGBA(30, 45, 62, 1)
                 PressedFill: =RGBA(0, 188, 242, 1)
                 SearchFields: =["Value"]
-                SearchItems: |-
-                    =Choices('703 Fitness Membership Reg'.'Membership Plan :',DataCardValue9.SearchText)
+                SearchItems: =Choices('703 Fitness Membership Reg'.MembershipPlan,DataCardValue9.SearchText)
                 SelectionColor: =RGBA(30, 45, 62, 1)
                 SelectionFill: =RGBA(0, 188, 242, 1)
                 SelectMultiple: =false
@@ -643,11 +637,9 @@ Screen1 As screen:
             BorderColor: =RGBA(85, 106, 129, 1)
             BorderStyle: =BorderStyle.Solid
             DataField: ="PersonalTraining"
-            Default: |-
-                =ThisItem.'Personal Training :'
+            Default: =ThisItem.PersonalTraining
             DisplayMode: =DisplayMode.View
-            DisplayName: |-
-                =DataSourceInfo([@'703 Fitness Membership Reg'],DataSourceInfo.DisplayName,'Personal Training :')
+            DisplayName: =DataSourceInfo([@'ListVariables'],DataSourceInfo.DisplayName,'PersonalTraining')
             Fill: =RGBA(0, 0, 0, 0)
             Height: =50
             Required: =false
@@ -671,7 +663,8 @@ Screen1 As screen:
                 Height: =34
                 PaddingLeft: =0
                 Size: =13
-                Text: =Parent.DisplayName
+                Text: |
+                    =If(Parent.DisplayName = "PersonalTraining", "Personal Training:", Parent.DisplayName)
                 Width: =(Parent.Width - 60) * 0.4
                 Wrap: =false
                 X: =30
@@ -698,15 +691,13 @@ Screen1 As screen:
                 HoverBorderColor: =ColorFade(RGBA(0, 188, 242, 1), 30%)
                 HoverColor: =RGBA(255, 255, 255, 1)
                 HoverFill: =RGBA(67, 85, 106, 1)
-                Items: |-
-                    =Choices([@'703 Fitness Membership Reg'].'Personal Training :')
+                Items: =Choices([@'703 Fitness Membership Reg'].PersonalTraining)
                 PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
                 PressedBorderColor: =ColorFade(RGBA(0, 188, 242, 1), 30%)
                 PressedColor: =RGBA(30, 45, 62, 1)
                 PressedFill: =RGBA(0, 188, 242, 1)
                 SearchFields: =["Value"]
-                SearchItems: |-
-                    =Choices('703 Fitness Membership Reg'.'Personal Training :',DataCardValue12.SearchText)
+                SearchItems: =Choices('703 Fitness Membership Reg'.PersonalTraining,DataCardValue12.SearchText)
                 SelectionColor: =RGBA(30, 45, 62, 1)
                 SelectionFill: =RGBA(0, 188, 242, 1)
                 SelectMultiple: =false
@@ -766,11 +757,9 @@ Screen1 As screen:
             BorderColor: =RGBA(85, 106, 129, 1)
             BorderStyle: =BorderStyle.Solid
             DataField: ="Due_x0020_Date"
-            Default: |-
-                =ThisItem.'Due Date :'
+            Default: =ThisItem.DueDate
             DisplayMode: =DisplayMode.View
-            DisplayName: |-
-                =DataSourceInfo([@'703 Fitness Membership Reg'],DataSourceInfo.DisplayName,'Due Date :')
+            DisplayName: =DataSourceInfo([@'ListVariables'],DataSourceInfo.DisplayName,'DueDate')
             Fill: =RGBA(0, 0, 0, 0)
             Height: =40
             Required: =false
@@ -793,7 +782,8 @@ Screen1 As screen:
                 Height: =34
                 PaddingLeft: =0
                 Size: =13
-                Text: =Parent.DisplayName
+                Text: |
+                    =If(Parent.DisplayName = "DueDate", "Due Date:", Parent.DisplayName)
                 Width: =(Parent.Width - 60) * 0.4
                 Wrap: =false
                 X: =30
@@ -999,7 +989,7 @@ Screen1 As screen:
             HoverBorderColor: =RGBA(0, 0, 0, 0)
             HoverColor: =RGBA(30, 45, 62, 1)
             HoverFill: =ColorFade(RGBA(0, 188, 242, 1), 10%)
-            OnSelect: =Remove('703 Fitness Membership Reg',Gallery1.Selected);Set(varShowDeletePopup, false)
+            OnSelect: =Remove('ListVariables',Gallery1.Selected);Set(varShowDeletePopup, false)
             PressedBorderColor: =ColorFade(RGBA(0, 188, 242, 1), 50%)
             PressedColor: =RGBA(30, 45, 62, 1)
             PressedFill: =ColorFade(RGBA(0, 188, 242, 1), 30%)

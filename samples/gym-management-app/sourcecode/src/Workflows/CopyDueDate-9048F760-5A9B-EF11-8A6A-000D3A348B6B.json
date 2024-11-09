@@ -83,7 +83,7 @@
               "table": "@parameters('ListVariables (marv_ListVariables)')",
               "id": "@triggerOutputs()?['body/ID']",
               "item/Title": "@triggerOutputs()?['body/Title']",
-              "item/DueDate2": "@triggerOutputs()?['body/Due_x0020_Date']"
+              "item/DueDate2": "@triggerOutputs()?['body/DueDate']"
             },
             "authentication": "@parameters('$authentication')"
           }

@@ -41,7 +41,7 @@
           }
         },
         "ListVariables (marv_ListVariables)": {
-          "defaultValue": "09aa8fc4-4921-4bf3-b46b-c01e666f9949",
+          "defaultValue": "edbad80d-1941-4655-80b7-18b6542c364e",
           "type": "String",
           "metadata": {
             "schemaName": "marv_ListVariables",
@@ -168,10 +168,9 @@
                           "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
                         },
                         "parameters": {
-                          "emailMessage/To": "@item()?['E_x002d_mail']",
+                          "emailMessage/To": "@items('For_each_2')?['EmailAddress']",
                           "emailMessage/Subject": "Subscription Renewal Reminder!",
-                          "emailMessage/Body": "Dear@{items('For_each_2')?['Title']} ,<br><br>We hope this email finds you well and enjoying your workouts at 703 Fitness Gym.<br>We wanted to remind you that your gym membership subscription will be due for renewal in 3 days. To ensure uninterrupted access to our facilities and services, we kindly request that you renew your subscription before the due date.<br>Renewing your membership is quick and easy. You can visit our front desk during our operating hours to make the payment, or you can conveniently renew your subscription online through our website.<br><br><br>Subscription Due Date: @{items('For_each_2')?['Due_x0020_Date']}<br><br><br>If you have any questions or need assistance with the renewal process, please don't hesitate to reach out to our friendly staff. We're here to help!<br>Thank you for choosing 703 Fitness Gym as your fitness destination. We look forward to continuing to support you on your fitness journey.<br><br>Best regards,<br>703 Fitness Gym",
-                          "emailMessage/From": "703fitness@1zvkt.onmicrosoft.com",
+                          "emailMessage/Body": "Dear @{items('For_each_2')?['Title']} ,<br><br>We hope this email finds you well and enjoying your workouts at 703 Fitness Gym.<br>We wanted to remind you that your gym membership subscription will be due for renewal in 3 days. To ensure uninterrupted access to our facilities and services, we kindly request that you renew your subscription before the due date.<br>Renewing your membership is quick and easy. You can visit our front desk during our operating hours to make the payment, or you can conveniently renew your subscription online through our website.<br><br><br>Subscription Due Date: @{items('For_each_2')?['DueDate']}<br><br><br>If you have any questions or need assistance with the renewal process, please don't hesitate to reach out to our friendly staff. We're here to help!<br>Thank you for choosing 703 Fitness Gym as your fitness destination. We look forward to continuing to support you on your fitness journey.<br><br>Best regards,<br>703 Fitness Gym",
                           "emailMessage/Importance": "Normal"
                         },
                         "authentication": "@parameters('$authentication')"
@@ -218,10 +217,9 @@
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
                 },
                 "parameters": {
-                  "emailMessage/To": "@item()?['E_x002d_mail']",
+                  "emailMessage/To": "@items('For_each_3')?['EmailAddress']",
                   "emailMessage/Subject": "Subscription Renewal Reminder",
-                  "emailMessage/Body": "Dear @{items('For_each_3')?['Title']},<br><br>We hope this email finds you well and enjoying your workouts at 703 Fitness Gym.<br>We wanted to remind you that your gym membership subscription will be due for renewal in 7 days. To ensure uninterrupted access to our facilities and services, we kindly request that you renew your subscription before the due date.<br>Renewing your membership is quick and easy. You can visit our front desk during our operating hours to make the payment, or you can conveniently renew your subscription online through our website.<br><br><br>Subscription Due Date: @{items('For_each_3')?['Due_x0020_Date']}<br><br><br>If you have any questions or need assistance with the renewal process, please don't hesitate to reach out to our friendly staff. We're here to help!<br>Thank you for choosing 703 Fitness Gym as your fitness destination. We look forward to continuing to support you on your fitness journey.<br><br>Best regards,<br>703 Fitness Gym",
-                  "emailMessage/From": "703fitness@1zvkt.onmicrosoft.com",
+                  "emailMessage/Body": "Dear @{items('For_each_3')?['Title']} ,<br><br>We hope this email finds you well and enjoying your workouts at 703 Fitness Gym.<br>We wanted to remind you that your gym membership subscription will be due for renewal in 7 days. To ensure uninterrupted access to our facilities and services, we kindly request that you renew your subscription before the due date.<br>Renewing your membership is quick and easy. You can visit our front desk during our operating hours to make the payment, or you can conveniently renew your subscription online through our website.<br><br><br>Subscription Due Date: @{items('For_each_3')?['DueDate']} <br><br><br>If you have any questions or need assistance with the renewal process, please don't hesitate to reach out to our friendly staff. We're here to help!<br>Thank you for choosing 703 Fitness Gym as your fitness destination. We look forward to continuing to support you on your fitness journey.<br><br>Best regards,<br>703 Fitness Gym",
                   "emailMessage/Importance": "Normal"
                 },
                 "authentication": "@parameters('$authentication')"
