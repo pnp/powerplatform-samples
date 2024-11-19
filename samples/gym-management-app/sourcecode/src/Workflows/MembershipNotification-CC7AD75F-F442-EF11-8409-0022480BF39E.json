@@ -1,0 +1,105 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365_2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "marv_Office365Outlookconnection"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "marv_SharePointconnection"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "EnvVariables (marv_EnvVariables)": {
+          "defaultValue": "https://1zvkt.sharepoint.com/sites/DRMARV",
+          "type": "String",
+          "metadata": {
+            "schemaName": "marv_EnvVariables",
+            "description": "Environment Variables for SharePoint Site"
+          }
+        },
+        "ListVariables (marv_ListVariables)": {
+          "defaultValue": "09aa8fc4-4921-4bf3-b46b-c01e666f9949",
+          "type": "String",
+          "metadata": {
+            "schemaName": "marv_ListVariables",
+            "description": "Env Variables for SharePoint List"
+          }
+        }
+      },
+      "triggers": {
+        "When_a_new_item_is_created": {
+          "recurrence": {
+            "interval": 1,
+            "frequency": "Minute"
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "32abbfe7-b0ee-4b6d-8a1a-59493b60a086"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetOnNewItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('EnvVariables (marv_EnvVariables)')",
+              "table": "@parameters('ListVariables (marv_ListVariables)')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Send_an_email_(V2)": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "621fc679-185e-4f69-8a81-20a1065dc0f6"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365_2",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/To": "@triggerOutputs()?['body/EmailAddress']",
+              "emailMessage/Subject": "Welcome to 703 Fitness Gym!",
+              "emailMessage/Body": "<b>Dear @{triggerOutputs()?['body/Title']}</b>,<br><br>On behalf of the entire team at 703 Fitness Gym, we would like to extend a warm welcome to you as our newest member! We're thrilled to have you join our fitness community and embark on this journey toward health and wellness together.<br>Your decision to prioritize your fitness and well-being is commendable, and we're here to support you every step of the way. At 703 Fitness Gym, we're committed to providing you with top-notch facilities, expert guidance, and a welcoming environment where you can achieve your fitness goals.<br>As a valued member, you now have access to our state-of-the-art gym equipment, a variety of fitness classes, personalized training sessions, and a supportive community of fellow members and staff.<br><br><b>Your membership is active until [@{triggerOutputs()?['body/DueDate']}].</b><br><br>We're here to support you on your fitness journey.<br>If you have any questions, feel free to ask. We look forward to seeing you at the gym!<br><br><b>Best regards,</b><br><b>703 Fitness Gym</b>",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": "3999d042ec7a49c5b91ae2229037fdb7"
+  },
+  "schemaVersion": "1.0.0.0"
+}

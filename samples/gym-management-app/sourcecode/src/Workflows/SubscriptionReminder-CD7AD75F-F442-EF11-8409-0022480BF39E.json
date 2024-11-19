@@ -1,0 +1,244 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "marv_SharePointconnection"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_office365_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "marv_Office365Outlookconnection"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "EnvVariables (marv_EnvVariables)": {
+          "defaultValue": "https://1zvkt.sharepoint.com/sites/DRMARV",
+          "type": "String",
+          "metadata": {
+            "schemaName": "marv_EnvVariables",
+            "description": "Environment Variables for SharePoint Site"
+          }
+        },
+        "ListVariables (marv_ListVariables)": {
+          "defaultValue": "edbad80d-1941-4655-80b7-18b6542c364e",
+          "type": "String",
+          "metadata": {
+            "schemaName": "marv_ListVariables",
+            "description": "Env Variables for SharePoint List"
+          }
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "timeZone": "W. Central Africa Standard Time",
+            "startTime": "2024-03-21T07:00:00Z"
+          },
+          "metadata": {
+            "operationMetadataId": "78454dd5-48f5-4d95-bc34-e7c12ab904f0"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "Initialize_variable_3": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "dcbca610-9adf-412d-a597-50898be2b513"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "var3days",
+                "type": "string",
+                "value": "@{addDays(utcNow(), 3, 'yyyy-MM-dd')}"
+              }
+            ]
+          },
+          "description": "addDays(utcNow(),3,'MM/dd/yyyy/')"
+        },
+        "Initialize_variable_7": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "4ea93a37-04b9-4f09-9f26-3d62eae4912c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "var7days",
+                "type": "string",
+                "value": "@{addDays(utcNow(), 7, 'yyyy-MM-dd')}"
+              }
+            ]
+          },
+          "description": "addDays(utcNow(),7,'MM/dd/yyyy/')"
+        },
+        "Get_items_3_days": {
+          "runAfter": {
+            "Initialize_variable_3": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "771eb3b9-c6b6-4003-8a5c-e927acba4f51"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('EnvVariables (marv_EnvVariables)')",
+              "table": "@parameters('ListVariables (marv_ListVariables)')",
+              "$filter": "DueDate2 eq'@{variables('var3days')}'"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_items_7_days": {
+          "runAfter": {
+            "Initialize_variable_7": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f98f1e38-f52f-4e0a-ade4-ccbca2fea3c0"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('EnvVariables (marv_EnvVariables)')",
+              "table": "@parameters('ListVariables (marv_ListVariables)')",
+              "$filter": "DueDate2 eq'@{variables('var7days')}'"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "For_each": {
+          "foreach": "@outputs('Get_items_3_days')?['body/value']",
+          "actions": {
+            "For_each_1": {
+              "foreach": "@outputs('Get_items_3_days')?['body/value']",
+              "actions": {
+                "For_each_2": {
+                  "foreach": "@outputs('Get_items_3_days')?['body/value']",
+                  "actions": {
+                    "Send_an_email_(V2)": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "53f39a6b-5274-42c6-b387-31d09d976626"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_office365_1",
+                          "operationId": "SendEmailV2",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                        },
+                        "parameters": {
+                          "emailMessage/To": "@items('For_each_2')?['EmailAddress']",
+                          "emailMessage/Subject": "Subscription Renewal Reminder!",
+                          "emailMessage/Body": "Dear @{items('For_each_2')?['Title']} ,<br><br>We hope this email finds you well and enjoying your workouts at 703 Fitness Gym.<br>We wanted to remind you that your gym membership subscription will be due for renewal in 3 days. To ensure uninterrupted access to our facilities and services, we kindly request that you renew your subscription before the due date.<br>Renewing your membership is quick and easy. You can visit our front desk during our operating hours to make the payment, or you can conveniently renew your subscription online through our website.<br><br><br>Subscription Due Date: @{items('For_each_2')?['DueDate']}<br><br><br>If you have any questions or need assistance with the renewal process, please don't hesitate to reach out to our friendly staff. We're here to help!<br>Thank you for choosing 703 Fitness Gym as your fitness destination. We look forward to continuing to support you on your fitness journey.<br><br>Best regards,<br>703 Fitness Gym",
+                          "emailMessage/Importance": "Normal"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "875ccbb6-469a-4e51-bcf2-18da273ca892"
+                  },
+                  "type": "Foreach"
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "096d3810-9c98-45b4-8425-73b84f6aafa1"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Get_items_3_days": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a34712b2-30c7-42c8-b322-0c8a1614f1cf"
+          },
+          "type": "Foreach"
+        },
+        "For_each_3": {
+          "foreach": "@outputs('Get_items_7_days')?['body/value']",
+          "actions": {
+            "Send_an_email_(V2)_1": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "06b66a28-00ba-4a9d-9c9d-eff33e75bb25"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_office365_1",
+                  "operationId": "SendEmailV2",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                },
+                "parameters": {
+                  "emailMessage/To": "@items('For_each_3')?['EmailAddress']",
+                  "emailMessage/Subject": "Subscription Renewal Reminder",
+                  "emailMessage/Body": "Dear @{items('For_each_3')?['Title']} ,<br><br>We hope this email finds you well and enjoying your workouts at 703 Fitness Gym.<br>We wanted to remind you that your gym membership subscription will be due for renewal in 7 days. To ensure uninterrupted access to our facilities and services, we kindly request that you renew your subscription before the due date.<br>Renewing your membership is quick and easy. You can visit our front desk during our operating hours to make the payment, or you can conveniently renew your subscription online through our website.<br><br><br>Subscription Due Date: @{items('For_each_3')?['DueDate']} <br><br><br>If you have any questions or need assistance with the renewal process, please don't hesitate to reach out to our friendly staff. We're here to help!<br>Thank you for choosing 703 Fitness Gym as your fitness destination. We look forward to continuing to support you on your fitness journey.<br><br>Best regards,<br>703 Fitness Gym",
+                  "emailMessage/Importance": "Normal"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_items_7_days": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f37f5b6a-971c-48f8-8165-f8f3b1f2159c"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

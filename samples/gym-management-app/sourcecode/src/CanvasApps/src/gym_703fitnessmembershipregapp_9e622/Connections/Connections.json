@@ -1,0 +1,40 @@
+{
+  "7e410418-325a-4130-b683-8e3a17115e7f": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write",
+      "providers/PowerPlatform.Governance/Operations/Delete"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/jayawan/releases/v1.0.1697/1.0.1697.3786/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://1zvkt.sharepoint.com/sites/DRMARV_marv_EnvVariables": {
+        "datasetOverride": {
+          "environmentVariableName": "marv_EnvVariables",
+          "name": "https://1zvkt.sharepoint.com/sites/DRMARV"
+        },
+        "dataSources": {
+          "ListVariables": {
+            "tableName": "edbad80d-1941-4655-80b7-18b6542c364e",
+            "tableNameOverride": {
+              "environmentVariableName": "marv_ListVariables",
+              "name": "edbad80d-1941-4655-80b7-18b6542c364e"
+            }
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "ListVariables"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "7e410418-325a-4130-b683-8e3a17115e7f"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "marv_SharePointconnection"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "EnvVariables (marv_EnvVariables)": {
+          "defaultValue": "https://1zvkt.sharepoint.com/sites/DRMARV",
+          "type": "String",
+          "metadata": {
+            "schemaName": "marv_EnvVariables",
+            "description": "Environment Variables for SharePoint Site"
+          }
+        },
+        "ListVariables (marv_ListVariables)": {
+          "defaultValue": "09aa8fc4-4921-4bf3-b46b-c01e666f9949",
+          "type": "String",
+          "metadata": {
+            "schemaName": "marv_ListVariables",
+            "description": "Env Variables for SharePoint List"
+          }
+        }
+      },
+      "triggers": {
+        "When_an_item_is_created": {
+          "recurrence": {
+            "interval": 1,
+            "frequency": "Minute"
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "6982ce17-bd8f-408b-8294-ff5f59228857"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetOnNewItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('EnvVariables (marv_EnvVariables)')",
+              "table": "@parameters('ListVariables (marv_ListVariables)')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Update_item": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "1f2e4c43-f1bf-4510-9647-02bca4e1f78d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "PatchItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('EnvVariables (marv_EnvVariables)')",
+              "table": "@parameters('ListVariables (marv_ListVariables)')",
+              "id": "@triggerOutputs()?['body/ID']",
+              "item/Title": "@triggerOutputs()?['body/Title']",
+              "item/DueDate2": "@triggerOutputs()?['body/DueDate']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": "78720f54e49444d0bd456477288a7ef7"
+  },
+  "schemaVersion": "1.0.0.0"
+}
