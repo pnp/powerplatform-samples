@@ -56,7 +56,7 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 This sample illustrates the following concepts:
 
 * Reusablility using child flow 
-* Perform string parsing to extract number by its lenght from a given input text or string 
+* Perform string parsing to extract number by its length from a given input text or string 
 * Use of Select & Filter action
 * Expression
 
