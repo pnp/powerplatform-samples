@@ -1,0 +1,128 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "description": "Please enter input string",
+                  "title": "Input String",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "number": {
+                  "description": "Please enter length of number",
+                  "title": "Digits Length",
+                  "type": "number",
+                  "x-ms-content-hint": "NUMBER",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "required": [
+                "text",
+                "number"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Select": {
+          "type": "Select",
+          "inputs": {
+            "from": "@range(0,length(outputs('Compose')))",
+            "select": "@if(isInt(outputs('Compose')[item()]),outputs('Compose')[item()],'n')"
+          },
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Compose": {
+          "type": "Compose",
+          "inputs": "@chunk(triggerBody()?['text'],1)",
+          "runAfter": {}
+        },
+        "Compose_1": {
+          "type": "Compose",
+          "inputs": "@split(join(body('Select'),''),'n')",
+          "runAfter": {
+            "Select": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Filter_array": {
+          "type": "Query",
+          "inputs": {
+            "from": "@outputs('Compose_1')",
+            "where": "@and(not(empty(item())),equals(length(item()),triggerBody()?['number']))"
+          },
+          "runAfter": {
+            "Compose_1": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "output": {
+                  "title": "Output",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "additionalProperties": {}
+            },
+            "statusCode": 200,
+            "body": {
+              "output": "@{outputs('Compose_2')}"
+            }
+          },
+          "runAfter": {
+            "Compose_2": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Compose_2": {
+          "type": "Compose",
+          "inputs": "@if(empty(body('Filter_array')),'',first(body('Filter_array')))",
+          "runAfter": {
+            "Filter_array": [
+              "Succeeded"
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
