@@ -1,0 +1,264 @@
+{
+  "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+  "Definition": {
+    "Id": "/providers/Microsoft.PowerApps/apis/shared_office365",
+    "Name": "shared_office365",
+    "Properties": {
+      "IsCustomApi": false,
+      "Swagger": {
+        "basePath": "/apim/office365",
+        "definitions": {
+          "ClientSendHtmlMessage": {
+            "additionalProperties": null,
+            "example": null,
+            "properties": {
+              "To": {
+                "additionalProperties": null,
+                "x-ms-dynamic-list": {
+                  "builtInOperation": "AadGraph.GetUsers",
+                  "itemValuePath": "mail",
+                  "parameters": {}
+                },
+                "example": null,
+                "type": "string",
+                "default": null,
+                "description": "Specify email addresses separated by semicolons like someone@contoso.com",
+                "format": "email",
+                "x-ms-summary": "To"
+              },
+              "Subject": {
+                "additionalProperties": null,
+                "example": null,
+                "type": "string",
+                "default": null,
+                "description": "Specify the subject of the mail",
+                "x-ms-summary": "Subject"
+              },
+              "Body": {
+                "additionalProperties": null,
+                "example": null,
+                "type": "string",
+                "default": null,
+                "description": "Specify the body of the mail",
+                "format": "html",
+                "x-ms-summary": "Body"
+              },
+              "From": {
+                "additionalProperties": null,
+                "example": null,
+                "type": "string",
+                "default": null,
+                "description": "Email address to send mail from (requires \"Send as\" or \"Send on behalf of\" permission for that mailbox). For more info on granting permissions please refer https://docs.microsoft.com/office365/admin/manage/send-email-as-distribution-list",
+                "format": "email",
+                "x-ms-summary": "From (Send as)",
+                "x-ms-visibility": "advanced"
+              },
+              "Cc": {
+                "additionalProperties": null,
+                "x-ms-dynamic-list": {
+                  "builtInOperation": "AadGraph.GetUsers",
+                  "itemValuePath": "mail",
+                  "parameters": {}
+                },
+                "example": null,
+                "type": "string",
+                "default": null,
+                "description": "Specify email addresses separated by semicolons like someone@contoso.com",
+                "format": "email",
+                "x-ms-summary": "CC",
+                "x-ms-visibility": "advanced"
+              },
+              "Bcc": {
+                "additionalProperties": null,
+                "x-ms-dynamic-list": {
+                  "builtInOperation": "AadGraph.GetUsers",
+                  "itemValuePath": "mail",
+                  "parameters": {}
+                },
+                "example": null,
+                "type": "string",
+                "default": null,
+                "description": "Specify email addresses separated by semicolons like someone@contoso.com",
+                "format": "email",
+                "x-ms-summary": "BCC",
+                "x-ms-visibility": "advanced"
+              },
+              "Attachments": {
+                "additionalProperties": null,
+                "example": null,
+                "items": {
+                  "additionalProperties": null,
+                  "example": null,
+                  "$ref": "#/definitions/ClientSendAttachment",
+                  "default": null
+                },
+                "type": "array",
+                "default": null,
+                "description": "Attachments",
+                "x-ms-summary": "Attachments",
+                "x-ms-visibility": "advanced"
+              },
+              "Sensitivity": {
+                "additionalProperties": null,
+                "x-ms-dynamic-list": {
+                  "itemTitlePath": "DisplayName",
+                  "itemValuePath": "Id",
+                  "operationId": "GetSensitivityLabels",
+                  "parameters": {}
+                },
+                "example": null,
+                "type": "string",
+                "default": null,
+                "description": "Sensitivity",
+                "x-ms-summary": "Sensitivity",
+                "x-ms-visibility": "advanced"
+              },
+              "ReplyTo": {
+                "additionalProperties": null,
+                "example": null,
+                "type": "string",
+                "default": null,
+                "description": "The email addresses to use when replying",
+                "format": "email",
+                "x-ms-summary": "Reply To",
+                "x-ms-visibility": "advanced"
+              },
+              "Importance": {
+                "additionalProperties": null,
+                "example": null,
+                "type": "string",
+                "default": "Normal",
+                "description": "Importance",
+                "enum": [
+                  "Low",
+                  "Normal",
+                  "High"
+                ],
+                "x-ms-summary": "Importance",
+                "x-ms-visibility": "advanced"
+              }
+            },
+            "required": [
+              "To",
+              "Subject",
+              "Body"
+            ],
+            "type": "object",
+            "default": null,
+            "description": "Send HTML Email Message"
+          },
+          "ClientSendAttachment": {
+            "additionalProperties": null,
+            "example": null,
+            "properties": {
+              "Name": {
+                "additionalProperties": null,
+                "example": null,
+                "type": "string",
+                "default": null,
+                "description": "Attachment name",
+                "x-ms-summary": "Name"
+              },
+              "ContentBytes": {
+                "additionalProperties": null,
+                "example": null,
+                "type": "string",
+                "default": null,
+                "description": "Attachment content",
+                "format": "byte",
+                "x-ms-summary": "Content"
+              }
+            },
+            "required": [
+              "Name",
+              "ContentBytes"
+            ],
+            "type": "object",
+            "default": null,
+            "description": "Attachment"
+          }
+        },
+        "host": "india-001.azure-apim.net",
+        "info": {
+          "title": "Office 365 Outlook",
+          "version": "1.0"
+        },
+        "parameters": {},
+        "paths": {
+          "/{connectionId}/v2/Mail": {
+            "post": {
+              "consumes": [
+                "application/json",
+                "text/json",
+                "application/xml",
+                "text/xml",
+                "application/x-www-form-urlencoded"
+              ],
+              "deprecated": false,
+              "description": "This operation sends an email message.",
+              "externalDocs": {
+                "url": "https://docs.microsoft.com/connectors/office365/#send-an-email-(v2)"
+              },
+              "operationId": "SendEmailV2",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "connectionId",
+                  "required": true,
+                  "type": "string",
+                  "default": null,
+                  "x-ms-visibility": "internal"
+                },
+                {
+                  "in": "body",
+                  "name": "emailMessage",
+                  "required": true,
+                  "schema": {
+                    "additionalProperties": null,
+                    "example": null,
+                    "$ref": "#/definitions/ClientSendHtmlMessage",
+                    "default": null
+                  },
+                  "default": null,
+                  "description": "Email.",
+                  "x-ms-summary": "Email"
+                }
+              ],
+              "produces": [],
+              "responses": {
+                "200": {
+                  "description": "Operation was successful"
+                },
+                "400": {
+                  "description": "BadRequest"
+                },
+                "401": {
+                  "description": "Unauthorized"
+                },
+                "403": {
+                  "description": "Forbidden"
+                },
+                "500": {
+                  "description": "Internal Server Error"
+                },
+                "default": {
+                  "description": "Operation Failed."
+                }
+              },
+              "summary": "Send an email (V2)",
+              "x-ms-visibility": "important"
+            }
+          }
+        },
+        "responses": {},
+        "schemes": [
+          "https",
+          "http"
+        ],
+        "swagger": "2.0"
+      }
+    }
+  },
+  "DynamicSchemas": {},
+  "Locale": "en-IN"
+}
