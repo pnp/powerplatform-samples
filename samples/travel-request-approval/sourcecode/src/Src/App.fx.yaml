@@ -1,0 +1,10 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =Set(locShowRequestForm,false);
+        Set(locReason, false);
+        Set(locRole, LookUp(Users,'Primary Email'=User().Email).Position.Name);
+        Set(locL1Manager, LookUp(Users,'Primary Email'=User().Email).Manager);
+        Set(locL2tManager, LookUp(Users, 'Primary Email'=locL1Manager.'Primary Email').Manager);
+        Set(locAutoApprovalLimitForCEOAmount, LookUp('Request Rules','Is Current'='Is Current (Request Rules)'.Yes).'Auto-Approval limit for CEO');
+

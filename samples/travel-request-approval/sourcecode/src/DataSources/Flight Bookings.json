@@ -1,0 +1,154 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "sb_flightbookingses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "sb_flightbookings",
+    "MaxGetRowsCount": 500,
+    "Name": "Flight Bookings",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "exchangerate": "Exchange Rate",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "sb_airlines": "Airlines",
+      "sb_arrivalcity": "Arrival City",
+      "sb_departurecity": "Departure City",
+      "sb_flightbookings_AsyncOperations": "System Jobs",
+      "sb_flightbookings_BulkDeleteFailures": "Bulk Delete Failures",
+      "sb_flightbookings_DuplicateBaseRecord": "Duplicate Records (sb_flightbookings_DuplicateBaseRecord)",
+      "sb_flightbookings_DuplicateMatchingRecord": "Duplicate Records (sb_flightbookings_DuplicateMatchingRecord)",
+      "sb_flightbookings_FileAttachments": "FileAttachments",
+      "sb_flightbookings_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "sb_flightbookings_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "sb_flightbookings_ProcessSession": "Process Sessions",
+      "sb_flightbookings_SyncErrors": "Sync Errors",
+      "sb_flightbookingsid": "Flight Bookings",
+      "sb_flightbookingstatus": "Flight Booking Status",
+      "sb_flightcost": "Flight Cost",
+      "sb_flightcost_base": "Flight Cost (Base)",
+      "sb_invoice": "Invoice",
+      "sb_onewayreturnflight": "One-Way/Return Flight",
+      "sb_outboundflightdatetime": "Outbound Flight Datetime",
+      "sb_returnflightdatetime": "Return Flight Datetime",
+      "sb_TravelRequestID": "Travel Request ID",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "transactioncurrencyid": "Currency",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Flight Bookings",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Flight Bookings (Views)",
+    "Name": "_sb_flightbookings_views",
+    "RelatedEntityName": "Flight Bookings",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "253ebd8d-9e9e-4a92-82c5-2f386031960d": "Active Flight Bookings",
+      "7ef26643-7556-4e1c-a89d-abe54c0fe7f4": "Inactive Flight Bookings",
+      "c9a798ea-a99f-4dd4-ad9c-b2597d7b9017": "Flight Bookings Advanced Find View",
+      "cb72bf36-d176-489d-8597-28831cdbe7bc": "Flight Bookings Associated View",
+      "d2c7b47c-9a8e-44a7-b805-c47b78024dc8": "Flight Bookings Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (Flight Bookings)",
+    "Name": "sb_flightbookings_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Flight Bookings"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Flight Bookings",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Flight Bookings)",
+    "Name": "sb_flightbookings_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Flight Bookings"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Flight Bookings",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Flight Booking Status",
+    "Name": "sb_flightbookingstatus",
+    "OptionSetInfoNameMapping": {
+      "126390000": "Pending",
+      "126390001": "Booked"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "sb_flightbookingstatus",
+        "OptionSetReferenceEntityName": "Flight Bookings"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "sb_flightbookingstatus",
+    "RelatedEntityName": "Flight Bookings",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "One-Way/Return Flight",
+    "Name": "sb_onewayreturnflight",
+    "OptionSetInfoNameMapping": {
+      "126390000": "One-Way",
+      "126390001": "Return Flight"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "sb_onewayreturnflight",
+        "OptionSetReferenceEntityName": "Flight Bookings"
+      },
+      "OptionSetReferenceItem1": {
+        "OptionSetReferenceColumnName": "sb_onewayreturnflight",
+        "OptionSetReferenceEntityName": "Travel Requests"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "sb_onewayreturnflight",
+    "RelatedEntityName": "Flight Bookings",
+    "Type": "OptionSetInfo"
+  }
+]

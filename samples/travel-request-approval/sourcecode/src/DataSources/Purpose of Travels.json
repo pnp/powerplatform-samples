@@ -1,0 +1,98 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "sb_purposeoftravels",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "sb_purposeoftravel",
+    "MaxGetRowsCount": 500,
+    "Name": "Purpose of Travels",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "sb_name": "Name",
+      "sb_purposeoftravel_AsyncOperations": "System Jobs",
+      "sb_purposeoftravel_BulkDeleteFailures": "Bulk Delete Failures",
+      "sb_purposeoftravel_DuplicateBaseRecord": "Duplicate Records (sb_purposeoftravel_DuplicateBaseRecord)",
+      "sb_purposeoftravel_DuplicateMatchingRecord": "Duplicate Records (sb_purposeoftravel_DuplicateMatchingRecord)",
+      "sb_purposeoftravel_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "sb_purposeoftravel_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "sb_purposeoftravel_ProcessSession": "Process Sessions",
+      "sb_purposeoftravel_SyncErrors": "Sync Errors",
+      "sb_purposeoftravelid": "Purpose of Travel",
+      "sb_sb_travelrequest_Purpose_sb_purposeoftrav": "Travel Requests",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Purpose of Travels",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Purpose of Travels (Views)",
+    "Name": "_sb_purposeoftravel_views",
+    "RelatedEntityName": "Purpose of Travels",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "59fb090d-5a4f-47c7-90cf-e77991249886": "Purpose of Travel Associated View",
+      "6497ce30-edde-420c-a13b-e77d7e18b17b": "Purpose of Travel Lookup View",
+      "9c1618a8-4848-4c5c-9e9d-758cb4555622": "Purpose of Travel Advanced Find View",
+      "aafa0e55-2429-46be-8054-56c0a90250fe": "Inactive Purpose of Travels",
+      "b2cde251-558d-48a1-b9c5-09bb4a4b4c1d": "Active Purpose of Travels"
+    }
+  },
+  {
+    "DisplayName": "Status (Purpose of Travels)",
+    "Name": "sb_purposeoftravel_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Purpose of Travels"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Purpose of Travels",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Purpose of Travels)",
+    "Name": "sb_purposeoftravel_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Purpose of Travels"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Purpose of Travels",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,146 @@
+<widget xmlns="http://openajax.org/metadata" spec="1.0" id="http://microsoft.com/appmagic/powerBI" name="powerbi" jsClass="AppMagic.Controls.PowerBI" version="2.4.0" styleable="true" runtimeCost="1" xmlns:appMagic="http://schemas.microsoft.com/appMagic">
+  <author name="Microsoft AppMagic" />
+  <license type="text/html"><![CDATA[<p>TODO:  Need license text here.</p>]]></license>
+  <description><![CDATA[ Power BI Report Control
+      ]]></description>
+  <requires>
+    <require type="css" src="css/powerbi.css" />
+    <require type="javascript" src="js/powerbi.js" />
+    <require type="other" src="/ctrllib/powerbi/images/powerbi-notset-logo.svg" />
+  </requires>
+  <appMagic:capabilities autoBorders="true" replicationLimit="0" isVersionFlexible="true" />
+  <!-- The parents that are supported. All other controls are prohibited as parents for this control. -->
+  <appMagic:supportedParents>
+    <appMagic:supportedControl name="screen" />
+    <appMagic:supportedControl name="component" />
+    <appMagic:supportedControl name="groupContainer" />
+  </appMagic:supportedParents>
+  <content><![CDATA[
+      <div class="appmagic-powerbi-control"
+        data-bind="
+          style: {
+            width: AppMagic.Controls.converters.pxHorizontalConverter.view(properties.Width()),
+            height: AppMagic.Controls.converters.pxVerticalConverter.view(properties.Height())
+          },
+          css: {
+              disabled: properties.DisplayMode === AppMagic.Constants.DisplayMode.Disabled
+          }"
+        >
+        <div class="appmagic-powerbi-host">
+          <div class="replace-with-placeholder-in-preview appmagic-powerbi-not-set-outer-container"
+            data-bind="visible: !properties.TileUrl()"
+            data-placeholder-icon="icon-powerbi">
+              <div class="appmagic-powerbi-not-set-inner-container">
+                <img class="appmagic-powerbi-not-set-logo" data-bind="modifySrcUrl: 'ctrllib/powerbi/images/powerbi-notset-logo.svg'" alt="" />
+
+                <div class="appmagic-powerbi-not-set-message" data-bind="
+                  visible: isPublishOrPreview(),
+                  text: AppMagic.Strings.PowerBIPlayerNotConnectedMessage"
+                ></div>
+              </div>
+          </div>
+          <div class="overlay" data-bind="
+            visible: shouldShowOverlay(),
+            event: { click: handleOverlayClick }"></div>
+          <iframe data-bind="visible: properties.TileUrl()"
+            class="replace-with-placeholder-in-preview" data-placeholder-icon="icon-powerbi"
+          ></iframe>
+        </div>
+      </div>
+
+    ]]></content>
+  <properties>
+    <property name="WorkspaceId" localizedName="WorkspaceId" datatype="String" hidden="true" />
+    <property name="DashboardId" localizedName="DashboardId" datatype="String" hidden="true" />
+    <property name="TileUrl" localizedName="##powerBIProperties_TileUrl##" datatype="String">
+      <appMagic:displayName>##powerBIProperties_TileUrl_DisplayName##</appMagic:displayName>
+      <appMagic:tooltip>##powerBIProperties_TileUrl_Tooltip##</appMagic:tooltip>
+      <appMagic:category>data</appMagic:category>
+    </property>
+    <property name="PowerBIInteractions" localizedName="##powerBIProperties_PowerBIInteractions##" datatype="boolean" defaultValue="true" editable="true">
+      <appMagic:displayName>##powerBIProperties_PowerBIInteractions_DisplayName##</appMagic:displayName>
+      <appMagic:tooltip>##powerBIProperties_PowerBIInteractions_Tooltip##</appMagic:tooltip>
+      <appMagic:category>data</appMagic:category>
+    </property>
+    <property name="Reset" localizedName="##commonProperties_Reset##" datatype="Boolean" defaultValue="false" direction="in">
+      <title>Reset</title>
+      <appMagic:category>data</appMagic:category>
+      <appMagic:displayName>##commonProperties_Reset_DisplayName##</appMagic:displayName>
+      <appMagic:tooltip>##commonProperties_Reset_Tooltip##</appMagic:tooltip>
+    </property>
+    <property name="LoadPowerBIContent" localizedName="##powerBIProperties_LoadPowerBIContent##" datatype="Boolean" defaultValue="true" direction="in">
+      <appMagic:displayName>##powerBIProperties_LoadPowerBIContent_DisplayName##</appMagic:displayName>
+      <appMagic:tooltip>##powerBIProperties_LoadPowerBIContent_Tooltip##</appMagic:tooltip>
+      <appMagic:category>data</appMagic:category>
+    </property>
+    <property name="AllowNewAPI" localizedName="##powerBIProperties_AllowNewAPI##" datatype="Boolean" defaultValue="false" direction="in">
+      <appMagic:displayName>##powerBIProperties_AllowNewAPI_DisplayName##</appMagic:displayName>
+      <appMagic:tooltip>##powerBIProperties_AllowNewAPI_Tooltip##</appMagic:tooltip>
+      <appMagic:category>data</appMagic:category>
+    </property>
+  </properties>
+  <appMagic:includeProperties>
+    <appMagic:includeProperty name="ContentLanguage" />
+    <appMagic:includeProperty name="OnSelect" direction="in" />
+    <appMagic:includeProperty name="DisplayMode" />
+    <appMagic:includeProperty name="Visible" />
+    <appMagic:includeProperty name="BorderColor" isPrimaryInputProperty="true" />
+    <appMagic:includeProperty name="BorderStyle" />
+    <appMagic:includeProperty name="BorderThickness" defaultValue="2" />
+    <appMagic:includeProperty name="X" />
+    <appMagic:includeProperty name="Y" />
+    <appMagic:includeProperty name="Width" defaultValue="640" phoneDefaultValue="300" />
+    <appMagic:includeProperty name="Height" defaultValue="480" phoneDefaultValue="300" />
+    <!-- Hidden properties -->
+    <appMagic:includeProperty name="minimumWidth" defaultValue="100" />
+    <appMagic:includeProperty name="minimumHeight" defaultValue="100" />
+    <appMagic:includeProperty name="maximumWidth" defaultValue="1366" phoneDefaultValue="640" />
+    <appMagic:includeProperty name="maximumHeight" defaultValue="768" phoneDefaultValue="1136" />
+  </appMagic:includeProperties>
+  <appMagic:insertMetadata>
+    <appMagic:category name="Charts" priority="40" />
+  </appMagic:insertMetadata>
+  <!-- Display metadata providing property visibility, order, sections, and grouping in UI (e.g. properties panel) -->
+  <appMagic:displayMetadata>
+    <appMagic:section>
+      <appMagic:wizardPropertyGroup>
+        <appMagic:wizardStep label="##ControlSidebar_PropertiesPanel_Data_DisplayName##" linkedLocation="DataPanelPowerBiCustomization" propertyInvariantName="TileUrl" />
+      </appMagic:wizardPropertyGroup>
+      <appMagic:property name="DisplayMode" />
+    </appMagic:section>
+    <appMagic:section>
+      <appMagic:property name="Visible" />
+      <appMagic:propertyGroup name="Position">
+        <appMagic:property name="X" />
+        <appMagic:property name="Y" />
+      </appMagic:propertyGroup>
+      <appMagic:propertyGroup name="Size">
+        <appMagic:property name="Width" />
+        <appMagic:property name="Height" />
+      </appMagic:propertyGroup>
+    </appMagic:section>
+    <appMagic:section>
+      <appMagic:propertyGroup name="Border">
+        <appMagic:property name="BorderStyle" />
+        <appMagic:property name="BorderThickness" />
+        <appMagic:property name="BorderColor" />
+      </appMagic:propertyGroup>
+      <appMagic:property name="PowerBIInteractions" />
+    </appMagic:section>
+  </appMagic:displayMetadata>
+  <appMagic:conversion from="2.0.0" to="2.1.0">
+    <appMagic:conversionAction type="add" name="Reset" />
+  </appMagic:conversion>
+  <appMagic:conversion from="2.1.0" to="2.2.0">
+    <appMagic:conversionAction type="add" name="LoadPowerBIContent" />
+  </appMagic:conversion>
+  <appMagic:conversion from="2.2.0" to="2.2.1">
+    <!-- Removed defaultValue for BorderColor. BorderColor default now defined in theme. -->
+  </appMagic:conversion>
+  <appMagic:conversion from="2.2.1" to="2.3.0">
+    <appMagic:conversionAction type="add" name="AllowNewAPI" />
+  </appMagic:conversion>
+  <appMagic:conversion from="2.3.0" to="2.4.0">
+    <appMagic:conversionAction type="add" name="ContentLanguage" />
+  </appMagic:conversion>
+</widget>

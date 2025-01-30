@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "sb_userroleses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "sb_userroles",
+    "MaxGetRowsCount": 500,
+    "Name": "User Roles",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "sb_name": "Name",
+      "sb_Roles": "Roles",
+      "sb_User": "User",
+      "sb_userroles_AsyncOperations": "System Jobs",
+      "sb_userroles_BulkDeleteFailures": "Bulk Delete Failures",
+      "sb_userroles_DuplicateBaseRecord": "Duplicate Records (sb_userroles_DuplicateBaseRecord)",
+      "sb_userroles_DuplicateMatchingRecord": "Duplicate Records (sb_userroles_DuplicateMatchingRecord)",
+      "sb_userroles_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "sb_userroles_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "sb_userroles_ProcessSession": "Process Sessions",
+      "sb_userroles_SyncErrors": "Sync Errors",
+      "sb_userrolesid": "User Roles",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "User Roles",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "User Roles (Views)",
+    "Name": "_sb_userroles_views",
+    "RelatedEntityName": "User Roles",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "593b76f4-1a58-40d4-82e4-783857479f4c": "User Roles Associated View",
+      "6214caa5-702d-4f07-bd5a-c864eae05fbc": "User Roles Lookup View",
+      "8a5140e5-715e-4504-8025-d2a30afe6125": "Inactive User Roles",
+      "bc065769-ae0e-4423-a65a-f6e3c3ce897d": "Active User Roles",
+      "e6df8ee8-dd18-4be4-a4ef-abc8fae127ea": "User Roles Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (User Roles)",
+    "Name": "sb_userroles_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "User Roles"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "User Roles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (User Roles)",
+    "Name": "sb_userroles_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "User Roles"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "User Roles",
+    "Type": "OptionSetInfo"
+  }
+]

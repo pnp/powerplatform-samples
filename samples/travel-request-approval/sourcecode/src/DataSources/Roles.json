@@ -1,0 +1,98 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "sb_roleses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "sb_roles",
+    "MaxGetRowsCount": 500,
+    "Name": "Roles",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "sb_name": "Name",
+      "sb_roles_AsyncOperations": "System Jobs",
+      "sb_roles_BulkDeleteFailures": "Bulk Delete Failures",
+      "sb_roles_DuplicateBaseRecord": "Duplicate Records (sb_roles_DuplicateBaseRecord)",
+      "sb_roles_DuplicateMatchingRecord": "Duplicate Records (sb_roles_DuplicateMatchingRecord)",
+      "sb_roles_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "sb_roles_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "sb_roles_ProcessSession": "Process Sessions",
+      "sb_roles_SyncErrors": "Sync Errors",
+      "sb_rolesid": "Roles",
+      "sb_sb_userroles_Roles_sb_roles": "User Roles",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Roles",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Roles (Views)",
+    "Name": "_sb_roles_views",
+    "RelatedEntityName": "Roles",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "0a5225f5-c11f-4386-81f4-6ca04a8f7df6": "Inactive Roles",
+      "6856097b-29ed-482b-9303-19a42839308a": "Roles Lookup View",
+      "6fa876ca-886a-4001-9450-dcb3b8f12c92": "Active Roles",
+      "b0078ffc-043e-4873-95c6-364d83b85940": "Roles Associated View",
+      "bbfd2f8c-c5a4-426d-8985-b9dfc0a04fb5": "Roles Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Roles)",
+    "Name": "sb_roles_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Roles"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Roles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Roles)",
+    "Name": "sb_roles_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Roles"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Roles",
+    "Type": "OptionSetInfo"
+  }
+]

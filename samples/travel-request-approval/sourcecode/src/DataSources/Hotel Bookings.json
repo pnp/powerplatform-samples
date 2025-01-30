@@ -1,0 +1,108 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "sb_hotelbookings",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "sb_hotelbooking",
+    "MaxGetRowsCount": 500,
+    "Name": "Hotel Bookings",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "exchangerate": "Exchange Rate",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "sb_checkindate": "Check-in Date",
+      "sb_checkoutdate": "Check-out Date",
+      "sb_hotelbooking_AsyncOperations": "System Jobs",
+      "sb_hotelbooking_BulkDeleteFailures": "Bulk Delete Failures",
+      "sb_hotelbooking_DuplicateBaseRecord": "Duplicate Records (sb_hotelbooking_DuplicateBaseRecord)",
+      "sb_hotelbooking_DuplicateMatchingRecord": "Duplicate Records (sb_hotelbooking_DuplicateMatchingRecord)",
+      "sb_hotelbooking_FileAttachments": "FileAttachments",
+      "sb_hotelbooking_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "sb_hotelbooking_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "sb_hotelbooking_ProcessSession": "Process Sessions",
+      "sb_hotelbooking_SyncErrors": "Sync Errors",
+      "sb_hotelbookingid": "Hotel Booking",
+      "sb_hotelcity": "Hotel City",
+      "sb_hotelcost": "Hotel Cost",
+      "sb_hotelcost_base": "Hotel Cost (Base)",
+      "sb_hotelstarrating": "Hotel Star-Rating",
+      "sb_invoice": "Invoice",
+      "sb_name": "Hotel Name",
+      "sb_TravelRequestID": "Travel Request ID",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "transactioncurrencyid": "Currency",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Hotel Bookings",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Hotel Bookings (Views)",
+    "Name": "_sb_hotelbooking_views",
+    "RelatedEntityName": "Hotel Bookings",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "5af3903b-c905-4fa7-9407-5c6f2f0053ea": "Hotel Booking Advanced Find View",
+      "6e9e4e41-9470-4a67-8f84-efc91dbfd550": "Inactive Hotel Bookings",
+      "d16a958a-02be-468b-8182-d10b6fe14e49": "Hotel Booking Associated View",
+      "e50b2652-a76c-4e7e-bc9b-3adca8fb8d63": "Active Hotel Bookings",
+      "e633c45c-b2e5-47d9-9fd2-a278a72084db": "Hotel Booking Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (Hotel Bookings)",
+    "Name": "sb_hotelbooking_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Hotel Bookings"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Hotel Bookings",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Hotel Bookings)",
+    "Name": "sb_hotelbooking_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Hotel Bookings"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Hotel Bookings",
+    "Type": "OptionSetInfo"
+  }
+]
