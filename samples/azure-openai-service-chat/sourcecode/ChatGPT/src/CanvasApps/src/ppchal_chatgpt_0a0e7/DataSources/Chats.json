@@ -1,0 +1,100 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "ppchal_chats",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "ppchal_chat",
+    "MaxGetRowsCount": 500,
+    "Name": "Chats",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "ppchal_chat_AsyncOperations": "System Jobs",
+      "ppchal_chat_BulkDeleteFailures": "Bulk Delete Failures",
+      "ppchal_chat_DuplicateBaseRecord": "Duplicate Records (ppchal_chat_DuplicateBaseRecord)",
+      "ppchal_chat_DuplicateMatchingRecord": "Duplicate Records (ppchal_chat_DuplicateMatchingRecord)",
+      "ppchal_chat_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "ppchal_chat_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "ppchal_chat_ProcessSession": "Process Sessions",
+      "ppchal_chat_SyncErrors": "Sync Errors",
+      "ppchal_chatid": "Chat",
+      "ppchal_messages": "Messages (ppchal_messages)",
+      "ppchal_name": "Name",
+      "ppchal_ppchal_message_Chat_ppchal_chat": "Messages (ppchal_ppchal_message_Chat_ppchal_chat)",
+      "ppchal_Prompt": "Prompt",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Chats",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Chats (Views)",
+    "Name": "_ppchal_chat_views",
+    "RelatedEntityName": "Chats",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "43138cde-9d6d-423b-8bd0-878ddb5dda87": "Active Chats",
+      "4b566770-3a5c-47f9-9982-14444982ccb4": "Chat Advanced Find View",
+      "5856b852-4d52-4350-a5ab-0a7af1ba31e2": "Inactive Chats",
+      "c80bba1b-535f-41ee-9941-ce1a4d6f59cc": "Chat Lookup View",
+      "f40cfac6-8032-4a3a-99f6-422645e42849": "Chat Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Chats)",
+    "Name": "ppchal_chat_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Chats"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Chats",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Chats)",
+    "Name": "ppchal_chat_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Chats"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Chats",
+    "Type": "OptionSetInfo"
+  }
+]
