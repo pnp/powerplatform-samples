@@ -63,7 +63,7 @@ Time limit to respond | String | Allowed time duration in minutes for users to r
 
 ### Import Solution
 
-* [Download](./solution/notify-team-of-unresponsive-channel-post.zip the `.zip` from the `solution` folder
+* [Download](./solution/notify-team-of-unresponsive-channel-post.zip) the `.zip` from the `solution` folder
 * [Import](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/import-update-export-solutions) the `.zip` file using **Solutions** > **Import Solution**.
 
 
