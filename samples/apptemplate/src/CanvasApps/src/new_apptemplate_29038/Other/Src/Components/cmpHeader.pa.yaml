@@ -1,0 +1,283 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps is in preview. The schema is being actively developed.
+# Content may be incomplete and subject to change.
+# This file is read-only and should only be used to review changes made within Power Apps Studio.
+# This file isn't used when loading the app. External editing, merging and conflict resolution are
+# not supported.
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  cmpHeader:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      HeaderTitle:
+        PropertyKind: Input
+        DisplayName: HeaderTitle
+        Description: A custom property
+        DataType: Text
+      HideShowLangDD:
+        PropertyKind: Input
+        DisplayName: HideShowLangDD
+        Description: A custom property
+        DataType: Boolean
+      LangDDPosition:
+        PropertyKind: Output
+        DisplayName: LangDDPosition
+        Description: A custom property
+        DataType: Number
+      LanguageDDOutputState:
+        PropertyKind: Output
+        DisplayName: LanguageDDOutputState
+        Description: A custom property
+        DataType: Boolean
+      ShowLangDD:
+        PropertyKind: Input
+        DisplayName: ShowLangDD
+        Description: A custom property
+        DataType: Boolean
+      cmpHeaderHeight:
+        PropertyKind: Input
+        DisplayName: cmpHeaderHeight
+        Description: A custom property
+        DataType: Number
+      eventLangDDOnSelect:
+        PropertyKind: Event
+        DisplayName: eventLangDDOnSelect
+        Description: A custom property
+        ReturnType: Boolean
+      showHelpIcon:
+        PropertyKind: Input
+        DisplayName: showHelpIcon
+        Description: A custom property
+        DataType: Boolean
+      showSearchBox:
+        PropertyKind: Input
+        DisplayName: showSearchBox
+        Description: A custom property
+        DataType: Boolean
+    Properties:
+      Height: =Self.cmpHeaderHeight
+      Width: =App.Width
+    Children:
+      - rectHeader:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(16, 6, 159, 1)
+            Height: =Parent.Height
+            Width: =Parent.Width
+            Y: =0.00
+      - imgHeader:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =Parent.Height - 10
+            Image: ='logo-raspberry-pi-open-source-svgrepo-com'
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            Width: =33
+            X: =40
+            Y: =(Parent.cmpHeaderHeight - Self.Height) / 2
+      - lblHeader:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: ="RR Pioneer Medium"
+            Height: =Parent.Height
+            PaddingLeft: =18
+            Size: =15
+            Text: =Parent.HeaderTitle
+            Width: =Parent.Width/3
+            X: =imgHeader.X+imgHeader.Width
+            Y: =0.00
+      - lblUserName:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: ="RR Pioneer Regular, Open Sans"
+            Height: =Parent.Height
+            Size: =10
+            Text: =User().FullName
+            Visible: =false
+            Width: =If((Len(Self.Text))*10<100,100,(Len(Self.Text)*10))
+            X: =btnUserName.X+btnUserName.Width
+            Y: =0.00
+      - btnUserName:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            Color: =ColorValue("#1C1E22")
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =ColorValue("#00E6E3")
+            Font: ="RR Pioneer Medium"
+            FontWeight: =FontWeight.Normal
+            Height: =32
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            RadiusBottomLeft: =50
+            RadiusBottomRight: =50
+            RadiusTopLeft: =50
+            RadiusTopRight: =50
+            Size: =10
+            Text: |-
+              =Concatenate(
+                  Left(
+                      Office365Users.UserProfileV2(User().Email).givenName,
+                      1
+                  ),
+                  Left(
+                      Office365Users.UserProfileV2(User().Email).surname,
+                      1
+                  )
+              )
+            Visible: =true//!Office365Users.UserPhotoMetadata(User().Email).HasPhoto
+            Width: =32
+            X: =If(imgHelp.Visible,Parent.Width * .85,Parent.Width - Self.Width - 80)
+            Y: =Parent.Height/3.5
+      - IconLangShow:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =24
+            Icon: =If(Parent.ShowLangDD, Icon.ChevronUp,Icon.ChevronDown)
+            OnSelect: =Parent.eventLangDDOnSelect()
+            PaddingBottom: =0.00
+            PaddingLeft: =5
+            PaddingTop: =9
+            Tooltip: ="Select Language"
+            Visible: =Parent.HideShowLangDD
+            Width: =24
+            X: =btnUserName.X+btnUserName.Width + 12
+            Y: =Parent.Height/3.5
+      - lblLangValue:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans'
+            Height: =1136.00
+            PaddingBottom: =64.55
+            PaddingLeft: =64.55
+            Size: =167.82
+            Text: =//If(varbrowserLang = "de", "DE", "EN")
+            Visible: =false
+            Width: =40
+            X: =lblUserName.X+lblUserName.Width
+            Y: =0.00
+      - imgUser:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =32
+            Image: =Office365Users.UserPhotoV2(User().Email)
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            RadiusBottomLeft: =50
+            RadiusBottomRight: =50
+            RadiusTopLeft: =50
+            RadiusTopRight: =50
+            Visible: =false//Office365Users.UserPhotoMetadata(User().Email).HasPhoto
+            Width: =32
+            X: =700
+            Y: =324.57
+      - txtSearchBox:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =ColorValue("#8A98AB")
+            Color: =ColorValue("#1C1E22")
+            Default: =
+            DisabledBorderColor: =Self.BorderColor
+            DisabledColor: =Self.Color
+            DisabledFill: =
+            Fill: =ColorValue("#FFFFFF")
+            FocusedBorderThickness: =Self.BorderThickness
+            Font: ="RR Pioneer"
+            Height: =32
+            HintText: ="Search..."
+            HoverBorderColor: =Self.BorderColor
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingBottom: =12
+            PaddingLeft: =24 + imgSearch.Width
+            PaddingRight: =12
+            PaddingTop: =12
+            PressedBorderColor: =Self.BorderColor
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Size: =11
+            Visible: =Parent.showSearchBox
+            Width: =304
+            X: =Parent.Width/2.5
+            Y: =Parent.Height/3.5
+      - imgSearch:
+          Control: Image@2.2.3
+          Properties:
+            Height: =24
+            Image: ='search-svgrepo-com (1)'
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            Visible: =Parent.showSearchBox
+            Width: =24
+            X: =txtSearchBox.X + 12
+            Y: =txtSearchBox.Y + 4
+      - imgHelp:
+          Control: Image@2.2.3
+          Properties:
+            Height: =24
+            Image: ='question-mark-svgrepo-com (1)'
+            PaddingBottom: =0.00
+            PaddingLeft: =4
+            PaddingTop: =4
+            Visible: =Parent.showHelpIcon
+            Width: '=24 '
+            X: =IconLangShow.X+IconLangShow.Width*2
+            Y: =txtSearchBox.Y + 2
+      - Image4:
+          Control: Image@2.2.3
+          Properties:
+            Height: =24
+            Image: ='apple-svgrepo-com (1)'
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            Visible: =Parent.showHelpIcon
+            Width: =24
+            X: =btnUserName.X - Self.Width*2
+            Y: =txtSearchBox.Y + 2
+      - Image4_1:
+          Control: Image@2.2.3
+          Properties:
+            Height: =24
+            Image: ='apple-svgrepo-com (1)'
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            Visible: =Parent.showHelpIcon
+            Width: =24
+            X: =Image4.X - Self.Width*2
+            Y: =txtSearchBox.Y + 2
+      - Image4_2:
+          Control: Image@2.2.3
+          Properties:
+            Height: =24
+            Image: ='apple-svgrepo-com (1)'
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            Visible: =Parent.showHelpIcon
+            Width: =24
+            X: =Image4_1.X - Self.Width*2
+            Y: =txtSearchBox.Y + 2

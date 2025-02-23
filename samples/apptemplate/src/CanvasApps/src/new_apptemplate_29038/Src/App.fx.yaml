@@ -1,0 +1,60 @@
+App As appinfo:
+    BackEnabled: =true
+    OnStart: |-
+        =//Collection to get Media Images
+        ClearCollect(
+            colMediaImages,
+            Table(
+                {
+                    ID: 1,
+                    Icons: 'dashboard-svgrepo-com'
+                },
+                {
+                    ID: 2,
+                    Icons: 'plus-svgrepo-com'
+                }
+            )
+        );
+        ClearCollect(
+            colLeftNavigationDetailsTemp,
+            Sort(
+                ShowColumns(
+                    AddColumns(
+                        NavigationItems,
+                        ScreenValue,
+                        Switch(
+                            Screen,
+                            "RequestorDashboard",
+                            Screen1,
+                            "CreateScreen",
+                            CreateScreen
+                        )
+                    ),
+                    OrderID,
+                    Title,
+                    ScreenValue
+                ),
+                OrderID,
+                SortOrder.Ascending
+            )
+        );
+        ClearCollect(
+            colLeftNavigationDetails,
+            AddColumns(
+                colLeftNavigationDetailsTemp As item,
+                Icons,
+                LookUp(
+                    colMediaImages,
+                    ThisRecord.ID = item.OrderID
+                ).Icons
+            )
+        );
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
