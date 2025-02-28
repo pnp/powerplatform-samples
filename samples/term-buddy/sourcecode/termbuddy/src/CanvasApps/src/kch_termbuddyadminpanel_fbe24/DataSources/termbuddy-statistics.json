@@ -1,0 +1,102 @@
+[
+  {
+    "DisplayName": "termbuddy-statistics (Views)",
+    "Name": "_kch_termbuddystatistics_views",
+    "RelatedEntityName": "termbuddy-statistics",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "15c193b9-4fda-45ba-b2bd-16d6ce10b4b2": "termbuddy-statistics Associated View",
+      "66cf46d0-e739-4b51-843d-881bdd4cd6b0": "termbuddy-statistics Advanced Find View",
+      "bf49f754-133d-4745-9ce9-d9fafd646b3f": "termbuddy-statistics Lookup View",
+      "d242d130-45f3-4700-a4a3-bf670fc6a891": "Inactive termbuddy-statistics",
+      "ebdaa61b-df19-41d5-a986-3604ac397899": "Active termbuddy-statistics"
+    }
+  },
+  {
+    "DisplayName": "Status (termbuddy-statistics)",
+    "Name": "kch_termbuddystatistics_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "termbuddy-statistics"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "termbuddy-statistics",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (termbuddy-statistics)",
+    "Name": "kch_termbuddystatistics_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "termbuddy-statistics"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "termbuddy-statistics",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "kch_termbuddystatisticses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "kch_termbuddystatistics",
+    "MaxGetRowsCount": 500,
+    "Name": "termbuddy-statistics",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "kch_action": "action",
+      "kch_conversation_id": "conversation_id",
+      "kch_createddatetime": "CreatedDateTime",
+      "kch_primaryid": "primary-id",
+      "kch_quizresult": "quiz-result",
+      "kch_term": "term",
+      "kch_termbuddystatistics_AsyncOperations": "System Jobs",
+      "kch_termbuddystatistics_BulkDeleteFailures": "Bulk Delete Failures",
+      "kch_termbuddystatistics_DuplicateBaseRecord": "Duplicate Records (kch_termbuddystatistics_DuplicateBaseRecord)",
+      "kch_termbuddystatistics_DuplicateMatchingRecord": "Duplicate Records (kch_termbuddystatistics_DuplicateMatchingRecord)",
+      "kch_termbuddystatistics_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "kch_termbuddystatistics_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "kch_termbuddystatistics_ProcessSession": "Process Sessions",
+      "kch_termbuddystatistics_SyncErrors": "Sync Errors",
+      "kch_termbuddystatisticsid": "termbuddy-statistics",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "termbuddy-statistics",
+    "Type": "NativeCDSDataSourceInfo"
+  }
+]

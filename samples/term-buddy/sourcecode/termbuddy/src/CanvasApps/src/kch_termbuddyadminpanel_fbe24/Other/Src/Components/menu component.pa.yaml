@@ -1,0 +1,114 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps is in preview. The schema is being actively developed.
+# Content may be incomplete and subject to change.
+# This file is read-only and should only be used to review changes made within Power Apps Studio.
+# This file isn't used when loading the app. External editing, merging and conflict resolution are
+# not supported.
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  menu component:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      currentScreen:
+        PropertyKind: Input
+        DisplayName: currentScreen
+        Description: A custom property
+        DataType: Text
+        Default: ="Instructions"
+      iconColor:
+        PropertyKind: Input
+        DisplayName: iconColor
+        Description: A custom property
+        DataType: Text
+        Default: ="#354765"
+      iconColorCurrent:
+        PropertyKind: Input
+        DisplayName: iconColorCurrent
+        Description: A custom property
+        DataType: Text
+        Default: ="#6D62E4"
+      logo:
+        PropertyKind: Input
+        DisplayName: logo
+        Description: A custom property
+        DataType: Text
+        Default: =logo
+      menuIcons:
+        PropertyKind: Input
+        DisplayName: menuIcons
+        Description: A custom property
+        DataType: Table
+        Default: |-
+          =Table(
+              {
+                  id: 1,
+                  name: "Instructions",
+                  path: "<path d='M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849m.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1s-.458.158-.678.599'/>",
+                  screen: 'Prompt refinement'
+              },
+              {
+                  id: 2,
+                  name: "Settings",
+                  path: "<path d='M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849m.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1s-.458.158-.678.599'/>",
+                  screen: 'Prompt refinement'
+              },
+              {
+                  id: 3,
+                  name: "Analytics",
+                  path: "<path d='M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849m.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1s-.458.158-.678.599'/>",
+                  screen: 'Prompt refinement'
+              },
+              {
+                  id: 4,
+                  name: "About",
+                  path: "<path d='M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849m.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1s-.458.158-.678.599'/>",
+                  screen: 'Prompt refinement'
+              }
+          )
+      parentHeight:
+        PropertyKind: Input
+        DisplayName: parentHeight
+        Description: A custom property
+        DataType: Number
+        Default: =100
+    Properties:
+      Height: =500 //Component1.parentHeight
+      Width: =100
+    Children:
+      - menu gallery:
+          Control: Gallery@2.15.0
+          Variant: BrowseLayout_Vertical_OneTextOneImageVariant_ver5.0
+          Properties:
+            AccessibleLabel: ="Menu options"
+            Height: =Parent.Height - Self.Y
+            Items: ='menu component'.menuIcons
+            TabIndex: =0
+            TemplateSize: =80
+            Transition: =Transition.Push
+            Width: =Parent.Width
+            Y: ='menu logo'.Y + 'menu logo'.Height
+          Children:
+            - menu icons:
+                Control: Image@2.2.3
+                Properties:
+                  AccessibleLabel: =ThisItem.name
+                  Height: =20
+                  Image: "=\"data:image/svg+xml;utf8, \"&EncodeUrl(\"\r\n    \r\n    <svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='\" & \r\n    \r\n    If(\r\n        ThisItem.name = 'menu component'.currentScreen,\r\n        'menu component'.iconColorCurrent,\r\n        'menu component'.iconColor\r\n    )\r\n\r\n    & \"' viewBox='0 0 16 16'>\r\n\r\n    \" & ThisItem.path & \"\r\n\r\n    </svg>\r\n\r\n\")"
+                  OnSelect: =Navigate(ThisItem.screen)
+                  TabIndex: =0
+                  Tooltip: =ThisItem.name
+                  Width: =20
+                  X: =(Parent.TemplateWidth / 2) - (Self.Width / 2)
+                  Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+      - menu logo:
+          Control: Image@2.2.3
+          Properties:
+            AccessibleLabel: ="logo"
+            Image: ='menu component'.logo
+            PaddingBottom: =24
+            PaddingLeft: =24
+            PaddingRight: =24
+            PaddingTop: =24
+            TabIndex: =0
