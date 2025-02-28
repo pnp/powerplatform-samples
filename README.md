@@ -23,7 +23,7 @@ Many travel companies collaborate with agencies worldwide to bring in clients, b
 - AI Builder
 
 ## Demo
- [Demonstration video](https://youtu.be/QZVlEfBQmJ4)
+ [Demonstration video](https://youtu.be/AgSZslan3R8)
 
 ## Setup
 Follow these  [Setup](Setup.md) instructions to set up this solution seamlessly
