@@ -10,9 +10,9 @@ Many travel companies collaborate with agencies worldwide to bring in clients, b
 
 ## Solution
 
-- MASS Travel Gateway (Power Pages) → Travel agencies update client status and interact with back-office. Customers submit new travel inquiries and post-travel feedback easily.
+- MASS Travel Gateway (Power Pages) → Travel agencies update client status and interact with back-office. Customers submit new travel inquiries and post-travel feedback easily
 
-- MASS Travel Hub (Model-Driven App) → Back-office team manages agencies, referrals, and reports.
+- MASS Travel Hub (Model-Driven App) → Back-office team manages agencies, referrals, and reports
 
 
 
