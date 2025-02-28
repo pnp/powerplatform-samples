@@ -15,7 +15,6 @@ Many travel companies collaborate with agencies worldwide to bring in clients, b
 - MASS Travel Hub (Model-Driven App) → Back-office team manages agencies, referrals, and reports
 
 
-
 ## Tech Stack
 - Power Pages
 - Power Apps
