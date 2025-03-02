@@ -1,0 +1,56 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps is in preview. The schema is being actively developed.
+# Content may be incomplete and subject to change.
+# This file is read-only and should only be used to review changes made within Power Apps Studio.
+# This file isn't used when loading the app. External editing, merging and conflict resolution are
+# not supported.
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  LogiSam_HorizontalBarChart:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      BackgroundColor:
+        PropertyKind: Input
+        DisplayName: BackgroundColor
+        Description: A custom property
+        DataType: Text
+      BorderColor:
+        PropertyKind: Input
+        DisplayName: BorderColor
+        Description: A custom property
+        DataType: Text
+      BorderWidth:
+        PropertyKind: Input
+        DisplayName: BorderWidth
+        Description: A custom property
+        DataType: Number
+      ChartTitle:
+        PropertyKind: Input
+        DisplayName: ChartTitle
+        Description: A custom property
+        DataType: Text
+      Data:
+        PropertyKind: Input
+        DisplayName: Data
+        Description: A custom property
+        DataType: Table
+      DataSetName:
+        PropertyKind: Input
+        DisplayName: DataSetName
+        Description: A custom property
+        DataType: Text
+      RoundedBorders:
+        PropertyKind: Input
+        DisplayName: RoundedBorders
+        Description: A custom property
+        DataType: Boolean
+    Children:
+      - Image1_1:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =Parent.Height
+            Image: "=\"https://quickchart.io/chart?c=\" & EncodeUrl(\n    \"{\n    type: 'horizontalBar',\n    data: {\n      labels: [\" & Concat(\n        LogiSam_HorizontalBarChart.Data,\n        \"'\" & Label & \"'\",\n        \",\"\n    ) & \"],\n      datasets: [\n        {\n          label: '\" & LogiSam_HorizontalBarChart.DataSetName & \"',\n          backgroundColor: '\"& LogiSam_HorizontalBarChart.BackgroundColor&\"',\n          borderColor: '\"&LogiSam_HorizontalBarChart.BorderColor&\"',\n          borderWidth: 1,\n          data: [\" & Concat(\n        LogiSam_HorizontalBarChart.Data,\n        Data ,\n        \",\"\n    ) & \"],\n        }\n      ],\n    },\n    options: {\n      title: {\n        display: true,\n        text: '\" & LogiSam_HorizontalBarChart.ChartTitle & \"',\n      },\n      plugins: {\n    \n      roundedBars: \"&If(LogiSam_HorizontalBarChart.RoundedBorders,\"true\",\"false\")&\" \n    \n      },\n    },\n  }\"\n)"
+            Width: =Parent.Width
