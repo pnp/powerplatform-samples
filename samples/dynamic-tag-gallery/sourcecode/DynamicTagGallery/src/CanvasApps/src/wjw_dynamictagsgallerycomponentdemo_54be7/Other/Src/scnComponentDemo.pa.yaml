@@ -1,0 +1,155 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps is in preview. The schema is being actively developed.
+# Content may be incomplete and subject to change.
+# This file is read-only and should only be used to review changes made within Power Apps Studio.
+# This file isn't used when loading the app. External editing, merging and conflict resolution are
+# not supported.
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  scnComponentDemo:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - ScreenContainer1:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =RGBA(245, 245, 245, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =16
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Width: =Parent.Width
+          Children:
+            - HeaderContainer1:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  Fill: =RGBA(0, 0, 0, 1)
+                  FillPortions: =0
+                  Height: =75
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  RadiusBottomLeft: =8
+                  RadiusBottomRight: =8
+                  RadiusTopLeft: =8
+                  RadiusTopRight: =8
+                Children:
+                  - lblTitle:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Lato Light'
+                        Height: =Parent.Height
+                        Size: =28
+                        Text: ="Tag Gallery"
+            - BottomContainer1:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(245, 245, 245, 1)
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =16
+                  LayoutWrap: =true
+                  PaddingBottom: =2
+                  PaddingLeft: =2
+                  PaddingRight: =2
+                  PaddingTop: =2
+                Children:
+                  - LeftContainer1:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        BorderThickness: =2
+                        Fill: =Color.White
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutJustifyContent: =LayoutJustifyContent.End
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                      Children:
+                        - TextInputCanvas1:
+                            Control: TextInput@0.0.53
+                            Properties:
+                              Align: =Align.Left
+                              AlignInContainer: =AlignInContainer.Stretch
+                              Appearance: ='TextInputCanvas.Appearance'.Outline
+                              BorderStyle: =
+                              FillPortions: =1
+                              FontSize: =20
+                              Height: =331
+                              Mode: ='TextInputCanvas.Mode'.Multiline
+                              TriggerOutput: ="KeyPress"
+                              Value: |-
+                                ="#Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+                                Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+                                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
+                                Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.
+                                Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.
+                                Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla.
+                                Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien. Donec ut est in lectus consequat consequat.
+                                Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
+                                Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                                Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis."
+                              Width: =653
+                        - cptTagGallery1:
+                            Control: CanvasComponent
+                            ComponentName: cptTagGallery
+                            Properties:
+                              ButtonMargin: =20
+                              ButtonPadding: =10
+                              Height: =Parent.Height/3
+                              InputText: =TextInputCanvas1.Value
+                              Width: =653
+                              Y: =331
+                  - RightContainer1:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        BorderThickness: =2
+                        Fill: =RGBA(255, 255, 255, 1)
+                        LayoutDirection: =LayoutDirection.Vertical
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                      Children:
+                        - Table1:
+                            Control: Table@1.0.262
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Stretch
+                              FillPortions: =1
+                              Items: =cptTagGallery1.OutputTags
+                              Width: =596
+                              X: =745
+                            Children:
+                              - value1:
+                                  Control: TableDataField@1.5.0
+                                  Variant: textualColumn
+                                  Properties:
+                                    CanGrow: =false
+                                    FieldDisplayName: ="value"
+                                    FieldName: ="value"
+                                    FieldType: ="s"
+                                    HeaderText: ="Tag Name"
+                                    Order: =1
+                                    Width: =Parent.Width/3*2
+                              - selected1:
+                                  Control: TableDataField@1.5.0
+                                  Variant: textualColumn
+                                  Properties:
+                                    FieldDisplayName: ="selected"
+                                    FieldName: ="selected"
+                                    FieldType: ="b"
+                                    Order: =2

@@ -1,0 +1,180 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_teams": {
+        "api": {
+          "name": "shared_teams"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "pnp_sharedteams_c1c4a"
+        },
+        "runtimeSource": "embedded"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "Teams ID (pnp_TeamsID)": {
+          "defaultValue": "a7ad4d30-bfa9-4159-933c-d59e6e2ee667",
+          "type": "String",
+          "metadata": {
+            "schemaName": "pnp_TeamsID",
+            "description": "ID of the Microsoft Team Group"
+          }
+        },
+        "Channel ID (pnp_ChannelID)": {
+          "defaultValue": "19:ir26kOGJLhrqSFSs-plWd7cgZTIKPRXJSqraj3Aa8lY1@thread.tacv2",
+          "type": "String",
+          "metadata": {
+            "schemaName": "pnp_ChannelID",
+            "description": "ID of the Microsoft Teams Channel"
+          }
+        },
+        "Notification Message (pnp_NotificationMessage)": {
+          "defaultValue": "Please answer this message!",
+          "type": "String",
+          "metadata": {
+            "schemaName": "pnp_NotificationMessage",
+            "description": "Text message to be delivered in notification"
+          }
+        },
+        "Time limit to respond (pnp_Timelimittorespond)": {
+          "defaultValue": "5",
+          "type": "String",
+          "metadata": {
+            "schemaName": "pnp_Timelimittorespond",
+            "description": "Allowed time duration in minutes to respond"
+          }
+        }
+      },
+      "triggers": {
+        "When_a_new_channel_message_is_added": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "groupId": "@parameters('Teams ID (pnp_TeamsID)')",
+              "channelId": "@parameters('Channel ID (pnp_ChannelID)')"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+              "operationId": "OnNewChannelMessage",
+              "connectionName": "shared_teams"
+            }
+          },
+          "recurrence": {
+            "interval": 1,
+            "frequency": "Minute"
+          },
+          "splitOn": "@triggerOutputs()?['body']"
+        }
+      },
+      "actions": {
+        "Delay": {
+          "type": "Wait",
+          "inputs": {
+            "interval": {
+              "count": "@parameters('Time limit to respond (pnp_Timelimittorespond)')",
+              "unit": "Minute"
+            }
+          },
+          "runAfter": {}
+        },
+        "Get_message_details": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "messageId": "@triggerOutputs()?['body/id']",
+              "threadType": "channel",
+              "body/recipient/groupId": "@triggerOutputs()?['body/channelIdentity/teamId']",
+              "body/recipient/channelId": "@triggerOutputs()?['body/channelIdentity/channelId']"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+              "operationId": "GetMessageDetails",
+              "connectionName": "shared_teams"
+            }
+          },
+          "runAfter": {
+            "Delay": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Send_a_Microsoft_Graph_HTTP_request": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "Uri": "https://graph.microsoft.com/v1.0/teams/@{outputs('Get_message_details')?['body/teamId']}/channels/@{outputs('Get_message_details')?['body/channelId']}/messages/@{outputs('Get_message_details')?['body/id']}/replies",
+              "Method": "GET",
+              "ContentType": "application/json"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+              "operationId": "HttpRequest",
+              "connectionName": "shared_teams"
+            }
+          },
+          "runAfter": {
+            "Get_message_details": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Condition": {
+          "type": "If",
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@body('Send_a_Microsoft_Graph_HTTP_request')?['@odata.count']",
+                  0
+                ]
+              }
+            ]
+          },
+          "actions": {
+            "Reply_with_a_message_in_a_channel": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "poster": "Flow bot",
+                  "location": "Channel",
+                  "body/parentMessageId": "@outputs('Get_message_details')?['body/id']",
+                  "body/recipient/groupId": "@outputs('Get_message_details')?['body/teamId']",
+                  "body/recipient/channelId": "@outputs('Get_message_details')?['body/channelId']",
+                  "body/messageBody": "<p class=\"editor-paragraph\">@{parameters('Notification Message (pnp_NotificationMessage)')}</p>"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+                  "operationId": "ReplyWithMessageToConversation",
+                  "connectionName": "shared_teams"
+                }
+              }
+            }
+          },
+          "else": {
+            "actions": {}
+          },
+          "runAfter": {
+            "Send_a_Microsoft_Graph_HTTP_request": [
+              "Succeeded"
+            ]
+          }
+        }
+      },
+      "outputs": {},
+      "description": "This flow will monitor a teams channel for not replying to message post. It will reply back with reminder text for team to take action on unresponsive message posts."
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
