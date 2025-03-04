@@ -1,0 +1,127 @@
+cptTagGallery As CanvasComponent:
+    ButtonMargin: =20
+    ButtonPadding: =10
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =640
+    InputText: |-
+        ="Lorem ipsum dolor sit amet, #consectetuer #adipiscing elit. #Maecenas #porttitor #congue #massa. Fusce posuere, #magna #sed pulvinar ultricies, purus lectus malesuada libero, #sit #amet commodo magna eros quis urna.
+        Nunc viverra imperdiet enim. Fusce #est. Vivamus a tellus.
+        #Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
+        Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.
+        Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.
+        Fusce aliquet pede non pede. Suspendisse dapibus lorem #pellentesque magna. Integer nulla.
+        Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien. Donec ut est in lectus consequat consequat.
+        Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
+        Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+        Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis."
+    OnReset: |-
+        =//First run only: Create a collection for selected tags
+        If(IsBlankOrError(colSelectedTags),ClearCollect(colSelectedTags,[]));
+        
+        //Reset the tag collection and store a temporary record
+        
+        ClearCollect(colSortedTags,{
+            value: "__TEMP__", //the text displayed in the button
+            row: -1,           //the row to display the button on in the gallery
+            x: 99999,          //the x co-ordinate of the button (y is calculated in the button control)
+            width: 0,          //the width of the button
+            index:-1           //the index of the tag, used to counteract the offset caused by the gallery template size being a minimum of 1
+        });
+        
+        ForAll(
+            With(
+                {
+                    tags:MatchAll(cptTagGallery.InputText, "#\w+") //Get a list of unique tags (ignoring case)
+                },
+                AddColumns(Distinct(tags,Lower(FullMatch)),OriginalText,LookUp(tags,Lower(FullMatch)=Value).FullMatch) //Store the capitalisation of the first instance of the tag in an "OriginalText" column so that this can be displayed. Distinct otherwise returns just a single column table, which in this expression will contain the lower case tag.
+            ) As tag,
+        
+            //For each tag, calculate the width of the button to be used to display it. A monospaced font has been used for ease. Other fonts may need more complex calculations. Also get the details of the previous record created in this ForAll loop.
+        
+            With(
+                {
+                    buttonWidth:cptTagGallery.ButtonMargin+CountRows(Split(tag.OriginalText,""))*12,
+                    lastTag:Last(colSortedTags)
+                },
+        
+                //Check if the new button would fit in the current row of buttons
+        
+                If(
+                    VerticalGallery.Width<lastTag.x+lastTag.width+cptTagGallery.ButtonPadding+buttonWidth,
+        
+                    Collect(colSortedTags,{
+                        value: tag.OriginalText,
+                        row: lastTag.row + 1, //start a new row if the button wouldn't fit on the existing row
+                        width: buttonWidth,
+                        x: cptTagGallery.ButtonPadding,
+                        index: lastTag.index + 1
+                    });,
+        
+                    Collect(colSortedTags,{
+                        value: tag.OriginalText,
+                        row: lastTag.row, //otherwise continue on the existing row
+                        width: buttonWidth,
+                        x: lastTag.x + lastTag.width + cptTagGallery.ButtonPadding, //if using the existing row, calculate the x coordinate from the position and size of the previous button
+                        index: lastTag.index + 1
+                    });
+                );
+            );
+        );
+        
+        //Remove the temporary record created above
+        RemoveIf(colSortedTags,value="__TEMP__");
+    OutputTags: =AddColumns(ShowColumns(colSortedTags,value),selected,value in colSelectedTags)
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    VerticalContainer As groupContainer.verticalAutoLayoutContainer:
+        BorderThickness: =2
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        Width: =Parent.Width
+        ZIndex: =1
+
+        "VerticalGallery As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            FillPortions: =0
+            Height: |-
+                =//Calculate if the gallery needs to be bigger than the scrollable parent container, to enable scrolling if there are too many tags to fit
+                Max(Parent.Height,(1+Last(colSortedTags).row)*(ButtonCanvas.Height+cptTagGallery.ButtonPadding)+cptTagGallery.ButtonPadding)
+            Items: =colSortedTags
+            Layout: =Layout.Vertical
+            LayoutMinHeight: =287
+            LayoutMinWidth: =320
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =1
+            Width: =Parent.Width-5
+            ZIndex: =2
+
+            ButtonCanvas As Button:
+                AccessibleLabel: |-
+                    =$"Tag label: {ThisItem.value}"
+                BasePaletteColor: =If(ThisItem.value in colSelectedTags,Color.DarkOliveGreen,Color.DarkGray)
+                BorderRadius: =20
+                DisplayMode: =DisplayMode.Edit
+                Font: ="Courier New"
+                FontSize: =20
+                Height: =40
+                OnSelect: |-
+                    =If(
+                        ThisItem.value in colSelectedTags,
+                        RemoveIf(colSelectedTags,ThisRecord.Value = ThisItem.value),
+                        Collect(colSelectedTags,ThisItem.value)
+                    )
+                Text: =ThisItem.value
+                Width: =ThisItem.width
+                X: =ThisItem.x
+                Y: |-
+                    =//Place the button on the correct row by setting its y co-ordinate, based on a multiple of the button height and padding.
+                    //Then offset this coordinate based on the index of the tag in the collection, because the gallery template height can not be set to 0 which means every button will otherwise be a pixel below the one before it.
+                    ThisItem.row*(ButtonCanvas.Height+cptTagGallery.ButtonPadding)-ThisItem.index+cptTagGallery.ButtonPadding
+                ZIndex: =8
+
