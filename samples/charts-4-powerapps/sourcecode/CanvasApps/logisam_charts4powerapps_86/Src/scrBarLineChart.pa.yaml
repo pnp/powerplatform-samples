@@ -1,0 +1,280 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps is in preview. The schema is being actively developed.
+# Content may be incomplete and subject to change.
+# This file is read-only and should only be used to review changes made within Power Apps Studio.
+# This file isn't used when loading the app. External editing, merging and conflict resolution are
+# not supported.
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  scrBarLineChart:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: =Select(btnRandomValues)
+    Children:
+      - ScreenContainer3:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =RGBA(245, 245, 245, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =16
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Width: =Parent.Width
+          Children:
+            - HeaderContainer2:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =75
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  PaddingLeft: =10
+                  PaddingRight: =10
+                  RadiusBottomLeft: =8
+                  RadiusBottomRight: =8
+                  RadiusTopLeft: =8
+                  RadiusTopRight: =8
+                Children:
+                  - Label1:
+                      Control: Label@2.5.1
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Size: =16
+                        Text: ="Charts 4 PowerApps"
+                  - btnRandomValues:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        BorderThickness: =0
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(204, 208, 225, 1)
+                        FocusedBorderThickness: =0
+                        Font: =Font.'Open Sans'
+                        HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =RGBA(153, 160, 196, 1)
+                        OnSelect: |-
+                          =Set(tblDemoData,Table(
+                              {
+                                  Label: "Jan",
+                                  Data: RandBetween(
+                                      0,
+                                      100
+                                  )
+                              },
+                              {
+                                  Label: "Feb",
+                                  Data: RandBetween(
+                                      0,
+                                      100
+                                  )
+                              },
+                              {
+                                  Label: "Mar",
+                                  Data: RandBetween(
+                                      0,
+                                      100
+                                  )
+                              },
+                              {
+                                  Label: "Apr",
+                                  Data: RandBetween(
+                                      0,
+                                      100
+                                  )
+                              },
+                              {
+                                  Label: "May",
+                                  Data: RandBetween(
+                                      0,
+                                      100
+                                  )
+                              },
+                              {
+                                  Label: "June",
+                                  Data: RandBetween(
+                                      0,
+                                      100
+                                  )
+                              }
+                          ))
+                        PressedBorderColor: =Self.Fill
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(102, 113, 166, 1)
+                        Text: ="Random Values"
+                        Width: =180
+            - MainContainer2:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =20
+                  RadiusBottomLeft: =8
+                  RadiusBottomRight: =8
+                  RadiusTopLeft: =8
+                  RadiusTopRight: =8
+                Children:
+                  - LeftContainer1_1:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        Fill: =RGBA(255, 255, 255, 1)
+                        LayoutDirection: =LayoutDirection.Vertical
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                      Children:
+                        - LogiSam_LineChart_5:
+                            Control: CanvasComponent
+                            ComponentName: LogiSam_LineChart
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Stretch
+                              BackgroundColor: ="rgba(253, 222, 207, 1)"
+                              BorderColor: ="rgba(250, 155, 112, 1)"
+                              BorderWidth: =100
+                              ChartTitle: ="Line Chart"
+                              Data: =tblDemoData
+                              DataSetName: ="Dataset Demo"
+                              Fill: =RGBA(255, 255, 255, 1)
+                              FillPortions: =1
+                              Height: =330
+                              LayoutMinHeight: =200
+                              LayoutMinWidth: =200
+                              LineFill: =false
+                              RoundedBorders: =true
+                              Width: =463
+                              X: =464
+                              Y: =418
+                        - LogiSam_LineChart_4:
+                            Control: CanvasComponent
+                            ComponentName: LogiSam_LineChart
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Stretch
+                              BackgroundColor: ="rgba(204, 231, 246, 1)"
+                              BorderColor: ="rgba(0, 121, 187, 1)"
+                              BorderWidth: =100
+                              ChartTitle: ="Line Chart - Fill"
+                              Data: =tblDemoData
+                              DataSetName: ="Dataset Demo"
+                              Fill: =RGBA(255, 255, 255, 1)
+                              FillPortions: =1
+                              Height: =330
+                              LayoutMinHeight: =200
+                              LayoutMinWidth: =200
+                              LineFill: =true
+                              RoundedBorders: =true
+                              Width: =464
+                              Y: =418
+                  - RightContainer1_2:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        Fill: =RGBA(255, 255, 255, 1)
+                        LayoutDirection: =LayoutDirection.Vertical
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                      Children:
+                        - LogiSam_BarChart_3:
+                            Control: CanvasComponent
+                            ComponentName: LogiSam_BarChart
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Stretch
+                              BackgroundColor: ="rgba(238, 204, 204, 1)"
+                              BorderColor: ="rgba(203, 102, 102, 1)"
+                              BorderWidth: =100
+                              ChartTitle: ="Bar Chart"
+                              Data: =tblDemoData
+                              DataSetName: ="Dataset Demo"
+                              FillPortions: =1
+                              Height: =339
+                              LayoutMinHeight: =200
+                              LayoutMinWidth: =200
+                              RoundedBorders: =false
+                              Width: =463
+                              X: =464
+                              Y: =352
+                        - LogiSam_LineStepped_2:
+                            Control: CanvasComponent
+                            ComponentName: LogiSam_LineStepped
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Stretch
+                              BackgroundColor: ="rgba(215, 223, 240, 1)"
+                              BorderColor: ="rgba(136, 160, 209, 1)"
+                              BorderWidth: =100
+                              ChartTitle: ="Stepped Chart"
+                              Data: =tblDemoData
+                              DataSetName: ="Dataset Demo"
+                              Fill: =RGBA(255, 255, 255, 1)
+                              FillPortions: =1
+                              Height: =330
+                              LayoutMinHeight: =200
+                              LayoutMinWidth: =200
+                              Width: =425
+                              X: =941
+                              Y: =418
+                  - RightContainer1_3:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        Fill: =RGBA(255, 255, 255, 1)
+                        LayoutDirection: =LayoutDirection.Vertical
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                      Children:
+                        - LogiSam_BarChart_4:
+                            Control: CanvasComponent
+                            ComponentName: LogiSam_BarChart
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Stretch
+                              BackgroundColor: ="rgba(209, 232, 178, 1)"
+                              BorderColor: ="rgba(127, 178, 57, 1)"
+                              BorderWidth: =100
+                              ChartTitle: ="Rounded Bar Chart"
+                              Data: =tblDemoData
+                              DataSetName: ="Dataset Demo"
+                              FillPortions: =1
+                              Height: =339
+                              LayoutMinHeight: =200
+                              LayoutMinWidth: =200
+                              RoundedBorders: =true
+                              Width: =464
+                              Y: =352
+                        - LogiSam_HorizontalBarChart_2:
+                            Control: CanvasComponent
+                            ComponentName: LogiSam_HorizontalBarChart
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Stretch
+                              BackgroundColor: ="rgba(204, 208, 225, 1)"
+                              BorderColor: ="rgba(102, 113, 166, 1)"
+                              BorderWidth: =100
+                              ChartTitle: ="Horizontal Bar Chart"
+                              Data: =tblDemoData
+                              DataSetName: ="Dataset Demo"
+                              FillPortions: =1
+                              Height: =339
+                              LayoutMinHeight: =200
+                              LayoutMinWidth: =200
+                              RoundedBorders: =true
+                              Width: =449
+                              X: =917
+                              Y: =352
