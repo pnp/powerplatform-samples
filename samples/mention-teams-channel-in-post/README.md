@@ -63,11 +63,10 @@ Message Text | String | Text message in the post.
 
 ## Minimal Path to Awesome
 
-### Import Solution
+### Using the solution zip
 
-* [Download](./solution/notify-team-of-unresponsive-channel-post.zip) the `.zip` from the `solution` folder
-* [Import](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/import-update-export-solutions) the `.zip` file using **Solutions** > **Import Solution**.
-
+* [Download](./solution/mention-teams-channel-in-post.zip) the `.zip` from the `solution` folder
+* Within **Power Apps Studio**, [import](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/import-update-export-solutions) the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 
 ### Using the source code
 
