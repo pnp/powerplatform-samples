@@ -1,0 +1,40 @@
+az logout
+
+# 1. Sign into the Azure CLI
+az login --tenant <TENANT_ID>
+
+# 2. (Optional) Configure Budgets
+az deployment sub create --name <BUDGET_DEPLOYMENT_NAME> --location francecentral --template-file ".\code\budget.bicep" --parameters startDate=<START_DATE_YYYY-MM-DD> endDate=<END_DATE_YYYY-MM-DD> \
+contactEmails='[ \
+\"<EMAIL1>\", \
+\"<EMAIL2>\" \
+]' budgetName=<BUDGET_NAME> amount=<BUDGET_AMOUNT>
+
+# 3. (Optional) Check configured budget
+az consumption budget list
+
+# 4. Check if resource providers registered
+az provider show --namespace Microsoft.Quota --query "registrationState"
+az provider show --namespace Microsoft.CognitiveServices --query "registrationState"
+az provider show --namespace Microsoft.Storage --query "registrationState"
+az provider show --namespace Microsoft.MachineLearningServices --query "registrationState"
+az provider show --namespace Microsoft.AlertsManagement --query "registrationState"
+az provider show --namespace Microsoft.PolicyInsights --query "registrationState"
+az provider show --namespace Microsoft.Authorization --query "registrationState"
+az provider show --namespace Microsoft.PowerPlatform --query "registrationState"
+
+# 5. (Launch only required) Register resource providers
+az provider register --namespace Microsoft.Quota --wait
+az provider register --namespace Microsoft.CognitiveServices --wait
+az provider register --namespace Microsoft.Storage --wait
+az provider register --namespace Microsoft.MachineLearningServices --wait
+az provider register --namespace Microsoft.AlertsManagement --wait
+az provider register --namespace Microsoft.PolicyInsights --wait
+az provider register --namespace Microsoft.Authorization --wait
+az provider register --namespace Microsoft.PowerPlatform --wait
+
+# 6. Create Resource groups
+az group create -l francecentral -n <RESOURCE_GROUP_NAME>
+
+# 7. Deploy resources
+az deployment group create --resource-group <RESOURCE_GROUP_NAME> --template-file ".\code\template.bicep" --parameters name=<FIXED_PART_OF_RESOURCE_NAME> deploymentPrincipalId=<ID_OF_THE_SERVICE_PRINCIPAL> aiHubFriendlyName='AI Hub: Term Buddy' aiProjectFriendlyName='AI Project: Term Buddy' aiHubDescription='Azure AI Hub for the Term Buddy.' tags='{"project": "term-buddy"}'

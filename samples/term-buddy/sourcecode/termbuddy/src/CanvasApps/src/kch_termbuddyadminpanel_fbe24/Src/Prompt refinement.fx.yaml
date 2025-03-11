@@ -1,0 +1,259 @@
+"'Prompt refinement' As screen":
+    BackgroundImage: ='termbuddy-background3'
+    Fill: =Color.White
+    ImagePosition: =ImagePosition.Fill
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    "'Instruction Main Container' As groupContainer.horizontalAutoLayoutContainer":
+        DropShadow: =DropShadow.Light
+        Height: =Parent.Height
+        LayoutGap: =nfTheming.layoutGap
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =nfTheming.layoutGap
+        PaddingLeft: =nfTheming.layoutGap
+        PaddingRight: =nfTheming.layoutGap
+        PaddingTop: =nfTheming.layoutGap
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        "'Instruction Menu Container' As groupContainer.verticalAutoLayoutContainer":
+            DropShadow: =DropShadow.Light
+            Fill: =nfTheming.backFill
+            FillPortions: =0
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =nfTheming.layoutGap
+            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutMinHeight: =nfTheming.menuWidth
+            LayoutMinWidth: =100
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =nfTheming.radius
+            RadiusBottomRight: =nfTheming.radius
+            RadiusTopLeft: =nfTheming.radius
+            RadiusTopRight: =nfTheming.radius
+            Width: =100
+            ZIndex: =1
+
+            "'Instructions menu compomemt' As 'menu component'":
+                currentScreen: =App.ActiveScreen.Name
+                iconColor: =nfColor.Accent2
+                iconColorCurrent: =nfColor.Primary
+                LayoutMinHeight: =640
+                LayoutMinWidth: =640
+                menuIcons: =nfMenu
+
+        "'Instruction Prompt Container' As groupContainer.verticalAutoLayoutContainer":
+            Fill: =Color.Transparent
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =nfTheming.layoutGap
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            Width: =App.Width - 3 * nfTheming.layoutGap - 100
+            ZIndex: =2
+
+            "'Instruction screen - Header' As groupContainer.horizontalAutoLayoutContainer":
+                FillPortions: =0
+                Height: =100
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.Width
+                ZIndex: =1
+
+                "'Instructions header component' As 'screen header'":
+                    LayoutMinHeight: =640
+                    LayoutMinWidth: =640
+                    parentWidth: =Parent.Width
+                    screenName: =App.ActiveScreen.Name
+                    Width: ='Instructions header component'.parentWidth
+
+            "'Instruction screen - Main part' As groupContainer.verticalAutoLayoutContainer":
+                DropShadow: =DropShadow.Light
+                Fill: =nfTheming.backFill
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =nfTheming.radius
+                RadiusBottomRight: =nfTheming.radius
+                RadiusTopLeft: =nfTheming.radius
+                RadiusTopRight: =nfTheming.radius
+                Width: =Parent.Width
+                ZIndex: =2
+
+                "'Instruction screen - Guides container' As groupContainer.horizontalAutoLayoutContainer":
+                    FillPortions: =0
+                    Height: =180
+                    LayoutMinHeight: =180
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =nfTheming.controlPadding
+                    PaddingLeft: =nfTheming.controlPadding
+                    PaddingRight: =nfTheming.controlPadding
+                    PaddingTop: =nfTheming.controlPadding
+                    Width: =Parent.Width
+                    ZIndex: =6
+
+                    "'Instruction screen - Tips' As htmlViewer":
+                        AutoHeight: =true
+                        Color: =nfColor.Accent2
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        FillPortions: =1
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        HtmlText: |-
+                            ="
+                            <b>Prompt Engineering Tips:</b><p>
+                            <ol>
+                            <li>This prompt will be added to every user input.</li>
+                            <li>You can include critical term definitions if needed or adjust the tone of communication.</li>
+                            <li>A longer prompt may increase latency and token consumption.</li>
+                            <li>Changes will apply to all users immediately after pressing the Update Prompt button.</li>
+                            </ol>
+                            <i>Keep prompts clear and concise for the best AI performance!</i>
+                            "
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =8
+                        Width: =Parent.Width
+                        X: =nfTheming.controlPadding
+                        Y: =nfTheming.controlPadding
+                        ZIndex: =1
+
+                "'Instruction screen - Text input container' As groupContainer.horizontalAutoLayoutContainer":
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =1
+                    PaddingLeft: =nfTheming.controlPadding
+                    PaddingRight: =nfTheming.controlPadding
+                    PaddingTop: =1
+                    Width: =Parent.Width
+                    ZIndex: =7
+
+                    "'Instruction screen - Input prompt' As text":
+                        AccessibleLabel: ="prompt"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderColor: =App.Theme.Colors.Lighter80
+                        Clear: =true
+                        Color: =nfColor.Regular
+                        Default: =nfAppData.userPrompt
+                        DisabledBorderColor: =nfColor.Accent2
+                        DisabledColor: =nfColor.White
+                        DisabledFill: =nfColor.Accent2
+                        EnableSpellCheck: =true
+                        Fill: =nfColor.White
+                        FillPortions: =1
+                        FocusedBorderThickness: =1
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        HoverBorderColor: =App.Theme.Colors.Lighter50
+                        HoverColor: =nfColor.Regular
+                        HoverFill: =nfColor.White
+                        LayoutMinHeight: =100
+                        MaxLength: =nfTheming.maxLength
+                        Mode: =TextMode.MultiLine
+                        PaddingBottom: =nfTheming.controlPadding/2
+                        PaddingLeft: =nfTheming.controlPadding/2
+                        PaddingRight: =nfTheming.controlPadding/2
+                        PaddingTop: =nfTheming.controlPadding/2
+                        RadiusBottomLeft: =nfTheming.radius
+                        RadiusBottomRight: =nfTheming.radius
+                        RadiusTopLeft: =nfTheming.radius
+                        RadiusTopRight: =nfTheming.radius
+                        Size: =12
+                        Width: =Parent.Width
+                        X: =nfTheming.controlPadding
+                        Y: =1
+                        ZIndex: =1
+
+                "'Instruction screen - Notification container' As groupContainer.horizontalAutoLayoutContainer":
+                    FillPortions: =0
+                    Height: =nfTheming.controlPadding
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =nfTheming.controlPadding
+                    PaddingLeft: =nfTheming.controlPadding
+                    PaddingRight: =nfTheming.controlPadding
+                    ZIndex: =8
+
+                    "'Instruction screen - Length notification' As Text":
+                        Align: ='TextCanvas.Align'.End
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =Color.Transparent
+                        FillPortions: =1
+                        Font: =Font.Lato
+                        FontColor: =First(udfLengthNotification('Instruction screen - Input prompt'.Text)).color
+                        Height: =nfTheming.controlPadding-16
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        PaddingRight: =nfTheming.radius
+                        Size: =10
+                        Text: =First(udfLengthNotification('Instruction screen - Input prompt'.Text)).message
+                        VerticalAlign: =VerticalAlign.Middle
+                        Width: =Parent.Width - nfTheming.controlPadding*2 - nfTheming.radius
+                        X: =nfTheming.controlPadding
+                        Y: ='Instruction screen - Input prompt'.Y + 'Instruction screen - Input prompt'.Height
+                        ZIndex: =1
+
+                "'Instruction screen - Button container' As groupContainer.horizontalAutoLayoutContainer":
+                    FillPortions: =0
+                    Height: =112
+                    LayoutJustifyContent: =LayoutJustifyContent.End
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =nfTheming.controlPadding
+                    PaddingLeft: =nfTheming.controlPadding
+                    PaddingRight: =nfTheming.controlPadding
+                    ZIndex: =9
+
+                    "'Instruction screen - Update prompt button' As Button":
+                        AccessibleLabel: ="Update prompt"
+                        Align: =Align.Center
+                        BasePaletteColor: =
+                        BorderRadius: =nfTheming.radius
+                        DisplayMode: =DisplayMode.Edit
+                        Font: =Font.Lato
+                        FontSize: =16
+                        FontWeight: =FontWeight.Normal
+                        Height: =Parent.Height - nfTheming.controlPadding
+                        Icon: ="Save"
+                        IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                        Layout: ='ButtonCanvas.Layout'.TextOnly
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: |+
+                            =IfError(
+                                Patch(
+                                    'termbuddy-prompts',
+                                    If(
+                                        IsBlank(nfAppData.userPrompt),
+                                        Defaults('termbuddy-prompts'),
+                                        First('termbuddy-prompts')
+                                    ),
+                                    {
+                                        'user-prompt': 'Instruction screen - Input prompt'.Text
+                                    }
+                                ),
+                                Notify("Sorry, something went wrong. The prompt could not be saved.",NotificationType.Error),
+                                Notify("The prompt has been saved.",NotificationType.Information)
+                            );
+                            
+                            Refresh('termbuddy-prompts')
+                            
+                        Text: ="Update prompt"
+                        VerticalAlign: =VerticalAlign.Middle
+                        Width: =Len(Self.Text)*11 + 24
+                        X: =Parent.Width - Self.Width - nfTheming.controlPadding
+                        Y: =1
+                        ZIndex: =1
+

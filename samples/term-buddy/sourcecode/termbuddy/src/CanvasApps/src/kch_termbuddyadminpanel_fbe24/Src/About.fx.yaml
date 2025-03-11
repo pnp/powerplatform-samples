@@ -1,0 +1,168 @@
+About As screen:
+    BackgroundImage: ='termbuddy-background3'
+    Fill: =Color.White
+    ImagePosition: =ImagePosition.Fill
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    "'About Main Container' As groupContainer.horizontalAutoLayoutContainer":
+        DropShadow: =DropShadow.Light
+        Height: =Parent.Height
+        LayoutGap: =nfTheming.layoutGap
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =nfTheming.layoutGap
+        PaddingLeft: =nfTheming.layoutGap
+        PaddingRight: =nfTheming.layoutGap
+        PaddingTop: =nfTheming.layoutGap
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        "'About Menu Container' As groupContainer.verticalAutoLayoutContainer":
+            DropShadow: =DropShadow.Light
+            Fill: =nfTheming.backFill
+            FillPortions: =0
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =nfTheming.layoutGap
+            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutMinHeight: =nfTheming.menuWidth
+            LayoutMinWidth: =100
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =nfTheming.radius
+            RadiusBottomRight: =nfTheming.radius
+            RadiusTopLeft: =nfTheming.radius
+            RadiusTopRight: =nfTheming.radius
+            Width: =100
+            ZIndex: =2
+
+            "'About menu component' As 'menu component'":
+                currentScreen: =App.ActiveScreen.Name
+                iconColor: =nfColor.Accent2
+                iconColorCurrent: =nfColor.Primary
+                LayoutMinHeight: =640
+                LayoutMinWidth: =640
+                menuIcons: =nfMenu
+
+        "'About Main container' As groupContainer.verticalAutoLayoutContainer":
+            Fill: =Color.Transparent
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =nfTheming.layoutGap
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            Width: =App.Width - 3 * nfTheming.layoutGap - 100
+            ZIndex: =4
+
+            "'About screen Header' As groupContainer.horizontalAutoLayoutContainer":
+                FillPortions: =0
+                Height: =100
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.Width
+                ZIndex: =5
+
+                "'About header component' As 'screen header'":
+                    LayoutMinHeight: =640
+                    LayoutMinWidth: =640
+                    parentWidth: =Parent.Width
+                    screenName: ="Term Buddy" & nfAppVersion //App.ActiveScreen.Name
+                    Width: ='About header component'.parentWidth
+
+            "'About screen - Main part' As groupContainer.verticalAutoLayoutContainer":
+                DropShadow: =DropShadow.Light
+                Fill: =nfTheming.backFill
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =nfTheming.radius
+                RadiusBottomRight: =nfTheming.radius
+                RadiusTopLeft: =nfTheming.radius
+                RadiusTopRight: =nfTheming.radius
+                Width: =Parent.Width
+                ZIndex: =6
+
+                "'About screen - Main container' As groupContainer.verticalAutoLayoutContainer":
+                    LayoutAlignItems: =LayoutAlignItems.Stretch
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    LayoutWrap: =true
+                    PaddingBottom: =nfTheming.controlPadding
+                    PaddingLeft: =nfTheming.controlPadding
+                    PaddingRight: =nfTheming.controlPadding
+                    PaddingTop: =nfTheming.controlPadding
+                    ZIndex: =8
+
+                    "'About screen - container for nformation' As groupContainer.verticalAutoLayoutContainer":
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        LayoutOverflowY: =LayoutOverflow.Scroll
+                        LayoutWrap: =true
+                        Width: =200
+                        ZIndex: =2
+
+                        "'About screen - information' As htmlViewer":
+                            AutoHeight: =true
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =Parent.Height
+                            HtmlText: |-
+                                ="<b>Term Buddy</b> is an AI-powered application that enhances knowledge management and term processing efficiency. It provides functionalities like term explanation, self-knowledge checks, and usage analytics.
+                                
+                                <header><h3><font color="& nfColor.Primary &">Architecture</font></h3></header>
+                                <p>
+                                Term Buddy is built on a scalable and secure architecture leveraging Microsoft technologies:</br>
+                                <b>Microsoft Teams</b> - Primary interface for users to interact with Term Buddy.</br>
+                                <b>PowerApps Canvas App</b> - Admin panel for Knowledge Managers to update the master prompt, and view analytics.</br>
+                                <b>Azure AI Foundry with Azure OpenAI Service (GPT-4o)</b> - Backend infrastructure providing AI-powered term explanations and accuracy evaluation.
+                                </p>
+                                
+                                <header><h3><font color="& nfColor.Primary &">Deployment Options</font></h3></header>
+                                <p>
+                                Term Buddy can be deployed in two ways:</br>
+                                <b>1. Deployment in Customer's Azure Entra ID Tenant</b><br>
+                                For organizations requiring full control over their data, Term Buddy can be deployed within their own Azure environment. This ensures compliance with security and governance policies.<br>
+                                <b>2. Connection to Developer's Azure Entra ID Tenant (Demo & Testing)</b>
+                                For evaluation purposes, users can connect to the developer-hosted instance of Term Buddy on Azure. This option is intended for demo and testing but does not include data security guarantees.
+                                </p>
+                                
+                                <header><h3><font color="& nfColor.Primary &">Installation and Setup</font></h3></header>
+                                <p>
+                                Detailed installation and configuration instructions can be found in our GitHub repository: <font color="& nfColor.Primary &"><a href=https://github.com/Katerina-Chernevskaya/term-buddy>GitHub Repository Link</a></font>
+                                </p>
+                                
+                                <header><h3><font color="& nfColor.Primary &">Support and Contact</font></h3></header>
+                                <p>
+                                If you have any questions, encounter issues, or want to provide feedback, please open an issue in our GitHub repository: <font color="& nfColor.Primary &"><a href=https://github.com/Katerina-Chernevskaya/term-buddy/issues/new>Open Issue Link</a></font>. This is the primary channel for support and inquiries.
+                                </p>
+                                
+                                <p>
+                                <b>Note:</b> No Service Level Agreement (SLA) or warranty is provided.
+                                </p>
+                                
+                                <header><h3><font color="& nfColor.Primary &">License</font></h3></header>
+                                <p>
+                                This project is licensed under the MIT License - see the <font color="& nfColor.Primary &"><a href=https://github.com/Katerina-Chernevskaya/term-buddy?tab=MIT-1-ov-file#readme>MIT LICENSE</a></font> for details.
+                                </p>
+                                
+                                <hr width=100% size=1 color="& nfColor.Primary &">
+                                <p>
+                                © 2025 Term Buddy. Developed as part of Microsoft Hack Together Hackathon.
+                                </p>
+                                "
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =10
+                            ZIndex: =1
+

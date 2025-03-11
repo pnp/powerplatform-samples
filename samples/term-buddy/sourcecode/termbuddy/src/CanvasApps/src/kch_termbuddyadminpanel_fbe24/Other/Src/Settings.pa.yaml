@@ -1,0 +1,501 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps is in preview. The schema is being actively developed.
+# Content may be incomplete and subject to change.
+# This file is read-only and should only be used to review changes made within Power Apps Studio.
+# This file isn't used when loading the app. External editing, merging and conflict resolution are
+# not supported.
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Settings:
+    Properties:
+      BackgroundImage: ='termbuddy-background3'
+      ImagePosition: =ImagePosition.Fill
+    Children:
+      - Settings Main Container:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Horizontal
+            LayoutGap: =nfTheming.layoutGap
+            PaddingBottom: =nfTheming.layoutGap
+            PaddingLeft: =nfTheming.layoutGap
+            PaddingRight: =nfTheming.layoutGap
+            PaddingTop: =nfTheming.layoutGap
+            Width: =Parent.Width
+          Children:
+            - Settings Menu Container:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  Fill: =nfTheming.backFill
+                  FillPortions: =0
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =nfTheming.layoutGap
+                  LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                  LayoutMinHeight: =nfTheming.menuWidth
+                  LayoutMinWidth: =100
+                  RadiusBottomLeft: =nfTheming.radius
+                  RadiusBottomRight: =nfTheming.radius
+                  RadiusTopLeft: =nfTheming.radius
+                  RadiusTopRight: =nfTheming.radius
+                  Width: =100
+                Children:
+                  - Settings menu component:
+                      Control: CanvasComponent
+                      ComponentName: menu component
+                      Properties:
+                        Height: =500 //Component1.parentHeight
+                        Width: =100
+                        currentScreen: =App.ActiveScreen.Name
+                        iconColor: =nfColor.Accent2
+                        iconColorCurrent: =nfColor.Primary
+                        logo: =logo
+                        menuIcons: =nfMenu
+                        parentHeight: =100
+            - Settings Prompt Container:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =Color.Transparent
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =nfTheming.layoutGap
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Width: =App.Width - 3 * nfTheming.layoutGap - 100
+                Children:
+                  - Settings screen Header:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        FillPortions: =0
+                        Height: =100
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: =Parent.Width
+                      Children:
+                        - Settings header component:
+                            Control: CanvasComponent
+                            ComponentName: screen header
+                            Properties:
+                              Height: =100
+                              Width: ='Settings header component'.parentWidth
+                              parentWidth: =Parent.Width
+                              screenName: =App.ActiveScreen.Name
+                  - Settings screen - Main part:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        Fill: =nfTheming.backFill
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                        RadiusBottomLeft: =nfTheming.radius
+                        RadiusBottomRight: =nfTheming.radius
+                        RadiusTopLeft: =nfTheming.radius
+                        RadiusTopRight: =nfTheming.radius
+                        Width: =Parent.Width
+                      Children:
+                        - Settings screen - Container:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              PaddingBottom: =nfTheming.controlPadding
+                              PaddingLeft: =nfTheming.controlPadding
+                              PaddingRight: =nfTheming.controlPadding
+                              PaddingTop: =nfTheming.controlPadding
+                            Children:
+                              - Settings screen - Container for description:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    DropShadow: =DropShadow.None
+                                    FillPortions: =2
+                                    LayoutAlignItems: =LayoutAlignItems.Stretch
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    PaddingRight: =nfTheming.controlPadding
+                                  Children:
+                                    - Settings screen - Description:
+                                        Control: HtmlViewer@2.1.0
+                                        Properties:
+                                          FillPortions: =1
+                                          HtmlText: |-
+                                            ="<header><h3><font color="& nfColor.Primary &">Installation Options for Term Buddy</font></h3></header>
+
+                                            Term Buddy offers two deployment options, allowing organizations to choose the setup that best aligns with their security, cost management, and operational preferences.
+
+                                            <header><h4><font color="& nfColor.Primary &">Option 1: Default Installation (Developer-Managed)</font></h4></header>
+
+                                            This option provides a fully managed experience where Term Buddy operates within the developer's Azure environment, ensuring a quick and seamless setup.
+                                            <li>Secure Connection: Term Buddy connects to the developer's Azure tenant through a secured, encrypted channel with PKI authentication, ensuring data privacy and integrity.
+                                            <li>Zero Deployment Effort: No additional setup or configuration is required from the customer.
+                                            <li>Cost Management: Azure OpenAI token costs are covered by the developer, eliminating the need for customers to manage AI consumption expenses.
+                                            <li>Ideal for: Organizations seeking a hassle-free deployment with minimal administrative overhead.
+
+                                            <header><h4><font color="& nfColor.Primary &">Option 2: Customer-Managed Installation</font></h4></header>
+
+                                            For organizations requiring full control over their infrastructure, this option enables deployment within the customer’s Azure Entra ID tenant using Bicep deployment scripts provided by the developer.
+                                            <li>Azure Subscription Required: An active Azure subscription is necessary to host Term Buddy and related services.
+                                            <li>Enhanced Security: Azure Key Vault is used to securely store and manage sensitive data, such as API keys and authentication credentials.
+                                            <li>Custom Deployment: The provided Bicep scripts automate the setup of all required Azure resources, ensuring a streamlined deployment process.
+                                            <li>Ideal for: Organizations prioritizing security, compliance, and direct control over their Azure resources.
+
+                                            For detailed deployment instructions, refer to the <font color="& nfColor.Primary &"><a href=https://github.com/Katerina-Chernevskaya/term-buddy>Term Buddy Installation Guide</a></font>.
+                                            "
+                                          PaddingBottom: =0
+                                          PaddingLeft: =0
+                                          PaddingRight: =0
+                                          PaddingTop: =0
+                                          Size: =10
+                              - Settings screen - Container for form:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    DropShadow: =DropShadow.None
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                                    LayoutOverflowY: =LayoutOverflow.Scroll
+                                  Children:
+                                    - Settings screen - Form header:
+                                        Control: HtmlViewer@2.1.0
+                                        Properties:
+                                          AlignInContainer: =AlignInContainer.Stretch
+                                          AutoHeight: =true
+                                          FillPortions: =1
+                                          HtmlText: ="<header><h3><font color="& nfColor.Primary &">Your Option</font></h3></header>"
+                                          PaddingBottom: =0
+                                          PaddingLeft: =0
+                                          PaddingRight: =0
+                                          PaddingTop: =0
+                                          Size: =10
+                                    - Settings screen - Option selection:
+                                        Control: Radio@0.0.24
+                                        Properties:
+                                          AccessibleLabel: ="Select option"
+                                          AlignInContainer: =AlignInContainer.Start
+                                          DefaultSelectedItems: |-
+                                            =LookUp(
+                                                nfAppData.demoModeValues,
+                                                mode = nfAppData.demoMode
+                                            )
+                                          Height: =70
+                                          Items: =nfAppData.demoModeValues
+                                          LayoutMinHeight: =70
+                                          Y: =
+                                        Children:
+                                          - name2:
+                                              Control: RadioDataField@1.5.0
+                                              Variant: textualColumn
+                                              IsLocked: true
+                                              Properties:
+                                                FieldDisplayName: ="name"
+                                                FieldName: ="name"
+                                                FieldType: ="s"
+                                                Order: =1
+                                    - Settings screen - Subheader 1:
+                                        Control: HtmlViewer@2.1.0
+                                        Properties:
+                                          AlignInContainer: =AlignInContainer.Stretch
+                                          AutoHeight: =true
+                                          FillPortions: =1
+                                          HtmlText: |-
+                                            ="<header><h3><font color="& 
+                                            If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                nfColor.Accent3,
+                                                nfColor.Primary 
+                                            )
+                                            &">Endpoint & Key Vault Connection</font></h3></header>"
+                                          PaddingBottom: =0
+                                          PaddingLeft: =0
+                                          PaddingRight: =0
+                                          PaddingTop: =0
+                                          Size: =10
+                                    - Settings screen - Endpoint subheader:
+                                        Control: HtmlViewer@2.1.0
+                                        Properties:
+                                          AlignInContainer: =AlignInContainer.Stretch
+                                          AutoHeight: =true
+                                          FillPortions: =1
+                                          HtmlText: |-
+                                            ="<header><h4><font color="& 
+                                            If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                nfColor.Accent3,
+                                                nfColor.Primary 
+                                            )
+                                            &">Model Endpoint Configuration</font></h4></header>"
+                                          PaddingBottom: =0
+                                          PaddingLeft: =0
+                                          PaddingRight: =0
+                                          PaddingTop: =0
+                                          Size: =10
+                                    - Settings screen - Endpoint header:
+                                        Control: Text@0.0.50
+                                        Properties:
+                                          AlignInContainer: =AlignInContainer.Start
+                                          FillPortions: =1
+                                          FontColor: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                nfColor.Accent2,
+                                                nfColor.Regular 
+                                            )
+                                          Size: =13
+                                          Text: ="Endpoint"
+                                          VerticalAlign: =VerticalAlign.Bottom
+                                          Width: =200
+                                    - Settings screen - Endpoint value:
+                                        Control: TextInput@0.0.53
+                                        Properties:
+                                          AccessibleLabel: ="Endpoint"
+                                          AlignInContainer: =AlignInContainer.Stretch
+                                          Appearance: ='TextInputCanvas.Appearance'.Outline
+                                          DisplayMode: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                DisplayMode.Disabled,
+                                                DisplayMode.Edit 
+                                            )
+                                          FillPortions: =1
+                                          Placeholder: =
+                                          Value: =nfAppData.endpointCMI.endpoint
+                                    - Settings screen - Model header:
+                                        Control: Text@0.0.50
+                                        Properties:
+                                          AlignInContainer: =AlignInContainer.Start
+                                          FillPortions: =1
+                                          FontColor: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                nfColor.Accent2,
+                                                nfColor.Regular 
+                                            )
+                                          Size: =13
+                                          Text: ="Model"
+                                          VerticalAlign: =VerticalAlign.Bottom
+                                          Width: =200
+                                    - Settings screen - Model value:
+                                        Control: TextInput@0.0.53
+                                        Properties:
+                                          AccessibleLabel: ="Model"
+                                          AlignInContainer: =AlignInContainer.Stretch
+                                          Appearance: ='TextInputCanvas.Appearance'.Outline
+                                          DisplayMode: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                DisplayMode.Disabled,
+                                                DisplayMode.Edit 
+                                            )
+                                          FillPortions: =1
+                                          Value: =nfAppData.endpointCMI.model
+                                    - Settings screen - Key Vault subheader:
+                                        Control: HtmlViewer@2.1.0
+                                        Properties:
+                                          AlignInContainer: =AlignInContainer.Stretch
+                                          AutoHeight: =true
+                                          FillPortions: =1
+                                          HtmlText: |-
+                                            ="<header><h4><font color="& 
+                                            If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                nfColor.Accent3,
+                                                nfColor.Primary 
+                                            )
+                                            &">Key Vault Configuration</font></h4></header>"
+                                          PaddingBottom: =0
+                                          PaddingLeft: =0
+                                          PaddingRight: =0
+                                          PaddingTop: =0
+                                          Size: =10
+                                    - Settings screen - Subscription header:
+                                        Control: Text@0.0.50
+                                        Properties:
+                                          AlignInContainer: =AlignInContainer.Start
+                                          FillPortions: =1
+                                          FontColor: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                nfColor.Accent2,
+                                                nfColor.Regular 
+                                            )
+                                          Size: =13
+                                          Text: ="Azure Subscription Id"
+                                          VerticalAlign: =VerticalAlign.Bottom
+                                          Width: =200
+                                    - Settings screen - Subscription value:
+                                        Control: TextInput@0.0.53
+                                        Properties:
+                                          AccessibleLabel: ="Subscription"
+                                          AlignInContainer: =AlignInContainer.Stretch
+                                          Appearance: ='TextInputCanvas.Appearance'.Outline
+                                          DisplayMode: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                DisplayMode.Disabled,
+                                                DisplayMode.Edit 
+                                            )
+                                          FillPortions: =1
+                                          Value: =nfAppData.keyVault.subscription
+                                    - Settings screen - Resource group header:
+                                        Control: Text@0.0.50
+                                        Properties:
+                                          AlignInContainer: =AlignInContainer.Start
+                                          FillPortions: =1
+                                          FontColor: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                nfColor.Accent2,
+                                                nfColor.Regular 
+                                            )
+                                          Size: =13
+                                          Text: ="Resource Group Name"
+                                          VerticalAlign: =VerticalAlign.Bottom
+                                          Width: =200
+                                    - Settings screen - Resource group value:
+                                        Control: TextInput@0.0.53
+                                        Properties:
+                                          AccessibleLabel: ="Resource group"
+                                          AlignInContainer: =AlignInContainer.Stretch
+                                          Appearance: ='TextInputCanvas.Appearance'.Outline
+                                          DisplayMode: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                DisplayMode.Disabled,
+                                                DisplayMode.Edit 
+                                            )
+                                          FillPortions: =1
+                                          Value: =nfAppData.keyVault.resource_group
+                                    - Settings screen - Key Vault name header:
+                                        Control: Text@0.0.50
+                                        Properties:
+                                          AlignInContainer: =AlignInContainer.Start
+                                          FillPortions: =1
+                                          FontColor: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                nfColor.Accent2,
+                                                nfColor.Regular 
+                                            )
+                                          Size: =13
+                                          Text: ="Azure Key Vault Name"
+                                          VerticalAlign: =VerticalAlign.Bottom
+                                          Width: =200
+                                    - Settings screen - Key Vault name value:
+                                        Control: TextInput@0.0.53
+                                        Properties:
+                                          AccessibleLabel: ="Key Vault"
+                                          AlignInContainer: =AlignInContainer.Stretch
+                                          Appearance: ='TextInputCanvas.Appearance'.Outline
+                                          DisplayMode: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                DisplayMode.Disabled,
+                                                DisplayMode.Edit 
+                                            )
+                                          FillPortions: =1
+                                          Value: =nfAppData.keyVault.key_vault
+                                    - Settings screen - Secret header:
+                                        Control: Text@0.0.50
+                                        Properties:
+                                          AlignInContainer: =AlignInContainer.Start
+                                          FillPortions: =1
+                                          FontColor: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                nfColor.Accent2,
+                                                nfColor.Regular 
+                                            )
+                                          Size: =13
+                                          Text: ="Secret Name"
+                                          VerticalAlign: =VerticalAlign.Bottom
+                                          Width: =200
+                                    - Settings screen - Secret value:
+                                        Control: TextInput@0.0.53
+                                        Properties:
+                                          AccessibleLabel: ="secret"
+                                          AlignInContainer: =AlignInContainer.Stretch
+                                          Appearance: ='TextInputCanvas.Appearance'.Outline
+                                          DisplayMode: |-
+                                            =If(
+                                                'Settings screen - Option selection'.Selected.mode = "no",
+                                                DisplayMode.Disabled,
+                                                DisplayMode.Edit 
+                                            )
+                                          FillPortions: =1
+                                          Value: =nfAppData.keyVault.secret
+                                    - Settings screen - Space container:
+                                        Control: GroupContainer@1.3.0
+                                        Variant: ManualLayout
+                                        Properties:
+                                          DropShadow: =DropShadow.None
+                                          LayoutMinHeight: =20
+                                    - Settings screen - Save button:
+                                        Control: Button@0.0.44
+                                        Properties:
+                                          AccessibleLabel: ="Save"
+                                          Align: =Align.Center
+                                          BorderRadius: =nfTheming.radius
+                                          Font: =Font.Lato
+                                          FontSize: =16
+                                          FontWeight: =FontWeight.Normal
+                                          Height: =64
+                                          Icon: ="Save"
+                                          IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                                          Layout: ='ButtonCanvas.Layout'.TextOnly
+                                          OnSelect: |+
+                                            =IfError(
+                                                Patch(
+                                                    'Environment Variable Values',
+                                                    LookUp(
+                                                        'Environment Variable Values',
+                                                        'Environment Variable Definition'.'Schema Name' = "kch_demobackend"
+                                                    ),
+                                                    {
+                                                        Value: 
+                                                        'Settings screen - Option selection'.Selected.mode
+                                                    }
+                                                ),
+                                                Notify("Sorry, something went wrong. The selected option can't be saved.",NotificationType.Error),
+                                                If(
+                                                    'Settings screen - Option selection'.Selected.mode = "yes",
+                                                    IfError(
+                                                        Patch(
+                                                            'Environment Variable Values',
+                                                            LookUp(
+                                                                'Environment Variable Values',
+                                                                'Environment Variable Definition'.'Schema Name' = "kch_endpointsecret"
+                                                            ),
+                                                            {
+                                                                Value:
+                                                                "/subscriptions/" &
+                                                                'Settings screen - Subscription value'.Value &
+                                                                "/resourceGroups/" &
+                                                                'Settings screen - Resource group value'.Value &
+                                                                "/providers/Microsoft.KeyVault/vaults/" &
+                                                                'Settings screen - Key Vault name value'.Value &
+                                                                "/secrets/" &
+                                                                'Settings screen - Secret value'.Value
+                                                            }
+                                                        ),
+                                                        Notify("Sorry, something went wrong, settings can't be saved. Please check your permissions to Azure Key Vault.",NotificationType.Error),
+                                                        Notify("All settings have been updated.",NotificationType.Information)
+                                                    ),
+                                                    Notify("All settings have been updated.",NotificationType.Information)
+                                                )
+                                            );
+                                          Text: ="Save"
+                                          VerticalAlign: =VerticalAlign.Middle
+                                          Width: =Len(Self.Text)*11 + 48
+                                          X: =Parent.Width - Self.Width - nfTheming.controlPadding
+                                          Y: =1

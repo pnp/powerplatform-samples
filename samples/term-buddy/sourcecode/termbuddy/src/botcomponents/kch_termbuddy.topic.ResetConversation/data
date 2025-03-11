@@ -1,0 +1,54 @@
+kind: AdaptiveDialog
+startBehavior: UseLatestPublishedContentAndCancelOtherTopics
+beginDialog:
+  kind: OnSystemRedirect
+  id: main
+  actions:
+    - kind: ClearAllVariables
+      id: clearAllVariables_73bTFR
+      variables: ConversationScopedVariables
+
+    - kind: SetVariable
+      id: setVariable_qTeCSE
+      variable: Global.gv_question
+      value: =Blank()
+
+    - kind: SetVariable
+      id: setVariable_tJiyGn
+      variable: Global.gv_userprompt
+      value: =Blank()
+
+    - kind: SetVariable
+      id: setVariable_mgOe4M
+      variable: Global.gv_action
+      value: new_term
+
+    - kind: SetVariable
+      id: setVariable_fsg4uQ
+      variable: Global.gv_term
+      value: =Blank()
+
+    - kind: SetVariable
+      id: setVariable_YfQYn5
+      variable: Global.history
+      value: |-
+        =Table(
+            { 
+                inputs: {
+                    chat_history: [],
+                    question: Global.gv_question,
+                    user_prompt: Global.gv_userprompt,
+                    temperature: 0.5,
+                    action: Global.gv_action,
+                    term: Global.gv_term
+                },  
+                outputs: { answer: "" } 
+            }
+        )
+
+    - kind: SendActivity
+      id: sendMessage_OPsT1O
+      activity: What can I help you with?
+
+    - kind: CancelAllDialogs
+      id: cancelAllDialogs_12Gt21

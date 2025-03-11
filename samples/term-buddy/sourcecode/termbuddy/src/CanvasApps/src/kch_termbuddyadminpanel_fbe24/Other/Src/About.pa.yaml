@@ -1,0 +1,192 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps is in preview. The schema is being actively developed.
+# Content may be incomplete and subject to change.
+# This file is read-only and should only be used to review changes made within Power Apps Studio.
+# This file isn't used when loading the app. External editing, merging and conflict resolution are
+# not supported.
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  About:
+    Properties:
+      BackgroundImage: ='termbuddy-background3'
+      ImagePosition: =ImagePosition.Fill
+    Children:
+      - About Main Container:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Horizontal
+            LayoutGap: =nfTheming.layoutGap
+            PaddingBottom: =nfTheming.layoutGap
+            PaddingLeft: =nfTheming.layoutGap
+            PaddingRight: =nfTheming.layoutGap
+            PaddingTop: =nfTheming.layoutGap
+            Width: =Parent.Width
+          Children:
+            - About Menu Container:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  Fill: =nfTheming.backFill
+                  FillPortions: =0
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =nfTheming.layoutGap
+                  LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                  LayoutMinHeight: =nfTheming.menuWidth
+                  LayoutMinWidth: =100
+                  RadiusBottomLeft: =nfTheming.radius
+                  RadiusBottomRight: =nfTheming.radius
+                  RadiusTopLeft: =nfTheming.radius
+                  RadiusTopRight: =nfTheming.radius
+                  Width: =100
+                Children:
+                  - About menu component:
+                      Control: CanvasComponent
+                      ComponentName: menu component
+                      Properties:
+                        Height: =500 //Component1.parentHeight
+                        Width: =100
+                        currentScreen: =App.ActiveScreen.Name
+                        iconColor: =nfColor.Accent2
+                        iconColorCurrent: =nfColor.Primary
+                        logo: =logo
+                        menuIcons: =nfMenu
+                        parentHeight: =100
+            - About Main container:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =Color.Transparent
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =nfTheming.layoutGap
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Width: =App.Width - 3 * nfTheming.layoutGap - 100
+                Children:
+                  - About screen Header:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        FillPortions: =0
+                        Height: =100
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: =Parent.Width
+                      Children:
+                        - About header component:
+                            Control: CanvasComponent
+                            ComponentName: screen header
+                            Properties:
+                              Height: =100
+                              Width: ='About header component'.parentWidth
+                              parentWidth: =Parent.Width
+                              screenName: ="Term Buddy" & nfAppVersion //App.ActiveScreen.Name
+                  - About screen - Main part:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        Fill: =nfTheming.backFill
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                        RadiusBottomLeft: =nfTheming.radius
+                        RadiusBottomRight: =nfTheming.radius
+                        RadiusTopLeft: =nfTheming.radius
+                        RadiusTopRight: =nfTheming.radius
+                        Width: =Parent.Width
+                      Children:
+                        - About screen - Main container:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =LayoutDirection.Vertical
+                              LayoutWrap: =true
+                              PaddingBottom: =nfTheming.controlPadding
+                              PaddingLeft: =nfTheming.controlPadding
+                              PaddingRight: =nfTheming.controlPadding
+                              PaddingTop: =nfTheming.controlPadding
+                              RadiusBottomLeft: =0
+                              RadiusBottomRight: =0
+                              RadiusTopLeft: =0
+                              RadiusTopRight: =0
+                            Children:
+                              - About screen - container for nformation:
+                                  Control: GroupContainer@1.3.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    DropShadow: =DropShadow.None
+                                    LayoutAlignItems: =LayoutAlignItems.Stretch
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutOverflowY: =LayoutOverflow.Scroll
+                                    LayoutWrap: =true
+                                    RadiusBottomLeft: =0
+                                    RadiusBottomRight: =0
+                                    RadiusTopLeft: =0
+                                    RadiusTopRight: =0
+                                    Width: =200
+                                  Children:
+                                    - About screen - information:
+                                        Control: HtmlViewer@2.1.0
+                                        Properties:
+                                          AutoHeight: =true
+                                          Height: =Parent.Height
+                                          HtmlText: |-
+                                            ="<b>Term Buddy</b> is an AI-powered application that enhances knowledge management and term processing efficiency. It provides functionalities like term explanation, self-knowledge checks, and usage analytics.
+
+                                            <header><h3><font color="& nfColor.Primary &">Architecture</font></h3></header>
+                                            <p>
+                                            Term Buddy is built on a scalable and secure architecture leveraging Microsoft technologies:</br>
+                                            <b>Microsoft Teams</b> - Primary interface for users to interact with Term Buddy.</br>
+                                            <b>PowerApps Canvas App</b> - Admin panel for Knowledge Managers to update the master prompt, and view analytics.</br>
+                                            <b>Azure AI Foundry with Azure OpenAI Service (GPT-4o)</b> - Backend infrastructure providing AI-powered term explanations and accuracy evaluation.
+                                            </p>
+
+                                            <header><h3><font color="& nfColor.Primary &">Deployment Options</font></h3></header>
+                                            <p>
+                                            Term Buddy can be deployed in two ways:</br>
+                                            <b>1. Deployment in Customer's Azure Entra ID Tenant</b><br>
+                                            For organizations requiring full control over their data, Term Buddy can be deployed within their own Azure environment. This ensures compliance with security and governance policies.<br>
+                                            <b>2. Connection to Developer's Azure Entra ID Tenant (Demo & Testing)</b>
+                                            For evaluation purposes, users can connect to the developer-hosted instance of Term Buddy on Azure. This option is intended for demo and testing but does not include data security guarantees.
+                                            </p>
+
+                                            <header><h3><font color="& nfColor.Primary &">Installation and Setup</font></h3></header>
+                                            <p>
+                                            Detailed installation and configuration instructions can be found in our GitHub repository: <font color="& nfColor.Primary &"><a href=https://github.com/Katerina-Chernevskaya/term-buddy>GitHub Repository Link</a></font>
+                                            </p>
+
+                                            <header><h3><font color="& nfColor.Primary &">Support and Contact</font></h3></header>
+                                            <p>
+                                            If you have any questions, encounter issues, or want to provide feedback, please open an issue in our GitHub repository: <font color="& nfColor.Primary &"><a href=https://github.com/Katerina-Chernevskaya/term-buddy/issues/new>Open Issue Link</a></font>. This is the primary channel for support and inquiries.
+                                            </p>
+
+                                            <p>
+                                            <b>Note:</b> No Service Level Agreement (SLA) or warranty is provided.
+                                            </p>
+
+                                            <header><h3><font color="& nfColor.Primary &">License</font></h3></header>
+                                            <p>
+                                            This project is licensed under the MIT License - see the <font color="& nfColor.Primary &"><a href=https://github.com/Katerina-Chernevskaya/term-buddy?tab=MIT-1-ov-file#readme>MIT LICENSE</a></font> for details.
+                                            </p>
+
+                                            <hr width=100% size=1 color="& nfColor.Primary &">
+                                            <p>
+                                            © 2025 Term Buddy. Developed as part of Microsoft Hack Together Hackathon.
+                                            </p>
+                                            "
+                                          PaddingBottom: =0
+                                          PaddingLeft: =0
+                                          PaddingRight: =0
+                                          PaddingTop: =0
+                                          Size: =10
