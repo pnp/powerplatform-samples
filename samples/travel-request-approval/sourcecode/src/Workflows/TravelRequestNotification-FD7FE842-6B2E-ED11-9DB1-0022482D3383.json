@@ -1,10 +1,10 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_commondataserviceforapps": {
+      "shared_commondataserviceforapps_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "admin_CoECoreDataverse"
+          "connectionReferenceLogicalName": "summit_sharedcommondataserviceforapps_e8f39"
         },
         "api": {
           "name": "shared_commondataserviceforapps"
@@ -19,13 +19,22 @@
           "name": "shared_onedriveforbusiness"
         }
       },
-      "shared_office365": {
+      "shared_office365_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "cat_sharedoffice365_4ee46"
+          "connectionReferenceLogicalName": "summit_sharedoffice365_a3f45"
         },
         "api": {
           "name": "shared_office365"
+        }
+      },
+      "shared_commondataserviceforapps_2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "dib_sharedcommondataserviceforapps_c79ad"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
         }
       }
     },
@@ -50,7 +59,7 @@
           "type": "OpenApiConnectionWebhook",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "SubscribeWebhookTrigger",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -73,7 +82,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "GetItem",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -134,7 +143,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "GetItem",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -155,7 +164,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps_1",
                   "operationId": "GetItem",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -176,7 +185,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps_1",
                       "operationId": "GetItem",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
@@ -197,7 +206,7 @@
                       "type": "OpenApiConnection",
                       "inputs": {
                         "host": {
-                          "connectionName": "shared_commondataserviceforapps",
+                          "connectionName": "shared_commondataserviceforapps_1",
                           "operationId": "GetItem",
                           "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                         },
@@ -233,7 +242,7 @@
                           "type": "OpenApiConnection",
                           "inputs": {
                             "host": {
-                              "connectionName": "shared_commondataserviceforapps",
+                              "connectionName": "shared_commondataserviceforapps_1",
                               "operationId": "GetItem",
                               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                             },
@@ -381,6 +390,9 @@
                       "Succeeded"
                     ]
                   },
+                  "metadata": {
+                    "operationMetadataId": "b4b474ce-6d73-4bcb-9532-0ea5b6c9797f"
+                  },
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
@@ -407,7 +419,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_office365",
+                      "connectionName": "shared_office365_1",
                       "operationId": "SendEmailV2",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
                     },
@@ -428,10 +440,13 @@
                 },
                 "List_rows": {
                   "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "ed4a86e9-a10b-4f3a-a9a2-f4d7dea41566"
+                  },
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps_1",
                       "operationId": "ListRecords",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
@@ -447,6 +462,9 @@
                   "actions": {
                     "Append_to_string_variable_6": {
                       "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "191d8718-1da2-4065-9a9c-5fe03e92ffe0"
+                      },
                       "type": "AppendToStringVariable",
                       "inputs": {
                         "name": "Hotel Booking Content",
@@ -459,6 +477,9 @@
                       "Succeeded"
                     ]
                   },
+                  "metadata": {
+                    "operationMetadataId": "32a4a74e-18fa-45d1-95ef-737896b58cbe"
+                  },
                   "type": "Foreach"
                 },
                 "Create_file": {
@@ -466,6 +487,9 @@
                     "Apply_to_each_2": [
                       "Succeeded"
                     ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "86993206-f3cb-436f-83e7-a05305a2e9f4"
                   },
                   "type": "OpenApiConnection",
                   "inputs": {
@@ -493,10 +517,13 @@
                       "Succeeded"
                     ]
                   },
+                  "metadata": {
+                    "operationMetadataId": "eb2deabe-7db8-41eb-b628-150619a72290"
+                  },
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps_1",
                       "operationId": "ListRecords",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
@@ -512,6 +539,9 @@
                   "actions": {
                     "Append_to_string_variable_5": {
                       "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "954c3c37-9bac-4d81-b8b4-bd742cda78a4"
+                      },
                       "type": "AppendToStringVariable",
                       "inputs": {
                         "name": "Flight Booking Content",
@@ -524,6 +554,9 @@
                       "Succeeded"
                     ]
                   },
+                  "metadata": {
+                    "operationMetadataId": "7855018b-24eb-40e1-87cf-877412c6807a"
+                  },
                   "type": "Foreach"
                 }
               }
@@ -533,10 +566,13 @@
               "actions": {
                 "Send_an_email_(V2)_2": {
                   "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "449ae6ba-d351-4a86-baf4-4e7159ce429f"
+                  },
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_office365",
+                      "connectionName": "shared_office365_1",
                       "operationId": "SendEmailV2",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
                     },
@@ -555,10 +591,13 @@
                       "Succeeded"
                     ]
                   },
+                  "metadata": {
+                    "operationMetadataId": "1d9b7a19-acb1-488d-8d77-e01e8c77df40"
+                  },
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_office365",
+                      "connectionName": "shared_office365_1",
                       "operationId": "SendEmailV2",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
                     },
@@ -578,6 +617,9 @@
               "actions": {
                 "Delay_until_2": {
                   "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "d91ed9a8-8cd3-4391-9350-fc3849df86f2"
+                  },
                   "type": "Wait",
                   "inputs": {
                     "until": {
@@ -591,10 +633,13 @@
                       "Succeeded"
                     ]
                   },
+                  "metadata": {
+                    "operationMetadataId": "a456bee3-1e7a-42f8-8159-f668e477ca97"
+                  },
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps_1",
                       "operationId": "GetItem",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
@@ -609,10 +654,13 @@
                   "actions": {
                     "Send_an_email_(V2)_4": {
                       "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "a5e9715c-1c84-4679-90d4-56112fbf9104"
+                      },
                       "type": "OpenApiConnection",
                       "inputs": {
                         "host": {
-                          "connectionName": "shared_office365",
+                          "connectionName": "shared_office365_1",
                           "operationId": "SendEmailV2",
                           "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
                         },
@@ -631,10 +679,13 @@
                           "Succeeded"
                         ]
                       },
+                      "metadata": {
+                        "operationMetadataId": "4503da79-ddb1-4a5c-b751-9ac7aee39e72"
+                      },
                       "type": "OpenApiConnection",
                       "inputs": {
                         "host": {
-                          "connectionName": "shared_commondataserviceforapps",
+                          "connectionName": "shared_commondataserviceforapps_1",
                           "operationId": "UpdateRecord",
                           "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                         },
@@ -658,6 +709,9 @@
                       126390003
                     ]
                   },
+                  "metadata": {
+                    "operationMetadataId": "bac9e5d4-a39d-4c4e-b661-3b753786bfe6"
+                  },
                   "type": "If"
                 }
               }
@@ -667,10 +721,13 @@
             "actions": {
               "Send_an_email_(V2)": {
                 "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "fb8af000-ac8d-4ebf-be26-4a9b888265ad"
+                },
                 "type": "OpenApiConnection",
                 "inputs": {
                   "host": {
-                    "connectionName": "shared_office365",
+                    "connectionName": "shared_office365_1",
                     "operationId": "SendEmailV2",
                     "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
                   },
@@ -753,7 +810,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_office365",
+                      "connectionName": "shared_office365_1",
                       "operationId": "SendEmailV2",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
                     },
@@ -795,7 +852,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps_2",
                   "operationId": "GetItem",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -827,7 +884,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps_1",
                   "operationId": "GetItem",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -884,6 +941,9 @@
               "actions": {
                 "Set_variable": {
                   "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "86aa1faf-7a21-44ad-b2ed-c57783f68fd9"
+                  },
                   "type": "SetVariable",
                   "inputs": {
                     "name": "Travel Request Status",
@@ -897,6 +957,9 @@
               "actions": {
                 "Set_variable_2": {
                   "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "ccf25e48-f1b1-49b5-8adf-180803b4ecbd"
+                  },
                   "type": "SetVariable",
                   "inputs": {
                     "name": "Travel Request Status",
@@ -910,6 +973,9 @@
               "actions": {
                 "Set_variable_3": {
                   "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "f19dffad-4b68-4afb-bde9-a5ce69c89ced"
+                  },
                   "type": "SetVariable",
                   "inputs": {
                     "name": "Travel Request Status",
@@ -923,6 +989,9 @@
               "actions": {
                 "Set_variable_5": {
                   "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "0548dfce-a1ff-4c0a-ac03-c1549febca6c"
+                  },
                   "type": "SetVariable",
                   "inputs": {
                     "name": "Travel Request Status",
@@ -936,6 +1005,9 @@
               "actions": {
                 "Set_variable_6": {
                   "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "8752a551-476f-40c9-87a1-e457ac88173f"
+                  },
                   "type": "SetVariable",
                   "inputs": {
                     "name": "Travel Request Status",
@@ -949,6 +1021,9 @@
             "actions": {
               "Set_variable_4": {
                 "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "07899645-5626-44ce-b5a0-7df6761a44f3"
+                },
                 "type": "SetVariable",
                 "inputs": {
                   "name": "Travel Request Status",
@@ -973,7 +1048,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps_1",
                   "operationId": "GetItem",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -1099,7 +1174,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps_1",
                   "operationId": "GetItem",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -1120,7 +1195,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps_1",
                       "operationId": "UpdateRecord",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },

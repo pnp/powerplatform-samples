@@ -1,10 +1,10 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_commondataserviceforapps": {
+      "shared_commondataserviceforapps_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "admin_CoECoreDataverse"
+          "connectionReferenceLogicalName": "summit_sharedcommondataserviceforapps_e8f39"
         },
         "api": {
           "name": "shared_commondataserviceforapps"
@@ -45,7 +45,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "ListRecords",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -67,15 +67,13 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps_1",
                   "operationId": "UpdateRecord",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
                 "parameters": {
                   "entityName": "sb_travelrequests",
-                  "recordId": "@items('Apply_to_each')?['sb_travelrequestid']",
-                  "item/sb_draft": false,
-                  "item/sb_travelrequeststatus": 126390006
+                  "recordId": "@items('Apply_to_each')?['sb_travelrequestid']"
                 },
                 "authentication": "@parameters('$authentication')"
               }
@@ -94,7 +92,7 @@
       },
       "outputs": {}
     },
-    "templateName": null
+    "templateName": ""
   },
   "schemaVersion": "1.0.0.0"
 }

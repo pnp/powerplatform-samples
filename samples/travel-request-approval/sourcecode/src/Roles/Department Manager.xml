@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Role id="{5987c3c8-984e-ed11-bba1-002248212f5a}" name="AgileXRM CFO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Role id="{fed453e0-984e-ed11-bba1-002248212f5a}" name="Department Manager" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <IsCustomizable>1</IsCustomizable>
   <RolePrivileges>
     <RolePrivilege name="prvActivateSynchronousWorkflow" level="Basic" />
@@ -42,7 +42,7 @@
     <RolePrivilege name="prvAppendsb_HotelBooking" level="Global" />
     <RolePrivilege name="prvAppendsb_PurposeofTravel" level="Global" />
     <RolePrivilege name="prvAppendsb_RequestRules" level="Global" />
-    <RolePrivilege name="prvAppendsb_TravelRequest" level="Global" />
+    <RolePrivilege name="prvAppendsb_TravelRequest" level="Local" />
     <RolePrivilege name="prvAppendsb_TravelRequestAudit" level="Global" />
     <RolePrivilege name="prvAppendsharedobject" level="Global" />
     <RolePrivilege name="prvAppendsharedworkspace" level="Global" />
@@ -91,7 +91,7 @@
     <RolePrivilege name="prvAppendTosb_HotelBooking" level="Global" />
     <RolePrivilege name="prvAppendTosb_PurposeofTravel" level="Global" />
     <RolePrivilege name="prvAppendTosb_RequestRules" level="Global" />
-    <RolePrivilege name="prvAppendTosb_TravelRequest" level="Global" />
+    <RolePrivilege name="prvAppendTosb_TravelRequest" level="Local" />
     <RolePrivilege name="prvAppendTosb_TravelRequestAudit" level="Global" />
     <RolePrivilege name="prvAppendTosharedobject" level="Global" />
     <RolePrivilege name="prvAppendTosharedworkspace" level="Global" />
@@ -141,7 +141,7 @@
     <RolePrivilege name="prvAssignsb_HotelBooking" level="Global" />
     <RolePrivilege name="prvAssignsb_PurposeofTravel" level="Global" />
     <RolePrivilege name="prvAssignsb_RequestRules" level="Global" />
-    <RolePrivilege name="prvAssignsb_TravelRequest" level="Global" />
+    <RolePrivilege name="prvAssignsb_TravelRequest" level="Local" />
     <RolePrivilege name="prvAssignsb_TravelRequestAudit" level="Global" />
     <RolePrivilege name="prvAssignSharePointDocument" level="Global" />
     <RolePrivilege name="prvAssignSharePointDocumentLocation" level="Global" />
@@ -187,7 +187,7 @@
     <RolePrivilege name="prvCreatesb_HotelBooking" level="Global" />
     <RolePrivilege name="prvCreatesb_PurposeofTravel" level="Global" />
     <RolePrivilege name="prvCreatesb_RequestRules" level="Global" />
-    <RolePrivilege name="prvCreatesb_TravelRequest" level="Global" />
+    <RolePrivilege name="prvCreatesb_TravelRequest" level="Local" />
     <RolePrivilege name="prvCreatesb_TravelRequestAudit" level="Global" />
     <RolePrivilege name="prvCreatesharedobject" level="Global" />
     <RolePrivilege name="prvCreatesharedworkspace" level="Global" />
@@ -198,7 +198,6 @@
     <RolePrivilege name="prvCreateSyncError" level="Basic" />
     <RolePrivilege name="prvCreateTraceLog" level="Global" />
     <RolePrivilege name="prvCreateTranslationProcess" level="Global" />
-    <RolePrivilege name="prvCreateUser" level="Global" />
     <RolePrivilege name="prvCreateUserApplicationMetadata" level="Basic" />
     <RolePrivilege name="prvCreateUserEntityInstanceData" level="Basic" />
     <RolePrivilege name="prvCreateUserEntityUISettings" level="Basic" />
@@ -232,12 +231,7 @@
     <RolePrivilege name="prvDeleteReport" level="Basic" />
     <RolePrivilege name="prvDeletesb_FlightBookings" level="Global" />
     <RolePrivilege name="prvDeletesb_HotelBooking" level="Global" />
-    <RolePrivilege name="prvDeletesb_PurposeofTravel" level="Global" />
     <RolePrivilege name="prvDeletesb_RequestRules" level="Global" />
-    <RolePrivilege name="prvDeletesb_TravelRequest" level="Global" />
-    <RolePrivilege name="prvDeletesb_TravelRequestAudit" level="Global" />
-    <RolePrivilege name="prvDeletesharedobject" level="Global" />
-    <RolePrivilege name="prvDeletesharedworkspace" level="Global" />
     <RolePrivilege name="prvDeleteSocialProfile" level="Basic" />
     <RolePrivilege name="prvDeleteSyncError" level="Basic" />
     <RolePrivilege name="prvDeleteTranslationProcess" level="Global" />
@@ -356,7 +350,7 @@
     <RolePrivilege name="prvReadsb_HotelBooking" level="Global" />
     <RolePrivilege name="prvReadsb_PurposeofTravel" level="Global" />
     <RolePrivilege name="prvReadsb_RequestRules" level="Global" />
-    <RolePrivilege name="prvReadsb_TravelRequest" level="Global" />
+    <RolePrivilege name="prvReadsb_TravelRequest" level="Local" />
     <RolePrivilege name="prvReadsb_TravelRequestAudit" level="Global" />
     <RolePrivilege name="prvReadSdkMessage" level="Global" />
     <RolePrivilege name="prvReadSdkMessageProcessingStep" level="Global" />
@@ -419,7 +413,7 @@
     <RolePrivilege name="prvSharesb_HotelBooking" level="Global" />
     <RolePrivilege name="prvSharesb_PurposeofTravel" level="Global" />
     <RolePrivilege name="prvSharesb_RequestRules" level="Global" />
-    <RolePrivilege name="prvSharesb_TravelRequest" level="Global" />
+    <RolePrivilege name="prvSharesb_TravelRequest" level="Local" />
     <RolePrivilege name="prvSharesb_TravelRequestAudit" level="Global" />
     <RolePrivilege name="prvShareSharePointDocumentLocation" level="Global" />
     <RolePrivilege name="prvShareSharePointSite" level="Global" />
@@ -472,7 +466,7 @@
     <RolePrivilege name="prvWritesb_HotelBooking" level="Global" />
     <RolePrivilege name="prvWritesb_PurposeofTravel" level="Global" />
     <RolePrivilege name="prvWritesb_RequestRules" level="Global" />
-    <RolePrivilege name="prvWritesb_TravelRequest" level="Global" />
+    <RolePrivilege name="prvWritesb_TravelRequest" level="Local" />
     <RolePrivilege name="prvWritesb_TravelRequestAudit" level="Global" />
     <RolePrivilege name="prvWritesharedobject" level="Global" />
     <RolePrivilege name="prvWritesharedworkspace" level="Global" />
