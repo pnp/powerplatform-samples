@@ -1,0 +1,156 @@
+cmpFooter As CanvasComponent:
+    cmpHeight: =72
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =Self.cmpHeight
+    lblLink1: ="Link 1"
+    lblLink2: ="Link 2"
+    lblLink3: ="Link 3"
+    showbtnLinks: =true
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    rectFooter As rectangle:
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(16, 6, 159, 1)
+        Height: =Parent.Height
+        Width: =Parent.Width
+        Y: =0.00
+        ZIndex: =1
+
+    lblFooter As label:
+        Color: |-
+            =ColorValue("#FFFFFF")
+        Font: ="RR Pioneer"
+        Height: =Parent.Height
+        PaddingBottom: =0.00
+        PaddingLeft: =8
+        PaddingRight: =0
+        PaddingTop: =0
+        Size: =9
+        Text: ="Copyright ©"&" "&Year(Now()) & " ABC Company"
+        Width: =Parent.Width/3
+        Y: =0.00
+        ZIndex: =2
+
+    imgFooter As image:
+        Height: =23
+        Image: ='logo-svgrepo-com'
+        PaddingLeft: =8
+        Width: =106
+        X: =Parent.Width - Self.Width - Self.PaddingLeft*2
+        Y: =Parent.Height/3
+        ZIndex: =3
+
+    btnLink1 As button:
+        BorderColor: =
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =
+        Color: |-
+            =ColorValue("#FFFFFF")
+        DisabledBorderColor: =
+        DisabledColor: =
+        DisabledFill: =
+        Fill: |-
+            =ColorValue("#10069F")
+        FocusedBorderThickness: =
+        Font: ="RR Pioneer Medium"
+        FontWeight: =FontWeight.Normal
+        Height: =24
+        HoverBorderColor: =Self.BorderColor
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        PaddingRight: =
+        PaddingTop: =
+        PressedBorderColor: =Self.BorderColor
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        RadiusBottomLeft: =
+        RadiusBottomRight: =
+        RadiusTopLeft: =
+        RadiusTopRight: =
+        Size: =11
+        Text: =Parent.lblLink1
+        Visible: =Parent.showbtnLinks
+        Width: =Len(Self.Text)*12
+        X: =imgFooter.X - Self.Width - imgFooter.PaddingLeft*2
+        Y: =Parent.Height/3
+        ZIndex: =4
+
+    btnLink2 As button:
+        BorderColor: =
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =
+        Color: |-
+            =ColorValue("#FFFFFF")
+        DisabledBorderColor: =
+        DisabledColor: =
+        DisabledFill: =
+        Fill: |-
+            =ColorValue("#10069F")
+        FocusedBorderThickness: =
+        Font: ="RR Pioneer Medium"
+        FontWeight: =FontWeight.Normal
+        Height: =24
+        HoverBorderColor: =Self.BorderColor
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        PaddingRight: =
+        PaddingTop: =
+        PressedBorderColor: =Self.BorderColor
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        RadiusBottomLeft: =
+        RadiusBottomRight: =
+        RadiusTopLeft: =
+        RadiusTopRight: =
+        Size: =11
+        Text: =Parent.lblLink2
+        Visible: =Parent.showbtnLinks
+        Width: =Len(Self.Text)*12
+        X: =btnLink1.X - Self.Width
+        Y: =Parent.Height/3
+        ZIndex: =5
+
+    btnLink3 As button:
+        BorderColor: =
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =
+        Color: |-
+            =ColorValue("#FFFFFF")
+        DisabledBorderColor: =
+        DisabledColor: =
+        DisabledFill: =
+        Fill: |-
+            =ColorValue("#10069F")
+        FocusedBorderThickness: =
+        Font: ="RR Pioneer Medium"
+        FontWeight: =FontWeight.Normal
+        Height: =24
+        HoverBorderColor: =Self.BorderColor
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        PaddingRight: =
+        PaddingTop: =
+        PressedBorderColor: =Self.BorderColor
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        RadiusBottomLeft: =
+        RadiusBottomRight: =
+        RadiusTopLeft: =
+        RadiusTopRight: =
+        Size: =11
+        Text: =Parent.lblLink3
+        Visible: =Parent.showbtnLinks
+        Width: =Len(Self.Text)*12
+        X: =btnLink2.X - Self.Width 
+        Y: =Parent.Height/3
+        ZIndex: =6
+

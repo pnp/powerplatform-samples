@@ -1,0 +1,44 @@
+{
+  "1bb5374c-1122-4ab2-9b6c-1306c6c6fdbf": {
+    "connectionRef": {
+      "displayName": "Office 365 Users",
+      "iconUri": "https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/releases/v1.0.1735/1.0.1735.4103/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users"
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "1bb5374c-1122-4ab2-9b6c-1306c6c6fdbf"
+  },
+  "5615d815-3613-47d6-b5ad-2e2c33b2b827": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/releases/v1.0.1732/1.0.1732.4070/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://8fj2hx.sharepoint.com/sites/Retail": {
+        "dataSources": {
+          "NavigationItems": {
+            "tableName": "27d310c3-3367-4aed-8f35-1bfb947e74e0"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "NavigationItems"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "5615d815-3613-47d6-b5ad-2e2c33b2b827"
+  }
+}

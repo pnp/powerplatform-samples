@@ -1,0 +1,61 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps is in preview. The schema is being actively developed.
+# Content may be incomplete and subject to change.
+# This file is read-only and should only be used to review changes made within Power Apps Studio.
+# This file isn't used when loading the app. External editing, merging and conflict resolution are
+# not supported.
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+App:
+  Properties:
+    OnStart: |-
+      =//Collection to get Media Images
+      ClearCollect(
+          colMediaImages,
+          Table(
+              {
+                  ID: 1,
+                  Icons: 'dashboard-svgrepo-com'
+              },
+              {
+                  ID: 2,
+                  Icons: 'plus-svgrepo-com'
+              }
+          )
+      );
+      ClearCollect(
+          colLeftNavigationDetailsTemp,
+          Sort(
+              ShowColumns(
+                  AddColumns(
+                      NavigationItems,
+                      ScreenValue,
+                      Switch(
+                          Screen,
+                          "RequestorDashboard",
+                          Screen1,
+                          "CreateScreen",
+                          CreateScreen
+                      )
+                  ),
+                  OrderID,
+                  Title,
+                  ScreenValue
+              ),
+              OrderID,
+              SortOrder.Ascending
+          )
+      );
+      ClearCollect(
+          colLeftNavigationDetails,
+          AddColumns(
+              colLeftNavigationDetailsTemp As item,
+              Icons,
+              LookUp(
+                  colMediaImages,
+                  ThisRecord.ID = item.OrderID
+              ).Icons
+          )
+      );
+    Theme: =PowerAppsTheme
