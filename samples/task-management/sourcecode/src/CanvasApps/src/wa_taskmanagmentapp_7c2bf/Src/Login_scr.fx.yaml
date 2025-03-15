@@ -1,0 +1,292 @@
+Login_scr As screen:
+    OnVisible: =
+
+    Cnt_left As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(241, 244, 249, 1)
+        Height: =Parent.Height
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Image1 As image:
+            Height: =Parent.Height
+            Image: =CS_BG
+            ImagePosition: =ImagePosition.Fill
+            Width: =Parent.Width
+            ZIndex: =1
+
+        "gal_matchedUsers As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver5.0'":
+            DelayItemLoading: =true
+            Fill: =RGBA(214, 223, 238, 1)
+            Height: =328
+            Items: |
+                =First(Filter(Users,Email = login_email1.Text))
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =90
+            Visible: =false
+            Width: =567
+            X: =64
+            Y: =392
+            ZIndex: =1
+
+            Title6 As label:
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =Self.Size * 1.8
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =ThisItem.Title
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Parent.TemplateWidth - 86
+                X: =16
+                Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle5.Size * 1.8)) / 2
+                ZIndex: =1
+
+            Subtitle5 As label:
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =Self.Size * 1.8
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =ThisItem.LastName
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Title6.Width
+                X: =Title6.X
+                Y: =Title6.Y + Title6.Height
+                ZIndex: =2
+
+            NextArrow6 As icon.ChevronRight:
+                AccessibleLabel: =Self.Tooltip
+                Color: =RGBA(166, 166, 166, 1)
+                Height: =50
+                Icon: =Icon.ChevronRight
+                OnSelect: =Select(Parent)
+                PaddingBottom: =16
+                PaddingLeft: =16
+                PaddingRight: =16
+                PaddingTop: =16
+                Tooltip: ="View item details"
+                Width: =50
+                X: =Parent.TemplateWidth - Self.Width - 12
+                Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                ZIndex: =3
+
+            Separator6 As rectangle:
+                Height: =8
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - Self.Height
+                ZIndex: =4
+
+            Rectangle8 As rectangle:
+                Height: =Parent.TemplateHeight - Separator6.Height
+                OnSelect: =Select(Parent)
+                Visible: =ThisItem.IsSelected
+                Width: =4
+                ZIndex: =5
+
+        Log_app_title As label:
+            Align: =Align.Center
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =202
+            Size: =42
+            Text: ="Task Managment App"
+            Width: =683
+            X: =12
+            Y: =276
+            ZIndex: =2
+
+        Button3_1 As button:
+            Align: =Align.Right
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =140
+            RadiusBottomLeft: =30
+            RadiusBottomRight: =30
+            RadiusTopLeft: =30
+            RadiusTopRight: =30
+            Text: =""
+            Width: =155
+            X: =276
+            Y: =126
+            ZIndex: =4
+
+        Image5 As image:
+            Height: =140
+            Image: =clipboard
+            Width: =150
+            X: =283
+            Y: =126
+            ZIndex: =5
+
+    Cnt_right As groupContainer.manualLayoutContainer:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        BorderStyle: =BorderStyle.Dashed
+        Height: =Parent.Height
+        Width: =Parent.Width/2
+        X: =Parent.Width/2
+        ZIndex: =2
+
+        Login_form As groupContainer.manualLayoutContainer:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =2
+            DropShadow: =DropShadow.Bold
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =389
+            PaddingBottom: =20
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Width: =380
+            X: =146
+            Y: =126
+            ZIndex: =1
+
+            btn_wrapper As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Regular
+                Height: =btn_login.Height
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Width: =btn_login.Width
+                X: =110
+                Y: =315
+                ZIndex: =4
+
+                btn_login As button:
+                    BorderThickness: =0
+                    Fill: =ColorFade(theme.darkFont,0.2)
+                    Height: =50
+                    HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -40%)
+                    OnSelect: |+
+                        =If(
+                            gal_matchedUsers.AllItemsCount = 0,
+                            Set(
+                                showErr,
+                                true
+                            ),
+                            If(
+                                First(gal_matchedUsers.AllItems).Password = login_pswd.Text,
+                                Set(activeUser, First(gal_matchedUsers.AllItems));Reset(login_email1);Reset(login_pswd);Navigate(userTask_scr),
+                                Set(
+                                    showErr,
+                                    true
+                                )
+                            )
+                        );
+                        If(activeUser.Role.Value = "Manager",Set(manager_access,true))
+                        
+                    RadiusBottomLeft: =5
+                    RadiusBottomRight: =5
+                    RadiusTopLeft: =5
+                    RadiusTopRight: =5
+                    Text: ="LOGIN"
+                    ZIndex: =1
+
+            hide As icon.Hide:
+                Color: =RGBA(166, 166, 166, 1)
+                Height: =22
+                Icon: =Icon.View
+                OnSelect: |-
+                    =If(
+                       password_Login_Hide,
+                        Set(
+                            password_Login_Hide,
+                            false
+                        ),
+                        Set(
+                       password_Login_Hide,
+                        true
+                    )
+                    )
+                Visible: =If(password_Login_Hide,false, true )
+                Width: =22
+                X: =326
+                Y: =200
+                ZIndex: =5
+
+            Login_grp As group:
+                Height: =5
+                Width: =5
+                X: =40
+                Y: =40
+                ZIndex: =5
+
+                login_pswd As text:
+                    BorderColor: =If(showErr,Color.Red ,RGBA(166, 166, 166, 1))
+                    BorderThickness: =1
+                    Default: =
+                    HintText: ="Password"
+                    Mode: =If(password_Login_Hide,TextMode.SingleLine,TextMode.Password)
+                    Width: =Parent.Width -30
+                    X: =15
+                    Y: =191
+                    ZIndex: =2
+
+                login_email1 As text:
+                    BorderColor: =If(showErr,Color.Red ,RGBA(166, 166, 166, 1))
+                    BorderThickness: =1
+                    Default: =
+                    HintText: ="Email or UserName"
+                    OnChange: =Set(showErr,false)
+                    Width: =Parent.Width -30
+                    X: =15
+                    Y: =136
+                    ZIndex: =3
+
+            show As icon.Hide:
+                Color: =RGBA(166, 166, 166, 1)
+                Height: =22
+                Icon: =Icon.Hide
+                OnSelect: |-
+                    =If(
+                        password_Login_Hide,
+                        Set(
+                          password_Login_Hide,
+                            false
+                        ),
+                        Set(
+                        password_Login_Hide,
+                        true
+                    )
+                    )
+                Visible: =If(password_Login_Hide,true, false )
+                Width: =22
+                X: =326
+                Y: =202
+                ZIndex: =6
+
+        Image4 As image:
+            Height: =90
+            Image: =login_295128
+            Width: =90
+            X: =291
+            Y: =144
+            ZIndex: =2
+
+        errorTxt As label:
+            Color: =RGBA(233, 79, 76, 1)
+            Font: =Font.'Segoe UI'
+            Height: =22
+            PaddingLeft: =0
+            Size: =11
+            Text: |+
+                ="Credentials are incorrect !"
+                
+            Visible: =showErr
+            Width: =343
+            X: =164
+            Y: =367
+            ZIndex: =3
+
