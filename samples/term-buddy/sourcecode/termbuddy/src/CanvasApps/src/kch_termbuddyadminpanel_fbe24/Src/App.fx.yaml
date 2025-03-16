@@ -1,0 +1,486 @@
+App As appinfo:
+    BackEnabled: =true
+    Formulas: |-
+        =nfAppVersion = " v2.04 (" & nfCurrentEnv & ")";
+        
+        nfEnvID = Right(
+            Match(
+                First('Canvas Apps').AppOpenUri,
+                "/e/.*(?=/a)"
+            ).FullMatch,36
+        );
+        
+        nfEnvironments = {
+            DEV:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_environments"
+                ).Value
+            ).dev,
+            UAT:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_environments"
+                ).Value
+            ).uat,
+            PROD:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_environments"
+                ).Value
+            ).prod
+        };
+        
+        nfCurrentEnv = 
+        Switch(
+            true,
+            nfEnvID = nfEnvironments.DEV, "DEV",
+            nfEnvID = nfEnvironments.UAT, "UAT",
+            nfEnvID = nfEnvironments.PROD, "PROD",
+            "Unknown" // Default case if no match is found
+        );
+        
+        nfColor = {
+            Primary:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_colorschema"
+                ).Value
+            ).'Primary',
+        
+            Secondary:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_colorschema"
+                ).Value
+            ).'Secondary',
+        
+            Regular:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_colorschema"
+                ).Value
+            ).'Regular',
+        
+            Light:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_colorschema"
+                ).Value
+            ).'Light',
+        
+            White:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_colorschema"
+                ).Value
+            ).'White',
+        
+            Accent1:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_colorschema"
+                ).Value
+            ).'Accent1',
+        
+            Accent2:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_colorschema"
+                ).Value
+            ).'Accent2',
+        
+            Accent3:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_colorschema"
+                ).Value
+            ).'Accent3',
+        
+            Accent4:
+            ParseJSON(
+                LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_colorschema"
+                ).Value
+            ).'Accent4'
+        };
+        
+        nfTheming = {
+            // General parameters
+            radius: 24,
+            backFill: ColorValue(Concatenate(nfColor.White, "A6")),
+            layoutGap: 32,
+            controlPadding: 48,
+            
+            // Menu parameters
+            menuWidth: 100,
+            menuLogo: logo,
+            menuLogoPadding: 24,
+        
+            // Instruction screen - Prompt input control
+            maxLength: 2000,
+            threshold: 200,
+        
+            // Analytics - Metrics
+            metricsPadding: 5
+        };
+        
+        nfKeyVault =
+            LookUp(
+                'Environment Variable Values',
+                'Environment Variable Definition'.'Schema Name' = "kch_endpointsecret"
+            ).Value;
+        
+        nfAppData = {
+            // Instruction screen - Prompt input control
+            userPrompt: First('termbuddy-prompts').'user-prompt',
+        
+            // Settings screen - Installation Mode
+            demoMode: LookUp(
+                    'Environment Variable Values',
+                    'Environment Variable Definition'.'Schema Name' = "kch_demobackend"
+                ).Value,
+            
+            demoModeValues: Table(
+                {
+                    name: "Default Installation (Developer-Managed)",
+                    mode: "no"
+                },
+                {
+                    name: "Customer-Managed Installation",
+                    mode: "yes"
+                }
+            ),
+        
+            // Settings page - Endpoint data (customer-managed installation)
+        
+            endpointCMI: {
+                endpoint:
+                    LookUp(
+                        'Environment Variable Values',
+                        'Environment Variable Definition'.'Schema Name' = "kch_endpoint"
+                    ).Value,
+                model:
+                    LookUp(
+                        'Environment Variable Values',
+                        'Environment Variable Definition'.'Schema Name' = "kch_model"
+                    ).Value
+            },
+        
+            // Settings screen - Azure Key Vault Data
+            keyVault: 
+                If(
+                    IsBlank(nfKeyVault),
+                    {
+                        subscription: "",
+                        resource_group: "",
+                        key_vault: "",
+                        secret: ""
+                    },
+                    With(
+                        {parts: Split(nfKeyVault, "/")},
+                        {
+                            subscription: Index(parts, 3).Value,
+                            resource_group: Index(parts, 5).Value,
+                            key_vault: Index(parts, 9).Value,
+                            secret: Index(parts, 11).Value
+                        }
+                    )
+                ),
+        
+            // Analytics screen - Analytics Period options
+            analyticsRanges: Table(
+                {
+                    id: 1,
+                    name: "Today",
+                    days: 0,
+                    startDate: DateAdd(Today(), -1),
+                    endDate: DateAdd(Today(), 1)
+                },
+                {
+                    id: 2,
+                    name: "Last 7 days",
+                    days: 7,
+                    startDate: DateAdd(Today(), -7),
+                    endDate: DateAdd(Today(), 1)
+                },
+                {
+                    id: 3,
+                    name: "Last 30 days",
+                    days: 30,
+                    startDate: DateAdd(Today(), -30),
+                    endDate: DateAdd(Today(), 1)
+                },
+                {
+                    id: 4,
+                    name: "Last 90 days",
+                    days: 90,
+                    startDate: DateAdd(Today(), -90),
+                    endDate: DateAdd(Today(), 1)
+                },
+                {
+                    id: 5,
+                    name: "Last 12 months",
+                    days: 365,
+                    startDate: DateAdd(Today(), -365),
+                    endDate: DateAdd(Today(), 1)
+                },
+                {
+                    id: 6,
+                    name: "All time",
+                    days: 1000,
+                    startDate: DateAdd(Today(), -1000),
+                    endDate: DateAdd(Today(), 1)
+                }
+            ),
+        
+            // Analytics screen - Metrics
+            analyticsMetrics: Table(
+                {
+                    id: 1,
+                    name: "Sessions",
+                    value: 0
+                },
+                {
+                    id: 2,
+                    name: "Messages",
+                    value: 0
+                },
+                {
+                    id: 3,
+                    name: "Quizzes",
+                    value: 0
+                },
+                {
+                    id: 4,
+                    name: "Examples",
+                    value: 0
+                },
+                {
+                    id: 5,
+                    name: "Renews definition",
+                    value: 0
+                },
+                {
+                    id: 6,
+                    name: "Terms",
+                    value: 0
+                }
+            )
+        };
+        
+        udfMetricsCountSchema := Type(
+            [
+                {
+                    metric: Text,
+                    count: Number
+                }
+            ]
+        );
+        
+        udfMetricsCount(days:Number, startDate:Date, endDate:Date):udfMetricsCountSchema = 
+        Table(
+            {
+                metric: "Sessions",
+                count:
+                    Switch(
+                        days,
+                        1000,
+                        CountRows(
+                            Distinct(
+                                'termbuddy-statistics',
+                                conversation_id
+                            )
+                        ),
+                        CountRows(
+                            Distinct(
+                                Filter(
+                                    'termbuddy-statistics',
+                                    CreatedDateTime >= startDate && CreatedDateTime <= endDate
+                                ),conversation_id
+                            )
+                        )
+                    )
+            },
+            {
+                metric: "Messages",
+                count:
+                    Switch(
+                        days,
+                        1000,
+                        CountIf('termbuddy-statistics', true),
+                        CountIf(
+                            'termbuddy-statistics',
+                            CreatedDateTime >= startDate && CreatedDateTime <= endDate
+                        )
+                    )
+            },
+            {
+                metric: "Quizes",
+                count:
+                    Switch(
+                        days,
+                        1000,
+                        CountIf(
+                            'termbuddy-statistics',
+                            action = "quiz"
+                        ),
+                        CountIf(
+                            'termbuddy-statistics',
+                            CreatedDateTime >= startDate && CreatedDateTime <= endDate && action = "quiz"
+                        )
+                    )
+            },
+            {
+                metric: "Examples",
+                count:
+                    Switch(
+                        days,
+                        1000,
+                        CountIf(
+                            'termbuddy-statistics',
+                            action = "example"
+                        ),
+                        CountIf(
+                            'termbuddy-statistics',
+                            CreatedDateTime >= startDate && CreatedDateTime <= endDate && action = "example"
+                        )
+                    )
+            },
+            {
+                metric: "Refreshes",
+                count:
+                    Switch(
+                        days,
+                        1000,
+                        CountIf(
+                            'termbuddy-statistics',
+                            action = "refresh"
+                        ),
+                        CountIf(
+                            'termbuddy-statistics',
+                            CreatedDateTime >= startDate && CreatedDateTime <= endDate && action = "refresh"
+                        )
+                    )
+            },
+            {
+                metric: "Terms",
+                count:
+                    Switch(
+                        days,
+                        1000,
+                        CountRows(
+                            Distinct(
+                                'termbuddy-statistics',
+                                term
+                            )
+                        ),
+                        CountRows(
+                            Distinct(
+                                Filter(
+                                    'termbuddy-statistics',
+                                    CreatedDateTime >= startDate && CreatedDateTime <= endDate
+                                ),term
+                            )
+                        )
+                    )
+            }
+        );
+        
+        nfMenu = Table(
+            {
+                id: 1,
+                name: "Analytics",
+                path: "<path d='M4 11H2v3h2zm5-4H7v7h2zm5-5v12h-2V2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1z'/>",
+                screen: Analytics
+            },
+            {
+                id: 2,
+                name: "Prompt refinement",
+                path: "<path d='M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5M5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1z'/>
+          <path d='M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1'/>",
+                screen: 'Prompt refinement'
+            },
+            {
+                id: 3,
+                name: "Settings",
+                path: "<path d='M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0'/>
+        <path d='M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z'/>",
+                screen: Settings
+            },
+            {
+                id: 4,
+                name: "About",
+                path: "<path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/>
+                <path d='m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0'/>",
+                screen: About
+            }
+        );
+        
+        // Characters count functionality
+        udfNotificationAssets := Type(
+            [
+                {
+                    message: Text,
+                    color: Color
+                }
+            ]
+        );
+        
+        udfLengthNotification(paramText:Text):udfNotificationAssets = With(
+            {
+                remainingChars: nfTheming.maxLength - Len(paramText)
+            },
+            Table(
+                {
+                    message:
+                    Switch(
+                        true, 
+                        remainingChars <= nfTheming.maxLength && remainingChars > nfTheming.threshold, $"✅ Keep going! {remainingChars} characters left",
+                        remainingChars <= nfTheming.threshold && remainingChars > 0, $"⚠️ Almost full! {remainingChars} characters left",
+                        "❌ Limit reached! No more characters can be entered."
+                    ),
+                    color:
+                    Switch(
+                        true, 
+                        remainingChars <= nfTheming.maxLength && remainingChars > nfTheming.threshold, nfColor.Accent2,
+                        nfColor.Secondary
+                    )
+                }
+            )
+        );
+        
+        udfLengthNotification2(paramText:Text):Text = With(
+            {
+                threshold: nfTheming.maxLength * 0.25, // 25% of maxLength
+                remainingChars: nfTheming.maxLength - Len(paramText)
+            },
+            Switch(
+                true, 
+                remainingChars >= threshold, $"✅ Keep going! {remainingChars} characters left",
+                remainingChars > 0, $"⚠️ Almost full! {remainingChars} characters left",
+                "❌ Limit reached! No more characters can be entered."
+            )
+        );
+    OnStart: =
+    Theme: ='Term Buddy'
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
