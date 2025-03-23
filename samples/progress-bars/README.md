@@ -6,9 +6,6 @@ This sample contains different components to render progress and step bars in Po
 
 ![screen1](./assets/ProgressBar.gif)
 
-
-
-
 ## Applies to
   
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green  "Yes")
@@ -28,7 +25,7 @@ This sample contains different components to render progress and step bars in Po
 
 ## Contributors
 
-- [Samir Daoudi](https://github.com/Samir-Daoudi)
+* [Samir Daoudi](https://github.com/Samir-Daoudi)
 
 ## Version history
 
@@ -44,9 +41,8 @@ Static table with body part title
 
 ### Using the solution zip
 
-* [Download](./solution/ProgressBars_1_0_0_1.zip) the `.zip` from the `solution` folder
+* [Download](./solution/progress-bars.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-* Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
 
 ### Using the source code
 
@@ -66,14 +62,14 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=charts-4-powerapps&authors=@Samir-Daoudi&title=charts-4-powerapps%20-%20).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=progress-bars&authors=@Samir-Daoudi&title=progress-bars%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=charts-4-powerapps&authors=@Samir-Daoudi&title=charts-4-powerapps%20-%20).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=progress-bars&authors=@Samir-Daoudi&title=progress-bars%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=charts-4-powerapps&authors=@Samir-Daoudi&title=charts-4-powerapps%20-%20).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=progress-bars&authors=@Samir-Daoudi&title=progress-bars%20-%20).
 
 ## Disclaimer
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/charts-4-powerapps"  aria-hidden="true" />
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/progress-bars"  aria-hidden="true" />
