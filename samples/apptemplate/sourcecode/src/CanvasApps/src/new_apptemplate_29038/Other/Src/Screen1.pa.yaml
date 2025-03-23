@@ -1,0 +1,39 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps is in preview. The schema is being actively developed.
+# Content may be incomplete and subject to change.
+# This file is read-only and should only be used to review changes made within Power Apps Studio.
+# This file isn't used when loading the app. External editing, merging and conflict resolution are
+# not supported.
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Screen1:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - cmpHeader_1:
+          Control: CanvasComponent
+          ComponentName: cmpHeader
+          Properties:
+            HeaderTitle: ="Template App"
+            Height: =Self.cmpHeaderHeight
+            HideShowLangDD: =false
+            ShowLangDD: =varShowLangDDHeader
+            Width: =Parent.Width
+            cmpHeaderHeight: =88
+            eventLangDDOnSelect: =Set(varShowLangDDHeader, !varShowLangDDHeader);
+            showHelpIcon: =true
+            showSearchBox: =true
+      - cmpFooter_1:
+          Control: CanvasComponent
+          ComponentName: cmpFooter
+          Properties:
+            Height: =Self.cmpHeight
+            Width: =Parent.Width
+            Y: =Parent.Height - Self.Height
+            cmpHeight: =72
+            lblLink1: ="Link 1"
+            lblLink2: ="Link 2"
+            lblLink3: ="Link 3"
+            showbtnLinks: =true

@@ -1,0 +1,20 @@
+Screen1 As screen:
+
+    LeftNavigation_1 As LeftNavigation:
+        Height: =Max(App.Height,App.DesignHeight) - cmpHeader_1.Height - cmpFooter_1.Height
+        Width: =LeftNavigation_1.MenuWidth
+        Y: =88
+
+    cmpHeader_1 As cmpHeader:
+        eventLangDDOnSelect: =Set(varShowLangDDHeader, !varShowLangDDHeader);
+        HeaderTitle: ="Template App"
+        HideShowLangDD: =false
+        ShowLangDD: =varShowLangDDHeader
+        Width: =Parent.Width
+        ZIndex: =2
+
+    cmpFooter_1 As cmpFooter:
+        Width: =Parent.Width
+        Y: =Parent.Height - Self.Height
+        ZIndex: =3
+
