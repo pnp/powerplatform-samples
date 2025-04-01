@@ -53,9 +53,27 @@ Version|Date|Comments
 
 **Step 1: Import the solution into your Power Apps environment**
 
-* [Download](./solution/ai-driven-expense-report-processing.zip) the `.zip` from the `solution` folder
+* [Download](./solution/ai-driven-expense-report-processing.zip) the `.zip` from the `solution` folder.
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you've just downloaded.
-* Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
+* Once the solution has been imported, you will see the **Automated Expense Reporting** solution under the **Unmanaged** section of the **Solutions** page.
+* Select the solution to open it.
+
+**Step 2: Configure the Expense Category table**
+
+* In the solution explorer, look for the **Expense Category** table > Select the **Commands** icon > **Open** > **Open in new tab** to open the table.
+* Select **Edit** on the top toolbar to open the table in edit mode.
+* Configure the table to show the **Category Name** and **Category Description** columns.
+* Insert the following records into the table:
+  | Category Name | Category Description      |
+  | -------------- | ------------- |
+  | Airfare | Covers the cost of domestic and international flights for business travel. |
+  | Ground Transportation | Covers local transportation costs for business-related travel, including taxis, rideshare services, shuttles, and car rentals. |
+  | Hotel | Covers lodging expenses for business travel, including nightly stays at hotels, motels, or corporate housing. |
+  | Meals | Covers meal expenses incurred during business travel or client meetings. |
+  | Parking | Covers parking fees incurred during business-related activities, including airport parking, hotel parking, and client site visits. |
+
+  ![Screenshot of the Expense Category table with the Category Name and Category Description columns](./assets/expense-category-table.png)
+
 
 ### Using the source code
 
