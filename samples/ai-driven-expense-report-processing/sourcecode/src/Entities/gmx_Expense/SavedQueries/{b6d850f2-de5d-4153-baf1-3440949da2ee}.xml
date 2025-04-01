@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{b6d850f2-de5d-4153-baf1-3440949da2ee}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="gmx_expensenumber" select="1" icon="1" preview="1">
+        <row name="result" id="gmx_expenseid">
+          <cell name="gmx_expensenumber" width="300" />
+          <cell name="createdon" width="125" />
+          <cell name="gmx_category" width="150" />
+          <cell name="gmx_amount" width="150" />
+          <cell name="gmx_vendor" width="150" />
+          <cell name="gmx_expensedate" width="150" />
+          <cell name="gmx_notes" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="gmx_expense">
+          <attribute name="gmx_expenseid" />
+          <attribute name="gmx_expensenumber" />
+          <attribute name="createdon" />
+          <order attribute="gmx_expensenumber" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="gmx_category" />
+          <attribute name="gmx_amount" />
+          <attribute name="gmx_vendor" />
+          <attribute name="gmx_expensedate" />
+          <attribute name="gmx_notes" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Expenses" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -103,6 +103,7 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
   Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+* Once completed, follow along from **Step 2** above.
 
 ## Features
 
