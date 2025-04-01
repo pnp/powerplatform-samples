@@ -4,21 +4,7 @@
 
 This sample showcases an AI-driven expense report processing solution that combines an AI Builder prompt, Dataverse, and Power Automate.
 
-The AI Prompt uses both text and image (multi-modal) input as well as Dataverse grounding:
-
   ![Screenshot of the full Expense Processing AI Builder prompt with multi-modal input and Dataverse grounding](./assets/expense-processing-ai-prompt.png)
-
-The prompt is then used in a Power Automate flow to automate the Expense Report processing. The flow is triggered by an incoming email, from which it extracts the sender’s details and initializes an **Expense Report** Dataverse record:
-
-  ![Screenshot of the first part of the Power Automate flow that processes the Expense Report](./assets/expense-report-flow-1.png)
-
-The flow continues to analyze the email body and any attached receipt images to determine the purpose of the expense and extract individual expense details. For each receipt, it creates a corresponding record in the **Expense** Dataverse table, uploads the receipt image, and updates running totals:
-
-  ![Screenshot of the second part of the Power Automate flow that processes the Expense Report](./assets/expense-report-flow-2.png)
-
-Once the flow processes all receipts, it updates the **Expense Report** record with the purpose, total amount and status:
-
-  ![Screenshot of the third part of the Power Automate flow that processes the Expense Report](./assets/expense-report-flow-3.png)
 
 ## Applies to
 
@@ -107,12 +93,23 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 ## Features
 
-Description of the solution with possible additional details than in short summary.
-This solution illustrates the following concepts on top of the Power Platform:
+This sample showcases an AI-driven expense report processing solution that combines an AI Builder prompt, Dataverse, and Power Automate.
 
-* topic 1
-* topic 2
-* topic 3
+The AI Prompt uses both text and image (multi-modal) input as well as Dataverse grounding:
+
+  ![Screenshot of the full Expense Processing AI Builder prompt with multi-modal input and Dataverse grounding](./assets/expense-processing-ai-prompt.png)
+
+The prompt is then used in a Power Automate flow to automate the Expense Report processing. The flow is triggered by an incoming email, from which it extracts the sender’s details and initializes an **Expense Report** Dataverse record:
+
+  ![Screenshot of the first part of the Power Automate flow that processes the Expense Report](./assets/expense-report-flow-1.png)
+
+The flow continues to analyze the email body and any attached receipt images to determine the purpose of the expense and extract individual expense details. For each receipt, it creates a corresponding record in the **Expense** Dataverse table, uploads the receipt image, and updates running totals:
+
+  ![Screenshot of the second part of the Power Automate flow that processes the Expense Report](./assets/expense-report-flow-2.png)
+
+Once the flow processes all receipts, it updates the **Expense Report** record with the purpose, total amount and status:
+
+  ![Screenshot of the third part of the Power Automate flow that processes the Expense Report](./assets/expense-report-flow-3.png)
 
 <!--
 RESERVED FOR REPO MAINTAINERS
