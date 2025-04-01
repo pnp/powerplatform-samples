@@ -74,6 +74,21 @@ Version|Date|Comments
 
   ![Screenshot of the Expense Category table with the Category Name and Category Description columns](./assets/expense-category-table.png)
 
+**Step 3: Test the Analyze Incoming Expense Reports flow**
+
+* In the solution explorer, look for the **Analyze Incoming Expense Reports** flow > Select the **Commands** icon > **Edit** > **Edit in new tab** to open the flow.
+* Switch to the **New designer**
+* **Publish** and **Test** the flow
+  * After selecting **Test** >  **Manually** > **Test**.
+* Open Outlook in a new tab and send an email to yourself with the following details:
+  * **Subject**: *New Expense Report*
+  * **Body**: Write a lengthy description of where you went, what you did, etc
+  * **Attachment**: Attach multiple receipt images (e.g., a picture of a restaurant bill or a hotel invoice) to the email.
+
+  ![Screenshot of the email with the subject New Expense Report and a lengthy description of where you went, what you did, etc](./assets/email.png)
+
+* Check the **Expense Report** and **Expense** tables in Dataverse to see if the flow has created the records successfully.
+
 
 ### Using the source code
 
