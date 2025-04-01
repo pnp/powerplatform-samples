@@ -34,51 +34,18 @@ Once the flow processes all receipts, it updates the **Expense Report** record w
 
 ## Compatibility
 
-<!--
-Update the compatibility below.
-
-If a premium license is not required and there are no experimental features used in your solution:
-![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
-![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
-
-If a premium license is required and there are experimental features used in your solution:
 ![Premium License](https://img.shields.io/badge/Premium%20License-Required-green.svg "Premium license required")
-![Experimental Features](https://img.shields.io/badge/Experimental%20Features-Yes-green.svg "Does rely on experimental features")
-
-Don't worry if you're unsure about the compatibility matrix above. We'll verify it when we approve the PR. 
--->
-
-![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
 
 ## Contributors
-<!--
-We use this section to recognize and promote your contributions. Please provide one author per line -- even if you worked together on it.
 
-We'll only use the info you provided here. Make sure to include your full name, not just your GitHub username.
-
-Provide a link to your GitHub profile to help others find more cool things you have done. The only link we'll accept is a link to your GitHub profile.
-
-If you want to provide links to your social media, blog, and employer name, make sure to update your GitHub profile.
--->
-
-* [Author Name](LinkToYourGitHubProfile)
+* [Gomolemo Mohapi](https://github.com/gomomohapi)
 
 ## Version history
 
 Version|Date|Comments
 -------|----|--------
-1.1|November 1, 2022|Update comment
-1.0|October 29, 2022|Initial release
-
-## Prerequisites
-
-<!--
-Any special pre-requisites? Include any lists, permissions, offerings to the demo gods, or whatever else needs to be done for this sample to work.
-
-Please describe the steps to configure the pre-requisites. Feel free to add screen shots, but make sure that there is a text description of the steps to perform.
- 
--->
+1.0|April 1, 2025|Initial release
 
 ## Minimal path to awesome
 
