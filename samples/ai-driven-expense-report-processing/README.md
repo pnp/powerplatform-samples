@@ -49,23 +49,12 @@ Version|Date|Comments
 
 ## Minimal path to awesome
 
-<!-- 
-PRO TIP:
-
-For commands, use the `code syntax`
-
-For button labels, page names, dialog names, etc. as they appear on the screen, use **Bold**
-
-Don't use "click", use "select" or "use"
-
-As tempting as it may be, don't just use images to describe the steps. Let's be as inclusive as possible and think about accessibility.
-
--->
-
 ### Using the solution zip
 
-* [Download](./solution/solution.zip) the `.zip` from the `solution` folder
-* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+**Step 1: Import the solution into your Power Apps environment**
+
+* [Download](./solution/ai-driven-expense-report-processing.zip) the `.zip` from the `solution` folder
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you've just downloaded.
 * Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
 
 ### Using the source code
