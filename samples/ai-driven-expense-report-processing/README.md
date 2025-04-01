@@ -22,44 +22,13 @@ Once the flow processes all receipts, it updates the **Expense Report** record w
 
 ## Applies to
 
-<!--
-Update the applies to section below.
-
-If your solution includes all the products and features listed below, use the following:
-![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
+![Power Apps](https://img.shields.io/badge/Power%20Apps-No-red "No")
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-Yes-green "Yes")
-![Power BI](https://img.shields.io/badge/Power%20BI-Yes-green "Yes")
-![Power Pages](https://img.shields.io/badge/Power%20Pages-Yes-green "Yes")
-![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-Yes-green "Yes")
+![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
+![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
+![Copilot Studio](https://img.shields.io/badge/Copilot%20Studio-No-red "No")
 ![Dataverse](https://img.shields.io/badge/Dataverse-Yes-green "Yes")
 ![AI Builder](https://img.shields.io/badge/AI%20Builder-Yes-green "Yes")
-![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-Yes-green "Yes")
-![Power Fx](https://img.shields.io/badge/Power%20Fx-Yes-green "Yes")
-
-If your solution doesn't include the products and features listed below, use the following:
-![Power Apps](https://img.shields.io/badge/Power%20Apps-No-red "No")
-![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
-![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
-![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
-![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
-![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
-![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
-![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
-![Power Fx](https://img.shields.io/badge/Power%20Fx-No-red "No")
-
-PRO TIP:
-Use the above samples and copy and paste the ones that apply to you.
-
-Don't worry if you're unsure about the compatibility matrix above. We'll verify it when we approve the PR. 
--->
-
-![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
-![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
-![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
-![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
-![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
-![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
-![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
 ![Power Fx](https://img.shields.io/badge/Power%20Fx-No-red "No")
 
