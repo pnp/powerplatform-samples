@@ -1,0 +1,306 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365": {
+        "api": {
+          "name": "shared_office365"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_71810"
+        },
+        "runtimeSource": "embedded"
+      },
+      "shared_commondataserviceforapps": {
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedcommondataserviceforapps_df8b0"
+        },
+        "runtimeSource": "embedded"
+      },
+      "shared_office365users": {
+        "api": {
+          "name": "shared_office365users"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365users_8c030"
+        },
+        "runtimeSource": "embedded"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "When_a_new_Expense_Report_email_arrives": {
+          "type": "OpenApiConnectionNotification",
+          "inputs": {
+            "parameters": {
+              "includeAttachments": true,
+              "subjectFilter": "New Expense Report",
+              "importance": "Any",
+              "fetchOnlyWithAttachment": false,
+              "folderPath": "Inbox"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "operationId": "OnNewEmailV3",
+              "connectionName": "shared_office365"
+            }
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "8772e344-80f2-4923-998b-85271caeca3d"
+          }
+        }
+      },
+      "actions": {
+        "Add_a_new_row_to_Expense_Report_table": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "gmx_expensereports",
+              "item/gmx_expensereportid2": "@guid()",
+              "item/gmx_approvalstatus": 807060003,
+              "item/gmx_employeealias": "@outputs('Get_user_profile_of_the_sender')?['body/userPrincipalName']",
+              "item/gmx_employeename": "@outputs('Get_user_profile_of_the_sender')?['body/displayName']",
+              "item/gmx_submissiondate": "@utcNow()"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "CreateRecord",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          },
+          "runAfter": {
+            "Get_user_profile_of_the_sender": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a0b966f4-20c6-4d83-8a67-48039df013bd"
+          }
+        },
+        "Get_user_profile_of_the_sender": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "id": "@triggerOutputs()?['body/from']"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users",
+              "operationId": "UserProfile_V2",
+              "connectionName": "shared_office365users"
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "585985aa-3700-4f08-ac11-648eb2a674e6"
+          }
+        },
+        "Apply_to_each": {
+          "type": "Foreach",
+          "foreach": "@triggerOutputs()?['body/attachments']",
+          "actions": {
+            "Analyse_Expense_Report_email_and_attachments_": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "recordId": "064f86df-1425-4005-a244-34cfecd1458f",
+                  "item/requestv2/email": "@triggerOutputs()?['body/body']",
+                  "item/requestv2/receipts/base64Encoded": "@item()?['contentBytes']"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "aibuilderpredict_customprompt",
+                  "connectionName": "shared_commondataserviceforapps"
+                }
+              },
+              "metadata": {
+                "flowSystemMetadata": {
+                  "portalOperationId": "aibuilderpredict_customprompt",
+                  "portalOperationGroup": "aibuilder",
+                  "portalOperationApiDisplayNameOverride": "AI Builder",
+                  "portalOperationIconOverride": "https://content.powerapps.com/resource/makerx/static/pauto/images/designeroperations/aiBuilderNew.51dbdb6b.png",
+                  "portalOperationBrandColorOverride": "#0A76C4",
+                  "portalOperationApiTierOverride": "Standard"
+                },
+                "operationMetadataId": "d44e4696-a0ec-4f57-9e27-64ea97aea85c"
+              }
+            },
+            "Add_a_new_row_to_Expenses_table": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "gmx_expenses",
+                  "item/gmx_expensenumber": "@guid()",
+                  "item/crfbf_ExpenseReport@odata.bind": "/gmx_expensereports(@{outputs('Add_a_new_row_to_Expense_Report_table')?['body/gmx_expensereportid']})",
+                  "item/gmx_amount": "@outputs('Analyse_Expense_Report_email_and_attachments_')?['body/responsev2/predictionOutput/structuredOutput/Amount']",
+                  "item/gmx_category": "@outputs('Analyse_Expense_Report_email_and_attachments_')?['body/responsev2/predictionOutput/structuredOutput/Category']",
+                  "item/gmx_expensedate": "@outputs('Analyse_Expense_Report_email_and_attachments_')?['body/responsev2/predictionOutput/structuredOutput/ExpenseDate']",
+                  "item/gmx_notes": "@outputs('Analyse_Expense_Report_email_and_attachments_')?['body/responsev2/predictionOutput/structuredOutput/Notes']",
+                  "item/gmx_vendor": "@outputs('Analyse_Expense_Report_email_and_attachments_')?['body/responsev2/predictionOutput/structuredOutput/Vendor']"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "connectionName": "shared_commondataserviceforapps"
+                }
+              },
+              "runAfter": {
+                "Analyse_Expense_Report_email_and_attachments_": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a5adc2bc-271f-4348-bfb8-2ae0cbfcf550"
+              }
+            },
+            "Upload_attachment_to_Expense_record": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "x-ms-file-name": "@item()?['name']",
+                  "entityName": "gmx_expenses",
+                  "recordId": "@outputs('Add_a_new_row_to_Expenses_table')?['body/gmx_expenseid']",
+                  "fileImageFieldName": "gmx_receipt",
+                  "item": "@item()?['contentBytes']"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "UpdateEntityFileImageFieldContent",
+                  "connectionName": "shared_commondataserviceforapps"
+                }
+              },
+              "runAfter": {
+                "Add_a_new_row_to_Expenses_table": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "41aaf8e0-8fa7-4be9-8261-259de5edb4e1"
+              }
+            },
+            "Set_Purpose_variable": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Purpose",
+                "value": "@outputs('Analyse_Expense_Report_email_and_attachments_')?['body/responsev2/predictionOutput/structuredOutput/Purpose']"
+              },
+              "runAfter": {
+                "Upload_attachment_to_Expense_record": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ba57d977-5046-4ee0-ad52-a3808ac2a14b"
+              }
+            },
+            "Increment_Total_Expense_Amount_variable": {
+              "type": "IncrementVariable",
+              "inputs": {
+                "name": "Total Expense Amount",
+                "value": "@outputs('Analyse_Expense_Report_email_and_attachments_')?['body/responsev2/predictionOutput/structuredOutput/Amount']"
+              },
+              "runAfter": {
+                "Set_Purpose_variable": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "902065d6-8fc0-431a-9209-d89f53505821"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_Total_Expense_Amount": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0c03a438-570a-49d0-b75f-f3c5b146f9b0"
+          }
+        },
+        "Update_the_Expense_Report_row_details": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "gmx_expensereports",
+              "recordId": "@outputs('Add_a_new_row_to_Expense_Report_table')?['body/gmx_expensereportid']",
+              "item/gmx_approvalstatus": 807060000,
+              "item/gmx_purpose": "@variables('Purpose')",
+              "item/gmx_totalamount": "@variables('Total Expense Amount')"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "UpdateOnlyRecord",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          },
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5925e46b-e5f7-40bc-952d-7abfd2a82728"
+          }
+        },
+        "Initialize_Purpose_variable": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Purpose",
+                "type": "string",
+                "value": "Purpose"
+              }
+            ]
+          },
+          "runAfter": {
+            "Add_a_new_row_to_Expense_Report_table": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1ae1fa6b-b5a1-40a4-b61c-74d9f77564ff"
+          }
+        },
+        "Initialize_Total_Expense_Amount": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Total Expense Amount",
+                "type": "float",
+                "value": 0
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_Purpose_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2a81405b-a487-4e53-b4d9-7481acf34503"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

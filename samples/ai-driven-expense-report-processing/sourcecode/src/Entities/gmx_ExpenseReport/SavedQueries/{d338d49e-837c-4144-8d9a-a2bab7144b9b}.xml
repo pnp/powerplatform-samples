@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{d338d49e-837c-4144-8d9a-a2bab7144b9b}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="gmx_expensereportid2" select="1" icon="1" preview="1">
+        <row name="result" id="gmx_expensereportid">
+          <cell name="gmx_expensereportid2" width="300" />
+          <cell name="createdon" width="125" />
+          <cell name="gmx_purpose" width="150" />
+          <cell name="gmx_employeealias" width="150" />
+          <cell name="gmx_employeename" width="150" />
+          <cell name="gmx_submissiondate" width="150" />
+          <cell name="gmx_totalamount" width="150" />
+          <cell name="gmx_approvalstatus" width="150" />
+          <cell name="gmx_notes" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="gmx_expensereport">
+          <attribute name="gmx_expensereportid" />
+          <attribute name="gmx_expensereportid2" />
+          <attribute name="createdon" />
+          <order attribute="gmx_expensereportid2" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="gmx_purpose" />
+          <attribute name="gmx_employeealias" />
+          <attribute name="gmx_employeename" />
+          <attribute name="gmx_submissiondate" />
+          <attribute name="gmx_totalamount" />
+          <attribute name="gmx_approvalstatus" />
+          <attribute name="gmx_notes" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Expense Reports" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
