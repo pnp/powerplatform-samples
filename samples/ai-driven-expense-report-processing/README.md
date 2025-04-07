@@ -39,7 +39,7 @@ Version|Date|Comments
 
 **Step 1: Import the solution into your Power Apps environment**
 
-* [Download](./solution/ai-driven-expense-report-processing.zip) the `.zip` from the `solution` folder.
+* [Download](./solution/ai-driven-expense-report-processing-sample.zip) the `.zip` from the `solution` folder.
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you've just downloaded.
 * Once the solution has been imported, you will see the **Automated Expense Reporting** solution under the **Unmanaged** section of the **Solutions** page.
 * Select the solution to open it.
@@ -110,16 +110,6 @@ The flow continues to analyze the email body and any attached receipt images to 
 Once the flow processes all receipts, it updates the **Expense Report** record with the purpose, total amount and status:
 
   ![Screenshot of the third part of the Power Automate flow that processes the Expense Report](./assets/expense-report-flow-3.png)
-
-<!--
-RESERVED FOR REPO MAINTAINERS
-
-We'll add the video from the community call recording here
-
-## Video
-
-[![YouTube video title](./assets/video-thumbnail.jpg)](https://www.youtube.com/watch?v=XXXXX "YouTube video title")
--->
 
 ## Help
 
