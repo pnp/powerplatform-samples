@@ -9,16 +9,12 @@ The Warehouse Template is a free Power Apps Canvas App built to help power users
 * Inventory Dashboard: A centralized view displaying stock levels, low inventory alerts, and key metrics for efficient decision-making.
 * Product Management: Add, edit, and categorize products with ease, including details such as SKU, description, and quantity.
 * Search and Filter: Quickly locate items using powerful search and filter capabilities.
+
 ## Benefits:
 
 * Customizable Foundation: Adapt the template to your specific warehouse or inventory management needs without starting from scratch.
 * Seamless Integration: Built to integrate effortlessly with other Microsoft 365 tools like SharePoint, Teams, and Power BI for enhanced reporting and collaboration.
 * Ease of Use: Designed with user-friendly navigation and a clean UI, making it accessible for non-technical users.
-
-
-
-
-
 
 ## Applies to
   
@@ -39,7 +35,7 @@ The Warehouse Template is a free Power Apps Canvas App built to help power users
 
 ## Contributors
 
-- [Samir Daoudi](https://github.com/Samir-Daoudi)
+* [Samir Daoudi](https://github.com/Samir-Daoudi)
 
 ## Version history
 
@@ -47,12 +43,12 @@ Version|Date|Comments
 -------|----|--------
 1.0|March 2, 2025|Initial release
 
+## Minimal path to awesome
 
 ### Using the solution zip
 
-* [Download](./solution/WarehouseTemplate_1_0_0_1.zip) the `.zip` from the `solution` folder
+* [Download](./solution/warehouse-template.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-* Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
 
 ### Using the source code
 
@@ -72,14 +68,14 @@ You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/devel
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=charts-4-powerapps&authors=@Samir-Daoudi&title=charts-4-powerapps%20-%20).
+If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=warehouse-template&authors=@Samir-Daoudi&title=warehouse-template%20-%20).
 
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=charts-4-powerapps&authors=@Samir-Daoudi&title=charts-4-powerapps%20-%20).
+For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=warehouse-template&authors=@Samir-Daoudi&title=warehouse-template%20-%20).
 
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=charts-4-powerapps&authors=@Samir-Daoudi&title=charts-4-powerapps%20-%20).
+Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=warehouse-template&authors=@Samir-Daoudi&title=warehouse-template%20-%20).
 
 ## Disclaimer
 
 THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/warehouse-template"  aria-hidden="true" />
