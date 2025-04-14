@@ -30,8 +30,6 @@ You can also set your preferred favourite team and this will be stored in a Data
 
 ![Premium License](https://img.shields.io/badge/Premium%20License-Required-green.svg "Premium license required")
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-Yes-green.svg "Does rely on experimental features")
-
-
 ![Premium License](https://img.shields.io/badge/Premium%20License-Not%20Required-red.svg "Premium license not required")
 ![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
 
@@ -55,9 +53,8 @@ Version|Date|Comments
 
 ### Using the solution zip
 
-* [Download](./solution/solution.zip) the `.zip` from the `solution` folder
+* [Download](./solution/varify-bot.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-* Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
 
 ### Using the source code
 
@@ -81,43 +78,7 @@ This solution illustrates the following concepts on top of the Power Platform:
 * Integration between Copilot agent and third-part API
 * Integration between Copilot Agent and Dataverse
 
-<!--
-Note that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions in advance! You rock ❤.
--->
-
-<!--
-RESERVED FOR REPO MAINTAINERS
-
-We'll add the video from the community call recording here
-
-## Video
-
-[![YouTube video title](./assets/video-thumbnail.jpg)](https://www.youtube.com/watch?v=XXXXX "YouTube video title")
--->
-
 ## Help
-
-<!--
-You can just search and replace this page with the following values:
-
-Search for:
-varify-bot
-
-Replace with your sample folder name. E.g.: my-cool-sample
-
-Search for:
-@BrianArcher94
-
-Replace with your GitHub username, prefixed with an "@". If you have more than one author, use %20 to separate them, making sure to prefix everyone's username individually with an "@".
-
-Example:
-@hugoabernier
-
-Or:
-@hugoabernier%20@VesaJuvonen%20@PopWarner
--->
-
-> Note: don't worry about this section, we'll update the links.
 
 We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
 
