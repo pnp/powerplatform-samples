@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{22e0b721-4d5d-4340-bc9f-fe790ad6ee1b}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ba_teamname" select="1" icon="1" preview="1">
+        <row name="result" id="ba_favouriteteamid">
+          <cell name="ba_teamname" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>1</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ba_favouriteteam">
+          <attribute name="ba_favouriteteamid" />
+          <attribute name="ba_teamname" />
+          <attribute name="createdon" />
+          <order attribute="ba_teamname" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Favourite Team Advanced Find View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
