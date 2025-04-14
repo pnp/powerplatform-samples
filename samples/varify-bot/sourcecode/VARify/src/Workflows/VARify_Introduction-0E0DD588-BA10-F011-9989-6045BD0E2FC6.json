@@ -1,0 +1,230 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ba_sharedcommondataserviceforapps_fa7dd"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "b8f61c18-7224-4f8a-9c5f-72fbce5df764"
+          },
+          "type": "Request",
+          "kind": "Skills",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text_1": {
+                  "title": "varUserName",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Try": {
+          "actions": {
+            "Check_if_user_has_favourite_team_set": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "18280508-2fb6-4bad-8ef3-05dfa6648b28"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "ba_favouriteteams",
+                  "$filter": "ba_user eq '@{triggerBody()['text_1']}'",
+                  "$top": 1
+                },
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Condition": {
+              "actions": {
+                "Respond_to_the_agent": {
+                  "runAfter": {
+                    "Compose_1": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "81c94f73-dd52-465c-ad3b-a4686da63cc3"
+                  },
+                  "type": "Response",
+                  "kind": "Skills",
+                  "inputs": {
+                    "statusCode": 200,
+                    "body": {
+                      "varresponse": "@{outputs('Compose_1')}"
+                    },
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "varresponse": {
+                          "title": "varResponse",
+                          "x-ms-dynamically-added": true,
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "Append_to_string_variable": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "886960ce-1aeb-4ea4-987a-a7e21a4b2074"
+                  },
+                  "type": "AppendToStringVariable",
+                  "inputs": {
+                    "name": "varFavouriteTeam",
+                    "value": "@first(outputs('Check_if_user_has_favourite_team_set')?['body/value'])?['ba_teamname']"
+                  }
+                },
+                "Compose": {
+                  "runAfter": {
+                    "Append_to_string_variable": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "30dc6aed-a1ea-486b-a88a-93522991278d"
+                  },
+                  "type": "Compose",
+                  "inputs": "I can see that your favourite team is: @{variables('varFavouriteTeam')}. I can provide you information their previous and upcoming fixtures."
+                },
+                "Compose_1": {
+                  "runAfter": {
+                    "Compose": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "cc198ac0-ea38-475c-a2c1-b8895d2ad53b"
+                  },
+                  "type": "Compose",
+                  "inputs": "@variables('varFavouriteTeam')"
+                }
+              },
+              "runAfter": {
+                "Check_if_user_has_favourite_team_set": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Compose_2": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "bb284df0-53ee-41f3-926d-3491b440efa2"
+                    },
+                    "type": "Compose",
+                    "inputs": "I can see that you have not yet selected a favourite team."
+                  },
+                  "Respond_to_Copilot": {
+                    "runAfter": {
+                      "Compose_2": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "9067df5a-8619-4b8e-80f0-7dcca16ba513"
+                    },
+                    "type": "Response",
+                    "kind": "Skills",
+                    "inputs": {
+                      "statusCode": 200,
+                      "body": {
+                        "varresponse": "@{outputs('Compose_2')}"
+                      },
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "varresponse": {
+                            "title": "varResponse",
+                            "x-ms-dynamically-added": true,
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "greater": [
+                  "@length(outputs('Check_if_user_has_favourite_team_set')?['body/value'])",
+                  0
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "0c353d6a-885a-49af-b502-75f74d2fb823"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "403ca5ed-fd99-4a09-9314-253e020b1711"
+          },
+          "type": "Scope"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "86ae9789-42ff-4cc9-9658-07552b105e7e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varFavouriteTeam",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": "8966f0978a80430098d992ce322095e3"
+  },
+  "schemaVersion": "1.0.0.0"
+}
