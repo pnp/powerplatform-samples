@@ -1,0 +1,116 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "v_SiteUrl (kk_v_SiteUrl)": {
+          "defaultValue": "https://contoso.sharepoint.com/sites/subsite",
+          "type": "String",
+          "metadata": {
+            "schemaName": "kk_v_SiteUrl"
+          }
+        },
+        "v_Library (kk_v_Library)": {
+          "defaultValue": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "type": "String",
+          "metadata": {
+            "schemaName": "kk_v_Library"
+          }
+        },
+        "v_List (kk_v_List)": {
+          "defaultValue": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "type": "String",
+          "metadata": {
+            "schemaName": "kk_v_List"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "a6be71f1-c91d-43c5-9875-299d50a9c46c"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Run_a_Child_Flow:_get_library_information_": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "e3d2345d-5eee-4e99-9f6f-d2b8b281bcfc"
+          },
+          "type": "Workflow",
+          "inputs": {
+            "host": {
+              "workflowReferenceName": "031abda2-427b-ef11-ac20-002248617a98"
+            },
+            "body": {
+              "text": "@parameters('v_SiteUrl (kk_v_SiteUrl)')",
+              "text_1": "@parameters('v_Library (kk_v_Library)')"
+            }
+          }
+        },
+        "Run_a_Child_Flow:_get_list_information": {
+          "runAfter": {
+            "Compose:_get_library_information": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0c899ce3-d9a3-46bb-9a72-1c00cd1cbc26"
+          },
+          "type": "Workflow",
+          "inputs": {
+            "host": {
+              "workflowReferenceName": "031abda2-427b-ef11-ac20-002248617a98"
+            },
+            "body": {
+              "text": "@parameters('v_SiteUrl (kk_v_SiteUrl)')",
+              "text_1": "@parameters('v_List (kk_v_List)')"
+            }
+          }
+        },
+        "Compose:_get_library_information": {
+          "runAfter": {
+            "Run_a_Child_Flow:_get_library_information_": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6e515f96-6ece-4abf-a6cd-a1045220d199"
+          },
+          "type": "Compose",
+          "inputs": "@body('Run_a_Child_Flow:_get_library_information_')"
+        },
+        "Compose:_list_information": {
+          "runAfter": {
+            "Run_a_Child_Flow:_get_list_information": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ff0b2787-0fa5-4391-901a-117f795b6e6c"
+          },
+          "type": "Compose",
+          "inputs": "@body('Run_a_Child_Flow:_get_list_information')"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
