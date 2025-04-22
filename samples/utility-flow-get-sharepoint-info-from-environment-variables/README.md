@@ -19,17 +19,19 @@ The "Get Data Source List Info" flow is designed to be executed as a child flow 
 | `list_id` | The value provided as `List Id `parameter | `zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz` |
 | `list_drive_id` | Used by Graph API when referencing libraries. Only for document libraries. | `b!S3SdNSBmTUGa4v5ffh_rslLJssoXH4xEuShkEO-uxKg9bblUMeoaTbQC5t69DJ-x` |
 | `error_message` | The error message if any of the actions failed, or empty string. | `{"Error":"Send_an_HTTP_request_to_SharePoint:_get_Site_with_MS_Graph:[...]},{"Error":"Send_an_HTTP_request_to_SharePoint:_get_list_URL: \\"401 UNAUTHORIZED[...]\\""}`   |
-| `success` | | `True` or `False` |
+| `success` | Result. If `False`, the `error_message` contains error description. Otherwise, `error_message` is an empty string.  | `True` or `False` |
 
-### Input parameters
+### Workflow preview
+
+#### Input parameters
 
 ![Input parameters](./assets/preview1.png)
 
-### Main logic and error handling
+#### Main logic and error handling
 
 ![Main logic and error handling](./assets/preview2.png)
 
-### Return parameters
+#### Return parameters
 
 ![Return parameters](./assets/preview3.png)
 
