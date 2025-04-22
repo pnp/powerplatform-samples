@@ -18,13 +18,17 @@ The "Get Data Source List Info" flow is designed to be executed as a child flow 
 | `list_title` | The title of the list. This property can be changed by the user. | `The Archive Library` |
 | `list_id` | The value provided as `List Id `parameter | `zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz` |
 | `list_drive_id` | Used by Graph API when referencing libraries. Only for document libraries. | `b!S3SdNSBmTUGa4v5ffh_rslLJssoXH4xEuShkEO-uxKg9bblUMeoaTbQC5t69DJ-x` |
-| `error_message` | The error message if any of the actions failed, or empty string. | `{"Error":"Send_an_HTTP_request_to_SharePoint:_get_Site_with_MS_Graph:[...]},{"Error":"Send_an_HTTP_request_to_SharePoint:_get_list_URL: \\"401 UNAUTHORIZED[...]\\""}`
-   |
-| `success` | | `True` or `False` |
+| `error_message` | The error message if any of the actions failed, or empty string. | `{"Error":"Send_an_HTTP_request_to_SharePoint:_get_Site_with_MS_Graph:[...]},{"Error":"Send_an_HTTP_request_to_SharePoint:_get_list_URL: \\"401 UNAUTHORIZED[...]\\""}`   || `success` | | `True` or `False` |
+
+### Input parameters
 
 ![Input parameters](./assets/preview1.png)
 
+### Main logic and error handling
+
 ![Main logic and error handling](./assets/preview2.png)
+
+### Return parameters
 
 ![Return parameters](./assets/preview3.png)
 
@@ -63,7 +67,7 @@ Version|Date|Comments
 * [Download](./solution/solution.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * During the import process, update the **connection references** and **environment variables**.
-* If required, configure the flow to be executed as a child flow. Navigate the solution, select the **Get Data Source List Info** flow and on the details page, select **Edit** in the **Run only users** section. 
+* If required, configure the flow to be executed as a child flow. Navigate the solution, select the **Get Data Source List Info** flow and on the details page, select **Edit** in the **Run only users** section.
    ![Run Only Users](./assets/runOnlyUser.png)
 * Click on **Edit** link and change the connection in the **Connections Used** section
    ![Run Only Connection](./assets/runOnlyConnection.png)
