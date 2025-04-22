@@ -4,7 +4,22 @@
 
 > This sample first appeared in [Data Source Environment Variables in Power Automate actions](https://dev.to/kkazala/data-source-environment-variables-in-power-automate-actions-3mo5) article.
 
-The "Get Data Source List Info" flow is designed to be executed as a child flow and accepts two parameters: the `site URL` and `library/list Id`, as provided by the environment variables.
+**Environment variables** in Power Automate flows allow you to manage and reuse values across multiple flows, making updates easier and reducing hardcoding. They also simplify configuration management for different environments, enhancing flexibility and maintainability.
+
+To create reference to a SharePoint site or a SharePoint list, you'd create environment variables of Data source type:
+
+- SharePoint site: Parameter type = `Site`, and choose a site from a drop down
+- SharePoint list or library: Parameter type =`List`, and choose a list/library from a drop down.
+
+The site reference is stored as `URL`, but the list references are stored as `GUID`.
+
+In Power Automate, **different actions reference SharePoint lists and libraries differently**.
+
+Sometimes, it will be list `Title`, sometimes the `URL` (a.k.a. RootFolder), and other times, an `Id`. When accessing document libraries using drives Graph API, the id is not in GUID format, but rather something like this: `b!WqNS-yXl-EmB9E5tlOY2kP3B7PZTD8lCgoRdFoRzZnK_WYiyUTlZTptnb3lchjmk`.
+
+
+
+The "**Get Data Source List Info**" flow retrieves the following site and list information:
 
 | parameter name | description | example |
 |-|-|-|
@@ -20,6 +35,8 @@ The "Get Data Source List Info" flow is designed to be executed as a child flow 
 | `list_drive_id` | Used by Graph API when referencing libraries. Only for document libraries. | `b!S3SdNSBmTUGa4v5ffh_rslLJssoXH4xEuShkEO-uxKg9bblUMeoaTbQC5t69DJ-x` |
 | `error_message` | The error message if any of the actions failed, or empty string. | `{"Error":"Send_an_HTTP_request_to_SharePoint:_get_Site_with_MS_Graph:[...]},{"Error":"Send_an_HTTP_request_to_SharePoint:_get_list_URL: \\"401 UNAUTHORIZED[...]\\""}`   |
 | `success` | Result. If `False`, the `error_message` contains error description. Otherwise, `error_message` is an empty string.  | `True` or `False` |
+
+It is designed to be executed as a child flow and accepts two parameters: the `site URL` and `library/list Id`, as provided by the environment variables.
 
 ### Workflow preview
 
