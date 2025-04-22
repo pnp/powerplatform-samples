@@ -77,7 +77,7 @@ It is designed to be executed as a child flow and accepts two parameters: the `s
 
 Version|Date|Comments
 -------|----|--------
-1.0|February 25 29, 2025|Initial release
+1.0|April 22, 2025|Initial release
 
 ## Minimal path to awesome
 
