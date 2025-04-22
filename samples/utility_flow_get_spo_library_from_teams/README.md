@@ -82,7 +82,7 @@ The solution consists of:
 ## Compatibility
 
 ![Premium License](https://img.shields.io/badge/Premium%20License-Required-green.svg "Premium license required")
-![Experimental Features](https://img.shields.io/badge/Experimental%20Features-Yes-green.svg "Does rely on experimental features")
+![Experimental Features](https://img.shields.io/badge/Experimental%20Features-No-red.svg "Does not rely on experimental features")
 
 The licensing document states that the M365 licenses provide _"limited usage rights"_ to Power Platform, allowing users to extend the M365 services in order to support business processes. But finding the team's guid requires using **Premium connector** because the `Send a Microsoft Graph HTTP request` action does not support `https://graph.microsoft.com/v1.0/teams?$select= id,internalId` query.
 
