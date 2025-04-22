@@ -37,8 +37,8 @@ The "Get Data Source List Info" flow is designed to be executed as a child flow 
 
 ## Applies to
 
-![Power Apps](https://img.shields.io/badge/Power%20Apps-No-red "No")
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-Yes-green "Yes")
+![Power Apps](https://img.shields.io/badge/Power%20Apps-No-red "No")
 ![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
 ![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
 ![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
