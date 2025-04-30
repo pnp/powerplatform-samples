@@ -1,0 +1,1379 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "idapps_sharedcommondataserviceforapps_6b4f3"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_webcontents": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "idapps_sharedwebcontents_f5993"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "idapps_sharedsharepointonline_58e5f"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "1361dbcd-dfd6-46cc-adb0-524a8b8391cb"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Record Id",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Scope:_Error_Handling": [
+              "Succeeded",
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cfbfcaf5-8a7b-4b2a-8b55-767f27ea3fa4"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "tenant_name": "@body('Parse_JSON:_objResults')?['tenant_name']",
+              "site_url": "@{body('Parse_JSON:_objResults')?['site_url']}",
+              "site_title": "@{body('Parse_JSON:_objResults')?['site_title']}",
+              "site_id": "@{body('Parse_JSON:_objResults')?['site_id']}",
+              "web_id": "@{body('Parse_JSON:_objResults')?['web_id']}",
+              "library_absolute_url": "@{body('Parse_JSON:_objResults')?['library_absolute_url']}",
+              "library_name": "@{body('Parse_JSON:_objResults')?['library_name']}",
+              "library_title": "@{body('Parse_JSON:_objResults')?['library_title']}",
+              "library_id": "@{body('Parse_JSON:_objResults')?['library_id']}",
+              "library_drive_id": "@{body('Parse_JSON:_objResults')?['library_drive_id']}",
+              "folder_absolute_url": "@{body('Parse_JSON:_objResults')?['folder_absolute_url']}",
+              "folder_display_name": "@{body('Parse_JSON:_objResults')?['folder_display_name']}",
+              "folder_id": "@{body('Parse_JSON:_objResults')?['folder_id']}",
+              "folder_drive_id": "@{body('Parse_JSON:_objResults')?['folder_drive_id']}",
+              "error_message": "@variables('sErrorMessage')",
+              "success": "@{variables('bSuccess')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tenant_name": {
+                  "title": "tenant_name",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "site_url": {
+                  "title": "site_url",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "site_title": {
+                  "title": "site_title",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "site_id": {
+                  "title": "site_id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "web_id": {
+                  "title": "web_id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "library_absolute_url": {
+                  "title": "library_absolute_url",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "library_name": {
+                  "title": "library_name",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "library_title": {
+                  "title": "library_title",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "library_id": {
+                  "title": "library_id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "library_drive_id": {
+                  "title": "library_drive_id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "folder_absolute_url": {
+                  "title": "folder_absolute_url",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "folder_display_name": {
+                  "title": "folder_display_name",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "folder_id": {
+                  "title": "folder_id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "folder_drive_id": {
+                  "title": "folder_drive_id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "error_message": {
+                  "title": "error_message",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "success": {
+                  "title": "success",
+                  "x-ms-dynamically-added": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "description": "Return library Id, Name (Root Folder Name, used in URLs), Title (Display Name) and FolderName, where documents for the record are stored"
+        },
+        "Initialize_variable:_objResults": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "f890389c-06b1-42c2-a27f-9b31a7d158fa"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "objResults",
+                "type": "object",
+                "value": {
+                  "tenant_name": "",
+                  "site_id": "",
+                  "site_url": "",
+                  "site_title": "",
+                  "web_id": "",
+                  "library_id": "",
+                  "library_drive_id": "",
+                  "library_name": "",
+                  "library_title": "",
+                  "library_absolute_url": "",
+                  "folder_id": 0,
+                  "folder_drive_id": "",
+                  "folder_display_name": "",
+                  "folder_absolute_url": ""
+                }
+              }
+            ]
+          }
+        },
+        "Initialize_variable:_bSuccess": {
+          "runAfter": {
+            "Initialize_variable:_objResults": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cf3e4e0b-dec0-4765-9a4d-9502369f34f9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "bSuccess",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          }
+        },
+        "Initialize_variable:_sErrorMessage": {
+          "runAfter": {
+            "Initialize_variable:_bSuccess": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b993950a-531c-4231-b5e0-2cfcdc477d99"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "sErrorMessage",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Scope:_retrieve_library_information_for_the_record": {
+          "actions": {
+            "Get_sharepoint_document_locations_for_current_record": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "35688dd6-b1fa-4692-9fec-8d8840927254"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "sharepointdocumentlocations",
+                  "$select": "sitecollectionid, _regardingobjectid_value,relativeurl,name,sharepointdocumentlocationid",
+                  "$filter": "_regardingobjectid_value eq '@{triggerBody()['text']}'",
+                  "$top": 1
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Scope:_Update_objResults,_set_'folder_display_name'": {
+              "actions": {
+                "Parse_JSON:_parse_first_value_from_response": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "1dc9074f-5d18-4fef-98a3-0a7c2ddd95f2"
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@first(outputs('Get_sharepoint_document_locations_for_current_record')?['body/value'])",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "_regardingobjectid_value": {
+                          "type": "string"
+                        },
+                        "sitecollectionid": {
+                          "type": "string"
+                        },
+                        "relativeurl": {
+                          "type": "string"
+                        },
+                        "sharepointdocumentlocationid": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "Compose:_set_property_'folder_display_name'": {
+                  "runAfter": {
+                    "Parse_JSON:_parse_first_value_from_response": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "bbaf4a50-de08-4ab9-b2b5-b31131f8a24e"
+                  },
+                  "type": "Compose",
+                  "inputs": "@setProperty(variables('objResults'),'folder_display_name',body('Parse_JSON:_parse_first_value_from_response')?['relativeurl'])"
+                },
+                "Set_objResults['folder_display_name']": {
+                  "runAfter": {
+                    "Compose:_set_property_'folder_display_name'": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "7bcfe2ea-3b9d-43e3-bd29-d15ad1247416"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "objResults",
+                    "value": "@outputs('Compose:_set_property_''folder_display_name''')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_sharepoint_document_locations_for_current_record": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "21ff116c-e21a-4391-8bde-a5a7fdf89203"
+              },
+              "type": "Scope",
+              "description": "Set folder_display_name"
+            },
+            "Condition": {
+              "actions": {
+                "Invoke_an_HTTP_request_against_Dataverse:_RetrieveAbsoluteAndSiteCollectionUrl": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "c45e89c2-9b7c-47da-a9ce-b7bcafee321a"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "/api/data/v9.2/sharepointdocumentlocations(@{body('Parse_JSON:_parse_first_value_from_response')?['sharepointdocumentlocationid']})/Microsoft.Dynamics.CRM.RetrieveAbsoluteAndSiteCollectionUrl()",
+                      "request/headers": {
+                        "Accept": "application/json",
+                        "OData-MaxVersion": "4.0",
+                        "OData-Version": "4.0"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "description": "Get url of the library used by the sharepoint integration for this record"
+                },
+                "Scope:_Update_objResults,_set_siteUrl,_folderUrl,_libraryUrl,_hostname,_libTitle": {
+                  "actions": {
+                    "Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "00ab74a1-bf48-4814-b5f6-1cff924f34a7"
+                      },
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@body('Invoke_an_HTTP_request_against_Dataverse:_RetrieveAbsoluteAndSiteCollectionUrl')",
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "@@odata.context": {
+                              "type": "string"
+                            },
+                            "AbsoluteUrl": {
+                              "type": "string"
+                            },
+                            "SiteCollectionUrl": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Compose:_set_property_'folder_absolute_url'": {
+                      "runAfter": {
+                        "Set_variable_objResult['site_url']": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "47a9b71d-6f81-41b7-9da5-b8a8ea4e4091"
+                      },
+                      "type": "Compose",
+                      "inputs": "@setProperty(variables('objResults'),'folder_absolute_url',body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['AbsoluteUrl'])"
+                    },
+                    "Set_variable_objResult['folder_absolute_url']": {
+                      "runAfter": {
+                        "Compose:_set_property_'folder_absolute_url'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "4ded2ff3-4488-49d0-95d6-5cb47dec9919"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''folder_absolute_url''')"
+                      }
+                    },
+                    "Compose:_sSourceLibraryName": {
+                      "runAfter": {
+                        "Set_variable_objResults['library_absolute_url']": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "e026fb43-79b7-4d21-9149-e321dd2c3b36"
+                      },
+                      "type": "Compose",
+                      "inputs": "@replace(\r\n\treplace(\r\n\t\treplace(\r\n\t\t\tbody('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['AbsoluteUrl'],\r\n\t\t\t\tbody('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['SiteCollectionUrl'],''),\r\n\t\t\t\t\tbody('Parse_JSON:_parse_first_value_from_response')?['relativeurl'],'')\r\n\t\t\t\t,'/'\r\n\t\t,'')"
+                    },
+                    "Compose:_set_property_'library_name'": {
+                      "runAfter": {
+                        "Compose:_sSourceLibraryName": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "7d671ad6-fa2c-4c5f-8bd1-58531f0ab746"
+                      },
+                      "type": "Compose",
+                      "inputs": "@setProperty(variables('objResults'),'library_name',outputs('Compose:_sSourceLibraryName'))"
+                    },
+                    "Set_variable_objResult['library_name']": {
+                      "runAfter": {
+                        "Compose:_set_property_'library_name'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "e7b3ca3f-c9ee-4bc5-a7ec-72d80aa11a7c"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''library_name''')"
+                      }
+                    },
+                    "Compose:_set_property_'host_name'": {
+                      "runAfter": {
+                        "Set_variable_objResult['library_name']": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "7b97f499-cb06-420f-834b-ceb13e5a9889"
+                      },
+                      "type": "Compose",
+                      "inputs": "@setProperty(variables('objResults'),'tenant_name',uriHost(body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['SiteCollectionUrl']))"
+                    },
+                    "Set_variable_objResult['tenant_name']": {
+                      "runAfter": {
+                        "Compose:_set_property_'host_name'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "2eee0c62-f70b-441e-9c75-c3c90d99f7f4"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''host_name''')"
+                      }
+                    },
+                    "Compose:_set_property_'library_url'": {
+                      "runAfter": {
+                        "Set_variable_objResult['folder_absolute_url']": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "b6ba3df3-568f-44dd-83b8-2d4fa1ea6c80"
+                      },
+                      "type": "Compose",
+                      "inputs": "@ setProperty(variables('objResults'),'library_absolute_url', \r\nreplace(\r\nbody('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['AbsoluteUrl'],\r\nConcat('/',body('Parse_JSON:_parse_first_value_from_response')?['relativeurl']),\r\n'')\r\n)"
+                    },
+                    "Set_variable_objResults['library_absolute_url']": {
+                      "runAfter": {
+                        "Compose:_set_property_'library_url'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "d523cdf5-ded7-4000-8335-007e13b46780"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''library_url''')"
+                      }
+                    },
+                    "Compose:_set_property_'site_url'": {
+                      "runAfter": {
+                        "Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "007c9a91-1459-4d7b-9df6-830d63a93024"
+                      },
+                      "type": "Compose",
+                      "inputs": "@setProperty(variables('objResults'),'site_url',body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['SiteCollectionUrl'])"
+                    },
+                    "Set_variable_objResult['site_url']": {
+                      "runAfter": {
+                        "Compose:_set_property_'site_url'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "4add14ac-ce2f-40d6-b460-013f0a236883"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''site_url''')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Invoke_an_HTTP_request_against_Dataverse:_RetrieveAbsoluteAndSiteCollectionUrl": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "c932006e-26a9-4f4b-8e45-c4533b474982"
+                  },
+                  "type": "Scope",
+                  "description": "Set 'folder_absolute_url', 'site_url', 'library_absolute_url', 'library_name', 'tenant_name'"
+                },
+                "Send_an_HTTP_request_to_SharePoint:_get_Site_info": {
+                  "runAfter": {
+                    "Scope:_Update_objResults,_set_siteUrl,_folderUrl,_libraryUrl,_hostname,_libTitle": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ff47974d-8237-43fb-ae08-7f972471307e"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline",
+                      "operationId": "HttpRequest",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "https://@{uriHost(body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['SiteCollectionUrl'])}",
+                      "parameters/method": "GET",
+                      "parameters/uri": "_api/v2.0/sites('@{uriHost(body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['SiteCollectionUrl'])}'):@{uriPath(body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['SiteCollectionUrl'])}?$select=id,title",
+                      "parameters/headers": {
+                        "Accept": "application/json"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "description": "Get list by InternalName (used in URL): filter by rootfolder"
+                },
+                "Scope:_Update_objResults,_set_'site_title',_'site_id',_'web_id'": {
+                  "actions": {
+                    "Parse_JSON:_get_Site_Info_:_graphId,_title": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "d27e37ce-294d-4556-a289-054d19592b13"
+                      },
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@body('Send_an_HTTP_request_to_SharePoint:_get_Site_info')",
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "@@odata.context": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Compose:_set_property_'site_title'": {
+                      "runAfter": {
+                        "Parse_JSON:_get_Site_Info_:_graphId,_title": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "96bbc2d6-2dd0-4390-837b-89261caf51ee"
+                      },
+                      "type": "Compose",
+                      "inputs": "@setProperty(variables('objResults'),'site_title',body('Parse_JSON:_get_Site_Info_:_graphId,_title')?['title'])"
+                    },
+                    "Set_variable:_objResults['site_title']": {
+                      "runAfter": {
+                        "Compose:_set_property_'site_title'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "c20d228f-305e-4392-a966-1306985dc764"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''site_title''')"
+                      }
+                    },
+                    "Compose:_split_graphId": {
+                      "runAfter": {
+                        "Set_variable:_objResults['site_title']": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "6285fda3-477c-4bee-be82-75896a46fbf8"
+                      },
+                      "type": "Compose",
+                      "inputs": "@split(body('Parse_JSON:_get_Site_Info_:_graphId,_title')?['id'],',')"
+                    },
+                    "Compose:_set_property_'web_id'": {
+                      "runAfter": {
+                        "Set_objResults['site_id']": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "e7f4a746-bab7-4ea6-a5cf-4d6322869b72"
+                      },
+                      "type": "Compose",
+                      "inputs": "@setProperty(variables('objResults'),'web_id',outputs('Compose:_split_graphId')?[2])"
+                    },
+                    "Set_variable:_objResults['web_id']": {
+                      "runAfter": {
+                        "Compose:_set_property_'web_id'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "c152caba-c696-4284-8a4a-addbe6d373d5"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''web_id''')"
+                      }
+                    },
+                    "Set_objResults['site_id']": {
+                      "runAfter": {
+                        "Compose:_set_property_'site_id'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "88e4645f-1b5a-4d8a-a2d2-02bca3e817a2"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''site_id''')"
+                      }
+                    },
+                    "Compose:_set_property_'site_id'": {
+                      "runAfter": {
+                        "Compose:_split_graphId": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "e0f588f7-9d7a-4c4f-bf75-bf4e194c5952"
+                      },
+                      "type": "Compose",
+                      "inputs": "@setProperty(variables('objResults'),'site_id',outputs('Compose:_split_graphId')?[1])"
+                    }
+                  },
+                  "runAfter": {
+                    "Send_an_HTTP_request_to_SharePoint:_get_Site_info": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "9d4a57a1-70ca-42e7-8d8c-78715eef5988"
+                  },
+                  "type": "Scope"
+                },
+                "Send_an_HTTP_request_to_SharePoint:_get_List_info": {
+                  "runAfter": {
+                    "Scope": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ff47974d-8237-43fb-ae08-7f972471307e"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline",
+                      "operationId": "HttpRequest",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "@body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['SiteCollectionUrl']",
+                      "parameters/method": "GET",
+                      "parameters/uri": "/_api/lists?$expand=RootFolder&$filter=(RootFolder/Name eq '@{outputs('Compose:_sSourceLibraryName')}')&$select=Id,Title,ParentWebUrl",
+                      "parameters/headers": {
+                        "Accept": "application/json;odata=nometadata",
+                        "Content-Type": "application/json;odata=verbose;charset=utf-8"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "description": "Get list by InternalName (used in URL): filter by rootfolder"
+                },
+                "Scope:_Update_objResults,_set_'library_id',_'library_title'": {
+                  "actions": {
+                    "Parse_JSON:_retrieve_Title_and_Id": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "1a39c639-56a2-4145-ad72-798ad8c0d331"
+                      },
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@body('Send_an_HTTP_request_to_SharePoint:_get_List_info')",
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "RootFolder": {
+                                    "type": "object",
+                                    "properties": {
+                                      "Exists": {
+                                        "type": "boolean"
+                                      },
+                                      "ExistsAllowThrowForPolicyFailures": {
+                                        "type": "boolean"
+                                      },
+                                      "ExistsWithException": {
+                                        "type": "boolean"
+                                      },
+                                      "IsWOPIEnabled": {
+                                        "type": "boolean"
+                                      },
+                                      "ItemCount": {
+                                        "type": "integer"
+                                      },
+                                      "Name": {
+                                        "type": "string"
+                                      },
+                                      "ProgID": {},
+                                      "ServerRelativeUrl": {
+                                        "type": "string"
+                                      },
+                                      "TimeCreated": {
+                                        "type": "string"
+                                      },
+                                      "TimeLastModified": {
+                                        "type": "string"
+                                      },
+                                      "UniqueId": {
+                                        "type": "string"
+                                      },
+                                      "WelcomePage": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "Id": {
+                                    "type": "string"
+                                  },
+                                  "ParentWebUrl": {
+                                    "type": "string"
+                                  },
+                                  "Title": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "RootFolder",
+                                  "Id",
+                                  "ParentWebUrl",
+                                  "Title"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Compose:_set_property_'library_id'": {
+                      "runAfter": {
+                        "Parse_JSON:_retrieve_Title_and_Id": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "450a0229-40ed-4c46-ba1f-b25a0e13562e"
+                      },
+                      "type": "Compose",
+                      "inputs": "@setProperty(variables('objResults'),'library_id',first(body('Parse_JSON:_retrieve_Title_and_Id')?['value'])?['Id'])"
+                    },
+                    "Compose:_set_property_'library_title'": {
+                      "runAfter": {
+                        "Set_variable_objResults['library_id']": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "44f4247c-ca4f-4def-b8bc-1f6fdf68e351"
+                      },
+                      "type": "Compose",
+                      "inputs": "@setProperty(variables('objResults'),'library_title',first(body('Parse_JSON:_retrieve_Title_and_Id')?['value'])?['Title'])"
+                    },
+                    "Set_variable_objResults['library_id']": {
+                      "runAfter": {
+                        "Compose:_set_property_'library_id'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "476e8f52-25e8-44e0-a9af-5f100d69b2ff"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''library_id''')"
+                      }
+                    },
+                    "Set_variable_objResults['library_Title']": {
+                      "runAfter": {
+                        "Compose:_set_property_'library_title'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "3475089f-003a-4b48-9d0a-6bd7de96d38f"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''library_title''')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Send_an_HTTP_request_to_SharePoint:_get_List_info": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "219e4005-d81f-4911-9a06-388f9261799a"
+                  },
+                  "type": "Scope"
+                },
+                "Send_an_HTTP_request_to_SharePoint:_get_folder_by_relative_Url": {
+                  "runAfter": {
+                    "Scope:_Update_objResults,_set_'library_id',_'library_title'": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ff47974d-8237-43fb-ae08-7f972471307e"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline",
+                      "operationId": "HttpRequest",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "@body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['SiteCollectionUrl']",
+                      "parameters/method": "GET",
+                      "parameters/uri": "/_api/web/GetFolderByServerRelativeUrl('@{substring(replace(body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['AbsoluteUrl'],body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['SiteCollectionUrl'],''),1)}')/ListItemAllFields",
+                      "parameters/headers": {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json;odata=verbose;charset=utf-8"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "description": "Get list by InternalName (used in URL): filter by rootfolder"
+                },
+                "Scope:_Update_objResults,_set_'folder_Id'": {
+                  "actions": {
+                    "Parse_JSON:_get_folderId_and_link": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "6b9b65e8-9c62-4c52-a5d9-af92144333a8"
+                      },
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@body('Send_an_HTTP_request_to_SharePoint:_get_folder_by_relative_Url')",
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "odata.editLink": {
+                              "type": "string"
+                            },
+                            "FileSystemObjectType": {
+                              "type": "integer"
+                            },
+                            "Id": {
+                              "type": "integer"
+                            },
+                            "ID": {
+                              "type": "integer"
+                            },
+                            "GUID": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Compose:_set_Property_'folder_Id'": {
+                      "runAfter": {
+                        "Parse_JSON:_get_folderId_and_link": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "b4f939d3-2373-431a-814c-1988a3d0fe64"
+                      },
+                      "type": "Compose",
+                      "inputs": "@setProperty(variables('objResults'),'folder_id',body('Parse_JSON:_get_folderId_and_link')?['Id'])\r\n"
+                    },
+                    "Set_variable:_objResults['folder_id']": {
+                      "runAfter": {
+                        "Compose:_set_Property_'folder_Id'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "6912819a-c1ac-42ff-8af5-67dc0e36292f"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_Property_''folder_Id''')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Send_an_HTTP_request_to_SharePoint:_get_folder_by_relative_Url": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "6c004c1e-f7cb-4f18-acdb-f0e66131fcb4"
+                  },
+                  "type": "Scope"
+                },
+                "Send_an_HTTP_request_to_SharePoint:_get_library_driveId": {
+                  "runAfter": {
+                    "Scope:_Update_objResults,_set_'site_title',_'site_id',_'web_id'": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ff47974d-8237-43fb-ae08-7f972471307e"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline",
+                      "operationId": "HttpRequest",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "@body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['SiteCollectionUrl']",
+                      "parameters/method": "GET",
+                      "parameters/uri": "_api/v2.0/sites('@{body('Parse_JSON:_get_Site_Info_:_graphId,_title')?['id']}')/drives?$select=id,webUrl",
+                      "parameters/headers": {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json;odata=verbose;charset=utf-8"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "description": "Get list by InternalName (used in URL): filter by rootfolder"
+                },
+                "Scope:_update_objResults:_set_'library_drive_id'": {
+                  "actions": {
+                    "Parse_JSON:_get_driveId_and_webUrl": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "b89032fa-8ca5-4eee-b7b8-3a11e4b8c52b"
+                      },
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@body('Send_an_HTTP_request_to_SharePoint:_get_library_driveId')",
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "@@odata.context": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "webUrl": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "webUrl"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Filter_array:_get_record_for_the_library": {
+                      "runAfter": {
+                        "Parse_JSON:_get_driveId_and_webUrl": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "148c7030-403c-4453-a2ad-394d6f2196c5"
+                      },
+                      "type": "Query",
+                      "inputs": {
+                        "from": "@body('Parse_JSON:_get_driveId_and_webUrl')?['value']",
+                        "where": "@equals(item()?['webUrl'], replace(body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['AbsoluteUrl'], Concat('/', body('Parse_JSON:_parse_first_value_from_response')?['relativeurl']), ''))"
+                      }
+                    },
+                    "Compose:_set_property_'library_drive_id'": {
+                      "runAfter": {
+                        "Filter_array:_get_record_for_the_library": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "de6d8003-66ab-4da2-96d1-1f22fa10cf30"
+                      },
+                      "type": "Compose",
+                      "inputs": "@ setProperty(variables('objResults'),'library_drive_id', first(body('Filter_array:_get_record_for_the_library'))?['id'])"
+                    },
+                    "Set_variable:_objResults['library_drive_id']": {
+                      "runAfter": {
+                        "Compose:_set_property_'library_drive_id'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "8e258912-c9c4-46ec-aea4-094869f1cb08"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''library_drive_id''')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Send_an_HTTP_request_to_SharePoint:_get_library_driveId": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "c4a238d9-4931-4120-be79-1b86ec9dadb9"
+                  },
+                  "type": "Scope"
+                },
+                "Send_an_HTTP_request_to_SharePoint:_get_folder_driveId": {
+                  "runAfter": {
+                    "Scope:_update_objResults:_set_'library_drive_id'": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ff47974d-8237-43fb-ae08-7f972471307e"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline",
+                      "operationId": "HttpRequest",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "@body('Parse_JSON:_RetrieveAbsoluteAndSiteCollectionUrlReply')?['SiteCollectionUrl']",
+                      "parameters/method": "GET",
+                      "parameters/uri": "_api/v2.0/drives('@{first(body('Filter_array:_get_record_for_the_library'))?['id']}')/root:/@{body('Parse_JSON:_parse_first_value_from_response')?['relativeurl']}?$select=id",
+                      "parameters/headers": {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json;odata=verbose;charset=utf-8"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "description": "Get list by InternalName (used in URL): filter by rootfolder"
+                },
+                "Scope": {
+                  "actions": {
+                    "Parse_JSON:_get_folder_drive_id": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "86cd4e85-ea66-4b44-80e8-7d5d6056376a"
+                      },
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@body('Send_an_HTTP_request_to_SharePoint:_get_folder_driveId')",
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "@@odata.context": {
+                              "type": "string"
+                            },
+                            "@@odata.etag": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Compose:_set_property_'folder_drive_id'": {
+                      "runAfter": {
+                        "Parse_JSON:_get_folder_drive_id": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "761c4062-1638-4c02-acb7-2a16cd8c6baa"
+                      },
+                      "type": "Compose",
+                      "inputs": "@ setProperty(variables('objResults'),'folder_drive_id', body('Parse_JSON:_get_folder_drive_id')?['id'])"
+                    },
+                    "Set_variable:_objResults['folder_drive_id']": {
+                      "runAfter": {
+                        "Compose:_set_property_'folder_drive_id'": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "bb8361e7-6f82-4b3b-99c7-65808e76a93b"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "objResults",
+                        "value": "@outputs('Compose:_set_property_''folder_drive_id''')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Send_an_HTTP_request_to_SharePoint:_get_folder_driveId": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "6c004c1e-f7cb-4f18-acdb-f0e66131fcb4"
+                  },
+                  "type": "Scope"
+                }
+              },
+              "runAfter": {
+                "Scope:_Update_objResults,_set_'folder_display_name'": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "greater": [
+                  "@length(outputs('Get_sharepoint_document_locations_for_current_record')?['body/value'])",
+                  0
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "62f712f5-62d7-419b-81b7-ee114b97b5df"
+              },
+              "type": "If"
+            },
+            "Parse_JSON:_objResults": {
+              "runAfter": {
+                "Condition": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "cdf094db-3124-4e14-b335-57ce790228a6"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@variables('objResults')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tenant_name": {
+                      "type": "string"
+                    },
+                    "site_id": {
+                      "type": "string"
+                    },
+                    "site_url": {
+                      "type": "string"
+                    },
+                    "site_title": {
+                      "type": "string"
+                    },
+                    "web_id": {
+                      "type": "string"
+                    },
+                    "library_id": {
+                      "type": "string"
+                    },
+                    "library_drive_id": {
+                      "type": "string"
+                    },
+                    "library_name": {
+                      "type": "string"
+                    },
+                    "library_title": {
+                      "type": "string"
+                    },
+                    "library_absolute_url": {
+                      "type": "string"
+                    },
+                    "folder_id": {
+                      "type": "integer"
+                    },
+                    "folder_drive_id": {
+                      "type": "string"
+                    },
+                    "folder_display_name": {
+                      "type": "string"
+                    },
+                    "folder_absolute_url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "Set_variable:_bSuccess_=_true": {
+              "runAfter": {
+                "Parse_JSON:_objResults": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a01fb01c-6a54-4cfe-9b02-9badf3657991"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "bSuccess",
+                "value": "@true"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable:_sErrorMessage": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "540de42a-4366-445f-8f42-bd65044874a5"
+          },
+          "type": "Scope"
+        },
+        "Scope:_Error_Handling": {
+          "actions": {
+            "Filter_array:_get_Errors": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f9ed3e5d-bc09-45a2-ac2c-5f24789521fc"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@result('Scope:_retrieve_library_information_for_the_record')",
+                "where": "@equals(item()?['Status'], 'Failed')"
+              }
+            },
+            "Select:_get_actions_and_errors": {
+              "runAfter": {
+                "Filter_array:_get_Errors": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "4f6269cb-bfed-4a4a-abc6-20d685df3312"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Filter_array:_get_Errors')",
+                "select": {
+                  "Error": "@{item()?['name']}: \" @{item()?['outputs']?['body']?['message']}\""
+                }
+              }
+            },
+            "Set_variable:_sError_Message": {
+              "runAfter": {
+                "Select:_get_actions_and_errors": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "6d62052b-7e3c-4d58-9df9-6ebd5e4cdb61"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "sErrorMessage",
+                "value": "@{join(body('Select:_get_actions_and_errors'), ',')}"
+              }
+            }
+          },
+          "runAfter": {
+            "Scope:_retrieve_library_information_for_the_record": [
+              "Failed",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "afdee7da-1027-400b-b760-86147d8a3d56"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
