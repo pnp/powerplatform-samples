@@ -1,0 +1,102 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "appr_learningmaterialses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "appr_learningmaterials",
+    "MaxGetRowsCount": 500,
+    "Name": "Learning Materials",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "appr_attachment": "Attachment",
+      "appr_description": "Description",
+      "appr_learningmaterials_AsyncOperations": "System Jobs",
+      "appr_learningmaterials_BulkDeleteFailures": "Bulk Delete Failures",
+      "appr_learningmaterials_DuplicateBaseRecord": "Duplicate Records (appr_learningmaterials_DuplicateBaseRecord)",
+      "appr_learningmaterials_DuplicateMatchingRecord": "Duplicate Records (appr_learningmaterials_DuplicateMatchingRecord)",
+      "appr_learningmaterials_FileAttachments": "FileAttachments",
+      "appr_learningmaterials_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "appr_learningmaterials_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "appr_learningmaterials_ProcessSession": "Process Sessions",
+      "appr_learningmaterials_SyncErrors": "Sync Errors",
+      "appr_learningmaterialsid": "Learning Materials",
+      "appr_name": "Name",
+      "appr_RelatedCourse": "Related Course",
+      "appr_unitnumber": "Unit Number",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Learning Materials",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Learning Materials (Views)",
+    "Name": "_appr_learningmaterials_views",
+    "RelatedEntityName": "Learning Materials",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1aee8e6b-59f3-426e-8f01-0a0dfd57e0de": "Learning Materials Lookup View",
+      "29ef9445-ceec-4d33-a51f-eb864d42f691": "Learning Materials Advanced Find View",
+      "884d91ae-2f66-4f8e-be0d-85308eff1a4a": "Inactive Learning Materials",
+      "99bdebf7-4f64-437a-a04f-320d1dda1297": "Learning Materials Associated View",
+      "d836df44-39cc-4976-894f-e71705397937": "Active Learning Materials"
+    }
+  },
+  {
+    "DisplayName": "Status (Learning Materials)",
+    "Name": "appr_learningmaterials_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Learning Materials"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Learning Materials",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Learning Materials)",
+    "Name": "appr_learningmaterials_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Learning Materials"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Learning Materials",
+    "Type": "OptionSetInfo"
+  }
+]

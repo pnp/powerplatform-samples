@@ -1,0 +1,105 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "appr_assignments",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "appr_assignment",
+    "MaxGetRowsCount": 500,
+    "Name": "Assignments",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "appr_appr_assignmentmark_SubmittedAssignment_a": "Assignment Marks",
+      "appr_appr_rubric_Assignment_appr_assignment": "Rubrics",
+      "appr_assignment_AsyncOperations": "System Jobs",
+      "appr_assignment_BulkDeleteFailures": "Bulk Delete Failures",
+      "appr_assignment_DuplicateBaseRecord": "Duplicate Records (appr_assignment_DuplicateBaseRecord)",
+      "appr_assignment_DuplicateMatchingRecord": "Duplicate Records (appr_assignment_DuplicateMatchingRecord)",
+      "appr_assignment_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "appr_assignment_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "appr_assignment_ProcessSession": "Process Sessions",
+      "appr_assignment_SyncErrors": "Sync Errors",
+      "appr_assignmentid": "Assignment",
+      "appr_assignmentnumber": "Assignment Number",
+      "appr_Course": "Course",
+      "appr_description": "Description",
+      "appr_duedate": "Due Date",
+      "appr_name": "Name",
+      "appr_Teacher": "Teacher",
+      "appr_totalallocatedmarks": "Total Allocated Marks",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Assignments",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Assignments (Views)",
+    "Name": "_appr_assignment_views",
+    "RelatedEntityName": "Assignments",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "16c30a69-2198-46e6-bec6-923d21ae35fa": "Assignment Advanced Find View",
+      "63c430e7-f92b-4007-a7c7-987e3a423df3": "Active Assignments",
+      "cd3a31d3-1d47-4a31-855a-fc4e6f5b739e": "Assignment Associated View",
+      "d3bd3f97-ceaf-44ba-a37a-80f1063f86e4": "Assignment Lookup View",
+      "e0d7b7fa-5988-4d73-b596-38ed9e7338a9": "Inactive Assignments"
+    }
+  },
+  {
+    "DisplayName": "Status (Assignments)",
+    "Name": "appr_assignment_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Assignments"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Assignments",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Assignments)",
+    "Name": "appr_assignment_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Assignments"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Assignments",
+    "Type": "OptionSetInfo"
+  }
+]
