@@ -1,20 +1,19 @@
-# Dark Template for Power Apps – Free Power Apps Template
-The Dark Template for Power Apps is a sleek and modern starter template designed to help users quickly build their own stock inventory management app using Power Apps Canvas Applications. This free-to-download template offers a professional, polished design with intuitive navigation and a focus on usability.
+# Mobile App Template for Power Apps – Products Catalogue
+Start building your next mobile app with this free, ready-to-use Power Apps template — designed for a clean and intuitive user experience.
+Template Features:
 
-![screen1](./assets/Screenshot-2025-01-28-at-21.07.06.png)
+**Landing Page** to welcome users to your app
+**Product List** to browse items easily
+**Product Details** view with images and descriptions
+**Mobile Bottom Navigation** for smooth, app-like navigation
+Perfect for internal tools, product catalogs, or custom solutions — fully responsive and easy to customize.
 
-## Use cases:
+![screen1](./assets/pic1.png)
 
-* Modern Navigation:
-Effortlessly navigate between screens with a clean and responsive navigation bar that adapts to your content. The intuitive layout ensures a smooth user experience, even for first-time app builders.
-* Attractive Shiny Design:
-A visually appealing dark theme with vibrant accent colors, soft shadows, and rounded elements that create a contemporary look and feel. The design is optimized for both desktop and mobile devices, ensuring accessibility across platforms.
-* QuickChart Integration for Reporting:
-Includes pre-configured charting capabilities using QuickChart to display key inventory metrics, such as stock levels, item categories, and restocking trends. The dynamic charts provide instant insights to help users make informed decisions.
-* Customizable Components:
-Pre-built components like input forms, item lists, and search functionality are included, allowing users to easily tailor the template to their specific needs.
-* Performance Optimized:
-Designed with performance in mind, the template ensures fast loading times and smooth transitions, even with large datasets.
+![screen1](./assets/pic2.png)
+
+![screen1](./assets/pic3.png)
+
 
 
 ## Applies to
@@ -47,7 +46,7 @@ Version|Date|Comments
 
 ### Using the solution zip
 
-* [Download](./solution/DarkTemplate_1_0_0_1.zip) the `.zip` from the `solution` folder
+* [Download](./solution/MobileApp_1_0_0_1.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
 
