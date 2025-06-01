@@ -29,6 +29,8 @@ This sample is a cloud flow that can be used to automate sharing of a canvas app
 Version|Date|Comments
 -------|----|--------
 1.0|March 05, 2025|Initial release
+----------------------------------
+2.0|June 01, 2025|Updated Version with suggested changes
 
 ## Prerequisites
 * This app uses Microsoft Entra ID connection.
@@ -37,7 +39,8 @@ Version|Date|Comments
 List Name: App Sharing
 List Fields:
 1. Users (Person or Group) => allow multiple selection = yes
-2. App Name (Choice) => E.g. - names of your app in the environment
+2. AppName (Choice) => E.g. - names of your app in the environment
+3. AppID (Single line of text) => enter the app ID of your app. This value will ve read dynamically in the flow.
 
 ## Features
 

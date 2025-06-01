@@ -116,7 +116,7 @@
                   "type": "SetVariable",
                   "inputs": {
                     "name": "varAppID",
-                    "value": "3b9c42d9-ee7a-47e6-b79c-38fb1d248d36"
+                    "value": "@triggerOutputs()?['body/AppID']"
                   }
                 }
               }
@@ -132,7 +132,7 @@
                   "type": "SetVariable",
                   "inputs": {
                     "name": "varAppID",
-                    "value": "ea7e6193-c3eb-47c7-8fcf-5a7d67aad83a"
+                    "value": "@triggerOutputs()?['body/AppID']"
                   }
                 }
               }
@@ -148,7 +148,7 @@
                   "type": "SetVariable",
                   "inputs": {
                     "name": "varAppID",
-                    "value": "c50de20c-56eb-4cd2-add7-f5df0ded3dec"
+                    "value": "@triggerOutputs()?['body/AppID']"
                   }
                 }
               }
@@ -157,7 +157,7 @@
           "default": {
             "actions": {}
           },
-          "expression": "@triggerOutputs()?['body/App_x0020_Name/Value']",
+          "expression": "@triggerOutputs()?['body/AppNameNew']?['Value']",
           "metadata": {
             "operationMetadataId": "c6e2e35d-ec59-4e8e-9b06-28c0578a94c5"
           },
