@@ -1,0 +1,70 @@
+kind: AdaptiveDialog
+modelDescription: Topic to check if user has saved a favourite team
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_p96yAd
+      input:
+        binding:
+          text_1: =System.User.DisplayName
+
+      output:
+        binding:
+          varresponse: Topic.varResponse
+
+      flowId: 0e0dd588-ba10-f011-9989-6045bd0e2fc6
+
+    - kind: SendActivity
+      id: sendActivity_dorBqu
+      activity: |-
+        I can see that your favourite team is {Topic.varResponse}.
+        
+        I can provide you with team information and details of their last and next fixture.
+
+    - kind: ConditionGroup
+      id: conditionGroup_fdqyvX
+      conditions:
+        - id: conditionItem_BF4iHG
+          condition: =Topic.varResponse = "I can see that you have not yet selected a favourite team."
+          actions:
+            - kind: Question
+              id: question_1G5Gnl
+              interruptionPolicy:
+                allowInterruption: true
+
+              variable: init:Topic.varSetFavouriteTeam
+              prompt: Would you like to set a favourite team?
+              entity:
+                kind: EmbeddedEntity
+                definition:
+                  kind: ClosedListEntity
+                  items:
+                    - id: Yes
+                      displayName: Yes
+
+                    - id: No
+                      displayName: No
+
+            - kind: ConditionGroup
+              id: conditionGroup_6cT6w3
+              conditions:
+                - id: conditionItem_eSulDt
+                  condition: =Topic.varSetFavouriteTeam = 'ba_vaRifyBot.topic.FavouriteTeam.main.question_1G5Gnl'.Yes
+                  actions:
+                    - kind: BeginDialog
+                      id: qrrhti
+                      dialog: ba_vaRifyBot.topic.SetFavouriteTeam
+
+              elseActions:
+                - kind: SendActivity
+                  id: sendActivity_WWjdrk
+                  activity: Ok, I can give you information related to any football teams or fixtures.
+
+            - kind: EndDialog
+              id: KOBH9z
+
+inputType: {}
+outputType: {}
