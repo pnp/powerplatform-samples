@@ -4,7 +4,7 @@
 
 This sample is a reusable child cloud flow that can be used for performing aggregate operations (Avg, Count, Min, Max & Sum) on array of objects. This flow also demonstrate how we can leverage powerful XML and XPATH functions in fx expression for complex automation scenerios.
 
-![Flow overview](/samples/utility-flow-for-aggregrate-operations-on-array/assets/flow-overview.png "Flow overview")
+![Flow overview](./assets/flow-overview.png "Flow overview")
 
 ## Applies to
 
