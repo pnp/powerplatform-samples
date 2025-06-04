@@ -5,7 +5,7 @@ A Canvas app version of the timeline feature in a Model-Driven app, this compone
 ## Summary
 This timeline component collects Notes, Emails, Appointments, Phone Calls and Tasks created as activities for a contact or account and displays them in a single timeline view, similar to the timeline feature in Model-Driven apps. The component is designed to be used in a Canvas app, and it can be customised to fit your specific needs and include addtiional activity tables.
 
-![Timeline Component](assets/images/AccountTimelineRelated.png)
+![Timeline Component](./assets/AccountTimelineRelated.png)
 
 ## Applies to
 * [Microsoft Power Apps](https://docs.microsoft.com/power-apps)
@@ -35,15 +35,15 @@ Version|Date|Comments
 
 ### View Account activities and related contact activities
 When you select an account in the gallery, the activities for that account will load and will also include the activities for any contacts related to that account (Just like how the timeline in an MDA works). The Related Contacts toggle will auto set to true. You can toggle between this setting to switch if you want to view activities for the accounts related contacts or not.
-![Account Timeline Related](assets/images/AccountTimelineRelated.png)
+![Account Timeline Related](./assets/AccountTimelineRelated.png)
 
 ### View Account activities only
 When you select an account in the gallery and you toggle the Related Contacts off, only activities for the selected account will show in the timeline.
-![Account Timeline Unrelated](assets/images/AccountTimelineUnrelated.png)
+![Account Timeline Unrelated](./assets/AccountTimelineUnrelated.png)
 
 ### View Contact activities only
 When you select a contact in the gallery, the activities for that contact will load into the timeline.
-![Contact Timeline](assets/images/ContactTimeline.png)
+![Contact Timeline](./assets/ContactTimeline.png)
 
 ### Activity Buttons
 Buttons in the app are included to see what code is being run for collecting data from each activity table and collating it together.
