@@ -1,4 +1,4 @@
-# Utility flow to extract number by length
+# Utility flow for aggregrate operations on array
 
 ## Summary
 
