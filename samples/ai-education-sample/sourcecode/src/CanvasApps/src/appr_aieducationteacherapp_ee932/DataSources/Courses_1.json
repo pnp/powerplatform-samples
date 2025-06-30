@@ -1,0 +1,106 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "appr_courses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "appr_course",
+    "MaxGetRowsCount": 500,
+    "Name": "Courses_1",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "appr_appr_announcement_Course_appr_course": "Announcements",
+      "appr_appr_assignment_Course_appr_course": "Assignments",
+      "appr_appr_learningmaterials_RelatedCourse_appr": "Learning Materials",
+      "appr_appr_session_Course_appr_course": "Sessions",
+      "appr_appr_studentcourse_CourseID_appr_course": "Student Courses",
+      "appr_course_AsyncOperations": "System Jobs",
+      "appr_course_BulkDeleteFailures": "Bulk Delete Failures",
+      "appr_course_DuplicateBaseRecord": "Duplicate Records (appr_course_DuplicateBaseRecord)",
+      "appr_course_DuplicateMatchingRecord": "Duplicate Records (appr_course_DuplicateMatchingRecord)",
+      "appr_course_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "appr_course_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "appr_course_ProcessSession": "Process Sessions",
+      "appr_course_SyncErrors": "Sync Errors",
+      "appr_coursecode": "Course Code",
+      "appr_courseicon": "Course Icon",
+      "appr_courseiconid": "appr_CourseIconId",
+      "appr_courseid": "Course",
+      "appr_name": "Name",
+      "appr_Teacher": "Teacher",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Courses_1",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Courses_1 (Views)",
+    "Name": "_appr_course_views",
+    "RelatedEntityName": "Courses_1",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "2ad812ee-3a9d-4f81-88b2-9416786a6bf3": "Course Advanced Find View",
+      "3e5f6b9b-094e-4db0-9a56-250b068b4c3b": "Active Courses",
+      "70a940d8-75fe-482b-aeed-a8ba45a812fb": "Inactive Courses",
+      "b689496f-1a39-4202-8f95-0c6cd5314658": "Course Associated View",
+      "d5452d9b-df48-4247-af37-a22a22d92379": "Course Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (Courses_1)",
+    "Name": "appr_course_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Courses_1"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Courses_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Courses_1)",
+    "Name": "appr_course_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Courses_1"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Courses_1",
+    "Type": "OptionSetInfo"
+  }
+]
