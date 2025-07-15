@@ -1,4 +1,4 @@
-# Calendar Component
+# Clock Time Picker Component
 
 ## Summary
 
