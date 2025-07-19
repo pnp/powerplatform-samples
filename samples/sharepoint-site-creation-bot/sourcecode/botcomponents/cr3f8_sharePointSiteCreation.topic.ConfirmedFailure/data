@@ -1,0 +1,38 @@
+kind: AdaptiveDialog
+startBehavior: CancelOtherTopics
+beginDialog:
+  kind: OnSystemRedirect
+  id: main
+  actions:
+    - kind: Question
+      id: c326a83a-386b-4ce8-a31b-2751e404e242
+      alwaysPrompt: true
+      variable: init:Topic.var
+      prompt: Sorry I wasn't able to help better. Would you like to talk to a human agent or to try rephrasing?
+      entity:
+        kind: EmbeddedEntity
+        definition:
+          kind: ClosedListEntity
+          items:
+            - id: Talk to an agent
+              displayName: Talk to an agent
+
+            - id: Rephrase
+              displayName: Rephrase
+
+    - kind: ConditionGroup
+      id: condition-0
+      conditions:
+        - id: condition-0-item-0
+          condition: =Topic.var = 'cr3f8_sharePointSiteCreation.topic.ConfirmedFailure.main.c326a83a-386b-4ce8-a31b-2751e404e242'.'Talk to an agent'
+          actions:
+            - kind: BeginDialog
+              id: 9087e5bb-0abb-4dc7-8b71-2f9588ff1019
+              dialog: cr3f8_sharePointSiteCreation.topic.Escalate
+
+        - id: condition-0-item-1
+          condition: =Topic.var = 'cr3f8_sharePointSiteCreation.topic.ConfirmedFailure.main.c326a83a-386b-4ce8-a31b-2751e404e242'.Rephrase
+          actions:
+            - kind: SendActivity
+              id: 0c0475e6-e6d1-401e-a964-4362b7c3b9d7
+              activity: Go ahead. I'm listening.

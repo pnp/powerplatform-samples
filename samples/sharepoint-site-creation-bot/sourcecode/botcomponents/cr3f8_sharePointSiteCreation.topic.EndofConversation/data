@@ -1,0 +1,30 @@
+kind: AdaptiveDialog
+startBehavior: CancelOtherTopics
+beginDialog:
+  kind: OnSystemRedirect
+  id: main
+  actions:
+    - kind: Question
+      id: 41d42054-d4cb-4e90-b922-2b16b37fe379
+      conversationOutcome: ResolvedImplied
+      alwaysPrompt: true
+      variable: init:Topic.PRRSurveyQuestion
+      prompt: Did that answer your question?
+      entity: BooleanPrebuiltEntity
+
+    - kind: ConditionGroup
+      id: condition-0
+      conditions:
+        - id: condition-0-item-0
+          condition: =Topic.PRRSurveyQuestion = true
+          actions:
+            - kind: BeginDialog
+              id: f4de4350-1dee-477d-ae36-d9a0d8f5b93f
+              dialog: cr3f8_sharePointSiteCreation.topic.ConfirmedSuccess
+
+        - id: condition-0-item-1
+          condition: =Topic.PRRSurveyQuestion = false
+          actions:
+            - kind: BeginDialog
+              id: 9b23998f-839a-4900-985b-e7855c6eff26
+              dialog: cr3f8_sharePointSiteCreation.topic.ConfirmedFailure
