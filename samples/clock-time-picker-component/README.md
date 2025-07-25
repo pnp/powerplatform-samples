@@ -27,15 +27,6 @@ A re-usable component that allows you to select times through a user friendly an
 
 
 ## Contributors
-<!--
-We use this section to recognize and promote your contributions. Please provide one author per line -- even if you worked together on it.
-
-We'll only use the info you provided here. Make sure to include your full name, not just your GitHub username.
-
-Provide a link to your GitHub profile to help others find more cool things you have done. The only link we'll accept is a link to your GitHub profile.
-
-If you want to provide links to your social media, blog, and employer name, make sure to update your GitHub profile.
--->
 
 * [Nati Turtledove](https://github.com/NatiTurts) ([@NatiTurts](https://www.twitter.com/NatiTurts))
 
@@ -45,42 +36,6 @@ Version|Date|Comments
 -------|----|--------
 1.0|Dec 1, 2022|Initial release
 2.0|July 15, 2025|Migration from powerapps-samples repository with solution repacking by [Jan Chlebek](https://github.com/jan-chlebek)
-
-## Minimal path to awesome
-
-### Using the solution zip
-
-* [Download](./solution/clocktimepickercomponent_1_0_0_0.zip) the `.zip` from the `solution` folder
-* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-* Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
-
-### Using the source code
-
-You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps:
-
-* Clone the repository to a local drive
-* Pack the source files back into a solution `.zip` file:
-
-  ```bash
-  pac solution pack --zipfile pathtodestinationfile --folder pathtosourcefolder --processCanvasApps
-  ```
-
-  Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
-* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-
-
-
-## Features
-
-This sample illustrates the following concepts:
-
-* The ability for users to interact with a clock to select a preferred time
-* Allowing for users to select a time by clicking on the clock numbers 
-* Allowing for users to select a time from the dropdowns
-* Allowing for users to select a time by increasing/deacreasing a selected hour and minute
-* Allowing for users to select am or pm times
-* Save the chosen time through an Output Property
-* Reset the times after saved or cleared
 
 ## Prerequisites
 
@@ -102,6 +57,38 @@ The pass the selected time from the clock component to a variable within the app
 
 When the `Close` button is pressed, the clock will reset.
 
+## Minimal path to awesome
+
+### Using the solution zip
+
+* [Download](./solution/clock-time-picker-component.zip) the `.zip` from the `solution` folder
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+
+### Using the source code
+
+You can also use the [Power Apps CLI](https://docs.microsoft.com/powerapps/developer/data-platform/powerapps-cli) to pack the source code by following these steps:
+
+* Clone the repository to a local drive
+* Pack the source files back into a solution `.zip` file:
+
+  ```bash
+  pac solution pack --zipfile pathtodestinationfile --folder pathtosourcefolder
+  ```
+
+  Making sure to replace `pathtosourcefolder` to point to the path to this sample's `sourcecode` folder, and `pathtodestinationfile` to point to the path of this solution's `.zip` file (located under the `solution` folder)
+* Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
+
+## Features
+
+This sample illustrates the following concepts:
+
+* The ability for users to interact with a clock to select a preferred time
+* Allowing for users to select a time by clicking on the clock numbers 
+* Allowing for users to select a time from the dropdowns
+* Allowing for users to select a time by increasing/deacreasing a selected hour and minute
+* Allowing for users to select am or pm times
+* Save the chosen time through an Output Property
+* Reset the times after saved or cleared
 
 ## Help
 
