@@ -26,15 +26,6 @@ A re-usable component that allows you to display events in a calendar.
 
 
 ## Contributors
-<!--
-We use this section to recognize and promote your contributions. Please provide one author per line -- even if you worked together on it.
-
-We'll only use the info you provided here. Make sure to include your full name, not just your GitHub username.
-
-Provide a link to your GitHub profile to help others find more cool things you have done. The only link we'll accept is a link to your GitHub profile.
-
-If you want to provide links to your social media, blog, and employer name, make sure to update your GitHub profile.
--->
 
 * [April Dunnam](https://github.com/aprildunnam) ([@aprildunnam](https://www.twitter.com/aprildunnam) )
 
@@ -49,7 +40,7 @@ Version|Date|Comments
 
 ### Using the solution zip
 
-* [Download](./solution/calendarcomponent_1_0_0_0.zip) the `.zip` from the `solution` folder
+* [Download](./solution/calendar-component.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
 
