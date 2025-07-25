@@ -47,7 +47,7 @@ Version|Date|Comments
 
 ### Using the solution zip
 
-* [Download](./solution/cascadingdropdowncomponent_1_0_0_0) the `.zip` from the `solution` folder
+* [Download](./solution/cascading-dropdown-component.zip) the `.zip` from the `solution` folder
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * Open the app in edit mode and make sure the data source **Data source name** is connected correctly.
 
