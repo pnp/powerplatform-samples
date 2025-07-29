@@ -40,7 +40,7 @@ List Name: App Sharing
 List Fields:
 1. Users (Person or Group) => allow multiple selection = yes
 2. AppNameNew (Choice) => E.g. - names of your app in the environment
-3. AppID (Single line of text) => enter the app ID of your app. This value will ve read dynamically in the flow.
+3. AppID (Single line of text) => enter the app ID of your app. This value will be read dynamically in the flow.
 
 ## Features
 

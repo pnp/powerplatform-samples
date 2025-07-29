@@ -100,7 +100,7 @@
         },
         "Switch": {
           "runAfter": {
-            "Initialize_variable_for_App_ID": [
+            "Compose_-_Tenant_ID": [
               "Succeeded"
             ]
           },
@@ -203,12 +203,12 @@
                 "parameters": {
                   "app": "@variables('varAppID')",
                   "api-version": "2016-11-01",
-                  "$filter": "environment eq 'Default-cc3e3aed-08d2-4f22-9117-2ea85a7b1158'",
+                  "$filter": "environment eq @{outputs('Compose_-_Environment_ID')}",
                   "Content-Type": "application/json",
                   "body/put": [
                     {
                       "properties/principal/email": "@items('Apply_to_each')",
-                      "properties/principal/tenantId": "cc3e3aed-08d2-4f22-9117-2ea85a7b1158",
+                      "properties/principal/tenantId": "@outputs('Compose_-_Tenant_ID')",
                       "properties/principal/id": "@outputs('Get_user')?['body/id']",
                       "properties/roleName": "CanEdit"
                     }
@@ -227,6 +227,30 @@
             "operationMetadataId": "19e2662f-f867-4740-a240-9e3710b51d87"
           },
           "type": "Foreach"
+        },
+        "Compose_-_Environment_ID": {
+          "runAfter": {
+            "Initialize_variable_for_App_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c0e83207-b62c-4754-98ff-5d873192c812"
+          },
+          "type": "Compose",
+          "inputs": "@workflow()['tags']['environmentName']"
+        },
+        "Compose_-_Tenant_ID": {
+          "runAfter": {
+            "Compose_-_Environment_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6eee50b7-b094-40ab-a092-8f9412a41112"
+          },
+          "type": "Compose",
+          "inputs": "@workflow()?['tags']?['tenantId']"
         }
       }
     },
