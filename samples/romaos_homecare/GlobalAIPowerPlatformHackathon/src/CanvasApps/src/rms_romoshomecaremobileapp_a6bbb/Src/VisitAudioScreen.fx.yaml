@@ -1,0 +1,156 @@
+VisitAudioScreen As screen:
+    Fill: =RGBA(245, 247, 254, 1)
+
+    Rectangle2_2 As rectangle:
+        Fill: |-
+            =ColorValue("#7889d3")
+        Height: =397
+        Width: =640
+        ZIndex: =1
+
+    Label1_16 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =16
+        Text: ="Visit's Audios"
+        Width: =311
+        X: =165
+        ZIndex: =2
+
+    Icon3_7 As icon.BackArrow:
+        Color: |-
+            =ColorValue("#FFFFFF")
+        Height: =35
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Back()
+        Width: =35
+        X: =35
+        Y: =17
+        ZIndex: =3
+
+    mcrCheckinMicrophone As microphone:
+        BorderColor: =RGBA(16, 20, 82, 1)
+        Fill: |-
+            =ColorValue("#7889d3")
+        FocusedBorderThickness: =0
+        Height: =316
+        HoverFill: =Self.Fill
+        PressedFill: =Self.Fill
+        Width: =414
+        X: =112
+        Y: =81
+        ZIndex: =4
+
+    "gllAudioReferences_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver5.0'":
+        BorderColor: =RGBA(237, 237, 237, 1)
+        BorderThickness: =1
+        DelayItemLoading: =true
+        Height: =153
+        Items: =Filter('Audio References', Visit.Visit = selectedVisit.Visit)
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =10
+        TemplateSize: =80
+        Width: =566
+        X: =37
+        Y: =962
+        ZIndex: =7
+
+        Button3_17 As button:
+            BorderThickness: =0
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =80
+            HoverFill: =Self.Fill
+            Size: =24
+            Text: =""
+            Width: =546
+            ZIndex: =1
+
+        Title3_2 As label:
+            Color: =RGBA(16, 20, 82, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =50
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Name
+            VerticalAlign: =VerticalAlign.Top
+            Width: =369
+            X: =16
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =2
+
+        Audio1_2 As audioPlayback:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =48
+            Media: =If(!IsBlankOrError(AzureBlobStorage.GetFileContent(ThisItem.AzureStorageItemId)),AzureBlobStorage.GetFileContent(ThisItem.AzureStorageItemId))
+            Width: =243
+            X: =303
+            Y: =17
+            ZIndex: =5
+
+    Button3_16 As button:
+        BorderThickness: =0
+        Color: =RGBA(102, 102, 102, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Font: =Font.Arial
+        Height: =87
+        HoverFill: |-
+            =ColorValue("#7889d3")
+        OnSelect: |
+            =UpdateContext({ locResultAudio: Whisper.SpeechToText(mcrCheckinMicrophone.Audio, "audio.wbmp", "whisper-1", {'Content-Type': "multipart/form-data"}).text });
+            UpdateContext({ audioName: Concatenate(selectedVisit.ID, "_", Text(Now(), "ddMMyyyyhhmmss")) });
+            UpdateContext({ audioResult: AzureBlobStorage.CreateFile("hackathon/audios", audioName, mcrCheckinMicrophone.Audio) });
+            UpdateContext({ audioReference: Patch('Audio References', Defaults('Audio References'), { Name: audioName, Visit: selectedVisit, AzureStorageItemId: audioResult.Id, Transcript: locResultAudio })});
+            Patch(Automations, { Title: "AI - Process Visit Audio", Parameters: JSON({ ItemId: audioResult.Id, Path: audioResult.Path, VisitId: selectedVisit.Visit, PictureReferenceId: audioReference.'Audio Reference'}), 'Status Reason': 'Status Reason (Automations)'.Pending });
+            
+            Notify("Audio Reference submitted successfully", NotificationType.Success)
+        Size: =16
+        Text: ="Submit to AI 🤖"
+        Width: =269
+        X: =184
+        Y: =439
+        ZIndex: =8
+
+    Label1_20 As label:
+        Font: =Font.Arial
+        FontWeight: =FontWeight.Semibold
+        Height: =49
+        Size: =16
+        Text: ="Audios Recorded"
+        Width: =311
+        X: =40
+        Y: =913
+        ZIndex: =9
+
+    Label1_21 As label:
+        Font: =Font.Arial
+        FontWeight: =FontWeight.Semibold
+        Height: =49
+        Size: =16
+        Text: ="Transcript"
+        Width: =311
+        X: =35
+        Y: =570
+        ZIndex: =10
+
+    Label1_22 As label:
+        BorderColor: =RGBA(219, 219, 219, 1)
+        BorderThickness: =1
+        Height: =250
+        Overflow: =Overflow.Scroll
+        PaddingBottom: =10
+        PaddingLeft: =10
+        PaddingRight: =10
+        PaddingTop: =10
+        Size: =14
+        Text: =locResultAudio
+        Width: =563
+        X: =40
+        Y: =619
+        ZIndex: =11
+
