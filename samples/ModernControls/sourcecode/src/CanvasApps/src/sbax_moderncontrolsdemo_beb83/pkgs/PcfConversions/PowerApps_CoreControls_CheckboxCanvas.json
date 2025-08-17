@@ -1,0 +1,49 @@
+{
+  "Name": "PowerApps_CoreControls_CheckboxCanvas",
+  "PcfConversions": [
+    {
+      "Action": [
+        {
+          "Name": "Value",
+          "NewName": "Checked",
+          "Type": "rename"
+        }
+      ],
+      "From": "0.0.6",
+      "To": "0.0.7"
+    },
+    {
+      "Action": [
+        {
+          "Name": "OnChange",
+          "Type": "remove"
+        },
+        {
+          "Name": "OnSelect",
+          "Type": "add"
+        },
+        {
+          "Name": "OnCheck",
+          "Type": "add"
+        },
+        {
+          "Name": "OnUncheck",
+          "Type": "add"
+        }
+      ],
+      "From": "0.0.12",
+      "To": "0.0.13"
+    },
+    {
+      "Action": [
+        {
+          "Name": "BasePaletteColor",
+          "Type": "add"
+        }
+      ],
+      "From": "0.0.13",
+      "To": "0.0.14"
+    }
+  ],
+  "Version": "0.0.14"
+}
