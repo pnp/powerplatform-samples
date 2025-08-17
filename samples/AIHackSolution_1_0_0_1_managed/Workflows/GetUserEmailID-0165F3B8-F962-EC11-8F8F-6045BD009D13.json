@@ -1,0 +1,128 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365users": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "crcf6_sharedoffice365users_c669e"
+        },
+        "api": {
+          "name": "shared_office365users"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "32418065-cee3-4b0b-b4f7-0e4463917ef5"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Display Name",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "User Diplay Name",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Get_user_profile_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "417247d1-d930-4201-895e-9b6395d8c6c3"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "user_id": "@outputs('Get_user_profile_(V2)')?['body/mail']"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "title": "User ID",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Search_for_users_(V2)": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "c4bff207-28c4-4e76-93c4-f0ee18ebb734"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365users",
+              "operationId": "SearchUserV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+            },
+            "parameters": {
+              "searchTerm": "@triggerBody()['text']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_user_profile_(V2)": {
+          "runAfter": {
+            "Search_for_users_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8dbe9c22-9d1c-464a-b1d6-6192134962a7"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365users",
+              "operationId": "UserProfile_V2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+            },
+            "parameters": {
+              "id": "@first(outputs('Search_for_users_(V2)')?['body/value'])?['UserPrincipalName']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
