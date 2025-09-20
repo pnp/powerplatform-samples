@@ -41,19 +41,19 @@
           "defaultValue": {},
           "type": "SecureObject"
         },
-        "SiteURL (new_SiteURL)": {
-          "defaultValue": "https://8fj2hx.sharepoint.com/sites/POC1",
-          "type": "String",
-          "metadata": {
-            "schemaName": "new_SiteURL"
-          }
-        },
         "SPList (new_SPList)": {
           "defaultValue": "67d0693f-ab91-4ad3-831d-69d09e3bff66",
           "type": "String",
           "metadata": {
             "schemaName": "new_SPList",
             "description": "SharePoint List Name"
+          }
+        },
+        "POC1 - https://8fj2hx.sharepoint.com/sites/POC1 (new_SiteURL)": {
+          "defaultValue": "https://8fj2hx.sharepoint.com/sites/POC1",
+          "type": "String",
+          "metadata": {
+            "schemaName": "new_SiteURL"
           }
         }
       },
@@ -75,7 +75,7 @@
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
             },
             "parameters": {
-              "dataset": "@parameters('SiteURL (new_SiteURL)')",
+              "dataset": "@parameters('POC1 - https://8fj2hx.sharepoint.com/sites/POC1 (new_SiteURL)')",
               "table": "@parameters('SPList (new_SPList)')"
             },
             "authentication": "@parameters('$authentication')"
@@ -93,75 +93,11 @@
             "variables": [
               {
                 "name": "varAppID",
-                "type": "string"
+                "type": "string",
+                "value": "@{triggerOutputs()?['body/AppID']}"
               }
             ]
           }
-        },
-        "Switch": {
-          "runAfter": {
-            "Compose_-_Tenant_ID": [
-              "Succeeded"
-            ]
-          },
-          "cases": {
-            "Case": {
-              "case": "PDF Reader_1144",
-              "actions": {
-                "Set_variable": {
-                  "runAfter": {},
-                  "metadata": {
-                    "operationMetadataId": "67a9ef92-9c18-4e26-b49c-b624b9e5c9b9"
-                  },
-                  "type": "SetVariable",
-                  "inputs": {
-                    "name": "varAppID",
-                    "value": "@triggerOutputs()?['body/AppID']"
-                  }
-                }
-              }
-            },
-            "Case_2": {
-              "case": "Repeating Control",
-              "actions": {
-                "Set_variable_2": {
-                  "runAfter": {},
-                  "metadata": {
-                    "operationMetadataId": "d8e6fdcf-62b1-46c8-b5ce-30f3468625af"
-                  },
-                  "type": "SetVariable",
-                  "inputs": {
-                    "name": "varAppID",
-                    "value": "@triggerOutputs()?['body/AppID']"
-                  }
-                }
-              }
-            },
-            "Case_3": {
-              "case": "AddressBook",
-              "actions": {
-                "Set_variable_3": {
-                  "runAfter": {},
-                  "metadata": {
-                    "operationMetadataId": "ff823bf4-1802-4b0b-94e6-b7b1974c976f"
-                  },
-                  "type": "SetVariable",
-                  "inputs": {
-                    "name": "varAppID",
-                    "value": "@triggerOutputs()?['body/AppID']"
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "actions": {}
-          },
-          "expression": "@triggerOutputs()?['body/AppNameNew']?['Value']",
-          "metadata": {
-            "operationMetadataId": "c6e2e35d-ec59-4e8e-9b06-28c0578a94c5"
-          },
-          "type": "Switch"
         },
         "Apply_to_each": {
           "foreach": "@triggerOutputs()?['body/Users']",
@@ -219,7 +155,7 @@
             }
           },
           "runAfter": {
-            "Switch": [
+            "Compose_-_Tenant_ID": [
               "Succeeded"
             ]
           },
