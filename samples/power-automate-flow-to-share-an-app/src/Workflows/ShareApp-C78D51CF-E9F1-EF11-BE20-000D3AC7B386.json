@@ -100,7 +100,7 @@
           }
         },
         "Apply_to_each": {
-          "foreach": "@triggerOutputs()?['body/Users']",
+          "foreach": "@array(triggerOutputs()?['body/Users'])",
           "actions": {
             "Get_user": {
               "runAfter": {},
