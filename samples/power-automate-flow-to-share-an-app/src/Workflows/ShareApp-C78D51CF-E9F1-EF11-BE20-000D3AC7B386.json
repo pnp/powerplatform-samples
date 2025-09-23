@@ -1,0 +1,196 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_azuread": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedazuread_69386"
+        },
+        "api": {
+          "name": "shared_azuread"
+        }
+      },
+      "shared_powerappsforappmakers": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedpowerappsforappmakers_3c6c8"
+        },
+        "api": {
+          "name": "shared_powerappsforappmakers"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_1d8cd"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "SPList (new_SPList)": {
+          "defaultValue": "67d0693f-ab91-4ad3-831d-69d09e3bff66",
+          "type": "String",
+          "metadata": {
+            "schemaName": "new_SPList",
+            "description": "SharePoint List Name"
+          }
+        },
+        "POC1 - https://8fj2hx.sharepoint.com/sites/POC1 (new_SiteURL)": {
+          "defaultValue": "https://8fj2hx.sharepoint.com/sites/POC1",
+          "type": "String",
+          "metadata": {
+            "schemaName": "new_SiteURL"
+          }
+        }
+      },
+      "triggers": {
+        "When_an_item_is_created": {
+          "recurrence": {
+            "interval": 1,
+            "frequency": "Minute"
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "0da0579c-d385-408e-a4a9-3c99c8270761"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetOnNewItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('POC1 - https://8fj2hx.sharepoint.com/sites/POC1 (new_SiteURL)')",
+              "table": "@parameters('SPList (new_SPList)')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Initialize_variable_for_App_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "4b6d1af6-053a-4a04-861a-ac1ff8403a2d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varAppID",
+                "type": "string",
+                "value": "@{triggerOutputs()?['body/AppID']}"
+              }
+            ]
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@array(triggerOutputs()?['body/Users'])",
+          "actions": {
+            "Get_user": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "33f2e370-f81c-495c-878e-0ff9065b5b87"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_azuread",
+                  "operationId": "GetUser",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_azuread"
+                },
+                "parameters": {
+                  "id": "@items('Apply_to_each')?['Email']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Edit_App_Role_Assignment": {
+              "runAfter": {
+                "Get_user": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d46de0b3-973f-4976-b46a-8aff7e54cacd"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_powerappsforappmakers",
+                  "operationId": "Edit-AppRoleAssignment",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_powerappsforappmakers"
+                },
+                "parameters": {
+                  "app": "@variables('varAppID')",
+                  "api-version": "2016-11-01",
+                  "$filter": "environment eq @{outputs('Compose_-_Environment_ID')}",
+                  "Content-Type": "application/json",
+                  "body/put": [
+                    {
+                      "properties/principal/email": "@items('Apply_to_each')",
+                      "properties/principal/tenantId": "@outputs('Compose_-_Tenant_ID')",
+                      "properties/principal/id": "@outputs('Get_user')?['body/id']",
+                      "properties/roleName": "CanEdit"
+                    }
+                  ]
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Compose_-_Tenant_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "19e2662f-f867-4740-a240-9e3710b51d87"
+          },
+          "type": "Foreach"
+        },
+        "Compose_-_Environment_ID": {
+          "runAfter": {
+            "Initialize_variable_for_App_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c0e83207-b62c-4754-98ff-5d873192c812"
+          },
+          "type": "Compose",
+          "inputs": "@workflow()['tags']['environmentName']"
+        },
+        "Compose_-_Tenant_ID": {
+          "runAfter": {
+            "Compose_-_Environment_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6eee50b7-b094-40ab-a092-8f9412a41112"
+          },
+          "type": "Compose",
+          "inputs": "@workflow()?['tags']?['tenantId']"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
