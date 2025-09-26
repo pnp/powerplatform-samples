@@ -2,148 +2,184 @@
   "properties": {
     "connectionReferences": {
       "shared_office365-1": {
-        "api": {
-          "name": "shared_office365"
-        },
+        "runtimeSource": "embedded",
         "connection": {
           "connectionReferenceLogicalName": "gsllc_sharedoffice365_d6869"
         },
-        "runtimeSource": "embedded"
+        "api": {
+          "name": "shared_office365"
+        }
       },
       "shared_sharepointonline-2": {
-        "api": {
-          "name": "shared_sharepointonline"
-        },
+        "runtimeSource": "embedded",
         "connection": {
           "connectionReferenceLogicalName": "gsllc_sharedsharepointonline_7584d"
         },
-        "runtimeSource": "embedded"
+        "api": {
+          "name": "shared_sharepointonline"
+        }
       },
       "shared_excelonlinebusiness-1": {
-        "api": {
-          "name": "shared_excelonlinebusiness"
-        },
+        "runtimeSource": "embedded",
         "connection": {
           "connectionReferenceLogicalName": "gsllc_sharedexcelonlinebusiness_055aa"
         },
-        "runtimeSource": "embedded"
+        "api": {
+          "name": "shared_excelonlinebusiness"
+        }
       }
     },
     "definition": {
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",
       "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
         "$authentication": {
           "defaultValue": {},
           "type": "SecureObject"
         },
-        "$connections": {
-          "defaultValue": {},
-          "type": "Object"
+        "Notification_Email_Address (gsllc_Notification_Email_Address)": {
+          "defaultValue": "mgern@hotmail.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "gsllc_Notification_Email_Address",
+            "description": "Here you should input your operations email"
+          }
+        },
+        "Source_SharePoint_Url (gsllc_Source_SharePoint_Url)": {
+          "defaultValue": "https://gernaey.sharepoint.com/sites/TheGernaeyCode",
+          "type": "String",
+          "metadata": {
+            "schemaName": "gsllc_Source_SharePoint_Url",
+            "description": "The URL that the excel file first lands in"
+          }
+        },
+        "Attachment_File_Creation_Folder (gsllc_Attachment_File_Creation_Folder)": {
+          "defaultValue": "/ExcelExamples/GroupBy/WorkItems",
+          "type": "String",
+          "metadata": {
+            "schemaName": "gsllc_Attachment_File_Creation_Folder",
+            "description": "This is where you will save the incoming attachment"
+          }
+        },
+        "Excel_File_Location_Uri_For_List_Rows (gsllc_Excel_File_Location_Uri_For_List_Rows)": {
+          "defaultValue": "GroupBy/WorkItems/",
+          "type": "String",
+          "metadata": {
+            "schemaName": "gsllc_Excel_File_Location_Uri_For_List_Rows",
+            "description": "Used in the List Rows Action"
+          }
+        },
+        "Target_SharePoint_Url (gsllc_Target_SharePoint_Url)": {
+          "defaultValue": "https://gernaey.sharepoint.com/sites/TheGernaeyCode",
+          "type": "String",
+          "metadata": {
+            "schemaName": "gsllc_Target_SharePoint_Url",
+            "description": "The target SharePoint Site that file gets moved too"
+          }
+        },
+        "SharePoint_Processed_Folder_Target_Location (gsllc_SharePoint_Processed_File_Target_Location)": {
+          "defaultValue": "/ExcelExamples/GroupBy/Processed",
+          "type": "String",
+          "metadata": {
+            "schemaName": "gsllc_SharePoint_Processed_File_Target_Location",
+            "description": "This is the folder path it will be saved in"
+          }
+        },
+        "Excel_Table_Name (gsllc_Excel_Table_Name)": {
+          "defaultValue": "WorkItems",
+          "type": "String",
+          "metadata": {
+            "schemaName": "gsllc_Excel_Table_Name",
+            "description": "THe name of the table that has your data in excel"
+          }
+        },
+        "Excel_Attachment_Name (gsllc_Excel_Attachment_Name)": {
+          "defaultValue": "workitems.xlsx",
+          "type": "String",
+          "metadata": {
+            "schemaName": "gsllc_Excel_Attachment_Name",
+            "description": "The name of the attachment"
+          }
+        },
+        "Email_Subject_Filter_String (gsllc_Email_Subject_Filter_String)": {
+          "defaultValue": "WorkItems",
+          "type": "String",
+          "metadata": {
+            "schemaName": "gsllc_Email_Subject_Filter_String",
+            "description": "The string to filter in the subject for our emails"
+          }
+        },
+        "SharePoint_Document_Library_Metadata_Id (gsllc_SharePoint_Document_Library_Metadata_Id)": {
+          "defaultValue": "b!GIfmRAVVw0mcFoQzYGhW-r3_yytMP19AvCd-ZdKecbLx0LomIb1QQJRqbnEl1-ia",
+          "type": "String",
+          "metadata": {
+            "schemaName": "gsllc_SharePoint_Document_Library_Metadata_Id",
+            "description": "The metadata ID of the sharepoint point folder for List Rows Actions"
+          }
         }
       },
       "triggers": {
         "When_a_new_email_arrives_(V3)_-_Process_Incoming_WorkItems": {
-          "type": "OpenApiConnectionNotification",
-          "inputs": {
-            "parameters": {
-              "includeAttachments": true,
-              "subjectFilter": "WorkItems",
-              "importance": "Any",
-              "fetchOnlyWithAttachment": true,
-              "folderPath": "Inbox"
-            },
-            "host": {
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
-              "operationId": "OnNewEmailV3",
-              "connectionName": "shared_office365-1"
-            }
-          },
           "splitOn": "@triggerOutputs()?['body/value']",
           "metadata": {
             "operationMetadataId": "b1a0f5a5-b9db-4e7a-a95e-b9c2f59bd01b"
+          },
+          "type": "OpenApiConnectionNotification",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365-1",
+              "operationId": "OnNewEmailV3",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "folderPath": "Inbox",
+              "includeAttachments": true,
+              "subjectFilter": "WorkItems",
+              "importance": "Any",
+              "fetchOnlyWithAttachment": true
+            },
+            "authentication": "@parameters('$authentication')"
           }
         }
       },
       "actions": {
         "Verify_our_attachment_name_subject_and_that_we_only_have_1_attachment": {
-          "type": "If",
-          "expression": {
-            "and": [
-              {
-                "equals": [
-                  "@length(triggerOutputs()?['body/attachments'])",
-                  1
-                ]
-              },
-              {
-                "equals": [
-                  "@triggerOutputs()?['body/attachments']?[0]?['name']",
-                  "workitems.xlsx"
-                ]
-              },
-              {
-                "equals": [
-                  "@toLower(triggerOutputs()?['body/subject'])",
-                  "workitems"
-                ]
-              },
-              {
-                "equals": [
-                  "@triggerOutputs()?['body/hasAttachments']",
-                  "@true"
-                ]
-              }
-            ]
-          },
           "actions": {
             "Try": {
-              "type": "Scope",
               "actions": {
                 "Compose_file_name_with_additional_date_and_time_details": {
-                  "type": "Compose",
-                  "inputs": "@concat(split(triggerOutputs()?['body/attachments']?[0]?['name'], '.')[0], '_', formatDateTime(utcNow(), 'dd_MM_yyyy__hh_mm_ss_fffZ'),'.xlsx')",
+                  "runAfter": {},
                   "metadata": {
                     "operationMetadataId": "08e19c16-16b8-4ce8-a8af-a0e52f01cfa3"
-                  }
+                  },
+                  "type": "Compose",
+                  "inputs": "@concat(split(triggerOutputs()?['body/attachments']?[0]?['name'], '.')[0], '_', formatDateTime(utcNow(), 'dd_MM_yyyy__hh_mm_ss_fffZ'),'.xlsx')"
                 },
                 "Is_the_Attachment_Inline_to_the_Body": {
-                  "type": "If",
-                  "expression": {
-                    "equals": [
-                      "@triggerOutputs()?['body/attachments']?[0]?['isInline']",
-                      "@false"
-                    ]
-                  },
                   "actions": {
                     "Get_Attachment_(V2)_-_Was_not_inline": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "3cf77a83-ad0b-43de-960e-7adf3fd31b49"
+                      },
                       "type": "OpenApiConnection",
                       "inputs": {
+                        "host": {
+                          "connectionName": "shared_office365-1",
+                          "operationId": "GetAttachment_V2",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                        },
                         "parameters": {
                           "messageId": "@triggerOutputs()?['body/id']",
                           "attachmentId": "@triggerOutputs()?['body/attachments']?[0]?['id']",
-                          "extractSensitivityLabel": "false",
-                          "fetchSensitivityLabelMetadata": "false"
+                          "extractSensitivityLabel": false,
+                          "fetchSensitivityLabelMetadata": false
                         },
-                        "host": {
-                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
-                          "operationId": "GetAttachment_V2",
-                          "connectionName": "shared_office365-1"
-                        }
-                      },
-                      "metadata": {
-                        "operationMetadataId": "3cf77a83-ad0b-43de-960e-7adf3fd31b49"
-                      }
-                    }
-                  },
-                  "else": {
-                    "actions": {
-                      "We_will_ignore_inLine_attachments_as_it_will_include_additional_work": {
-                        "type": "Scope",
-                        "actions": {},
-                        "metadata": {
-                          "operationMetadataId": "43b05641-729f-433e-832d-4d6da72130e8"
-                        }
+                        "authentication": "@parameters('$authentication')"
                       }
                     }
                   },
@@ -152,57 +188,60 @@
                       "Succeeded"
                     ]
                   },
-                  "metadata": {
-                    "operationMetadataId": "a1d30696-e4a9-4df7-8831-810a3a1127d9"
-                  }
-                },
-                "Create_our_New_Excel_File_in_the_WorkItems_folder_of_Sharepoint": {
-                  "type": "OpenApiConnection",
-                  "inputs": {
-                    "parameters": {
-                      "dataset": "https://gernaey.sharepoint.com/sites/TheGernaeyCode",
-                      "folderPath": "/ExcelExamples/GroupBy/WorkItems",
-                      "name": "@outputs('Compose_file_name_with_additional_date_and_time_details')",
-                      "body": "@outputs('Get_Attachment_(V2)_-_Was_not_inline')?['body/contentBytes']"
-                    },
-                    "host": {
-                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
-                      "operationId": "CreateFile",
-                      "connectionName": "shared_sharepointonline-2"
+                  "else": {
+                    "actions": {
+                      "We_will_ignore_inLine_attachments_as_it_will_include_additional_work": {
+                        "actions": {},
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "43b05641-729f-433e-832d-4d6da72130e8"
+                        },
+                        "type": "Scope"
+                      }
                     }
                   },
+                  "expression": {
+                    "equals": [
+                      "@triggerOutputs()?['body/attachments']?[0]?['isInline']",
+                      "@false"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "a1d30696-e4a9-4df7-8831-810a3a1127d9"
+                  },
+                  "type": "If"
+                },
+                "Create_our_New_Excel_File_in_the_WorkItems_folder_of_Sharepoint": {
                   "runAfter": {
                     "Is_the_Attachment_Inline_to_the_Body": [
                       "Succeeded"
                     ]
                   },
+                  "metadata": {
+                    "operationMetadataId": "413d41fb-536e-4ec3-bb29-809fce014328"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline-2",
+                      "operationId": "CreateFile",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "@parameters('Source_SharePoint_Url (gsllc_Source_SharePoint_Url)')",
+                      "folderPath": "@parameters('Attachment_File_Creation_Folder (gsllc_Attachment_File_Creation_Folder)')",
+                      "name": "@outputs('Compose_file_name_with_additional_date_and_time_details')",
+                      "body": "@outputs('Get_Attachment_(V2)_-_Was_not_inline')?['body/contentBytes']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
                   "runtimeConfiguration": {
                     "contentTransfer": {
                       "transferMode": "Chunked"
                     }
-                  },
-                  "metadata": {
-                    "operationMetadataId": "413d41fb-536e-4ec3-bb29-809fce014328"
                   }
                 },
                 "List_all_Rows_in_our_WorkItems_Sheet": {
-                  "type": "OpenApiConnection",
-                  "inputs": {
-                    "parameters": {
-                      "source": "sites/gernaey.sharepoint.com,44e68718-5505-49c3-9c16-8433606856fa,2bcbffbd-3f4c-405f-bc27-7e65d29e71b2",
-                      "drive": "b!GIfmRAVVw0mcFoQzYGhW-r3_yytMP19AvCd-ZdKecbLx0LomIb1QQJRqbnEl1-ia",
-                      "file": "GroupBy/WorkItems/@{outputs('Compose_file_name_with_additional_date_and_time_details')}",
-                      "table": "WorkItems"
-                    },
-                    "host": {
-                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
-                      "operationId": "GetItems",
-                      "connectionName": "shared_excelonlinebusiness-1"
-                    },
-                    "retryPolicy": {
-                      "type": "none"
-                    }
-                  },
                   "runAfter": {
                     "Create_our_New_Excel_File_in_the_WorkItems_folder_of_Sharepoint": [
                       "Succeeded"
@@ -210,15 +249,28 @@
                   },
                   "metadata": {
                     "operationMetadataId": "b1f08d9a-3609-4ddf-9cc7-b9a88c37d8d9",
-                    "tableId": "WorkItems"
+                    "tableId": "@parameters('Excel_Table_Name (gsllc_Excel_Table_Name)')"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_excelonlinebusiness-1",
+                      "operationId": "GetItems",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness"
+                    },
+                    "parameters": {
+                      "source": "@parameters('Source_SharePoint_Url (gsllc_Source_SharePoint_Url)')",
+                      "drive": "@parameters('SharePoint_Document_Library_Metadata_Id (gsllc_SharePoint_Document_Library_Metadata_Id)')",
+                      "file": "@{parameters('Excel_File_Location_Uri_For_List_Rows (gsllc_Excel_File_Location_Uri_For_List_Rows)')}@{outputs('Compose_file_name_with_additional_date_and_time_details')}",
+                      "table": "@parameters('Excel_Table_Name (gsllc_Excel_Table_Name)')"
+                    },
+                    "authentication": "@parameters('$authentication')",
+                    "retryPolicy": {
+                      "type": "none"
+                    }
                   }
                 },
                 "Select_Out_Only_EmployeeEmail": {
-                  "type": "Select",
-                  "inputs": {
-                    "from": "@outputs('List_all_Rows_in_our_WorkItems_Sheet')?['body/value']",
-                    "select": "@item()?['EmployeeEmail']"
-                  },
                   "runAfter": {
                     "List_all_Rows_in_our_WorkItems_Sheet": [
                       "Succeeded"
@@ -226,11 +278,14 @@
                   },
                   "metadata": {
                     "operationMetadataId": "bb6a1675-e736-4e7c-a3f7-78fb984909e3"
+                  },
+                  "type": "Select",
+                  "inputs": {
+                    "from": "@outputs('List_all_Rows_in_our_WorkItems_Sheet')?['body/value']",
+                    "select": "@item()?['EmployeeEmail']"
                   }
                 },
                 "Create_Unique_List_of_EmployeeEmail_Addresses": {
-                  "type": "Compose",
-                  "inputs": "@union(body('Select_Out_Only_EmployeeEmail'),body('Select_Out_Only_EmployeeEmail'))",
                   "runAfter": {
                     "Select_Out_Only_EmployeeEmail": [
                       "Succeeded"
@@ -238,28 +293,25 @@
                   },
                   "metadata": {
                     "operationMetadataId": "6416b0fa-eb3b-44da-b135-2db9d159bc83"
-                  }
+                  },
+                  "type": "Compose",
+                  "inputs": "@union(body('Select_Out_Only_EmployeeEmail'),body('Select_Out_Only_EmployeeEmail'))"
                 },
                 "Loop_Through_and_Get_All_Rows_grouped_by_Unique_Email_Address": {
-                  "type": "Foreach",
                   "foreach": "@outputs('Create_Unique_List_of_EmployeeEmail_Addresses')",
                   "actions": {
                     "Filter_Rows_of_Data_to_Only_Get_the_Current_Unique_Email_Address": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "1d3b1e07-7171-4ba2-9e57-21748076cb35"
+                      },
                       "type": "Query",
                       "inputs": {
                         "from": "@outputs('List_all_Rows_in_our_WorkItems_Sheet')?['body/value']",
                         "where": "@equals(item()?['EmployeeEmail'], items('Loop_Through_and_Get_All_Rows_grouped_by_Unique_Email_Address'))"
-                      },
-                      "metadata": {
-                        "operationMetadataId": "1d3b1e07-7171-4ba2-9e57-21748076cb35"
                       }
                     },
                     "Create_HTML_table": {
-                      "type": "Table",
-                      "inputs": {
-                        "from": "@body('Filter_Rows_of_Data_to_Only_Get_the_Current_Unique_Email_Address')",
-                        "format": "HTML"
-                      },
                       "runAfter": {
                         "Filter_Rows_of_Data_to_Only_Get_the_Current_Unique_Email_Address": [
                           "Succeeded"
@@ -267,23 +319,14 @@
                       },
                       "metadata": {
                         "operationMetadataId": "b0f86612-a72f-492d-b75c-5e622f310cd0"
+                      },
+                      "type": "Table",
+                      "inputs": {
+                        "from": "@body('Filter_Rows_of_Data_to_Only_Get_the_Current_Unique_Email_Address')",
+                        "format": "HTML"
                       }
                     },
                     "Send_an_email_(V2)_-_send_the_html_table_to_the_employee": {
-                      "type": "OpenApiConnection",
-                      "inputs": {
-                        "parameters": {
-                          "emailMessage/To": "@items('Loop_Through_and_Get_All_Rows_grouped_by_Unique_Email_Address')",
-                          "emailMessage/Subject": "Your WorkItems for Today - @{formatDateTime(utcNow(), 'dd-MM-yyyy')}",
-                          "emailMessage/Body": "<p>Hello,<br>\n<br>\nHere are your list of workitems<br>\n<br>\n@{body('Create_HTML_table')}<br>\n<br>\nSincerely,<br>\nYour Automation Center</p>",
-                          "emailMessage/Importance": "Normal"
-                        },
-                        "host": {
-                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
-                          "operationId": "SendEmailV2",
-                          "connectionName": "shared_office365-1"
-                        }
-                      },
                       "runAfter": {
                         "Create_HTML_table": [
                           "Succeeded"
@@ -291,6 +334,21 @@
                       },
                       "metadata": {
                         "operationMetadataId": "083ebff5-7c0e-4750-b300-b9421155f1d1"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_office365-1",
+                          "operationId": "SendEmailV2",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                        },
+                        "parameters": {
+                          "emailMessage/To": "@items('Loop_Through_and_Get_All_Rows_grouped_by_Unique_Email_Address')",
+                          "emailMessage/Subject": "Your WorkItems for Today - @{formatDateTime(utcNow(), 'dd-MM-yyyy')}",
+                          "emailMessage/Body": "<p>Hello,<br>\n<br>\nHere are your list of workitems<br>\n<br>\n@{body('Create_HTML_table')}<br>\n<br>\nSincerely,<br>\nYour Automation Center</p>",
+                          "emailMessage/Importance": "Normal"
+                        },
+                        "authentication": "@parameters('$authentication')"
                       }
                     }
                   },
@@ -301,16 +359,10 @@
                   },
                   "metadata": {
                     "operationMetadataId": "e3e87b19-23c4-4517-a672-8f30be8bfb50"
-                  }
-                },
-                "Pause_the_flow_for_3_-_10_minutes_to_unlock_the_Excel_file": {
-                  "type": "Wait",
-                  "inputs": {
-                    "interval": {
-                      "count": 10,
-                      "unit": "Minute"
-                    }
                   },
+                  "type": "Foreach"
+                },
+                "Pause_the_flow_for_10_minutes_to_unlock_the_Excel_file": {
                   "runAfter": {
                     "Loop_Through_and_Get_All_Rows_grouped_by_Unique_Email_Address": [
                       "Succeeded"
@@ -318,61 +370,80 @@
                   },
                   "metadata": {
                     "operationMetadataId": "66e25356-8f40-4421-ae79-5d93db4ebf99"
+                  },
+                  "type": "Wait",
+                  "inputs": {
+                    "interval": {
+                      "count": 10,
+                      "unit": "Minute"
+                    }
                   }
                 },
                 "Move_file_-_Move_our_processed_file_to_the_Processed_Folder": {
-                  "type": "OpenApiConnection",
-                  "inputs": {
-                    "parameters": {
-                      "dataset": "https://gernaey.sharepoint.com/sites/TheGernaeyCode",
-                      "parameters/sourceFileId": "@outputs('Create_our_New_Excel_File_in_the_WorkItems_folder_of_Sharepoint')?['body/Id']",
-                      "parameters/destinationDataset": "https://gernaey.sharepoint.com/sites/TheGernaeyCode",
-                      "parameters/destinationFolderPath": "/ExcelExamples/GroupBy/Processed",
-                      "parameters/nameConflictBehavior": 2
-                    },
-                    "host": {
-                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
-                      "operationId": "MoveFileAsync",
-                      "connectionName": "shared_sharepointonline-2"
-                    }
-                  },
                   "runAfter": {
-                    "Pause_the_flow_for_3_-_10_minutes_to_unlock_the_Excel_file": [
+                    "Pause_the_flow_for_10_minutes_to_unlock_the_Excel_file": [
                       "Succeeded"
                     ]
                   },
                   "metadata": {
                     "operationMetadataId": "348f0412-307d-4665-94cc-2932194ecef1"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline-2",
+                      "operationId": "MoveFileAsync",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "@parameters('Source_SharePoint_Url (gsllc_Source_SharePoint_Url)')",
+                      "parameters/sourceFileId": "@outputs('Create_our_New_Excel_File_in_the_WorkItems_folder_of_Sharepoint')?['body/Id']",
+                      "parameters/destinationDataset": "@parameters('Target_SharePoint_Url (gsllc_Target_SharePoint_Url)')",
+                      "parameters/destinationFolderPath": "@parameters('SharePoint_Processed_Folder_Target_Location (gsllc_SharePoint_Processed_File_Target_Location)')",
+                      "parameters/nameConflictBehavior": 2
+                    },
+                    "authentication": "@parameters('$authentication')"
                   }
                 }
               },
+              "runAfter": {},
               "metadata": {
                 "operationMetadataId": "c45a861a-6ce6-4cec-b8c7-2754f150b98f"
-              }
+              },
+              "type": "Scope"
             },
             "Catch": {
-              "type": "Scope",
               "actions": {
-                "Send_an_email_(V2)_-_send_workitemsgroup_the_failure_details": {
+                "Send_an_email_(V2)_-_send_operations_the_failure_details": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "1576ba2f-1db8-438c-b4f1-6e14218e775f"
+                  },
                   "type": "OpenApiConnection",
                   "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365-1",
+                      "operationId": "SendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
                     "parameters": {
-                      "emailMessage/To": "workitemsgroup@useremailxyz.com",
+                      "emailMessage/To": "@parameters('Notification_Email_Address (gsllc_Notification_Email_Address)')",
                       "emailMessage/Subject": "File failed to process successfully - @{formatDateTime(utcNow(),'dd-MM-yyyy')}",
                       "emailMessage/Body": "<p>Hello,<br>\n<br>\nPlease see the following details as to why the flow failed.<br>\n<br>\n@{result('Try')}<br>\n<br>\nSincerely,<br>\nThe Automation Team</p>",
                       "emailMessage/Importance": "Normal"
                     },
-                    "host": {
-                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
-                      "operationId": "SendEmailV2",
-                      "connectionName": "shared_office365-1"
-                    }
-                  },
-                  "metadata": {
-                    "operationMetadataId": "1576ba2f-1db8-438c-b4f1-6e14218e775f"
+                    "authentication": "@parameters('$authentication')"
                   }
                 },
                 "Failed_for_cause": {
+                  "runAfter": {
+                    "Send_an_email_(V2)_-_send_operations_the_failure_details": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "f5a11da4-097a-425f-8bc8-a95ac7b070dd"
+                  },
                   "type": "Terminate",
                   "inputs": {
                     "runStatus": "Failed",
@@ -380,14 +451,6 @@
                       "code": "501",
                       "message": "Please check your email for failure reason"
                     }
-                  },
-                  "runAfter": {
-                    "Send_an_email_(V2)_-_send_workitemsgroup_the_failure_details": [
-                      "Succeeded"
-                    ]
-                  },
-                  "metadata": {
-                    "operationMetadataId": "f5a11da4-097a-425f-8bc8-a95ac7b070dd"
                   }
                 }
               },
@@ -400,42 +463,44 @@
               },
               "metadata": {
                 "operationMetadataId": "1999ace5-2a7a-4eb9-a222-b45559080d99"
-              }
+              },
+              "type": "Scope"
             },
             "Success": {
-              "type": "Scope",
               "actions": {
-                "Send_an_email_(V2)_-_Notify_workitemsgroup_the_file_succeeded": {
+                "Send_an_email_(V2)_-_Notify_operations_the_file_succeeded": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "96b15b9a-615c-4297-bd5a-b76bbbf052d2"
+                  },
                   "type": "OpenApiConnection",
                   "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365-1",
+                      "operationId": "SendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
                     "parameters": {
-                      "emailMessage/To": "workitemsgroup@useremailxyz.com",
+                      "emailMessage/To": "@parameters('Notification_Email_Address (gsllc_Notification_Email_Address)')",
                       "emailMessage/Subject": "File Completed Successfully - @{formatDateTime(utcNow(),'dd-MM-yyyy')}",
                       "emailMessage/Body": "<p>Hello,<br>\n<br>\nThis is just to let you know the file processed successfully today.<br>\n<br>\nSincerely,<br>\nThe Automation Team</p>",
                       "emailMessage/Importance": "Normal"
                     },
-                    "host": {
-                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
-                      "operationId": "SendEmailV2",
-                      "connectionName": "shared_office365-1"
-                    }
-                  },
-                  "metadata": {
-                    "operationMetadataId": "96b15b9a-615c-4297-bd5a-b76bbbf052d2"
+                    "authentication": "@parameters('$authentication')"
                   }
                 },
                 "Succeeded": {
-                  "type": "Terminate",
-                  "inputs": {
-                    "runStatus": "Succeeded"
-                  },
                   "runAfter": {
-                    "Send_an_email_(V2)_-_Notify_workitemsgroup_the_file_succeeded": [
+                    "Send_an_email_(V2)_-_Notify_operations_the_file_succeeded": [
                       "Succeeded"
                     ]
                   },
                   "metadata": {
                     "operationMetadataId": "90e1876d-3f45-415e-8151-d4bffe85c2fe"
+                  },
+                  "type": "Terminate",
+                  "inputs": {
+                    "runStatus": "Succeeded"
                   }
                 }
               },
@@ -446,31 +511,43 @@
               },
               "metadata": {
                 "operationMetadataId": "9179578f-77c6-4a83-8e9e-ac8cd6d16333"
-              }
+              },
+              "type": "Scope"
             }
           },
+          "runAfter": {},
           "else": {
             "actions": {
-              "Send_an_email_(V2)_-_notify_workitemsgroup_we_did_not_process_a_file": {
+              "Send_an_email_(V2)_-_notify_operations_we_did_not_process_a_file": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "c2a4dc30-d33f-4f17-b5f0-56814e7e3a6b"
+                },
                 "type": "OpenApiConnection",
                 "inputs": {
+                  "host": {
+                    "connectionName": "shared_office365-1",
+                    "operationId": "SendEmailV2",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                  },
                   "parameters": {
-                    "emailMessage/To": "workitemsgroup@useremailxyz.com",
+                    "emailMessage/To": "@parameters('Notification_Email_Address (gsllc_Notification_Email_Address)')",
                     "emailMessage/Subject": "A file was not processed successfully due to unknown error - @{formatDateTime(utcNow(),'dd-MM-yyyy')}",
                     "emailMessage/Body": "<p>Hello,<br>\n<br>\nThis is to inform you that a file was either not found or some other issue, caused us not to process a file at all.<br>\n<br>\nSincerely,<br>\nThe Automation Team</p>",
                     "emailMessage/Importance": "Normal"
                   },
-                  "host": {
-                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
-                    "operationId": "SendEmailV2",
-                    "connectionName": "shared_office365-1"
-                  }
-                },
-                "metadata": {
-                  "operationMetadataId": "c2a4dc30-d33f-4f17-b5f0-56814e7e3a6b"
+                  "authentication": "@parameters('$authentication')"
                 }
               },
               "Failed_due_to_unknown_cause": {
+                "runAfter": {
+                  "Send_an_email_(V2)_-_notify_operations_we_did_not_process_a_file": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "55ef5503-391e-4027-9b0a-0d2d6d1f3ec1"
+                },
                 "type": "Terminate",
                 "inputs": {
                   "runStatus": "Failed",
@@ -478,26 +555,46 @@
                     "code": "500",
                     "message": "Attachment, Subject or Has Attachments Failed"
                   }
-                },
-                "runAfter": {
-                  "Send_an_email_(V2)_-_notify_workitemsgroup_we_did_not_process_a_file": [
-                    "Succeeded"
-                  ]
-                },
-                "metadata": {
-                  "operationMetadataId": "55ef5503-391e-4027-9b0a-0d2d6d1f3ec1"
                 }
               }
             }
           },
-          "runAfter": {},
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@length(triggerOutputs()?['body/attachments'])",
+                  1
+                ]
+              },
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/attachments']?[0]?['name']",
+                  "@parameters('Excel_Attachment_Name (gsllc_Excel_Attachment_Name)')"
+                ]
+              },
+              {
+                "equals": [
+                  "@toLower(triggerOutputs()?['body/subject'])",
+                  "@toLower(parameters('Email_Subject_Filter_String (gsllc_Email_Subject_Filter_String)'))"
+                ]
+              },
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/hasAttachments']",
+                  "@true"
+                ]
+              }
+            ]
+          },
           "metadata": {
             "operationMetadataId": "ee421e9a-dad6-46b8-9cf1-65cfa81172cf"
-          }
+          },
+          "type": "If"
         }
       }
     },
-    "templateName": null
+    "templateName": ""
   },
   "schemaVersion": "1.0.0.0"
 }
