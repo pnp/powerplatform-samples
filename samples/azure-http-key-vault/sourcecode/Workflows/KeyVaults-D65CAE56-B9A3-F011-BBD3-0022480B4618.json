@@ -1,0 +1,68 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "08397e2f-9fff-455d-863a-d9ce43908b8d"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "AuthorizationToken": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "cd28a01b-8008-4075-8d68-71461fa23ab0"
+          },
+          "type": "Http",
+          "inputs": {
+            "method": "POST",
+            "uri": "https://login.microsoftonline.com/c09030dd-81e0-44af-a342-68c9358c43dd/oauth2/v2.0/token",
+            "headers": {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "body": "client_id=<client_id>&scope=https://vault.azure.net/.default&client_secret=<client_secret>&grant_type=client_credentials"
+          }
+        },
+        "InvokeKeyVault": {
+          "runAfter": {
+            "AuthorizationToken": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fbbadc42-0136-46d3-a39f-67f2c91fc405"
+          },
+          "type": "Http",
+          "inputs": {
+            "method": "GET",
+            "uri": "https://cognitiveapivault.vault.azure.net/secrets/UnoKey/087b33200a8d482aafbb58f20fb863c9?api-Version=7.3",
+            "headers": {
+              "Authorization": "@{concat('Bearer ',body('AuthorizationToken')?['access_token'])}"
+            }
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
