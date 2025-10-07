@@ -1,0 +1,150 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "pnp_sharedsharepointonline_eefbc"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_item_is_created": {
+          "recurrence": {
+            "frequency": "Minute",
+            "interval": 1
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "7890832d-bafb-455f-b25a-c834fa6eb2b1"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetOnNewItems"
+            },
+            "parameters": {
+              "dataset": "https://chlebekdev.sharepoint.com/sites/chlebekdev",
+              "table": "3261fb42-7d9d-4342-bbd7-e94bc267880a"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Replace Site Address and List Name to match your site and list."
+        }
+      },
+      "actions": {
+        "Create_new_folder": {
+          "runAfter": {
+            "Compose_-_varParameters": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ea64d6e9-1fcb-4f4f-a2eb-79d3e1cc637d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "CreateNewFolder"
+            },
+            "parameters": {
+              "dataset": "@variables('varParameters')['varSiteURL']",
+              "table": "@variables('varParameters')['varDocumentDisplayLibraryName']",
+              "parameters/path": "@variables('varParameters')['varFolderName']"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "If you rename this action be certain to update the outputs('Create_new_folder')?['body/{Link}'] expression included in the Send an HTTP request to SharePoint action"
+        },
+        "Send_an_HTTP_request_to_SharePoint": {
+          "runAfter": {
+            "Create_new_folder": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4140c059-c011-4c02-a159-3e375dd82090"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "HttpRequest"
+            },
+            "parameters": {
+              "dataset": "@variables('varParameters')['varSiteURL']",
+              "parameters/method": "POST",
+              "parameters/uri": "_api/web/lists/GetByTitle('@{variables('varParameters')['varListDisplayName']}')/items(@{triggerOutputs()?['body/ID']})",
+              "parameters/headers": {
+                "Content-Type": "application/json;odata=verbose",
+                "X-HTTP-Method": "MERGE",
+                "IF-MATCH": "*"
+              },
+              "parameters/body": "{'__metadata': {'type':'SP.Data.@{variables('varParameters')['varListInternalName']}ListItem'}, '@{variables('varParameters')['varColumnInternalName']}':{'Description': '@{variables('varParameters')['varFolderName']}', 'Url': '@{outputs('Create_new_folder')?['body/{Link}']}'}}"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_variable_-_varParameters": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "09ded3eb-54e7-4bdd-a8b6-598cf57fa4f6"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varParameters",
+                "type": "object",
+                "value": {
+                  "varSiteURL": "https://normyoung.sharepoint.com/sites/demo-site",
+                  "varListInternalName": "DemoFolders",
+                  "varListDisplayName": "Demo Folders",
+                  "varColumnInternalName": "FolderLocation",
+                  "varDocumentDisplayLibraryName": "Documents",
+                  "varFolderName": "@{concat(triggerOutputs()?['body/ID'], '-', triggerOutputs()?['body/Title'])}"
+                }
+              }
+            ]
+          },
+          "description": "The Object variable type is used in place of multiple variable declarations. See Comments for notes on each object variable in varParameters."
+        },
+        "Compose_-_varParameters": {
+          "runAfter": {
+            "Initialize_variable_-_varParameters": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4850603d-5ac6-48b7-aac7-ff9cb236aa35"
+          },
+          "type": "Compose",
+          "inputs": "@variables('varParameters')"
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
