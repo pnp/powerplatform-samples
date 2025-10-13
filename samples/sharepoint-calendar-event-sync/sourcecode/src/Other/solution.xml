@@ -1,12 +1,12 @@
-<ImportExportXml version="9.2.25074.248" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25074.248" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25074.00250">
+<ImportExportXml version="9.2.25092.160" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25092.160" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25092.00160">
   <SolutionManifest>
-    <UniqueName>sai</UniqueName>
+    <UniqueName>SharePointCalendarEventSync</UniqueName>
     <LocalizedNames>
-      <LocalizedName description="sai" languagecode="1033" />
+      <LocalizedName description="SharePointCalendarEventSync" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
     <Version>1.0.0.1</Version>
-    <Managed>0</Managed>
+    <Managed>1</Managed>
     <Publisher>
       <UniqueName>sai</UniqueName>
       <LocalizedNames>
@@ -79,6 +79,15 @@
     <RootComponents>
       <RootComponent type="29" id="{a1f0fbd5-3a86-f011-b4cc-000d3a35ce29}" behavior="0" />
     </RootComponents>
-    <MissingDependencies />
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="sai_sharedoffice365_959bd" solution="Active" id.connectionreferencelogicalname="sai_sharedoffice365_959bd" />
+        <Dependent type="29" displayName="SharePoint Calendar Event Sync" id="{a1f0fbd5-3a86-f011-b4cc-000d3a35ce29}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="sai_sharedsharepointonline_6c509" solution="Active" id.connectionreferencelogicalname="sai_sharedsharepointonline_6c509" />
+        <Dependent type="29" displayName="SharePoint Calendar Event Sync" id="{a1f0fbd5-3a86-f011-b4cc-000d3a35ce29}" />
+      </MissingDependency>
+    </MissingDependencies>
   </SolutionManifest>
 </ImportExportXml>

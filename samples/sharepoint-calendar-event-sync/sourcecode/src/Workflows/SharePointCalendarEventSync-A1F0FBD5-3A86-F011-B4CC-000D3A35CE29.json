@@ -31,6 +31,20 @@
         "$connections": {
           "defaultValue": {},
           "type": "Object"
+        },
+        "Sharepointurl (sai_Sharepointurl)": {
+          "defaultValue": "https://tenant.sharepoint.com/sites/saitesting2",
+          "type": "String",
+          "metadata": {
+            "schemaName": "sai_Sharepointurl"
+          }
+        },
+        "Outlook Meetings (sai_OutlookMeetings)": {
+          "defaultValue": "Outlook Meetings",
+          "type": "String",
+          "metadata": {
+            "schemaName": "sai_OutlookMeetings"
+          }
         }
       },
       "triggers": {
@@ -64,12 +78,8 @@
             },
             "host": {
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
-              "connectionName": "shared_office365",
-              "operationId": "GetEventsCalendarViewV3"
-            },
-            "authentication": {
-              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
-              "type": "Raw"
+              "operationId": "GetEventsCalendarViewV3",
+              "connectionName": "shared_office365"
             }
           }
         },
@@ -83,18 +93,14 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "parameters": {
-                  "dataset": "https://tenant.sharepoint.com/sites/sitename",
-                  "table": "bbc08a65-6d05-4000-8722-a927c5a8316a",
+                  "dataset": "@parameters('Sharepointurl (sai_Sharepointurl)')",
+                  "table": "@parameters('Outlook Meetings (sai_OutlookMeetings)')",
                   "$filter": "MeetingID eq '@{items('Apply_to_each')?['iCalUId']}'"
                 },
                 "host": {
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
-                  "connectionName": "shared_sharepointonline",
-                  "operationId": "GetItems"
-                },
-                "authentication": {
-                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
-                  "type": "Raw"
+                  "operationId": "GetItems",
+                  "connectionName": "shared_sharepointonline"
                 }
               }
             },
@@ -107,8 +113,8 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "parameters": {
-                      "dataset": "https://tenant.sharepoint.com/sites/sitename",
-                      "table": "bbc08a65-6d05-4000-8722-a927c5a8316a",
+                      "dataset": "@parameters('Sharepointurl (sai_Sharepointurl)')",
+                      "table": "@parameters('Outlook Meetings (sai_OutlookMeetings)')",
                       "view": "840f4894-ffb1-41fe-b65d-3f8b4a038e61",
                       "item/Title": "@items('Apply_to_each')?['subject']",
                       "item/Attendees": "@{items('Apply_to_each')?['requiredAttendees']}@{items('Apply_to_each')?['optionalAttendees']}",
@@ -121,12 +127,8 @@
                     },
                     "host": {
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
-                      "connectionName": "shared_sharepointonline",
-                      "operationId": "PostItem"
-                    },
-                    "authentication": {
-                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
-                      "type": "Raw"
+                      "operationId": "PostItem",
+                      "connectionName": "shared_sharepointonline"
                     }
                   }
                 }

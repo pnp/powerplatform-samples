@@ -61,7 +61,7 @@ Create a new list named **Calendar Events** in your SharePoint site with the fol
 
 ### Step 2: Import Power Platform Solution
 
-1. Download the **Unmanaged** solution `.zip` from the solution folder
+1. Download the **managed** solution `.zip` from the solution folder
 2. In [Power Apps Maker Portal](https://make.powerapps.com), choose your environment
 3. Navigate to **Solutions** > **Import solution** > **Browse**
 4. Select the downloaded solution file
@@ -120,7 +120,8 @@ To customize the solution:
 - Adjust the date range for event retrieval
 - Update field mappings as needed
 - Configure the schedule trigger frequency
-- Update SharePoint URL: Change the SharePoint dataset URL in the flow from "dataset": "https://tenant.sharepoint.com/sites/sitename" to match your specific tenant and site name (e.g., "dataset": "https://yourcompany.sharepoint.com/sites/yoursite")
+- Update SharePoint URL: Change the SharePoint URL in the flow from "Sharepointurl (sai_Sharepointurl)": "https://tenant.sharepoint.com/sites/sitename" to match your specific tenant and site name (e.g., "Sharepointurl (sai_Sharepointurl)": "https://tenant.sharepoint.com/sites/sitename")
+- Update SharePoint URL: Change the SharePoint URL in the Environment variable from defaultvalue of "Sharepointurl (sai_Sharepointurl)": "https://tenant.sharepoint.com/sites/sitename"
 
 ## Version History
 
