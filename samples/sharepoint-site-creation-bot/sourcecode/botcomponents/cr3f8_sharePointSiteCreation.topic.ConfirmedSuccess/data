@@ -1,0 +1,47 @@
+kind: AdaptiveDialog
+startBehavior: CancelOtherTopics
+beginDialog:
+  kind: OnSystemRedirect
+  id: main
+  actions:
+    - kind: CSATQuestion
+      id: 873b869b-eaff-4dc2-91d2-674ae00cd08d
+      conversationOutcome: ResolvedConfirmed
+      variable: init:Topic.CSATRating
+
+    - kind: SendActivity
+      id: 84eee210-fc48-4774-adcf-cfe97b655ca2
+      activity: Thanks for your feedback.
+
+    - kind: Question
+      id: 629eb33c-046d-4027-bd4e-923303c257c2
+      alwaysPrompt: true
+      variable: init:Topic.var
+      prompt: Can I help with anything else?
+      entity:
+        kind: EmbeddedEntity
+        definition:
+          kind: ClosedListEntity
+          items:
+            - id: Yes
+              displayName: Yes
+
+            - id: No, thanks
+              displayName: No, thanks
+
+    - kind: ConditionGroup
+      id: condition-0
+      conditions:
+        - id: condition-0-item-0
+          condition: =Topic.var = 'cr3f8_sharePointSiteCreation.topic.ConfirmedSuccess.main.629eb33c-046d-4027-bd4e-923303c257c2'.Yes
+          actions:
+            - kind: SendActivity
+              id: e54b7c79-79d7-42ad-abeb-77479d1fe431
+              activity: Go ahead. I'm listening.
+
+        - id: condition-0-item-1
+          condition: =Topic.var = 'cr3f8_sharePointSiteCreation.topic.ConfirmedSuccess.main.629eb33c-046d-4027-bd4e-923303c257c2'.'No, thanks'
+          actions:
+            - kind: BeginDialog
+              id: 1ff62b5a-60e9-4658-b328-c5ff1ab2f0ca
+              dialog: cr3f8_sharePointSiteCreation.topic.Goodbye
