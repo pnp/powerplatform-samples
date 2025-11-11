@@ -1,0 +1,578 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://unitedstates-002.azure-apim.net/apim/microsoftspatialservices" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="SpatialServices" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="Spatial Services">This connector is required by the Maps and Address Input controls in Power Apps. A connection for this connector is automatically created when you add these controls to your Power App.</doc>
+  <grammars>
+    <jsonTypes targetNamespace="https://unitedstates-002.azure-apim.net/apim/microsoftspatialservices" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <string name="GetClientId_Response_clientId_def" />
+      <object name="GetClientId_Response">
+        <property name="clientId" type="string" />
+      </object>
+      <string name="GetToken_Response_token_type_def" />
+      <integer name="GetToken_Response_expires_in_def" />
+      <integer name="GetToken_Response_ext_expires_in_def" />
+      <string name="GetToken_Response_access_token_def" />
+      <object name="GetToken_Response">
+        <property name="token_type" type="string" />
+        <property name="expires_in" type="integer" />
+        <property name="ext_expires_in" type="integer" />
+        <property name="access_token" type="string" />
+      </object>
+      <string name="GetSearchFuzzyJson_Response_summary_def_query_def" />
+      <string name="GetSearchFuzzyJson_Response_summary_def_queryType_def" />
+      <integer name="GetSearchFuzzyJson_Response_summary_def_queryTime_def" />
+      <integer name="GetSearchFuzzyJson_Response_summary_def_numResults_def" />
+      <integer name="GetSearchFuzzyJson_Response_summary_def_offset_def" />
+      <integer name="GetSearchFuzzyJson_Response_summary_def_totalResults_def" />
+      <integer name="GetSearchFuzzyJson_Response_summary_def_fuzzyLevel_def" />
+      <object name="GetSearchFuzzyJson_Response_summary_def">
+        <property name="query" type="string" />
+        <property name="queryType" type="string" />
+        <property name="queryTime" type="integer" />
+        <property name="numResults" type="integer" />
+        <property name="offset" type="integer" />
+        <property name="totalResults" type="integer" />
+        <property name="fuzzyLevel" type="integer" />
+      </object>
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_type_def" />
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_id_def" />
+      <number name="GetSearchFuzzyJson_Response_results_def_items_def_score_def" />
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_info_def" />
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_name_def" />
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_phone_def" />
+      <integer name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_categorySet_def_items_def_id_def" />
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_categorySet_def_items_def">
+        <property name="id" type="integer" />
+      </object>
+      <array typeRef="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_categorySet_def_items_def" name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_categorySet_def" />
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_url_def" />
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_categories_def_items_def" />
+      <array type="string" name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_categories_def" />
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_classifications_def_items_def_code_def" />
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_classifications_def_items_def_names_def_items_def_nameLocale_def" />
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_classifications_def_items_def_names_def_items_def_name_def" />
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_classifications_def_items_def_names_def_items_def">
+        <property name="nameLocale" type="string" />
+        <property name="name" type="string" />
+      </object>
+      <array typeRef="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_classifications_def_items_def_names_def_items_def" name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_classifications_def_items_def_names_def" />
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_classifications_def_items_def">
+        <property name="code" type="string" />
+        <property name="names" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_classifications_def_items_def_names_def" />
+      </object>
+      <array typeRef="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_classifications_def_items_def" name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_classifications_def" />
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_poi_def">
+        <property name="name" type="string" />
+        <property name="phone" type="string" />
+        <property name="categorySet" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_categorySet_def" />
+        <property name="url" type="string" />
+        <property name="categories" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_categories_def" />
+        <property name="classifications" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_poi_def_classifications_def" />
+      </object>
+      <number name="GetSearchFuzzyJson_Response_results_def_items_def_position_def_lat_def" />
+      <number name="GetSearchFuzzyJson_Response_results_def_items_def_position_def_lon_def" />
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_position_def">
+        <property name="lat" type="number" />
+        <property name="lon" type="number" />
+      </object>
+      <number name="GetSearchFuzzyJson_Response_results_def_items_def_viewport_def_topLeftPoint_def_lat_def" />
+      <number name="GetSearchFuzzyJson_Response_results_def_items_def_viewport_def_topLeftPoint_def_lon_def" />
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_viewport_def_topLeftPoint_def">
+        <property name="lat" type="number" />
+        <property name="lon" type="number" />
+      </object>
+      <number name="GetSearchFuzzyJson_Response_results_def_items_def_viewport_def_btmRightPoint_def_lat_def" />
+      <number name="GetSearchFuzzyJson_Response_results_def_items_def_viewport_def_btmRightPoint_def_lon_def" />
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_viewport_def_btmRightPoint_def">
+        <property name="lat" type="number" />
+        <property name="lon" type="number" />
+      </object>
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_viewport_def">
+        <property name="topLeftPoint" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_viewport_def_topLeftPoint_def" />
+        <property name="btmRightPoint" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_viewport_def_btmRightPoint_def" />
+      </object>
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_entryPoints_def_items_def_type_def" />
+      <number name="GetSearchFuzzyJson_Response_results_def_items_def_entryPoints_def_items_def_position_def_lat_def" />
+      <number name="GetSearchFuzzyJson_Response_results_def_items_def_entryPoints_def_items_def_position_def_lon_def" />
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_entryPoints_def_items_def_position_def">
+        <property name="lat" type="number" />
+        <property name="lon" type="number" />
+      </object>
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_entryPoints_def_items_def">
+        <property name="type" type="string" />
+        <property name="position" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_entryPoints_def_items_def_position_def" />
+      </object>
+      <array typeRef="GetSearchFuzzyJson_Response_results_def_items_def_entryPoints_def_items_def" name="GetSearchFuzzyJson_Response_results_def_items_def_entryPoints_def" />
+      <string name="GetSearchFuzzyJson_Response_results_def_items_def_dataSources_def_geometry_def_id_def" />
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_dataSources_def_geometry_def">
+        <property name="id" type="string" />
+      </object>
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def_dataSources_def">
+        <property name="geometry" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_dataSources_def_geometry_def" />
+      </object>
+      <object name="GetSearchFuzzyJson_Response_results_def_items_def">
+        <property name="type" type="string" />
+        <property name="id" type="string" />
+        <property name="score" type="number" />
+        <property name="info" type="string" />
+        <property name="poi" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_poi_def" />
+        <property name="address" typeRef="SearchResultAddress" />
+        <property name="position" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_position_def" />
+        <property name="viewport" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_viewport_def" />
+        <property name="entryPoints" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_entryPoints_def" />
+        <property name="dataSources" typeRef="GetSearchFuzzyJson_Response_results_def_items_def_dataSources_def" />
+      </object>
+      <array typeRef="GetSearchFuzzyJson_Response_results_def_items_def" name="GetSearchFuzzyJson_Response_results_def" />
+      <object name="GetSearchFuzzyJson_Response">
+        <property name="summary" typeRef="GetSearchFuzzyJson_Response_summary_def" />
+        <property name="results" typeRef="GetSearchFuzzyJson_Response_results_def" />
+      </object>
+      <string name="GetSearchAddressJson_Response_summary_def_query_def" />
+      <string name="GetSearchAddressJson_Response_summary_def_queryType_def" />
+      <integer name="GetSearchAddressJson_Response_summary_def_queryTime_def" />
+      <integer name="GetSearchAddressJson_Response_summary_def_numResults_def" />
+      <integer name="GetSearchAddressJson_Response_summary_def_offset_def" />
+      <integer name="GetSearchAddressJson_Response_summary_def_totalResults_def" />
+      <integer name="GetSearchAddressJson_Response_summary_def_fuzzyLevel_def" />
+      <object name="GetSearchAddressJson_Response_summary_def">
+        <property name="query" type="string" />
+        <property name="queryType" type="string" />
+        <property name="queryTime" type="integer" />
+        <property name="numResults" type="integer" />
+        <property name="offset" type="integer" />
+        <property name="totalResults" type="integer" />
+        <property name="fuzzyLevel" type="integer" />
+      </object>
+      <string name="GetSearchAddressJson_Response_results_def_items_def_type_def" />
+      <string name="GetSearchAddressJson_Response_results_def_items_def_id_def" />
+      <number name="GetSearchAddressJson_Response_results_def_items_def_score_def" />
+      <number name="GetSearchAddressJson_Response_results_def_items_def_position_def_lat_def" />
+      <number name="GetSearchAddressJson_Response_results_def_items_def_position_def_lon_def" />
+      <object name="GetSearchAddressJson_Response_results_def_items_def_position_def">
+        <property name="lat" type="number" />
+        <property name="lon" type="number" />
+      </object>
+      <number name="GetSearchAddressJson_Response_results_def_items_def_viewport_def_topLeftPoint_def_lat_def" />
+      <number name="GetSearchAddressJson_Response_results_def_items_def_viewport_def_topLeftPoint_def_lon_def" />
+      <object name="GetSearchAddressJson_Response_results_def_items_def_viewport_def_topLeftPoint_def">
+        <property name="lat" type="number" />
+        <property name="lon" type="number" />
+      </object>
+      <number name="GetSearchAddressJson_Response_results_def_items_def_viewport_def_btmRightPoint_def_lat_def" />
+      <number name="GetSearchAddressJson_Response_results_def_items_def_viewport_def_btmRightPoint_def_lon_def" />
+      <object name="GetSearchAddressJson_Response_results_def_items_def_viewport_def_btmRightPoint_def">
+        <property name="lat" type="number" />
+        <property name="lon" type="number" />
+      </object>
+      <object name="GetSearchAddressJson_Response_results_def_items_def_viewport_def">
+        <property name="topLeftPoint" typeRef="GetSearchAddressJson_Response_results_def_items_def_viewport_def_topLeftPoint_def" />
+        <property name="btmRightPoint" typeRef="GetSearchAddressJson_Response_results_def_items_def_viewport_def_btmRightPoint_def" />
+      </object>
+      <object name="GetSearchAddressJson_Response_results_def_items_def">
+        <property name="type" type="string" />
+        <property name="id" type="string" />
+        <property name="score" type="number" />
+        <property name="address" typeRef="SearchResultAddress" />
+        <property name="position" typeRef="GetSearchAddressJson_Response_results_def_items_def_position_def" />
+        <property name="viewport" typeRef="GetSearchAddressJson_Response_results_def_items_def_viewport_def" />
+      </object>
+      <array typeRef="GetSearchAddressJson_Response_results_def_items_def" name="GetSearchAddressJson_Response_results_def" />
+      <object name="GetSearchAddressJson_Response">
+        <property name="summary" typeRef="GetSearchAddressJson_Response_summary_def" />
+        <property name="results" typeRef="GetSearchAddressJson_Response_results_def" />
+      </object>
+      <number name="AzureMaps_Coordinates_latitude_def" />
+      <number name="AzureMaps_Coordinates_longitude_def" />
+      <object name="AzureMaps_Coordinates">
+        <property name="latitude" type="number" />
+        <property name="longitude" type="number" />
+      </object>
+      <string name="AzureMaps_GetIpToLocation_Response_countryRegion_def_isoCode_def" />
+      <object name="AzureMaps_GetIpToLocation_Response_countryRegion_def">
+        <property name="isoCode" type="string" />
+      </object>
+      <string name="AzureMaps_GetIpToLocation_Response_ipAddress_def" />
+      <object name="AzureMaps_GetIpToLocation_Response">
+        <property name="countryRegion" typeRef="AzureMaps_GetIpToLocation_Response_countryRegion_def" />
+        <property name="ipAddress" type="string" />
+      </object>
+      <string name="SearchResultAddress_buildingNumber_def" />
+      <string name="SearchResultAddress_street_def" />
+      <string name="SearchResultAddress_crossStreet_def" />
+      <string name="SearchResultAddress_streetNumber_def" />
+      <integer name="SearchResultAddress_routeNumbers_def_items_def" />
+      <array type="integer" name="SearchResultAddress_routeNumbers_def" />
+      <string name="SearchResultAddress_streetName_def" />
+      <string name="SearchResultAddress_streetNameAndNumber_def" />
+      <string name="SearchResultAddress_municipality_def" />
+      <string name="SearchResultAddress_municipalitySubdivision_def" />
+      <string name="SearchResultAddress_countryTertiarySubdivision_def" />
+      <string name="SearchResultAddress_countrySecondarySubdivision_def" />
+      <string name="SearchResultAddress_countrySubdivision_def" />
+      <string name="SearchResultAddress_postalCode_def" />
+      <string name="SearchResultAddress_extendedPostalCode_def" />
+      <string name="SearchResultAddress_countryCode_def" />
+      <string name="SearchResultAddress_country_def" />
+      <string name="SearchResultAddress_countryCodeISO3_def" />
+      <string name="SearchResultAddress_freeformAddress_def" />
+      <string name="SearchResultAddress_countrySubdivisionName_def" />
+      <string name="SearchResultAddress_localName_def" />
+      <object name="SearchResultAddress">
+        <property name="buildingNumber" type="string" />
+        <property name="street" type="string" />
+        <property name="crossStreet" type="string" />
+        <property name="streetNumber" type="string" />
+        <property name="routeNumbers" typeRef="SearchResultAddress_routeNumbers_def" />
+        <property name="streetName" type="string" />
+        <property name="streetNameAndNumber" type="string" />
+        <property name="municipality" type="string" />
+        <property name="municipalitySubdivision" type="string" />
+        <property name="countryTertiarySubdivision" type="string" />
+        <property name="countrySecondarySubdivision" type="string" />
+        <property name="countrySubdivision" type="string" />
+        <property name="postalCode" type="string" />
+        <property name="extendedPostalCode" type="string" />
+        <property name="countryCode" type="string" />
+        <property name="country" type="string" />
+        <property name="countryCodeISO3" type="string" />
+        <property name="freeformAddress" type="string" />
+        <property name="countrySubdivisionName" type="string" />
+        <property name="localName" type="string" />
+      </object>
+      <string name="BingMaps_AutoSuggestResponse_authenticationResultCode_def" />
+      <string name="BingMaps_AutoSuggestResponse_brandLogoUri_def" />
+      <string name="BingMaps_AutoSuggestResponse_copyright_def" />
+      <integer name="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_estimatedTotal_def" />
+      <string name="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_resources_def_items_def___type_def" />
+      <string name="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_resources_def_items_def_value_def_items_def___type_def" />
+      <string name="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_resources_def_items_def_value_def_items_def_name_def" />
+      <object name="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_resources_def_items_def_value_def_items_def">
+        <property name="__type" type="string" />
+        <property name="address" typeRef="BingMaps_Address" />
+        <property name="name" type="string" />
+      </object>
+      <array typeRef="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_resources_def_items_def_value_def_items_def" name="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_resources_def_items_def_value_def" />
+      <object name="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_resources_def_items_def">
+        <property name="__type" type="string" />
+        <property name="value" typeRef="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_resources_def_items_def_value_def" />
+      </object>
+      <array typeRef="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_resources_def_items_def" name="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_resources_def" />
+      <object name="BingMaps_AutoSuggestResponse_resourceSets_def_items_def">
+        <property name="estimatedTotal" type="integer" />
+        <property name="resources" typeRef="BingMaps_AutoSuggestResponse_resourceSets_def_items_def_resources_def" />
+      </object>
+      <array typeRef="BingMaps_AutoSuggestResponse_resourceSets_def_items_def" name="BingMaps_AutoSuggestResponse_resourceSets_def" />
+      <integer name="BingMaps_AutoSuggestResponse_statusCode_def" />
+      <string name="BingMaps_AutoSuggestResponse_statusDescription_def" />
+      <string name="BingMaps_AutoSuggestResponse_traceId_def" />
+      <object name="BingMaps_AutoSuggestResponse">
+        <property name="authenticationResultCode" type="string" />
+        <property name="brandLogoUri" type="string" />
+        <property name="copyright" type="string" />
+        <property name="resourceSets" typeRef="BingMaps_AutoSuggestResponse_resourceSets_def" />
+        <property name="statusCode" type="integer" />
+        <property name="statusDescription" type="string" />
+        <property name="traceId" type="string" />
+      </object>
+      <string name="BingMaps_FindLocation_Response_authenticationResultCode_def" />
+      <string name="BingMaps_FindLocation_Response_brandLogoUri_def" />
+      <string name="BingMaps_FindLocation_Response_copyright_def" />
+      <integer name="BingMaps_FindLocation_Response_resourceSets_def_items_def_estimatedTotal_def" />
+      <string name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def___type_def" />
+      <number name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_bbox_def_items_def" />
+      <array type="number" name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_bbox_def" />
+      <string name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_name_def" />
+      <string name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_point_def_type_def" />
+      <number name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_point_def_coordinates_def_items_def" />
+      <array type="number" name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_point_def_coordinates_def" />
+      <object name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_point_def">
+        <property name="type" type="string" />
+        <property name="coordinates" typeRef="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_point_def_coordinates_def" />
+      </object>
+      <string name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_confidence_def" />
+      <string name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_entityType_def" />
+      <string name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def_items_def_type_def" />
+      <number name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def_items_def_coordinates_def_items_def" />
+      <array type="number" name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def_items_def_coordinates_def" />
+      <string name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def_items_def_calculationMethod_def" />
+      <string name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def_items_def_usageTypes_def_items_def" />
+      <array type="string" name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def_items_def_usageTypes_def" />
+      <object name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def_items_def">
+        <property name="type" type="string" />
+        <property name="coordinates" typeRef="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def_items_def_coordinates_def" />
+        <property name="calculationMethod" type="string" />
+        <property name="usageTypes" typeRef="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def_items_def_usageTypes_def" />
+      </object>
+      <array typeRef="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def_items_def" name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def" />
+      <string name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_matchCodes_def_items_def" />
+      <array type="string" name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_matchCodes_def" />
+      <object name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def">
+        <property name="__type" type="string" />
+        <property name="bbox" typeRef="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_bbox_def" />
+        <property name="name" type="string" />
+        <property name="point" typeRef="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_point_def" />
+        <property name="address" typeRef="BingMaps_Address" />
+        <property name="confidence" type="string" />
+        <property name="entityType" type="string" />
+        <property name="geocodePoints" typeRef="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_geocodePoints_def" />
+        <property name="matchCodes" typeRef="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def_matchCodes_def" />
+      </object>
+      <array typeRef="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def_items_def" name="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def" />
+      <object name="BingMaps_FindLocation_Response_resourceSets_def_items_def">
+        <property name="estimatedTotal" type="integer" />
+        <property name="resources" typeRef="BingMaps_FindLocation_Response_resourceSets_def_items_def_resources_def" />
+      </object>
+      <array typeRef="BingMaps_FindLocation_Response_resourceSets_def_items_def" name="BingMaps_FindLocation_Response_resourceSets_def" />
+      <integer name="BingMaps_FindLocation_Response_statusCode_def" />
+      <string name="BingMaps_FindLocation_Response_statusDescription_def" />
+      <string name="BingMaps_FindLocation_Response_traceId_def" />
+      <object name="BingMaps_FindLocation_Response">
+        <property name="authenticationResultCode" type="string" />
+        <property name="brandLogoUri" type="string" />
+        <property name="copyright" type="string" />
+        <property name="resourceSets" typeRef="BingMaps_FindLocation_Response_resourceSets_def" />
+        <property name="statusCode" type="integer" />
+        <property name="statusDescription" type="string" />
+        <property name="traceId" type="string" />
+      </object>
+      <string name="BingMaps_Address_addressLine_def" />
+      <string name="BingMaps_Address_locality_def" />
+      <string name="BingMaps_Address_neighborhood_def" />
+      <string name="BingMaps_Address_adminDistrict_def" />
+      <string name="BingMaps_Address_adminDistrict2_def" />
+      <string name="BingMaps_Address_formattedAddress_def" />
+      <string name="BingMaps_Address_postalCode_def" />
+      <string name="BingMaps_Address_countryRegion_def" />
+      <string name="BingMaps_Address_countryRegionIso2_def" />
+      <string name="BingMaps_Address_landmark_def" />
+      <string name="BingMaps_Address_houseNumber_def" />
+      <string name="BingMaps_Address_streetName_def" />
+      <object name="BingMaps_Address">
+        <property name="addressLine" type="string" />
+        <property name="locality" type="string" />
+        <property name="neighborhood" type="string" />
+        <property name="adminDistrict" type="string" />
+        <property name="adminDistrict2" type="string" />
+        <property name="formattedAddress" type="string" />
+        <property name="postalCode" type="string" />
+        <property name="countryRegion" type="string" />
+        <property name="countryRegionIso2" type="string" />
+        <property name="landmark" type="string" />
+        <property name="houseNumber" type="string" />
+        <property name="streetName" type="string" />
+      </object>
+      <boolean name="GetOrganizationSettings_responses_200_def_isgeospatialazuremapsintegrationenabled_def" />
+      <boolean name="GetOrganizationSettings_responses_200_def_isbasicgeospatialintegrationenabled_def" />
+      <object name="GetOrganizationSettings_responses_200_def">
+        <property name="isgeospatialazuremapsintegrationenabled" type="boolean" />
+        <property name="isbasicgeospatialintegrationenabled" type="boolean" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://unitedstates-002.azure-apim.net/apim/microsoftspatialservices">
+    <resource path="/{connectionId}/providers/Microsoft.PowerApps/scopes/connector/environments/organizationsettings">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetOrganizationSettings" actionName="GetOrganizationSettings" visibility="internal" siena:isDeprecated="false">
+        <doc title="Get organization settings to determine if geospatial features are enabled&#xA;Returns organization settings for geospatial feature." />
+        <request />
+        <response>
+          <representation mediaType="application/json" element="service:GetOrganizationSettings_responses_200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/clientid">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetClientId" actionName="GetClientId" visibility="internal" siena:isDeprecated="false">
+        <doc title="Client ID&#xA;Client ID" />
+        <request />
+        <response>
+          <representation mediaType="application/json" element="service:GetClientId_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/token">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="GetToken" actionName="GetToken" visibility="internal" siena:isDeprecated="false">
+        <doc title="Token&#xA;Token" />
+        <request />
+        <response>
+          <representation mediaType="application/json" element="service:GetToken_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/search/fuzzy/json">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetSearchFuzzyJson" actionName="GetSearchFuzzyJson" visibility="internal" siena:isDeprecated="false">
+        <doc title="Free form address search&#xA;Free form address search." />
+        <request>
+          <param style="query" name="connectorSet" type="xs:string" />
+          <param style="query" name="brandSet" type="xs:string" />
+          <param style="query" name="idxSet" type="xs:string" />
+          <param style="query" name="maxFuzzyLevel" type="xs:int" />
+          <param style="query" name="minFuzzyLevel" type="xs:int" />
+          <param style="query" name="extendedPostalCodesFor" type="xs:string" />
+          <param style="query" name="language" type="xs:string" />
+          <param style="query" name="btmRight" type="xs:string" />
+          <param style="query" name="topLeft" type="xs:string" />
+          <param style="query" name="radius" type="xs:double" />
+          <param style="query" name="lon" type="xs:double" />
+          <param style="query" name="lat" type="xs:double" />
+          <param style="query" name="countrySet" type="xs:string" />
+          <param style="query" name="ofs" type="xs:int" />
+          <param style="query" name="limit" type="xs:int" />
+          <param style="query" name="typeahead" type="xs:boolean" />
+          <param style="query" name="query" type="xs:string" required="true" />
+          <param style="query" name="api-version" type="xs:string" />
+          <param style="query" name="subscription-key" type="xs:string" />
+          <param style="query" name="view" type="xs:string" />
+          <param style="query" name="openingHours" type="xs:string" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:GetSearchFuzzyJson_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/search/address/json">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetSearchAddressJson" actionName="GetSearchAddressJson" visibility="internal" siena:isDeprecated="false">
+        <doc title="Address search&#xA;Address search." />
+        <request>
+          <param style="query" name="subscription-key" type="xs:string" />
+          <param style="query" name="api-version" type="xs:string" />
+          <param style="query" name="query" type="xs:string" required="true" />
+          <param style="query" name="typeahead" type="xs:boolean" />
+          <param style="query" name="limit" type="xs:int" />
+          <param style="query" name="ofs" type="xs:int" />
+          <param style="query" name="countrySet" type="xs:string" />
+          <param style="query" name="lat" type="xs:double" />
+          <param style="query" name="lon" type="xs:double" />
+          <param style="query" name="radius" type="xs:double" />
+          <param style="query" name="topLeft" type="xs:string" />
+          <param style="query" name="btmRight" type="xs:string" />
+          <param style="query" name="language" type="xs:string" />
+          <param style="query" name="extendedPostalCodesFor" type="xs:string" />
+          <param style="query" name="view" type="xs:string" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:GetSearchAddressJson_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/map/tile/{format}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="format" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetMapTile" actionName="GetMapTile" visibility="internal" siena:isDeprecated="false">
+        <doc title="Get Map Tile&#xA;Get Map Tile" />
+        <request>
+          <param style="query" name="subscription-key" type="xs:string" />
+          <param style="query" name="api-version" type="xs:string" />
+          <param style="query" name="layer" type="xs:string" required="true" />
+          <param style="query" name="style" type="xs:string" required="true" />
+          <param style="query" name="zoom" type="xs:int" required="true" />
+          <param style="query" name="x" type="xs:int" required="true" />
+          <param style="query" name="y" type="xs:int" required="true" />
+          <param style="query" name="tileSize" type="xs:string" />
+          <param style="query" name="language" type="xs:string" />
+          <param style="query" name="view" type="xs:string" />
+        </request>
+        <response>
+          <representation mediaType="application/octet-stream" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/map/tile">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetMapTileV2" actionName="GetMapTileV2" visibility="internal" siena:isDeprecated="false">
+        <doc title="Get Map Tile V2&#xA;Get Map Tile V2" />
+        <request>
+          <param style="query" name="subscription-key" type="xs:string" />
+          <param style="query" name="api-version" type="xs:string" required="true" />
+          <param style="query" name="tilesetId" type="xs:string" required="true" />
+          <param style="query" name="zoom" type="xs:int" required="true" />
+          <param style="query" name="x" type="xs:int" required="true" />
+          <param style="query" name="y" type="xs:int" required="true" />
+          <param style="query" name="tileSize" type="xs:string" />
+          <param style="query" name="language" type="xs:string" />
+          <param style="query" name="view" type="xs:string" />
+        </request>
+        <response>
+          <representation mediaType="application/octet-stream" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/geolocation/ip/json">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetIpToLocation" actionName="GetIpToLocation" visibility="internal" siena:isDeprecated="false">
+        <doc title="Azure Maps IP to Location&#xA;Azure Maps IP to Location" />
+        <request>
+          <param style="query" name="subscription-key" type="xs:string" />
+          <param style="query" name="api-version" type="xs:string" />
+          <param style="query" name="ip" type="xs:string" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:AzureMaps_GetIpToLocation_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/REST/v1/Autosuggest">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="BingMapsAutoSuggest" actionName="BingMapsAutoSuggest" visibility="internal" siena:isDeprecated="false">
+        <doc title="Bing Maps AutoSuggest&#xA;Bing Maps AutoSuggest" />
+        <request>
+          <param style="query" name="query" type="xs:string" required="true" />
+          <param style="query" name="key" type="xs:string" />
+          <param style="query" name="userLocation" type="xs:string" />
+          <param style="query" name="userCircularMapView" type="xs:string" />
+          <param style="query" name="userMapView" type="xs:string" />
+          <param style="query" name="maxResults" type="xs:int" />
+          <param style="query" name="includeEntityTypes" type="xs:string" />
+          <param style="query" name="culture" type="xs:string" />
+          <param style="query" name="userRegion" type="xs:string" />
+          <param style="query" name="countryFilter" type="xs:string" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BingMaps_AutoSuggestResponse" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/REST/v1/Locations/{point}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="point" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="BingMapsFindLocationByPoint" actionName="BingMapsFindLocationByPoint" visibility="internal" siena:isDeprecated="false">
+        <doc title="Bing Maps Find Location by Point&#xA;Bing Maps Find Location by Point" />
+        <request>
+          <param style="query" name="key" type="xs:string" />
+          <param style="query" name="includeEntityTypes" type="xs:string" />
+          <param style="query" name="includeNeighborhood" type="xs:int" />
+          <param style="query" name="include" type="xs:string" />
+          <param style="query" name="verboseplacenames" type="xs:boolean" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BingMaps_FindLocation_Response" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/REST/v1/Locations">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="BingMapsFindLocationByQuery" actionName="BingMapsFindLocationByQuery" visibility="internal" siena:isDeprecated="false">
+        <doc title="Bing Maps Find Location by Query&#xA;Bing Maps Find Location by Query" />
+        <request>
+          <param style="query" name="query" type="xs:string" required="true" />
+          <param style="query" name="key" type="xs:string" />
+          <param style="query" name="includeNeighborhood" type="xs:int" />
+          <param style="query" name="include" type="xs:string" />
+          <param style="query" name="maxResults" type="xs:int" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BingMaps_FindLocation_Response" />
+        </response>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="shared_microsoftspatialservices" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>
