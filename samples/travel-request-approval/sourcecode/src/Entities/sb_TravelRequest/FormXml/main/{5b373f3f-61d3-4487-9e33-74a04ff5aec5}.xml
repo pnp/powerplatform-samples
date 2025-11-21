@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{5b373f3f-61d3-4487-9e33-74a04ff5aec5}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{c80e2461-938e-4d53-9749-c3760930719b}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{4023f0f8-c866-4614-a03b-133eb96931db}" name="General" columns="11">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1b3c757f-a736-4c37-a330-3473e8383949}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Requested By" languagecode="1033" />
+                        </labels>
+                        <control id="sb_requestedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="sb_requestedby" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fb477a7a-f85a-45e9-9ad4-6cfc568d0ef9}" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="sb_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="sb_name" />
+                      </cell>
+                      <cell id="{97a90738-9db5-415c-a4f3-56b9403195ec}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Line Manager Approved By" languagecode="1033" />
+                        </labels>
+                        <control id="sb_linemanagerapprovedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="sb_linemanagerapprovedby" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4e0326d0-6ee7-46f2-ba30-420c6f143cff}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Travel Cost" languagecode="1033" />
+                        </labels>
+                        <control id="sb_travelcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="sb_travelcost" disabled="false" />
+                      </cell>
+                      <cell id="{344c6664-edfc-4b75-b1ff-b545187fbfc8}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Department Manager Approve" languagecode="1033" />
+                        </labels>
+                        <control id="sb_departmentmanagerapprove" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="sb_departmentmanagerapprove" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{452df8ae-0792-421b-a219-a92e247d8f97}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Travel Start Date" languagecode="1033" />
+                        </labels>
+                        <control id="sb_travelstartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="sb_travelstartdate" disabled="false" />
+                      </cell>
+                      <cell id="{9ad3b9a0-6f72-4a12-8bbe-9e7dfd583bf4}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Department Managed Approved By" languagecode="1033" />
+                        </labels>
+                        <control id="sb_departmentmanagedapprovedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="sb_departmentmanagedapprovedby" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a1089703-d93a-4bb1-8e73-80017f8fcf3e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Travel End Date" languagecode="1033" />
+                        </labels>
+                        <control id="sb_travelenddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="sb_travelenddate" disabled="false" />
+                      </cell>
+                      <cell id="{a6fa375d-be3f-4fac-8e72-6073073f091d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Travel Cost Approve" languagecode="1033" />
+                        </labels>
+                        <control id="sb_travelcostapprove" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="sb_travelcostapprove" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c25bf57e-acc3-46f6-8f45-a1da0e439ddd}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Purpose" languagecode="1033" />
+                        </labels>
+                        <control id="sb_purpose" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="sb_purpose" disabled="false" />
+                      </cell>
+                      <cell id="{5433f540-8fed-4cf0-970e-e88b7409c50c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Travel Cost Approved By" languagecode="1033" />
+                        </labels>
+                        <control id="sb_travelcostapprovedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="sb_travelcostapprovedby" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d4da2798-dd37-4410-ae15-a7a0f6ba6b66}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Note" languagecode="1033" />
+                        </labels>
+                        <control id="sb_note" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="sb_note" disabled="false" />
+                      </cell>
+                      <cell id="{10b0cfef-8331-424b-8f1f-b336cc4b64b0}" locklevel="1" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Travel Request Status" languagecode="1033" />
+                        </labels>
+                        <control id="sb_travelrequeststatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="sb_travelrequeststatus" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{44672d49-d0df-48cb-810c-45f2485ee3db}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Requested To 1" languagecode="1033" />
+                        </labels>
+                        <control id="sb_requestedto" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="sb_requestedto" disabled="false" />
+                      </cell>
+                      <cell id="{9dd38d82-dc23-45be-958f-3ceb9a06c2dd}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Draft" languagecode="1033" />
+                        </labels>
+                        <control id="sb_draft" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="sb_draft" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{890a26c7-6c14-4bb3-9b32-89b858ef847b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Requested To 2" languagecode="1033" />
+                        </labels>
+                        <control id="sb_requestedto2" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="sb_requestedto2" disabled="false" />
+                      </cell>
+                      <cell id="{768db6c7-1661-4e3a-9b37-5c9a9639f69b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="CFO Approve" languagecode="1033" />
+                        </labels>
+                        <control id="sb_cfoapprove" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="sb_cfoapprove" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a303521b-36d8-4166-8101-b53d85985d45}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Approval Reason" languagecode="1033" />
+                        </labels>
+                        <control id="sb_approvalreason" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="sb_approvalreason" disabled="false" />
+                      </cell>
+                      <cell id="{1730034a-12b3-4f05-98f0-0d251257eae5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Arrival City" languagecode="1033" />
+                        </labels>
+                        <control id="sb_arrivalcity" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="sb_arrivalcity" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8d0eda85-c3b0-4cc2-8d55-e9e35023c255}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Rework Reason" languagecode="1033" />
+                        </labels>
+                        <control id="sb_rejectionreason" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="sb_rejectionreason" disabled="false" />
+                      </cell>
+                      <cell id="{ca0111a2-9fe5-4dbf-aae4-43792596a83f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Applied Request Rule" languagecode="1033" />
+                        </labels>
+                        <control id="sb_appliedrequestrule" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="sb_appliedrequestrule" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5958bb8a-3de1-4692-904c-8921f0f39285}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Deadline" languagecode="1033" />
+                        </labels>
+                        <control id="sb_deadline" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="sb_deadline" disabled="false" />
+                      </cell>
+                      <cell id="{2e37a27e-080e-4676-9017-99f8ea101ffe}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Is Automatically Approved" languagecode="1033" />
+                        </labels>
+                        <control id="sb_isautomaticallyapproved" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="sb_isautomaticallyapproved" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{41fa4f20-6719-4403-ab15-ab5028a5f9bf}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Cost Changed" languagecode="1033" />
+                        </labels>
+                        <control id="sb_costchanged" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="sb_costchanged" disabled="false" />
+                      </cell>
+                      <cell id="{8a4368ff-0af7-4067-aa0a-972199da44de}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Is Level 1 approval Skipped" languagecode="1033" />
+                        </labels>
+                        <control id="sb_islevel1approvalskipped" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="sb_islevel1approvalskipped" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1a8feac9-b847-4a3a-a4fa-45808f8d57de}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Priority" languagecode="1033" />
+                        </labels>
+                        <control id="sb_priority" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="sb_priority" disabled="false" />
+                      </cell>
+                      <cell id="{5c01c635-0fb0-40fe-a160-a162c674783e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Level 2 Approved By" languagecode="1033" />
+                        </labels>
+                        <control id="sb_level2approvedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="sb_level2approvedby" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b16beee7-e45d-43b3-b237-600968ee0133}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Original Travel Cost" languagecode="1033" />
+                        </labels>
+                        <control id="sb_originaltravelcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="sb_originaltravelcost" disabled="false" />
+                      </cell>
+                      <cell id="{8492d421-aaf6-4009-9255-7276929f8f93}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_4" id="9a4dae33-e5a5-4acf-bfb1-def23bd5eeed" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Flight Information" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{ed9c1651-3223-459e-a485-49405eae105f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Airline" languagecode="1033" />
+                        </labels>
+                        <control id="sb_airline" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="sb_airline" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{89c0328d-becd-4cb1-8511-336edb1e9a99}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Flight Cost" languagecode="1033" />
+                        </labels>
+                        <control id="sb_flightcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="sb_flightcost" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{acb4df62-c50b-4957-9a0c-44f72a280ea7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="One-Way/Return Flight" languagecode="1033" />
+                        </labels>
+                        <control id="sb_onewayreturnflight" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="sb_onewayreturnflight" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{68771077-125c-418f-853c-bf29b7759003}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Outbound Flight Datetime" languagecode="1033" />
+                        </labels>
+                        <control id="sb_outboundflightdatetime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="sb_outboundflightdatetime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0fe4ddde-c335-4d44-968b-f68a2ca8c3a7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Departure City" languagecode="1033" />
+                        </labels>
+                        <control id="sb_departurecity" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="sb_departurecity" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{49bd9642-8a4e-4913-a434-682818304d59}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Return Flight Datetime" languagecode="1033" />
+                        </labels>
+                        <control id="sb_returnflightdatetime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="sb_returnflightdatetime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4712250d-1910-4a2b-83bb-236057bc4e1f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Flight Cost (Base)" languagecode="1033" />
+                        </labels>
+                        <control id="sb_flightcost_base" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="sb_flightcost_base" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_5" id="f8d1280b-f785-42c5-8fb7-9c2f9fc57cb0" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Hotel Information" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{44e868bc-f076-4cf8-bb5c-ac4e88e3aec7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Hotel Name" languagecode="1033" />
+                        </labels>
+                        <control id="sb_hotelname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="sb_hotelname" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{303447cc-1532-468d-b3ef-22b7bbdb8707}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Hotel City" languagecode="1033" />
+                        </labels>
+                        <control id="sb_hotelcity" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="sb_hotelcity" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2672a97e-0146-4341-b771-49d7c4587712}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Hotel Cost" languagecode="1033" />
+                        </labels>
+                        <control id="sb_hotelcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="sb_hotelcost" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0f5975d7-5b28-4782-bf50-2ce754c97efc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Hotel Star-Rating" languagecode="1033" />
+                        </labels>
+                        <control id="sb_hotelstarrating" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="sb_hotelstarrating" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8a97fb38-aea9-44e6-b04b-2451e91a9424}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Check-in Date" languagecode="1033" />
+                        </labels>
+                        <control id="sb_checkindate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="sb_checkindate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{54768a8e-8f50-49ca-97e3-822743247478}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Check-out Date" languagecode="1033" />
+                        </labels>
+                        <control id="sb_checkoutdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="sb_checkoutdate" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_3" id="82d161ce-0142-485d-83dd-276416f6841d" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Audit Trail" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{feb8b28d-5304-4d2a-a005-d20d9aacc9a4}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1665987582114" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>30</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>sb_travelrequestaudit</TargetEntityType>
+                            <ViewId>{9A0E48A6-4A1D-40C0-8194-4DD3BC943927}</ViewId>
+                            <ViewIds>{9A0E48A6-4A1D-40C0-8194-4DD3BC943927}</ViewIds>
+                            <RelationshipName>sb_sb_travelrequestaudit_TravelRequest_sb_tr</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{14e2406e-e486-4276-a0c7-1f48adba0033}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{2fdb131c-c428-4dbb-abc1-69ead84d1894}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{bcec91ac-a3fc-480b-9b65-67195c1cf1fb}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{7a42b54b-db5d-4507-bbf0-a2cd633b8d67}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{b30d0712-95f1-4af2-9741-4311cab72729}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{869eb11e-0661-4ae2-b1c5-d5fdd113d0d5}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{7df932bb-3555-41b3-8938-cd6ad1b4b928}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{c9002fef-18aa-4166-8763-ae56d22fcfe7}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
