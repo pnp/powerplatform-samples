@@ -1,0 +1,965 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "kk_sharedwebcontents_f5993"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "2e337155-aba5-4813-bfa4-1620e262a0ca"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Table name",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Table logical name (Properties / Advanced options / Logical name)",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "lcid",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "LCID code, e.g. 1033 for English",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "lcid fallback",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "LCID code for the default language of your environment",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Scope:_retrieve_Attribute_Metadata_for_Choice_fields": {
+          "actions": {
+            "Compose_:_branching": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "8b8558f6-8493-4119-a96e-ba90cbcd08ad"
+              },
+              "type": "Compose",
+              "inputs": ":)",
+              "description": "There must be a single starting step, to use parallel branches"
+            },
+            "Invoke_an_HTTP_request:_Get_Entity_Attributes_SingleChoice": {
+              "runAfter": {
+                "Compose_:_branching": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ba906205-6f44-48c2-a823-282090fe94d6"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_webcontents",
+                  "operationId": "InvokeHttp",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                },
+                "parameters": {
+                  "request/method": "GET",
+                  "request/url": "/api/data/v9.2/EntityDefinitions(LogicalName='@{triggerBody()['text']}')/Attributes/Microsoft.Dynamics.CRM.PicklistAttributeMetadata?$select=LogicalName&$expand=OptionSet,GlobalOptionSet",
+                  "request/headers": {
+                    "Accept": "application/json",
+                    "OData-MaxVersion": "4.0",
+                    "OData-Version": "4.0"
+                  }
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Invoke_an_HTTP_request:_Get_Entity_Attributes_MultiChoice": {
+              "runAfter": {
+                "Compose_:_branching": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ba906205-6f44-48c2-a823-282090fe94d6"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_webcontents",
+                  "operationId": "InvokeHttp",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                },
+                "parameters": {
+                  "request/method": "GET",
+                  "request/url": "/api/data/v9.2/EntityDefinitions(LogicalName='@{triggerBody()['text']}')/Attributes/Microsoft.Dynamics.CRM.MultiSelectPicklistAttributeMetadata?$select=LogicalName&$expand=OptionSet,GlobalOptionSet",
+                  "request/headers": {
+                    "Accept": "application/json",
+                    "OData-MaxVersion": "4.0",
+                    "OData-Version": "4.0"
+                  }
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Set_variable:_bSuccess_=_true": {
+              "runAfter": {
+                "Set_variable:_arrResultsSingleChoice": [
+                  "Succeeded"
+                ],
+                "Set_variable:_arrResultsMultiChoice": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "b1b240e3-62e4-4683-ba0e-11ad1b6b30ce"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "bSuccess",
+                "value": "@true"
+              }
+            },
+            "Parse_JSON:_single_choice:_Attributes_Metadata": {
+              "runAfter": {
+                "Invoke_an_HTTP_request:_Get_Entity_Attributes_SingleChoice": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "be688538-797c-4e5e-9e93-2d3d716e2f5e"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Invoke_an_HTTP_request:_Get_Entity_Attributes_SingleChoice')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "LogicalName": {
+                            "type": "string"
+                          },
+                          "OptionSet": {
+                            "type": "object",
+                            "properties": {
+                              "Name": {
+                                "type": "string"
+                              },
+                              "OptionSetType": {
+                                "type": "string"
+                              },
+                              "ParentOptionSetName": {},
+                              "Description": {
+                                "type": "object",
+                                "properties": {
+                                  "LocalizedLabels": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "Label": {
+                                          "type": "string"
+                                        },
+                                        "LanguageCode": {
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "required": [
+                                        "Label",
+                                        "LanguageCode"
+                                      ]
+                                    }
+                                  }
+                                }
+                              },
+                              "DisplayName": {
+                                "type": "object",
+                                "properties": {
+                                  "LocalizedLabels": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "Label": {
+                                          "type": "string"
+                                        },
+                                        "LanguageCode": {
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "required": [
+                                        "Label",
+                                        "LanguageCode"
+                                      ]
+                                    }
+                                  }
+                                }
+                              },
+                              "Options": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "Value": {
+                                      "type": "integer"
+                                    },
+                                    "Color": {},
+                                    "Label": {
+                                      "type": "object",
+                                      "properties": {
+                                        "LocalizedLabels": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "Label": {
+                                                "type": "string"
+                                              },
+                                              "LanguageCode": {
+                                                "type": "integer"
+                                              }
+                                            },
+                                            "required": [
+                                              "Label",
+                                              "LanguageCode"
+                                            ]
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "Value",
+                                    "Label"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "LogicalName",
+                          "OptionSet"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Select:_single_choice:_get_OptionSetNames": {
+              "runAfter": {
+                "Parse_JSON:_single_choice:_Attributes_Metadata": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "7520e8e4-5929-4ac5-8a6c-d5a13dc506c5"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Parse_JSON:_single_choice:_Attributes_Metadata')?['value']",
+                "select": "@item()?['OptionSet']?['Name']"
+              }
+            },
+            "Set_variable:_arrOptionSetNamesSingleChoice_(unique)": {
+              "runAfter": {
+                "Select:_single_choice:_get_OptionSetNames": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "2cfe8486-b513-4463-9fa5-325b313d5bbb"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "arrOptionSetNames_SingleChoice",
+                "value": "@union(body('Select:_single_choice:_get_OptionSetNames'),body('Select:_single_choice:_get_OptionSetNames'))"
+              }
+            },
+            "Select:_single_choice:_flatten_object": {
+              "runAfter": {
+                "Set_variable:_arrOptionSetNamesSingleChoice_(unique)": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "14c99bcc-505e-42d7-8219-ecbbf00777c7"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Parse_JSON:_single_choice:_Attributes_Metadata')?['value']",
+                "select": {
+                  "@{item()?['OptionSet']?['Name']}": "@item()?['OptionSet']?['Options']"
+                }
+              }
+            },
+            "Compose:_single_choice:_json_to_xml": {
+              "runAfter": {
+                "Select:_single_choice:_flatten_object": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "441f0c7c-a108-4847-88ab-edd8b338d923"
+              },
+              "type": "Compose",
+              "inputs": "@xml(json(concat('{ \"root\": { \"arr\": ',union(body('Select:_single_choice:_flatten_object'),body('Select:_single_choice:_flatten_object')), '}}')))"
+            },
+            "Select:_single_choice:_get_label_for_language": {
+              "runAfter": {
+                "Compose:_single_choice:_json_to_xml": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c308c20f-63f4-4004-b116-5be973f721f9"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@xpath(outputs('Compose:_single_choice:_json_to_xml'), '//arr/*')",
+                "select": {
+                  "@{xpath(item(), 'name(/*)')}": "@concat(\r\n'{\"Value\":',\r\nxpath(item(), 'string(//Value)'),\r\n',\"Label\":\"',\r\ncoalesce(xpath(item(), variables('sXpathFilterLanguageCode')), xpath(item(), variables('sXpathFilterLanguageCodeFallback'))),\r\n'\"}')"
+                }
+              }
+            },
+            "Compose:_single_choice:_xml": {
+              "runAfter": {
+                "Select:_single_choice:_get_label_for_language": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "86664864-7bcd-43aa-b760-a16b7284f76b"
+              },
+              "type": "Compose",
+              "inputs": "@xml(json(concat('{ \"root\": { \"arr\": ', body('Select:_single_choice:_get_label_for_language'), '}}')))"
+            },
+            "Select:_single_choice:_labels_for_a_field": {
+              "runAfter": {
+                "Compose:_single_choice:_xml": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d0d0b2b3-1fea-4ddb-a843-515a367c8248"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Parse_JSON:_single_choice:_Attributes_Metadata')?['value']",
+                "select": {
+                  "LogicalName": "@item()?['LogicalName']",
+                  "Options": "@json(concat('[', join(xpath( outputs('Compose:_single_choice:_xml') ,concat('//',item()?['OptionSet']?['Name'],'/text()')),','),']'))"
+                }
+              }
+            },
+            "Parse_JSON:_Attributes_Metadata_multichoice": {
+              "runAfter": {
+                "Invoke_an_HTTP_request:_Get_Entity_Attributes_MultiChoice": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "be688538-797c-4e5e-9e93-2d3d716e2f5e"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Invoke_an_HTTP_request:_Get_Entity_Attributes_MultiChoice')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "LogicalName": {
+                            "type": "string"
+                          },
+                          "OptionSet": {
+                            "type": "object",
+                            "properties": {
+                              "Name": {
+                                "type": "string"
+                              },
+                              "OptionSetType": {
+                                "type": "string"
+                              },
+                              "ParentOptionSetName": {},
+                              "Description": {
+                                "type": "object",
+                                "properties": {
+                                  "LocalizedLabels": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "Label": {
+                                          "type": "string"
+                                        },
+                                        "LanguageCode": {
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "required": [
+                                        "Label",
+                                        "LanguageCode"
+                                      ]
+                                    }
+                                  }
+                                }
+                              },
+                              "DisplayName": {
+                                "type": "object",
+                                "properties": {
+                                  "LocalizedLabels": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "Label": {
+                                          "type": "string"
+                                        },
+                                        "LanguageCode": {
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "required": [
+                                        "Label",
+                                        "LanguageCode"
+                                      ]
+                                    }
+                                  }
+                                }
+                              },
+                              "Options": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "Value": {
+                                      "type": "integer"
+                                    },
+                                    "Color": {},
+                                    "Label": {
+                                      "type": "object",
+                                      "properties": {
+                                        "LocalizedLabels": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "Label": {
+                                                "type": "string"
+                                              },
+                                              "LanguageCode": {
+                                                "type": "integer"
+                                              }
+                                            },
+                                            "required": [
+                                              "Label",
+                                              "LanguageCode"
+                                            ]
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "Value",
+                                    "Label"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "LogicalName",
+                          "OptionSet"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Select:_multi_choice:_get_OptionSetNames": {
+              "runAfter": {
+                "Parse_JSON:_Attributes_Metadata_multichoice": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "2d2029bf-0fa4-4ae2-a1e0-6e6c6d3a0704"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Parse_JSON:_Attributes_Metadata_multichoice')?['value']",
+                "select": "@item()?['OptionSet']?['Name']"
+              }
+            },
+            "Set_variable:_arrOptionSetNamesMultiChoice_(unique)": {
+              "runAfter": {
+                "Select:_multi_choice:_get_OptionSetNames": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "591b6d89-cc52-41a1-be35-4c40577cf028"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "arrOptionSetNames_MultiChoice",
+                "value": "@body('Select:_multi_choice:_get_OptionSetNames')"
+              }
+            },
+            "Select:_multi_choice:_flatten_object": {
+              "runAfter": {
+                "Set_variable:_arrOptionSetNamesMultiChoice_(unique)": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "6357d096-8d14-4b0f-b131-dc080662f415"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Parse_JSON:_Attributes_Metadata_multichoice')?['value']",
+                "select": {
+                  "@{item()?['OptionSet']?['Name']}": "@item()?['OptionSet']?['Options']"
+                }
+              }
+            },
+            "Compose:_multi_choice:_json_to_xml": {
+              "runAfter": {
+                "Select:_multi_choice:_flatten_object": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "0fa57442-b5fc-4004-b31d-523c095f914a"
+              },
+              "type": "Compose",
+              "inputs": "@xml(json(concat('{ \"root\": { \"arr\": ',union(body('Select:_multi_choice:_flatten_object'),body('Select:_multi_choice:_flatten_object')), '}}')))"
+            },
+            "Select:_multi_choice:_get_label_for_language": {
+              "runAfter": {
+                "Compose:_multi_choice:_json_to_xml": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "afa83005-9133-47c4-9168-0023ba07234c"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@xpath( outputs('Compose:_multi_choice:_json_to_xml'), '//arr/*')",
+                "select": {
+                  "@{xpath(item(), 'name(/*)')}": "@concat(\r\n'{\"Value\":',\r\nxpath(item(), 'string(//Value)'),\r\n',\"Label\":\"',\r\ncoalesce(xpath(item(), variables('sXpathFilterLanguageCode')), xpath(item(), variables('sXpathFilterLanguageCodeFallback'))),\r\n'\"}')"
+                }
+              }
+            },
+            "Compose:_multi_choice:_xml": {
+              "runAfter": {
+                "Select:_multi_choice:_get_label_for_language": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5339bc7b-8278-4ecd-8149-da92311cec29"
+              },
+              "type": "Compose",
+              "inputs": "@xml(json(concat('{ \"root\": { \"arr\": ', body('Select:_multi_choice:_get_label_for_language') , '}}')))"
+            },
+            "Select:_multi_choice:_labels_for_a_field": {
+              "runAfter": {
+                "Compose:_multi_choice:_xml": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "b6fb90d1-58b2-496c-8656-51d8877d48b0"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Parse_JSON:_Attributes_Metadata_multichoice')?['value']",
+                "select": {
+                  "LogicalName": "@item()?['LogicalName']",
+                  "Options": "@json(concat('[', join(xpath( outputs('Compose:_multi_choice:_xml') ,concat('//',item()?['OptionSet']?['Name'],'/text()')),','),']'))"
+                }
+              }
+            },
+            "Set_variable:_arrResultsSingleChoice": {
+              "runAfter": {
+                "Select:_single_choice:_labels_for_a_field": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "7f55a1cc-1945-493a-970d-2ef39361cb48"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "arrResultsSingleChoice",
+                "value": "@body('Select:_single_choice:_labels_for_a_field')"
+              }
+            },
+            "Set_variable:_arrResultsMultiChoice": {
+              "runAfter": {
+                "Select:_multi_choice:_labels_for_a_field": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "35acb821-8aad-4776-8b9f-014853ac27fb"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "arrResultsMultiChoice",
+                "value": "@body('Select:_multi_choice:_labels_for_a_field')"
+              }
+            },
+            "Set_variable:_arrResults": {
+              "runAfter": {
+                "Set_variable:_bSuccess_=_true": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "efccdec6-457d-420b-a8c9-2e30503355af"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "arrResults",
+                "value": "@union(variables('arrResultsSingleChoice'),variables('arrResultsMultiChoice'))"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable:_arrResultsMultiChoice": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "49664d1a-dfa2-49ee-8e01-eee8029c18b2"
+          },
+          "type": "Scope"
+        },
+        "Scope:_Error_Handling": {
+          "actions": {
+            "Filter_array:_get_Errors": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f9ed3e5d-bc09-45a2-ac2c-5f24789521fc"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@result('Scope:_retrieve_Attribute_Metadata_for_Choice_fields')",
+                "where": "@equals(item()?['Status'], 'Failed')"
+              }
+            },
+            "Select:_get_actions_and_errors": {
+              "runAfter": {
+                "Filter_array:_get_Errors": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "4f6269cb-bfed-4a4a-abc6-20d685df3312"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Filter_array:_get_Errors')",
+                "select": {
+                  "Error": "@{item()?['name']}: \" @{item()?['outputs']?['body']?['message']}\""
+                }
+              }
+            },
+            "Set_variable:_sError_Message": {
+              "runAfter": {
+                "Select:_get_actions_and_errors": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "6d62052b-7e3c-4d58-9df9-6ebd5e4cdb61"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "sErrorMessage",
+                "value": "@{join(body('Select:_get_actions_and_errors'), ',')}"
+              }
+            }
+          },
+          "runAfter": {
+            "Scope:_retrieve_Attribute_Metadata_for_Choice_fields": [
+              "Failed",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "afdee7da-1027-400b-b760-86147d8a3d56"
+          },
+          "type": "Scope"
+        },
+        "Initialize_variable:_sErrorMessage": {
+          "runAfter": {
+            "Initialize_variable:_bSuccess": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b993950a-531c-4231-b5e0-2cfcdc477d99"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "sErrorMessage",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable:_bSuccess": {
+          "runAfter": {
+            "Initialize_variable:_arrResults": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cf3e4e0b-dec0-4765-9a4d-9502369f34f9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "bSuccess",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          }
+        },
+        "Initialize_variable:_arrResults": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "aa444ab2-55c9-4a64-949c-832d1a3b856d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrResults",
+                "type": "array",
+                "value": []
+              }
+            ]
+          }
+        },
+        "Initialize_variable:_sXpathFilterLanguageCode": {
+          "runAfter": {
+            "Initialize_variable:_sErrorMessage": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "71b4fbff-d0ef-422f-8aa2-1bcc8f05ced3"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "sXpathFilterLanguageCode",
+                "type": "string",
+                "value": "@{concat('string(//LocalizedLabels[LanguageCode=', triggerBody()['text_1'], ']/Label)')}"
+              }
+            ]
+          }
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Scope:_Error_Handling": [
+              "Succeeded",
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "efa7d617-b4da-4047-bad0-97988eade3b5"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "results": "@{variables('arrResults')}",
+              "error_message": "@variables('sErrorMessage')",
+              "success": "@{variables('bSuccess')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "results": {
+                  "title": "results",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "error_message": {
+                  "title": "error_message",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "success": {
+                  "title": "success",
+                  "x-ms-dynamically-added": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable:_arrOptionSetNamesSingleChoice": {
+          "runAfter": {
+            "Initialize_variable:_sXpathFilterLanguageCodeFallback": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "54d63f17-be14-49a9-b920-dce46e20d00e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrOptionSetNames_SingleChoice",
+                "type": "array",
+                "value": []
+              }
+            ]
+          }
+        },
+        "Initialize_variable:_arrOptionSetNames_arrOptionSetNames_MultiChoice": {
+          "runAfter": {
+            "Initialize_variable:_arrOptionSetNamesSingleChoice": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "18f19c71-1bfd-42d0-a853-5056568e9523"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrOptionSetNames_MultiChoice",
+                "type": "array",
+                "value": []
+              }
+            ]
+          }
+        },
+        "Initialize_variable:_sXpathFilterLanguageCodeFallback": {
+          "runAfter": {
+            "Initialize_variable:_sXpathFilterLanguageCode": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "71b4fbff-d0ef-422f-8aa2-1bcc8f05ced3"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "sXpathFilterLanguageCodeFallback",
+                "type": "string",
+                "value": "@{concat('string(//LocalizedLabels[LanguageCode=', triggerBody()['text_2'], ']/Label)')}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable:_arrResultsSingleChoice": {
+          "runAfter": {
+            "Initialize_variable:_arrOptionSetNames_arrOptionSetNames_MultiChoice": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fd194124-a136-4210-a1e3-d55c9a77ece0"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrResultsSingleChoice",
+                "type": "array",
+                "value": []
+              }
+            ]
+          }
+        },
+        "Initialize_variable:_arrResultsMultiChoice": {
+          "runAfter": {
+            "Initialize_variable:_arrResultsSingleChoice": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f1aa7a3a-7a0d-4da2-a7ff-75d69efa9787"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrResultsMultiChoice",
+                "type": "array",
+                "value": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
