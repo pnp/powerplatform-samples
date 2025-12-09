@@ -52,7 +52,7 @@
             DropShadow: =DropShadow.Light
             Fill: =RGBA(255, 255, 255, 1)
             FillPortions: =0
-            Height: =TextCanvasSRHeader_1.Height + ComboboxCanvasGroupsTS.Height + Self.PaddingTop + Self.PaddingBottom + 20
+            Height: =TextCanvasSearchHeader.Height + ComboboxCanvasGroupsTS.Height + Self.PaddingTop + Self.PaddingBottom + 20
             LayoutAlignItems: =LayoutAlignItems.Stretch
             LayoutDirection: =LayoutDirection.Vertical
             LayoutGap: =5
@@ -69,7 +69,7 @@
             Width: =Parent.Width
             ZIndex: =2
 
-            TextCanvasSRHeader_1 As Text:
+            TextCanvasSearchHeader As Text:
                 Align: ='TextCanvas.Align'.Center
                 AutoHeight: =false
                 DisplayMode: =DisplayMode.Edit
@@ -93,7 +93,6 @@
                 Items: =Filter(Teams, 'Teams (Views)'.'All AAD Security Group Teams')
                 LayoutMinHeight: =10
                 LayoutMinWidth: =320
-                OnSelect: =false
                 Width: =320
                 X: =0
                 Y: =0
@@ -230,7 +229,7 @@
                         ZIndex: =4
 
                         lblRoleName As label:
-                            Color: =RGBA(0, 120, 212, 1)
+                            Color: =App.Theme.Colors.Primary
                             DisabledColor: =RGBA(161, 159, 157, 1)
                             Font: =Font.'Segoe UI'
                             FontWeight: =FontWeight.Semibold
@@ -328,7 +327,7 @@
                         ZIndex: =2
 
                         LblProfileName As label:
-                            Color: =RGBA(0, 120, 212, 1)
+                            Color: =App.Theme.Colors.Primary
                             DisabledColor: =RGBA(161, 159, 157, 1)
                             Font: =Font.'Segoe UI'
                             FontWeight: =FontWeight.Semibold
@@ -339,7 +338,7 @@
                             PaddingRight: =0
                             PaddingTop: =0
                             Size: =10.5
-                            Text: =ThisItem.'Created On'
+                            Text: =ThisItem.Name
                             VerticalAlign: =VerticalAlign.Top
                             Width: =Parent.TemplateWidth - 104
                             X: =40
@@ -443,7 +442,7 @@
                             ZIndex: =2
 
                         LblUserName As label:
-                            Color: =RGBA(0, 120, 212, 1)
+                            Color: =App.Theme.Colors.Primary
                             DisabledColor: =RGBA(161, 159, 157, 1)
                             Font: =Font.'Segoe UI'
                             FontWeight: =FontWeight.Semibold
@@ -485,7 +484,7 @@
                 IconCloseSecurity As icon.Cancel:
                     AlignInContainer: =AlignInContainer.End
                     BorderColor: =RGBA(0, 0, 0, 0)
-                    Color: =RGBA(0, 120, 212, 1)
+                    Color: =App.Theme.Colors.Primary
                     DisabledBorderColor: =RGBA(245, 245, 245, 1)
                     DisabledColor: =RGBA(225, 223, 221, 1)
                     DisabledFill: =RGBA(0, 0, 0, 0)
@@ -531,7 +530,7 @@
                     Width: =Parent.Width
                     ZIndex: =3
 
-                    CheckboxCanvas2 As Checkbox:
+                    CheckboxCanvasSR As Checkbox:
                         Checked: =ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group' in Concat(ThisItem.Teams,'Azure AD Object Id for a group')
                         DisplayMode: =DisplayMode.Edit
                         Height: =32
@@ -611,7 +610,7 @@
                     Width: =Parent.Width
                     ZIndex: =3
 
-                    CheckboxCanvas2_1 As Checkbox:
+                    CheckboxCanvasFS As Checkbox:
                         Checked: =ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group' in Concat(ThisItem.Teams,'Azure AD Object Id for a group')
                         DisplayMode: =DisplayMode.Edit
                         Height: =32
@@ -686,17 +685,20 @@
                     TemplateFill: =RGBA(0,0,0,5%)
                     TemplatePadding: =10
                     TemplateSize: =50
-                    Width: =Parent.Width
+                    Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
                     ZIndex: =3
 
-                    CheckboxCanvas2_2 As Checkbox:
-                        Checked: =ThisItem.'Azure AD Object ID' in  Concat(AzureAD.GetGroupMembers(ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group').value,id)
-                        DisplayMode: =DisplayMode.Edit
+                    CheckboxCanvasUsers As Checkbox:
+                        Checked: =IfError(ThisItem.'Azure AD Object ID' in  Concat(AzureAD.GetGroupMembers(ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group').value,id), false)
+                        DisplayMode: =If(!IsBlank(ComboboxCanvasGroupsTS.Selected),DisplayMode.Edit,DisplayMode.Disabled)
                         Height: =32
                         Label: =ThisItem.'Full Name'
-                        OnCheck: =AzureAD.AddUserToGroup(ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group',ThisItem.'Azure AD Object ID')
+                        OnCheck: =If(!IsBlank(ComboboxCanvasGroupsTS.Selected),AzureAD.AddUserToGroup(ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group',ThisItem.'Azure AD Object ID'))
                         OnSelect: =Select(Parent)
-                        OnUncheck: =AzureAD.RemoveMemberFromGroup(ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group',ThisItem.'Azure AD Object ID')
+                        OnUncheck: |-
+                            =
+                            
+                            AzureAD.RemoveMemberFromGroup(ComboboxCanvasGroupsTS.Selected.'Azure AD Object Id for a group',ThisItem.'Azure AD Object ID')
                         Width: =Parent.TemplateWidth - 25
                         X: =0
                         Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
