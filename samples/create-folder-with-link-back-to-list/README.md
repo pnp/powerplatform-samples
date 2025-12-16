@@ -4,14 +4,14 @@
 
 This sample creates a folder in a *SharePoint* document library and then stores the link to the newly created folder inside of *Microsoft Lists* using *Power Automate*. The folder name is based on a combination of list columns and provides a better link experience compared to the default URL. 
 
-![Flow overview](/samples/create-folder-with-link-back-to-list/assets/flow-overview.png "Flow overview")
+![Flow overview](./assets/flow-overview.png)
 
 
 Our list item looks like the image below. Clicking on the *FolderLocation* link will take you to the folder location. 
 
-![List item](/samples/create-folder-with-link-back-to-list/assets/list-item.png "List item")
+![List item](./assets/list-item.png)
 
-![Folder](/samples/create-folder-with-link-back-to-list/assets/folder.png "Folder")
+![Folder](./assets/folder.png)
 
 ## Applies to
 
@@ -41,6 +41,7 @@ Version|Date|Comments
 -------|----|--------
 1.0|October 10, 2022|Initial release
 2.0|October 07, 2025|Migration from powerapps-samples repository with solution repacking by [Jan Chlebek](https://github.com/jan-chlebek)
+3.0|December 16, 2025|Add environment variables into solution by [Katerina Chernevskaya](https://github.com/Katerina-Chernevskaya)
 
 ## Prerequisites
 
@@ -53,41 +54,11 @@ This Flow requires the following list columns and settings:
 ## Minimal Path to Awesome
 * [Download](./solution/create-folder-with-link-back-to-list.zip) the `.zip` from the `solution` folder
 * Within **Power Automate**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
-* Open imported flow
-* Expand the *When an item is created*, change the *Site address* and *List name* to your desired site and list 
-
-	![Configure When an item is created](/samples/create-folder-with-link-back-to-list/assets/when-an-item-is-created.png "Configure When an item is created")
-
-*  Expand *Initialize variable - varParameters*, change the *Site address* and *List name* to your desired site and list
-
-	![Configure Initialize variable](/samples/create-folder-with-link-back-to-list/assets/initialize-variable.png "Configure Initialize variable")
-
-	Name | Value
-	---- | ------
-	*varSiteURL* | Replace with your site URL
-	*varListInternalName* | Replace with your internal list name; **Tip:** Use this API call in your browser to obtain the internal list name: *https://YourTenantName.sharepoint.com/sites/YourSiteName/_api/Web/Lists/GetByTitle('<YourListNameWithSpaces')?$select=ListItemEntityTypeFullName*
-	*varListDisplayName* | Replace with your list display name
-	*varColumnInternalName* | Replace with the internal column name; **Tip:** Use the list column settings to see the internal name at the end of the URL string
-	*varDocumentDisplayLibraryName* | Replace with the Document Library display name.
-	*varFolderName* | Update the expression as required; by default the expression concatenates the list ID column with the Title column values: *concat(triggerOutputs()?['body/ID'], '-', triggerOutputs()?['body/Title'])*
-
-*  Click **Save** to save your changes
-
-	![Save](/samples/create-folder-with-link-back-to-list/assets/save.png "Save")
-
-
-*  Click **Go back to previous page**
-
-	![Previous page](/samples/create-folder-with-link-back-to-list/assets/previous-page.png "Previous page")
-
-*  Click **Turn on** to enable your Flow
-
-	![Turn on Flow](/samples/create-folder-with-link-back-to-list/assets/turn-on.png "Turn on Flow")
 
 *  Test your *Flow* by adding a new item to your list. If successful the Flow will:
     *  Create a folder in our target *SharePoint* Document Library with a name that concatenates the *ID* and *Title* columns
     *  Update list item *FolderLocation* column to match the folder name
-![Your flow ran successfully](/samples/create-folder-with-link-back-to-list/assets/flow-run.png "Your flow ran successfully")
+![Your flow ran successfully](./assets/flow-run.png)
 
 ## Features
 

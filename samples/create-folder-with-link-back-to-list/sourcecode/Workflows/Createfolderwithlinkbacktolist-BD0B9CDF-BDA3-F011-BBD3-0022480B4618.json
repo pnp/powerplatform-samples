@@ -22,13 +22,27 @@
         "$authentication": {
           "defaultValue": {},
           "type": "SecureObject"
+        },
+        "ev_site (pnp_ev_site)": {
+          "defaultValue": "https://chernevskayakaterinagmail.sharepoint.com/sites/pnp",
+          "type": "String",
+          "metadata": {
+            "schemaName": "pnp_ev_site"
+          }
+        },
+        "ev_list (pnp_ev_list)": {
+          "defaultValue": "741c500e-a7a2-4def-993c-d5caea74e331",
+          "type": "String",
+          "metadata": {
+            "schemaName": "pnp_ev_list"
+          }
         }
       },
       "triggers": {
         "When_an_item_is_created": {
           "recurrence": {
-            "frequency": "Minute",
-            "interval": 1
+            "interval": 1,
+            "frequency": "Minute"
           },
           "splitOn": "@triggerOutputs()?['body/value']",
           "metadata": {
@@ -37,13 +51,13 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
               "connectionName": "shared_sharepointonline_1",
-              "operationId": "GetOnNewItems"
+              "operationId": "GetOnNewItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
             },
             "parameters": {
-              "dataset": "https://chlebekdev.sharepoint.com/sites/chlebekdev",
-              "table": "3261fb42-7d9d-4342-bbd7-e94bc267880a"
+              "dataset": "@parameters('ev_site (pnp_ev_site)')",
+              "table": "@parameters('ev_list (pnp_ev_list)')"
             },
             "authentication": "@parameters('$authentication')"
           },
@@ -63,9 +77,9 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
               "connectionName": "shared_sharepointonline_1",
-              "operationId": "CreateNewFolder"
+              "operationId": "CreateNewFolder",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
             },
             "parameters": {
               "dataset": "@variables('varParameters')['varSiteURL']",
@@ -78,7 +92,7 @@
         },
         "Send_an_HTTP_request_to_SharePoint": {
           "runAfter": {
-            "Create_new_folder": [
+            "Send_an_HTTP_request_to_SharePoint_2": [
               "Succeeded"
             ]
           },
@@ -88,20 +102,20 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
               "connectionName": "shared_sharepointonline_1",
-              "operationId": "HttpRequest"
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
             },
             "parameters": {
               "dataset": "@variables('varParameters')['varSiteURL']",
               "parameters/method": "POST",
-              "parameters/uri": "_api/web/lists/GetByTitle('@{variables('varParameters')['varListDisplayName']}')/items(@{triggerOutputs()?['body/ID']})",
+              "parameters/uri": "_api/web/lists(guid'@{parameters('ev_list (pnp_ev_list)')}')/items(@{triggerOutputs()?['body/ID']})",
               "parameters/headers": {
-                "Content-Type": "application/json;odata=verbose",
+                "Content-Type": "application/json;odata=nometadata",
                 "X-HTTP-Method": "MERGE",
                 "IF-MATCH": "*"
               },
-              "parameters/body": "{'__metadata': {'type':'SP.Data.@{variables('varParameters')['varListInternalName']}ListItem'}, '@{variables('varParameters')['varColumnInternalName']}':{'Description': '@{variables('varParameters')['varFolderName']}', 'Url': '@{outputs('Create_new_folder')?['body/{Link}']}'}}"
+              "parameters/body": "{'FolderLocation': {'Url':'@{outputs('Create_new_folder')?['body/{Link}']}'}}"
             },
             "authentication": "@parameters('$authentication')"
           }
@@ -118,9 +132,9 @@
                 "name": "varParameters",
                 "type": "object",
                 "value": {
-                  "varSiteURL": "https://normyoung.sharepoint.com/sites/demo-site",
-                  "varListInternalName": "DemoFolders",
-                  "varListDisplayName": "Demo Folders",
+                  "varSiteURL": "@{parameters('ev_site (pnp_ev_site)')}",
+                  "varListInternalName": "@{parameters('ev_list (pnp_ev_list)')}",
+                  "varListDisplayName": "@{parameters('ev_list (pnp_ev_list)')}",
                   "varColumnInternalName": "FolderLocation",
                   "varDocumentDisplayLibraryName": "Documents",
                   "varFolderName": "@{concat(triggerOutputs()?['body/ID'], '-', triggerOutputs()?['body/Title'])}"
@@ -141,10 +155,37 @@
           },
           "type": "Compose",
           "inputs": "@variables('varParameters')"
+        },
+        "Send_an_HTTP_request_to_SharePoint_2": {
+          "runAfter": {
+            "Create_new_folder": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4140c059-c011-4c02-a159-3e375dd82090"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('ev_site (pnp_ev_site)')",
+              "parameters/method": "GET",
+              "parameters/uri": "_api/web/lists(guid'@{parameters('ev_list (pnp_ev_list)')}')/fields?$select=Title,InternalName,TypeAsString&$filter=Hidden eq false and ReadOnlyField eq false",
+              "parameters/headers": {
+                "Accept": "application/json;odata=nometadata"
+              }
+            },
+            "authentication": "@parameters('$authentication')"
+          }
         }
       }
     },
-    "templateName": null
+    "templateName": ""
   },
   "schemaVersion": "1.0.0.0"
 }
