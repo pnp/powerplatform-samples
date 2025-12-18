@@ -1,0 +1,416 @@
+App As appinfo:
+    BackEnabled: =true
+    Formulas: = 
+    OnStart: |+
+        =ClearCollect(
+            PeopleGallery,
+            {
+                Name: "Aaliyah Clarke",
+                JobTitle: "Event Producer",
+                Bio: "Aaliyah has produced over 200 cultural events across the Caribbean, blending logistics with creative storytelling. She specializes in artist-led programming and community engagement.",
+                Summary: "Cultural event producer focused on artist-led programming.",
+                Img: Face1
+            },
+            {
+                Name: "Jamal Browne",
+                JobTitle: "Digital Strategist",
+                Bio: "Jamal designs digital ecosystems for Caribbean startups, integrating branding, UX, and monetization strategies. He’s known for his bold, abstract visual language.",
+                Summary: "Digital strategist for Caribbean startups.",
+                Img: Face2
+            },
+            {
+                Name: "Sasha Griffith",
+                JobTitle: "Visual Archivist",
+                Bio: "Sasha curates and tags visual IP libraries for editorial and commercial use. Her work preserves cultural memory through metadata and licensing frameworks.",
+                Summary: "Curator of visual IP and metadata systems.",
+                Img: Face3
+            },
+            {
+                Name: "Julie Jordan",
+                JobTitle: "UX Researcher",
+                Bio: "Julie conducts field research across Barbados to refine accessibility and user flows in mobile platforms. He bridges technical logic with lived experience.",
+                Summary: "UX researcher focused on accessibility and local context.",
+                Img: Face4
+            },
+            {
+                Name: "Tanya Roach",
+                JobTitle: "Brand Consultant",
+                Bio: "Tanya helps Caribbean artists and entrepreneurs define their brand voice through editorial design and strategic messaging. Her work is rooted in cultural fluency.",
+                Summary: "Brand consultant for artists and entrepreneurs.",
+                Img: Face5
+            },
+            {
+                Name: "Darius King",
+                JobTitle: "Platform Architect",
+                Bio: "Darius builds scalable media platforms that connect sponsors, artists, and audiences. He specializes in schema design and onboarding logic.",
+                Summary: "Architect of scalable media platforms.",
+                Img: Face6
+            },
+            {
+                Name: "David Forde",
+                JobTitle: "Creative Director",
+                Bio: "David leads multidisciplinary teams to produce editorial campaigns that celebrate Caribbean abstraction. He merges fashion, folklore, and futurism.",
+                Summary: "Creative director blending fashion and folklore.",
+                Img: Face7
+            },
+            {
+                Name: "Linda Alleyne",
+                JobTitle: "Data Modeler",
+                Bio: "Linda troubleshoots Dataverse schema issues and formats calculated columns for clean presentation. She’s known for her precision and logic.",
+                Summary: "Dataverse expert focused on schema integrity.",
+                Img: Face8
+            },
+            {
+                Name: "Rhea Sobers",
+                JobTitle: "Cultural Critic",
+                Bio: "Rhea writes and speaks on Caribbean identity, abstraction, and epistemic sabotage. Her essays challenge conventional design norms.",
+                Summary: "Writer exploring Caribbean abstraction and critique.",
+                Img: Face9
+            },
+            {
+                Name: "Andre Callender",
+                JobTitle: "Sponsor Liaison",
+                Bio: "Andre builds bridges between corporate sponsors and creative communities. He crafts pitch decks and onboarding flows that align business goals with cultural impact.",
+                Summary: "Connector between sponsors and creatives.",
+                Img: Face10
+            },
+            {
+                Name: "John Springer",
+                JobTitle: "Editorial Designer",
+                Bio: "John designs magazine identities and layout systems that reflect Caribbean exuberance. His work balances clarity, abstraction, and rhythm.",
+                Summary: "Editorial designer of Caribbean publications.",
+                Img: Face11
+            },
+            {
+                Name: "Nathaniel Hoyte",
+                JobTitle: "Photographer",
+                Bio: "Nathaniel documents weddings, festivals, and speculative fiction scenes with a cinematic eye. He builds shot lists that evoke emotion and narrative.",
+                Summary: "Photographer blending culture and fiction.",
+                Img: Face12
+            },
+            {
+                Name: "Pete Mayers",
+                JobTitle: "Licensing Strategist",
+                Bio: "Pete structures licensing deals for visual IP across editorial, commercial, and platform contexts. He ensures artists retain control and value.",
+                Summary: "Strategist for visual IP licensing.",
+                Img: Face13
+            },
+            {
+                Name: "Omar Best",
+                JobTitle: "App Prototyper",
+                Bio: "Omar rapidly prototypes Power Apps interfaces for artist onboarding and sponsor engagement. He’s known for his iterative logic and clean UI.",
+                Summary: "Power Apps prototyper for creative platforms.",
+                Img: Face14
+            },
+            {
+                Name: "Luke Thomas",
+                JobTitle: "Narrative Designer",
+                Bio: "Luke crafts speculative fiction worlds rooted in Caribbean myth and lost archives. His work spans prose, visual layouts, and interactive media.",
+                Summary: "Designer of Caribbean speculative fiction worlds.",
+                Img: Face15
+            },
+            {
+                Name: "Trevor Gaskin",
+                JobTitle: "Media Curator",
+                Bio: "Trevor curates homepage visuals and media layouts for entertainment platforms. He balances sponsor visibility with cultural storytelling.",
+                Summary: "Curator of media layouts and sponsor visuals.",
+                Img: Face16
+            },
+            {
+                Name: "Nick Prescott",
+                JobTitle: "Accessibility Advocate",
+                Bio: "Nick audits customer-facing apps for accessibility and inclusion. He champions design systems that reflect diverse user needs.",
+                Summary: "Advocate for inclusive design systems.",
+                Img: Face17
+            },
+            {
+                Name: "Jared Walcott",
+                JobTitle: "Strategic Analyst",
+                Bio: "Jared refines business models and pricing logic for Barbados-based platforms. He aligns creative ambition with market realities.",
+                Summary: "Analyst aligning creativity with market logic.",
+                Img: Face18
+            },
+            {
+                Name: "Roger Beckles",
+                JobTitle: "Metadata Engineer",
+                Bio: "Roger builds tagging workflows for RAW files and visual assets. His systems support licensing, discovery, and editorial reuse.",
+                Summary: "Engineer of metadata systems for visual IP.",
+                Img: Face19
+            }
+        );
+        
+        ClearCollect(SampleVisual, 
+            {
+                Heading: "Plans",
+                SubHeading: "Starter",
+                AmountValue: "19",
+                Item1: "Feature one",
+                Item2: "Feature two",
+                Symbol1: "✓",
+                Symbol2: "×",
+                ItemLabel: "Choose"
+            },
+            {
+                Heading: "Plans",
+                SubHeading: "Medium",
+                AmountValue: "39",
+                Item1: "Feature three",
+                Item2: "Feature four",
+                Symbol1: "✓",
+                Symbol2: "×",
+                ItemLabel: "Choose"
+            },
+            {
+                Heading: "Plans",
+                SubHeading: "Advanced",
+                AmountValue: "45",
+                Item1: "Feature five",
+                Item2: "Feature six",
+                Symbol1: "✓",
+                Symbol2: "×",
+                ItemLabel: "Choose"
+            }
+        );
+        
+        
+        ClearCollect(
+            PeopleSample,
+            {
+                Name: "Aaliyah Clarke",
+                JobTitle: "Event Producer",
+                Bio: "Aaliyah has produced over 200 cultural events across the Caribbean, blending logistics with creative storytelling. She specializes in artist-led programming and community engagement.",
+                Summary: "Cultural event producer focused on artist-led programming.",
+                Img: Face1,
+                Roles: Table(
+                    { Role: "Producer", Area: "Events", Level: "Senior" },
+                    { Role: "Logistics Lead", Area: "Operations", Level: "Mid" },
+                    { Role: "Community Liaison", Area: "Programming", Level: "Mid" }
+                )
+            },
+            {
+                Name: "Jamal Browne",
+                JobTitle: "Digital Strategist",
+                Bio: "Jamal designs digital ecosystems for Caribbean startups, integrating branding, UX, and monetization strategies. He’s known for his bold, abstract visual language.",
+                Summary: "Digital strategist for Caribbean startups.",
+                Img: Face2,
+                Roles: Table(
+                    { Role: "Strategy Lead", Area: "Growth", Level: "Senior" },
+                    { Role: "UX Partner", Area: "Product", Level: "Mid" },
+                    { Role: "Monetization Analyst", Area: "Business", Level: "Mid" }
+                )
+            },
+            {
+                Name: "Sasha Griffith",
+                JobTitle: "Visual Archivist",
+                Bio: "Sasha curates and tags visual IP libraries for editorial and commercial use. Her work preserves cultural memory through metadata and licensing frameworks.",
+                Summary: "Curator of visual IP and metadata systems.",
+                Img: Face3,
+                Roles: Table(
+                    { Role: "Archivist", Area: "Libraries", Level: "Senior" },
+                    { Role: "Metadata Tagger", Area: "Cataloging", Level: "Mid" },
+                    { Role: "Licensing Coordinator", Area: "Rights", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Julie Jordan",
+                JobTitle: "UX Researcher",
+                Bio: "Julie conducts field research across Barbados to refine accessibility and user flows in mobile platforms. He bridges technical logic with lived experience.",
+                Summary: "UX researcher focused on accessibility and local context.",
+                Img: Face4,
+                Roles: Table(
+                    { Role: "Field Researcher", Area: "Accessibility", Level: "Mid" },
+                    { Role: "Usability Tester", Area: "Mobile UX", Level: "Associate" },
+                    { Role: "Insights Synthesizer", Area: "Product", Level: "Mid" }
+                )
+            },
+            {
+                Name: "Tanya Roach",
+                JobTitle: "Brand Consultant",
+                Bio: "Tanya helps Caribbean artists and entrepreneurs define their brand voice through editorial design and strategic messaging. Her work is rooted in cultural fluency.",
+                Summary: "Brand consultant for artists and entrepreneurs.",
+                Img: Face5,
+                Roles: Table(
+                    { Role: "Brand Strategist", Area: "Positioning", Level: "Senior" },
+                    { Role: "Messaging Lead", Area: "Editorial", Level: "Mid" },
+                    { Role: "Identity Reviewer", Area: "Design", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Darius King",
+                JobTitle: "Platform Architect",
+                Bio: "Darius builds scalable media platforms that connect sponsors, artists, and audiences. He specializes in schema design and onboarding logic.",
+                Summary: "Architect of scalable media platforms.",
+                Img: Face6,
+                Roles: Table(
+                    { Role: "Schema Designer", Area: "Dataverse", Level: "Senior" },
+                    { Role: "Onboarding Architect", Area: "Flows", Level: "Mid" },
+                    { Role: "Integration Reviewer", Area: "APIs", Level: "Mid" }
+                )
+            },
+            {
+                Name: "David Forde",
+                JobTitle: "Creative Director",
+                Bio: "David leads multidisciplinary teams to produce editorial campaigns that celebrate Caribbean abstraction. He merges fashion, folklore, and futurism.",
+                Summary: "Creative director blending fashion and folklore.",
+                Img: Face7,
+                Roles: Table(
+                    { Role: "Campaign Director", Area: "Editorial", Level: "Senior" },
+                    { Role: "Art Lead", Area: "Visuals", Level: "Senior" },
+                    { Role: "Narrative Reviewer", Area: "Story", Level: "Mid" }
+                )
+            },
+            {
+                Name: "Linda Alleyne",
+                JobTitle: "Data Modeler",
+                Bio: "Linda troubleshoots Dataverse schema issues and formats calculated columns for clean presentation. She’s known for her precision and logic.",
+                Summary: "Dataverse expert focused on schema integrity.",
+                Img: Face8,
+                Roles: Table(
+                    { Role: "Data Modeler", Area: "Schema", Level: "Senior" },
+                    { Role: "Calculated Columns", Area: "Formatting", Level: "Mid" },
+                    { Role: "Validation Reviewer", Area: "Integrity", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Rhea Sobers",
+                JobTitle: "Cultural Critic",
+                Bio: "Rhea writes and speaks on Caribbean identity, abstraction, and epistemic sabotage. Her essays challenge conventional design norms.",
+                Summary: "Writer exploring Caribbean abstraction and critique.",
+                Img: Face9,
+                Roles: Table(
+                    { Role: "Essayist", Area: "Editorial", Level: "Senior" },
+                    { Role: "Panelist", Area: "Public Discourse", Level: "Mid" },
+                    { Role: "Research Contributor", Area: "Culture", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Andre Callender",
+                JobTitle: "Sponsor Liaison",
+                Bio: "Andre builds bridges between corporate sponsors and creative communities. He crafts pitch decks and onboarding flows that align business goals with cultural impact.",
+                Summary: "Connector between sponsors and creatives.",
+                Img: Face10,
+                Roles: Table(
+                    { Role: "Partnerships", Area: "Sponsors", Level: "Senior" },
+                    { Role: "Pitch Designer", Area: "Decks", Level: "Mid" },
+                    { Role: "Onboarding Coordinator", Area: "Flows", Level: "Associate" }
+                )
+            },
+            {
+                Name: "John Springer",
+                JobTitle: "Editorial Designer",
+                Bio: "John designs magazine identities and layout systems that reflect Caribbean exuberance. His work balances clarity, abstraction, and rhythm.",
+                Summary: "Editorial designer of Caribbean publications.",
+                Img: Face11,
+                Roles: Table(
+                    { Role: "Layout Designer", Area: "Editorial", Level: "Senior" },
+                    { Role: "Identity Systems", Area: "Design", Level: "Mid" },
+                    { Role: "Typography Reviewer", Area: "Visuals", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Nathaniel Hoyte",
+                JobTitle: "Photographer",
+                Bio: "Nathaniel documents weddings, festivals, and speculative fiction scenes with a cinematic eye. He builds shot lists that evoke emotion and narrative.",
+                Summary: "Photographer blending culture and fiction.",
+                Img: Face12,
+                Roles: Table(
+                    { Role: "Lead Photographer", Area: "Editorial", Level: "Senior" },
+                    { Role: "Cinematic Shooter", Area: "Campaigns", Level: "Mid" },
+                    { Role: "Shot List Curator", Area: "Planning", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Pete Mayers",
+                JobTitle: "Licensing Strategist",
+                Bio: "Pete structures licensing deals for visual IP across editorial, commercial, and platform contexts. He ensures artists retain control and value.",
+                Summary: "Strategist for visual IP licensing.",
+                Img: Face13,
+                Roles: Table(
+                    { Role: "Licensing Lead", Area: "IP", Level: "Senior" },
+                    { Role: "Contract Reviewer", Area: "Legal", Level: "Mid" },
+                    { Role: "Rights Manager", Area: "Editorial", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Omar Best",
+                JobTitle: "App Prototyper",
+                Bio: "Omar rapidly prototypes Power Apps interfaces for artist onboarding and sponsor engagement. He’s known for his iterative logic and clean UI.",
+                Summary: "Power Apps prototyper for creative platforms.",
+                Img: Face14,
+                Roles: Table(
+                    { Role: "Prototype Builder", Area: "Power Apps", Level: "Senior" },
+                    { Role: "UI Implementer", Area: "Design", Level: "Mid" },
+                    { Role: "Flow Integrator", Area: "Automation", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Luke Thomas",
+                JobTitle: "Narrative Designer",
+                Bio: "Luke crafts speculative fiction worlds rooted in Caribbean myth and lost archives. His work spans prose, visual layouts, and interactive media.",
+                Summary: "Designer of Caribbean speculative fiction worlds.",
+                Img: Face15,
+                Roles: Table(
+                    { Role: "World Builder", Area: "Story", Level: "Senior" },
+                    { Role: "Layout Narrator", Area: "Visuals", Level: "Mid" },
+                    { Role: "Interactive Author", Area: "Media", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Trevor Gaskin",
+                JobTitle: "Media Curator",
+                Bio: "Trevor curates homepage visuals and media layouts for entertainment platforms. He balances sponsor visibility with cultural storytelling.",
+                Summary: "Curator of media layouts and sponsor visuals.",
+                Img: Face16,
+                Roles: Table(
+                    { Role: "Homepage Curator", Area: "Media", Level: "Senior" },
+                    { Role: "Sponsor Balancer", Area: "UX", Level: "Mid" },
+                    { Role: "Editorial Assembler", Area: "Content", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Nick Prescott",
+                JobTitle: "Accessibility Advocate",
+                Bio: "Nick audits customer-facing apps for accessibility and inclusion. He champions design systems that reflect diverse user needs.",
+                Summary: "Advocate for inclusive design systems.",
+                Img: Face17,
+                Roles: Table(
+                    { Role: "Accessibility Auditor", Area: "UX", Level: "Senior" },
+                    { Role: "Inclusive Design", Area: "Systems", Level: "Mid" },
+                    { Role: "WCAG Reviewer", Area: "Standards", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Jared Walcott",
+                JobTitle: "Strategic Analyst",
+                Bio: "Jared refines business models and pricing logic for Barbados-based platforms. He aligns creative ambition with market realities.",
+                Summary: "Analyst aligning creativity with market logic.",
+                Img: Face18,
+                Roles: Table(
+                    { Role: "Modeling Analyst", Area: "Finance", Level: "Senior" },
+                    { Role: "Pricing Strategist", Area: "Growth", Level: "Mid" },
+                    { Role: "Market Researcher", Area: "Insights", Level: "Associate" }
+                )
+            },
+            {
+                Name: "Roger Beckles",
+                JobTitle: "Metadata Engineer",
+                Bio: "Roger builds tagging workflows for RAW files and visual assets. His systems support licensing, discovery, and editorial reuse.",
+                Summary: "Engineer of metadata systems for visual IP.",
+                Img: Face19,
+                Roles: Table(
+                    { Role: "Tagging Engineer", Area: "Assets", Level: "Senior" },
+                    { Role: "Workflow Designer", Area: "Pipelines", Level: "Mid" },
+                    { Role: "Discovery Ops", Area: "Editorial", Level: "Associate" }
+                )
+            }
+        );
+        
+    Theme: =Blank
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

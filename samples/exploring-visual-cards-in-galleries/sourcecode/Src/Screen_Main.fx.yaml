@@ -1,0 +1,356 @@
+Screen_Main As screen:
+    BackgroundImage: |-
+        ="data:image/svg+xml;utf8, "&EncodeUrl("<svg width='100%' height='100%' id='svg' viewBox='0 0 1440 690' xmlns='http://www.w3.org/2000/svg' class='transition duration-300 ease-in-out delay-150'><style>
+            .path-0{
+              animation:pathAnim-0 4s;
+              animation-timing-function: linear;
+              animation-iteration-count: infinite;
+            }
+            @keyframes pathAnim-0{
+              0%{
+                d: path('M 0,700 L 0,175 C 48.87323943661973,193.04328409481278 97.74647887323945,211.08656818962555 174,213 C 250.25352112676055,214.91343181037445 353.88732394366195,200.69701133631057 440,207 C 526.112676056338,213.30298866368943 594.7042253521128,240.12538646513224 642,280 C 689.2957746478872,319.87461353486776 715.2957746478871,372.8014428031604 789,392 C 862.7042253521129,411.1985571968396 984.1126760563382,396.668842322226 1058,439 C 1131.8873239436618,481.331157677774 1158.2535211267605,580.5231879079354 1214,621 C 1269.7464788732395,661.4768120920646 1354.8732394366198,643.2384060460323 1440,625 L 1440,700 L 0,700 Z');
+              }
+              25%{
+                d: path('M 0,700 L 0,175 C 44.9110271384404,202.4874613534868 89.8220542768808,229.9749227069736 168,261 C 246.1779457231192,292.0250772930264 357.6228100309172,326.5877705255926 441,331 C 524.3771899690828,335.4122294744074 579.6867055994503,309.6739951906561 642,307 C 704.3132944005497,304.3260048093439 773.6303675712815,324.7162487117829 839,373 C 904.3696324287185,421.2837512882171 965.7918241154241,497.4610099622123 1040,547 C 1114.208175884576,596.5389900377877 1201.2023359670218,619.4397114393679 1270,628 C 1338.7976640329782,636.5602885606321 1389.398832016489,630.7801442803161 1440,625 L 1440,700 L 0,700 Z');
+              }
+              50%{
+                d: path('M 0,700 L 0,175 C 87.7677773960838,123.13053933356235 175.5355547921676,71.2610786671247 230,91 C 284.4644452078324,110.7389213328753 305.62555822741336,202.08622466506353 372,233 C 438.37444177258664,263.9137753349365 549.9622122981792,234.3940226726212 630,258 C 710.0377877018208,281.6059773273788 758.5255925798695,358.337684644452 827,390 C 895.4744074201305,421.662315355548 983.9354173823426,408.25523874957065 1051,428 C 1118.0645826176574,447.74476125042935 1163.7327378907592,500.6413603572655 1225,539 C 1286.2672621092408,577.3586396427345 1363.1336310546203,601.1793198213672 1440,625 L 1440,700 L 0,700 Z');
+              }
+              75%{
+                d: path('M 0,700 L 0,175 C 62.89247681209204,171.65956715905187 125.78495362418408,168.31913431810375 184,189 C 242.21504637581592,209.68086568189625 295.7526623153557,254.38302988663685 381,288 C 466.2473376846443,321.61697011336315 583.2043971143936,344.14874613534874 651,355 C 718.7956028856064,365.85125386465126 737.4297492270697,365.02198557196846 786,403 C 834.5702507729303,440.97801442803154 913.0766059773275,517.7633115767776 999,559 C 1084.9233940226725,600.2366884232224 1178.2638268636206,605.9247681209206 1253,611 C 1327.7361731363794,616.0752318790794 1383.8680865681897,620.5376159395397 1440,625 L 1440,700 L 0,700 Z');
+              }
+              100%{
+                d: path('M 0,700 L 0,175 C 48.87323943661973,193.04328409481278 97.74647887323945,211.08656818962555 174,213 C 250.25352112676055,214.91343181037445 353.88732394366195,200.69701133631057 440,207 C 526.112676056338,213.30298866368943 594.7042253521128,240.12538646513224 642,280 C 689.2957746478872,319.87461353486776 715.2957746478871,372.8014428031604 789,392 C 862.7042253521129,411.1985571968396 984.1126760563382,396.668842322226 1058,439 C 1131.8873239436618,481.331157677774 1158.2535211267605,580.5231879079354 1214,621 C 1269.7464788732395,661.4768120920646 1354.8732394366198,643.2384060460323 1440,625 L 1440,700 L 0,700 Z');
+              }
+            }</style><defs><linearGradient id='gradient' x1='0%' y1='50%' x2='100%' y2='50%'><stop offset='5%' stop-color='#ff1b6b'></stop><stop offset='95%' stop-color='#45caff'></stop></linearGradient></defs><path d='M 0,700 L 0,175 C 48.87323943661973,193.04328409481278 97.74647887323945,211.08656818962555 174,213 C 250.25352112676055,214.91343181037445 353.88732394366195,200.69701133631057 440,207 C 526.112676056338,213.30298866368943 594.7042253521128,240.12538646513224 642,280 C 689.2957746478872,319.87461353486776 715.2957746478871,372.8014428031604 789,392 C 862.7042253521129,411.1985571968396 984.1126760563382,396.668842322226 1058,439 C 1131.8873239436618,481.331157677774 1158.2535211267605,580.5231879079354 1214,621 C 1269.7464788732395,661.4768120920646 1354.8732394366198,643.2384060460323 1440,625 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='url(#gradient)' fill-opacity='0.53' class='transition-all duration-300 ease-in-out delay-150 path-0'></path><style>
+            .path-1{
+              animation:pathAnim-1 4s;
+              animation-timing-function: linear;
+              animation-iteration-count: infinite;
+            }
+            @keyframes pathAnim-1{
+              0%{
+                d: path('M 0,700 L 0,408 C 50.91034008931638,408.0762624527654 101.82068017863276,408.15252490553075 180,436 C 258.17931982136724,463.84747509446925 363.6276193747853,519.4661628306424 432,555 C 500.3723806252147,590.5338371693576 531.6688423222259,605.9828237718997 604,642 C 676.3311576777741,678.0171762281003 789.6970113363107,734.6025420817589 856,718 C 922.3029886636893,701.3974579182411 941.5431123325316,611.6070079010649 1005,627 C 1068.4568876674684,642.3929920989351 1176.1305393335624,762.9694263139814 1256,819 C 1335.8694606664376,875.0305736860186 1387.9347303332188,866.5152868430093 1440,858 L 1440,700 L 0,700 Z');
+              }
+              25%{
+                d: path('M 0,700 L 0,408 C 49.648230848505676,413.45585709378224 99.29646169701135,418.9117141875644 180,449 C 260.70353830298865,479.0882858124356 372.4623840604602,533.8090003435245 449,535 C 525.5376159395398,536.1909996564755 566.8540020611475,483.85228443833745 624,481 C 681.1459979388525,478.14771556166255 754.12160769495,524.7818619031259 827,585 C 899.87839230505,645.2181380968741 972.6595671590519,719.0202679491584 1049,753 C 1125.340432840948,786.9797320508416 1205.2401236688422,781.1370663002405 1271,792 C 1336.7598763311578,802.8629336997595 1388.379938165579,830.4314668498798 1440,858 L 1440,700 L 0,700 Z');
+              }
+              50%{
+                d: path('M 0,700 L 0,408 C 91.93610443146684,390.6781174854002 183.8722088629337,373.3562349708004 240,366 C 296.1277911370663,358.6437650291996 316.44726897973203,361.2531776021985 383,402 C 449.55273102026797,442.7468223978015 562.3387152181381,521.6310546204053 634,573 C 705.6612847818619,624.3689453795947 736.1978701477154,648.22260391618 798,679 C 859.8021298522846,709.77739608382 952.8698041909997,747.4785297148746 1026,758 C 1099.1301958090003,768.5214702851254 1152.3229130882858,751.8632772243216 1218,764 C 1283.6770869117142,776.1367227756784 1361.8385434558572,817.0683613878392 1440,858 L 1440,700 L 0,700 Z');
+              }
+              75%{
+                d: path('M 0,700 L 0,408 C 61.04362761937479,390.52971487461355 122.08725523874958,373.0594297492271 188,381 C 253.91274476125042,388.9405702507729 324.69460666437647,422.2919958777053 401,466 C 477.30539333562353,509.7080041222947 559.1343181037445,563.7725867399517 628,602 C 696.8656818962555,640.2274132600483 752.7681209206457,662.6176571624871 823,694 C 893.2318790793543,725.3823428375129 977.7931982136722,765.7567846100995 1056,787 C 1134.2068017863278,808.2432153899005 1206.059086224665,810.3552043971144 1269,819 C 1331.940913775335,827.6447956028856 1385.9704568876675,842.8223978014428 1440,858 L 1440,700 L 0,700 Z');
+              }
+              100%{
+                d: path('M 0,700 L 0,408 C 50.91034008931638,408.0762624527654 101.82068017863276,408.15252490553075 180,436 C 258.17931982136724,463.84747509446925 363.6276193747853,519.4661628306424 432,555 C 500.3723806252147,590.5338371693576 531.6688423222259,605.9828237718997 604,642 C 676.3311576777741,678.0171762281003 789.6970113363107,734.6025420817589 856,718 C 922.3029886636893,701.3974579182411 941.5431123325316,611.6070079010649 1005,627 C 1068.4568876674684,642.3929920989351 1176.1305393335624,762.9694263139814 1256,819 C 1335.8694606664376,875.0305736860186 1387.9347303332188,866.5152868430093 1440,858 L 1440,700 L 0,700 Z');
+              }
+            }</style><defs><linearGradient id='gradient' x1='0%' y1='50%' x2='100%' y2='50%'><stop offset='5%' stop-color='#F78DA7'></stop><stop offset='95%' stop-color='#8ED1FC'></stop></linearGradient></defs><path d='M 0,700 L 0,408 C 50.91034008931638,408.0762624527654 101.82068017863276,408.15252490553075 180,436 C 258.17931982136724,463.84747509446925 363.6276193747853,519.4661628306424 432,555 C 500.3723806252147,590.5338371693576 531.6688423222259,605.9828237718997 604,642 C 676.3311576777741,678.0171762281003 789.6970113363107,734.6025420817589 856,718 C 922.3029886636893,701.3974579182411 941.5431123325316,611.6070079010649 1005,627 C 1068.4568876674684,642.3929920989351 1176.1305393335624,762.9694263139814 1256,819 C 1335.8694606664376,875.0305736860186 1387.9347303332188,866.5152868430093 1440,858 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='url(#gradient)' fill-opacity='1' class='transition-all duration-300 ease-in-out delay-150 path-1'></path></svg>")
+    ContentLanguage: =""
+    Fill: =RGBA(0, 0, 0, 1)
+    ImagePosition: =ImagePosition.Fill
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    ctr_Screen As groupContainer.horizontalAutoLayoutContainer:
+        Height: =App.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutJustifyContent: =LayoutJustifyContent.Center
+        LayoutMode: =LayoutMode.Auto
+        Width: =App.Width
+        ZIndex: =1
+
+        ctr_Main As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.Center
+            FillPortions: =0
+            Height: =450
+            LayoutMaxHeight: =
+            LayoutMaxWidth: =
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =600
+            ZIndex: =1
+
+            hmtl_Glassmorphism As htmlViewer:
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                Height: =Parent.Height
+                HtmlText: |-
+                    ="
+                    <div 
+                    
+                    style='
+                    width: " & Parent.Width - 10 & "px;
+                    height: " & Parent.Height - 15 & "px; 
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 16px;
+                    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                    backdrop-filter: blur(20px);
+                    -webkit-backdrop-filter: blur(20px);
+                    border: 2px solid rgba(255, 255, 255, 0.4);'></div>
+                    "
+                Size: =13
+                Width: =Parent.Width
+                ZIndex: =1
+
+            ctr_MainPane As groupContainer.horizontalAutoLayoutContainer:
+                Height: =Parent.Height
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =8
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =32
+                PaddingLeft: =32
+                PaddingRight: =32
+                PaddingTop: =32
+                Width: =Parent.Width
+                ZIndex: =2
+
+                txt_Header As Text:
+                    Align: ="Start"
+                    AlignInContainer: =AlignInContainer.Stretch
+                    AutoHeight: =false
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    Font: =""
+                    FontColor: =RGBA(255, 255, 255, 1)
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =80
+                    LayoutMaxHeight: =
+                    LayoutMaxWidth: =
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Size: =32
+                    TabIndex: =0
+                    Text: ="Your Details"
+                    Tooltip: =""
+                    VerticalAlign: =VerticalAlign.Top
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =96
+                    Wrap: =true
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                lbl_Name As Text:
+                    Align: ="Start"
+                    AlignInContainer: =AlignInContainer.Stretch
+                    AutoHeight: =false
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    Font: =""
+                    FontColor: =RGBA(255, 255, 255, 1)
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =32
+                    LayoutMaxHeight: =
+                    LayoutMaxWidth: =
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Size: =22
+                    TabIndex: =0
+                    Text: ="Name"
+                    Tooltip: =""
+                    VerticalAlign: =""
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =96
+                    Wrap: =true
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+                "txt_Name As 'Text input'":
+                    AccessibleLabel: =""
+                    Align: =""
+                    AlignInContainer: =AlignInContainer.Stretch
+                    Appearance: ="FilledDarker"
+                    BasePaletteColor: =
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    Font: =""
+                    FontColor: =
+                    FontItalic: =false
+                    FontSize: =0
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    FontWeight: =""
+                    Height: =40
+                    LayoutMaxHeight: =
+                    LayoutMaxWidth: =
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    MaxLength: =-1
+                    Mode: ="SingleLine"
+                    OnChange: =false
+                    Placeholder: =""
+                    Required: =false
+                    TabIndex: =0
+                    Tooltip: =""
+                    TriggerOutput: ="FocusOut"
+                    Type: ="Text"
+                    ValidationState: ="None"
+                    Value: =""
+                    Visible: =true
+                    Width: =320
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                lbl_JobTitle As Text:
+                    Align: ="Start"
+                    AlignInContainer: =AlignInContainer.Stretch
+                    AutoHeight: =false
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    Font: =""
+                    FontColor: =RGBA(255, 255, 255, 1)
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =32
+                    LayoutMaxHeight: =
+                    LayoutMaxWidth: =
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Size: =22
+                    TabIndex: =0
+                    Text: ="Job Title"
+                    Tooltip: =""
+                    VerticalAlign: =""
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =96
+                    Wrap: =true
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                "txt_JobTitle As 'Text input'":
+                    AccessibleLabel: =""
+                    Align: =""
+                    AlignInContainer: =AlignInContainer.Stretch
+                    Appearance: ="FilledDarker"
+                    BasePaletteColor: =
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    Font: =""
+                    FontColor: =
+                    FontItalic: =false
+                    FontSize: =0
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    FontWeight: =""
+                    Height: =40
+                    LayoutMaxHeight: =
+                    LayoutMaxWidth: =
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    MaxLength: =-1
+                    Mode: ="SingleLine"
+                    OnChange: =false
+                    Placeholder: =""
+                    Required: =false
+                    TabIndex: =0
+                    Tooltip: =""
+                    TriggerOutput: ="FocusOut"
+                    Type: ="Text"
+                    ValidationState: ="None"
+                    Value: =""
+                    Visible: =true
+                    Width: =320
+                    X: =0
+                    Y: =0
+                    ZIndex: =5
+
+                lbl_Email As Text:
+                    Align: ="Start"
+                    AlignInContainer: =AlignInContainer.Stretch
+                    AutoHeight: =false
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    Font: =""
+                    FontColor: =RGBA(255, 255, 255, 1)
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =32
+                    LayoutMaxHeight: =
+                    LayoutMaxWidth: =
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Size: =22
+                    TabIndex: =0
+                    Text: ="Contact Email"
+                    Tooltip: =""
+                    VerticalAlign: =""
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =96
+                    Wrap: =true
+                    X: =0
+                    Y: =0
+                    ZIndex: =6
+
+                "txt_Email As 'Text input'":
+                    AccessibleLabel: =""
+                    Align: =""
+                    AlignInContainer: =AlignInContainer.Stretch
+                    Appearance: ="FilledDarker"
+                    BasePaletteColor: =
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    Font: =""
+                    FontColor: =
+                    FontItalic: =false
+                    FontSize: =0
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    FontWeight: =""
+                    Height: =40
+                    LayoutMaxHeight: =
+                    LayoutMaxWidth: =
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    MaxLength: =-1
+                    Mode: ="SingleLine"
+                    OnChange: =false
+                    Placeholder: =""
+                    Required: =false
+                    TabIndex: =0
+                    Tooltip: =""
+                    TriggerOutput: ="FocusOut"
+                    Type: ="Text"
+                    ValidationState: ="None"
+                    Value: =""
+                    Visible: =true
+                    Width: =320
+                    X: =0
+                    Y: =0
+                    ZIndex: =7
+
