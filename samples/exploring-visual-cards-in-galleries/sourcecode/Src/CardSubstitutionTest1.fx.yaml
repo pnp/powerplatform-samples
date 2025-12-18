@@ -1,0 +1,255 @@
+CardSubstitutionTest1 As screen:
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+
+    Container3 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =467
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =8
+        PaddingLeft: =8
+        PaddingRight: =8
+        PaddingTop: =8
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =393
+        X: =23
+        Y: =16
+        ZIndex: =2
+
+        HtmlText1_3 As htmlViewer:
+            DisabledBorderColor: =RGBA(161, 159, 157, 1)
+            Font: =Font.'Segoe UI'
+            Height: =Parent.Height
+            HtmlText: |-
+                =" <div style='
+                  width:100%;
+                  min-height: " & Parent.Height - Self.PaddingTop - Self.PaddingBottom - 5 & "px;
+                  max-width:60rem;
+                  margin:0 auto;
+                  display:flex;
+                  flex-wrap:wrap;
+                  gap:2rem;
+                  padding:2rem;
+                  font-family: Segoe UI, Arial, sans-serif;
+                  color: rgba(30,30,30,1);
+                  background: rgba(245,245,245,1);
+                  position: relative;
+                  box-sizing: border-box;
+                '>
+                  <h1 style='width:100%; text-align:center; margin:0;'>" & First(SampleVisual).Heading & "</h1>
+                
+                  <!-- Card -->
+                  <ul style='
+                    list-style:none;
+                    display:flex;
+                    flex-wrap:wrap;
+                    justify-content:center;
+                    row-gap:2rem;
+                    width:100%;
+                    margin:0; padding:0;
+                  '>
+                    <li style='
+                      --accent:#fa0038;
+                      width:15rem;
+                      padding:2rem 0;
+                      display:grid;
+                      grid-template-rows:max-content max-content 1fr max-content;
+                      gap:0.5rem;
+                      border-radius:5rem 0 5rem 0;
+                      box-shadow:0.25rem 0.25rem 0.5rem rgba(0,0,0,0.5);
+                      margin:0 1.5rem;
+                      box-sizing: border-box;
+                    '>
+                      <div style='font-size:2rem; color: var(--accent); text-align:center;'>" & First(SampleVisual).SubHeading & "</div>
+                
+                      <div style='
+                        justify-self:end;
+                        margin-right:-1.5rem;
+                        padding:0.25rem 1.5rem;
+                        background-color: var(--accent);
+                        color:#fff;
+                        position:relative;
+                      '>
+                        " & First(SampleVisual).AmountValue & "
+                        <span style='
+                          content:'';
+                          position:absolute;
+                          height:1.5rem; width:1.5rem;
+                          right:0; top:100%;
+                          background-color: var(--accent);
+                          background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+                          clip-path: polygon(0 0, 100% 0, 0 100%);
+                          display:block;
+                        '></span>
+                      </div>
+                
+                      <ul style='list-style:none; padding:0 2rem; display:grid; margin:0;'>
+                        <li style='padding:0.5rem; display:grid; grid-template-columns:1rem 1fr; gap:1rem; border-top:1px solid rgb(200,200,200);'>
+                          <span style='display:grid; place-items:center; color:green;'>" & First(SampleVisual).Symbol1 & "</span>
+                          <span>" & First(SampleVisual).Item1 & "</span>
+                        </li>
+                        <li style='padding:0.5rem; display:grid; grid-template-columns:1rem 1fr; gap:1rem; border-top:1px solid rgb(200,200,200);'>
+                          <span style='display:grid; place-items:center; color:red;'>" & First(SampleVisual).Symbol2 & "</span>
+                          <span>" & First(SampleVisual).Item2 & "</span>
+                        </li>
+                      </ul>
+                
+                      <button style='
+                        justify-self:start;
+                        margin-left:-1.5rem;
+                        padding:0.5rem 2.5rem;
+                        border:none;
+                        color:#fff;
+                        font-size:1.1rem;
+                        background-color: var(--accent);
+                        background-image: linear-gradient(transparent 50%, rgba(0,0,0,0.25) 0);
+                        background-size: 100% 200%;
+                        cursor:pointer;
+                      '>
+                        " & First(SampleVisual).ItemLabel & "
+                      </button>
+                    </li>
+                  </ul>
+                
+                 
+                </div> "
+            LayoutMaxHeight: =
+            LayoutMaxWidth: =
+            Size: =13
+            Width: =Parent.Width
+            X: =711
+            Y: =40
+            ZIndex: =1
+
+    Container5 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =459
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =8
+        PaddingLeft: =8
+        PaddingRight: =8
+        PaddingTop: =8
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =345
+        X: =604
+        Y: =40
+        ZIndex: =3
+
+        HtmlText2_1 As htmlViewer:
+            DisabledBorderColor: =RGBA(161, 159, 157, 1)
+            Font: =Font.'Segoe UI'
+            Height: =Parent.Height
+            HtmlText: |-
+                ="
+                <body style='
+                  margin:0;
+                  min-height: " & Parent.Height - Self.PaddingTop - Self.PaddingBottom - 5 & "px;
+                  padding:0;
+                  height:100vh;
+                  font-family:'Aeonik Pro Regular',sans-serif;
+                  overflow:hidden;
+                '>
+                  <div style='
+                    position:relative;
+                    background:#3a3a3a;
+                    box-shadow: inset 0 1rem 0.2rem -1rem #fff0,
+                                inset 0 -1rem 0.2rem -1rem #0000,
+                                0 -1rem 0.2rem -1rem #fff0,
+                                0 1rem 0.2rem -1rem #0000,
+                                0 0 0 1px #fff3,
+                                0 4px 4px 0 #0004,
+                                0 0 0 1px #333;
+                    width:auto;
+                    height:auto;
+                    min-height: " & Parent.Height - Self.PaddingTop - Self.PaddingBottom - 5 & "px;
+                    border-radius:1.8rem;
+                    border-radius:1.8rem;
+                    color:#fff;
+                    padding:1rem;
+                    display:flex;
+                    flex-direction:column;
+                    justify-content:end;
+                  '> 
+                    <!-- Light Layer -->
+                    <div style='position:absolute;left:0;top:0;width:100%;height:100%;perspective:400px;'>
+                
+                   
+                    <h1 style='margin:1rem;margin-bottom:1rem;color:#ccc;'> " & First(SampleVisual).Heading & " </h1>
+                
+                    <div style='position:relative;top:0px;left:0;right:0;margin:auto;width:fit-content;'>
+                <img alt='emblem' width='64' height='64' src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27 0 0 1024 1024 %27 width=%2764%27 height=%2764%27><path fill=%27%23555%27 d=%27M488.1 414.7V303.4L300.9 428l83.6 55.8zm254.1 137.7v-79.8l-59.8 39.9zM512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64m278 533c0 1.1-.1 2.1-.2 3.1c0 .4-.1.7-.2 1a14.2 14.2 0 0 1-.8 3.2c-.2.6-.4 1.2-.6 1.7c-.2.4-.4.8-.5 1.2c-.3.5-.5 1.1-.8 1.6c-.2.4-.4.7-.7 1.1c-.3.5-.7 1-1 1.5c-.3.4-.5.7-.8 1c-.4.4-.8.9-1.2 1.3c-.3.3-.6.6-1 .9c-.4.4-.9.8-1.4 1.1c-.4.3-.7.6-1.1.8c-.1.1-.3.2-.4.3L525.2 786c-4 2.7-8.6 4-13.2 4c-4.7 0-9.3-1.4-13.3-4L244.6 616.9c-.1-.1-.3-.2-.4-.3l-1.1-.8c-.5-.4-.9-.7-1.3-1.1c-.3-.3-.6-.6-1-.9c-.4-.4-.8-.8-1.2-1.3a7 7 0 0 1-.8-1c-.4-.5-.7-1-1-1.5c-.2-.4-.5-.7-.7-1.1c-.3-.5-.6-1.1-.8-1.6c-.2-.4-.4-.8-.5-1.2c-.2-.6-.4-1.2-.6-1.7c-.1-.4-.3-.8-.4-1.2c-.2-.7-.3-1.3-.4-2c-.1-.3-.1-.7-.2-1c-.1-1-.2-2.1-.2-3.1V427.9c0-1 .1-2.1.2-3.1c.1-.3.1-.7.2-1a14.2 14.2 0 0 1 .8-3.2c.2-.6.4-1.2.6-1.7c.2-.4.4-.8.5-1.2c.2-.5.5-1.1.8-1.6c.2-.4.4-.7.7-1.1c.6-.9 1.2-1.7 1.8-2.5c.4-.4.8-.9 1.2-1.3c.3-.3.6-.6 1-.9c.4-.4.9-.8 1.3-1.1s.7-.6 1.1-.8c.1-.1.3-.2.4-.3L498.7 239c8-5.3 18.5-5.3 26.5 0l254.1 169.1c.1.1.3.2.4.3l1.1.8l1.4 1.1c.3.3.6.6 1 .9c.4.4.8.8 1.2 1.3c.7.8 1.3 1.6 1.8 2.5c.2.4.5.7.7 1.1c.3.5.6 1 .8 1.6c.2.4.4.8.5 1.2c.2.6.4 1.2.6 1.7c.1.4.3.8.4 1.2c.2.7.3 1.3.4 2c.1.3.1.7.2 1c.1 1 .2 2.1 .2 3.1z%27 /></svg>' />
+                </div>
+                
+                      <div style='
+                        position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;
+                        width:64%;height:1.2rem;
+                        transform:rotateX(-76deg);
+                        background:#121212;
+                        box-shadow:0 0 4px 0 #fff0;
+                      '></div>
+                
+                      <div style='position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;width:100%;height:100%;opacity:0;'>
+                
+                      </div>
+                    </div>
+                
+                    <!-- Content -->
+                    <div style='position:relative;'>
+                      <div style='position:relative;top:0px;left:0;right:0;margin:auto;width:fit-content;'>
+                     
+                
+                      </div>
+                      <div style='position:relative;'>
+                        <h4 style='margin:0;margin-bottom:1rem;font-size:1.2rem;color:#ccc;'>" & First(SampleVisual).SubHeading & "</h4>
+                        <p style='margin:0;padding-bottom:0.6rem;color:#ccc;font-size:0.8rem;font-weight:100;border-bottom:1px solid #fff;max-width:64%;'>
+                          " & First(SampleVisual).Item1 & " <br/> " & First(SampleVisual).Item2 & "
+                        </p>
+                        <div style='
+                          position:absolute;right:0;bottom:0;height:2rem;width:4.8rem;
+                          border-radius:0.6rem;background:#000;
+                          box-shadow: inset 0 -8px 8px 0.3rem #0004,
+                                      inset 0 0 1px 0.3rem #ddd,
+                                      inset 0 -2px 1px 0.3rem #fff,
+                                      inset 0 1px 2px 0.3rem #0006,
+                                      inset 0 0 1px 0.8rem #aaa;
+                          cursor:pointer;
+                        '>
+                          <div style='
+                            position:absolute;top:0;bottom:0.04rem;margin:auto;left:0.68rem;
+                            width:40%;height:30%;background:#aaa;border-radius:0.2rem;
+                            box-shadow: inset 0 1px 4px 0 #fff,
+                                        inset 0 -1px 1px 0 #000a,
+                                        0 0 1px 1px #0003,
+                                        1px 3px 6px 1px #000a;
+                          '></div>
+                          <span style='
+                            pointer-events:none;text-align:center;position:absolute;
+                            left:0;right:0;margin:auto;bottom:calc(100% + 0.4rem);
+                            font-size:0.6rem;font-weight:100;color:#555;opacity:0;
+                          '>Activate Lumen</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </body>
+                
+                
+                
+                "
+            LayoutMaxHeight: =
+            LayoutMaxWidth: =
+            Size: =13
+            Width: =Parent.Width
+            X: =440
+            Y: =308
+            ZIndex: =2
+

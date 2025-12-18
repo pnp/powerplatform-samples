@@ -1,0 +1,166 @@
+CardSample1_2 As screen:
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+
+    Gallery2_2 As gallery.galleryHorizontal:
+        BorderColor: =RGBA(245, 245, 245, 1)
+        DelayItemLoading: =true
+        Height: =440
+        Items: =PeopleGallery
+        LoadingSpinner: =LoadingSpinner.Data
+        NavigationStep: =0
+        OnSelect: |-
+            =Set(
+                varSelectedItem,
+                ThisItem
+            );Notify("Test")
+        ShowNavigation: =true
+        ShowScrollbar: =false
+        TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(320, Self.Width - 60), Min(320, Self.Height - 60))
+        Width: =1310
+        X: =40
+        Y: =40
+        ZIndex: =1
+
+        GalleryContainer_2 As groupContainer.verticalAutoLayoutContainer:
+            BorderThickness: =1
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(113, 111, 110, 1)
+            Height: =Parent.TemplateHeight
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =5
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            RadiusBottomLeft: =20
+            RadiusBottomRight: =20
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Width: =320
+            Y: =4
+            ZIndex: =1
+
+            GalleryImage_2 As image:
+                AlignInContainer: =AlignInContainer.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Height: =Parent.Height*2/3   //Parent.Width*5/4
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Image: =ThisItem.Img
+                ImagePosition: =ImagePosition.Fill
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =16
+                LayoutMinWidth: =16
+                OnSelect: =Select(Gallery2_2)
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Width: =Parent.Width
+                ZIndex: =2
+
+            SummaryLabel_2 As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(161, 159, 157, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =16
+                LayoutMinWidth: =16
+                OnSelect: =Select(Gallery2_2)
+                Size: =13
+                Text: =ThisItem.Summary
+                Width: =Parent.Width
+                ZIndex: =3
+
+        NameLabel_2 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Size: =15
+            Text: =ThisItem.Name
+            X: =10
+            Y: =GalleryImage_2.Height - Self.Height
+            ZIndex: =4
+
+        MoreInfoContainer_1 As groupContainer.verticalAutoLayoutContainer:
+            Height: =40
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutJustifyContent: =LayoutJustifyContent.Center
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            PaddingTop: =8
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =320
+            Y: =GalleryContainer_2.Height - Self.Height - 10
+            ZIndex: =5
+
+            TextCanvas1_1 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =true
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =RGBA(255, 255, 255, 1)
+                Height: =32
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =16
+                LayoutMinWidth: =16
+                Size: =18
+                Text: ="More"
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =6
+
+            "MoreInfoButton_1 As 'Information button'":
+                AcceptsFocus: =true
+                AccessibleLabel: =""
+                AlignInContainer: =AlignInContainer.Start
+                BasePaletteColor: =
+                Content: =ThisItem.Bio
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Font: =""
+                FontColor: =
+                FontItalic: =false
+                FontSize: =18
+                FontStrikethrough: =false
+                FontUnderline: =false
+                FontWeight: =""
+                Height: =30
+                IconColor: =
+                LayoutMaxHeight: =
+                LayoutMaxWidth: =
+                LayoutMinHeight: =32
+                LayoutMinWidth: =32
+                OnSelect: =false
+                TabIndex: =0
+                Tooltip: =""
+                Visible: =true
+                Width: =40
+                X: =
+                Y: =
+                ZIndex: =7
+

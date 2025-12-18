@@ -1,0 +1,302 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  CardSample1:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - Gallery2:
+          Control: Gallery@2.15.0
+          Variant: Horizontal
+          Properties:
+            BorderColor: =RGBA(245, 245, 245, 1)
+            Height: =628
+            Items: =PeopleGallery
+            NavigationStep: =0
+            OnSelect: =Set(varSelectedItem,ThisItem);
+            ShowNavigation: =true
+            ShowScrollbar: =false
+            TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(200, Self.Width - 60), Min(200, Self.Height - 60))
+            Width: =1310
+            WrapCount: =2
+            X: =40
+          Children:
+            - GalleryContainer:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  BorderThickness: =1
+                  Fill: =RGBA(113, 111, 110, 1)
+                  Height: =Parent.TemplateHeight
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =5
+                  PaddingBottom: =8
+                  PaddingLeft: =8
+                  PaddingRight: =8
+                  RadiusBottomLeft: =20
+                  RadiusBottomRight: =20
+                  RadiusTopLeft: =20
+                  RadiusTopRight: =20
+                  Width: =200
+                  Y: =4
+                Children:
+                  - GalleryImage:
+                      Control: Image@2.2.3
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        Height: '=Parent.Height*2/3 '
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Image: =ThisItem.Img
+                        ImagePosition: =ImagePosition.Fill
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        OnSelect: =Select(Gallery2)
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        Width: =Parent.Width
+                  - SummaryLabel:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Height: =50
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        OnSelect: =Select(Gallery2)
+                        Size: =10
+                        Text: =ThisItem.Summary
+                        Width: =Parent.Width
+            - NameLabel:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  BorderThickness: =2
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  FocusedBorderThickness: =4
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Bold
+                  Size: =15
+                  Text: =ThisItem.Name
+                  X: =10
+                  Y: =GalleryImage.Height - Self.Height
+            - MoreInfoContainer:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  BorderStyle: =BorderStyle.None
+                  DropShadow: =DropShadow.None
+                  Height: =40
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutJustifyContent: =LayoutJustifyContent.Center
+                  PaddingBottom: =8
+                  PaddingLeft: =8
+                  PaddingRight: =8
+                  PaddingTop: =8
+                  Width: =200
+                  Y: =GalleryContainer.Height - Self.Height - 10
+                Children:
+                  - ButtonCanvas1:
+                      Control: Button@0.0.45
+                      Properties:
+                        Appearance: ='ButtonCanvas.Appearance'.Secondary
+                        BorderRadius: =45
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        OnSelect: |-
+                          =Set(ImagePopupDisplay, ThisItem.Img); 
+                          Set(NamePopupDisplay, ThisItem.Name); 
+                          Set(JobTitlePopupDisplay, ThisItem.JobTitle); 
+                          Set(BioPopupDisplay, ThisItem.Bio); 
+                          Set(SummaryPopupDisplay, ThisItem.Summary); 
+
+                          Set(CardPopupVisible, true)
+                        Text: ="More"
+      - CardPopupContainer_1:
+          Control: GroupContainer@1.3.0
+          Variant: ManualLayout
+          Properties:
+            BorderThickness: =1
+            Height: =App.Height - 100
+            RadiusBottomLeft: =45
+            RadiusBottomRight: =45
+            RadiusTopLeft: =45
+            RadiusTopRight: =45
+            Visible: =CardPopupVisible
+            Width: =Parent.Width - 100
+            X: =50
+            Y: =50
+          Children:
+            - PopupGlassmorphismHtml_1:
+                Control: HtmlViewer@2.1.0
+                Properties:
+                  Font: =Font.'Open Sans'
+                  Height: =Parent.Height
+                  HtmlText: |-
+                    ="
+                    <div 
+
+                    style='
+                    width: " & Parent.Width  & "px;
+                    height: " & Parent.Height - 1 & "px; 
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 16px;
+                    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                    backdrop-filter: blur(5px);
+                    -webkit-backdrop-filter: blur(5px);
+                    border: 2px solid rgba(255, 255, 255, 0.4);'></div>
+                    "
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Width: =Parent.Width
+            - PopupDataContainer_1:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  Height: =Parent.Height
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  PaddingBottom: =8
+                  PaddingLeft: =8
+                  PaddingRight: =8
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - PopupImage:
+                      Control: Image@2.2.3
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FillPortions: =1
+                        FocusedBorderThickness: =4
+                        Height: =Parent.Height
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Image: =ImagePopupDisplay
+                        ImagePosition: =ImagePosition.Fill
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        OnSelect: =Set(CardPopupVisible, false)
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                  - PopupDetailsContainer:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        FillPortions: =2
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =8
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =8
+                      Children:
+                        - NamePopupTextCanvas:
+                            Control: Text@0.0.51
+                            Properties:
+                              AutoHeight: =true
+                              FontColor: =Color.White
+                              LayoutMaxHeight: =0
+                              LayoutMaxWidth: =0
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Size: =30
+                              Text: =NamePopupDisplay
+                              Weight: ="Bold"
+                              Width: =Parent.Width - 10
+                        - Rectangle1:
+                            Control: Rectangle@2.3.0
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 0)
+                              BorderStyle: =BorderStyle.None
+                              BorderThickness: =2
+                              DisabledFill: =RGBA(161, 159, 157, 1)
+                              Fill: =RGBA(0, 0, 0, 1)
+                              FocusedBorderThickness: =4
+                              Height: =2
+                              HoverFill: =RGBA(0, 120, 212, 1)
+                              LayoutMaxHeight: =0
+                              LayoutMaxWidth: =0
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PressedFill: =RGBA(0, 120, 212, 1)
+                              Width: =Parent.Width
+                        - JobTitlePopupTextCanvas:
+                            Control: Text@0.0.51
+                            Properties:
+                              AutoHeight: =true
+                              FontColor: =Color.White
+                              LayoutMaxHeight: =0
+                              LayoutMaxWidth: =0
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Size: =30
+                              Text: =JobTitlePopupDisplay
+                              Weight: ="Bold"
+                              Width: =Parent.Width - 10
+                        - BioPopupTextCanvas:
+                            Control: Text@0.0.51
+                            Properties:
+                              AutoHeight: =true
+                              FontColor: =Color.White
+                              LayoutMaxHeight: =0
+                              LayoutMaxWidth: =0
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Size: =30
+                              Text: =BioPopupDisplay
+                              Weight: ="Bold"
+                              Width: =Parent.Width - 10
+                        - SummaryPopupTextCanvas:
+                            Control: Text@0.0.51
+                            Properties:
+                              AutoHeight: =true
+                              FontColor: =Color.White
+                              LayoutMaxHeight: =0
+                              LayoutMaxWidth: =0
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Size: =30
+                              Text: =SummaryPopupDisplay
+                              Weight: ="Bold"
+                              Width: =Parent.Width - 10

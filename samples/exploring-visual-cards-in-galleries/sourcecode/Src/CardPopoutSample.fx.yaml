@@ -1,0 +1,145 @@
+CardPopoutSample As screen:
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+
+    Container2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =453
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =512
+        X: =40
+        Y: =40
+        ZIndex: =1
+
+        Timer1 As timer:
+            BorderColor: =RGBA(0, 120, 212, 1)
+            BorderStyle: =BorderStyle.None
+            DisabledBorderColor: =RGBA(242, 242, 241, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            DisabledFill: =RGBA(242, 242, 241, 0)
+            Duration: =1000
+            Fill: =RGBA(0, 120, 212, 1)
+            Font: =Font.'Segoe UI'
+            Height: =23
+            HoverBorderColor: =RGBA(16, 110, 190, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(16, 110, 190, 1)
+            OnTimerStart: |
+                =//UpdateContext( {InitialX: (Parent.Height - SampleCardImage.Height) / 2}); 
+                //UpdateContext( {InitialY: (Parent.Width - SampleCardImage.Width) / 2}); 
+                //UpdateContext( {InitialImageHeight: Parent.Height - 100});
+                //UpdateContext( {InitialImageWidth: Parent.Width - 100});
+                
+                //animate the title button to slide out to a maximum position
+            PressedBorderColor: =RGBA(16, 110, 190, 1)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(16, 110, 190, 1)
+            Start: =TimerGo
+            Width: =93
+            ZIndex: =1
+
+        TitleButton As Button:
+            BasePaletteColor: =
+            BorderColor: =RGBA(40, 134, 222, 1)
+            BorderRadiusBottomRight: =PopupButtonRadius
+            BorderRadiusTopRight: =PopupButtonRadius
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =1
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =PopupButtonHeight
+            IconStyle: ="Outline"
+            Text: ="Title"
+            Width: =PopupButtonWidth
+            X: =SampleCardImage.X + SampleCardImage.Width - Self.Width + ((Timer1.Value / Timer1.Duration) * Self.Width)
+            Y: =PopupButtonTitleY
+            ZIndex: =2
+
+        BioButton As Button:
+            BasePaletteColor: =
+            BorderColor: =RGBA(40, 134, 222, 1)
+            BorderRadiusBottomRight: =PopupButtonRadius
+            BorderRadiusTopRight: =PopupButtonRadius
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =PopupButtonHeight
+            Text: ="Bio"
+            Width: =PopupButtonWidth
+            X: =SampleCardImage.X + SampleCardImage.Width - Self.Width + ((Timer1.Value / Timer1.Duration) * Self.Width)
+            Y: =PopupButtonBioY
+            ZIndex: =3
+
+        SummaryButton As Button:
+            BasePaletteColor: =
+            BorderColor: =RGBA(40, 134, 222, 1)
+            BorderRadiusBottomRight: =PopupButtonRadius
+            BorderRadiusTopRight: =PopupButtonRadius
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =PopupButtonHeight
+            Text: ="Summary"
+            Width: =PopupButtonWidth
+            X: =SampleCardImage.X + SampleCardImage.Width - Self.Width + ((Timer1.Value / Timer1.Duration) * Self.Width)
+            Y: =PopupButtonSummaryY
+            ZIndex: =4
+
+        ButtonCanvas2 As Button:
+            BasePaletteColor: =
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =32
+            OnSelect: |
+                =//UpdateContext( {InitialX: (Parent.Height - SampleCardImage.Height) / 2}); 
+                //UpdateContext( {InitialY: (Parent.Width - SampleCardImage.Width) / 2}); 
+                //UpdateContext( {InitialImageHeight: Parent.Height - 100});
+                //UpdateContext( {InitialImageWidth: Parent.Width - 100});
+                
+                UpdateContext({TimerGo: false});
+                
+                
+                Set( InitialImageHeight, Parent.Height - 150);
+                Set( InitialImageWidth, Parent.Width - 150);
+                Set( InitialX, (Parent.Height - SampleCardImage.Height) / 2 - 20); 
+                Set( InitialY, (Parent.Width - SampleCardImage.Width) / 2); 
+                
+                Set(PopupButtonRadius, 45);
+                Set(PopupButtonWidth, Parent.Width - SampleCardImage.Width - SampleCardImage.X); 
+                Set(PopupButtonHeight, SampleCardImage.Height/7);
+                Set(PopupButtonStartY, SampleCardImage.Y + SampleCardImage.Height);
+                
+                Set(PopupButtonSummaryY, PopupButtonStartY - SummaryButton.Height - 5); 
+                Set(PopupButtonBioY, PopupButtonSummaryY - BioButton.Height - 5);
+                Set(PopupButtonTitleY, PopupButtonBioY - TitleButton.Height - 5);
+                
+                
+                Set(TitleButtonX, SampleCardImage.X + SampleCardImage.Width - 1);
+                
+                UpdateContext({TimerGo: true});
+            Width: =96
+            X: =0
+            Y: =23
+            ZIndex: =5
+
+        SampleCardImage As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =InitialImageHeight
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: =Face1
+            ImagePosition: =ImagePosition.Fill
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Transparency: =
+            Width: =InitialImageWidth
+            X: =InitialX
+            Y: =InitialY
+            ZIndex: =6
+
