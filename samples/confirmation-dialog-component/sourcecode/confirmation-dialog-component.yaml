@@ -1,0 +1,189 @@
+ComponentDefinitions:
+  Confirmation Dialog:
+    DefinitionType: CanvasComponent
+    Description: The Confirmation Dialog is a reusable Canvas Component that provides a modal, app-wide confirmation experience for Power Apps.
+    CustomProperties:
+      CancelButtonText:
+        PropertyKind: Input
+        DisplayName: Cancel Button Text
+        Description: Text to display on the Cancel button
+        DataType: Text
+        Default: ="No"
+      ConfirmButtonText:
+        PropertyKind: Input
+        DisplayName: Confirm Button Text
+        Description: Text to display on the Confirm button
+        DataType: Text
+        Default: ="Yes"
+      Desctuctive:
+        PropertyKind: Input
+        DisplayName: Desctuctive
+        Description: True if the action is destructive (Confirm button will be red)
+        DataType: Boolean
+        Default: =false
+      Message:
+        PropertyKind: Input
+        DisplayName: Message
+        Description: Message text of the dialog
+        DataType: Text
+        Default: ="Click " & Coalesce('Confirmation Dialog'.ConfirmButtonText,"Yes") & " to confirm or " & Coalesce('Confirmation Dialog'.CancelButtonText,"No") & " to dismiss."
+      OnCancel:
+        PropertyKind: Event
+        DisplayName: OnCancel
+        Description: fired when user clicks Cancel button or closes the dialog
+        ReturnType: None
+        Default: =
+      OnConfirm:
+        PropertyKind: Event
+        DisplayName: OnConfirm
+        Description: fired when user clicks Confirm button
+        ReturnType: None
+        Default: =
+      ShowButtonIcons:
+        PropertyKind: Input
+        DisplayName: Show Button Icons
+        Description: True to show icons on the buttons
+        DataType: Boolean
+        Default: =true
+      Title:
+        PropertyKind: Input
+        DisplayName: Title
+        Description: Title of the dialog
+        DataType: Text
+        Default: ="Confirm?"
+    Children:
+      - ContainerMain_Confirm:
+          Control: GroupContainer@1.3.0
+          Variant: ManualLayout
+          Properties:
+            BorderColor: =RGBA(214, 221, 224, 1)
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(0, 0, 0, 0.45)
+            Height: =Parent.Height
+            Width: =Parent.Width
+          Children:
+            - Container_Dialog_Confirm:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  Fill: =RGBA(255, 255, 255, 1)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  X: =(Parent.Width - Self.Width) / 2
+                  Y: =(Parent.Height - Self.Height) / 2
+                Children:
+                  - Dialog_Confirm_HeaderContainer:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(15, 108, 189, 1)
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                      Children:
+                        - Dialog_Confirm_Title:
+                            Control: Text@0.0.51
+                            Properties:
+                              Fill: =RGBA(15, 108, 189, 1)
+                              FillPortions: =1
+                              FontColor: =RGBA(255, 255, 255, 1)
+                              Height: =40
+                              LayoutMaxHeight: =0
+                              LayoutMaxWidth: =0
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingLeft: =10
+                              Size: =24
+                              Text: =Coalesce('Confirmation Dialog'.Title,"Confirm?")
+                              VerticalAlign: =VerticalAlign.Middle
+                              Weight: ='TextCanvas.Weight'.Bold
+                              Width: =Parent.Width
+                        - Button_Confirm_Dialog_Dismiss:
+                            Control: Button@0.0.45
+                            Properties:
+                              AccessibleLabel: ="Dismiss dialog"
+                              FontSize: =24
+                              Height: =40
+                              Icon: ="DismissCircle"
+                              Layout: ='ButtonCanvas.Layout'.IconOnly
+                              LayoutMaxHeight: =0
+                              LayoutMaxWidth: =0
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              OnSelect: ='Confirmation Dialog'.OnCancel()
+                              Text: ="Dismiss"
+                              Width: =40
+                              X: =40
+                              Y: =40
+                  - Dialog_Confirm_Message:
+                      Control: Text@0.0.51
+                      Properties:
+                        FillPortions: =3
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =10
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =10
+                        Size: =18
+                        Text: |-
+                          =Coalesce(
+                              'Confirmation Dialog'.Message,
+                              "Click " & Coalesce('Confirmation Dialog'.ConfirmButtonText,"Yes") & " to confirm or " & Coalesce('Confirmation Dialog'.CancelButtonText,"No") & " to dismiss."
+                          )
+                        VerticalAlign: =VerticalAlign.Middle
+                        Width: =Parent.Width
+                  - Dialog_Confirm_ButtonContainer:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =10
+                        LayoutJustifyContent: =LayoutJustifyContent.End
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =16
+                        PaddingLeft: =8
+                        PaddingRight: =12
+                        PaddingTop: =8
+                      Children:
+                        - Button_Confirm_Confirm:
+                            Control: Button@0.0.45
+                            Properties:
+                              AccessibleLabel: ="Confirm action"
+                              Appearance: ='ButtonCanvas.Appearance'.Primary
+                              BasePaletteColor: =If('Confirmation Dialog'.Desctuctive,RGBA(249, 83, 109, 1),Blank())
+                              Icon: ="Checkmark"
+                              Layout: =If('Confirmation Dialog'.ShowButtonIcons,'ButtonCanvas.Layout'.IconBefore,'ButtonCanvas.Layout'.TextOnly)
+                              LayoutMaxHeight: =0
+                              LayoutMaxWidth: =0
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              OnSelect: ='Confirmation Dialog'.OnConfirm()
+                              Text: =Coalesce('Confirmation Dialog'.ConfirmButtonText,"Yes")
+                        - Button_Confirm_Cancel:
+                            Control: Button@0.0.45
+                            Properties:
+                              AccessibleLabel: ="Cancel action"
+                              Icon: ="Dismiss"
+                              Layout: =If('Confirmation Dialog'.ShowButtonIcons,'ButtonCanvas.Layout'.IconBefore,'ButtonCanvas.Layout'.TextOnly)
+                              LayoutMaxHeight: =0
+                              LayoutMaxWidth: =0
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              OnSelect: ='Confirmation Dialog'.OnCancel()
+                              Text: =Coalesce('Confirmation Dialog'.CancelButtonText, "No")
