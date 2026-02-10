@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{d9dd717e-72bb-b645-7c1f-7bbd486627d4}" Name="Automated PDF Archiving for Emails and Attachments" Description="This flow exports an email in MSG format and converts it into HTML. All email attachments are transformed into JPG files and embedded within the HTML as &lt;img&gt; tags. The flow then merges the email body and the attachment HTML using a Compose action. Finally, the combined HTML content is converted into a PDF file using standard OneDrive connector." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/AutomatedPDFArchivingforEmailsandAttachments-D9DD717E-72BB-B645-7C1F-7BBD486627D4.json</JsonFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>5</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <ModernFlowType>0</ModernFlowType>
+  <PrimaryEntity>none</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="Automated PDF Archiving for Emails and Attachments" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description languagecode="1033" description="This flow exports an email in MSG format and converts it into HTML. All email attachments are transformed into JPG files and embedded within the HTML as &lt;img&gt; tags. The flow then merges the email body and the attachment HTML using a Compose action. Finally, the combined HTML content is converted into a PDF file using standard OneDrive connector." />
+  </Descriptions>
+</Workflow>
