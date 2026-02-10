@@ -4,6 +4,13 @@
 
 This sample showcases how to merge an email and its attachments into a single PDF file using standard Power Automate actions. The generated archive PDF is stored in a designated OneDrive folder. Additionally, the flow highlights how to leverage the conversion capabilities of the OneDrive connector to handle Office documents and PDF files as part of the archival process.
 
+**Features:**
+
+* Archive email and attachments (office docs, pdf etc.) into a pdf file
+* Export email as html file 
+* Method to combine email and attachments 
+* Expression
+
 ![Flow overview](./assets/flow-overview.png "Flow overview")
 
 ## Applies to
@@ -24,16 +31,7 @@ This sample showcases how to merge an email and its attachments into a single PD
 
 Version|Date|Comments
 -------|----|--------
-1.0|Jan 24, 2025|Initial release
-
-## Features
-
-This sample illustrates the following concepts:
-
-* Archive email and attachments (office docs, pdf etc.) into a pdf file
-* Export email as html file 
-* Method to combine email and attachments 
-* Expression
+1.0|Jan 24, 2026|Initial release
 
 ## Prerequisites
 
@@ -49,7 +47,6 @@ Variable|Type|Details
 -------|----|--------
 Incoming Email Subject | Text | Defines the subject filter used to trigger the workflow from an email
 Output Archive Folder | Text | Specifies the OneDrive folder path where the archived PDF will be saved
-
 
 ## Minimal Path to Awesome
 
