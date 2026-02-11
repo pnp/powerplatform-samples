@@ -1,0 +1,377 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "Buy items",
+        "Buy online",
+        "Buy product",
+        "Purchase item",
+        "Order product"
+      ],
+      "dialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_dbafebd526364487911b63a2a774389f",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_dbafebd526364487911b63a2a774389f",
+      "displayName": "Lesson 3 - A topic with a condition, variables and a pre-built entity",
+      "description": "Lesson 3 - This lesson will show you how you can create a simple topic with one conditional branch, variable, and entity.\n\nWhen you use entities in your topic, the bot can identify key information in what the user types and proactively fill in that information in your variables. For example, if the customer says \"I want to buy a red car,\" you don't need to ask them which color car, because the bot recognizes the Color entity in what they typed. The bot will then skip the question where you asked for color. \n\nYou can also use entities to recognize a specific list of options. In this lesson, we identify State as the entity, and the bot will recognize any US state the user types.",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "namedEntities": [
+    {
+      "id": "a55271b8-47fb-4a81-9030-15e4ec7a6132",
+      "displayName": "Desktop Computer",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "id": "31f5ecbd-a23a-451e-8e28-1b74d8a052e0",
+      "displayName": "Laptop Computer",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "id": "73d880d8-2568-45c8-ad62-8e0e472d52b9",
+      "displayName": "Gaming Computer",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "fabcaff7-0ce9-4231-835c-60b1ee5b52a3",
+      "messageNodes": [
+        {
+          "botMessageId": "fd009a01-b453-46db-bb72-715bd8d2e6da",
+          "nodeType": "BotMessageNode",
+          "id": "fabcaff7-0ce9-4231-835c-60b1ee5b52a3",
+          "defaultTargetNodeId": "9271a869-3735-4a21-9ce1-17ff112388a3"
+        },
+        {
+          "botMessageId": "e96a8505-2b81-4f5b-857d-79bb94659ea2",
+          "nodeType": "BotMessageNode",
+          "id": "03c948a4-0aa0-4709-97cc-717cc49f3fd5",
+          "defaultTargetNodeId": "f07a8b8e-b905-4f9c-a7b7-6465fc2bff1f"
+        },
+        {
+          "botMessageId": "8aca5646-5710-4b95-9a2c-892ea0b3bbcd",
+          "nodeType": "BotMessageNode",
+          "id": "1f5a1841-7988-4874-a32d-ed271cc46951",
+          "defaultTargetNodeId": "a54d580a-9c1d-432c-97a0-475345d16338"
+        },
+        {
+          "botMessageId": "6767717e-0922-439c-9162-d458721acf7d",
+          "nodeType": "BotMessageNode",
+          "id": "76ea102a-d56a-4ac5-b5e1-f75702e3edaf",
+          "defaultTargetNodeId": "ff5f27b5-09c1-4c86-a335-6a684d188236"
+        },
+        {
+          "botMessageId": "e6588444-7711-419f-9d43-fdd91d3f4bf0",
+          "nodeType": "BotMessageNode",
+          "id": "4c14e0fc-359c-49c4-a36a-f173bf2b1934",
+          "defaultTargetNodeId": "ff5f27b5-09c1-4c86-a335-6a684d188236"
+        },
+        {
+          "botMessageId": "ca8278d3-ad5a-4074-839f-0c54295e9aca",
+          "nodeType": "BotMessageNode",
+          "id": "401a587a-fd7a-4a19-8ce9-b1825ce8f4a8",
+          "defaultTargetNodeId": "ff5f27b5-09c1-4c86-a335-6a684d188236"
+        },
+        {
+          "botMessageId": "81462346-7528-4678-85e7-3ca94034d54d",
+          "nodeType": "BotMessageNode",
+          "id": "628e4deb-8e34-4794-a345-b3bcf1494a19",
+          "defaultTargetNodeId": "a54d580a-9c1d-432c-97a0-475345d16338"
+        },
+        {
+          "botMessageId": "2da1b0ca-33de-4436-90bf-b4fe734c0cae",
+          "nodeType": "BotMessageNode",
+          "id": "ff5f27b5-09c1-4c86-a335-6a684d188236",
+          "defaultTargetNodeId": "628e4deb-8e34-4794-a345-b3bcf1494a19"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess",
+          "nodeType": "DialogChangeNode",
+          "id": "a54d580a-9c1d-432c-97a0-475345d16338"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "be4de53a-6341-4136-b485-07dd009a274a",
+          "nodeType": "QuestionNode",
+          "id": "9271a869-3735-4a21-9ce1-17ff112388a3",
+          "routes": [
+            {
+              "expression": "@equals(parameters('be4de53a-6341-4136-b485-07dd009a274a'), 'California')",
+              "targetNodeId": "2d411fa2-d129-4b4b-b097-546703c2450e"
+            },
+            {
+              "expression": "@equals(parameters('be4de53a-6341-4136-b485-07dd009a274a'), 'Washington')",
+              "targetNodeId": "2d411fa2-d129-4b4b-b097-546703c2450e"
+            },
+            {
+              "expression": "@equals(parameters('be4de53a-6341-4136-b485-07dd009a274a'), 'Oregon')",
+              "targetNodeId": "2d411fa2-d129-4b4b-b097-546703c2450e"
+            }
+          ],
+          "defaultTargetNodeId": "03c948a4-0aa0-4709-97cc-717cc49f3fd5"
+        },
+        {
+          "contextVariableId": "0b85592c-51e4-40c7-b375-88ac55bb5831",
+          "nodeType": "QuestionNode",
+          "id": "2d411fa2-d129-4b4b-b097-546703c2450e",
+          "routes": [
+            {
+              "expression": "@equals(parameters('0b85592c-51e4-40c7-b375-88ac55bb5831'), 'a55271b8-47fb-4a81-9030-15e4ec7a6132')",
+              "targetNodeId": "76ea102a-d56a-4ac5-b5e1-f75702e3edaf"
+            },
+            {
+              "expression": "@equals(parameters('0b85592c-51e4-40c7-b375-88ac55bb5831'), '31f5ecbd-a23a-451e-8e28-1b74d8a052e0')",
+              "targetNodeId": "4c14e0fc-359c-49c4-a36a-f173bf2b1934"
+            },
+            {
+              "expression": "@equals(parameters('0b85592c-51e4-40c7-b375-88ac55bb5831'), '73d880d8-2568-45c8-ad62-8e0e472d52b9')",
+              "targetNodeId": "401a587a-fd7a-4a19-8ce9-b1825ce8f4a8"
+            }
+          ],
+          "defaultTargetNodeId": "2d411fa2-d129-4b4b-b097-546703c2450e"
+        },
+        {
+          "contextVariableId": "dce8a841-fb3c-484d-827a-c9aa240b6e4e",
+          "nodeType": "QuestionNode",
+          "id": "f07a8b8e-b905-4f9c-a7b7-6465fc2bff1f",
+          "routes": [
+            {
+              "expression": "@equals(parameters('dce8a841-fb3c-484d-827a-c9aa240b6e4e'), true)",
+              "targetNodeId": "2d411fa2-d129-4b4b-b097-546703c2450e"
+            }
+          ],
+          "defaultTargetNodeId": "1f5a1841-7988-4874-a32d-ed271cc46951"
+        }
+      ],
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_dbafebd526364487911b63a2a774389f",
+      "displayName": "Dialog for Buy item",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "I am happy to help you place your order."
+        }
+      },
+      "id": "fd009a01-b453-46db-bb72-715bd8d2e6da",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "To what state will you be shipping?"
+        }
+      },
+      "id": "74abca70-c02a-4cff-bd49-f0f2e29ee27c",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "There will be an additional shipping charge of $27.50."
+        }
+      },
+      "id": "e96a8505-2b81-4f5b-857d-79bb94659ea2",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Thank you and please come again."
+        }
+      },
+      "id": "8aca5646-5710-4b95-9a2c-892ea0b3bbcd",
+      "createdTime": "2019-10-20T20:02:02.561Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Great choice for the desktop publisher!"
+        }
+      },
+      "id": "6767717e-0922-439c-9162-d458721acf7d",
+      "createdTime": "2019-10-25T13:45:23.632Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Great choice for the on-the-go road warrior!"
+        }
+      },
+      "id": "e6588444-7711-419f-9d43-fdd91d3f4bf0",
+      "createdTime": "2019-10-25T13:46:01.261Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Go get 'em tiger! Sudoku helps keep the mind active."
+        }
+      },
+      "id": "ca8278d3-ad5a-4074-839f-0c54295e9aca",
+      "createdTime": "2019-10-25T13:46:25.848Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "What item are you interested in purchasing? We are focused on a few quality items."
+        }
+      },
+      "id": "cf74d0e7-0564-46ee-bd1e-db2db316bd49",
+      "createdTime": "2019-10-25T13:43:54.933Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "To complete your order, please go to your cart.\n\nThank you!"
+        }
+      },
+      "id": "81462346-7528-4678-85e7-3ca94034d54d",
+      "createdTime": "2019-10-25T13:47:49.945Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "I am adding {0b85592c-51e4-40c7-b375-88ac55bb5831} to your cart."
+        }
+      },
+      "id": "2da1b0ca-33de-4436-90bf-b4fe734c0cae",
+      "createdTime": "2019-10-25T13:51:34.951Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Is that acceptable?"
+        }
+      },
+      "id": "c19fdd1d-8163-4473-886d-c6f49d55fc88",
+      "createdTime": "2019-11-01T03:55:51.486Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "State",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "messages": {
+        "GetValue": [
+          "74abca70-c02a-4cff-bd49-f0f2e29ee27c"
+        ]
+      },
+      "isGlobal": false,
+      "id": "be4de53a-6341-4136-b485-07dd009a274a",
+      "displayName": "pva_State",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "a55271b8-47fb-4a81-9030-15e4ec7a6132",
+        "31f5ecbd-a23a-451e-8e28-1b74d8a052e0",
+        "73d880d8-2568-45c8-ad62-8e0e472d52b9"
+      ],
+      "messages": {
+        "GetValue": [
+          "cf74d0e7-0564-46ee-bd1e-db2db316bd49"
+        ]
+      },
+      "isGlobal": false,
+      "id": "0b85592c-51e4-40c7-b375-88ac55bb5831",
+      "displayName": "pva_Item",
+      "createdTime": "2019-10-25T13:43:54.933Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "systemType": "Boolean",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "messages": {
+        "GetValue": [
+          "c19fdd1d-8163-4473-886d-c6f49d55fc88"
+        ]
+      },
+      "isGlobal": false,
+      "id": "dce8a841-fb3c-484d-827a-c9aa240b6e4e",
+      "displayName": "pva_OKShippingRate",
+      "createdTime": "2019-11-01T03:55:51.486Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "createdUtc": "0001-01-01T00:00:00Z"
+}

@@ -1,0 +1,67 @@
+{
+  "intents": [
+    {
+      "systemIntentTypes": [
+        "StartOver"
+      ],
+      "intentType": "System",
+      "triggerQueries": [
+        "start over",
+        "restart",
+        "let's begin again"
+      ],
+      "dialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_8a4964498f83424bb3a86295bf7d0952_startover",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_8a4964498f83424bb3a86295bf7d0952_startover",
+      "displayName": "Start over",
+      "description": "System Intent Start Over",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "c3e3eb0f-97b2-46ae-9f36-77f009b1152a",
+      "dialogType": "System",
+      "messageNodes": [
+        {
+          "botMessageId": "3e8423c4-876f-4834-aedf-741b2b817601",
+          "nodeType": "BotMessageNode",
+          "id": "c3e3eb0f-97b2-46ae-9f36-77f009b1152a",
+          "defaultTargetNodeId": "0bbb332e-08fa-4e16-885d-005d869fd509"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_ba7b967c97ba4c39bca58a8bb6a72d59_conversationstart",
+          "nodeType": "DialogChangeNode",
+          "id": "0bbb332e-08fa-4e16-885d-005d869fd509"
+        }
+      ],
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_8a4964498f83424bb3a86295bf7d0952_startover",
+      "displayName": "Dialog for Start over",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Ok, I'll start over."
+        }
+      },
+      "id": "3e8423c4-876f-4834-aedf-741b2b817601",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "createdUtc": "0001-01-01T00:00:00Z"
+}
