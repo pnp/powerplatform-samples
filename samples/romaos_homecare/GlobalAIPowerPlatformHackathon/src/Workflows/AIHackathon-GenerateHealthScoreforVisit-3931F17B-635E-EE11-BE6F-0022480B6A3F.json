@@ -1,0 +1,324 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "rms_sharedcommondataserviceforapps_c37ac"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "dcb46150-50b2-42a0-a06a-2aa5c2b3c979"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "VisitId",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Update_a_row": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d29f0495-929e-4968-bfc7-e9eb22a80779"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "score": "10"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "score": {
+                  "title": "Score",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "HTTP_-_Generate_Health_Score": {
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3d522b15-1c9b-4794-abd4-58f2d60b6c00"
+          },
+          "type": "Http",
+          "inputs": {
+            "method": "POST",
+            "uri": "https://api.openai.com/v1/chat/completions",
+            "headers": {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer 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"
+            },
+            "body": {
+              "model": "gpt-3.5-turbo",
+              "messages": [
+                {
+                  "role": "system",
+                  "content": "Tenho um aplicativo de Saúde e o paciente responde 10 questoes de True/False. Vou enviar ###mensage(True/False) nova mensagem(True/False)###. E você vai me retornar com ###Score: 10### sendo um score de 0 a 100."
+                },
+                {
+                  "role": "user",
+                  "content": "@{outputs('Compose')}"
+                }
+              ],
+              "temperature": 0.7
+            },
+            "retryPolicy": {
+              "type": "none"
+            }
+          }
+        },
+        "Compose": {
+          "runAfter": {
+            "Apply_to_each_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2118966e-e5e1-40b1-8bb1-7cf348f9d0b0"
+          },
+          "type": "Compose",
+          "inputs": "@variables('Questions')"
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "HTTP_-_Generate_Health_Score": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f8eab64e-e804-457f-a2f3-111a0166c966"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('HTTP_-_Generate_Health_Score')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string"
+                },
+                "created": {
+                  "type": "integer"
+                },
+                "model": {
+                  "type": "string"
+                },
+                "choices": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "index": {
+                        "type": "integer"
+                      },
+                      "message": {
+                        "type": "object",
+                        "properties": {
+                          "role": {
+                            "type": "string"
+                          },
+                          "content": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "finish_reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "index",
+                      "message",
+                      "finish_reason"
+                    ]
+                  }
+                },
+                "usage": {
+                  "type": "object",
+                  "properties": {
+                    "prompt_tokens": {
+                      "type": "integer"
+                    },
+                    "completion_tokens": {
+                      "type": "integer"
+                    },
+                    "total_tokens": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Compose_2": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c47ad0dd-d17f-41a9-a5bf-d270e6231be3"
+          },
+          "type": "Compose",
+          "inputs": "@last(split(first(body('Parse_JSON')?['choices'])['message']?['content'], ' '))"
+        },
+        "Update_a_row": {
+          "runAfter": {
+            "Compose_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "94aad065-e7d8-4fb1-a9da-103e368e62da"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "UpdateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "rms_visits",
+              "recordId": "@triggerBody()['text']",
+              "item/rms_score": "@outputs('Compose_2')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "a1f27335-10f6-4094-9830-e4b8a39704cd"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "rms_visitchecklistitems",
+              "$filter": "_rms_visit_value eq '@{triggerBody()['text']}'"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Filter_array": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2c9db263-e873-4054-b9b4-46706086cd0f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Questions",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Apply_to_each_2": {
+          "foreach": "@outputs('List_rows')?['body/value']",
+          "actions": {
+            "Append_to_string_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d2c58b08-a117-45cc-9f30-f474b8e53424"
+              },
+              "type": "AppendToStringVariable",
+              "inputs": {
+                "name": "Questions",
+                "value": "@{items('Apply_to_each_2')?['rms_question']}(@{items('Apply_to_each_2')?['rms_answer']}) "
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c221da53-55b1-4e77-9d07-2ae78f036cbc"
+          },
+          "type": "Foreach"
+        },
+        "Filter_array": {
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "972ca03f-2adc-4b47-898d-f31723b0da31"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@outputs('List_rows')?['body/value']",
+            "where": "@equals(item()?['_rms_visit_value'], triggerBody()['text'])"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

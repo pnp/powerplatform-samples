@@ -1,0 +1,104 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "rms_patients",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "rms_patient",
+    "MaxGetRowsCount": 500,
+    "Name": "Patients",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "rms_birthday": "Birthday",
+      "rms_Contact": "Contact",
+      "rms_height": "Height",
+      "rms_name": "Name",
+      "rms_patient_AsyncOperations": "System Jobs",
+      "rms_patient_BulkDeleteFailures": "Bulk Delete Failures",
+      "rms_patient_DuplicateBaseRecord": "Duplicate Records (rms_patient_DuplicateBaseRecord)",
+      "rms_patient_DuplicateMatchingRecord": "Duplicate Records (rms_patient_DuplicateMatchingRecord)",
+      "rms_patient_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "rms_patient_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "rms_patient_ProcessSession": "Process Sessions",
+      "rms_patient_SyncErrors": "Sync Errors",
+      "rms_patientid": "Patient",
+      "rms_photo": "Photo",
+      "rms_photoid": "rms_PhotoId",
+      "rms_rms_visit_Patient_rms_patient": "Visits",
+      "rms_weight": "Weight",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Patients",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Patients (Views)",
+    "Name": "_rms_patient_views",
+    "RelatedEntityName": "Patients",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "01c8356b-80d1-4ec6-8ec2-52b41c20466a": "Active Patients",
+      "41fc7c4f-d878-4ee5-8ef5-c19a67904272": "Patient Lookup View",
+      "b1a3da6c-fa1a-463c-a08a-90d4e7df2ce2": "Patient Advanced Find View",
+      "de3ad68f-13ec-41ab-867e-92fbd60f1729": "Inactive Patients",
+      "f76a8ff6-7b02-4b6b-ace5-8e2eb5a182af": "Patient Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Patients)",
+    "Name": "rms_patient_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Patients"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Patients",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Patients)",
+    "Name": "rms_patient_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Patients"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Patients",
+    "Type": "OptionSetInfo"
+  }
+]
