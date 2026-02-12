@@ -1,0 +1,698 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "mailboxes",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "mailbox",
+    "MaxGetRowsCount": 500,
+    "Name": "Mailboxes",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "_regardingobjectid_value": "Regarding",
+      "{Attachments}": "Attachments",
+      "actdeliverymethod": "Appointments, Contacts, and Tasks",
+      "activitypointer_sendermailboxid_mailbox": "Activities",
+      "actstatus": "Appointments, Contacts, and Tasks Status",
+      "adx_alertsubscription_mailbox_sendermailboxid": "Alert Subscriptions",
+      "adx_inviteredemption_mailbox_sendermailboxid": "Invite Redemptions",
+      "adx_portalcomment_mailbox_sendermailboxid": "Portal Comments",
+      "allowemailconnectortousecredentials": "Allow to Use Credentials for Email Processing",
+      "averagetotalduration": "Monitor Total Performance",
+      "chat_mailbox_sendermailboxid": "Teams chats",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "email_sendermailboxid_mailbox": "Email Messages (email_sendermailboxid_mailbox)",
+      "emailaddress": "Email Address",
+      "emailrouteraccessapproval": "Email Address Status",
+      "emailserverprofile": "Server Profile",
+      "enabledforact": "Enabled For Appointments, Contacts, And Tasks",
+      "enabledforincomingemail": "Enabled For Incoming Email",
+      "enabledforoutgoingemail": "Enabled For Outgoing Email",
+      "entityimage": "Entity Image",
+      "entityimageid": "Entity Image Id",
+      "ewsurl": "Exchange Web Services URL",
+      "exchangecontactsimportcompletedon": "Exchange Contacts Import Completed On",
+      "exchangecontactsimportstatus": "Exchange Contacts Import Status",
+      "exchangesyncstatexml": "Exchange Sync State",
+      "exchangesyncstatexmlfileref": "ExchangeSyncStateXml File Ref",
+      "folderhierarchy": "Folder Hierarchy",
+      "forcedunlockcount": "Count of the number of times a mailbox gets forced unlocked",
+      "hostid": "Host",
+      "incomingemaildeliverymethod": "Incoming Email",
+      "incomingemailstatus": "Incoming Email Status",
+      "isactsyncorgflagset": "Set Current Organization as Synchronization Organization",
+      "isemailaddressapprovedbyo365admin": "Email Address O365 Admin Approval Status",
+      "isexchangecontactsimportscheduled": "Is Exchange Contacts Import Scheduled.",
+      "isforwardmailbox": "Is Forward Mailbox",
+      "isserviceaccount": "Is Service Account",
+      "itemsfailedforlastsync": "Items Failed For Last Sync",
+      "itemsprocessedforlastsync": "Items Processed For Last Sync",
+      "lastautodiscoveredon": "Last Auto Discovered On",
+      "lastduration": "Monitor last duration Performance",
+      "lastmailboxforcedunlockoccurredon": "Last Date Time when a mailbox got forced unlocked",
+      "lastmessageid": "Last Message ID",
+      "lastsuccessfulsynccompletedon": "Last Successful Sync Time",
+      "lastsyncerror": "Last Sync Error Stack",
+      "lastsyncerrorcode": "Last Sync Error Code",
+      "lastsyncerrorcount": "Last Sync Error Continuous Count",
+      "lastsyncerrormachinename": "Last Sync Error Machine Name",
+      "lastsyncerroroccurredon": "Last Sync Error Time",
+      "lastsyncstartedon": "Last Sync Start Time",
+      "lasttaggedmessageid": "Last Tagged MessageId",
+      "Mailbox_Annotation": "Notes",
+      "mailbox_asyncoperations": "System Jobs",
+      "mailbox_email_ReceivingMailboxId": "Email Messages (mailbox_email_ReceivingMailboxId)",
+      "mailbox_FileAttachments": "FileAttachments",
+      "Mailbox_MailboxTrackingFolder": "Mailbox Auto Tracking Folders",
+      "mailbox_processsessions": "Process Sessions",
+      "Mailbox_SyncErrors": "Sync Errors",
+      "mailboxid": "Mailbox",
+      "mailboxprocessingcontext": "Processing Context of the Mailbox",
+      "mailboxstatus": "Mailbox Status",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "msfp_alert_mailbox_sendermailboxid": "Customer Voice alert",
+      "msfp_surveyinvite_mailbox_sendermailboxid": "Customer Voice survey invites",
+      "msfp_surveyresponse_mailbox_sendermailboxid": "Customer Voice survey responses",
+      "name": "Name",
+      "nextscheduledactsyncinseconds": "Next Scheduled ACT Sync Delay In Seconds",
+      "noactcount": "Zero appointment, contact, task count for mailbox",
+      "noemailcount": "Zero email count for mailbox",
+      "oauthtokenexpireson": "Oauth token expiration datetime",
+      "officeappsdeploymentcompleteon": "Office Apps Deployment Completed On",
+      "officeappsdeploymenterror": "Office Apps Deployment Error",
+      "officeappsdeploymentscheduled": "Office Apps Deployment Scheduled",
+      "officeappsdeploymentstatus": "Office Apps Deployment Type",
+      "organizationid": "Organization",
+      "orgmarkedasprimaryforexchangesync": "Crm Org Marked as Primary Org for Exchange Mailbox",
+      "outgoingemaildeliverymethod": "Outgoing Email",
+      "outgoingemailstatus": "Outgoing Email Status",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "postponemailboxprocessinguntil": "Postpone Mailbox Processing Until",
+      "postponeofficeappsdeploymentuntil": "Postpone Outlook Mail App Install Until",
+      "postponesendinguntil": "Postpone Sending Until",
+      "postponetestemailconfigurationuntil": "Postpone Test Email Configuration Until",
+      "processanddeleteemails": "Delete Emails after Processing",
+      "processedtimes": "Monitor Performance",
+      "processemailreceivedafter": "Process Email Received After",
+      "processinglastattemptedon": "Date Processing Last Attempted",
+      "processingstatecode": "Mailbox Processing State",
+      "queue_defaultmailbox_mailbox": "Queues",
+      "receivingpostponeduntil": "Postpone receiving emails for the mailbox until the specified data and time.",
+      "receivingpostponeduntilforact": "Postpone processing Appointments, Contacts, and Tasks for the mailbox until the specified data and time.",
+      "sample_donation_mailbox_sendermailboxid": "Donations",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "systemuser_defaultmailbox_mailbox": "Users",
+      "tagemailsafter": "Tag Emails After",
+      "testemailconfigurationretrycount": "Test Email Configuration Retry Count",
+      "testemailconfigurationscheduled": "Test Email Configuration Scheduled",
+      "testmailboxaccesscompletedon": "Mailbox Test Completed On",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "tracelog_Mailbox": "Traces",
+      "transientfailurecount": "Transient Failure Count",
+      "undeliverablefolder": "Undeliverable Folder",
+      "username": "User Name",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "verboseloggingenabled": "Verbose Logging",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Mailboxes",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Mailboxes (Views)",
+    "Name": "_mailbox_views",
+    "RelatedEntityName": "Mailboxes",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "146e0ee3-c297-4f8b-b02a-896a4cdd711f": "Active Mailboxes Using Server-Side Synchronization or Email Router",
+      "17c5bb9a-37ce-4750-ab4d-1fd73d26e149": "Mailboxes Using Server-Side Synchronization or Email Router(health)",
+      "2c129546-50af-458e-b3da-789588c5a448": "Active Queue Mailboxes",
+      "3203499b-6f48-43da-865e-78a689911f70": "System-disabled mailboxes that previously synced properly",
+      "3231f3e9-2ff4-e611-80d3-00155d0c1809": "All Mailboxes",
+      "36910a69-b862-403e-b30d-d8b5abf741c6": "Mailbox Associated View",
+      "3af1f5a8-2a6f-44cc-a1e6-eac16c61cc02": "Mailbox Advanced Find View",
+      "4e495712-3f08-49cc-bd14-70c1745eb4ed": "View Unapproved Mailboxes",
+      "5484560a-cfcf-46b7-8f46-b35de2fb42c1": "Inactive Mailboxes",
+      "75452ba1-8a7c-e011-b3dc-00155d7b4422": "My Active Mailboxes",
+      "a0ef39c5-e1de-4a2c-9644-f7a899bcc395": "Active Forward Mailboxes",
+      "a16ff798-4ad1-4876-a375-b533acae8ad6": "Test and Enable Failed",
+      "a2ade5ce-1719-4739-a9b3-c9fc55aaa856": "Mailboxes taking more than 15 minutes to test",
+      "aae30b60-d57b-48a3-8009-3d5637c77d5e": "Mailbox Lookup View",
+      "b06891e3-541c-4c4b-b09d-38adb2c17ec8": "Active User Mailboxes",
+      "bc14c1c3-8a7c-e011-b3dc-00155d7b4422": "Active Mailboxes Without Email Delivery Method",
+      "f1b5bef9-696a-47a5-a6b8-d6d9fe65f0e5": "Active Mailboxes",
+      "fa994277-1dab-46ce-bc58-81f2d9706c3b": "Status of all the Mailboxes by ESP"
+    }
+  },
+  {
+    "DisplayName": "Is Encrypted Attribute Value Set",
+    "Name": "isencryptedattributevalueset",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "isoauthaccesstokenset",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      },
+      "OptionSetReferenceItem1": {
+        "OptionSetReferenceColumnName": "isoauthrefreshtokenset",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      },
+      "OptionSetReferenceItem2": {
+        "OptionSetReferenceColumnName": "ispasswordset",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "isoauthaccesstokenset",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Appointments, Contacts, and Tasks (Mailboxes)",
+    "Name": "mailbox_actdeliverymethod",
+    "OptionSetInfoNameMapping": {
+      "0": "Microsoft Dynamics 365 for Outlook",
+      "1": "Server-Side Synchronization",
+      "2": "None"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "actdeliverymethod",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "actdeliverymethod",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Appointments, Contacts, and Tasks Status (Mailboxes)",
+    "Name": "mailbox_actstatus",
+    "OptionSetInfoNameMapping": {
+      "0": "Not Run",
+      "1": "Success",
+      "2": "Failure"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "actstatus",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "actstatus",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Allow to Use Credentials for Email Processing (Mailboxes)",
+    "Name": "mailbox_allowemailconnectortousecredentials",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "allowemailconnectortousecredentials",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "allowemailconnectortousecredentials",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Email Address Status (Mailboxes)",
+    "Name": "mailbox_emailrouteraccessapproval",
+    "OptionSetInfoNameMapping": {
+      "0": "Empty",
+      "1": "Approved",
+      "2": "Pending Approval",
+      "3": "Rejected"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "emailrouteraccessapproval",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "emailrouteraccessapproval",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Enabled For Appointments, Contacts, And Tasks (Mailboxes)",
+    "Name": "mailbox_enabledforact",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "enabledforact",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "enabledforact",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Enabled For Incoming Email (Mailboxes)",
+    "Name": "mailbox_enabledforincomingemail",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "enabledforincomingemail",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "enabledforincomingemail",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Enabled For Outgoing Email (Mailboxes)",
+    "Name": "mailbox_enabledforoutgoingemail",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "enabledforoutgoingemail",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "enabledforoutgoingemail",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Exchange Contacts Import Status (Mailboxes)",
+    "Name": "mailbox_exchangecontactsimportstatus",
+    "OptionSetInfoNameMapping": {
+      "0": "NotImported",
+      "1": "Imported",
+      "2": "ImportFailed"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "exchangecontactsimportstatus",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "exchangecontactsimportstatus",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Incoming Email (Mailboxes)",
+    "Name": "mailbox_incomingemaildeliverymethod",
+    "OptionSetInfoNameMapping": {
+      "0": "None",
+      "1": "Microsoft Dynamics 365 for Outlook",
+      "2": "Server-Side Synchronization or Email Router",
+      "3": "Forward Mailbox"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "incomingemaildeliverymethod",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "incomingemaildeliverymethod",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Incoming Email Status (Mailboxes)",
+    "Name": "mailbox_incomingemailstatus",
+    "OptionSetInfoNameMapping": {
+      "0": "Not Run",
+      "1": "Success",
+      "2": "Failure"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "incomingemailstatus",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "incomingemailstatus",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Set Current Organization as Synchronization Organization (Mailboxes)",
+    "Name": "mailbox_isactsyncorgflagset",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "isactsyncorgflagset",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "isactsyncorgflagset",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Email Address O365 Admin Approval Status (Mailboxes)",
+    "Name": "mailbox_isemailaddressapprovedbyo365admin",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "isemailaddressapprovedbyo365admin",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "isemailaddressapprovedbyo365admin",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Is Exchange Contacts Import Scheduled. (Mailboxes)",
+    "Name": "mailbox_isexchangecontactsimportscheduled",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "isexchangecontactsimportscheduled",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "isexchangecontactsimportscheduled",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Is Forward Mailbox (Mailboxes)",
+    "Name": "mailbox_isforwardmailbox",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "isforwardmailbox",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "isforwardmailbox",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Is Service Account (Mailboxes)",
+    "Name": "mailbox_isserviceaccount",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "isserviceaccount",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "isserviceaccount",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Office Apps Deployment Scheduled (Mailboxes)",
+    "Name": "mailbox_officeappsdeploymentscheduled",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "officeappsdeploymentscheduled",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "officeappsdeploymentscheduled",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Office Apps Deployment Type (Mailboxes)",
+    "Name": "mailbox_officeappsdeploymentstatus",
+    "OptionSetInfoNameMapping": {
+      "0": "NotInstalled",
+      "1": "Installed",
+      "2": "InstallFailed",
+      "3": "UninstallFailed",
+      "4": "UpgradeRequired"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "officeappsdeploymentstatus",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "officeappsdeploymentstatus",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Crm Org Marked as Primary Org for Exchange Mailbox (Mailboxes)",
+    "Name": "mailbox_orgmarkedasprimaryforexchangesync",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "orgmarkedasprimaryforexchangesync",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "orgmarkedasprimaryforexchangesync",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Outgoing Email (Mailboxes)",
+    "Name": "mailbox_outgoingemaildeliverymethod",
+    "OptionSetInfoNameMapping": {
+      "0": "None",
+      "1": "Microsoft Dynamics 365 for Outlook",
+      "2": "Server-Side Synchronization or Email Router"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "outgoingemaildeliverymethod",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "outgoingemaildeliverymethod",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Outgoing Email Status (Mailboxes)",
+    "Name": "mailbox_outgoingemailstatus",
+    "OptionSetInfoNameMapping": {
+      "0": "Not Run",
+      "1": "Success",
+      "2": "Failure"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "outgoingemailstatus",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "outgoingemailstatus",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Delete Emails after Processing (Mailboxes)",
+    "Name": "mailbox_processanddeleteemails",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "processanddeleteemails",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "processanddeleteemails",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Mailboxes)",
+    "Name": "mailbox_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Mailbox Status (Mailboxes)",
+    "Name": "mailbox_status",
+    "OptionSetInfoNameMapping": {
+      "0": "Not Run",
+      "1": "Success",
+      "2": "Failure"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "mailboxstatus",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "mailboxstatus",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Mailboxes)",
+    "Name": "mailbox_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Test Email Configuration Scheduled (Mailboxes)",
+    "Name": "mailbox_testemailconfigurationscheduled",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "testemailconfigurationscheduled",
+        "OptionSetReferenceEntityName": "Mailboxes"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "testemailconfigurationscheduled",
+    "RelatedEntityName": "Mailboxes",
+    "Type": "OptionSetInfo"
+  }
+]
