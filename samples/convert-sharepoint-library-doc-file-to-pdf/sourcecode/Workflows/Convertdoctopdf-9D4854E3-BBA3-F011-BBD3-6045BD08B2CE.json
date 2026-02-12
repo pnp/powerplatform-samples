@@ -1,0 +1,242 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "pnp_sharedsharepointonline_b7de6"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_onedriveforbusiness_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "pnp_sharedonedriveforbusiness_e43de"
+        },
+        "api": {
+          "name": "shared_onedriveforbusiness"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_file_is_created_(properties_only)": {
+          "recurrence": {
+            "frequency": "Minute",
+            "interval": 1
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "3853a390-eb11-4526-90a5-bbc3156af123"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetOnNewFileItems"
+            },
+            "parameters": {
+              "dataset": "https://chlebekdev.sharepoint.com/sites/chlebekdev",
+              "table": "3dce7221-cadb-4703-8995-47cd7e0ac2bb"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_file_content": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "82129079-702f-46e0-a81e-06015d16fc6d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetFileContent"
+            },
+            "parameters": {
+              "dataset": "https://chlebekdev.sharepoint.com/sites/chlebekdev",
+              "id": "@triggerOutputs()?['body/{Identifier}']",
+              "inferContentType": true
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Create_Actual_File_to_OneDrive": {
+          "runAfter": {
+            "Get_file_content": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "98b8b30f-e65c-4ad0-9491-c8897493e03e"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+              "connectionName": "shared_onedriveforbusiness_1",
+              "operationId": "CreateFile"
+            },
+            "parameters": {
+              "folderPath": "/PnP",
+              "name": "@triggerOutputs()?['body/{FilenameWithExtension}']",
+              "body": "@body('Get_file_content')"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "runtimeConfiguration": {
+            "contentTransfer": {
+              "transferMode": "Chunked"
+            }
+          }
+        },
+        "Convert_file_to_PDF": {
+          "runAfter": {
+            "Create_Actual_File_to_OneDrive": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "77403e88-13f8-493a-b143-5817f1c1ab04"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+              "connectionName": "shared_onedriveforbusiness_1",
+              "operationId": "ConvertFile"
+            },
+            "parameters": {
+              "id": "@outputs('Create_Actual_File_to_OneDrive')?['body/Id']",
+              "type": "PDF"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Create_PDF_File_to_OneDrive": {
+          "runAfter": {
+            "Convert_file_to_PDF": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "449fedde-a2c7-4e56-830c-8170178d0d1e"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+              "connectionName": "shared_onedriveforbusiness_1",
+              "operationId": "CreateFile"
+            },
+            "parameters": {
+              "folderPath": "/",
+              "name": "@outputs('Convert_file_to_PDF')?['headers/x-ms-file-name']",
+              "body": "@body('Convert_file_to_PDF')"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "runtimeConfiguration": {
+            "contentTransfer": {
+              "transferMode": "Chunked"
+            }
+          }
+        },
+        "Add_PDF_File_to_Document_Library": {
+          "runAfter": {
+            "Create_PDF_File_to_OneDrive": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "eb3bbaad-5f0a-447e-8711-dbec60d35256"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "CreateFile"
+            },
+            "parameters": {
+              "dataset": "https://chlebekdev.sharepoint.com/sites/chlebekdev",
+              "folderPath": "/Shared Documents",
+              "name": "@outputs('Convert_file_to_PDF')?['headers/x-ms-file-name']",
+              "body": "@body('Convert_file_to_PDF')"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "runtimeConfiguration": {
+            "contentTransfer": {
+              "transferMode": "Chunked"
+            }
+          }
+        },
+        "Delete_Actual_File_From_OneDrive": {
+          "runAfter": {
+            "Add_PDF_File_to_Document_Library": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "11159aac-7a39-483d-a852-7d9e20cce290"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+              "connectionName": "shared_onedriveforbusiness_1",
+              "operationId": "DeleteFile"
+            },
+            "parameters": {
+              "id": "@outputs('Create_Actual_File_to_OneDrive')?['body/Id']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Delete_PDF_File_From_OneDrive": {
+          "runAfter": {
+            "Delete_Actual_File_From_OneDrive": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cc30805a-f2a8-409e-acdd-d9c689ea022a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+              "connectionName": "shared_onedriveforbusiness_1",
+              "operationId": "DeleteFile"
+            },
+            "parameters": {
+              "id": "@outputs('Create_PDF_File_to_OneDrive')?['body/Id']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
