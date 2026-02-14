@@ -1,0 +1,333 @@
+CardSample1 As screen:
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+
+    Gallery2 As gallery.galleryHorizontal:
+        BorderColor: =RGBA(245, 245, 245, 1)
+        DelayItemLoading: =true
+        Height: =628
+        Items: =PeopleGallery
+        LoadingSpinner: =LoadingSpinner.Data
+        NavigationStep: =0
+        OnSelect: =Set(varSelectedItem,ThisItem);
+        ShowNavigation: =true
+        ShowScrollbar: =false
+        TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(200, Self.Width - 60), Min(200, Self.Height - 60))
+        Width: =1310
+        WrapCount: =2
+        X: =40
+        ZIndex: =1
+
+        GalleryContainer As groupContainer.verticalAutoLayoutContainer:
+            BorderThickness: =1
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(113, 111, 110, 1)
+            Height: =Parent.TemplateHeight
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =5
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            RadiusBottomLeft: =20
+            RadiusBottomRight: =20
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Width: =200
+            Y: =4
+            ZIndex: =2
+
+            GalleryImage As image:
+                AlignInContainer: =AlignInContainer.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Height: =Parent.Height*2/3 
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Image: =ThisItem.Img
+                ImagePosition: =ImagePosition.Fill
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =16
+                LayoutMinWidth: =16
+                OnSelect: =Select(Gallery2)
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Width: =Parent.Width
+                ZIndex: =1
+
+            SummaryLabel As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(161, 159, 157, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                Height: =50
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =16
+                LayoutMinWidth: =16
+                OnSelect: =Select(Gallery2)
+                Size: =10
+                Text: =ThisItem.Summary
+                Width: =Parent.Width
+                ZIndex: =2
+
+        NameLabel As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Size: =15
+            Text: =ThisItem.Name
+            X: =10
+            Y: =GalleryImage.Height - Self.Height
+            ZIndex: =3
+
+        MoreInfoContainer As groupContainer.verticalAutoLayoutContainer:
+            BorderStyle: =BorderStyle.None
+            Height: =40
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutJustifyContent: =LayoutJustifyContent.Center
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            PaddingTop: =8
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =200
+            Y: =GalleryContainer.Height - Self.Height - 10
+            ZIndex: =4
+
+            ButtonCanvas1 As Button:
+                Appearance: ='ButtonCanvas.Appearance'.Secondary
+                BasePaletteColor: =
+                BorderColor: =
+                BorderRadius: =45
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =16
+                LayoutMinWidth: =16
+                OnSelect: |-
+                    =Set(ImagePopupDisplay, ThisItem.Img); 
+                    Set(NamePopupDisplay, ThisItem.Name); 
+                    Set(JobTitlePopupDisplay, ThisItem.JobTitle); 
+                    Set(BioPopupDisplay, ThisItem.Bio); 
+                    Set(SummaryPopupDisplay, ThisItem.Summary); 
+                    
+                    Set(CardPopupVisible, true)
+                Text: ="More"
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =3
+
+    CardPopupContainer_1 As groupContainer.manualLayoutContainer:
+        BorderThickness: =1
+        DropShadow: =DropShadow.Light
+        Height: =App.Height - 100
+        RadiusBottomLeft: =45
+        RadiusBottomRight: =45
+        RadiusTopLeft: =45
+        RadiusTopRight: =45
+        Visible: =CardPopupVisible
+        Width: =Parent.Width - 100
+        X: =50
+        Y: =50
+        ZIndex: =2
+
+        PopupGlassmorphismHtml_1 As htmlViewer:
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Height: =Parent.Height
+            HtmlText: |-
+                ="
+                <div 
+                
+                style='
+                width: " & Parent.Width  & "px;
+                height: " & Parent.Height - 1 & "px; 
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+                border: 2px solid rgba(255, 255, 255, 0.4);'></div>
+                "
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =13
+            Width: =Parent.Width
+            ZIndex: =1
+
+        PopupDataContainer_1 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            PaddingTop: =8
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =2
+
+            PopupImage As image:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                FillPortions: =1
+                FocusedBorderThickness: =4
+                Height: =Parent.Height
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Image: =ImagePopupDisplay
+                ImagePosition: =ImagePosition.Fill
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =16
+                LayoutMinWidth: =16
+                OnSelect: =Set(CardPopupVisible, false)
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                ZIndex: =1
+
+            PopupDetailsContainer As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                FillPortions: =2
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =16
+                LayoutMinWidth: =16
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =8
+                PaddingLeft: =8
+                PaddingRight: =8
+                PaddingTop: =8
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =2
+
+                NamePopupTextCanvas As Text:
+                    AutoHeight: =true
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =Color.White
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    PaddingBottom: =
+                    Size: =30
+                    Text: =NamePopupDisplay
+                    Weight: ="Bold"
+                    Width: =Parent.Width - 10
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                Rectangle1 As rectangle:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    DisabledFill: =RGBA(161, 159, 157, 1)
+                    Fill: =RGBA(0, 0, 0, 1)
+                    FocusedBorderThickness: =4
+                    Height: =2
+                    HoverFill: =RGBA(0, 120, 212, 1)
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    PressedFill: =RGBA(0, 120, 212, 1)
+                    Width: =Parent.Width
+                    ZIndex: =2
+
+                JobTitlePopupTextCanvas As Text:
+                    AutoHeight: =true
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =Color.White
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    Size: =30
+                    Text: =JobTitlePopupDisplay
+                    Weight: ="Bold"
+                    Width: =Parent.Width - 10
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                BioPopupTextCanvas As Text:
+                    AutoHeight: =true
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =Color.White
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    Size: =30
+                    Text: =BioPopupDisplay
+                    Weight: ="Bold"
+                    Width: =Parent.Width - 10
+                    Wrap: =true
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                SummaryPopupTextCanvas As Text:
+                    AutoHeight: =true
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =Color.White
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    Size: =30
+                    Text: =SummaryPopupDisplay
+                    Weight: ="Bold"
+                    Width: =Parent.Width - 10
+                    X: =0
+                    Y: =0
+                    ZIndex: =5
+

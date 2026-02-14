@@ -1,0 +1,137 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  CardPopoutSample:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - Container2:
+          Control: GroupContainer@1.3.0
+          Variant: ManualLayout
+          Properties:
+            Height: =453
+            Width: =512
+            X: =40
+            Y: =40
+          Children:
+            - Timer1:
+                Control: Timer@2.1.0
+                Properties:
+                  BorderColor: =RGBA(0, 120, 212, 1)
+                  BorderStyle: =BorderStyle.None
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(242, 242, 241, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  DisabledFill: =RGBA(242, 242, 241, 0)
+                  Duration: =1000
+                  Fill: =RGBA(0, 120, 212, 1)
+                  Font: =Font.'Segoe UI'
+                  Height: =23
+                  HoverBorderColor: =RGBA(16, 110, 190, 1)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =RGBA(16, 110, 190, 1)
+                  OnTimerStart: |+
+                    =//UpdateContext( {InitialX: (Parent.Height - SampleCardImage.Height) / 2}); 
+                    //UpdateContext( {InitialY: (Parent.Width - SampleCardImage.Width) / 2}); 
+                    //UpdateContext( {InitialImageHeight: Parent.Height - 100});
+                    //UpdateContext( {InitialImageWidth: Parent.Width - 100});
+
+                    //animate the title button to slide out to a maximum position
+                  PressedBorderColor: =RGBA(16, 110, 190, 1)
+                  PressedColor: =RGBA(255, 255, 255, 1)
+                  PressedFill: =RGBA(16, 110, 190, 1)
+                  Start: =TimerGo
+                  Width: =93
+            - TitleButton:
+                Control: Button@0.0.45
+                Properties:
+                  BorderColor: =RGBA(40, 134, 222, 1)
+                  BorderRadiusBottomRight: =PopupButtonRadius
+                  BorderRadiusTopRight: =PopupButtonRadius
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =1
+                  Height: =PopupButtonHeight
+                  Text: ="Title"
+                  Width: =PopupButtonWidth
+                  X: =SampleCardImage.X + SampleCardImage.Width - Self.Width + ((Timer1.Value / Timer1.Duration) * Self.Width)
+                  Y: =PopupButtonTitleY
+            - BioButton:
+                Control: Button@0.0.45
+                Properties:
+                  BorderColor: =RGBA(40, 134, 222, 1)
+                  BorderRadiusBottomRight: =PopupButtonRadius
+                  BorderRadiusTopRight: =PopupButtonRadius
+                  Height: =PopupButtonHeight
+                  Text: ="Bio"
+                  Width: =PopupButtonWidth
+                  X: =SampleCardImage.X + SampleCardImage.Width - Self.Width + ((Timer1.Value / Timer1.Duration) * Self.Width)
+                  Y: =PopupButtonBioY
+            - SummaryButton:
+                Control: Button@0.0.45
+                Properties:
+                  BorderColor: =RGBA(40, 134, 222, 1)
+                  BorderRadiusBottomRight: =PopupButtonRadius
+                  BorderRadiusTopRight: =PopupButtonRadius
+                  Height: =PopupButtonHeight
+                  Text: ="Summary"
+                  Width: =PopupButtonWidth
+                  X: =SampleCardImage.X + SampleCardImage.Width - Self.Width + ((Timer1.Value / Timer1.Duration) * Self.Width)
+                  Y: =PopupButtonSummaryY
+            - ButtonCanvas2:
+                Control: Button@0.0.45
+                Properties:
+                  OnSelect: |+
+                    =//UpdateContext( {InitialX: (Parent.Height - SampleCardImage.Height) / 2}); 
+                    //UpdateContext( {InitialY: (Parent.Width - SampleCardImage.Width) / 2}); 
+                    //UpdateContext( {InitialImageHeight: Parent.Height - 100});
+                    //UpdateContext( {InitialImageWidth: Parent.Width - 100});
+
+                    UpdateContext({TimerGo: false});
+
+
+                    Set( InitialImageHeight, Parent.Height - 150);
+                    Set( InitialImageWidth, Parent.Width - 150);
+                    Set( InitialX, (Parent.Height - SampleCardImage.Height) / 2 - 20); 
+                    Set( InitialY, (Parent.Width - SampleCardImage.Width) / 2); 
+
+                    Set(PopupButtonRadius, 45);
+                    Set(PopupButtonWidth, Parent.Width - SampleCardImage.Width - SampleCardImage.X); 
+                    Set(PopupButtonHeight, SampleCardImage.Height/7);
+                    Set(PopupButtonStartY, SampleCardImage.Y + SampleCardImage.Height);
+
+                    Set(PopupButtonSummaryY, PopupButtonStartY - SummaryButton.Height - 5); 
+                    Set(PopupButtonBioY, PopupButtonSummaryY - BioButton.Height - 5);
+                    Set(PopupButtonTitleY, PopupButtonBioY - TitleButton.Height - 5);
+
+
+                    Set(TitleButtonX, SampleCardImage.X + SampleCardImage.Width - 1);
+
+                    UpdateContext({TimerGo: true});
+                  Y: =23
+            - SampleCardImage:
+                Control: Image@2.2.3
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  BorderThickness: =2
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledFill: =RGBA(0, 0, 0, 0)
+                  FocusedBorderThickness: =4
+                  Height: =InitialImageHeight
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverFill: =RGBA(0, 0, 0, 0)
+                  Image: =Face1
+                  ImagePosition: =ImagePosition.Fill
+                  PressedBorderColor: =RGBA(0, 0, 0, 0)
+                  PressedFill: =RGBA(0, 0, 0, 0)
+                  Transparency: =
+                  Width: =InitialImageWidth
+                  X: =InitialX
+                  Y: =InitialY

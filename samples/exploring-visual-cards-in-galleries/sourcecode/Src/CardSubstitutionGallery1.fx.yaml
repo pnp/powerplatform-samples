@@ -1,0 +1,126 @@
+CardSubstitutionGallery1 As screen:
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+
+    Gallery1 As gallery.galleryHorizontal:
+        BorderColor: =RGBA(245, 245, 245, 1)
+        DelayItemLoading: =true
+        Height: =518
+        Items: =SampleVisual
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(320, Self.Width - 60), Min(320, Self.Height - 60))
+        Width: =978
+        X: =40
+        Y: =40
+        ZIndex: =1
+
+        Container4 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =Parent.TemplateHeight
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =320
+            ZIndex: =1
+
+            HtmlText1_4 As htmlViewer:
+                DisabledBorderColor: =RGBA(161, 159, 157, 1)
+                Font: =Font.'Segoe UI'
+                Height: =Parent.Height
+                HtmlText: |-
+                    =" <div style='
+                      width:100%;
+                      min-height: " & Parent.Height - Self.PaddingTop - Self.PaddingBottom - 5 & "px;
+                      max-width:60rem;
+                      margin:0 auto;
+                      display:flex;
+                      flex-wrap:wrap;
+                      gap:2rem;
+                      padding:2rem;
+                      font-family: Segoe UI, Arial, sans-serif;
+                      color: rgba(30,30,30,1);
+                      background: rgba(245,245,245,1);
+                      position: relative;
+                      box-sizing: border-box;
+                    '>
+                      <h1 style='width:100%; text-align:center; margin:0;'>" & ThisItem.Heading & "</h1>
+                    
+                      <!-- Card -->
+                      <ul style='
+                        list-style:none;
+                        display:flex;
+                        flex-wrap:wrap;
+                        justify-content:center;
+                        row-gap:2rem;
+                        width:100%;
+                        margin:0; padding:0;
+                      '>
+                        <li style='
+                          --accent:#fa0038;
+                          width:15rem;
+                          padding:2rem 0;
+                          display:grid;
+                          grid-template-rows:max-content max-content 1fr max-content;
+                          gap:0.5rem;
+                          border-radius:5rem 0 5rem 0;
+                          box-shadow:0.25rem 0.25rem 0.5rem rgba(0,0,0,0.5);
+                          margin:0 1.5rem;
+                          box-sizing: border-box;
+                        '>
+                          <div style='font-size:2rem; color: var(--accent); text-align:center;'>" & ThisItem.SubHeading & "</div>
+                    
+                          <div style='
+                            justify-self:end;
+                            margin-right:-1.5rem;
+                            padding:0.25rem 1.5rem;
+                            background-color: var(--accent);
+                            color:#fff;
+                            position:relative;
+                          '>
+                            " & ThisItem.AmountValue & "
+                            <span style='
+                              content:'';
+                              position:absolute;
+                              height:1.5rem; width:1.5rem;
+                              right:0; top:100%;
+                              background-color: var(--accent);
+                              background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+                              clip-path: polygon(0 0, 100% 0, 0 100%);
+                              display:block;
+                            '></span>
+                          </div>
+                    
+                          <ul style='list-style:none; padding:0 2rem; display:grid; margin:0;'>
+                            <li style='padding:0.5rem; display:grid; grid-template-columns:1rem 1fr; gap:1rem; border-top:1px solid rgb(200,200,200);'>
+                              <span style='display:grid; place-items:center; color:green;'>" & ThisItem.Symbol1 & "</span>
+                              <span>" & ThisItem.Item1 & "</span>
+                            </li>
+                            <li style='padding:0.5rem; display:grid; grid-template-columns:1rem 1fr; gap:1rem; border-top:1px solid rgb(200,200,200);'>
+                              <span style='display:grid; place-items:center; color:red;'>" & ThisItem.Symbol2 & "</span>
+                              <span>" & ThisItem.Item2 & "</span>
+                            </li>
+                          </ul>
+                    
+                          <button style='
+                            justify-self:start;
+                            margin-left:-1.5rem;
+                            padding:0.5rem 2.5rem;
+                            border:none;
+                            color:#fff;
+                            font-size:1.1rem;
+                            background-color: var(--accent);
+                            background-image: linear-gradient(transparent 50%, rgba(0,0,0,0.25) 0);
+                            background-size: 100% 200%;
+                            cursor:pointer;
+                          '>
+                            " & ThisItem.ItemLabel & "
+                          </button>
+                        </li>
+                      </ul>
+                    
+                     
+                    </div> "
+                Size: =13
+                Width: =Parent.Width
+                ZIndex: =2
+

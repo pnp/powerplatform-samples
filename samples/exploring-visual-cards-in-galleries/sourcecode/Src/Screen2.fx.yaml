@@ -1,0 +1,419 @@
+Screen2 As screen:
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+
+    Container1 As groupContainer.manualLayoutContainer:
+        BorderStyle: =BorderStyle.None
+        Height: =428
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =475
+        X: =540
+        Y: =40
+        ZIndex: =1
+
+        hmtl_Glassmorphism_1 As htmlViewer:
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Height: =Parent.Height
+            HtmlText: |-
+                ="
+                <div 
+                
+                style='
+                width: " & Parent.Width  & "px;
+                height: " & Parent.Height - 1 & "px; 
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+                border: 2px solid rgba(255, 255, 255, 0.4);'></div>
+                "
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =13
+            Width: =475
+            ZIndex: =1
+
+        TextCanvas2 As Text:
+            AutoHeight: =false
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =153
+            Size: =20
+            Text: ="Text dsds sdsdsd sdsdsd"
+            Width: =227
+            X: =40
+            Y: =40
+            ZIndex: =2
+
+        Image1 As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =Parent.Height - 1
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: ='847408384'
+            ImagePosition: =ImagePosition.Fill
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            RadiusBottomLeft: =45
+            RadiusBottomRight: =45
+            RadiusTopLeft: =45
+            RadiusTopRight: =45
+            Width: =Parent.Width
+            Y: =1
+            ZIndex: =3
+
+    PopupContainer As groupContainer.manualLayoutContainer:
+        BorderThickness: =1
+        DropShadow: =DropShadow.Light
+        Height: =428
+        RadiusBottomLeft: =45
+        RadiusBottomRight: =45
+        RadiusTopLeft: =45
+        RadiusTopRight: =45
+        Width: =475
+        X: =660
+        Y: =40
+        ZIndex: =2
+
+        Image1_1 As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =Parent.Height - 1
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: ='847408384'
+            ImagePosition: =ImagePosition.Fill
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            RadiusBottomLeft: =45
+            RadiusBottomRight: =45
+            RadiusTopLeft: =45
+            RadiusTopRight: =45
+            Visible: =false
+            Width: =Parent.Width
+            ZIndex: =1
+
+        TextCanvas2_1 As Text:
+            Align: ="Start"
+            AutoHeight: =false
+            BorderColor: =
+            BorderStyle: =""
+            ContentLanguage: =""
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            Font: =""
+            FontColor: =
+            FontItalic: =false
+            FontStrikethrough: =false
+            FontUnderline: =false
+            Height: =153
+            Size: =20
+            TabIndex: =0
+            Text: ="Text dsds sdsdsd sdsdsd"
+            Tooltip: =""
+            VerticalAlign: =""
+            Visible: =true
+            Weight: ="Regular"
+            Width: =227
+            Wrap: =true
+            X: =40
+            Y: =40
+            ZIndex: =2
+
+        GlassmorphismHtml As htmlViewer:
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Height: =Parent.Height
+            HtmlText: |-
+                ="
+                <div 
+                
+                style='
+                width: " & Parent.Width  & "px;
+                height: " & Parent.Height - 1 & "px; 
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+                border: 2px solid rgba(255, 255, 255, 0.4);'></div>
+                "
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =13
+            Width: =Parent.Width
+            ZIndex: =3
+
+        DataContainer As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            PaddingTop: =8
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =4
+
+    HtmlText1 As htmlViewer:
+        DisabledBorderColor: =RGBA(161, 159, 157, 1)
+        Font: =Font.'Segoe UI'
+        Height: =469
+        HtmlText: |-
+            =" <div style='
+              width:100%;
+               min-height: " & HtmlText1.Height - 15 & "px;  
+              max-width:60rem;
+              margin:0 auto;
+              display:flex;
+              flex-wrap:wrap;
+              gap:2rem;
+              padding:2rem;
+              font-family: Segoe UI, Arial, sans-serif;
+              color: rgba(30,30,30,1);
+              background: rgba(245,245,245,1);
+              position: relative;
+              box-sizing: border-box;
+            '>
+              <h1 style='width:100%; text-align:center; margin:0;'>Plans</h1>
+            
+              <!-- Card -->
+              <ul style='
+                list-style:none;
+                display:flex;
+                flex-wrap:wrap;
+                justify-content:center;
+                row-gap:2rem;
+                width:100%;
+                margin:0; padding:0;
+              '>
+                <li style='
+                  --accent:#fa0038;
+                  width:15rem;
+                  padding:2rem 0;
+                  display:grid;
+                  grid-template-rows:max-content max-content 1fr max-content;
+                  gap:0.5rem;
+                  border-radius:5rem 0 5rem 0;
+                  box-shadow:0.25rem 0.25rem 0.5rem rgba(0,0,0,0.5);
+                  margin:0 1.5rem;
+                  box-sizing: border-box;
+                '>
+                  <div style='font-size:2rem; color: var(--accent); text-align:center;'>Starter</div>
+            
+                  <div style='
+                    justify-self:end;
+                    margin-right:-1.5rem;
+                    padding:0.25rem 1.5rem;
+                    background-color: var(--accent);
+                    color:#fff;
+                    position:relative;
+                  '>
+                    $19
+                    <span style='
+                      content:'';
+                      position:absolute;
+                      height:1.5rem; width:1.5rem;
+                      right:0; top:100%;
+                      background-color: var(--accent);
+                      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+                      clip-path: polygon(0 0, 100% 0, 0 100%);
+                      display:block;
+                    '></span>
+                  </div>
+            
+                  <ul style='list-style:none; padding:0 2rem; display:grid; margin:0;'>
+                    <li style='padding:0.5rem; display:grid; grid-template-columns:1rem 1fr; gap:1rem; border-top:1px solid rgb(200,200,200);'>
+                      <span style='display:grid; place-items:center; color:green;'>✓</span>
+                      <span>Feature one</span>
+                    </li>
+                    <li style='padding:0.5rem; display:grid; grid-template-columns:1rem 1fr; gap:1rem; border-top:1px solid rgb(200,200,200);'>
+                      <span style='display:grid; place-items:center; color:red;'>×</span>
+                      <span>Feature two</span>
+                    </li>
+                  </ul>
+            
+                  <button style='
+                    justify-self:start;
+                    margin-left:-1.5rem;
+                    padding:0.5rem 2.5rem;
+                    border:none;
+                    color:#fff;
+                    font-size:1.1rem;
+                    background-color: var(--accent);
+                    background-image: linear-gradient(transparent 50%, rgba(0,0,0,0.25) 0);
+                    background-size: 100% 200%;
+                    cursor:pointer;
+                  '>
+                    Choose
+                  </button>
+                </li>
+              </ul>
+            
+             
+            </div> "
+        Size: =13
+        Width: =416
+        Y: =40
+        ZIndex: =3
+
+    HtmlText2 As htmlViewer:
+        DisabledBorderColor: =RGBA(161, 159, 157, 1)
+        Font: =Font.'Segoe UI'
+        Height: =460
+        HtmlText: |-
+            =
+            "
+            <body style='
+              margin:0;
+              
+              padding:0;
+              font-family:'Aeonik Pro Regular',sans-serif;
+              height:100vh;
+              overflow:hidden;
+            '>
+            
+              <div style='
+                position:relative;
+                background:#3a3a3a;
+                box-shadow: inset 0 1rem 0.2rem -1rem #fff0,
+                            inset 0 -1rem 0.2rem -1rem #0000,
+                            0 -1rem 0.2rem -1rem #fff0,
+                            0 1rem 0.2rem -1rem #0000,
+                            0 0 0 1px #fff3,
+                            0 4px 4px 0 #0004,
+                            0 0 0 1px #333;
+                width:auto;
+                height:auto;
+                min-height:clamp(20rem, 60vh, 28rem);
+                border-radius:1.8rem;
+                border-radius:1.8rem;
+                color:#fff;
+                padding:1rem;
+                display:flex;
+                flex-direction:column;
+                justify-content:end;
+              '>
+                <!-- Light Layer -->
+                <div style='position:absolute;left:0;top:0;width:100%;height:100%;perspective:400px;'>
+            
+                </br>
+            
+                <div style='position:relative;top:0px;left:0;right:0;margin:auto;width:fit-content;'>
+            <img alt='emblem' width='64' height='64' src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27 0 0 1024 1024 %27 width=%2764%27 height=%2764%27><path fill=%27%23555%27 d=%27M488.1 414.7V303.4L300.9 428l83.6 55.8zm254.1 137.7v-79.8l-59.8 39.9zM512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64m278 533c0 1.1-.1 2.1-.2 3.1c0 .4-.1.7-.2 1a14.2 14.2 0 0 1-.8 3.2c-.2.6-.4 1.2-.6 1.7c-.2.4-.4.8-.5 1.2c-.3.5-.5 1.1-.8 1.6c-.2.4-.4.7-.7 1.1c-.3.5-.7 1-1 1.5c-.3.4-.5.7-.8 1c-.4.4-.8.9-1.2 1.3c-.3.3-.6.6-1 .9c-.4.4-.9.8-1.4 1.1c-.4.3-.7.6-1.1.8c-.1.1-.3.2-.4.3L525.2 786c-4 2.7-8.6 4-13.2 4c-4.7 0-9.3-1.4-13.3-4L244.6 616.9c-.1-.1-.3-.2-.4-.3l-1.1-.8c-.5-.4-.9-.7-1.3-1.1c-.3-.3-.6-.6-1-.9c-.4-.4-.8-.8-1.2-1.3a7 7 0 0 1-.8-1c-.4-.5-.7-1-1-1.5c-.2-.4-.5-.7-.7-1.1c-.3-.5-.6-1.1-.8-1.6c-.2-.4-.4-.8-.5-1.2c-.2-.6-.4-1.2-.6-1.7c-.1-.4-.3-.8-.4-1.2c-.2-.7-.3-1.3-.4-2c-.1-.3-.1-.7-.2-1c-.1-1-.2-2.1-.2-3.1V427.9c0-1 .1-2.1.2-3.1c.1-.3.1-.7.2-1a14.2 14.2 0 0 1 .8-3.2c.2-.6.4-1.2.6-1.7c.2-.4.4-.8.5-1.2c.2-.5.5-1.1.8-1.6c.2-.4.4-.7.7-1.1c.6-.9 1.2-1.7 1.8-2.5c.4-.4.8-.9 1.2-1.3c.3-.3.6-.6 1-.9c.4-.4.9-.8 1.3-1.1s.7-.6 1.1-.8c.1-.1.3-.2.4-.3L498.7 239c8-5.3 18.5-5.3 26.5 0l254.1 169.1c.1.1.3.2.4.3l1.1.8l1.4 1.1c.3.3.6.6 1 .9c.4.4.8.8 1.2 1.3c.7.8 1.3 1.6 1.8 2.5c.2.4.5.7.7 1.1c.3.5.6 1 .8 1.6c.2.4.4.8.5 1.2c.2.6.4 1.2.6 1.7c.1.4.3.8.4 1.2c.2.7.3 1.3.4 2c.1.3.1.7.2 1c.1 1 .2 2.1 .2 3.1z%27 /></svg>' />
+            </div>
+            
+                  <div style='
+                    position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;
+                    width:64%;height:1.2rem;
+                    transform:rotateX(-76deg);
+                    background:#121212;
+                    box-shadow:0 0 4px 0 #fff0;
+                  '></div>
+            
+                  <div style='position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;width:100%;height:100%;opacity:0;'>
+            
+                  </div>
+                </div>
+            
+                <!-- Content -->
+                <div style='position:relative;'>
+                  <div style='position:relative;top:0px;left:0;right:0;margin:auto;width:fit-content;'>
+                 
+            
+                  </div>
+                  <div style='position:relative;'>
+                    <h4 style='margin:0;margin-bottom:1rem;font-size:1.2rem;color:#ccc;'>Luminous Design</h4>
+                    <p style='margin:0;padding-bottom:0.6rem;color:#fff4;font-size:0.6rem;font-weight:100;border-bottom:1px solid #fff1;max-width:64%;'>
+                      Light Folds Around Form <br/> Revealing Layers Of Depth
+                    </p>
+                    <div style='
+                      position:absolute;right:0;bottom:0;height:2rem;width:4.8rem;
+                      border-radius:0.6rem;background:#000;
+                      box-shadow: inset 0 -8px 8px 0.3rem #0004,
+                                  inset 0 0 1px 0.3rem #ddd,
+                                  inset 0 -2px 1px 0.3rem #fff,
+                                  inset 0 1px 2px 0.3rem #0006,
+                                  inset 0 0 1px 0.8rem #aaa;
+                      cursor:pointer;
+                    '>
+                      <div style='
+                        position:absolute;top:0;bottom:0.04rem;margin:auto;left:0.68rem;
+                        width:40%;height:30%;background:#aaa;border-radius:0.2rem;
+                        box-shadow: inset 0 1px 4px 0 #fff,
+                                    inset 0 -1px 1px 0 #000a,
+                                    0 0 1px 1px #0003,
+                                    1px 3px 6px 1px #000a;
+                      '></div>
+                      <span style='
+                        pointer-events:none;text-align:center;position:absolute;
+                        left:0;right:0;margin:auto;bottom:calc(100% + 0.4rem);
+                        font-size:0.6rem;font-weight:100;color:#555;opacity:0;
+                      '>Activate Lumen</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </body>
+            
+            
+            
+            "
+        Size: =13
+        Width: =381
+        X: =440
+        Y: =308
+        ZIndex: =4
+
+    HtmlText3 As htmlViewer:
+        DisabledBorderColor: =RGBA(161, 159, 157, 1)
+        Font: =Font.'Segoe UI'
+        Height: =93
+        HtmlText: |-
+            ="
+            <img alt='emblem' width='64' height='64' src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27 0 0 1024 1024 %27 width=%2764%27 height=%2764%27><path fill=%27%23555%27 d=%27M488.1 414.7V303.4L300.9 428l83.6 55.8zm254.1 137.7v-79.8l-59.8 39.9zM512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64m278 533c0 1.1-.1 2.1-.2 3.1c0 .4-.1.7-.2 1a14.2 14.2 0 0 1-.8 3.2c-.2.6-.4 1.2-.6 1.7c-.2.4-.4.8-.5 1.2c-.3.5-.5 1.1-.8 1.6c-.2.4-.4.7-.7 1.1c-.3.5-.7 1-1 1.5c-.3.4-.5.7-.8 1c-.4.4-.8.9-1.2 1.3c-.3.3-.6.6-1 .9c-.4.4-.9.8-1.4 1.1c-.4.3-.7.6-1.1.8c-.1.1-.3.2-.4.3L525.2 786c-4 2.7-8.6 4-13.2 4c-4.7 0-9.3-1.4-13.3-4L244.6 616.9c-.1-.1-.3-.2-.4-.3l-1.1-.8c-.5-.4-.9-.7-1.3-1.1c-.3-.3-.6-.6-1-.9c-.4-.4-.8-.8-1.2-1.3a7 7 0 0 1-.8-1c-.4-.5-.7-1-1-1.5c-.2-.4-.5-.7-.7-1.1c-.3-.5-.6-1.1-.8-1.6c-.2-.4-.4-.8-.5-1.2c-.2-.6-.4-1.2-.6-1.7c-.1-.4-.3-.8-.4-1.2c-.2-.7-.3-1.3-.4-2c-.1-.3-.1-.7-.2-1c-.1-1-.2-2.1-.2-3.1V427.9c0-1 .1-2.1.2-3.1c.1-.3.1-.7.2-1a14.2 14.2 0 0 1 .8-3.2c.2-.6.4-1.2.6-1.7c.2-.4.4-.8.5-1.2c.2-.5.5-1.1.8-1.6c.2-.4.4-.7.7-1.1c.6-.9 1.2-1.7 1.8-2.5c.4-.4.8-.9 1.2-1.3c.3-.3.6-.6 1-.9c.4-.4.9-.8 1.3-1.1s.7-.6 1.1-.8c.1-.1.3-.2.4-.3L498.7 239c8-5.3 18.5-5.3 26.5 0l254.1 169.1c.1.1.3.2.4.3l1.1.8l1.4 1.1c.3.3.6.6 1 .9c.4.4.8.8 1.2 1.3c.7.8 1.3 1.6 1.8 2.5c.2.4.5.7.7 1.1c.3.5.6 1 .8 1.6c.2.4.4.8.5 1.2c.2.6.4 1.2.6 1.7c.1.4.3.8.4 1.2c.2.7.3 1.3.4 2c.1.3.1.7.2 1c.1 1 .2 2.1 .2 3.1z%27 /></svg>' />
+            
+            "
+        Size: =13
+        X: =72
+        Y: =604
+        ZIndex: =5
+
+    HtmlText4 As htmlViewer:
+        DisabledBorderColor: =RGBA(161, 159, 157, 1)
+        Font: =Font.'Segoe UI'
+        Height: =160
+        HtmlText: |-
+            ="
+            <img alt='emblem' width='64' height='64' src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 1024 1024%27 width=%2764%27 height=%2764%27><path fill=%27%23555%27 d=%27M488.1 414.7V303.4L300.9 428l83.6 55.8zm254.1 137.7v-79.8l-59.8 39.9zM512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64m278 533c0 1.1-.1 2.1-.2 3.1c0 .4-.1.7-.2 1a14.2 14.2 0 0 1-.8 3.2c-.2.6-.4 1.2-.6 1.7c-.2.4-.4.8-.5 1.2c-.3.5-.5 1.1-.8 1.6c-.2.4-.4.7-.7 1.1c-.3.5-.7 1-1 1.5c-.3.4-.5.7-.8 1c-.4.4-.8.9-1.2 1.3c-.3.3-.6.6-1 .9c-.4.4-.9.8-1.4 1.1c-.4.3-.7.6-1.1.8c-.1.1-.3.2-.4.3L525.2 786c-4 2.7-8.6 4-13.2 4c-4.7 0-9.3-1.4-13.3-4L244.6 616.9c-.1-.1-.3-.2-.4-.3l-1.1-.8c-.5-.4-.9-.7-1.3-1.1c-.3-.3-.6-.6-1-.9c-.4-.4-.8-.8-1.2-1.3a7 7 0 0 1-.8-1c-.4-.5-.7-1-1-1.5c-.2-.4-.5-.7-.7-1.1c-.3-.5-.6-1.1-.8-1.6c-.2-.4-.4-.8-.5-1.2c-.2-.6-.4-1.2-.6-1.7c-.1-.4-.3-.8-.4-1.2c-.2-.7-.3-1.3-.4-2c-.1-.3-.1-.7-.2-1c-.1-1-.2-2.1-.2-3.1V427.9c0-1 .1-2.1.2-3.1c.1-.3.1-.7.2-1a14.2 14.2 0 0 1 .8-3.2c.2-.6.4-1.2.6-1.7c.2-.4.4-.8.5-1.2c.2-.5.5-1.1.8-1.6c.2-.4.4-.7.7-1.1c.6-.9 1.2-1.7 1.8-2.5c.4-.4.8-.9 1.2-1.3c.3-.3.6-.6 1-.9c.4-.4.9-.8 1.3-1.1s.7-.6 1.1-.8c.1-.1.3-.2.4-.3L498.7 239c8-5.3 18.5-5.3 26.5 0l254.1 169.1c.1.1.3.2.4.3l1.1.8l1.4 1.1c.3.3.6.6 1 .9c.4.4.8.8 1.2 1.3c.7.8 1.3 1.6 1.8 2.5c.2.4.5.7.7 1.1c.3.5.6 1 .8 1.6c.2.4.4.8.5 1.2c.2.6.4 1.2.6 1.7c.1.4.3.8.4 1.2c.2.7.3 1.3.4 2c.1.3.1.7.2 1c.1 1 .2 2.1 .2 3.1z%27 /></svg>' />
+            
+            "
+        Size: =13
+        Width: =247
+        X: =1051
+        Y: =564
+        ZIndex: =6
+
