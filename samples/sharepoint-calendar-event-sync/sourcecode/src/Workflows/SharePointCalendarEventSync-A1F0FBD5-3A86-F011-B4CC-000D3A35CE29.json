@@ -1,0 +1,180 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "sai_sharedoffice365_959bd"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "sai_sharedsharepointonline_6c509"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "Sharepointurl (sai_Sharepointurl)": {
+          "defaultValue": "https://tenant.sharepoint.com/sites/saitesting2",
+          "type": "String",
+          "metadata": {
+            "schemaName": "sai_Sharepointurl"
+          }
+        },
+        "Outlook Meetings (sai_OutlookMeetings)": {
+          "defaultValue": "Outlook Meetings",
+          "type": "String",
+          "metadata": {
+            "schemaName": "sai_OutlookMeetings"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "a94ec0ef-9c6a-4502-81aa-c791472c8a4d"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Get_calendar_view_of_events_(V3)": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "f7539677-945d-4c60-bd3a-a63920fa266c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "calendarId": "AQMkAGQ4YmNlMzRlLWE5ZTQtNGQwZC04ZTM5LWI5MmQ1MmU0MzEzZQBGAAADoidONSuajE27-_wcYG8d7AcAAYdxNrC1AkK_bLGB0_90vgAAAgEGAAAAAYdxNrC1AkK_bLGB0_90vgAAAniJAAAA",
+              "startDateTimeUtc": "2025-01-01T00:00:00Z",
+              "endDateTimeUtc": "@utcNow()"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "operationId": "GetEventsCalendarViewV3",
+              "connectionName": "shared_office365"
+            }
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('Get_calendar_view_of_events_(V3)')?['body/value']",
+          "actions": {
+            "Get_items": {
+              "metadata": {
+                "operationMetadataId": "d5095882-8eb7-4c0f-8a8a-c07f2e5dcb88"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@parameters('Sharepointurl (sai_Sharepointurl)')",
+                  "table": "@parameters('Outlook Meetings (sai_OutlookMeetings)')",
+                  "$filter": "MeetingID eq '@{items('Apply_to_each')?['iCalUId']}'"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "GetItems",
+                  "connectionName": "shared_sharepointonline"
+                }
+              }
+            },
+            "Condition": {
+              "actions": {
+                "Create_item": {
+                  "metadata": {
+                    "operationMetadataId": "65427292-572a-4fd5-a385-3f10325d90b4"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "dataset": "@parameters('Sharepointurl (sai_Sharepointurl)')",
+                      "table": "@parameters('Outlook Meetings (sai_OutlookMeetings)')",
+                      "view": "840f4894-ffb1-41fe-b65d-3f8b4a038e61",
+                      "item/Title": "@items('Apply_to_each')?['subject']",
+                      "item/Attendees": "@{items('Apply_to_each')?['requiredAttendees']}@{items('Apply_to_each')?['optionalAttendees']}",
+                      "item/StartTime": "@items('Apply_to_each')?['startWithTimeZone']",
+                      "item/EndTime": "@items('Apply_to_each')?['endWithTimeZone']",
+                      "item/Location": "@items('Apply_to_each')?['location']",
+                      "item/Body": "@replace(replace(replace(replace(items('Apply_to_each')?['body'],'<br>','\\n'),'<br/>','\\n'),'<p>','\\n'),'</p>','')",
+                      "item/MeetingID": "@items('Apply_to_each')?['iCalUId']",
+                      "item/Organizer1": "@items('Apply_to_each')?['organizer']"
+                    },
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                      "operationId": "PostItem",
+                      "connectionName": "shared_sharepointonline"
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_items": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {}
+              },
+              "expression": {
+                "and": [
+                  {
+                    "equals": [
+                      "@length(body('Get_items')?['value'])",
+                      0
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "74980576-0e28-4578-a76e-d9fa34c3fea6"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Get_calendar_view_of_events_(V3)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fe9c2204-a14f-46eb-918c-98eeb122f794"
+          },
+          "type": "Foreach",
+          "runtimeConfiguration": {
+            "concurrency": {
+              "repetitions": 20
+            }
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
