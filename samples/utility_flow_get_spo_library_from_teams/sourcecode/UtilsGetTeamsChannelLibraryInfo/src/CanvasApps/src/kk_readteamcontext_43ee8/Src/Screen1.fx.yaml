@@ -1,0 +1,143 @@
+"Screen1 As screen.'autoLayout_SplitScreen_ver1.0'":
+
+    ScreenContainer2 As groupContainer.horizontalAutoLayoutContainer:
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        LayoutWrap: =true
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        LeftContainer1 As groupContainer.verticalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =215
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =1
+
+            Table2 As Table.pcfdataset:
+                AlignInContainer: =AlignInContainer.Stretch
+                DateOnlyFormat: ='PowerAppsOneGrid.DateOnlyFormat'.ShortDate
+                DateTimeFormat: ='PowerAppsOneGrid.DateTimeFormat'.ShortDateTime
+                DisplayMode: =DisplayMode.Edit
+                EnableRangeSelection: ='PowerAppsOneGrid.EnableRangeSelection'.Disable
+                EnableSorting: ='PowerAppsOneGrid.EnableSorting'.Disable
+                HeaderFontSize: =10.5
+                Height: =CountRows(contextInfo)*40+15
+                Items: =contextInfo
+                LayoutMinHeight: =If(Self.Y + 500 > Parent.Height, Parent.Height - Self.Y, 500)
+                LayoutMinWidth: =If(Self.X + 800 > Parent.Width, Parent.Width - Self.X, 800)
+                onCellValueChange: =false
+                onFilter: =false
+                onNavigate: =false
+                onRowSelect: =false
+                onSave: =false
+                OnSelect: =false
+                ShowAvatar: ="no"
+                ShowColumnHeaders: ="no"
+                ShowFooter: ="no"
+                Width: =If(Self.X + 800 > Parent.Width, Parent.Width - Self.X, 800)
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+                value1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="value"
+                    FieldName: ="value"
+                    FieldType: ="s"
+                    FieldVariantName: ="textualColumn"
+                    Order: =2
+                    Width: =0
+                    ZIndex: =4
+
+                name1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="name"
+                    FieldName: ="name"
+                    FieldType: ="s"
+                    FieldVariantName: ="textualColumn"
+                    Order: =1
+                    Width: =0
+                    ZIndex: =5
+
+        ButtonCanvas1 As Button:
+            Appearance: ='ButtonCanvas.Appearance'.Secondary
+            DisplayMode: =DisplayMode.Edit
+            Height: =32
+            Icon: ="ArrowClockwise"
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            OnSelect: |
+                =Set(isLoading,true);
+                Set(
+                    rResult,
+                    GetTeamsChannelLibraryInfo.Run(
+                       Param("teamId"),
+                        Param("channelId")
+                    )
+                );
+                Set(isLoading,false);
+            Text: ="Fetch folder information"
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+        RightContainer1 As groupContainer.verticalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =3
+
+            TextCanvas1 As Text:
+                AlignInContainer: =AlignInContainer.Stretch
+                AutoHeight: =true
+                DisplayMode: =DisplayMode.Edit
+                FillPortions: =1
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Text: |
+                    =If(IsBlank(rResult),"",JSON(rResult,JSONFormat.IndentFour))
+                VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                Visible: =!isLoading
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+            Spinner1 As Spinner:
+                AlignInContainer: =AlignInContainer.Stretch
+                BasePaletteColor: =RGBA(5, 102, 178, 1)
+                DisplayMode: =DisplayMode.Edit
+                FontSize: =10.5
+                Height: =200
+                Label: ="Please wait, we are fetching the folder, library and site information"
+                LayoutMinHeight: =200
+                LayoutMinWidth: =200
+                Visible: =isLoading
+                Width: =200
+                X: =0
+                Y: =0
+                ZIndex: =3
+

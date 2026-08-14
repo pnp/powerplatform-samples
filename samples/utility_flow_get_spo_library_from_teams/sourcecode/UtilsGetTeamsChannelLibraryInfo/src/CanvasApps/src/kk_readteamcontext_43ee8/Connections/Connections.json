@@ -1,0 +1,68 @@
+{
+  "013f7db1-f147-4631-97bb-10b94eb689d4": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1725/1.0.1725.4004/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "d0a6f5cc-8043-49e5-8b46-0434ab65bafa": {
+          "value": "shared_webcontentsv2_1"
+        },
+        "workflowDisplayName": {
+          "value": "Get Teams Channel Library Info"
+        },
+        "workflowEntityId": {
+          "value": "2b17bb29-f7c5-ef11-b8e8-002248db5453"
+        },
+        "workflowName": {
+          "value": "dd50bde3-2fa4-0a03-1452-37d269b86d6d"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_webcontentsv2_1": {
+          "value": "d0a6f5cc-8043-49e5-8b46-0434ab65bafa"
+        },
+        "workflowDisplayName": {
+          "value": "Get Teams Channel Library Info"
+        },
+        "workflowEntityId": {
+          "value": "2b17bb29-f7c5-ef11-b8e8-002248db5453"
+        },
+        "workflowName": {
+          "value": "dd50bde3-2fa4-0a03-1452-37d269b86d6d"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "GetTeamsChannelLibraryInfo"
+    ],
+    "dependencies": {
+      "shared_webcontentsv2_1": "d0a6f5cc-8043-49e5-8b46-0434ab65bafa"
+    },
+    "dependents": [],
+    "id": "013f7db1-f147-4631-97bb-10b94eb689d4"
+  },
+  "d0a6f5cc-8043-49e5-8b46-0434ab65bafa": {
+    "appActions": [],
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "HTTP With Microsoft Entra ID",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/nl/partialbuilds/webcontentsv2-specialtrain/1.0.1717.3936/webcontentsv2/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_webcontentsv2",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "013f7db1-f147-4631-97bb-10b94eb689d4"
+    ],
+    "id": "d0a6f5cc-8043-49e5-8b46-0434ab65bafa"
+  }
+}
