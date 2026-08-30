@@ -1,0 +1,280 @@
+MyVisitsScreen As screen:
+    Fill: =RGBA(245, 247, 254, 1)
+
+    "Gallery2 As gallery.'BrowseLayout_Vertical_ThreeTextOneImageVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =726
+        Items: =Visits
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =10
+        TemplateSize: =116
+        Visible: =selectedView = "List" || IsBlank(selectedView)
+        Width: =572
+        X: =35
+        Y: =353
+        ZIndex: =2
+
+        Button3_9 As button:
+            BorderThickness: =0
+            Fill: |-
+                =If(ThisItem.IsSelected, ColorValue("#7889d3"), RGBA(255, 255, 255, 1))
+            Height: =108
+            HoverFill: =Self.Fill
+            Size: =24
+            Text: =""
+            Width: =552
+            ZIndex: =1
+
+        Title2 As label:
+            Color: |-
+                =If(ThisItem.IsSelected, ColorValue("#FFFFFF"), RGBA(16, 20, 82, 1))
+            FontWeight: =FontWeight.Semibold
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Name 
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 185
+            X: =115
+            Y: =(Parent.TemplateHeight - (Self.Size*1.8 + Subtitle2.Size*1.8 + 2 + Body1.Size*1.8)) / 2
+            ZIndex: =2
+
+        Subtitle2 As label:
+            Color: |-
+                =If(ThisItem.IsSelected, ColorValue("#FFFFFF"), RGBA(16, 20, 82, 1))
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.'Planned Date and Time' & " " & Switch(ThisItem.'Status Reason', 'Status Reason (Visits)'.Pending, "⚪️", 'Status Reason (Visits)'.'In Progress', "🔵", 'Status Reason (Visits)'.Done, "🟢")
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Title2.Width
+            X: =Title2.X
+            Y: =Title2.Y + Title2.Height
+            ZIndex: =3
+
+        Body1 As label:
+            Color: |-
+                =If(ThisItem.IsSelected, ColorValue("#FFFFFF"), RGBA(16, 20, 82, 1))
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Patient.Name
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Subtitle2.Width
+            X: =Title2.X
+            Y: =Subtitle2.Y + Subtitle2.Height
+            ZIndex: =4
+
+        NextArrow2 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(166, 166, 166, 1)
+            Height: =50
+            Icon: =Icon.View
+            OnSelect: |-
+                =Set(updatedScore, ThisItem.Score);
+                Navigate(VisitDetailsScreen, Transition.None, { selectedVisitInfo: ThisItem, selectedVisitStatus_: ThisItem.'Status Reason', patientPhoto: ThisItem.Patient.Photo })
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =50
+            X: =480
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =5
+
+        Title1_2 As label:
+            Align: =Align.Center
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =46
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =24
+            Text: ="🗓️"
+            Width: =45
+            X: =40
+            Y: =40
+            ZIndex: =7
+
+    Label1_14 As label:
+        Font: =Font.Arial
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =16
+        Text: ="Upcoming Visits"
+        Width: =311
+        X: =35
+        Y: =152
+        ZIndex: =3
+
+    "Map1 As 'Map (preview)'.pcfdataset":
+        BorderColor: =RGBA(0, 18, 107, 1)
+        BorderRadius: =20
+        CurrentLocation: =true
+        DefaultLocation: =false
+        DefaultZoomLevel: =10
+        DisplayMode: =DisplayMode.Edit
+        Height: =727
+        InfoCards: ='Map.InfoCards'.OnClick
+        Items: =Visits
+        ItemsLabels: ="rms_title"
+        ItemsLatitudes: ="rms_latitude"
+        ItemsLongitudes: ="rms_longitude"
+        PinColor: |-
+            =ColorValue("#7889d3")
+        RouteMaintainOrder: =true
+        RouteOptimization: ='Map.RouteOptimization'.Time
+        SatelliteView: =false
+        ShapeDrawing: =false
+        ShapeEditingDeleting: =false
+        UseRouting: =true
+        Visible: =selectedView = "Map"
+        Width: =572
+        X: =35
+        Y: =353
+        ZIndex: =4
+
+        Title4 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Title"
+            FieldName: ="rms_title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =4
+            ZIndex: =12
+
+        Latitude1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Latitude"
+            FieldName: ="rms_latitude"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =13
+
+        Longitude1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Longitude"
+            FieldName: ="rms_longitude"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =3
+            ZIndex: =14
+
+        Patient1 As pcfDataField:
+            FieldDisplayName: ="Patient"
+            FieldName: ="rms_Patient"
+            FieldType: ="E"
+            FieldVariantName: ="complexTypeColumn"
+            Order: =4
+            ZIndex: =15
+
+        "'Planned Date and Time1' As pcfDataField.textualColumn":
+            FieldDisplayName: ="Planned Date and Time"
+            FieldName: ="rms_planneddateandtime"
+            FieldType: ="d"
+            FieldVariantName: ="textualColumn"
+            Order: =5
+            ZIndex: =16
+
+    Button3_10 As button:
+        BorderThickness: =0
+        Color: |-
+            =If(selectedView = "Map", ColorValue("#7889d3"), RGBA(255, 255, 255, 1))
+        Fill: |-
+            =If(selectedView = "List", ColorValue("#7889d3"), RGBA(255, 255, 255, 1))
+        FocusedBorderThickness: =0
+        Font: =Font.Arial
+        Height: =58
+        HoverColor: |-
+            =If(selectedView = "Map", ColorValue("#7889d3"), RGBA(255, 255, 255, 1))
+        HoverFill: =Self.Fill
+        OnSelect: |-
+            =UpdateContext({ selectedView: "List" })
+        PressedColor: |-
+            =If(selectedView = "Map", ColorValue("#7889d3"), RGBA(255, 255, 255, 1))
+        RadiusBottomLeft: =30
+        RadiusBottomRight: =30
+        RadiusTopLeft: =30
+        RadiusTopRight: =30
+        Size: =14
+        TabIndex: =If(selectedView = "List", 1, 0)
+        Text: ="List"
+        Width: =313
+        X: =35
+        Y: =237
+        ZIndex: =8
+
+    Button3_11 As button:
+        BorderThickness: =0
+        Color: |-
+            =If(selectedView = "List", ColorValue("#7889d3"), RGBA(255, 255, 255, 1))
+        Fill: |-
+            =If(selectedView = "Map", ColorValue("#7889d3"), RGBA(255, 255, 255, 1))
+        FocusedBorderThickness: =0
+        Font: =Font.Arial
+        Height: =58
+        HoverColor: |-
+            =If(selectedView = "List", ColorValue("#7889d3"), RGBA(255, 255, 255, 1))
+        HoverFill: =Self.Fill
+        OnSelect: |-
+            =UpdateContext({ selectedView: "Map" })
+        PressedColor: |-
+            =If(selectedView = "List", ColorValue("#7889d3"), RGBA(255, 255, 255, 1))
+        RadiusBottomLeft: =30
+        RadiusBottomRight: =30
+        RadiusTopLeft: =30
+        RadiusTopRight: =30
+        Size: =14
+        TabIndex: =If(selectedView = "Map", 1, 0)
+        Text: ="Map"
+        Width: =314
+        X: =293
+        Y: =237
+        ZIndex: =9
+
+    Icon3_5 As icon.BackArrow:
+        Color: |-
+            =ColorValue("#7889d3")
+        Height: =28
+        Icon: =Icon.Reload
+        OnSelect: =Refresh(Visits)
+        Width: =26
+        X: =221
+        Y: =173
+        ZIndex: =10
+
+    Label1_24 As label:
+        Align: =Align.Right
+        Font: =Font.Arial
+        Height: =70
+        Size: =16
+        Text: ="Hi, " & User().FullName & " 👋🏻!"
+        Width: =311
+        X: =237
+        Y: =15
+        ZIndex: =11
+
+    Image4 As image:
+        Height: =46
+        Image: =User().Image
+        ImagePosition: =ImagePosition.Fill
+        RadiusBottomLeft: =100
+        RadiusBottomRight: =100
+        RadiusTopLeft: =100
+        RadiusTopRight: =100
+        Width: =46
+        X: =561
+        Y: =27
+        ZIndex: =12
+

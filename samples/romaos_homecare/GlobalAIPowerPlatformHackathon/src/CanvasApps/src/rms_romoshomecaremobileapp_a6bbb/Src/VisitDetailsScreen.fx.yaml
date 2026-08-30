@@ -1,0 +1,281 @@
+VisitDetailsScreen As screen:
+    Fill: =RGBA(245, 247, 254, 1)
+
+    Rectangle2 As rectangle:
+        Fill: |-
+            =ColorValue("#7889d3")
+        Height: =382
+        Width: =640
+        ZIndex: =1
+
+    Button3_8 As button:
+        BorderThickness: =0
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =407
+        HoverFill: =Self.Fill
+        Size: =24
+        Text: =""
+        Width: =560
+        X: =47
+        Y: =700
+        ZIndex: =2
+
+    Label3 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =75
+        Size: =21
+        Text: =selectedVisitInfo.ID & " - " & selectedVisitInfo.Patient.Name
+        Width: =356
+        X: =55
+        Y: =89
+        ZIndex: =4
+
+    Label3_1 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =49
+        Size: =14
+        Text: =selectedVisitInfo.Title
+        Width: =544
+        X: =55
+        Y: =139
+        ZIndex: =5
+
+    Label3_2 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =41
+        Size: =11
+        Text: =selectedVisitInfo.'Planned Date and Time'
+        Width: =519
+        X: =55
+        Y: =176
+        ZIndex: =6
+
+    Icon3_1 As icon.BackArrow:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =35
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Back()
+        Width: =35
+        X: =35
+        Y: =30
+        ZIndex: =7
+
+    Button3_6 As button:
+        BorderThickness: =0
+        Color: =RGBA(102, 102, 102, 1)
+        DisplayMode: =If(selectedVisitInfo.'Status Reason' = 'Status Reason (Visits)'.'In Progress',  DisplayMode.Edit, DisplayMode.Disabled)
+        Fill: =RGBA(255, 255, 255, 1)
+        Font: =Font.Arial
+        Height: =87
+        HoverFill: |-
+            =ColorValue("#7889d3")
+        OnSelect: |-
+            =Navigate(VisitPictureScreen, Transition.None, { selectedVisitInfo: selectedVisitInfo })
+        Size: =16
+        Text: ="📷  Take Pictures"
+        Width: =269
+        X: =47
+        Y: =465
+        ZIndex: =9
+
+    Button3_7 As button:
+        BorderThickness: =0
+        Color: =RGBA(102, 102, 102, 1)
+        DisplayMode: =If(selectedVisitInfo.'Status Reason' = 'Status Reason (Visits)'.'In Progress',  DisplayMode.Edit, DisplayMode.Disabled)
+        Fill: =RGBA(255, 255, 255, 1)
+        Font: =Font.Arial
+        Height: =87
+        HoverFill: |-
+            =ColorValue("#7889d3")
+        OnSelect: |-
+            =Navigate(VisitAudioScreen, Transition.None, { selectedVisit: selectedVisitInfo })
+        Size: =16
+        Text: ="🔈 Record Audio"
+        Width: =269
+        X: =338
+        Y: =465
+        ZIndex: =10
+
+    "Map1_1 As 'Map (preview)'.pcfdataset":
+        BorderColor: =RGBA(0, 18, 107, 1)
+        BorderRadius: =10
+        CurrentLocation: =false
+        DefaultLocation: =false
+        DefaultZoomLevel: =10
+        DisplayMode: =DisplayMode.Edit
+        Height: =320
+        InfoCards: ='Map.InfoCards'.OnHover
+        Items: |-
+            =[ { Title: selectedVisitInfo.Patient.Name, Latitude: selectedVisitInfo.Latitude, Longitude: selectedVisitInfo.Longitude }]
+        ItemsLabels: ="Title"
+        ItemsLatitudes: ="Latitude"
+        ItemsLongitudes: ="Longitude"
+        MapStyle: ='Map.MapStyle'.RoadShadedRelief
+        PinColor: |-
+            =ColorValue("#7889d3")
+        RouteOptimization: ='Map.RouteOptimization'.Distance
+        SatelliteView: =false
+        ShapeDrawing: =false
+        ShapeEditingDeleting: =false
+        Transparency: =5
+        UseRouting: =true
+        Visible: =true
+        Width: =504
+        X: =73
+        Y: =764
+        ZIndex: =12
+
+        Latitude2 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Latitude"
+            FieldName: ="Latitude"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =1
+
+        Longitude2 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Longitude"
+            FieldName: ="Longitude"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =2
+
+        Title6 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Title"
+            FieldName: ="Title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =3
+            ZIndex: =3
+
+    Label1_18 As label:
+        Font: =Font.Arial
+        FontWeight: =FontWeight.Semibold
+        Height: =49
+        Size: =16
+        Text: ="Location"
+        Width: =311
+        X: =73
+        Y: =715
+        ZIndex: =13
+
+    Circle1_2 As circle:
+        Fill: |-
+            =ColorValue("#FFFFFF")
+        Height: =195
+        Width: =195
+        X: =222
+        Y: =255
+        ZIndex: =14
+
+    Circle1_3 As circle:
+        Fill: |-
+            =ColorValue("#7889d3")
+        Height: =182
+        OnSelect: |-
+            =Navigate(PatientDetailScreen, Transition.None, { patient : selectedVisitInfo.Patient })
+        Width: =182
+        X: =229
+        Y: =262
+        ZIndex: =15
+
+    Image2_1 As image:
+        Height: =140
+        Image: =If(!IsBlank(patientPhoto.Full), patientPhoto.Full, SampleImage)
+        ImagePosition: =ImagePosition.Fill
+        OnSelect: |-
+            =Navigate(PatientDetailScreen, Transition.None, { patient : selectedVisitInfo.Patient, lastVisit: Last(SortByColumns(Filter(Visits, Patient.Patient = selectedVisitInfo.Patient.Patient), "rms_planneddateandtime")) })
+        RadiusBottomLeft: =500
+        RadiusBottomRight: =500
+        RadiusTopLeft: =500
+        RadiusTopRight: =500
+        Width: =140
+        X: =250
+        Y: =283
+        ZIndex: =16
+
+    Button3_12 As button:
+        BorderThickness: =0
+        Color: =RGBA(102, 102, 102, 1)
+        DisplayMode: =If(selectedVisitInfo.'Status Reason' = 'Status Reason (Visits)'.'In Progress',  DisplayMode.Edit, DisplayMode.Disabled)
+        Fill: =RGBA(255, 255, 255, 1)
+        Font: =Font.Arial
+        Height: =87
+        HoverFill: |-
+            =ColorValue("#7889d3")
+        OnSelect: |-
+            =Navigate(VisitChecklistScreen, Transition.None, { selectedVisitForChecklist: selectedVisitInfo })
+        Size: =16
+        Text: ="✔️ Visit Checklist"
+        Width: =269
+        X: =47
+        Y: =573
+        ZIndex: =17
+
+    Button3_13 As button:
+        BorderThickness: =0
+        Color: =RGBA(102, 102, 102, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Font: =Font.Arial
+        Height: =87
+        HoverFill: |-
+            =ColorValue("#7889d3")
+        OnSelect: |-
+            =If(selectedVisitStatus_ = 'Status Reason (Visits)'.Pending, 
+                UpdateContext({ selectedVisitInfo: Patch(Visits, selectedVisitInfo, { 'Status Reason': 'Status Reason (Visits)'.'In Progress' }) }); 
+                UpdateContext({ selectedVisitStatus: 'Status Reason (Visits)'.'In Progress' }),
+                If(selectedVisitStatus_ = 'Status Reason (Visits)'.'In Progress',
+                    UpdateContext({ selectedVisitInfo: Patch(Visits, selectedVisitInfo, { 'Status Reason': 'Status Reason (Visits)'.Done }) });  
+                    UpdateContext({ selectedVisitStatus_: 'Status Reason (Visits)'.Done }),
+                    UpdateContext({ selectedVisitInfo: Patch(Visits, selectedVisitInfo, { 'Status Reason': 'Status Reason (Visits)'.Pending }) });  
+                    UpdateContext({ selectedVisitStatus_: 'Status Reason (Visits)'.Pending })
+                )
+            ) 
+        Size: =16
+        Text: |-
+            =If(selectedVisitStatus_ = 'Status Reason (Visits)'.Pending, 
+                "Start the Visit",
+                If(selectedVisitStatus_ = 'Status Reason (Visits)'.'In Progress',
+                    "Mark as Done",
+                    "Back to Pending"
+                )
+            ) 
+        Width: =269
+        X: =338
+        Y: =573
+        ZIndex: =18
+
+    Label3_3 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =41
+        Size: =11
+        Text: =selectedVisitInfo.'Status Reason'
+        Width: =519
+        X: =55
+        Y: =204
+        ZIndex: =19
+
+    Label3_4 As label:
+        Align: =Align.Center
+        Color: =RGBA(245, 247, 254, 1)
+        Height: =193
+        Size: =40
+        Text: =If(!IsBlank(updatedScore), Text(updatedScore), "-")
+        Width: =164
+        X: =460
+        Y: =52
+        ZIndex: =20
+
+    Icon3_9 As icon.BackArrow:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =35
+        Icon: =Icon.Reload
+        OnSelect: |-
+            =UpdateContext({ selectedVisitInfo: LookUp(Visits, Visit = selectedVisitInfo.Visit) })
+        Width: =35
+        X: =572
+        Y: =30
+        ZIndex: =21
+

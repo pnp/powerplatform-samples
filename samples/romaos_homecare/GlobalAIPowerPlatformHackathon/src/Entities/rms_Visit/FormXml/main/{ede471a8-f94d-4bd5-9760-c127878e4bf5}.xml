@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{ede471a8-f94d-4bd5-9760-c127878e4bf5}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="false">
+      <tabs>
+        <tab verticallayout="true" id="{55dfc11c-dc19-48e8-adde-3dedd9704008}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{bdd953d0-b8ae-4975-a3dc-0fa418b1a210}" columns="1" name="General">
+                  <labels>
+                    <label description="General Information" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{253556f8-42e0-44c6-8dd1-9c601d34ab0f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="ID" languagecode="1033" />
+                        </labels>
+                        <control id="rms_id" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="rms_id" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a0287531-524b-46be-a416-1918ba0dbe81}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Title" languagecode="1033" />
+                        </labels>
+                        <control id="rms_title" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="rms_title" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1fecfcc5-abf5-4dfc-95ca-2ab6463631f3}" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="rms_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="rms_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b2a8588f-a94f-4790-b7ab-8fe637a67166}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Patient" languagecode="1033" />
+                        </labels>
+                        <control id="rms_patient" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="rms_patient" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{dc72cef4-88f6-473e-ac0e-3378ceadcb67}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Latitude" languagecode="1033" />
+                        </labels>
+                        <control id="rms_latitude" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="rms_latitude" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b4e9e3b4-8b46-425c-b3ac-35551a4613b9}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Longitude" languagecode="1033" />
+                        </labels>
+                        <control id="rms_longitude" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="rms_longitude" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="_section_964" id="153999ff-0f8b-4d6e-9157-ba1a41f572bb" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="📅 Dates" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{e68173ec-86e4-4a0b-bf35-34f5a3a74e1e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Date and Time" languagecode="1033" />
+                        </labels>
+                        <control id="rms_planneddateandtime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="rms_planneddateandtime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e266ee84-0af4-4411-b8de-927db3207315}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Actual Date and Time" languagecode="1033" />
+                        </labels>
+                        <control id="rms_actualdateandtime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="rms_actualdateandtime" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="cd1632c5-d8b0-424a-8f18-ca954e9b1604" IsUserDefined="0" locklevel="0" showlabel="true" contenttype="singleComponent">
+          <labels>
+            <label description="Checklist" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="beca1983-2ee2-4e93-948b-7c77d4faafaf" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{1bbe3bb6-9d38-463b-b6f4-0e4554975510}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1695950170044" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_3" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>rms_visitchecklistitem</TargetEntityType>
+                            <ViewId>{72440342-A701-47C0-894F-A40508E6D810}</ViewId>
+                            <ViewIds>{72440342-A701-47C0-894F-A40508E6D810}</ViewIds>
+                            <RelationshipName>rms_rms_visitchecklistitem_Visit_rms_visit</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_3" id="fe2b1d2f-2eb0-4cac-baa0-49da942fc204" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Media" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="null_section_4" id="ddd7ae23-eb13-4226-8f8e-49d034d34add" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="🏞️ Picture References" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell showlabel="false" locklevel="0" id="{2f92b981-bcae-43d5-bdbe-e2aa60d0b756}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{f5ab7195-e637-49eb-a6ec-491193fcd2eb}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1695255705503" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>rms_picturereference</TargetEntityType>
+                            <ViewId>{80FA64EB-CE95-4D1B-9145-553E4AD2EDF5}</ViewId>
+                            <ViewIds>{80FA64EB-CE95-4D1B-9145-553E4AD2EDF5}</ViewIds>
+                            <RelationshipName>rms_rms_picturereference_Visit_rms_visit</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="null_section_3" id="68013afa-38f2-43c0-ab69-9c061f674b2e" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="🎵 Audio References" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell showlabel="false" locklevel="0" id="{e911c02a-d1ea-4d60-a69c-4dba861ba367}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{74a98e74-0c33-47df-9f17-d6a8aa4e3e97}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1695255615508" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>rms_audioreference</TargetEntityType>
+                            <ViewId>{8A3A28C2-B2FF-4869-9207-5989496E235A}</ViewId>
+                            <ViewIds>{8A3A28C2-B2FF-4869-9207-5989496E235A}</ViewIds>
+                            <RelationshipName>rms_rms_audioreference_Visit_rms_visit</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{45d1e9d1-b707-4eff-a046-91831a69905b}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{56a8be8c-3586-4e32-8deb-853470f10636}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{ef5611b8-e9ce-4498-b882-7b70622739e5}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{5fd0242d-5f81-45e8-8c88-8ee399782f16}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{f4c4f77c-0cbf-41a1-b6cf-3e269483f8f2}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Score" languagecode="1033" />
+              </labels>
+              <control id="header_rms_score" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="rms_score" disabled="false" />
+            </cell>
+            <cell id="{6c70cd11-6f4f-43ab-9c96-df7b8f2da2ed}" colspan="1" rowspan="1" visible="false">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{6764da76-c071-4443-b67b-a28620d251dc}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{9e593960-347e-4471-95ab-8583b48b3d9f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a7f226f8-ab6d-4a9d-8889-74ffb68e69ac}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{64ff1624-a609-4ae6-b989-c42500c937b0}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -1,0 +1,144 @@
+<widget xmlns="http://openajax.org/metadata" spec="1.0" id="http://microsoft.com/appmagic/camera" name="camera" jsClass="AppMagic.Controls.Camera" version="2.4.0" styleable="true" runtimeCost="1" xmlns:appMagic="http://schemas.microsoft.com/appMagic">
+  <author name="Microsoft AppMagic" />
+  <license type="text/html"><![CDATA[<p>TODO:  Need license text here.</p>]]></license>
+  <description><![CDATA[CAMERA
+      Control description here.]]></description>
+  <requires>
+    <require type="folder" src="js/" />
+    <require type="css" src="css/camera.css" />
+    <require type="javascript" src="js/camera.js" />
+    <require type="other" src="images/camera_no_stream.svg" />
+  </requires>
+  <appMagic:capabilities contextualViewsEnabled="true" autoBorders="true" autoFocusedBorders="true" screenActiveAware="true" requiresCameraAccess="true" isVersionFlexible="true" />
+  <appMagic:accessibilityChecks controlIsInteractive="true" />
+  <content><![CDATA[
+    <button class="appmagic-camera" data-bind="
+      attr: {
+        title: properties.Tooltip() || null,
+        'aria-label': actionLabel
+      },
+      disable: isDisabled || state === 'error'
+    ">
+      <div class="appmagic-camera-stream" aria-hidden="true" data-bind="visible: supportsStreaming && !isDisabled && state !== 'error'"></div>
+      <div class="appmagic-camera-video-disabled" data-bind= "visible: isDisabled" ></div>
+      <div class="appmagic-no-camera" data-bind="visible: state === 'error'">
+        <div data-bind="text: cameraStoppedMessage"></div>
+      </div>
+      <div class="appmagic-no-stream" data-bind="visible: !supportsStreaming">
+          <img class="appmagic-camera-icon" data-bind="modifySrcUrl: 'ctrllib/camera/images/camera_no_stream.svg'" alt="" />
+      </div>
+    </button>
+    ]]></content>
+  <properties>
+    <property name="Photo" localizedName="##camera_Photo##" datatype="Image" direction="out" isPrimaryOutputProperty="true">
+      <title>Camera image output </title>
+      <appMagic:category>Data</appMagic:category>
+    </property>
+    <property name="Stream" localizedName="##camera_Stream##" datatype="Image" direction="out" isPrimaryOutputProperty="true">
+      <title>Camera stream output </title>
+      <appMagic:category>Data</appMagic:category>
+    </property>
+    <property name="Camera" localizedName="##camera_Camera##" datatype="Number" defaultValue="-1">
+      <title>Camera</title>
+      <appMagic:category>design</appMagic:category>
+      <appMagic:displayName>##camera_Camera_DisplayName##</appMagic:displayName>
+      <appMagic:tooltip>##camera_Camera_Tooltip##</appMagic:tooltip>
+    </property>
+    <property name="StreamRate" localizedName="##camera_StreamRate##" datatype="number" defaultValue="0">
+      <title>StreamRate</title>
+      <appMagic:category>design</appMagic:category>
+      <appMagic:displayName>##camera_StreamRate_DisplayName##</appMagic:displayName>
+    </property>
+    <property name="OnStream" localizedName="##camera_OnStream##" datatype="Boolean" defaultValue="false" direction="in" isPrimaryBehaviorProperty="true">
+      <title>OnStream</title>
+      <appMagic:category>behavior</appMagic:category>
+      <appMagic:displayName>##camera_OnStream_DisplayName##</appMagic:displayName>
+      <appMagic:tooltip>##camera_OnStream_Tooltip##</appMagic:tooltip>
+    </property>
+    <property name="AvailableDevices" localizedName="##camera_AvailableDevices##" datatype="Array" direction="out">
+      <title>Outputs available video devices</title>
+      <appMagic:category>Data</appMagic:category>
+      <properties>
+        <property name="Name" localizedName="Name" datatype="String"></property>
+        <property name="Id" localizedName="Id" datatype="Number"></property>
+      </properties>
+    </property>
+  </properties>
+  <appMagic:includeProperties>
+    <!-- Data -->
+    <appMagic:includeProperty name="AccessibleLabel" />
+    <appMagic:includeProperty name="Tooltip" />
+    <appMagic:includeProperty name="ContentLanguage" />
+    <!-- Design -->
+    <appMagic:includeProperty name="BorderColor" />
+    <appMagic:includeProperty name="BorderStyle" />
+    <appMagic:includeProperty name="BorderThickness" />
+    <appMagic:includeProperty name="FocusedBorderColor" defaultValue="Self.BorderColor" isExpr="true" />
+    <appMagic:includeProperty name="FocusedBorderThickness" defaultValue="4" />
+    <appMagic:includeProperty name="X" />
+    <appMagic:includeProperty name="Y" />
+    <appMagic:includeProperty name="Width" defaultValue="400" />
+    <appMagic:includeProperty name="Height" defaultValue="300" />
+    <appMagic:includeProperty name="Visible" />
+    <appMagic:includeProperty name="DisplayMode" />
+    <appMagic:includeProperty name="TabIndex" defaultValue="0" />
+    <!-- Behavior Properties -->
+    <!-- TASK: 85476: Do Behavior properties make sense as input only? -->
+    <appMagic:includeProperty name="OnSelect" direction="in" />
+    <!-- Hidden properties -->
+    <appMagic:includeProperty name="maximumHeight" defaultValue="768" />
+    <appMagic:includeProperty name="maximumWidth" defaultValue="1366" />
+    <appMagic:includeProperty name="minimumHeight" defaultValue="30" />
+    <appMagic:includeProperty name="minimumWidth" defaultValue="40" />
+  </appMagic:includeProperties>
+  <appMagic:insertMetadata>
+    <appMagic:category name="Media" priority="20" />
+  </appMagic:insertMetadata>
+  <!-- Display metadata providing property visibility, order, sections, and grouping in UI (e.g. properties panel) -->
+  <appMagic:displayMetadata>
+    <appMagic:section>
+      <appMagic:property name="Camera" />
+      <appMagic:property name="DisplayMode" />
+    </appMagic:section>
+    <appMagic:section>
+      <appMagic:property name="Visible" />
+      <appMagic:propertyGroup name="Position">
+        <appMagic:property name="X" />
+        <appMagic:property name="Y" />
+      </appMagic:propertyGroup>
+      <appMagic:propertyGroup name="Size">
+        <appMagic:property name="Width" />
+        <appMagic:property name="Height" />
+      </appMagic:propertyGroup>
+    </appMagic:section>
+    <appMagic:section>
+      <appMagic:propertyGroup name="Border">
+        <appMagic:property name="BorderStyle" />
+        <appMagic:property name="BorderThickness" />
+        <appMagic:property name="BorderColor" />
+      </appMagic:propertyGroup>
+    </appMagic:section>
+    <appMagic:section>
+      <appMagic:property name="StreamRate" />
+      <appMagic:property name="Tooltip" />
+    </appMagic:section>
+  </appMagic:displayMetadata>
+  <appMagic:conversion from="2.0.0" to="2.1.0">
+    <appMagic:conversionAction type="add" name="TabIndex" />
+    <appMagic:conversionAction type="add" name="FocusedBorderThickness" />
+  </appMagic:conversion>
+  <appMagic:conversion from="2.1.0" to="2.2.0">
+    <appMagic:conversionAction type="remove" name="Contrast" />
+    <appMagic:conversionAction type="remove" name="Brightness" />
+    <appMagic:conversionAction type="remove" name="Zoom" />
+  </appMagic:conversion>
+  <appMagic:conversion from="2.2.0" to="2.3.0">
+    <appMagic:conversionAction type="add" name="AvailableDevices" />
+  </appMagic:conversion>
+  <appMagic:conversion from="2.3.0" to="2.3.1">
+    <!-- Changed to not show appmagic-camera-stream when in error state so appmagic-no-camera error is fully visible -->
+  </appMagic:conversion>
+  <appMagic:conversion from="2.3.1" to="2.4.0">
+    <appMagic:conversionAction type="add" name="ContentLanguage" />
+  </appMagic:conversion>
+</widget>

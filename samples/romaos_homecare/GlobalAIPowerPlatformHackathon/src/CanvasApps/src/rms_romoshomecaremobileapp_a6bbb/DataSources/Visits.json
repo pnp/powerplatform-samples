@@ -1,0 +1,110 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "rms_visits",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "rms_visit",
+    "MaxGetRowsCount": 500,
+    "Name": "Visits",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "rms_actualdateandtime": "Actual Date and Time",
+      "rms_id": "ID",
+      "rms_latitude": "Latitude",
+      "rms_longitude": "Longitude",
+      "rms_name": "Name",
+      "rms_Patient": "Patient",
+      "rms_planneddateandtime": "Planned Date and Time",
+      "rms_rms_audioreference_Visit_rms_visit": "Audio References",
+      "rms_rms_picturereference_Visit_rms_visit": "Picture References",
+      "rms_rms_visitchecklistitem_Visit_rms_visit": "Visit Checklist Items",
+      "rms_score": "Score",
+      "rms_title": "Title",
+      "rms_visit_AsyncOperations": "System Jobs",
+      "rms_visit_BulkDeleteFailures": "Bulk Delete Failures",
+      "rms_visit_DuplicateBaseRecord": "Duplicate Records (rms_visit_DuplicateBaseRecord)",
+      "rms_visit_DuplicateMatchingRecord": "Duplicate Records (rms_visit_DuplicateMatchingRecord)",
+      "rms_visit_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "rms_visit_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "rms_visit_ProcessSession": "Process Sessions",
+      "rms_visit_SyncErrors": "Sync Errors",
+      "rms_visitid": "Visit",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Visits",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Visits (Views)",
+    "Name": "_rms_visit_views",
+    "RelatedEntityName": "Visits",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "015e5030-ec76-41e2-b850-098ec21032d6": "Active Visits",
+      "0e076a4c-615f-4de5-b2c3-608b164d3553": "Visit Associated View",
+      "3cacad9d-46bf-4d67-a4d7-4d696021a965": "Visit Advanced Find View",
+      "e3d74ca1-230c-4e01-9ea2-8b966a8040f7": "Visit Lookup View",
+      "fa3ebb28-3b38-4fa9-9785-73074cd645d7": "Inactive Visits"
+    }
+  },
+  {
+    "DisplayName": "Status (Visits)",
+    "Name": "rms_visit_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Visits"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Visits",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Visits)",
+    "Name": "rms_visit_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Pending",
+      "100000001": "Done",
+      "100000002": "In Progress",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Visits"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Visits",
+    "Type": "OptionSetInfo"
+  }
+]

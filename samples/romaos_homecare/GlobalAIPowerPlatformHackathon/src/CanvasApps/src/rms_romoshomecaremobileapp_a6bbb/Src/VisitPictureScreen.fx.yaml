@@ -1,0 +1,171 @@
+VisitPictureScreen As screen:
+    Fill: =RGBA(245, 247, 254, 1)
+
+    Rectangle2_1 As rectangle:
+        Fill: |-
+            =ColorValue("#7889d3")
+        Height: =382
+        Width: =640
+        ZIndex: =1
+
+    cmrCheckinCamera_1 As camera:
+        BorderColor: =RGBA(149, 149, 149, 1)
+        Camera: =0
+        Height: =422
+        OnSelect: =ClearCollect(colPictures, Self.Photo)
+        Width: =563
+        X: =35
+        Y: =147
+        ZIndex: =2
+
+    Image1_1 As image:
+        Height: =422
+        Image: =cmrCheckinCamera_1.Photo
+        ImagePosition: =ImagePosition.Fill
+        Visible: =!IsBlank(cmrCheckinCamera_1.Photo)
+        Width: =566
+        X: =32
+        Y: =147
+        ZIndex: =3
+
+    "Gallery3 As gallery.'BrowseLayout_Vertical_OneTextOneImageVariant_ver5.0'":
+        BorderColor: =RGBA(237, 237, 237, 1)
+        DelayItemLoading: =true
+        Height: =309
+        Items: =Filter('Picture References', Visit.Visit = selectedVisitInfo.Visit)
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =10
+        TemplateSize: =92
+        Width: =566
+        X: =32
+        Y: =795
+        ZIndex: =4
+
+        Button3_14 As button:
+            BorderThickness: =0
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =92
+            HoverFill: =Self.Fill
+            Size: =24
+            Text: =""
+            Width: =546
+            ZIndex: =1
+
+        Image5 As image:
+            Height: =60
+            Image: =If(!IsBlankOrError(AzureBlobStorage.GetFileContent(ThisItem.AzureStorageItemId)), AzureBlobStorage.GetFileContent(ThisItem.AzureStorageItemId), SampleImage)
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =500
+            RadiusBottomRight: =500
+            RadiusTopLeft: =500
+            RadiusTopRight: =500
+            Width: =60
+            X: =16
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =2
+
+        Title5 As label:
+            Color: =RGBA(16, 20, 82, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Name
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - Image5.Width - 137
+            X: =98
+            Y: =26
+            ZIndex: =3
+
+        Title5_1 As label:
+            Color: =RGBA(16, 20, 82, 1)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.'Created On'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - Image5.Width - 137
+            X: =98
+            Y: =51
+            ZIndex: =5
+
+        Title5_2 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 121, 187, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =60
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.'Health Score'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =69
+            X: =481
+            Y: =16
+            ZIndex: =6
+
+    Label1_15 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =16
+        Text: ="Visit's Pictures"
+        Width: =311
+        X: =165
+        ZIndex: =5
+
+    Icon3_6 As icon.BackArrow:
+        Color: |-
+            =ColorValue("#FFFFFF")
+        Height: =35
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Back()
+        Width: =35
+        X: =35
+        Y: =17
+        ZIndex: =6
+
+    Label1_19 As label:
+        Font: =Font.Arial
+        FontWeight: =FontWeight.Semibold
+        Height: =49
+        Size: =16
+        Text: ="Pictures Taken"
+        Width: =311
+        X: =35
+        Y: =746
+        ZIndex: =7
+
+    Button3_15 As button:
+        BorderThickness: =0
+        Color: =RGBA(102, 102, 102, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Font: =Font.Arial
+        Height: =87
+        HoverFill: |-
+            =ColorValue("#7889d3")
+        OnSelect: |
+            =UpdateContext({ pictureName: Concatenate(selectedVisitInfo.ID, "_", Text(Now(), "ddMMyyyyhhmmss")) });
+            UpdateContext({ pictureResult: AzureBlobStorage.CreateFile("hackathon/pictures", pictureName, Image1_1.Image) });
+            UpdateContext({ pictureReference: Patch('Picture References', Defaults('Picture References'), { Name: pictureName, Visit: selectedVisitInfo, AzureStorageItemId: pictureResult.Id })});
+            Patch(Automations, { Title: "AI - Process Visit Picture", Parameters: JSON({ ItemId: pictureResult.Id, Path: pictureResult.Path, VisitId: selectedVisitInfo.Visit, PictureReferenceId: pictureReference.'Picture Reference'}), 'Status Reason': 'Status Reason (Automations)'.Pending });
+            
+            Notify("Picture Reference submitted successfully", NotificationType.Success)
+        Size: =16
+        Text: ="Submit to AI 🤖"
+        Width: =269
+        X: =186
+        Y: =605
+        ZIndex: =8
+
