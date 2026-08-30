@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{8b4e1bfb-4052-44a5-a075-92e1a6d6a5a1}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{9d332f8c-8789-4a11-9094-7908aba06b6e}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{47e3144a-e2fb-46e2-a0a1-cef6793468b8}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1558fc96-9619-4a69-8643-ce8c3f08f663}">
+                        <labels>
+                          <label description="Airlines" languagecode="1033" />
+                        </labels>
+                        <control id="sb_airlines" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="sb_airlines" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{74c311ea-9052-42a1-baf5-fbc6b737e430}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Invoice" languagecode="1033" />
+                        </labels>
+                        <control id="sb_invoice" classid="{0A7FF475-B016-4687-9CE5-042BFDBD6519}" datafieldname="sb_invoice" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ddeed530-b690-4765-b489-d547a8879f3d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="One-Way/Return Flight" languagecode="1033" />
+                        </labels>
+                        <control id="sb_onewayreturnflight" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="sb_onewayreturnflight" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4223fd1c-ef9c-4a95-a17e-630301fb82f3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Outbound Flight Datetime" languagecode="1033" />
+                        </labels>
+                        <control id="sb_outboundflightdatetime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="sb_outboundflightdatetime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{52ff63d6-5d4c-4fb1-bc04-56baab22a786}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Flight Cost" languagecode="1033" />
+                        </labels>
+                        <control id="sb_flightcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="sb_flightcost" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c70dba46-18e5-4af9-a677-bf1701792289}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Flight Booking Status" languagecode="1033" />
+                        </labels>
+                        <control id="sb_flightbookingstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="sb_flightbookingstatus" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{50aae2ec-6eea-4472-a1f7-f077a4971b16}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Departure City" languagecode="1033" />
+                        </labels>
+                        <control id="sb_departurecity" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="sb_departurecity" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e7dce5b3-9dfb-4348-9bb1-47fa03233bba}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Return Flight Datetime" languagecode="1033" />
+                        </labels>
+                        <control id="sb_returnflightdatetime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="sb_returnflightdatetime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{aeb726c6-d800-43bf-8cac-3330374d40b5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Travel Request ID" languagecode="1033" />
+                        </labels>
+                        <control id="sb_travelrequestid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="sb_travelrequestid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d6b8e278-8348-45cc-b430-3a8b8c481084}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{9b2b5c5a-b692-4281-a2dc-97e7fb815806}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{02babd17-9bfd-41aa-b910-91b2dd41dea1}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{7034af9f-c697-4814-973e-dfb9e8506d67}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{690cd8ea-ac3e-4d50-97c6-eb0ad1e3c279}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{d48643de-8816-4ddf-a711-1a310b883d0d}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{c210f920-9e0c-42b6-a4c8-2b95bde82c8f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{124271aa-fd34-43a6-8589-dbffc2572c41}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{b5e722e5-6978-4685-9cd7-e6a90828e25d}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
