@@ -1,0 +1,203 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "Are there any stores around the area",
+        "Check store location",
+        "Closest store near me",
+        "Find me your nearest location",
+        "Store near me"
+      ],
+      "dialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_21a34f1673a24096a99ba0effb63cc1d",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_21a34f1673a24096a99ba0effb63cc1d",
+      "displayName": "Lesson 2 - A simple topic with a condition and variable",
+      "description": "Lesson 2 - This lesson will show you how you can create a simple topic with one conditional branch and a variable.\n\nA variable is a name for an item which will be used later in the topic flow.  In this example, \"pva_StoreLocation\" is the name for the variable when you ask the user for their preferred Store Location.",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "namedEntities": [
+    {
+      "id": "dc91002e-5c32-4b0e-9109-376c2d9b2eb2",
+      "displayName": "Redmond",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "id": "00a18877-1153-4a7e-9773-4f68632adbe1",
+      "displayName": "Seattle",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "id": "e7eeb96b-6ba0-438a-b76e-38ce7b0ee67e",
+      "displayName": "Kirkland",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "c1d915e9-aca4-4aec-b058-ef9e7de9ba21",
+      "messageNodes": [
+        {
+          "botMessageId": "4de562cf-4794-46af-aa81-a1a7427cdf0b",
+          "nodeType": "BotMessageNode",
+          "id": "893bb1a9-72b3-4039-9779-df0950a185c0",
+          "defaultTargetNodeId": "a9278bbb-16d2-4407-9a7a-5a23f5882aae"
+        },
+        {
+          "botMessageId": "45d1f9f8-f664-4b6b-8e94-3e26dbe70b99",
+          "nodeType": "BotMessageNode",
+          "id": "05b6d183-1bab-4a45-b8ac-340c337ed69f",
+          "defaultTargetNodeId": "a9278bbb-16d2-4407-9a7a-5a23f5882aae"
+        },
+        {
+          "botMessageId": "0424e8e1-0f86-45fa-80cb-de7076e1ec3d",
+          "nodeType": "BotMessageNode",
+          "id": "c1d915e9-aca4-4aec-b058-ef9e7de9ba21",
+          "defaultTargetNodeId": "6798adc3-d55f-40b5-9d22-bb522a3546d6"
+        },
+        {
+          "botMessageId": "e7b3d0ac-e120-4433-b214-922d0af65882",
+          "nodeType": "BotMessageNode",
+          "id": "a9cbf7cd-5fe7-4ee1-a737-7129c7a8ce41",
+          "defaultTargetNodeId": "a9278bbb-16d2-4407-9a7a-5a23f5882aae"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess",
+          "nodeType": "DialogChangeNode",
+          "id": "a9278bbb-16d2-4407-9a7a-5a23f5882aae"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "8f2d669b-e79c-4635-b87b-3f22ae02df92",
+          "nodeType": "QuestionNode",
+          "id": "6798adc3-d55f-40b5-9d22-bb522a3546d6",
+          "routes": [
+            {
+              "expression": "@equals(parameters('8f2d669b-e79c-4635-b87b-3f22ae02df92'), 'dc91002e-5c32-4b0e-9109-376c2d9b2eb2')",
+              "targetNodeId": "893bb1a9-72b3-4039-9779-df0950a185c0"
+            },
+            {
+              "expression": "@equals(parameters('8f2d669b-e79c-4635-b87b-3f22ae02df92'), '00a18877-1153-4a7e-9773-4f68632adbe1')",
+              "targetNodeId": "05b6d183-1bab-4a45-b8ac-340c337ed69f"
+            },
+            {
+              "expression": "@equals(parameters('8f2d669b-e79c-4635-b87b-3f22ae02df92'), 'e7eeb96b-6ba0-438a-b76e-38ce7b0ee67e')",
+              "targetNodeId": "a9cbf7cd-5fe7-4ee1-a737-7129c7a8ce41"
+            }
+          ],
+          "defaultTargetNodeId": "6798adc3-d55f-40b5-9d22-bb522a3546d6"
+        }
+      ],
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_21a34f1673a24096a99ba0effb63cc1d",
+      "displayName": "Dialog for Find nearest location",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Which location are you interested in?"
+        }
+      },
+      "id": "294e7fff-35aa-45fc-bf80-6188ef48938b",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "PlainText",
+          "content": "Check out the Company Store at our Visitor Center. The address is: 4567 Main St., Redmond, 26132."
+        }
+      },
+      "id": "4de562cf-4794-46af-aa81-a1a7427cdf0b",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Our {8f2d669b-e79c-4635-b87b-3f22ae02df92} store is located in the U District in the University Village. The address is: 1234 E. University Village St., Seattle, 34567."
+        }
+      },
+      "id": "45d1f9f8-f664-4b6b-8e94-3e26dbe70b99",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "I'd be glad to help find a store near you."
+        }
+      },
+      "id": "0424e8e1-0f86-45fa-80cb-de7076e1ec3d",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Our {8f2d669b-e79c-4635-b87b-3f22ae02df92} is located in downtown Kirkland. The address is: 1234 Central Way, Kirkland, 98321."
+        }
+      },
+      "id": "e7b3d0ac-e120-4433-b214-922d0af65882",
+      "createdTime": "2019-11-01T03:46:52.686Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "dc91002e-5c32-4b0e-9109-376c2d9b2eb2",
+        "00a18877-1153-4a7e-9773-4f68632adbe1",
+        "e7eeb96b-6ba0-438a-b76e-38ce7b0ee67e"
+      ],
+      "messages": {
+        "GetValue": [
+          "294e7fff-35aa-45fc-bf80-6188ef48938b"
+        ]
+      },
+      "isGlobal": false,
+      "id": "8f2d669b-e79c-4635-b87b-3f22ae02df92",
+      "displayName": "pva_StoreLocation",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "createdUtc": "0001-01-01T00:00:00Z"
+}

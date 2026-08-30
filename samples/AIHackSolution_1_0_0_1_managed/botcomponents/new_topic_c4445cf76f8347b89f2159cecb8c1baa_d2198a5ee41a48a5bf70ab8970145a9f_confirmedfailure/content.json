@@ -1,0 +1,134 @@
+{
+  "intents": [
+    {
+      "systemIntentTypes": [
+        "ConfirmedFailure"
+      ],
+      "intentType": "System",
+      "dialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_d2198a5ee41a48a5bf70ab8970145a9f_confirmedfailure",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_d2198a5ee41a48a5bf70ab8970145a9f_confirmedfailure",
+      "displayName": "Confirmed Failure",
+      "description": "System Intent Confirmed Failure",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "namedEntities": [
+    {
+      "id": "e19c32cc-1421-47ec-9c1a-c9ceb28c7e20",
+      "displayName": "Talk to an agent",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "id": "1eb4c8a2-5c34-497c-bf8e-889712616847",
+      "displayName": "Rephrase",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "c326a83a-386b-4ce8-a31b-2751e404e242",
+      "dialogType": "System",
+      "messageNodes": [
+        {
+          "botMessageId": "ee0e2f99-f1e1-4cac-b37b-83a6d3f3d5f3",
+          "nodeType": "BotMessageNode",
+          "id": "0c0475e6-e6d1-401e-a964-4362b7c3b9d7"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_954135cafcd647eaae5999ad91fc08cf_talktoagent",
+          "nodeType": "DialogChangeNode",
+          "id": "9087e5bb-0abb-4dc7-8b71-2f9588ff1019"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "8c9b352b-0503-4429-af1e-ea5c219db1ec",
+          "nodeType": "QuestionNode",
+          "id": "c326a83a-386b-4ce8-a31b-2751e404e242",
+          "routes": [
+            {
+              "expression": "@equals(parameters('8c9b352b-0503-4429-af1e-ea5c219db1ec'), 'e19c32cc-1421-47ec-9c1a-c9ceb28c7e20')",
+              "targetNodeId": "9087e5bb-0abb-4dc7-8b71-2f9588ff1019"
+            },
+            {
+              "expression": "@equals(parameters('8c9b352b-0503-4429-af1e-ea5c219db1ec'), '1eb4c8a2-5c34-497c-bf8e-889712616847')",
+              "targetNodeId": "0c0475e6-e6d1-401e-a964-4362b7c3b9d7"
+            }
+          ]
+        }
+      ],
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_d2198a5ee41a48a5bf70ab8970145a9f_confirmedfailure",
+      "displayName": "Dialog",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Sorry I wasn't able to help better. Would you like to talk to a human agent or to try rephrasing?"
+        }
+      },
+      "id": "c70645ee-6f32-47c4-b18c-8d0a65ca3789",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "PlainText",
+          "content": "Go ahead. I'm listening."
+        }
+      },
+      "id": "ee0e2f99-f1e1-4cac-b37b-83a6d3f3d5f3",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "e19c32cc-1421-47ec-9c1a-c9ceb28c7e20",
+        "1eb4c8a2-5c34-497c-bf8e-889712616847"
+      ],
+      "messages": {
+        "GetValue": [
+          "c70645ee-6f32-47c4-b18c-8d0a65ca3789"
+        ]
+      },
+      "isGlobal": false,
+      "id": "8c9b352b-0503-4429-af1e-ea5c219db1ec",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "createdUtc": "0001-01-01T00:00:00Z"
+}

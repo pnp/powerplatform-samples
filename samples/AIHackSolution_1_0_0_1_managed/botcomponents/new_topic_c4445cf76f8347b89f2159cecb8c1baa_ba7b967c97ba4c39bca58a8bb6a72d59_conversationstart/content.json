@@ -1,0 +1,217 @@
+{
+  "intents": [
+    {
+      "systemIntentTypes": [
+        "ConversationStart",
+        "Greeting"
+      ],
+      "intentType": "System",
+      "triggerQueries": [
+        "Good afternoon",
+        "Good morning",
+        "Hello",
+        "Hello agent!",
+        "Hello and good morning to you",
+        "Hello can you help me?",
+        "Hello can you please help me",
+        "Hello friend",
+        "Hello good afternoon",
+        "Hello good evening",
+        "Hello greeting",
+        "Hello how are you",
+        "Hello how are you doing?",
+        "Hello how are you?",
+        "Hello I need help",
+        "Hello madam",
+        "Hello my friend",
+        "Hello sir",
+        "Hello support",
+        "Hello team",
+        "Hello there",
+        "Hello there, how are you?",
+        "Hello virtual agent",
+        "Hello!",
+        "Hello, good day to you",
+        "Hello, good evening",
+        "Hello, good morning",
+        "Hello, how are you doing today?",
+        "Hello, how are you?",
+        "Hello, I need help",
+        "Hey",
+        "Hey !",
+        "Hey :)",
+        "Hey good morning",
+        "Hey how are u",
+        "Hey I need help",
+        "Hey man",
+        "Hi",
+        "Hi agent",
+        "Hi can you help me",
+        "Hi good afternoon",
+        "Hi good day",
+        "Hi good evening",
+        "Hi how are you",
+        "Hi how are you doing today?",
+        "Hi I hope you can help me",
+        "Hi I need help",
+        "Hi I need help here",
+        "Hi support",
+        "Hi support team",
+        "Hi there!",
+        "Hi virtual agent"
+      ],
+      "dialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_ba7b967c97ba4c39bca58a8bb6a72d59_conversationstart",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_ba7b967c97ba4c39bca58a8bb6a72d59_conversationstart",
+      "displayName": "Greeting",
+      "description": "This is the default greeting when a chat begins. Start by having your bot or virtual agent introduce itself. When building out topics, consider whether you need to comply with applicable local law.",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2023-09-26T06:05:48.5957588Z",
+      "createdUserId": "user0",
+      "updatedUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "8a32ebd1-bec3-4cde-a75a-1977a561b019",
+      "dialogType": "System",
+      "messageNodes": [
+        {
+          "botMessageId": "987e1575-01b0-467b-a98e-33f113cb7dcb",
+          "nodeType": "BotMessageNode",
+          "id": "8a32ebd1-bec3-4cde-a75a-1977a561b019",
+          "defaultTargetNodeId": "23d5d24c-91a2-4103-a28c-3806cf8cf28b"
+        }
+      ],
+      "actionNodes": [
+        {
+          "contextVariableId": "15a90ca7-cc58-45e1-8e85-266cba9d8a7b",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "Siddaruda"
+          },
+          "outputExpressionVariableIds": [
+            "93af3be1-e9df-412d-bfe7-c54cd86e0a26"
+          ],
+          "id": "23d5d24c-91a2-4103-a28c-3806cf8cf28b",
+          "defaultTargetNodeId": "9e954a77-03ee-4f64-9a15-1a102b7b0349"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_532e20d19f3f4a22b1467923b8a6f9b6",
+          "nodeType": "DialogChangeNode",
+          "id": "9e954a77-03ee-4f64-9a15-1a102b7b0349"
+        }
+      ],
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_ba7b967c97ba4c39bca58a8bb6a72d59_conversationstart",
+      "displayName": "Dialog",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2023-09-26T06:05:48.5957574Z",
+      "createdUserId": "user0",
+      "updatedUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Hi! I'm a **'FinHelp' chatbot.**\n\nI am an intelligent bot, designed to help the ‘Finance Teams’ in performing various Finance operations."
+        }
+      },
+      "id": "987e1575-01b0-467b-a98e-33f113cb7dcb",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "actionDefinitions": [
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"Siddaruda\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "0165f3b8-f962-ec11-8f8f-6045bd009d13",
+        "title": "Get User Email ID",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "Display Name",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "User ID",
+            "id": "user_id",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2021-12-22T07:35:33Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2021-12-22T07:36:06Z",
+        "versionNumber": 2862278
+      },
+      "id": "96300731-75db-4487-b73a-8e5ff749c955",
+      "displayName": "Get User Email ID",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2021-12-22T07:36:35.549Z",
+      "updatedTime": "2021-12-22T07:36:35.549Z"
+    }
+  ],
+  "contextVariables": [
+    {
+      "customTypeId": "2f6c3628-f103-4a24-b507-b53c712ab0b0",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "96300731-75db-4487-b73a-8e5ff749c955",
+      "isGlobal": false,
+      "id": "15a90ca7-cc58-45e1-8e85-266cba9d8a7b",
+      "displayName": "",
+      "createdTime": "2021-12-22T07:36:35.55Z",
+      "updatedTime": "2023-09-26T06:05:48.59576Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('15a90ca7-cc58-45e1-8e85-266cba9d8a7b')['user_id']",
+      "isGlobal": false,
+      "id": "93af3be1-e9df-412d-bfe7-c54cd86e0a26",
+      "displayName": "UserID",
+      "createdTime": "2021-12-22T07:36:35.55Z",
+      "updatedTime": "2023-09-26T06:05:48.5957603Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844"
+    }
+  ],
+  "jsonTypes": [
+    {
+      "customTypeSchema": "Json",
+      "id": "2f6c3628-f103-4a24-b507-b53c712ab0b0",
+      "displayName": "Response Json Type for Flow - Get User Email ID",
+      "createdTime": "2021-12-22T07:36:35.55Z",
+      "updatedTime": "2021-12-22T07:36:35.55Z"
+    }
+  ]
+}

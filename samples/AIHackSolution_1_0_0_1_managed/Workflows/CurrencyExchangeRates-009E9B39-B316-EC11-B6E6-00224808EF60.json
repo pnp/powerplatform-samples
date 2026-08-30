@@ -1,0 +1,260 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_dynamicsax": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "crcf6_shareddynamicsax_88423"
+        },
+        "api": {
+          "name": "shared_dynamicsax"
+        }
+      },
+      "shared_office365_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_9ec6a"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "staticResults": {
+        "Send_an_email_(V2)0": {
+          "status": "Succeeded",
+          "outputs": {
+            "statusCode": "OK",
+            "headers": {}
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "1cc92184-b93e-43cf-b77d-98033e38c5fc"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "FromCurrency",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "ToCurrency",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Send_an_email_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "010c75e8-a40b-4b3a-b204-6895df52a131"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "exchangeratetable": "  @{outputs('Style')} @{body('Create_HTML_table')}\n"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "exchangeratetable": {
+                  "title": "ExchangeRateTable",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Lists_items_present_in_table": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "511d6807-94aa-4420-b6a9-4d08276d18de"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_dynamicsax",
+              "operationId": "GetItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_dynamicsax"
+            },
+            "parameters": {
+              "dataset": "mshackatons6787d3f0e221d0dddevaos.cloudax.dynamics.com",
+              "table": "ExchangeRates",
+              "$filter": "ToCurrency eq '@{triggerBody()['text_1']}' and FromCurrency eq '@{triggerBody()['text']}'",
+              "$orderby": "EndDate desc",
+              "$top": 10
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Create_HTML_table": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2d494ca5-9d61-4ca8-9b0d-8ce5ffda22ee"
+          },
+          "type": "Table",
+          "inputs": {
+            "from": "@outputs('Lists_items_present_in_table')?['body/value']",
+            "format": "HTML",
+            "columns": [
+              {
+                "header": "FromCurrency",
+                "value": "@item()?['FromCurrency']"
+              },
+              {
+                "header": "ToCurrency",
+                "value": "@item()?['ToCurrency']"
+              },
+              {
+                "header": "ExchangeRate",
+                "value": "@item()?['Rate']"
+              },
+              {
+                "header": "StartDate",
+                "value": "@formatDateTime(item()?['StartDate'],'dd-MM-yyyy')"
+              },
+              {
+                "header": "EndDate",
+                "value": "@formatDateTime(item()?['EndDate'],'dd-MM-yyyy')"
+              }
+            ]
+          }
+        },
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Style": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6a68221c-158d-4bd2-9960-7fb9f606a2f1"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365_1",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/To": "SiddarudaS@saglobal.com;VenkataK@saglobal.com;NayanaK@saglobal.com",
+              "emailMessage/Subject": "Currency Exchange Rates",
+              "emailMessage/Body": "<p>Hi team,\n<br>\nPlease find the below table which is having a currency exchange rate information.<br>\n<br>\n@{outputs('Style')}@{body('Create_HTML_table')}</p>\n<br>\n<br>\nThanks and regards,\n<br>\nPower Platform team"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "runtimeConfiguration": {
+            "staticResult": {
+              "staticResultOptions": "Disabled",
+              "name": "Send_an_email_(V2)0"
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Lists_items_present_in_table": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b477107a-2f3f-4d0a-a122-55b72afb0434"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "ExchangeRateTable",
+                "type": "string",
+                "value": "|From Currency|To Currency|Start Date|End Date|Exchange Rate|\n|----------------|-------------|-----------|----------|----------------|\n"
+              }
+            ]
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('Lists_items_present_in_table')?['body/value']",
+          "actions": {
+            "Append_to_string_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "fbeb77ca-f468-42da-a1da-fd8a5495744e"
+              },
+              "type": "AppendToStringVariable",
+              "inputs": {
+                "name": "ExchangeRateTable",
+                "value": "|@{items('Apply_to_each')?['FromCurrency']}|@{items('Apply_to_each')?['ToCurrency']}|@{formatDateTime(items('Apply_to_each')?['StartDate'],'dd-MM-yyyy')}|@{formatDateTime(items('Apply_to_each')?['EndDate'],'dd-MM-yyyy')}|@{items('Apply_to_each')?['Rate']}|\n"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d9029f85-cc15-411e-a5ff-3ff300baf146"
+          },
+          "type": "Foreach"
+        },
+        "Style": {
+          "runAfter": {
+            "Create_HTML_table": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "953c02d1-735a-400d-a109-23c06f6248af"
+          },
+          "type": "Compose",
+          "inputs": "<style>\ntable {\n  border: 1px solid #1C6EA4;\n  background-color: #EEEEEE;\n  width: 50%;\n  text-align: left;\n  border-collapse: collapse;\n}\ntable td, table th {\n  border: 1px solid #AAAAAA;\n  padding: 3px 2px;\n}\ntable tbody td {\n  font-size: 13px;\n}\ntable thead {\n  background: #1C6EA4;\n  border-bottom: 2px solid #444444;\n}\ntable thead th {\n  font-size: 15px;\n  font-weight: bold;\n  color: #FFFFFF;\n  border-left: 2px solid #D0E4F5;\n}\ntable thead th:first-child {\n  border-left: none;\n}\n</style>"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
