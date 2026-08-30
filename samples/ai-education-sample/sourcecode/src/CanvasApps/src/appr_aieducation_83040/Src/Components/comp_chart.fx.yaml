@@ -1,0 +1,39 @@
+comp_chart As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    FillColor: =RGBA(0, 0, 0, 1)
+    Height: =640
+    Percentage: =100
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    cont_chart_1 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.None
+        Height: =Parent.Height
+        ZIndex: =1
+
+        cont_full_1 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(75, 71, 65, 1)
+            Height: =8
+            RadiusBottomLeft: =24
+            RadiusBottomRight: =24
+            RadiusTopLeft: =24
+            RadiusTopRight: =24
+            Width: =Parent.Width
+            Y: =Parent.Height/2-4
+            ZIndex: =1
+
+        cont_filled_1 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.None
+            Fill: =comp_chart.FillColor
+            Height: =8
+            RadiusBottomLeft: =24
+            RadiusBottomRight: =24
+            RadiusTopLeft: =24
+            RadiusTopRight: =24
+            Width: =(Parent.Width/100)* comp_chart.Percentage
+            Y: =Parent.Height/2-4
+            ZIndex: =2
+
