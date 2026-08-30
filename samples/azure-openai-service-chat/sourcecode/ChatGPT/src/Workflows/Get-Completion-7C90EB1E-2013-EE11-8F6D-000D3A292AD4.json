@@ -1,0 +1,192 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ppchal_sharedcommondataserviceforapps_7398b"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_azureopenaiservice-5f534785e02bede9d0-5fae562e10a2de687a": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "ppchal_sharedazureopenaiservice5f534785e02bede9d05fae562e10a2de687a_7cd22"
+        },
+        "api": {
+          "name": "shared_azureopenaiservice-5f534785e02bede9d0-5fae562e10a2de687a",
+          "logicalName": "ppchal_azureopenaiservice"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Azure OpenAI Service Deployment ID (ppchal_AzureOpenAIServiceDeploymentID)": {
+          "defaultValue": "Challenge019",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ppchal_AzureOpenAIServiceDeploymentID",
+            "description": "This should contain the name of the model you've deployed to your Aszure OpenAI service."
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "7f4284cd-f36f-4b30-b34f-4ae32fd0058f"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Chat",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Enter the Id of the chat.",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "Message",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "Scope",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_2",
+                "text_3"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_rows_|_Messages": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "0a57d2e1-d8bd-438d-902d-2d8cb6563f1c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ppchal_messages",
+              "$filter": "(ppchal_answer ne null) and (_ppchal_chat_value eq @{triggerBody()['text']})"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Select_|_Messages": {
+          "runAfter": {
+            "List_rows_|_Messages": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "57e5e401-5d96-45cf-9bb3-94d286a5b323"
+          },
+          "type": "Select",
+          "inputs": {
+            "from": "@outputs('List_rows_|_Messages')?['body/value']",
+            "select": {
+              "question": "@item()?['ppchal_question']",
+              "answer": "@item()?['ppchal_answer']"
+            }
+          }
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Create_a_completion": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bb682037-564a-4eba-978e-9eb16c1472e6"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "answer": "@outputs('Create_a_completion')?['body/answer']"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "title": "Answer",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Create_a_completion": {
+          "runAfter": {
+            "Select_|_Messages": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "234bfa18-bbd5-4771-9cf3-5b09b67bccf1"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_azureopenaiservice-5f534785e02bede9d0-5fae562e10a2de687a",
+              "operationId": "CreateCompletion",
+              "apiId": ""
+            },
+            "parameters": {
+              "deployment-id": "@parameters('Azure OpenAI Service Deployment ID (ppchal_AzureOpenAIServiceDeploymentID)')",
+              "api-version": "2023-03-15-preview",
+              "body/prompt": "@triggerBody()['text_2']",
+              "body/initial_scope": "@triggerBody()['text_3']",
+              "body/history": "@body('Select_|_Messages')",
+              "body/max_tokens": 256,
+              "body/temperature": 0.2,
+              "body/top_p": 1,
+              "body/n": 1,
+              "body/echo": false,
+              "body/presence_penalty": 0,
+              "body/frequency_penalty": 0,
+              "body/best_of": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
