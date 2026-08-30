@@ -1,0 +1,16 @@
+App As appinfo:
+    BackEnabled: =false
+    Formulas: |
+        =appLogo=PowerApps_scalable;
+        appThemes = [PowerAppsTheme,RedTheme,GreenTheme,SteelTheme,OrangeTheme,PlatinumTheme];
+        selectedTheme = DropdownCanvas.Selected;
+        MenuItems = ["Input Controls","Selection Controls","Utilities","Forms & Grids"];
+    Theme: =selectedTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
