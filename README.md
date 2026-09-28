@@ -21,6 +21,12 @@ Please use following logic on submitting your questions or issues to right locat
 
 - [Power Platform Community](https://powerusers.microsoft.com/)
 
+## Join the community calls
+
+Stay up to date with the latest Copilot, Microsoft 365, and Power Platform topics by joining our weekly community calls. Everyone is welcome. Come to learn, ask questions, and connect with the community.
+
+[View the call schedule and download the recurring invites](https://aka.ms/community/calls) so you don't miss an upcoming call.
+
 ## Using the samples
 
 For more info about how to use the Power Platform Samples, please look for the Prerequisites & the Minimal Path to Awesome sections in the readme.md file in every sample directory.

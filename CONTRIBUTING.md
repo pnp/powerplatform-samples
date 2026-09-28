@@ -15,6 +15,9 @@ Please do not open GitHub issues for general support questions as the GitHub lis
 
 If you have questions about how to use Power Platform or any of the provided samples, please visit the [Power Platform Community](https://powerusers.microsoft.com/) at <https://powerusers.microsoft.com/>
 
+## Community calls and demos
+
+Everyone is welcome to join the [weekly community calls](https://aka.ms/community/calls) for Copilot, Microsoft 365, and Power Platform updates. If you would like to share your learnings or gather community input, [sign up for a demo](https://aka.ms/community/request/demo).
 
 ## Typos, Issues, Bugs and contributions
 
@@ -40,10 +43,16 @@ To unpack the source code for your solution, you will need to use the Power Plat
 
 When you are submitting a new sample, it has to follow up below guidelines
 
-* You will need to have a `README.md` file for your contribution, which is based on [the provided template](templates/sample-template/README.md) under the `samples` folder. Please copy this template to your project and update it accordingly. Your `README.md` must be named exactly `README.md` -- with capital letters -- as this is the information we use to make your sample public.
-  * You will need to have a screenshot picture of your sample in action in the `README.md` file ("pics or it didn't happen"). The preview image must be located in the `/assets/` folder in the root your you solution.
-* The `README` template contains a specific tracking image at the bottom of the file with an `img` tag, where the `src` attribute points to our telemetry tracker. This is a transparent image which is used to track viewership of individual samples in GitHub.
-  * Update the image `src` attribute according with the repository name and folder information. For example, if your sample is named `YOUR-SOLUTION-NAME` in the `samples` folder, you should update the `src` attribute to `https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/YOUR-SOLUTION-NAME`
+* Create the sample in its own folder under `samples/` and include an `assets/sample.json` metadata file based on [the provided metadata template](templates/sample-template/assets/sample.json). Update every placeholder, including the sample URLs, thumbnail, products, categories, and author information.
+* Include a `README.md` based on [the provided template](templates/sample-template/README.md). The filename must be exactly `README.md` because it is used to publish the sample.
+  * Include at least one static, high-resolution screenshot of the configured sample. Store preview images in the sample's `assets/` folder.
+  * Keep the tracker image as the final line of the README:
+
+    ```html
+    <img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/{sample-path}" />
+    ```
+
+    Replace `{sample-path}` with the repository-relative path to the sample folder. For example, `samples/YOUR-SOLUTION-NAME` produces `https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/YOUR-SOLUTION-NAME`.
 * If you find an existing sample which is similar to yours, please extend the existing one rather than submitting a new similar sample
   * For example, if you have an new Power Fx sample, please add a page to the existing solution, rather than introducing a completely new solution
   * When you update existing samples, please update also `README.md` file accordingly with information on provided changes and with your author details
@@ -78,8 +87,8 @@ Here's a high-level process for submitting new samples or updates to existing on
 3. Create a new branch from the `main` branch for your fork for the contribution
 4. Include your changes to your branch
 5. Commit your changes using descriptive commit message * These are used to track changes on the repositories for monthly communications
-6. Create a pull request in your own fork and target the `main` branch
-7. Fill up the provided PR template with the requested details
+6. Open a pull request from your fork's branch to the `main` branch of `pnp/powerplatform-samples`
+7. Complete the provided pull request template with the requested details
 
 If you feel insecure about that process or are new to GitHub, please consider to attend the [Sharing Is Caring sessions from the PnP team](https://pnp.github.io/sharing-is-caring/#pnp-sic-events) in which the Microsoft 365 PnP team provides hands-on guidance for first time contributors.
 
