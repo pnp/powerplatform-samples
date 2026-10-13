@@ -1,0 +1,170 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "1220fa36-0d3e-4725-a59f-7f8102f73412"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Run_a_Child_Flow:_Get_Localized_Choice_Values": {
+          "runAfter": {
+            "Initialize_variable:_sxPathQuery": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "03549bac-e562-4730-a58a-d2d69ab3ee8a"
+          },
+          "type": "Workflow",
+          "inputs": {
+            "host": {
+              "workflowReferenceName": "07ca3022-6fd9-ef11-a730-6045bd2a5498"
+            },
+            "body": {
+              "text": "kk_example",
+              "text_1": "1031",
+              "text_2": "1033"
+            }
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Parse_JSON:_attributes_metadata": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "e2ba6fd6-0650-466c-8203-0daf60074b10"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Run_a_Child_Flow:_Get_Localized_Choice_Values')?['results']",
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "LogicalName": {
+                        "type": "string"
+                      },
+                      "Options": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Value": {
+                              "type": "integer"
+                            },
+                            "Label": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Value",
+                            "Label"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "LogicalName",
+                      "Options"
+                    ]
+                  }
+                }
+              }
+            },
+            "Compose:_Json_to_Xml": {
+              "runAfter": {
+                "Parse_JSON:_attributes_metadata": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "61f4628d-a248-46f2-a26d-63c018075d0a"
+              },
+              "type": "Compose",
+              "inputs": "@xml(json(concat('{ \"root\": { \"arr\": ', body('Parse_JSON:_attributes_metadata'), '}}')))"
+            },
+            "Compose:_targetgroup[339870000]=Interne_Mitarbeiter": {
+              "runAfter": {
+                "Compose:_Json_to_Xml": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "9900ec3e-3241-4424-8802-d96778a1ce69"
+              },
+              "type": "Compose",
+              "inputs": "@xpath(outputs('Compose:_Json_to_Xml'), concat('string(', replace(replace(variables('sxPathQuery'), '{fieldName}', 'kk_targetgroup'), '{fieldValue}', '339870000'), ')'))"
+            },
+            "Compose:_kk_country1[756]=Schweiz": {
+              "runAfter": {
+                "Compose:_targetgroup[339870000]=Interne_Mitarbeiter": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ca234dd3-a440-4630-828f-dc058c383510"
+              },
+              "type": "Compose",
+              "inputs": "@xpath(outputs('Compose:_Json_to_Xml'), concat('string(', replace(replace(variables('sxPathQuery'), '{fieldName}', 'kk_country1'), '{fieldValue}', '756'), ')'))"
+            }
+          },
+          "runAfter": {
+            "Run_a_Child_Flow:_Get_Localized_Choice_Values": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@bool(outputs('Run_a_Child_Flow:_Get_Localized_Choice_Values')?['Body']?['success'])",
+              "@true"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bfad896d-22fa-4b98-a8bc-2e5f26b6ea10"
+          },
+          "type": "If"
+        },
+        "Initialize_variable:_sxPathQuery": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "661a1995-e6d1-4d7c-a462-73d60e353bdc"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "sxPathQuery",
+                "type": "string",
+                "value": "//arr[LogicalName=\"{fieldName}\"]/Options[Value={fieldValue}]/Label"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
