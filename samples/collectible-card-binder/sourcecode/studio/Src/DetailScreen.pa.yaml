@@ -1,0 +1,127 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+#
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+#
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  DetailScreen:
+    Properties:
+      Fill: =ColorValue("#101C25")
+    Children:
+      - BackButton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorValue("#B7C8CC")
+            BorderThickness: =1
+            Color: =ColorValue("#F5F1E8")
+            Fill: =ColorValue("#1D303C")
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Font: =Font.Lato
+            Height: =44
+            HoverColor: =ColorValue("#F5F1E8")
+            HoverFill: =ColorValue("#354D59")
+            OnSelect: =Navigate(BinderScreen, ScreenTransition.None)
+            PressedColor: =ColorValue("#F5F1E8")
+            PressedFill: =ColorValue("#50635F")
+            Size: =12
+            Text: ="← Back to binder"
+            Width: =230
+            X: =38
+            Y: =28
+      - DetailArt:
+          Control: Image@2.2.3
+          Properties:
+            AccessibleLabel: =varCard.Name & ", original fictional illustration"
+            Height: =540
+            Image: ="data:image/svg+xml;utf8," & EncodeUrl(varCard.Art)
+            OnSelect: =
+            Width: =510
+            X: =65
+            Y: =128
+      - DetailNumber:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#EACB88")
+            Font: =Font.Lato
+            Height: =35
+            OnSelect: =
+            Size: =12
+            Text: =varCard.Id & "  /  VOLUME 01"
+            Width: =660
+            X: =640
+            Y: =148
+      - DetailName:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#F5F1E8")
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Bold
+            Height: =108
+            OnSelect: =
+            Size: =36
+            Text: =varCard.Name
+            Width: =660
+            X: =640
+            Y: =199
+      - DetailRarity:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#EACB88")
+            Font: =Font.Lato
+            Height: =42
+            OnSelect: =
+            Size: =16
+            Text: =Upper(varCard.Rarity) & "  ·  " & varCard.Realm
+            Width: =660
+            X: =640
+            Y: =322
+      - DetailLore:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#F5F1E8")
+            Font: =Font.Lato
+            Height: =116
+            OnSelect: =
+            Size: =24
+            Text: =varCard.Lore
+            Width: =620
+            X: =640
+            Y: =390
+      - DetailOwned:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorValue("#B7C8CC")
+            BorderThickness: =1
+            Color: =ColorValue("#F5F1E8")
+            Fill: =ColorValue("#1D303C")
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Font: =Font.Lato
+            Height: =54
+            HoverColor: =ColorValue("#F5F1E8")
+            HoverFill: =ColorValue("#354D59")
+            OnSelect: =Navigate(PackScreen, ScreenTransition.Fade)
+            PressedColor: =ColorValue("#F5F1E8")
+            PressedFill: =ColorValue("#50635F")
+            Size: =12
+            Text: ="Open free packs"
+            Width: =390
+            X: =640
+            Y: =556
+      - DetailStatus:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#B7C8CC")
+            Font: =Font.Lato
+            Height: =62
+            Live: =Live.Polite
+            OnSelect: =
+            Size: =14
+            Text: =If(varCard.Id in colOwned.Id, "This wonder is part of your collection.", "A space in your binder is waiting for this wonder.")
+            Width: =620
+            X: =640
+            Y: =635
