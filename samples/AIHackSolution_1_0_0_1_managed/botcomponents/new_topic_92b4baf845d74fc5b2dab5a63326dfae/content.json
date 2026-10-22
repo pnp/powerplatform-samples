@@ -1,0 +1,249 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "Currency Exchange Rate",
+        "Exchange Rate",
+        "Currency"
+      ],
+      "dialogId": "new_topic_92b4baf845d74fc5b2dab5a63326dfae",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_92b4baf845d74fc5b2dab5a63326dfae",
+      "displayName": "PVA_CurrencyExchangeRate",
+      "description": "",
+      "createdTime": "2021-09-20T05:06:54.675434Z",
+      "updatedTime": "2023-09-28T01:54:11.2032016Z",
+      "createdUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844",
+      "updatedUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "a8bc85b1-06ed-4c3e-9972-d7a83c4bc51f",
+      "messageNodes": [
+        {
+          "botMessageId": "dcc9685b-8103-41e9-8907-bcfd56b65c7d",
+          "nodeType": "BotMessageNode",
+          "id": "6774bf2a-10d7-44f3-9792-6cbbd16d0bc0",
+          "defaultTargetNodeId": "87c7b286-1db2-414a-994d-2e8764978d3f"
+        }
+      ],
+      "actionNodes": [
+        {
+          "contextVariableId": "868f2239-86a1-4339-a9e4-2a8f9374d248",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{7b1436f8-0852-45b2-9838-41ba0d9b6f75}",
+            "text_1": "{e05fca1d-d4b9-4524-a88a-7169af559565}"
+          },
+          "outputExpressionVariableIds": [
+            "15370d86-fa9a-48ab-a914-049f5a8f63a5"
+          ],
+          "id": "f4fb00d1-a438-43c8-ae1f-fd520fc208e9",
+          "defaultTargetNodeId": "6774bf2a-10d7-44f3-9792-6cbbd16d0bc0"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess",
+          "nodeType": "DialogChangeNode",
+          "id": "87c7b286-1db2-414a-994d-2e8764978d3f"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "7b1436f8-0852-45b2-9838-41ba0d9b6f75",
+          "nodeType": "QuestionNode",
+          "id": "a8bc85b1-06ed-4c3e-9972-d7a83c4bc51f",
+          "defaultTargetNodeId": "ad298b08-4c19-4fe1-b5a2-e2829b21009c"
+        },
+        {
+          "contextVariableId": "e05fca1d-d4b9-4524-a88a-7169af559565",
+          "nodeType": "QuestionNode",
+          "id": "ad298b08-4c19-4fe1-b5a2-e2829b21009c",
+          "defaultTargetNodeId": "f4fb00d1-a438-43c8-ae1f-fd520fc208e9"
+        }
+      ],
+      "id": "new_topic_92b4baf845d74fc5b2dab5a63326dfae",
+      "displayName": "Dialog for PVA_CurrencyExchangeRate",
+      "createdTime": "2021-09-20T05:06:54.675434Z",
+      "updatedTime": "2023-09-28T01:54:11.2032006Z",
+      "createdUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844",
+      "updatedUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Please enter **\"From Currency\" :**\n\n**Ex: USD or EUR or GBP**"
+        }
+      },
+      "id": "9819ff72-907d-432b-81bf-89972cb8ce4b",
+      "createdTime": "2021-09-20T05:07:27.989Z",
+      "updatedTime": "2021-09-20T05:07:27.989Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Please enter **\"To Currency\" :**\n\n**Ex: USD or EUR or GBP**"
+        }
+      },
+      "id": "72a9c8eb-41f9-47a6-9a12-592c59784d1d",
+      "createdTime": "2021-09-20T05:08:32.294Z",
+      "updatedTime": "2021-09-20T05:08:32.294Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Based on your inputs, a **Currency Exchange Rate email has been sent**. Please check your inbox for more details."
+        }
+      },
+      "id": "dcc9685b-8103-41e9-8907-bcfd56b65c7d",
+      "createdTime": "2021-09-20T05:06:54.675434Z",
+      "updatedTime": "2021-09-20T05:06:54.675434Z",
+      "createdUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844",
+      "updatedUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844"
+    }
+  ],
+  "actionDefinitions": [
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{7b1436f8-0852-45b2-9838-41ba0d9b6f75}\",\"text_1\":\"{e05fca1d-d4b9-4524-a88a-7169af559565}\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "009e9b39-b316-ec11-b6e6-00224808ef60",
+        "title": "CurrencyExchangeRates",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "FromCurrency",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "ToCurrency",
+            "id": "text_1",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "ExchangeRateTable",
+            "id": "exchangeratetable",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2021-09-16T05:59:22Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2021-09-16T11:26:24Z",
+        "versionNumber": 0
+      },
+      "id": "98138d97-a2ae-41e5-8459-d6fae8cb9136",
+      "displayName": "CurrencyExchangeRates",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2021-09-20T05:09:07.723Z",
+      "updatedTime": "2021-09-20T05:09:07.723Z"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "None",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "messages": {
+        "GetValue": [
+          "9819ff72-907d-432b-81bf-89972cb8ce4b"
+        ]
+      },
+      "isGlobal": false,
+      "id": "7b1436f8-0852-45b2-9838-41ba0d9b6f75",
+      "displayName": "FromCurrency",
+      "createdTime": "2021-09-20T05:07:28.004Z",
+      "updatedTime": "2023-09-28T01:54:11.2032023Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844"
+    },
+    {
+      "systemType": "None",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "messages": {
+        "GetValue": [
+          "72a9c8eb-41f9-47a6-9a12-592c59784d1d"
+        ]
+      },
+      "isGlobal": false,
+      "id": "e05fca1d-d4b9-4524-a88a-7169af559565",
+      "displayName": "ToCurrency",
+      "createdTime": "2021-09-20T05:08:32.294Z",
+      "updatedTime": "2023-09-28T01:54:11.2032024Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844"
+    },
+    {
+      "customTypeId": "18d35da3-d196-465f-8705-7fa6dd729b6f",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "98138d97-a2ae-41e5-8459-d6fae8cb9136",
+      "isGlobal": false,
+      "id": "868f2239-86a1-4339-a9e4-2a8f9374d248",
+      "displayName": "",
+      "createdTime": "2021-09-20T05:09:07.724Z",
+      "updatedTime": "2023-09-28T01:54:11.2032026Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('868f2239-86a1-4339-a9e4-2a8f9374d248')['exchangeratetable']",
+      "isGlobal": false,
+      "id": "15370d86-fa9a-48ab-a914-049f5a8f63a5",
+      "displayName": "ExchangeRateTable",
+      "createdTime": "2021-09-20T05:09:07.724Z",
+      "updatedTime": "2023-09-28T01:54:11.2032028Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "bd360daa-50c9-4f9c-a40a-6a94843c1844"
+    }
+  ],
+  "jsonTypes": [
+    {
+      "customTypeSchema": "Json",
+      "id": "18d35da3-d196-465f-8705-7fa6dd729b6f",
+      "displayName": "Response Json Type for Flow - CurrencyExchangeRates",
+      "createdTime": "2021-09-20T05:09:07.724Z",
+      "updatedTime": "2021-09-20T05:09:07.724Z"
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "intents": [
+    {
+      "systemIntentTypes": [
+        "ConfirmedSuccess"
+      ],
+      "intentType": "System",
+      "dialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_db1f76b081dc43389df9dd2df7518737_confirmedsuccess",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_db1f76b081dc43389df9dd2df7518737_confirmedsuccess",
+      "displayName": "Confirmed Success",
+      "description": "System Intent Confirmed Success",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "namedEntities": [
+    {
+      "id": "8b488006-067e-4089-b6ad-767d2767a655",
+      "displayName": "Yes",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "id": "87c9e216-5b49-45db-bad2-6dcdd47f8ee2",
+      "displayName": "No, thanks",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "id": "5cafd92e-80db-4b50-a343-62880194a648",
+      "displayName": "1",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "id": "884f4e7f-7005-4d9a-941f-9118adb88730",
+      "displayName": "2",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "id": "f9ea1d82-ea01-4aa2-870c-ad590298e403",
+      "displayName": "3",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "id": "bf3d2513-a779-40b2-aa64-d4c75e548ddd",
+      "displayName": "4",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "id": "ccaba19c-92cc-462b-98fa-14055725033a",
+      "displayName": "5",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "873b869b-eaff-4dc2-91d2-674ae00cd08d",
+      "dialogType": "System",
+      "messageNodes": [
+        {
+          "botMessageId": "b46cd099-b8fb-474d-88d9-879ebdd4d9f8",
+          "nodeType": "BotMessageNode",
+          "id": "84eee210-fc48-4774-adcf-cfe97b655ca2",
+          "defaultTargetNodeId": "629eb33c-046d-4027-bd4e-923303c257c2"
+        },
+        {
+          "botMessageId": "a7ad80eb-348b-42ef-8d2e-2f7268613696",
+          "nodeType": "BotMessageNode",
+          "id": "e54b7c79-79d7-42ad-abeb-77479d1fe431"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_f56d1a3e522740c78f9fac0939332dbd_goodbye",
+          "nodeType": "DialogChangeNode",
+          "id": "1ff62b5a-60e9-4658-b328-c5ff1ab2f0ca"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "afcb46d0-d842-457b-9278-5141e4207753",
+          "nodeType": "QuestionNode",
+          "id": "873b869b-eaff-4dc2-91d2-674ae00cd08d",
+          "defaultTargetNodeId": "84eee210-fc48-4774-adcf-cfe97b655ca2"
+        },
+        {
+          "contextVariableId": "d45c4e77-2ad4-4fb2-b67d-81d5f8d4d6d3",
+          "nodeType": "QuestionNode",
+          "id": "629eb33c-046d-4027-bd4e-923303c257c2",
+          "routes": [
+            {
+              "expression": "@equals(parameters('d45c4e77-2ad4-4fb2-b67d-81d5f8d4d6d3'), '8b488006-067e-4089-b6ad-767d2767a655')",
+              "targetNodeId": "e54b7c79-79d7-42ad-abeb-77479d1fe431"
+            },
+            {
+              "expression": "@equals(parameters('d45c4e77-2ad4-4fb2-b67d-81d5f8d4d6d3'), '87c9e216-5b49-45db-bad2-6dcdd47f8ee2')",
+              "targetNodeId": "1ff62b5a-60e9-4658-b328-c5ff1ab2f0ca"
+            }
+          ]
+        }
+      ],
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_db1f76b081dc43389df9dd2df7518737_confirmedsuccess",
+      "displayName": "Dialog",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "AdaptiveCard",
+          "content": "{\r\n\t\"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\r\n\t\"type\": \"AdaptiveCard\",\r\n\t\"version\": \"1.0\",\r\n\t\"body\": [{\r\n\t\t\t\"type\": \"TextBlock\",\r\n\t\t\t\"text\": \"Great! Please rate your experience.\",\r\n\t\t\t\"wrap\": true\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"type\": \"ColumnSet\",\r\n\t\t\t\"columns\": [{\r\n\t\t\t\t\t\"type\": \"Column\",\r\n\t\t\t\t\t\"items\": [{\r\n\t\t\t\t\t\t\"type\": \"Image\",\r\n\t\t\t\t\t\t\"size\": \"small\",\r\n\t\t\t\t\t\t\"altText\": \"1\",\r\n\t\t\t\t\t\t\"url\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAA4CAYAAACVFFp4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQASURBVHgB7VnNTttAEJ5du/f0DUx76aWQcuqN0FtPDT1V5W/hBQov0IYngD4BCwTEDXiBEl6ghKqHSpUa8wTkQC8k9nZm7TgOENvxWghV+aTIk7V3/GW/2ZmxY0EBEEI45fKLUrP5sw2G4FAEvE4VfFtAAbChELB3oKAQMDAEyQV+t6W/cPuplNJINnPJvJtK3+4IMEQBMcSX+zZKZwgjyVCuEsp1FRtqo2wTJrKZrZB3U4U4GYASeF4VDGBGSLFKaJzgLmsGHv0ZMIAZIR7EDOp+pElpbqyqpXxoQkIsVIAkIg7cOwPriQxPlaDbLUNO5F+hrhL6qKAh5aGrAxnt0GvuOMpPiEMYK6FUg/Yy5IQtFj8KYNwZZRL4ysHIcbRtecfRONm+vYlWSSwtbEGw8zKDgWqxIJd0cDLL86uacrf+Kj6ARM7xkCeGdoBfr9lhEhPoyMXjl4FLejExDAyO74wptYMn2inziHApNmdd7u1vBadiEOIDFkrrNJIDoIYrsAEFQiwvbiKBtZCJC1zNSXnQ7HO9PYFIeRgHLNopTSwHOEm6YEJEdwUdzFcskJNW37pGv8cDqzm0lqGENYgkxF/isxVZrzcgFxnMWb7ajq38Bq587b5rrWFOmhc/GuWXkxfA1GvtiIEoT03S+BmMQmZp4ROuxiH6oJhpgw9v5V5dDrs+tdrfiSuFgWzZ62kS6t3rdY/wDpVgRKH03hwl0aR5qS1s6GAikpBiy+9eor2WOJFSCesVX/gqd/fXIAOyZ2pub/VMBvw09XqfydCiHqkGGZGdUKz32d7dPUm93rabkKNHyk4o3vvcAm1pva1jCIvtyD3SCJLFe58+VpbmlzGmzumj7QGwHX0YoUfKROhO79Mbx6yrQMcKnSuRjcHfLz+W1SstmXukbA+K1PtwFvU+UdZVqp91CcEWryGpai+7i8WFhh4PeqRG2q0yPXWIpfkW5SFsD4Ti7BKTG8nWkyDKumFq+Bz41dl9FRPrFG5/akna4YNk4r1SJQvkYg7ZyodZJHMakrlCezZeArTtw3u8Uv8A9P4NOJ8KT5NslbT7pceQH2tHea9nUufAu9P31TYcO8aM/CYgRZeGrW5wtwqkIFGyWq0G7p/frVhRpFcKmHXr65ABgxLq27nOs+cT5HcYElfIdV0nRuYKNVvNSoagJcQ5eq6Gclz3l5M0J1kyeu8TOGppifYOJIwIPQfnRhKmvEcaSihYVp0M0eHf6bQqnUiK5vInREqi6DNJkg2FLgeL85kq9Eh+Ma5MnmzHGOMhYfwCtSgQkVn8tOARoIIfKrbfAYp5U226zP2n22CFHo1sDhS0QsX811EgxoTSMCaUhiIJFfSP2Rhj/Gf4B6gpnUsF8Vk4AAAAAElFTkSuQmCC\",\r\n\t\t\t\t\t\t\"selectAction\": {\r\n\t\t\t\t\t\t\t\"type\": \"Action.Submit\",\r\n\t\t\t\t\t\t\t\"title\": \"Rate 1\",\r\n\t\t\t\t\t\t\t\"data\": {\r\n\t\t\t\t\t\t\t\t\"afcb46d0-d842-457b-9278-5141e4207753\": \"1\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t},\"horizontalAlignment\": \"center\"\r\n\t\t\t\t\t}]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"type\": \"Column\",\r\n\t\t\t\t\t\"items\": [{\r\n\t\t\t\t\t\t\"type\": \"Image\",\r\n\t\t\t\t\t\t\"size\": \"small\",\r\n\t\t\t\t\t\t\"altText\": \"2\",\r\n\t\t\t\t\t\t\"url\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAA4CAYAAACVFFp4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQqSURBVHgB7VhNctMwFH6SzZpwAxc2bKCBFTsCO1YEVgz9E1yA9gJgTkA5AWobGFZQDgANF6Apw4IZZhr3BM2ibNrY4j3Jdpy0sR0rQ7vIN+PxiyzJX/Q9vfcsB6YAIYRXr1+vdTq/emAJDtNAeNKEyBUwBbgwFbCHoGAqYGAJkguiflf/4O4VKaWVbPaShceNgX0iwBJT8CG+MrBROktYSYZy1VCuw0xTD2Wbs5HNboXC4yZkyQDUIAybYAE7Qoo1YuML7rKOmTG6CxawI8SNz6DunzUpzY01tZT/m5AQiw0giYgDD7+Dc0nGj2rQ79ehIqqvUF8JfVfQlvJjoB0Z7XjWyn5UnRCH2FdiqYbtFagIVyw9FcC4N8kgiJSHnuNp2wm303ayI/cNWjWxvLgOZueVBgPVZSaWnOBgVuVfdeRm61a2AYns4q2KD20AP1p14yAmcKIA76+GuiQ+MQ4Mtk+1KbWBD3oF44hwLTNmTW69XzePMhDiCSZKZyeVA8DHFXgNU4RYWXqDBFZjJgFw9UjKD50B19EBRCpEP2DpTulgOsBBMgAbIroqOMF4xYyctPrOEc67PbSaY3MZSuhDKiH+k4g9k61WGyqRwZgVqXeZlX+NK++f1dcZN0ln72e7fuPmHjB1R0/EQNTnb1L7d5iEzPLiC1yNjzgH+UwPInggt1pyXP/CbH/KrxQ6suOuFUmod2/Y/4xvaJgWhdKHjyiI5o0rLGHjCeZSCcm3ov4B2qu5AymUsCT5wlu5+X4VSqB8pObuemIy4DuF/SMmY4tqJB9KojyhTO3zbnPzS2F/1+1AhRqpPKFs7TMC2tJ6W2cQJ9uJa6QJJMvWPgM8W15YQZ/apUvbQ2Ab+jZBjVSK0KnaJ2nHqKtA+wo9q5GNzj9IP46TpJbSNVK5D0WqfThLa5806io1iLoEs8V9JNVMortYWmzrdlMjtYteVeqrQywvdCkOYXkgFGcHGNxItkSCNOrGoeGlmVdH9+cYWOdx+1NJ0os/JHPfVSiZkYt5ZKsI7iGZnZjMIdr3silA2xE8xp76D+Ds34Dz+fgxydYoel+xD0WZcpQnNZPaBd6/fVZuw7ZtjMj3DSnqGpe65m0NKECuZL7vQ7D/p5tJinSkgFG3tQYlMCyhfl3gXb02R/OOQ+4KBUHgZcgcombPy5IhaAlxjB6robwg+O3ljcmXjM59zERdLdHWBwkTQo/BsamEBedIYwmZZdXBECf8e7soS+eSorH8EpGSKPrdPMnGQqeDpYVSGXqiedGvbL5sZ5ihCNaHniNzTOkstjooTv0ASjDmLuCc8QmvRmwTOZX5fS4YjSd00CDAArbHwmcdKhzCBcELvPbhAoB2WULGg3MGkcFDBKwMLwAZAtXKPlwQeGAcmJ1xVYbNLvPwuoxXOHJ9hRlmmGGAf0m+qlg89W7lAAAAAElFTkSuQmCC\",\r\n\t\t\t\t\t\t\"selectAction\": {\r\n\t\t\t\t\t\t\t\"type\": \"Action.Submit\",\r\n\t\t\t\t\t\t\t\"title\": \"Rate 2\",\r\n\t\t\t\t\t\t\t\"data\": {\r\n\t\t\t\t\t\t\t\t\"afcb46d0-d842-457b-9278-5141e4207753\": \"2\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t},\"horizontalAlignment\": \"center\"\r\n\t\t\t\t\t}]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"type\": \"Column\",\r\n\t\t\t\t\t\"items\": [{\r\n\t\t\t\t\t\t\"type\": \"Image\",\r\n\t\t\t\t\t\t\"size\": \"small\",\r\n\t\t\t\t\t\t\"altText\": \"3\",\r\n\t\t\t\t\t\t\"url\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAA4CAYAAACVFFp4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAARLSURBVHgB7Vm9cttGEP4OgGdSMl26QEmTJhbtKp3pdKlCu8pEf2e/gKUXSOgnsPIEPkm0x53lMk1Ev0BEZ1J4xjMm/AIWC7uxCJx370AQlEwAxGFsFfpmMFgdcIuP9+3tLiAfDUBKGbbbP7SGw//HcISHJhCfdpEEEg0gQCMQv0KjEQg4guVCMhmZP7zga6WUk2zuksUfOjP7VMIRDcSQtzWzSTpHOElGcrVIrpPc0JhkW3GRzW2F4g9d5MkALcRxFw5wI6RFJzWe0S4bWo/JDTjAjZBnY4Z0f2pIGW6ia6T83ISkXO+AJWIOXvwc/hWVXmphMmmjJuqv0ERLc9YYKPUkMoFMduq1dhzVJ+QhjZVUqnl7CzURyI3fJYQXLjMJiQ4pckJj+/FhNs52EjwgqyU313dhd15lCOiRsLnklCaLOr9qqPb71/IDROSYTnViaA/eu+0gTWKSHEV0/nPulmlMLILA4bkxrffowrhkHhNu5ebsqINHu/ZSDlL+RoXSP8rkAHq0AvfRIOTWxgMisJ0yieDpW0o9Hs64np3ApGKKA5HtlCGVA5qkIrgQMV3BKeUrYeXk1fffkd/DudVcWMtIwh4yCemXJOKO6vcHqEWGclaiH+ZW/j6tfO9T9/qLnAxf/Ddo/3j1BYT+yTgSkO3Vqzz+HMuQ2Vy/R6vxhHxwzIyR4Bd10FeL7i+t9ufiSlMg+8FOmYRm98aTp/SEjh3RJH18i5No0bzSFjZ1sJJJyLGVTN6QvV04kVOJmBZf/KX2H22jAqpnai/YnZoC3lHp/YlQqcU9Ug8VUZ1Qrvd5uL//rPT+IBiiRo9UnVC+9zkD3tJmW+eQFtule6QlJMv3PjPc2Vzbopg65sPYcxB75rREj1SJ0LneZzpOWVfDxApfa7FNwT8rP74/LS2Ve6RqL4rc+3gi632yrKv1LOsy7BbvEanuNLvLjfWBGbc90qDsUZXeOuTm2ojzELUHUnviDSU3lm0qQZZ109Twh/VrsvtdSqyrtP25JRmnL5KFzyqVzMolQrZ1gptE5iglc0L2zXwJMHaC23Sn+QHk/R943mp6mWXrlD2vPIaSXDvqTXsmfQxvcv1TtY3GDikj/2xJ8a1pq2uf1kEJCiXr9XqIXr8a5Yoif1KgrNvfQQXMS2geF4Xffb/CfhehcIWiKApzZE5Is7tVyTCMhDTHzDXQYRS9DIvmFEvG332so5GR6OCxwpIwc2huJmHJd6SFhOyymmRIDt9fL6vShaR4rneFSSkS/UaRZAthysHGWqUKvZRfiiuXN9tLXKIMzh89z/ho6Ftsfdyj4zW4wAD8Cn0NXxicOKdbmFPECfKvyBcALFmICwCOoxVY+Zzg+q8Floel+hZ2ZW7DET7c8BUd38CuEDdiTPBvXCBwN+lU/5r599QM9sXwC4EfzIEsMAtq7nlqfxJ2RQi7q/5Nj7dwlKsphLgguecSl2B8BJ3Zp2kdNcE9AAAAAElFTkSuQmCC\",\r\n\t\t\t\t\t\t\"selectAction\": {\r\n\t\t\t\t\t\t\t\"type\": \"Action.Submit\",\r\n\t\t\t\t\t\t\t\"title\": \"Rate 3\",\r\n\t\t\t\t\t\t\t\"data\": {\r\n\t\t\t\t\t\t\t\t\"afcb46d0-d842-457b-9278-5141e4207753\": \"3\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t},\"horizontalAlignment\": \"center\"\r\n\t\t\t\t\t}]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"type\": \"Column\",\r\n\t\t\t\t\t\"items\": [{\r\n\t\t\t\t\t\t\"type\": \"Image\",\r\n\t\t\t\t\t\t\"size\": \"small\",\r\n\t\t\t\t\t\t\"altText\": \"4\",\r\n\t\t\t\t\t\t\"url\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAA4CAYAAACVFFp4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAARDSURBVHgB7VlNbtw2FP5IKfvJCSq3m24aT7PqLnJ3XXXSVVH/MblA7Qu0Si9gd9ddaHsSZNU4F4gnF6jHRRcFCnSUE3gKpEARj8Q+khqNJvZIGlFNg8AfQOiZEqlv+D2+90R7aAFCiKDb/bgzHP42hiM42kBy0UPqC7QAH62AfQmFVsDgCC0X0snI/MH9m1JKJ9ncJUtehzP7QsARLfgQ357ZJJ0jnCQjuTok13mha0yyrbjI5rZCyeseimSADpKkBwe4EVIszIxntMuGdsb0DhzgRohbnyHdnxpShhvrGSnfNiEhNkJoiTQHnryAd0NmtzqYTLpoiOYrNFHCXBUGUj6JjSOTnc3a2I+aE+LIfCWTat7eRkP4YvMbAcaDZQYhVQF5TmBsLznO+7Wd+ntkdcTWxj7szqsNBjViNpZc0GDW5FcN5WH/02IHETmlSxMfOgB/teNnQUzQRDFdv597ZOoTi8BwfKlPqQO6Ma4Ypwl3CmN25dGjfXurACG+pkTpneRyABGtwAO0CLG9uUcEdjImMbi6K+Xj4YzrmwM0qYT8gOU7ZUjpgAbJGC5ETFVwQfGKWTn16nuvaN7judVcmMtIwgi5hPRLUnZP9vsDNCJDMStVDwsr/4BWPrrqWW/RJMOzXwfdT26dganPzEQMort6S/e/wDJktja+pdV4QnNonxkjxRfyqC8XPV+Z7S/5lSJH9vzdKgnN7k0mT+kNoe1RJH1yVwfRsnGVJWw2wUouofatdPKS7J3SgTqUsGnyxY/y8NEOaqB+pOb+/tRk4CeVz6dMZpaukSLURH1Chdrn4eHhs8rnfX+IBjVSfULF2ucN6C1ttnUBWbJdukZaQrJi7TPDva31bfKpU92MPQd2YC5L1Ei1CF2qfab9FHUVjK/oex1tk/PP0o/nTVNL7Rqp3oeirn04y2ufPOoqNYu6GnaLR0SqN43uYnNjYPptjTSoelWtrw6xtT7ScYjKA6E4e0nBTcs2lSCPullo+M7Oa6L7fQqsq7T9dUkyzj4kS99VKZmViwXaVinWiMxJRuac7LViCjB2iq/oSfMDaPbn4Hw1u61lC6veV+1DaaEc5dOaSZ2CT25flduo75gi8ueWlH40K3Xt20JUoFSyKIoQ//nHqJAU9ZECRd3+LmpgXkLzujj48KMVPe8ilK5QHMdBgcw5aXa/LhkNIyGNMWMNVBDHvwdlY8ol0+c+dqKRkejoscSSMGNobC5hxTnSQkJ2WU0wpAn/vl2VpUtJ6bH8hiYlSfQ7ZZIthEkHm+u1MvRS85JfuXzZXuMabxvOh6htIqK2h3cEAWxaqa61K9DWEsvs+gG1NTigjX8tCNjVkXgHsELtF1jJQrQgmcsK3aT2nNoP1GK0BA/N8RNs5XgGe0ClK8OQ2l+wBP9BA7g49c8oHjpZW0uoT9CojF3uOO+/QIj/2YeuQkv/NbvGNd4j/Asx56lIZSPBbQAAAABJRU5ErkJggg==\",\r\n\t\t\t\t\t\t\"selectAction\": {\r\n\t\t\t\t\t\t\t\"type\": \"Action.Submit\",\r\n\t\t\t\t\t\t\t\"title\": \"Rate 4\",\r\n\t\t\t\t\t\t\t\"data\": {\r\n\t\t\t\t\t\t\t\t\"afcb46d0-d842-457b-9278-5141e4207753\": \"4\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t},\"horizontalAlignment\": \"center\"\r\n\t\t\t\t\t}]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"type\": \"Column\",\r\n\t\t\t\t\t\"items\": [{\r\n\t\t\t\t\t\t\"type\": \"Image\",\r\n\t\t\t\t\t\t\"size\": \"small\",\r\n\t\t\t\t\t\t\"altText\": \"5\",\r\n\t\t\t\t\t\t\"url\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAA4CAYAAACVFFp4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAARPSURBVHgB7Vm9cttGEP4OgHumTAcljZtYjKt0ptOlCp0qE/2d/QCJ9AIJ/ARWnsCQRHvcWe5SRfQLWHQmRWYyY8IPYIuFPeOxCJx3DyBwlEQAxGGsRt/MDVYH3OHjfXu7i5OLFiCl9Lvd653R6N8JLOGgDcSnfSSeRAvw0ArEj1BoBQKWYLmQTMf6D8f7IgxDK9nsJYs/9gr7VMISLfiQs1XYJJ0lrCQjuTok14nRNSHZVmxks1uh+GMfJhmggzjuwwJ2hJToZcYz2mWjdMbkFixgR8hJfYZ0f6pJaW6ir6X83ISkXO+BJWIOTvwc7rUwu9XBdNpFQzRfoamS+qowDMMnkXZksrNZG/tRc0IOMl/JpJq3t9AQntz4RUI4/jKDkCifPMfXthsf5v1sJ94Dsjpyc30X6c6rDQE1FmksOaXBosmvGoX7g2/NDiJyTJcmPrQH5922lwUxSRNFdP1j7pGZTyyCwOG5PqX26MakYhwT7hhjdsKDR7vpLQNS/kyJ0j3K5QACWoH7aBFya+MBEdjOmERw1J0wfDwquJ4dwKRi8gOR75QRpQMaFEawIaKrglOKVyKVk1fffUfzHs6t5sJcRhIGyCWkX5KIu+FgMEQjMhSzEvXQWPn7tPLBRc+6iyYZvfxn2P3mxksI9Z2eSEB2V29w/3MsQ2Zz/TdajSc0B/vMBAl+CA8G4aLnK7P9Ob9S5Miut1Mlod698fQpvaGX9iiSPr7DQbRsXGUJm02wkkvIvpVMX5O9XTqQQ4mYJV/8Ge4/2kYN1I/Ujrc7MwWco8rnExFmFtdIAWqiPiGj9nm4v/+s8nnPG6FBjVSfkFn7nAFvab2tDWTJdukaaQnJzNqnwN3NtS3yqWNu2p6D2NOXJWqkWoTO1T6zfoq6CtpX+F6HbXL+Iv247iy11K6R6n0ocu3jiLz2yaOuUkXUZaRbPCBS/Vl0lxvrQ92f1kjDqlfV+uqQm2tjjkNUHkjliNcU3Fi2mQR51M1Cw+/pvDq636PAukrbn0uSSfYhWfquSslSuYTPtkpwm8gcZWROyL5tpgBtJ/iJntQ/gGb/G46zmt1m2XpV76v2ocQoR51ZzaSO4UxvXpTbqO+QIvL3KSl+NCt107f1UIFSyYIgQPTq/7GRFPlIgaLuYAc1MC+hfl3kf/X1Cs+7CKUrFEWRb5A5Ic3u1SXD0BLSGD1WQ/lR9J9fNqZcMj73SScaa4kOHodYEnoMjc0lrDhHWkgoXVYdDGnC9zersnQpKR7rXGNSIYl+q0yyhdDpYGOtVoZeal7yK5sv2ytcoQrWh54XzGF1HmtLqIezX7tUIlGL0BC259RcfvCPCoy+CBawJcTxZIgadU5d2B4L+9lVoB1/tCbEDvwrtTfUXlCTuGR0jKtEmtV7sIALO3wwrvzJ8yW169T+QkO08++pApeeNFdQODTbXPNY/7/DBi+M9hZVBxCfCT6K7X+FK1w6PgGb4KoCISZwVQAAAABJRU5ErkJggg==\",\r\n\t\t\t\t\t\t\"selectAction\": {\r\n\t\t\t\t\t\t\t\"type\": \"Action.Submit\",\r\n\t\t\t\t\t\t\t\"title\": \"Rate 5\",\r\n\t\t\t\t\t\t\t\"data\": {\r\n\t\t\t\t\t\t\t\t\"afcb46d0-d842-457b-9278-5141e4207753\": \"5\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t},\"horizontalAlignment\": \"center\"\r\n\t\t\t\t\t}]\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}\r\n"
+        },
+        "facebook": {
+          "contentFormat": "PlainText",
+          "content": "Great! Please rate your experience from 1 (worst) to 5 (best)."
+        },
+        "msteams": {
+          "contentFormat": "PlainText",
+          "content": "Great! Please rate your experience from 1 (worst) to 5 (best)."
+        }
+      },
+      "id": "50ac12d5-3b93-414f-9e6e-4bd019c9818a",
+      "displayName": "CSAT Adaptive Card",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "PlainText",
+          "content": "Sorry, I didn't get that. Please enter a number from 1 to 5."
+        }
+      },
+      "id": "a749e0c2-bb15-4cfa-b307-f8648ea1a0d5",
+      "displayName": "CSAT Invalid Input",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Thanks for your feedback."
+        }
+      },
+      "id": "b46cd099-b8fb-474d-88d9-879ebdd4d9f8",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Go ahead. I'm listening."
+        }
+      },
+      "id": "a7ad80eb-348b-42ef-8d2e-2f7268613696",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Can I help with anything else?"
+        }
+      },
+      "id": "b6ce7ae0-2adf-41a8-9b92-1e593ffeb35a",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "contextVariables": [
+    {
+      "contextVariableType": "System",
+      "systemVariableTypes": [
+        "CSATRating"
+      ],
+      "customTypeId": "new_customtype_c4445cf76f8347b89f2159cecb8c1baa_92610204747047ac8f788f7eecd91118",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "5cafd92e-80db-4b50-a343-62880194a648",
+        "884f4e7f-7005-4d9a-941f-9118adb88730",
+        "f9ea1d82-ea01-4aa2-870c-ad590298e403",
+        "bf3d2513-a779-40b2-aa64-d4c75e548ddd",
+        "ccaba19c-92cc-462b-98fa-14055725033a"
+      ],
+      "messages": {
+        "GetValue": [
+          "50ac12d5-3b93-414f-9e6e-4bd019c9818a"
+        ],
+        "InvalidInput": [
+          "a749e0c2-bb15-4cfa-b307-f8648ea1a0d5"
+        ]
+      },
+      "isGlobal": false,
+      "id": "afcb46d0-d842-457b-9278-5141e4207753",
+      "displayName": "CSAT Rating",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "8b488006-067e-4089-b6ad-767d2767a655",
+        "87c9e216-5b49-45db-bad2-6dcdd47f8ee2"
+      ],
+      "messages": {
+        "GetValue": [
+          "b6ce7ae0-2adf-41a8-9b92-1e593ffeb35a"
+        ]
+      },
+      "isGlobal": false,
+      "id": "d45c4e77-2ad4-4fb2-b67d-81d5f8d4d6d3",
+      "displayName": "",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "createdUtc": "0001-01-01T00:00:00Z"
+}
