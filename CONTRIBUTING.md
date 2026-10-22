@@ -60,6 +60,34 @@ When you are submitting a new sample, it has to follow up below guidelines
 * Do not use period/dot in the folder name of the provided sample
 * All folders should be in lower case
 
+## Gallery metadata and local validation
+
+The [local sample gallery](./site/README.md) reads every sample's `assets/sample.json` and `README.md`. Missing or invalid metadata fails generation rather than silently excluding a sample.
+
+* Use the exact filename `assets/sample.json`, containing one sample record. Use the actual, case-sensitive sample folder in source, download, thumbnail, and tracker URLs.
+* Keep screenshots in that sample's `assets` folder. The first `image` thumbnail by ascending `order` becomes the card preview; additional images appear on its detail page. Give every image useful alternative text.
+* Use `YYYY-MM-DD` dates for new records. Existing ISO timestamps remain supported. Do not change historical dates simply to make a sample appear new.
+* Use GitHub account names, not profile URLs or display names, in `gitHubAccount`. Contributor display names belong in `name`.
+* Label new agent samples `Copilot Studio`. Historical `Power Virtual Agents` labels remain searchable and are displayed under Copilot Studio. Power Fx and Custom Connectors are also discoverable.
+* Keep product, category, and licensing facts accurate. Do not assume that a broad Power Apps category means a canvas app or that a sample has no premium requirements.
+* An omitted download URL is supported: the gallery derives the standard partial-download link from the verified current source folder.
+* Retain the single sample-view image at the end of the README. The website removes that image from rendered documentation and uses one page-level image with the same sample key, avoiding duplicate counts.
+
+Use Node.js 22.12 or later and run the following from the repository root:
+
+```shell
+cd site
+npm ci
+npm run validate:readme-trackers
+npm test
+npm run check
+npm run build
+```
+
+For website interaction changes, install the test browser once with `npx playwright install chromium` and run `npm run test:e2e`. Use `npm run dev` to inspect previews. Localhost visits and automated browser tests do not send production visitor events.
+
+The [community contributor badge](./assets/badge-contributor.png) is highlighted in the gallery. See [community recognition](https://aka.ms/community/recognition) for the community's recognition guidance.
+
 ## Clone the solution
 
 * Open up Visual Studio Code

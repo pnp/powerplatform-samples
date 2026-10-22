@@ -1,0 +1,17 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { catalog, formatDate, sitePath } from '../lib/catalog';
+---
+<BaseLayout title="What's new" description="Explore the latest additions and updates to the community Power Platform sample gallery.">
+  <PageHero eyebrow="Fresh ideas from the community" title="There's always something to discover." description="See what makers have been sharing. These samples are ordered by the update dates supplied in their metadata." portrait={4} />
+  <section class="container content-section" aria-labelledby="updates-heading">
+    <div class="section-heading"><div><p class="eyebrow">Gallery activity</p><h2 id="updates-heading">The latest starting points.</h2></div><a class="text-link" href={sitePath('/#sample-catalog')}>Explore all samples <ArrowRight size={16} /></a></div>
+    <div class="updates-list">{catalog.samples.map((sample) => <article class="update-row">
+      <time datetime={sample.updatedAt}>{formatDate(sample.updatedAt)}</time>
+      <div><p class="eyebrow">{sample.createdAt === sample.updatedAt ? 'Added' : 'Updated'} / {sample.products.filter((product) => product !== 'Power Platform').join(' + ') || 'Power Platform'}</p><h2><a href={sitePath(`/samples/${sample.slug}/`)}>{sample.title}</a></h2><p>{sample.shortDescription}</p></div>
+      <a class="text-link" href={sitePath(`/samples/${sample.slug}/`)} aria-label={`Explore ${sample.title}`}>Explore <ArrowRight size={16} /></a>
+    </article>)}</div>
+  </section>
+</BaseLayout>

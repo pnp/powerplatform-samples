@@ -30,6 +30,12 @@ You can add as many screen shots as you'd like to help users understand your sol
 
 ![Not so good](assets/notsogood.gif)
 
+## Gallery preview and metadata
+
+Complete `assets/sample.json` using your real sample folder, products, dates, author account, and screenshot URLs. The gallery uses the first `image` thumbnail by ascending `order` as the preview. Keep the referenced image in this sample's `assets` folder and provide descriptive alternative text.
+
+For new agent samples, use the product name `Copilot Studio`. Existing Power Virtual Agents samples remain compatible with the gallery. See [contribution guidance](../../CONTRIBUTING.md#gallery-metadata-and-local-validation) for validation commands.
+
 ## Applies to
 
 <!--
@@ -38,9 +44,8 @@ Update the applies to section below.
 If your solution includes all the products and features listed below, use the following:
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-Yes-green "Yes")
-![Power BI](https://img.shields.io/badge/Power%20BI-Yes-green "Yes")
 ![Power Pages](https://img.shields.io/badge/Power%20Pages-Yes-green "Yes")
-![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-Yes-green "Yes")
+![Copilot Studio](https://img.shields.io/badge/Copilot%20Studio-Yes-green "Yes")
 ![Dataverse](https://img.shields.io/badge/Dataverse-Yes-green "Yes")
 ![AI Builder](https://img.shields.io/badge/AI%20Builder-Yes-green "Yes")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-Yes-green "Yes")
@@ -49,9 +54,8 @@ If your solution includes all the products and features listed below, use the fo
 If your solution doesn't include the products and features listed below, use the following:
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-No-red "No")
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
-![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
 ![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
-![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
+![Copilot Studio](https://img.shields.io/badge/Copilot%20Studio-No-red "No")
 ![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
 ![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
@@ -65,9 +69,8 @@ Don't worry if you're unsure about the compatibility matrix above. We'll verify 
 
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
-![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
 ![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
-![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
+![Copilot Studio](https://img.shields.io/badge/Copilot%20Studio-No-red "No")
 ![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
 ![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")

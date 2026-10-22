@@ -1,0 +1,132 @@
+---
+import { ArrowRight, ArrowUpRight, CodeXml, Search, Sparkles, X } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brandPath, catalog, sitePath } from '../lib/catalog';
+import SampleCard from '../components/SampleCard.astro';
+import CallRibbon from '../components/CallRibbon.astro';
+import BadgePanel from '../components/BadgePanel.astro';
+---
+<BaseLayout>
+  <section class="home-hero">
+    <div class="container home-hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> Microsoft 365 &amp; Power Platform Community</p>
+        <h1>Build something powerful.<br /><span>Start with a sample.</span></h1>
+        <p class="hero-description">Big ideas start with a little inspiration. Discover apps, automations, and agents built by the community. Make them your own.</p>
+        <div class="action-row"><a class="button button--primary" href="#sample-catalog">Explore samples <ArrowRight size={18} /></a><a class="button button--secondary" href={sitePath('/contributing/')}><CodeXml size={18} /> Share your sample</a></div>
+        <div class="hero-stats" aria-label="Gallery statistics">
+          <div><strong>{catalog.samples.length}</strong><span>community samples</span></div>
+          <div><strong>{catalog.contributors.length}</strong><span>people sharing ideas</span></div>
+          <div class="hero-open"><Sparkles size={22} /><span>Open source.<br /><strong>Open possibilities.</strong></span></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <span class="hero-orbit" aria-hidden="true"></span>
+        <img class="hero-portrait" src={brandPath('portrait-1-800.webp')} srcset={`${brandPath('portrait-1-480.webp')} 480w, ${brandPath('portrait-1-800.webp')} 800w`} sizes="(max-width: 650px) 260px, 420px" width="1000" height="1125" alt="A maker alongside flowing teal Power Platform artwork" fetchpriority="high" />
+        <span class="hero-art-label"><span class="live-dot"></span> Ideas into impact.</span>
+      </div>
+    </div>
+  </section>
+  <CallRibbon />
+  <div class="catalog-backdrop">
+    <section class="container catalog-section" id="sample-catalog" aria-labelledby="catalog-heading">
+      <div class="section-heading"><div><p class="eyebrow">A starting point for your next idea</p><h2 id="catalog-heading">Find your inspiration.</h2></div><a class="text-link" href={sitePath('/getting-started/')}>New here? Start with the basics <ArrowUpRight size={17} /></a></div>
+      <div class="product-selector js-only" role="group" aria-label="Filter by product">
+        <button class="product-filter is-active" data-product-filter="" aria-pressed="true"><img src={brandPath('powerplatform_256x256.png')} alt="" width="36" height="36" /><span>All products</span><small>{catalog.samples.length}</small></button>
+        {catalog.products.filter((product) => product.kind === 'product').map((product) => <button class="product-filter" data-product-filter={product.name} aria-pressed="false"><img src={brandPath(product.logo!)} alt="" width="36" height="36" /><span>{product.name}</span><small>{product.count}</small></button>)}
+      </div>
+      <div class="capability-filters js-only" role="group" aria-label="Additional product and capability filters"><span>Also explore</span>{catalog.products.filter((product) => product.kind !== 'product').map((product) => <button class="capability-filter" data-product-filter={product.name} aria-pressed="false">{product.name}<span>{product.count}</span></button>)}</div>
+      <form class="catalog-toolbar js-only" id="catalog-filters" role="search">
+        <div class="search-control"><Search size={20} /><label class="sr-only" for="sample-search">Search samples</label><input id="sample-search" name="q" type="search" placeholder="Try an idea, a product, or a maker..." autocomplete="off" /><button type="button" id="clear-search" aria-label="Clear search" hidden><X size={17} /></button></div>
+        <label><span class="sr-only">Category</span><select name="category" id="category-filter"><option value="">All categories</option>{catalog.categories.map((category) => <option value={category}>{category}</option>)}</select></label>
+        <label><span class="sr-only">Contributor</span><select name="author" id="author-filter"><option value="">All contributors</option>{catalog.contributors.map((author) => <option value={author.gitHubAccount.toLowerCase()}>{author.name}</option>)}</select></label>
+        <label><span class="sr-only">Sort samples</span><select name="sort" id="sort-filter"><option value="updated">Recently updated</option><option value="newest">Newest first</option><option value="name">Name: A to Z</option></select></label>
+      </form>
+      <noscript><p>Browse all samples below. Enable JavaScript to use search, filters, and theme controls.</p></noscript>
+      <div class="results-bar"><p id="result-count" role="status" aria-live="polite">Showing all {catalog.samples.length} samples</p><button type="button" id="reset-filters" class="reset-link js-only" hidden>Clear all filters <X size={14} /></button></div>
+      <div class="sample-grid" id="sample-grid">{catalog.samples.map((sample, index) => <SampleCard sample={sample} index={index} />)}</div>
+      <div class="empty-state" id="empty-state" hidden><Search size={32} /><h3>No samples found. Yet.</h3><p>Try a different product or a broader search. Your next idea could also become a community sample.</p><button class="button button--secondary" id="empty-reset" type="button">Clear filters</button></div>
+    </section>
+  </div>
+  <div class="container section-space"><BadgePanel compact /></div>
+</BaseLayout>
+<script>
+  import { filterRecords, type FilterRecord, type FilterState } from '../lib/filtering';
+  function required<T extends Element>(selector: string) {
+    const element = document.querySelector<T>(selector);
+    if (!element) throw new Error(`Gallery control is missing: ${selector}`);
+    return element;
+  }
+  const search = required<HTMLInputElement>('#sample-search');
+  const category = required<HTMLSelectElement>('#category-filter');
+  const author = required<HTMLSelectElement>('#author-filter');
+  const sort = required<HTMLSelectElement>('#sort-filter');
+  const grid = required<HTMLElement>('#sample-grid');
+  const count = required<HTMLElement>('#result-count');
+  const empty = required<HTMLElement>('#empty-state');
+  const reset = required<HTMLButtonElement>('#reset-filters');
+  const clearSearch = required<HTMLButtonElement>('#clear-search');
+  const productButtons = [...document.querySelectorAll<HTMLButtonElement>('button[data-product-filter]')];
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-sample-card]')];
+  const records: (FilterRecord & { element: HTMLElement })[] = cards.map((element) => {
+    const data = element.dataset;
+    if (!data.slug || !data.title || !data.products || !data.categories || !data.authors || !data.updated || !data.created || !data.search) throw new Error('Sample card has incomplete filter data');
+    return {
+      slug: data.slug, title: data.title, searchText: data.search, products: JSON.parse(data.products),
+      categories: JSON.parse(data.categories), authors: JSON.parse(data.authors), updatedAt: data.updated,
+      createdAt: data.created, element,
+    };
+  });
+  let product = '';
+  function readQuery() {
+    const query = new URLSearchParams(window.location.search);
+    search.value = query.get('q') ?? '';
+    category.value = [...category.options].some((option) => option.value === query.get('category')) ? query.get('category')! : '';
+    const requestedAuthor = query.get('author')?.toLowerCase() ?? '';
+    author.value = [...author.options].some((option) => option.value === requestedAuthor) ? requestedAuthor : '';
+    sort.value = ['newest', 'name'].includes(query.get('sort') ?? '') ? query.get('sort')! : 'updated';
+    product = productButtons.some((button) => button.dataset.productFilter === query.get('product')) ? query.get('product')! : '';
+  }
+  function apply(history: 'push' | 'replace' | 'none' = 'none') {
+    const state: FilterState = { q: search.value, product, category: category.value, author: author.value, sort: sort.value === 'newest' ? 'newest' : sort.value === 'name' ? 'name' : 'updated' };
+    const matches = filterRecords(records, state);
+    cards.forEach((card) => { card.hidden = true; });
+    matches.forEach((record) => { record.element.hidden = false; grid.append(record.element); });
+    productButtons.forEach((button) => {
+      const active = button.dataset.productFilter === product;
+      button.setAttribute('aria-pressed', String(active));
+      button.classList.toggle('is-active', active);
+    });
+    const filtered = !!(state.q.trim() || state.product || state.category || state.author);
+    count.textContent = filtered ? `Showing ${matches.length} of ${records.length} samples` : `Showing all ${records.length} samples`;
+    reset.hidden = !filtered && state.sort === 'updated';
+    clearSearch.hidden = !state.q;
+    empty.hidden = matches.length > 0;
+    if (history !== 'none') {
+      const query = new URLSearchParams();
+      if (state.q.trim()) query.set('q', state.q.trim());
+      if (product) query.set('product', product);
+      if (state.category) query.set('category', state.category);
+      if (state.author) query.set('author', state.author);
+      if (state.sort !== 'updated') query.set('sort', state.sort);
+      const target = `${window.location.pathname}${query.size ? `?${query}` : ''}${window.location.hash}`;
+      if (target !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
+        window.history[history === 'push' ? 'pushState' : 'replaceState']({}, '', target);
+      }
+    }
+  }
+  function clear() {
+    search.value = ''; category.value = ''; author.value = ''; sort.value = 'updated'; product = '';
+    apply('push');
+  }
+  productButtons.forEach((button) => button.addEventListener('click', () => { product = button.dataset.productFilter ?? ''; apply('push'); }));
+  search.addEventListener('input', () => apply('replace'));
+  required<HTMLFormElement>('#catalog-filters').addEventListener('submit', (event) => { event.preventDefault(); apply('push'); });
+  [category, author, sort].forEach((control) => control.addEventListener('change', () => apply('push')));
+  clearSearch.addEventListener('click', () => { search.value = ''; apply('push'); search.focus(); });
+  reset.addEventListener('click', clear);
+  required<HTMLButtonElement>('#empty-reset').addEventListener('click', clear);
+  window.addEventListener('popstate', () => { readQuery(); apply(); });
+  readQuery();
+  apply();
+</script>
