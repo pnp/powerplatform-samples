@@ -1,7 +1,7 @@
 """Deterministic reference tests; real Power Fx fixture results are documented separately."""
 import json,unittest
 from pathlib import Path
-CARDS=json.loads((Path(__file__).resolve().parents[1]/'sourcecode/cards.json').read_text())
+CARDS=json.loads((Path(__file__).resolve().parents[1]/'sourcecode/cards.json').read_text(encoding='utf-8'))
 def rarity(roll):
  if not 0<=roll<1:raise ValueError('roll outside [0,1)')
  return 'Common' if roll<.60 else 'Uncommon' if roll<.85 else 'Rare' if roll<.97 else 'Legendary'
@@ -32,12 +32,12 @@ class PackTests(unittest.TestCase):
  def test_source_guard_and_single_save(self):
   src=Path(__file__).resolve().parents[1]/'sourcecode/studio/Src/PackScreen.pa.yaml'
   if not src.exists():self.skipTest('Final Studio source not yet exported')
-  text=src.read_text();self.assertIn('CountIf(colPack, !Revealed)',text);self.assertIn('Distinct(colPack, Card.Id)',text);self.assertIn('Slot < draw.Slot',text)
+  text=src.read_text(encoding='utf-8');self.assertIn('CountIf(colPack, !Revealed)',text);self.assertIn('Distinct(colPack, Card.Id)',text);self.assertIn('Slot < draw.Slot',text)
 
 class ProductionSourceTests(unittest.TestCase):
  def test_production_rng_and_award_location(self):
   root=Path(__file__).resolve().parents[1]/'sourcecode/studio/Src'
-  text=(root/'PackScreen.pa.yaml').read_text()
+  text=(root/'PackScreen.pa.yaml').read_text(encoding='utf-8')
   opening=text.split('      - GeneratePack:')[1].split('      - PackSummary:')[0]
   self.assertEqual(opening.count('Rand()'),1)
   self.assertEqual(opening.count('RandBetween(1, CountRows(choices))'),1)
@@ -49,12 +49,12 @@ class ProductionSourceTests(unittest.TestCase):
   self.assertIn('Patch(colPack, ThisItem, {Revealed: true})',reveal)
   self.assertNotIn('colOwned',reveal)
   for screen in ['BinderScreen.pa.yaml','DetailScreen.pa.yaml']:
-   source=(root/screen).read_text()
+   source=(root/screen).read_text(encoding='utf-8')
    self.assertNotIn('Collect(colOwned',source)
    self.assertNotIn('RemoveIf(colOwned',source)
  def test_storage_key_compatibility(self):
   root=Path(__file__).resolve().parents[1]/'sourcecode/studio/Src'
-  self.assertIn('LoadData(colOwned, "MoonfieldOwnedV1"', (root/'App.pa.yaml').read_text())
-  self.assertIn('SaveData(colOwned, "MoonfieldOwnedV1"', (root/'PackScreen.pa.yaml').read_text())
+  self.assertIn('LoadData(colOwned, "MoonfieldOwnedV1"', (root/'App.pa.yaml').read_text(encoding='utf-8'))
+  self.assertIn('SaveData(colOwned, "MoonfieldOwnedV1"', (root/'PackScreen.pa.yaml').read_text(encoding='utf-8'))
 
 if __name__=='__main__':unittest.main(verbosity=2)

@@ -86,7 +86,7 @@ The second list is **TimeEntries** which is the main list that stores all of the
 * Within **Power Apps Studio**, import the solution `.zip` file using **Solutions** > **Import Solution** and select the `.zip` file you just packed.
 * Open the Timesheet Template app in Edit mode
 * Go to the datasources tab and remove the BillTo and TimeEntries tables
-![MyTimeCards](assets/deleteBillTO.png)
+![MyTimeCards](assets/deleteBillTo.png)
 ![MyTimeCards](assets/deleteTimeEntries.png)
 * In the datasources tab, click add new and search for SharePoint
 ![AddData](assets/addSP.png)

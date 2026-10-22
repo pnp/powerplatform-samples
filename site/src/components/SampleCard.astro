@@ -1,0 +1,21 @@
+---
+import { ArrowUpRight } from '@lucide/astro';
+import { formatDate, sitePath, type Sample } from '../lib/catalog';
+import ProductMarks from './ProductMarks.astro';
+interface Props { sample: Sample; index?: number; }
+const { sample, index = 9 } = Astro.props;
+const href = sitePath(`/samples/${sample.slug}/`);
+---
+<article class="sample-card" data-sample-card data-title={sample.title} data-slug={sample.slug} data-search={sample.searchText} data-products={JSON.stringify(sample.products)} data-categories={JSON.stringify(sample.categories)} data-authors={JSON.stringify(sample.authors.map((author) => author.gitHubAccount.toLowerCase()))} data-updated={sample.updatedAt} data-created={sample.createdAt}>
+  <a class="sample-card-media" href={href} aria-label={`View ${sample.title}`}>
+    <img src={sitePath(sample.preview.src640)} srcset={`${sitePath(sample.preview.src640)} 640w, ${sitePath(sample.preview.src960)} 960w`} sizes="(max-width: 650px) 100vw, (max-width: 1000px) 50vw, 33vw" alt={sample.preview.alt} width={sample.preview.width} height={sample.preview.height} loading={index < 3 ? 'eager' : 'lazy'} decoding="async" />
+    <span class="media-action" aria-hidden="true"><ArrowUpRight size={19} /></span>
+  </a>
+  <div class="sample-card-body">
+    <div class="sample-card-meta"><span>{sample.categories[0] ?? 'Community sample'}</span><time datetime={sample.updatedAt}>{formatDate(sample.updatedAt)}</time></div>
+    <h3><a href={href}>{sample.title}</a></h3>
+    <p class="sample-card-description">{sample.shortDescription}</p>
+    <ProductMarks products={sample.products} compact />
+    <div class="sample-card-footer"><span>{sample.authors.map((author) => author.name).join(', ')}</span><a href={href} aria-label={`Explore ${sample.title}`}>Explore <ArrowUpRight size={15} /></a></div>
+  </div>
+</article>

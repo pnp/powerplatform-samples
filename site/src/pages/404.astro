@@ -1,0 +1,9 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { sitePath } from '../lib/catalog';
+---
+<BaseLayout title="Page not found">
+  <PageHero eyebrow="404 / A small detour" title="Let's find a new starting point." description="That page isn't here, but your next idea might be. Head back to the gallery to discover a community sample."><a class="button button--primary" href={sitePath('/')}>Back to the samples <ArrowRight size={17} /></a></PageHero>
+</BaseLayout>
