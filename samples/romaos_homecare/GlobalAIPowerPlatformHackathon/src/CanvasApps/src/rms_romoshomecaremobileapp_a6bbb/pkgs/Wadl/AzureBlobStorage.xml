@@ -1,0 +1,759 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://unitedstates-002.azure-apim.net/apim/azureblob" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="AzureBlobStorage" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="Azure Blob Storage">Microsoft Azure Storage provides a massively scalable, durable, and highly available storage for data on the cloud, and serves as the data storage solution for modern applications. Connect to Blob Storage to perform various operations such as create, update, get and delete on blobs in your Azure Storage account.</doc>
+  <grammars>
+    <jsonTypes targetNamespace="https://unitedstates-002.azure-apim.net/apim/azureblob" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <untypedObject name="Object" />
+      <string name="BlobMetadata_Id_def" />
+      <string name="BlobMetadata_Name_def" />
+      <string name="BlobMetadata_DisplayName_def" />
+      <string name="BlobMetadata_Path_def" />
+      <dateTimeString name="BlobMetadata_LastModified_def" />
+      <integer name="BlobMetadata_Size_def" />
+      <string name="BlobMetadata_MediaType_def" />
+      <boolean name="BlobMetadata_IsFolder_def" />
+      <string name="BlobMetadata_ETag_def" />
+      <string name="BlobMetadata_FileLocator_def" />
+      <object name="BlobMetadata">
+        <property name="Id" type="string" />
+        <property name="Name" type="string" />
+        <property name="DisplayName" type="string" />
+        <property name="Path" type="string" />
+        <property name="LastModified" typeRef="BlobMetadata_LastModified_def" />
+        <property name="Size" type="integer" />
+        <property name="MediaType" type="string" />
+        <property name="IsFolder" type="boolean" />
+        <property name="ETag" type="string" />
+        <property name="FileLocator" type="string" />
+      </object>
+      <string name="BlobMetadataResponse_Id_def" />
+      <string name="BlobMetadataResponse_Name_def" />
+      <string name="BlobMetadataResponse_DisplayName_def" />
+      <string name="BlobMetadataResponse_Path_def" />
+      <dateTimeString name="BlobMetadataResponse_LastModified_def" />
+      <integer name="BlobMetadataResponse_Size_def" />
+      <string name="BlobMetadataResponse_MediaType_def" />
+      <boolean name="BlobMetadataResponse_IsFolder_def" />
+      <string name="BlobMetadataResponse_ETag_def" />
+      <string name="BlobMetadataResponse_FileLocator_def" />
+      <object name="BlobMetadataResponse">
+        <property name="Id" type="string" />
+        <property name="Name" type="string" />
+        <property name="DisplayName" type="string" />
+        <property name="Path" type="string" />
+        <property name="LastModified" typeRef="BlobMetadataResponse_LastModified_def" />
+        <property name="Size" type="integer" />
+        <property name="MediaType" type="string" />
+        <property name="IsFolder" type="boolean" />
+        <property name="ETag" type="string" />
+        <property name="FileLocator" type="string" />
+      </object>
+      <array typeRef="BlobMetadata" name="BlobMetadataPage_value_def" />
+      <string name="BlobMetadataPage_nextLink_def" />
+      <string name="BlobMetadataPage_nextPageMarker_def" />
+      <object name="BlobMetadataPage">
+        <property name="value" typeRef="BlobMetadataPage_value_def" />
+        <property name="nextLink" type="string" />
+        <property name="nextPageMarker" type="string" />
+      </object>
+      <string name="SharedAccessSignatureBlobPolicy_GroupPolicyIdentifier_def" />
+      <string name="SharedAccessSignatureBlobPolicy_Permissions_def" />
+      <dateTimeString name="SharedAccessSignatureBlobPolicy_StartTime_def" />
+      <dateTimeString name="SharedAccessSignatureBlobPolicy_ExpiryTime_def" />
+      <string name="SharedAccessSignatureBlobPolicy_AccessProtocol_def" />
+      <string name="SharedAccessSignatureBlobPolicy_IpAddressOrRange_def" />
+      <object name="SharedAccessSignatureBlobPolicy">
+        <property name="GroupPolicyIdentifier" type="string" />
+        <property name="Permissions" type="string" />
+        <property name="StartTime" typeRef="SharedAccessSignatureBlobPolicy_StartTime_def" />
+        <property name="ExpiryTime" typeRef="SharedAccessSignatureBlobPolicy_ExpiryTime_def" />
+        <property name="AccessProtocol" type="string" />
+        <property name="IpAddressOrRange" type="string" />
+      </object>
+      <string dtype="hyperlink" name="SharedAccessSignature_WebUrl_def" />
+      <object name="SharedAccessSignature">
+        <property name="WebUrl" type="string" dtype="hyperlink" />
+      </object>
+      <array typeRef="StorageAccount" name="StorageAccountList_value_def" />
+      <object name="StorageAccountList">
+        <property name="value" typeRef="StorageAccountList_value_def" />
+      </object>
+      <string name="StorageAccount_Name_def" />
+      <string name="StorageAccount_DisplayName_def" />
+      <object name="StorageAccount">
+        <property name="Name" type="string" />
+        <property name="DisplayName" type="string" />
+      </object>
+      <object name="DataSetsMetadata">
+        <property name="tabular" typeRef="TabularDataSetsMetadata" />
+        <property name="blob" typeRef="BlobDataSetsMetadata" />
+      </object>
+      <string name="TabularDataSetsMetadata_source_def" />
+      <string name="TabularDataSetsMetadata_displayName_def" />
+      <string name="TabularDataSetsMetadata_urlEncoding_def" />
+      <string name="TabularDataSetsMetadata_tableDisplayName_def" />
+      <string name="TabularDataSetsMetadata_tablePluralName_def" />
+      <object name="TabularDataSetsMetadata">
+        <property name="source" type="string" />
+        <property name="displayName" type="string" />
+        <property name="urlEncoding" type="string" />
+        <property name="tableDisplayName" type="string" />
+        <property name="tablePluralName" type="string" />
+      </object>
+      <string name="BlobDataSetsMetadata_source_def" />
+      <string name="BlobDataSetsMetadata_displayName_def" />
+      <string name="BlobDataSetsMetadata_urlEncoding_def" />
+      <object name="BlobDataSetsMetadata">
+        <property name="source" type="string" />
+        <property name="displayName" type="string" />
+        <property name="urlEncoding" type="string" />
+      </object>
+      <string name="UpdateFile_V2_param_body_def" />
+      <string name="GetFileContentByPath_V2_responses_200_def" />
+      <string name="GetFileContent_V2_responses_200_def" />
+      <string name="CreateFile_V2_param_body_def" />
+      <array typeRef="BlobMetadata" name="ExtractFolder_V3_responses_200_def" />
+      <string name="UpdateFile_param_body_def" />
+      <string name="GetFileContentByPath_responses_200_def" />
+      <string name="GetFileContent_responses_200_def" />
+      <string name="CreateFile_param_body_def" />
+      <array typeRef="BlobMetadata" name="ExtractFolderV2_responses_200_def" />
+      <array typeRef="SharedAccessSignatureBlobPolicy" name="GetAccessPolicies_V2_responses_200_def" />
+      <string name="CreateBlockBlob_V2_param_body_def" />
+      <array typeRef="SharedAccessSignatureBlobPolicy" name="GetAccessPolicies_responses_200_def" />
+      <string name="CreateBlockBlob_param_body_def" />
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://unitedstates-002.azure-apim.net/apim/azureblob">
+    <resource path="/{connectionId}/v2/datasets/{dataset}/files/{id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="dataset" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Specify the blob." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetFileMetadataV2" actionName="GetFileMetadata_V2" visibility="advanced" siena:isDeprecated="false" siena:family="GetFileMetadata" siena:revision="2" siena:status="Production">
+        <doc title="Get Blob Metadata (V2)&#xA;This operation retrieves blob metadata using blob id." />
+        <request />
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadata" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{dataset}/files/{id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="dataset" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Specify the blob to update." />
+      </param>
+      <method siena:requiresAuthentication="true" name="PUT" id="UpdateFileV2" actionName="UpdateFile_V2" siena:isDeprecated="false" siena:family="UpdateFile" siena:revision="2" siena:status="Production">
+        <doc title="Update blob (V2)&#xA;This operation updates a blob in Azure Blob Storage." />
+        <request>
+          <param style="header" name="Content-Type" type="xs:string">
+            <doc title="Specify content-type of the blob to upload." />
+          </param>
+          <param style="header" name="ReadFileMetadataFromServer" type="xs:boolean" default="true">
+            <doc title="Get all file metadata from the server after file is updated. If this is false, some metadata properties may not be returned such as last modified time, etc." />
+          </param>
+          <representation mediaType="application/octet-stream" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadata" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{dataset}/files/{id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="dataset" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Specify the blob to delete." />
+      </param>
+      <method siena:requiresAuthentication="true" name="DELETE" id="DeleteFileV2" actionName="DeleteFile_V2" siena:isDeprecated="false" siena:family="DeleteFile" siena:revision="2" siena:status="Production">
+        <doc title="Delete blob (V2)&#xA;This operation deletes a blob." />
+        <request>
+          <param style="header" name="SkipDeleteIfFileNotFoundOnServer" type="xs:boolean" default="false">
+            <doc title="Skips the deletion if a file is not found on the server." />
+          </param>
+        </request>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{dataset}/GetFileByPath">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="dataset" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetFileMetadataByPathV2" actionName="GetFileMetadataByPath_V2" visibility="advanced" siena:isDeprecated="false" siena:family="GetFileMetadataByPath" siena:revision="2" siena:status="Production">
+        <doc title="Get Blob Metadata using path (V2)&#xA;This operation retrieves blob metadata using path." />
+        <request>
+          <param style="query" name="path" type="xs:string" required="true">
+            <doc title="Specify unique path to the blob." />
+          </param>
+          <param style="query" name="queryParametersSingleEncoded" type="xs:boolean" default="true" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadata" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{dataset}/GetFileContentByPath">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="dataset" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetFileContentByPathV2" actionName="GetFileContentByPath_V2" siena:isDeprecated="false" siena:family="GetFileContentByPath" siena:revision="2" siena:status="Production">
+        <doc title="Get blob content using path (V2)&#xA;This operation retrieves blob contents using path." />
+        <request>
+          <param style="query" name="path" type="xs:string" required="true">
+            <doc title="Specify unique path to the blob." />
+          </param>
+          <param style="query" name="inferContentType" type="xs:boolean" default="true">
+            <doc title="Infer content-type based on extension." />
+          </param>
+          <param style="query" name="queryParametersSingleEncoded" type="xs:boolean" default="true" />
+        </request>
+        <response>
+          <representation mediaType="application/octet-stream" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{dataset}/files/{id}/content">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="dataset" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Specify the blob." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetFileContentV2" actionName="GetFileContent_V2" siena:isDeprecated="false" siena:family="GetFileContent" siena:revision="2" siena:status="Production">
+        <doc title="Get blob content (V2)&#xA;This operation retrieves blob contents using id." />
+        <request>
+          <param style="query" name="inferContentType" type="xs:boolean" default="true">
+            <doc title="Infer content-type based on extension." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/octet-stream" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{dataset}/files">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="dataset" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="CreateFileV2" actionName="CreateFile_V2" visibility="important" siena:isDeprecated="false" siena:family="CreateFile" siena:revision="2" siena:status="Production">
+        <doc title="Create blob (V2)&#xA;This operation uploads a blob to Azure Blob Storage." />
+        <request>
+          <param style="query" name="folderPath" type="xs:string" required="true">
+            <doc title="Specify folder path to upload." />
+          </param>
+          <param style="query" name="name" type="xs:string" required="true">
+            <doc title="Specify name of the blob to create." />
+          </param>
+          <param style="query" name="queryParametersSingleEncoded" type="xs:boolean" default="true" />
+          <param style="header" name="Content-Type" type="xs:string">
+            <doc title="Specify content-type of the blob to upload." />
+          </param>
+          <param style="header" name="ReadFileMetadataFromServer" type="xs:boolean" default="true">
+            <doc title="Get all file metadata from the server after file creation is complete. If this is false, some metadata properties may not be returned such as last modified time, etc." />
+          </param>
+          <representation mediaType="application/octet-stream" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadata" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{dataset}/copyFile">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="dataset" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="CopyFileV2" actionName="CopyFile_V2" visibility="advanced" siena:isDeprecated="false" siena:family="CopyFile" siena:revision="2" siena:status="Production">
+        <doc title="Copy blob (V2)&#xA;This operation copies a blob. If blob is being deleted/renamed on server right after it was copied, connector may return HTTP 404 error by it's design. Please use a delay for 1 minute before deleting or renaming newly created blob. Chunk transfer is not supported in this action. If source and destination are present in same storage account, please use relative path. Otherwise, maximum size of a source for copy blob operation is 50 MB." />
+        <request>
+          <param style="query" name="source" type="xs:string" required="true">
+            <doc title="Specify the url to source blob." />
+          </param>
+          <param style="query" name="destination" type="xs:string" required="true">
+            <doc title="Specify the destination blob path, including the target blob name." />
+          </param>
+          <param style="query" name="overwrite" type="xs:boolean" default="false">
+            <doc title="Should the destination blob be overwritten (true/false)?." />
+          </param>
+          <param style="query" name="queryParametersSingleEncoded" type="xs:boolean" default="true" />
+          <param style="header" name="ReadFileMetadataFromServer" type="xs:boolean" default="true">
+            <doc title="Get all file metadata from the server after file creation is complete. If this is false, some metadata properties may not be returned such as last modified time, etc." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadata" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{dataset}/foldersV2/{id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="dataset" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Specify the folder." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="ListFolderV4" actionName="ListFolder_V4" visibility="advanced" siena:isDeprecated="false" siena:family="ListFolder" siena:revision="4" siena:status="Production">
+        <doc title="Lists blobs (V2)&#xA;This operation lists blobs in a container." />
+        <request>
+          <param style="query" name="nextPageMarker" type="xs:string" default="">
+            <doc title="A marker that identifies the portion of the list to be returned with the list operation&quot;." />
+          </param>
+          <param style="query" name="useFlatListing" type="xs:boolean" default="false">
+            <doc title="Whether or not to list blobs in flat listing&quot;." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadataPage" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{dataset}/foldersV2">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="dataset" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="ListRootFolderV4" actionName="ListRootFolder_V4" visibility="advanced" siena:isDeprecated="false" siena:family="ListRootFolder" siena:revision="4" siena:status="Production">
+        <doc title="Lists blobs in the root folder  (V2)&#xA;This operation lists blobs in the Azure Blob Storage root folder." />
+        <request>
+          <param style="query" name="nextPageMarker" type="xs:string" default="">
+            <doc title="A marker that identifies the portion of the list to be returned with the list operation." />
+          </param>
+          <param style="query" name="useFlatListing" type="xs:boolean" default="false">
+            <doc title="Whether or not to list blobs in flat listing." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadataPage" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{dataset}/extractFolderV2">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="dataset" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="ExtractFolderV3" actionName="ExtractFolder_V3" visibility="advanced" siena:isDeprecated="false" siena:family="ExtractFolder" siena:revision="3" siena:status="Production">
+        <doc title="Extract archive to folder (V2)&#xA;This operation extracts an archive blob into a folder (example: .zip)." />
+        <request>
+          <param style="query" name="source" type="xs:string" required="true">
+            <doc title="Specify the path to the archive blob." />
+          </param>
+          <param style="query" name="destination" type="xs:string" required="true">
+            <doc title="Specify the path in Azure Blob Storage to extract the archive contents." />
+          </param>
+          <param style="query" name="overwrite" type="xs:boolean" default="false">
+            <doc title="Should destination blob be overwritten (true/false)?." />
+          </param>
+          <param style="query" name="queryParametersSingleEncoded" type="xs:boolean" default="true" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:ExtractFolder_V3_responses_200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/files/{id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Specify the blob." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetFileMetadata" actionName="GetFileMetadata" visibility="advanced" siena:isDeprecated="true" siena:family="GetFileMetadata" siena:revision="1" siena:status="Production">
+        <doc title="Get Blob Metadata&#xA;This operation retrieves blob metadata using blob id." />
+        <request />
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadata" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/files/{id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Specify the blob to update." />
+      </param>
+      <method siena:requiresAuthentication="true" name="PUT" id="UpdateFile" actionName="UpdateFile" siena:isDeprecated="true" siena:family="UpdateFile" siena:revision="1" siena:status="Production">
+        <doc title="Update blob&#xA;This operation updates a blob in Azure Blob Storage." />
+        <request>
+          <param style="header" name="Content-Type" type="xs:string">
+            <doc title="Specify content-type of the blob to upload." />
+          </param>
+          <param style="header" name="ReadFileMetadataFromServer" type="xs:boolean" default="true">
+            <doc title="Get all file metadata from the server after file is updated. If this is false, some metadata properties may not be returned such as last modified time, etc." />
+          </param>
+          <representation mediaType="application/octet-stream" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadata" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/files/{id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Specify the blob to delete." />
+      </param>
+      <method siena:requiresAuthentication="true" name="DELETE" id="DeleteFile" actionName="DeleteFile" siena:isDeprecated="true" siena:family="DeleteFile" siena:revision="1" siena:status="Production">
+        <doc title="Delete blob&#xA;This operation deletes a blob." />
+        <request>
+          <param style="header" name="SkipDeleteIfFileNotFoundOnServer" type="xs:boolean" default="false">
+            <doc title="Skips the deletion if a file is not found on the server." />
+          </param>
+        </request>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/GetFileByPath">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetFileMetadataByPath" actionName="GetFileMetadataByPath" visibility="advanced" siena:isDeprecated="true" siena:family="GetFileMetadataByPath" siena:revision="1" siena:status="Production">
+        <doc title="Get Blob Metadata using path&#xA;This operation retrieves blob metadata using path." />
+        <request>
+          <param style="query" name="path" type="xs:string" required="true">
+            <doc title="Specify unique path to the blob." />
+          </param>
+          <param style="query" name="queryParametersSingleEncoded" type="xs:boolean" default="true" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadata" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/GetFileContentByPath">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetFileContentByPath" actionName="GetFileContentByPath" siena:isDeprecated="true" siena:family="GetFileContentByPath" siena:revision="1" siena:status="Production">
+        <doc title="Get blob content using path&#xA;This operation retrieves blob contents using path." />
+        <request>
+          <param style="query" name="path" type="xs:string" required="true">
+            <doc title="Specify unique path to the blob." />
+          </param>
+          <param style="query" name="inferContentType" type="xs:boolean" default="true">
+            <doc title="Infer content-type based on extension." />
+          </param>
+          <param style="query" name="queryParametersSingleEncoded" type="xs:boolean" default="true" />
+        </request>
+        <response>
+          <representation mediaType="application/octet-stream" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/files/{id}/content">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Specify the blob." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetFileContent" actionName="GetFileContent" siena:isDeprecated="true" siena:family="GetFileContent" siena:revision="1" siena:status="Production">
+        <doc title="Get blob content&#xA;This operation retrieves blob contents using id." />
+        <request>
+          <param style="query" name="inferContentType" type="xs:boolean" default="true">
+            <doc title="Infer content-type based on extension." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/octet-stream" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/files">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="CreateFile" actionName="CreateFile" visibility="important" siena:isDeprecated="true" siena:family="CreateFile" siena:revision="1" siena:status="Production">
+        <doc title="Create blob&#xA;This operation uploads a blob to Azure Blob Storage." />
+        <request>
+          <param style="query" name="folderPath" type="xs:string" required="true">
+            <doc title="Specify folder path to upload." />
+          </param>
+          <param style="query" name="name" type="xs:string" required="true">
+            <doc title="Specify name of the blob to create." />
+          </param>
+          <param style="query" name="queryParametersSingleEncoded" type="xs:boolean" default="true" />
+          <param style="header" name="Content-Type" type="xs:string">
+            <doc title="Specify content-type of the blob to upload." />
+          </param>
+          <param style="header" name="ReadFileMetadataFromServer" type="xs:boolean" default="true">
+            <doc title="Get all file metadata from the server after file creation is complete. If this is false, some metadata properties may not be returned such as last modified time, etc." />
+          </param>
+          <representation mediaType="application/octet-stream" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadata" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/copyFile">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="CopyFile" actionName="CopyFile" visibility="advanced" siena:isDeprecated="true" siena:family="CopyFile" siena:revision="1" siena:status="Production">
+        <doc title="Copy blob&#xA;This operation copies a blob. If blob is being deleted/renamed on server right after it was copied, connector may return HTTP 404 error by it's design. Please use a delay for 1 minute before deleting or renaming newly created blob. Chunk transfer is not supported in this action. If source and destination are present in same storage account, please use relative path. Otherwise, maximum size of a source for copy blob operation is 50 MB." />
+        <request>
+          <param style="query" name="source" type="xs:string" required="true">
+            <doc title="Specify the url to source blob." />
+          </param>
+          <param style="query" name="destination" type="xs:string" required="true">
+            <doc title="Specify the destination blob path, including the target blob name." />
+          </param>
+          <param style="query" name="overwrite" type="xs:boolean" default="false">
+            <doc title="Should the destination blob be overwritten (true/false)?." />
+          </param>
+          <param style="query" name="queryParametersSingleEncoded" type="xs:boolean" default="true" />
+          <param style="header" name="ReadFileMetadataFromServer" type="xs:boolean" default="true">
+            <doc title="Get all file metadata from the server after file is copied. If this is false, some metadata properties may not be returned such as last modified time, etc." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadata" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/foldersV2/{id}">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="id" type="xs:string" required="true">
+        <doc title="Specify the folder." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="ListFolderV2" actionName="ListFolderV2" visibility="advanced" siena:isDeprecated="true" siena:family="ListFolder" siena:revision="2" siena:status="Production">
+        <doc title="Lists blobs&#xA;This operation lists blobs in a container." />
+        <request>
+          <param style="query" name="nextPageMarker" type="xs:string" default="">
+            <doc title="A marker that identifies the portion of the list to be returned with the list operation&quot;." />
+          </param>
+          <param style="query" name="useFlatListing" type="xs:boolean" default="false">
+            <doc title="Whether or not to list blobs in flat listing&quot;." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadataPage" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/foldersV2">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="ListRootFolderV2" actionName="ListRootFolderV2" visibility="advanced" siena:isDeprecated="true" siena:family="ListRootFolder" siena:revision="2" siena:status="Production">
+        <doc title="Lists blobs in the root folder&#xA;This operation lists blobs in the Azure Blob Storage root folder." />
+        <request>
+          <param style="query" name="nextPageMarker" type="xs:string" default="">
+            <doc title="A marker that identifies the portion of the list to be returned with the list operation." />
+          </param>
+          <param style="query" name="useFlatListing" type="xs:boolean" default="false">
+            <doc title="Whether or not to list blobs in flat listing." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:BlobMetadataPage" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/extractFolderV2">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="ExtractFolderV2" actionName="ExtractFolderV2" visibility="advanced" siena:isDeprecated="true" siena:family="ExtractFolder" siena:revision="2" siena:status="Production">
+        <doc title="Extract archive to folder&#xA;This operation extracts an archive blob into a folder (example: .zip)." />
+        <request>
+          <param style="query" name="source" type="xs:string" required="true">
+            <doc title="Specify the path to the archive blob." />
+          </param>
+          <param style="query" name="destination" type="xs:string" required="true">
+            <doc title="Specify the path in Azure Blob Storage to extract the archive contents." />
+          </param>
+          <param style="query" name="overwrite" type="xs:boolean" default="false">
+            <doc title="Should destination blob be overwritten (true/false)?." />
+          </param>
+          <param style="query" name="queryParametersSingleEncoded" type="xs:boolean" default="true" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:ExtractFolderV2_responses_200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{storageAccountName}/CreateSharedLinkByPath">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="storageAccountName" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="CreateShareLinkByPathV2" actionName="CreateShareLinkByPath_V2" visibility="advanced" siena:isDeprecated="false" siena:family="CreateShareLinkByPath" siena:revision="2" siena:status="Production">
+        <doc title="Create SAS URI by path (V2)&#xA;This operation creates a SAS link for a blob using the path." />
+        <request>
+          <param style="query" name="path" type="xs:string" required="true">
+            <doc title="The unique path of the blob." />
+          </param>
+          <representation mediaType="application/json">
+            <param style="plain" name="GroupPolicyIdentifier" path="/GroupPolicyIdentifier" type="xs:string" />
+            <param style="plain" name="Permissions" path="/Permissions" type="xs:string" default="Read">
+              <option value="Read" />
+              <option value="Write" />
+              <option value="Add" />
+              <option value="Create" />
+              <option value="Delete" />
+              <option value="List" />
+              <option value="Read,Write" />
+              <option value="Read,Write,List" />
+              <option value="Read,Write,List,Delete" />
+            </param>
+            <param style="plain" name="StartTime" path="/StartTime" type="service:SharedAccessSignatureBlobPolicy_StartTime_def" />
+            <param style="plain" name="ExpiryTime" path="/ExpiryTime" type="service:SharedAccessSignatureBlobPolicy_ExpiryTime_def" />
+            <param style="plain" name="AccessProtocol" path="/AccessProtocol" type="xs:string">
+              <option value="HttpsOnly" />
+              <option value="HttpsOrHttp" />
+            </param>
+            <param style="plain" name="IpAddressOrRange" path="/IpAddressOrRange" type="xs:string" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:SharedAccessSignature" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{storageAccountName}/SetBlobTierByPath">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="storageAccountName" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="SetBlobTierByPathV2" actionName="SetBlobTierByPath_V2" visibility="advanced" siena:isDeprecated="false" siena:family="SetBlobTierByPath" siena:revision="2" siena:status="Production">
+        <doc title="Set blob tier by path (V2)&#xA;This operation sets a tier for a block blob on a standard storage account using the path." />
+        <request>
+          <param style="query" name="path" type="xs:string" required="true">
+            <doc title="The unique path of the blob." />
+          </param>
+          <param style="query" name="newTier" type="xs:string" required="true">
+            <doc title="The new tier for the blob." />
+            <option value="Hot" />
+            <option value="Cool" />
+            <option value="Archive" />
+          </param>
+        </request>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/datasets/{storageAccountName}/policies">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="storageAccountName" type="xs:string" required="true">
+        <doc title="Azure Storage account name or blob endpoint." />
+      </param>
+      <method siena:requiresAuthentication="true" name="GET" id="GetAccessPoliciesV2" actionName="GetAccessPolicies_V2" visibility="advanced" siena:isDeprecated="false" siena:family="GetAccessPolicies" siena:revision="2" siena:status="Production">
+        <doc title="Get available access policies (V2)&#xA;This operation gets available shared access policies for a blob." />
+        <request>
+          <param style="query" name="path" type="xs:string" required="true">
+            <doc title="The unique path of the blob." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:GetAccessPolicies_V2_responses_200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/v2/codeless/datasets/{storageAccountName}/CreateBlockBlob">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <param style="template" name="storageAccountName" type="xs:string" required="true">
+        <doc title="The storage account name." />
+      </param>
+      <method siena:requiresAuthentication="true" name="POST" id="CreateBlockBlobV2" actionName="CreateBlockBlob_V2" visibility="important" siena:isDeprecated="false" siena:family="CreateBlockBlob" siena:revision="2" siena:status="Production">
+        <doc title="Create block blob (V2)&#xA;This operation uploads a block blob to Azure Blob Storage." />
+        <request>
+          <param style="query" name="folderPath" type="xs:string" required="true">
+            <doc title="Specify folder path to upload." />
+          </param>
+          <param style="query" name="name" type="xs:string" required="true">
+            <doc title="Specify name of the blob to create." />
+          </param>
+          <param style="header" name="Content-Type" type="xs:string">
+            <doc title="Specify content-type of the blob to upload." />
+          </param>
+          <representation mediaType="application/octet-stream" />
+        </request>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/CreateSharedLinkByPath">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="CreateShareLinkByPath" actionName="CreateShareLinkByPath" visibility="advanced" siena:isDeprecated="true" siena:family="CreateShareLinkByPath" siena:revision="1" siena:status="Production">
+        <doc title="Create SAS URI by path&#xA;This operation creates a SAS link for a blob using the path." />
+        <request>
+          <param style="query" name="path" type="xs:string" required="true">
+            <doc title="The unique path of the blob." />
+          </param>
+          <representation mediaType="application/json">
+            <param style="plain" name="GroupPolicyIdentifier" path="/GroupPolicyIdentifier" type="xs:string" />
+            <param style="plain" name="Permissions" path="/Permissions" type="xs:string" default="Read">
+              <option value="Read" />
+              <option value="Write" />
+              <option value="Add" />
+              <option value="Create" />
+              <option value="Delete" />
+              <option value="List" />
+              <option value="Read,Write" />
+              <option value="Read,Write,List" />
+              <option value="Read,Write,List,Delete" />
+            </param>
+            <param style="plain" name="StartTime" path="/StartTime" type="service:SharedAccessSignatureBlobPolicy_StartTime_def" />
+            <param style="plain" name="ExpiryTime" path="/ExpiryTime" type="service:SharedAccessSignatureBlobPolicy_ExpiryTime_def" />
+            <param style="plain" name="AccessProtocol" path="/AccessProtocol" type="xs:string">
+              <option value="HttpsOnly" />
+              <option value="HttpsOrHttp" />
+            </param>
+            <param style="plain" name="IpAddressOrRange" path="/IpAddressOrRange" type="xs:string" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:SharedAccessSignature" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/SetBlobTierByPath">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="SetBlobTierByPath" actionName="SetBlobTierByPath" visibility="advanced" siena:isDeprecated="true" siena:family="SetBlobTierByPath" siena:revision="1" siena:status="Production">
+        <doc title="Set blob tier by path&#xA;This operation sets a tier for a block blob on a standard storage account using the path." />
+        <request>
+          <param style="query" name="path" type="xs:string" required="true">
+            <doc title="The unique path of the blob." />
+          </param>
+          <param style="query" name="newTier" type="xs:string" required="true">
+            <doc title="The new tier for the blob." />
+            <option value="Hot" />
+            <option value="Cool" />
+            <option value="Archive" />
+          </param>
+        </request>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/datasets/default/policies">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="GetAccessPolicies" actionName="GetAccessPolicies" visibility="advanced" siena:isDeprecated="true" siena:family="GetAccessPolicies" siena:revision="1" siena:status="Production">
+        <doc title="Get available access policies&#xA;This operation gets available shared access policies for a blob." />
+        <request>
+          <param style="query" name="path" type="xs:string" required="true">
+            <doc title="The unique path of the blob." />
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:GetAccessPolicies_responses_200_def" />
+        </response>
+      </method>
+    </resource>
+    <resource path="/{connectionId}/codeless/CreateBlockBlob">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="CreateBlockBlob" actionName="CreateBlockBlob" visibility="important" siena:isDeprecated="true" siena:family="CreateBlockBlob" siena:revision="1" siena:status="Production">
+        <doc title="Create block blob&#xA;This operation uploads a block blob to Azure Blob Storage." />
+        <request>
+          <param style="query" name="folderPath" type="xs:string" required="true">
+            <doc title="Specify folder path to upload." />
+          </param>
+          <param style="query" name="name" type="xs:string" required="true">
+            <doc title="Specify name of the blob to create." />
+          </param>
+          <param style="header" name="Content-Type" type="xs:string">
+            <doc title="Specify content-type of the blob to upload." />
+          </param>
+          <representation mediaType="application/octet-stream" />
+        </request>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="shared_azureblob" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

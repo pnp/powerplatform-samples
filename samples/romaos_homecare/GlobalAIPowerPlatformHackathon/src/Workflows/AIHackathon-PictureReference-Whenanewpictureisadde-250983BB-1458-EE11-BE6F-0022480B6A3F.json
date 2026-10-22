@@ -1,0 +1,371 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_azureblob": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "rms_sharedazureblob_670f1"
+        },
+        "api": {
+          "name": "shared_azureblob"
+        }
+      },
+      "shared_cognitiveservicescomputervision": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "rms_sharedcognitiveservicescomputervision_22d50"
+        },
+        "api": {
+          "name": "shared_cognitiveservicescomputervision"
+        }
+      },
+      "shared_cognitiveservicestextanalytics": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "rms_sharedcognitiveservicestextanalytics_f7326"
+        },
+        "api": {
+          "name": "shared_cognitiveservicestextanalytics"
+        }
+      },
+      "shared_whisper-5f0e8bc62c96c6e867-5f2435fd0d1e382012": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedwhisper5f0e8bc62c96c6e8675f2435fd0d1e382012_d4261"
+        },
+        "api": {
+          "name": "shared_whisper-5f0e8bc62c96c6e867-5f2435fd0d1e382012",
+          "logicalName": "rms_whisper"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "rms_sharedcommondataserviceforapps_c37ac"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_faceapi_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "rms_sharedfaceapi_18844"
+        },
+        "api": {
+          "name": "shared_faceapi"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "bf071c52-a0dc-4efd-89e2-80a5485859a6"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "rms_automation",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_blob_content_using_path_(V2)": {
+          "runAfter": {
+            "Terminate_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b2293f3f-8a75-4042-896f-0360b20f83b2"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_azureblob",
+              "operationId": "GetFileContentByPath_V2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_azureblob"
+            },
+            "parameters": {
+              "dataset": "AccountNameFromSettings",
+              "path": "@body('Parse_JSON')?['Path']",
+              "inferContentType": true
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Analyze_Image_(V3)": {
+          "runAfter": {
+            "Speech_to_Text": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ca948e66-dce9-428b-8a5f-0be09520b75e"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_cognitiveservicescomputervision",
+              "operationId": "AnalyzeImageV3",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_cognitiveservicescomputervision"
+            },
+            "parameters": {
+              "subdomainName": "autoFilledSubdomain",
+              "format": "Image Content",
+              "Image": "@body('Get_blob_content_using_path_(V2)')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Describe_Image_(V3)": {
+          "runAfter": {
+            "Sentiment_(V3.0)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "76e9c618-c84f-4c96-8434-de5ccc83cbb9"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_cognitiveservicescomputervision",
+              "operationId": "DescribeImageV3",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_cognitiveservicescomputervision"
+            },
+            "parameters": {
+              "subdomainName": "autoFilledSubdomain",
+              "format": "Image Content",
+              "Image": "@body('Get_blob_content_using_path_(V2)')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Sentiment_(V3.0)": {
+          "runAfter": {
+            "Analyze_Image_(V3)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4069577c-b329-404e-bc19-45a8486889ba"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_cognitiveservicestextanalytics",
+              "operationId": "SentimentV3",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_cognitiveservicestextanalytics"
+            },
+            "parameters": {
+              "input/documents": [
+                {
+                  "id": "1",
+                  "text": "@body('Get_blob_content_using_path_(V2)')"
+                }
+              ]
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Speech_to_Text": {
+          "runAfter": {
+            "Predict": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9a59e370-b655-4993-9933-7d23a261014f"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_whisper-5f0e8bc62c96c6e867-5f2435fd0d1e382012",
+              "operationId": "SpeechToText",
+              "apiId": ""
+            },
+            "parameters": {
+              "file/body": "@body('Get_blob_content_using_path_(V2)')",
+              "file/fileName": "@body('Get_blob_content_using_path_(V2)')",
+              "filename": "audio.wbmp",
+              "model": "whisper-1",
+              "Content-Type": "multipart/form-data"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Predict": {
+          "runAfter": {
+            "Detect_faces_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "aaf079a7-ccc3-4e35-8e9d-c1b0bbe35c77",
+            "flowSystemMetadata": {
+              "portalOperationId": "aibuilderpredict",
+              "portalOperationGroup": "aibuilder",
+              "portalOperationApiDisplayNameOverride": "AI Builder",
+              "portalOperationIconOverride": "https://content.powerapps.com/resource/makerx/static/pauto/images/designeroperations/aiBuilderNew.51dbdb6b.png",
+              "portalOperationBrandColorOverride": "#0A76C4",
+              "portalOperationApiTierOverride": "Standard"
+            }
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "aibuilderpredict",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "recordId": "77365cfa-7021-4cb7-a9b2-dc9823cde772",
+              "item/requestv2/base64Encoded": "@body('Get_blob_content_using_path_(V2)')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Detect_faces_(V2)": {
+          "runAfter": {
+            "Get_blob_content_using_path_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3f71927c-2bec-4579-b934-0358e68f6fbd"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_faceapi_1",
+              "operationId": "DetectV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_faceapi"
+            },
+            "parameters": {
+              "subdomain": "autoFilledSubdomain",
+              "body/url": "https://staihackathon.blob.core.windows.net/hackathon/pictures/VIS-10000_21MM2023160038"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition": {
+          "actions": {},
+          "runAfter": {},
+          "else": {
+            "actions": {
+              "Terminate": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "327bf3db-a8ec-4179-8e27-512d2c7f21ac"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Cancelled"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/rms_title']",
+              "AI - Process Visit Picture"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "37688e1d-934e-4045-9ba0-8482c5fa1692"
+          },
+          "type": "If"
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "Condition": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "66ec7ba5-cbdc-44e7-8205-ab31a5ddfc86"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerOutputs()?['body/rms_parameters']",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ItemId": {
+                  "type": "string"
+                },
+                "Path": {
+                  "type": "string"
+                },
+                "PictureReferenceId": {
+                  "type": "string"
+                },
+                "VisitId": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "HTTP": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "89f47534-7fa5-4fc9-9f05-aa8c0f2c20f3"
+          },
+          "type": "Http",
+          "inputs": {
+            "method": "GET",
+            "uri": "https://black-dune-bb40ae7d85de426eb7bbc08adb2ce0c6.azurewebsites.net/ai_emotion_detection",
+            "queries": {
+              "userImage": "https://staihackathon.blob.core.windows.net@{body('Parse_JSON')?['Path']}"
+            }
+          }
+        },
+        "Terminate_2": {
+          "runAfter": {
+            "HTTP": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "68f1dc16-3b8c-4791-bfa1-830109c1824d"
+          },
+          "type": "Terminate",
+          "inputs": {
+            "runStatus": "Succeeded"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

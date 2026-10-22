@@ -1,0 +1,142 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "rms_sharedcommondataserviceforapps_c37ac"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_bingmaps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "rms_sharedbingmaps_4c1a2"
+        },
+        "api": {
+          "name": "shared_bingmaps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "781d4801-3f5d-40fa-a1c3-9a95f82b424e"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "contact",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_location_by_address": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "c3ce9ef9-0957-4579-85e4-f7bef090adeb"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_bingmaps",
+              "operationId": "GetLocationByAddress",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_bingmaps"
+            },
+            "parameters": {
+              "addressLine": "@triggerOutputs()?['body/address1_line1']",
+              "locality": "@triggerOutputs()?['body/address1_city']",
+              "adminDistrict": "@triggerOutputs()?['body/address1_stateorprovince']",
+              "postalCode": "@triggerOutputs()?['body/address1_postalcode']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Visits": {
+          "runAfter": {
+            "Get_location_by_address": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a7fb8be2-2971-4b45-ae1d-2479377eae11"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "rms_visits",
+              "fetchXml": "<fetch version=\"1.0\" mapping=\"logical\" no-lock=\"false\" distinct=\"true\">\n    <entity name=\"rms_visit\">\n        <filter type=\"and\">\n            <condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />\n        </filter>\n        <link-entity name=\"rms_patient\" alias=\"aa\" link-type=\"inner\" from=\"rms_patientid\"\n            to=\"rms_patient\">\n            <link-entity name=\"contact\" alias=\"ac\" link-type=\"inner\" from=\"contactid\"\n                to=\"rms_contact\">\n                <filter type=\"and\">\n                    <condition attribute=\"contactid\" operator=\"eq\"\n                        value=\"@{triggerOutputs()?['body/contactid']}\"\n                        uitype=\"contact\" />\n                </filter>\n            </link-entity>\n        </link-entity>\n    </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('Get_Visits')?['body/value']",
+          "actions": {
+            "Update_a_row": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "a87900b7-5cbc-4c0f-936e-b51543af9d1b"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "rms_visits",
+                  "recordId": "@items('Apply_to_each')?['rms_visitid']",
+                  "item/rms_latitude": "@outputs('Get_location_by_address')?['body/point/coordinates/latitude']",
+                  "item/rms_longitude": "@outputs('Get_location_by_address')?['body/point/coordinates/longitude']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_Visits": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "eae79dea-73a8-4542-a82e-f7d2ef5e1683"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

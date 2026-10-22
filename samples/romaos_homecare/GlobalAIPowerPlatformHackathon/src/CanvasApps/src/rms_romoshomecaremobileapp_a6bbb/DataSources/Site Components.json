@@ -1,0 +1,206 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "powerpagecomponents",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "powerpagecomponent",
+    "Name": "Site Components",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "adx_invitation_mspp_webrole_powerpagecomponent": "Invitations",
+      "componentidunique": "Row id unique",
+      "componentstate": "Component State",
+      "content": "Content",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "filecontent": "File Content",
+      "importsequencenumber": "Import Sequence Number",
+      "ismanaged": "Is Managed",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "name": "Name",
+      "overriddencreatedon": "Record Created On",
+      "overwritetime": "Record Overwrite Time",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "powerpagecomponent_AsyncOperations": "System Jobs",
+      "powerpagecomponent_BulkDeleteFailures": "Bulk Delete Failures",
+      "powerpagecomponent_FileAttachments": "FileAttachments",
+      "powerpagecomponent_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "powerpagecomponent_mspp_webformid_adx_webformsession": "Multistep Form Sessions (powerpagecomponent_mspp_webformid_adx_webformsession)",
+      "powerpagecomponent_mspp_webformstepid_adx_webformsession": "Multistep Form Sessions (powerpagecomponent_mspp_webformstepid_adx_webformsession)",
+      "powerpagecomponent_mspp_webrole_account": "Accounts",
+      "powerpagecomponent_mspp_webrole_contact": "Contacts",
+      "powerpagecomponent_powerpagecomponent": "Site Components",
+      "powerpagecomponent_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "powerpagecomponent_ProcessSession": "Process Sessions",
+      "powerpagecomponent_SyncErrors": "Sync Errors",
+      "powerpagecomponent_webrole_systemuser": "Users",
+      "powerpagecomponentid": "Power Pages Component",
+      "powerpagecomponenttype": "Component Type",
+      "powerpagesiteid": "Power Pages Site id",
+      "powerpagesitelanguageid": "Power Pages Site Language Id",
+      "searchcontent": "Search Content",
+      "solutionid": "Solution",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Site Components",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Site Components (Views)",
+    "Name": "_powerpagecomponent_views",
+    "RelatedEntityName": "Site Components",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "0b2a3d11-5aec-4a9e-bd25-5a171d5c06ef": "Advanced Form Step Lookup View",
+      "14a65792-1f64-42db-a5cb-bb2aedca5a31": "Inactive Power Pages Component",
+      "174fdc2b-5b11-49bd-a3b9-1492bcd1bc4f": "Publishing State Lookup View",
+      "3d88db2d-60a1-4720-8d9b-b6d330a13af6": "Web Template Lookup View",
+      "55fe228d-9f93-4f8e-a33c-e78b1de70e81": "Power Pages Component Advanced Find View",
+      "8488ad0b-16a0-488c-9f58-3a1ef9fefac9": "Advanced Form Lookup View",
+      "b928f143-da9a-4f94-ac51-54493f79b94e": "Active Power Pages Component",
+      "c304c6af-e3b7-4ed9-b61f-7500e479f93b": "Power Pages Component Lookup View",
+      "c65e918e-4899-4c58-8234-7f8fd8135804": "Power Pages Component Associated View"
+    }
+  },
+  {
+    "DisplayName": "Component State",
+    "Name": "componentstate",
+    "OptionSetInfoNameMapping": {
+      "0": "Published",
+      "1": "Unpublished",
+      "2": "Deleted",
+      "3": "Deleted Unpublished"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "componentstate",
+        "OptionSetReferenceEntityName": "Site Components"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "componentstate",
+    "RelatedEntityName": "Site Components",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Is Component Managed",
+    "Name": "ismanaged",
+    "OptionSetInfoNameMapping": {
+      "0": "Unmanaged",
+      "1": "Managed"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "ismanaged",
+        "OptionSetReferenceEntityName": "Site Components"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "ismanaged",
+    "RelatedEntityName": "Site Components",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Site Components)",
+    "Name": "powerpagecomponent_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Site Components"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Site Components",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Site Components)",
+    "Name": "powerpagecomponent_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Site Components"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Site Components",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Power Pages Component Type",
+    "Name": "powerpagecomponenttype",
+    "OptionSetInfoNameMapping": {
+      "1": "Publishing State",
+      "10": "Web Page Access Control Rule",
+      "11": "Web Role",
+      "12": "Website Access",
+      "13": "Site Marker",
+      "15": "Basic Form",
+      "16": "Basic Form Metadata",
+      "17": "List",
+      "18": "Table Permission",
+      "19": "Advanced Form",
+      "2": "Web Page",
+      "20": "Advanced Form Step",
+      "21": "Advanced Form Metadata",
+      "24": "Poll Placement",
+      "26": "Ad Placement",
+      "27": "Bot Consumer",
+      "28": "Column Permission Profile",
+      "29": "Column Permission",
+      "3": "Web File",
+      "30": "Redirect",
+      "31": "Publishing State Transition Rule",
+      "32": "Shortcut",
+      "33": "Cloud Flow",
+      "4": "Web Link Set",
+      "5": "Web Link",
+      "6": "Page Template",
+      "7": "Content Snippet",
+      "8": "Web Template",
+      "9": "Site Setting"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "powerpagecomponenttype",
+        "OptionSetReferenceEntityName": "Site Components"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "powerpagecomponenttype",
+    "RelatedEntityName": "Site Components",
+    "Type": "OptionSetInfo"
+  }
+]

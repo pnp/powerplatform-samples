@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{d89992d8-e27c-45b0-a06e-14db03da0c92}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{7a62bc7f-38f4-43d1-988b-45f0f5aba27f}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{b9300c04-0ab2-49ef-9234-dd35f24d0e47}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{aafd6a35-87c6-4c7b-b498-ca3ca3c47b60}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="rms_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="rms_name" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{199eac26-146d-4d57-8083-fb448243118e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="AzureStorageItemId" languagecode="1033" />
+                        </labels>
+                        <control id="rms_azurestorageitemid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="rms_azurestorageitemid" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{17c70984-bfed-4ad4-a1b0-e191b0ccd300}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Visit" languagecode="1033" />
+                        </labels>
+                        <control id="rms_visit" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="rms_visit" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5c436a30-b2f1-4cb7-8190-3cd7ce637554}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="🤖 Health Score" languagecode="1033" />
+                        </labels>
+                        <control id="rms_healthscore" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="rms_healthscore" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3b7c1406-f745-4ee4-ae68-ac767370b783}" locklevel="0" colspan="1" rowspan="4">
+                        <labels>
+                          <label description="🤖 Description" languagecode="1033" />
+                        </labels>
+                        <control id="rms_description" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="rms_description" disabled="true" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{9624e17a-12ef-4308-a960-1112ad236d2f}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{026794ba-62ac-44e0-b9d0-6be21f0f4bc5}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9e87dbfc-15c0-4f03-8b69-87b9a25dcc93}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e49df8f4-13c8-4a68-8189-2a6635da00d0}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a7bc62f6-2e4e-461a-9328-03f7440baecb}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Status Reason" languagecode="1033" />
+              </labels>
+              <control id="header_statuscode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statuscode" disabled="false" />
+            </cell>
+            <cell id="{fbb3981f-e253-4c37-8039-84605386f30b}" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{0c20d73d-667e-4e4f-86d9-97adac0d9f47}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{098f6d5b-ff47-4b19-895f-1d57847fd641}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{c86c8f4f-7e9e-445f-9698-c70f961b79d7}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a09bfe25-283f-409b-acf4-1341c4c400df}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
