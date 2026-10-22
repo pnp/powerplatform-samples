@@ -1,27 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Name>sbax_securityrolesmanagercanvasapp_ce7bf</Name>
-  <AppVersion>2023-07-22T16:23:09Z</AppVersion>
+  <AppVersion>2023-09-21T15:10:50Z</AppVersion>
   <Status>Ready</Status>
-  <CreatedByClientVersion>3.23072.22.0</CreatedByClientVersion>
-  <MinClientVersion>3.23072.22.0</MinClientVersion>
-  <Tags>{"primaryDeviceWidth":"375","primaryDeviceHeight":"812","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","publisherVersion":"3.23072.22","minimumRequiredApiVersion":"2.2.0","hasComponent":"true","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20230722T154732Z-3.23072.22.0"}</Tags>
+  <CreatedByClientVersion>3.23092.13.0</CreatedByClientVersion>
+  <MinClientVersion>3.23092.13.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1911","primaryDeviceHeight":"821","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","publisherVersion":"3.23092.13","minimumRequiredApiVersion":"2.2.0","hasComponent":"true","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20230722T155758Z-3.23072.22.0","showStatusBar":"false"}</Tags>
   <IsCdsUpgraded>0</IsCdsUpgraded>
   <GalleryItemId xsi:nil="true"></GalleryItemId>
   <BackgroundColor>rgba(50, 205, 50, 1)</BackgroundColor>
   <DisplayName>Manage Power Platforms Teams Canvas App</DisplayName>
   <Description>Canvas App to manage Power Platform Teams</Description>
-  <CommitMessage></CommitMessage>
+  <CommitMessage xsi:nil="true"></CommitMessage>
   <Publisher></Publisher>
   <AuthorizationReferences>[]</AuthorizationReferences>
-  <ConnectionReferences>{"93519bc4-14c3-4f10-8392-22a6f51a065c":{"id":"/providers/microsoft.powerapps/apis/shared_office365users","displayName":"Office 365 Users","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1644/1.0.1644.3342/office365users/icon.png","dataSources":["Office365Users"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard"},"c862b8f5-4efb-468b-be8d-2094d27555a7":{"id":"/providers/microsoft.powerapps/apis/shared_azuread","displayName":"Azure AD","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1626/1.0.1626.3238/azuread/icon.png","dataSources":["AzureAD"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["GetGroupMembers","RemoveMemberFromGroup","AddUserToGroup"]},"4e94a0db-dfb5-4e6e-bf33-587080ed8e8c":{"id":"/providers/microsoft.powerapps/apis/shared_powerappsforappmakers","displayName":"Power Apps for Makers","iconUri":"https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3312/powerappsforappmakers/icon.png","dataSources":["PowerAppsforMakers"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Get-AppVersions"]}}</ConnectionReferences>
+  <ConnectionReferences>{"93519bc4-14c3-4f10-8392-22a6f51a065c":{"id":"/providers/microsoft.powerapps/apis/shared_office365users","displayName":"Office 365 Users","iconUri":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/office365users/icon.png","dataSources":["Office365Users"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard"},"c862b8f5-4efb-468b-be8d-2094d27555a7":{"id":"/providers/microsoft.powerapps/apis/shared_azuread","displayName":"Microsoft Entra ID","iconUri":"https://connectoricons-prod.azureedge.net/u/jayawan/releases/v1.0.1655/1.0.1655.3424/azuread/icon.png","dataSources":["AzureAD"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["GetGroupMembers","RemoveMemberFromGroup","AddUserToGroup"]},"4e94a0db-dfb5-4e6e-bf33-587080ed8e8c":{"id":"/providers/microsoft.powerapps/apis/shared_powerappsforappmakers","displayName":"Power Apps for Makers","iconUri":"https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3312/powerappsforappmakers/icon.png","dataSources":["PowerAppsforMakers"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Get-AppVersions"]}}</ConnectionReferences>
   <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified"}},"dataSources":{"Teams":{"entitySetName":"teams","logicalName":"team"},"Security Roles":{"entitySetName":"roles","logicalName":"role"},"Users":{"entitySetName":"systemusers","logicalName":"systemuser"},"Field Security Profiles":{"entitySetName":"fieldsecurityprofiles","logicalName":"fieldsecurityprofile"}}}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[{"appComponentName":"dbf8b490d3c5479ab73274f15e5d2aa5","appName":"2e819493-a22c-4df1-8a0d-7f9dccfc48f8","appComponentLibraryName":"05c6fb0d-1050-4279-93e5-ae9dca193693","appComponentLibraryVersion":"2023-07-22T15:22:10Z","appComponentLibraryLogicalName":"sbax_managesecurityrolescomponentlibrary_ce324","environmentName":"47551891-d75d-e95c-b396-92350f0694aa"},{"appComponentName":"fb846ace3ae64fb4a38a9f5a3a3acbba","appName":"2e819493-a22c-4df1-8a0d-7f9dccfc48f8","appComponentLibraryName":"05c6fb0d-1050-4279-93e5-ae9dca193693","appComponentLibraryVersion":"2023-07-22T15:22:10Z","appComponentLibraryLogicalName":"sbax_managesecurityrolescomponentlibrary_ce324","environmentName":"47551891-d75d-e95c-b396-92350f0694aa"}]</AppComponentDependencies>
   <CanConsumeAppPass>1</CanConsumeAppPass>
   <CanvasAppType>0</CanvasAppType>
   <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
   <EmbeddedApp xsi:nil="true"></EmbeddedApp>
   <IntroducedVersion>1.0</IntroducedVersion>
-  <CdsDependencies>{"cdsdependencies":[{"componenttype":1,"logicalname":"team"},{"componenttype":1,"logicalname":"role"},{"componenttype":1,"logicalname":"systemuser"},{"componenttype":1,"logicalname":"fieldsecurityprofile"},{"componenttype":300,"logicalname":"sbax_managesecurityrolescomponentlibrary_ce324","componenttypeplatformname":"CanvasApp"}]}</CdsDependencies>
+  <CdsDependencies>{"cdsdependencies":[{"logicalname":"team","componenttype":1},{"logicalname":"role","componenttype":1},{"logicalname":"systemuser","componenttype":1},{"logicalname":"fieldsecurityprofile","componenttype":1},{"logicalname":"sbax_managesecurityrolescomponentlibrary_ce324","componenttype":300,"componenttypeplatformname":"CanvasApp"}]}</CdsDependencies>
   <IsCustomizable>1</IsCustomizable>
   <BackgroundImageUri>/CanvasApps/sbax_securityrolesmanagercanvasapp_ce7bf_BackgroundImageUri</BackgroundImageUri>
   <DocumentUri>/CanvasApps/sbax_securityrolesmanagercanvasapp_ce7bf_DocumentUri.msapp</DocumentUri>

@@ -1,0 +1,146 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "sbax_sampletables",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "sbax_sampletable",
+    "Name": "Sample Tables",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "sbax_choicefield": "Choice Field",
+      "sbax_choicesfield": "Choices Field",
+      "sbax_multilinetextfield": "Multi Line Text Field",
+      "sbax_name": "Name",
+      "sbax_sampletable_AsyncOperations": "System Jobs",
+      "sbax_sampletable_BulkDeleteFailures": "Bulk Delete Failures",
+      "sbax_sampletable_DuplicateBaseRecord": "Duplicate Records (sbax_sampletable_DuplicateBaseRecord)",
+      "sbax_sampletable_DuplicateMatchingRecord": "Duplicate Records (sbax_sampletable_DuplicateMatchingRecord)",
+      "sbax_sampletable_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "sbax_sampletable_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "sbax_sampletable_ProcessSession": "Process Sessions",
+      "sbax_sampletable_SyncErrors": "Sync Errors",
+      "sbax_sampletableid": "Sample Table",
+      "sbax_wholenumberfield": "Whole Number Field",
+      "sbax_yesnofield": "Yes/No Field",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Sample Tables",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Sample Tables (Views)",
+    "Name": "_sbax_sampletable_views",
+    "RelatedEntityName": "Sample Tables",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "0c72a852-eb6a-4c95-afd2-52642f8252ab": "Inactive Sample Tables",
+      "0c95cfd7-3c83-4a9c-89b0-e2b9eba48c8a": "Sample Table Associated View",
+      "9c0f4a6d-7af5-4776-a82b-e0f9c34f88cf": "Sample Table Advanced Find View",
+      "e2d2c5f6-cee3-4e0d-a39a-7e70d010f27f": "Sample Table Lookup View",
+      "fef91f5c-5855-49eb-a4dc-6b2cea7fdf9e": "Active Sample Tables"
+    }
+  },
+  {
+    "DisplayName": "Sample Choice",
+    "Name": "sbax_samplechoice",
+    "OptionSetInfoNameMapping": {
+      "168860000": "Option 1",
+      "168860001": "Option 2",
+      "168860002": "Option 3"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "sbax_choicefield",
+        "OptionSetReferenceEntityName": "Sample Tables"
+      },
+      "OptionSetReferenceItem1": {
+        "OptionSetReferenceColumnName": "sbax_choicesfield",
+        "OptionSetReferenceEntityName": "Sample Tables"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "sbax_choicefield",
+    "RelatedEntityName": "Sample Tables",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Yes/No Field (Sample Tables)",
+    "Name": "sbax_sampletable_sbax_yesnofield",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "sbax_yesnofield",
+        "OptionSetReferenceEntityName": "Sample Tables"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "sbax_yesnofield",
+    "RelatedEntityName": "Sample Tables",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Sample Tables)",
+    "Name": "sbax_sampletable_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Sample Tables"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Sample Tables",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Sample Tables)",
+    "Name": "sbax_sampletable_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Sample Tables"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Sample Tables",
+    "Type": "OptionSetInfo"
+  }
+]
