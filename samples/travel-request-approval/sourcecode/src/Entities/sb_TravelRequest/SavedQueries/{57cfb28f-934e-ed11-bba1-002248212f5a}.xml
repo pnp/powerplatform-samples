@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{57cfb28f-934e-ed11-bba1-002248212f5a}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="sb_name" select="1" icon="1" preview="1">
+        <row name="result" id="sb_travelrequestid">
+          <cell name="a_c6754632352a4e89943b6e0a46f4aa15.fullname" width="150" />
+          <cell name="a_c6754632352a4e89943b6e0a46f4aa15.positionid" width="100" />
+          <cell name="sb_purpose" width="100" />
+          <cell name="sb_travelstartdate" width="100" />
+          <cell name="sb_travelenddate" width="100" />
+          <cell name="sb_travelcost" width="100" />
+          <cell name="sb_travelrequeststatus" width="100" />
+          <cell name="sb_draft" width="100" />
+          <cell name="owningbusinessunit" width="150" />
+          <cell name="createdon" width="100" />
+          <cell name="modifiedon" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="sb_travelrequest">
+          <attribute name="sb_travelrequestid" />
+          <attribute name="sb_travelrequeststatus" />
+          <link-entity alias="a_c6754632352a4e89943b6e0a46f4aa15" name="systemuser" to="sb_requestedby" from="systemuserid" link-type="outer" visible="false">
+            <attribute name="fullname" />
+            <attribute name="positionid" />
+          </link-entity>
+          <attribute name="sb_travelcost" />
+          <attribute name="sb_purpose" />
+          <attribute name="createdon" />
+          <attribute name="modifiedon" />
+          <attribute name="sb_travelstartdate" />
+          <attribute name="sb_travelenddate" />
+          <attribute name="sb_draft" />
+          <attribute name="owningbusinessunit" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Travel Requests" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
