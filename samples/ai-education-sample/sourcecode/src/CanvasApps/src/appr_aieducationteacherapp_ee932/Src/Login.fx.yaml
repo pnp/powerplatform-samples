@@ -1,0 +1,146 @@
+Login As screen:
+    Fill: =RGBA(17, 21, 21, 1)
+
+    Image1 As image:
+        Height: =300
+        Image: =book
+        Width: =289
+        X: =Html_loginDiv.X - Self.Width/2
+        Y: =Html_loginDiv.Y - Self.Height/2
+        ZIndex: =1
+
+    Image2 As image:
+        Height: =300
+        Image: =lamp
+        Width: =318
+        X: =(Html_loginDiv.X+Html_loginDiv.Width) - Self.Width/2
+        Y: =(Html_loginDiv.Y+Html_loginDiv.Height) - Self.Height/2
+        ZIndex: =2
+
+    Html_loginDiv As htmlViewer:
+        Height: =Parent.Height/1.8
+        HtmlText: |-
+            ="<div
+                style = '
+                border-radius: 16px;
+                border: 1px solid #3D4646;
+                background: rgba(255, 255, 255, 0.04);
+                backdrop-filter: blur(50px);
+                width:100%;
+                height:"& Text(Html_loginDiv.Height-12) &"px;'
+            ></div>"
+        Width: =Parent.Width/2
+        X: =(Parent.Width-Html_loginDiv.Width)/2
+        Y: =(Parent.Height-Html_loginDiv.Height)/2
+        ZIndex: =3
+
+    Container2 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.None
+        Height: =Html_loginDiv.Height
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutJustifyContent: =LayoutJustifyContent.Center
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =32
+        PaddingTop: =32
+        Width: =Html_loginDiv.Width
+        X: =Html_loginDiv.X
+        Y: =Html_loginDiv.Y
+        ZIndex: =4
+
+        img_Logo As image:
+            Height: =64
+            Image: =apraulogo
+            Width: =64
+            ZIndex: =1
+
+        lbl_Name As label:
+            Align: =Align.Center
+            Color: =RGBA(179, 179, 179, 1)
+            Font: =Font.'Segoe UI'
+            Size: =19
+            Text: ="AI Education Teachers' App"
+            Width: =Parent.Width
+            ZIndex: =2
+
+        Container3 As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            Height: =220
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =24
+            LayoutJustifyContent: =LayoutJustifyContent.Center
+            LayoutMinHeight: =40
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =3
+
+            img_DP As image:
+                Height: =80
+                Image: =User().Image
+                RadiusBottomLeft: =100
+                RadiusBottomRight: =100
+                RadiusTopLeft: =100
+                RadiusTopRight: =100
+                Width: =80
+                ZIndex: =1
+
+            Container4 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =40
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =-4
+                LayoutJustifyContent: =LayoutJustifyContent.Center
+                LayoutMinHeight: =40
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.Width
+                ZIndex: =2
+
+                Label1 As label:
+                    Align: =Align.Center
+                    AutoHeight: =true
+                    Color: =RGBA(255, 255, 255, 1)
+                    Font: =Font.'Segoe UI'
+                    LineHeight: =0.8
+                    Size: =16
+                    Text: =User().FullName
+                    Width: =300
+                    ZIndex: =1
+
+                Label3 As label:
+                    Align: =Align.Center
+                    AutoHeight: =true
+                    Color: =RGBA(179, 179, 179, 1)
+                    Font: =Font.'Segoe UI'
+                    LineHeight: =0.8
+                    Size: =10
+                    Text: ="Teacher"
+                    ZIndex: =2
+
+            bt_Login As button:
+                BorderThickness: =1
+                Color: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(0, 175, 206, 1)
+                Font: =Font.'Segoe UI'
+                HoverBorderColor: =ColorFade(Self.BorderColor, 30%)
+                HoverColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =ColorFade(Self.Fill, -15%)
+                PaddingBottom: =8
+                PaddingLeft: =24
+                PaddingRight: =24
+                PaddingTop: =8
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                Size: =14
+                Text: ="Log In"
+                Width: =136
+                ZIndex: =5
+

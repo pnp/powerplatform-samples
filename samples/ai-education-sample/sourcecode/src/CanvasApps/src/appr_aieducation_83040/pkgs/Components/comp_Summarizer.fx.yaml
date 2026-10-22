@@ -1,0 +1,163 @@
+comp_Summarizer As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =768
+    Width: =1066
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    cont_Body As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.None
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cont_BodyUpper As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(26, 31, 31, 1)
+            Height: =225
+            LayoutGap: =Parent.Width / 16
+            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =txt_UserInput.X
+            PaddingRight: =txt_UserInput.X
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+            ZIndex: =1
+
+            drp_Subject As dropdown:
+                AlignInContainer: =AlignInContainer.Center
+                BorderThickness: =0
+                ChevronBackground: =RGBA(0, 175, 206, 1)
+                ChevronHoverBackground: =ColorFade(RGBA(0, 175, 206, 1), -20%)
+                Font: =Font.'Segoe UI'
+                Height: =Parent.Height / 4
+                Items: =DropDownSample
+                LayoutMinHeight: =70
+                LayoutMinWidth: =100
+                Size: =12
+                Width: =Parent.Width / 4
+                ZIndex: =1
+
+            drp_Topic As dropdown:
+                AlignInContainer: =AlignInContainer.Center
+                BorderThickness: =0
+                ChevronBackground: =RGBA(0, 175, 206, 1)
+                ChevronHoverBackground: =ColorFade(RGBA(0, 175, 206, 1), -20%)
+                Font: =Font.'Segoe UI'
+                Height: =Parent.Height / 4
+                Items: =DropDownSample
+                LayoutMinHeight: =70
+                LayoutMinWidth: =100
+                Size: =12
+                Width: =Parent.Width / 4
+                ZIndex: =2
+
+            txt_Keywords As text:
+                AlignInContainer: =AlignInContainer.Center
+                BorderThickness: =0
+                Default: ="Keywords"
+                Font: =Font.'Segoe UI'
+                Height: =drp_Subject.Height
+                LayoutMinHeight: =70
+                LayoutMinWidth: =560
+                Size: =10
+                Width: =Parent.Width / 4
+                ZIndex: =3
+
+        cont_BodyLower As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(26, 31, 31, 1)
+            FillPortions: =8
+            Height: =225
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            ZIndex: =2
+
+            cont_BodyLower_1 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Start
+                DropShadow: =DropShadow.None
+                Height: =Parent.Height
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Width: =Parent.Width
+                ZIndex: =1
+
+                btn_Submit As button:
+                    BorderStyle: =BorderStyle.None
+                    Fill: =RGBA(0, 175, 206, 1)
+                    Font: =Font.'Segoe UI'
+                    Height: =Self.Width / 4
+                    HoverFill: =ColorFade(RGBA(0, 175, 206, 1), -20%)
+                    RadiusBottomLeft: =8
+                    RadiusBottomRight: =8
+                    RadiusTopLeft: =8
+                    RadiusTopRight: =8
+                    Size: =12
+                    Text: ="Summarize"
+                    Width: =txt_UserInput.Width / 3
+                    X: =(txt_UserInput.Width + txt_UserInput.X) - Self.Width
+                    Y: =(txt_UserInput.Height + txt_UserInput.Y) + Self.Height
+                    ZIndex: =2
+
+                txt_UserInput As text:
+                    Default: ="Place your text here to summarize"
+                    Font: =Font.'Segoe UI'
+                    Height: =Parent.Height / 1.3
+                    Mode: =TextMode.MultiLine
+                    Size: =12
+                    Width: =Parent.Width / 1.1
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =Self.X
+                    ZIndex: =3
+
+            separator As rectangle:
+                AlignInContainer: =AlignInContainer.Center
+                Fill: =RGBA(202, 202, 202, 0.5)
+                Height: =Parent.Height / 1.1
+                Width: =2
+                ZIndex: =2
+
+            cont_BodyLower_2 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.None
+                Height: =225
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =3
+
+                txt_Response As text:
+                    Default: ="Summarized Text"
+                    Font: =Font.'Segoe UI'
+                    Height: =Parent.Height / 1.3
+                    Mode: =TextMode.MultiLine
+                    Size: =12
+                    Width: =Parent.Width / 1.1
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =Self.X
+                    ZIndex: =1
+

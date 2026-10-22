@@ -1,0 +1,120 @@
+"Screen1 As screen.'autoLayout_SplitScreen_ver1.0'":
+
+    ScreenContainer1 As groupContainer.horizontalAutoLayoutContainer:
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        LayoutWrap: =true
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        LeftContainer1 As groupContainer.verticalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+        RightContainer1 As groupContainer.verticalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =3
+
+            Gallery2 As gallery.variableTemplateHeightGallery:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DelayItemLoading: =true
+                FillPortions: =8
+                Items: =colChat
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =287
+                LayoutMinWidth: =320
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =4
+                TemplateSize: =200
+                Width: =Parent.Width
+                ZIndex: =1
+
+                gal_Cont01 As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =If(Label2.Height<Image3.Height,Image3.Height+32,Label2.Height+32)
+                    LayoutGap: =16
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =16
+                    PaddingTop: =16
+                    Width: =Gallery2.TemplateWidth
+                    ZIndex: =3
+
+                    Image3 As image:
+                        FillPortions: =1
+                        Image: =If(ThisItem.role="assistant",logo,User().Image)
+                        ZIndex: =1
+
+                    Label2 As label:
+                        AutoHeight: =true
+                        FillPortions: =6
+                        Height: =58
+                        Text: =ThisItem.content
+                        Width: =404
+                        X: =168
+                        Y: =40
+                        ZIndex: =2
+
+            Container1 As groupContainer.horizontalAutoLayoutContainer:
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                ZIndex: =2
+
+                "txt_userPrompt As 'Text input'":
+                    AlignInContainer: =AlignInContainer.Center
+                    BasePaletteColor: =""
+                    DisplayMode: =DisplayMode.Edit
+                    FillPortions: =5
+                    Height: =Parent.Height / 2
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    ValidationState: ="None"
+                    Width: =320
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                icn_Send As icon.Send:
+                    AlignInContainer: =AlignInContainer.Center
+                    FillPortions: =1
+                    Icon: =Icon.Send
+                    OnSelect: |-
+                        =Set(varSpinner,true);
+                        Set(varResponse,ChatGPTConnector.ChatAPI("gpt-3.5-turbo",Collect(colChat,{role:"user",content:Text(txt_userPrompt)})));
+                        Collect(colChat,First(varResponse.choices).message);
+                        Reset(txt_userPrompt);
+                        Set(varSpinner,false);
+                    ZIndex: =2
+
+    icn_Spinner As Spinner:
+        BasePaletteColor: =""
+        DisplayMode: =DisplayMode.Edit
+        Height: =200
+        Visible: =varSpinner
+        Width: =200
+        X: =RightContainer1.X + (RightContainer1.Width / 2) - icn_Spinner.Width/2
+        Y: =Parent.Height / 2 - (icn_Spinner.Height/2)
+        ZIndex: =2
+

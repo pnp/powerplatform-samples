@@ -1,0 +1,142 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "appr_announcements",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "appr_announcement",
+    "Name": "Announcements",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "{Attachments}": "Attachments",
+      "appr_Account": "Account",
+      "appr_announcement_Annotations": "Notes",
+      "appr_announcement_AsyncOperations": "System Jobs",
+      "appr_announcement_BulkDeleteFailures": "Bulk Delete Failures",
+      "appr_announcement_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "appr_announcement_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "appr_announcement_ProcessSession": "Process Sessions",
+      "appr_announcement_SyncErrors": "Sync Errors",
+      "appr_announcementfrom": "Announcement From",
+      "appr_announcementid": "Announcement",
+      "appr_Course": "Course",
+      "appr_description": "Description",
+      "appr_name": "Name",
+      "appr_scope": "Scope",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Announcements",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Announcements (Views)",
+    "Name": "_appr_announcement_views",
+    "RelatedEntityName": "Announcements",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1b7d44f3-ca99-4c66-809d-c822be892546": "Announcement Advanced Find View",
+      "38511ed4-e7dc-4003-bf6c-ca7ac6faa4c7": "Announcement Associated View",
+      "85da8255-81d9-44ef-bb52-2c2fc22f0cb8": "Announcement Lookup View",
+      "d6116301-e8c5-44f2-ae6a-d86d7ea5e345": "Inactive Announcements",
+      "e7ad6405-96a5-4ad7-9fde-2955022b2ce1": "Active Announcements"
+    }
+  },
+  {
+    "DisplayName": "Annoucement From",
+    "Name": "appr_annoucementfrom",
+    "OptionSetInfoNameMapping": {
+      "1": "Admin",
+      "2": "Teacher",
+      "3": "System Generated"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "appr_announcementfrom",
+        "OptionSetReferenceEntityName": "Announcements"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "appr_announcementfrom",
+    "RelatedEntityName": "Announcements",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Announcements)",
+    "Name": "appr_announcement_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Announcements"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Announcements",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Announcements)",
+    "Name": "appr_announcement_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Announcements"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Announcements",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Announcement Scope",
+    "Name": "appr_announcementscope",
+    "OptionSetInfoNameMapping": {
+      "1": "School",
+      "2": "Course"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "appr_scope",
+        "OptionSetReferenceEntityName": "Announcements"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "appr_scope",
+    "RelatedEntityName": "Announcements",
+    "Type": "OptionSetInfo"
+  }
+]
