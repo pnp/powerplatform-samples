@@ -1,0 +1,37 @@
+model_Dialog_Box As CanvasComponent:
+    btn_close_text: ="Text"
+    btn_ok_text: ="Text"
+    Dialog_Title: ="Text"
+    DialogMsg: ="Text"
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =300
+    Width: =400
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Container7 As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =289
+        Width: =384
+        X: =9
+        Y: =6
+        ZIndex: =1
+
+        Label11 As label:
+            Align: =Align.Center
+            Height: =67
+            Text: =model_Dialog_Box.DialogMsg
+            Width: =384
+            Y: =76
+            ZIndex: =2
+
+        Label11_1 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Bold
+            Height: =67
+            Size: =16
+            Text: =model_Dialog_Box.Dialog_Title
+            Width: =384
+            ZIndex: =5
+
