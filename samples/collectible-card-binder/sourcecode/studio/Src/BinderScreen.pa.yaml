@@ -1,0 +1,450 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+#
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+#
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  BinderScreen:
+    Properties:
+      Fill: =ColorValue("#101C25")
+    Children:
+      - Eyebrow:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#EACB88")
+            Font: =Font.Lato
+            Height: =28
+            OnSelect: =
+            Size: =11
+            Text: ="A COLLECTION OF SMALL WONDERS"
+            Width: =700
+            X: =36
+            Y: =22
+      - Title:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#F5F1E8")
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Bold
+            Height: =64
+            OnSelect: =
+            Size: =34
+            Text: '="Moonfield Archive" '
+            Width: =780
+            X: =36
+            Y: =51
+      - Subtitle:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#B7C8CC")
+            Font: =Font.Lato
+            Height: =32
+            OnSelect: =
+            Size: =14
+            Text: '="Volume 01  ·  Twelve curiosities from Emberwood, Tideglass & Skyreach" '
+            Width: =960
+            X: =38
+            Y: =119
+      - Completion:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Right
+            Color: =ColorValue("#F5F1E8")
+            Font: =Font.Lato
+            Height: =42
+            Live: =Live.Polite
+            OnSelect: =
+            Size: =16
+            Text: '=CountRows(Distinct(colOwned, Id)) & " / 12 collected  ·  " & Text(Round(100 * CountRows(Distinct(colOwned, Id)) / 12, 0), "0") & "%"    '
+            Width: =360
+            X: =970
+            Y: =65
+      - ProgressTrack:
+          Control: Rectangle@2.3.0
+          Properties:
+            Fill: '=ColorValue("#1D303C")   '
+            Height: =6
+            OnSelect: =
+            Width: =356
+            X: =970
+            Y: =117
+      - ProgressFill:
+          Control: Rectangle@2.3.0
+          Properties:
+            Fill: '=ColorValue("#EACB88")   '
+            Height: =6
+            OnSelect: =
+            Width: =356 * CountRows(Distinct(colOwned, Id)) / 12
+            X: =970
+            Y: =117
+      - AllFilter:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorValue("#B7C8CC")
+            BorderThickness: =1
+            Color: =ColorValue("#F5F1E8")
+            Fill: =If(varFilter = "All", ColorValue("#50635F"), ColorValue("#1D303C"))
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Font: =Font.Lato
+            Height: =44
+            HoverColor: =ColorValue("#F5F1E8")
+            HoverFill: =ColorValue("#354D59")
+            OnSelect: =Set(varFilter, "All")
+            PressedColor: =ColorValue("#F5F1E8")
+            PressedFill: =ColorValue("#50635F")
+            Size: =12
+            Text: ="All cards"
+            Visible: =!varReset
+            Width: =125
+            X: =38
+            Y: =173
+      - OwnedFilter:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorValue("#B7C8CC")
+            BorderThickness: =1
+            Color: =ColorValue("#F5F1E8")
+            Fill: =If(varFilter = "Owned", ColorValue("#50635F"), ColorValue("#1D303C"))
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Font: =Font.Lato
+            Height: =44
+            HoverColor: =ColorValue("#F5F1E8")
+            HoverFill: =ColorValue("#354D59")
+            OnSelect: =Set(varFilter, "Owned")
+            PressedColor: =ColorValue("#F5F1E8")
+            PressedFill: =ColorValue("#50635F")
+            Size: =12
+            Text: ="Owned"
+            Visible: =!varReset
+            Width: =125
+            X: =173
+            Y: =173
+      - MissingFilter:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorValue("#B7C8CC")
+            BorderThickness: =1
+            Color: =ColorValue("#F5F1E8")
+            Fill: =If(varFilter = "Missing", ColorValue("#50635F"), ColorValue("#1D303C"))
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Font: =Font.Lato
+            Height: =44
+            HoverColor: =ColorValue("#F5F1E8")
+            HoverFill: =ColorValue("#354D59")
+            OnSelect: =Set(varFilter, "Missing")
+            PressedColor: =ColorValue("#F5F1E8")
+            PressedFill: =ColorValue("#50635F")
+            Size: =12
+            Text: ="Missing"
+            Visible: =!varReset
+            Width: =125
+            X: =308
+            Y: =173
+      - RarityFilter:
+          Control: Classic/DropDown@2.3.1
+          Properties:
+            AccessibleLabel: ="Filter cards by rarity"
+            ChevronBackground: =ColorValue("#1D303C")
+            ChevronFill: =ColorValue("#F5F1E8")
+            Color: =ColorValue("#F5F1E8")
+            Default: ="All rarities"
+            Fill: =ColorValue("#1D303C")
+            FocusedBorderColor: '=ColorValue("#EACB88")   '
+            FocusedBorderThickness: '=3   '
+            Height: =44
+            Items: =["All rarities", "Common", "Uncommon", "Rare", "Legendary"]
+            Items.Value: =Value
+            Size: =12
+            Visible: =!varReset
+            Width: =230
+            X: =453
+            Y: =173
+      - SearchCards:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            AccessibleLabel: ="Search cards by name or realm"
+            Color: =ColorValue("#F5F1E8")
+            Default: =""
+            DelayOutput: =true
+            Fill: =ColorValue("#1D303C")
+            FocusedBorderColor: '=ColorValue("#EACB88")   '
+            FocusedBorderThickness: '=3   '
+            Height: =44
+            HintText: ="Search name or realm"
+            Size: =12
+            Visible: =!varReset
+            Width: =362
+            X: =705
+            Y: =173
+      - ResetCollection:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorValue("#B7C8CC")
+            BorderThickness: =1
+            Color: =ColorValue("#F5F1E8")
+            Fill: =ColorValue("#1D303C")
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Font: =Font.Lato
+            Height: =44
+            HoverColor: =ColorValue("#F5F1E8")
+            HoverFill: =ColorValue("#354D59")
+            OnSelect: =Set(varReset, true)
+            PressedColor: =ColorValue("#F5F1E8")
+            PressedFill: =ColorValue("#50635F")
+            Size: =12
+            Text: ="Reset"
+            Visible: =!varReset
+            Width: =96
+            X: =1230
+            Y: =173
+      - CardGallery:
+          Control: Gallery@2.15.0
+          Variant: Vertical
+          Properties:
+            AccessibleLabel: ="Collectible card binder"
+            Height: =478
+            Items: =Filter(colCards, (varFilter = "All" || (varFilter = "Owned" && Id in colOwned.Id) || (varFilter = "Missing" && !(Id in colOwned.Id))) && (RarityFilter.Selected.Value = "All rarities" || Rarity = RarityFilter.Selected.Value) && (IsBlank(Trim(SearchCards.Text)) || Lower(Trim(SearchCards.Text)) in Lower(Name & " " & Realm)))
+            OnSelect: =Set(varCard, ThisItem); Navigate(DetailScreen, ScreenTransition.Fade)
+            TabIndex: =0
+            TemplatePadding: =6
+            TemplateSize: =336
+            Visible: =!varReset
+            Width: =1310
+            WrapCount: =4
+            X: =28
+            Y: =238
+          Children:
+            - CardFrame:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =Switch(ThisItem.Rarity, "Legendary", ColorValue("#EACB88"), "Rare", ColorValue("#BBA7EA"), "Uncommon", ColorValue("#8ECFB4"), ColorValue("#AFC3CC"))
+                  Color: =ColorValue("#F5F1E8")
+                  DisabledBorderColor: =Switch(ThisItem.Rarity, "Legendary", ColorValue("#EACB88"), "Rare", ColorValue("#BBA7EA"), "Uncommon", ColorValue("#8ECFB4"), ColorValue("#AFC3CC"))
+                  DisabledFill: =ColorValue("#1D303C")
+                  DisplayMode: '=DisplayMode.Disabled    '
+                  Fill: =ColorValue("#1D303C")
+                  FocusedBorderColor: =ColorValue("#EACB88")
+                  FocusedBorderThickness: =3
+                  Font: =Font.Lato
+                  Height: =318
+                  HoverColor: =ColorValue("#F5F1E8")
+                  HoverFill: =ColorValue("#354D59")
+                  OnSelect: =
+                  PressedColor: =ColorValue("#F5F1E8")
+                  PressedFill: =ColorValue("#50635F")
+                  Size: =12
+                  Text: '=""  '
+                  Width: =Parent.TemplateWidth - 20
+                  X: =8
+                  Y: =4
+            - CardArt:
+                Control: Image@2.2.3
+                Properties:
+                  AccessibleLabel: =ThisItem.Name & ", original fictional illustration"
+                  Height: =190
+                  Image: '="data:image/svg+xml;utf8," & EncodeUrl(ThisItem.Art)    '
+                  OnSelect: =
+                  Width: =Parent.TemplateWidth - 40
+                  X: =18
+                  Y: =12
+            - CardNumber:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =Switch(ThisItem.Rarity, "Legendary", ColorValue("#EACB88"), "Rare", ColorValue("#BBA7EA"), "Uncommon", ColorValue("#8ECFB4"), ColorValue("#AFC3CC"))
+                  Font: =Font.Lato
+                  Height: =24
+                  OnSelect: =
+                  Size: =10
+                  Text: '=ThisItem.Id & "  /  " & Upper(ThisItem.Rarity)  '
+                  Width: =Parent.TemplateWidth - 40
+                  X: =20
+                  Y: =208
+            - CardName:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =ColorValue("#F5F1E8")
+                  Font: =Font.Lato
+                  FontWeight: =FontWeight.Semibold
+                  Height: =32
+                  OnSelect: =
+                  Size: =16
+                  Text: '=ThisItem.Name   '
+                  Width: =Parent.TemplateWidth - 40
+                  X: =20
+                  Y: =234
+            - CardOpen:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorValue("#B7C8CC")
+                  BorderThickness: =1
+                  Color: =ColorValue("#F5F1E8")
+                  Fill: =ColorValue("#1D303C")
+                  FocusedBorderColor: =ColorValue("#EACB88")
+                  FocusedBorderThickness: =3
+                  Font: =Font.Lato
+                  Height: =44
+                  HoverColor: =ColorValue("#F5F1E8")
+                  HoverFill: =ColorValue("#354D59")
+                  OnSelect: =Set(varCard, ThisItem); Navigate(DetailScreen, ScreenTransition.Fade)
+                  PressedColor: =ColorValue("#F5F1E8")
+                  PressedFill: =ColorValue("#50635F")
+                  Size: =12
+                  Text: ="Details"
+                  Tooltip: ="View " & ThisItem.Name & " details"
+                  Width: =118
+                  X: =20
+                  Y: =274
+            - CardOwned:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorValue("#B7C8CC")
+                  BorderThickness: =1
+                  Color: =ColorValue("#F5F1E8")
+                  DisabledColor: =ColorValue("#F5F1E8")
+                  DisabledFill: =If(ThisItem.Id in colOwned.Id, ColorValue("#356351"), ColorValue("#1D303C"))
+                  DisplayMode: =DisplayMode.Disabled
+                  Fill: =If(ThisItem.Id in colOwned.Id, ColorValue("#356351"), ColorValue("#1D303C"))
+                  FocusedBorderColor: =ColorValue("#EACB88")
+                  FocusedBorderThickness: =3
+                  Font: =Font.Lato
+                  Height: =44
+                  HoverColor: =ColorValue("#F5F1E8")
+                  HoverFill: =ColorValue("#354D59")
+                  OnSelect: =
+                  PressedColor: =ColorValue("#F5F1E8")
+                  PressedFill: =ColorValue("#50635F")
+                  Size: =12
+                  Text: =If(ThisItem.Id in colOwned.Id, "Owned ✓", "Missing")
+                  Tooltip: =If(ThisItem.Id in colOwned.Id, "In your collection", "Find this card in free packs")
+                  Width: =Parent.TemplateWidth - 172
+                  X: =148
+                  Y: =274
+      - EmptyState:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            Color: =ColorValue("#F5F1E8")
+            Font: =Font.Lato
+            Height: =100
+            OnSelect: =
+            Size: =20
+            Text: '="No cards match. Try another rarity, ownership filter, or search."  '
+            Visible: '=IsEmpty(Filter(colCards, (varFilter = "All" || (varFilter = "Owned" && Id in colOwned.Id) || (varFilter = "Missing" && !(Id in colOwned.Id))) && (RarityFilter.Selected.Value = "All rarities" || Rarity = RarityFilter.Selected.Value) && (IsBlank(Trim(SearchCards.Text)) || Lower(Trim(SearchCards.Text)) in Lower(Name & " " & Realm)))) && !varReset   '
+            Width: =1150
+            X: =100
+            Y: =380
+      - StorageNote:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#B7C8CC")
+            Font: =Font.Lato
+            Height: =26
+            Live: =Live.Polite
+            OnSelect: =
+            Size: =11
+            Text: "=If(varStorageWarning, \"Session only: local storage is unavailable. Changes may be lost when you close the app.\", \"Saved on this device · Your collection does not sync between browsers or accounts.\")  "
+            Width: =1250
+            X: =38
+            Y: =728
+      - ResetShade:
+          Control: Rectangle@2.3.0
+          Properties:
+            Fill: '=RGBA(0,0,0,0.85)    '
+            Height: =768
+            OnSelect: =
+            Visible: =varReset
+            Width: =1366
+      - ResetTitle:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#F5F1E8")
+            Font: =Font.Lato
+            Height: =70
+            OnSelect: =
+            Size: =28
+            Text: '="Reset this device’s collection?"   '
+            Visible: =varReset
+            Width: =680
+            X: =350
+            Y: =255
+      - ResetBody:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#F5F1E8")
+            Font: =Font.Lato
+            Height: =70
+            OnSelect: =
+            Size: =17
+            Text: ="All twelve cards will become missing and the current pack will close. Card artwork stays in the album."
+            Visible: =varReset
+            Width: =680
+            X: =350
+            Y: =325
+      - CancelReset:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorValue("#B7C8CC")
+            BorderThickness: =1
+            Color: =ColorValue("#F5F1E8")
+            Fill: =ColorValue("#1D303C")
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Font: =Font.Lato
+            Height: =44
+            HoverColor: =ColorValue("#F5F1E8")
+            HoverFill: =ColorValue("#354D59")
+            OnSelect: =Set(varReset, false)
+            PressedColor: =ColorValue("#F5F1E8")
+            PressedFill: =ColorValue("#50635F")
+            Size: =12
+            Text: ="Keep collection"
+            Visible: =varReset
+            Width: =310
+            X: =350
+            Y: =430
+      - ConfirmReset:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorValue("#B7C8CC")
+            BorderThickness: =1
+            Color: =ColorValue("#F5F1E8")
+            Fill: =ColorValue("#1D303C")
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Font: =Font.Lato
+            Height: =44
+            HoverColor: =ColorValue("#F5F1E8")
+            HoverFill: =ColorValue("#354D59")
+            OnSelect: =Clear(colOwned); Clear(colPack); Clear(colPackDraws); Set(varPackBusy, false); IfError(SaveData(colOwned, "MoonfieldOwnedV1"), Set(varStorageWarning, true), Set(varStorageWarning, false)); Set(varReset, false)
+            PressedColor: =ColorValue("#F5F1E8")
+            PressedFill: =ColorValue("#50635F")
+            Size: =12
+            Text: ="Reset to missing"
+            Visible: =varReset
+            Width: =310
+            X: =685
+            Y: =430
+      - BinderOpenPacks:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorValue("#EACB88")
+            Color: =ColorValue("#F5F1E8")
+            Fill: =ColorValue("#1D303C")
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Font: =Font.Lato
+            Height: =44
+            OnSelect: =Navigate(PackScreen, ScreenTransition.Fade)
+            Size: =12
+            Text: ="Open packs"
+            Visible: =!varReset
+            Width: =126
+            X: =1092
+            Y: =173
