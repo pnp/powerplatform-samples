@@ -1,0 +1,100 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "ppchal_messages",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "ppchal_message",
+    "MaxGetRowsCount": 500,
+    "Name": "Messages",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "ppchal_answer": "Answer",
+      "ppchal_Chat": "Chat",
+      "ppchal_message_AsyncOperations": "System Jobs",
+      "ppchal_message_BulkDeleteFailures": "Bulk Delete Failures",
+      "ppchal_message_DuplicateBaseRecord": "Duplicate Records (ppchal_message_DuplicateBaseRecord)",
+      "ppchal_message_DuplicateMatchingRecord": "Duplicate Records (ppchal_message_DuplicateMatchingRecord)",
+      "ppchal_message_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "ppchal_message_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "ppchal_message_ProcessSession": "Process Sessions",
+      "ppchal_message_SyncErrors": "Sync Errors",
+      "ppchal_messageid": "Message",
+      "ppchal_name": "Name",
+      "ppchal_question": "Question",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Messages",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Messages (Views)",
+    "Name": "_ppchal_message_views",
+    "RelatedEntityName": "Messages",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1a119966-5b86-4cca-be08-85f0f9828e32": "Active Messages",
+      "1fb2a3e3-1e4d-4795-9387-0fc2bd472677": "Message Lookup View",
+      "798de1b5-d6c0-4192-a249-a8d298808755": "Message Associated View",
+      "f4588684-e659-4bcb-a645-6c8ae977f5f2": "Inactive Messages",
+      "ff784a00-b5a9-46e3-b9b0-1783ab6b93f4": "Message Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Messages)",
+    "Name": "ppchal_message_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Messages"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Messages",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Messages)",
+    "Name": "ppchal_message_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Messages"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Messages",
+    "Type": "OptionSetInfo"
+  }
+]
