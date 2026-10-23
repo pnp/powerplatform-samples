@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowUpRight, CalendarDays, Download, ExternalLink } from '@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { catalog, formatDate, sitePath, type Sample } from '../../lib/catalog';
 import ProductMarks from '../../components/ProductMarks.astro';
+import { communityLinks } from '../../lib/community';
 export function getStaticPaths() {
   return catalog.samples.map((sample) => ({ params: { slug: sample.slug }, props: { sample } }));
 }
@@ -38,6 +39,7 @@ const { sample } = Astro.props;
     <aside class="detail-sidebar">
       <h2>Useful links</h2>
       <nav class="stacked-links" aria-label="Sample resources">
+        <a href={communityLinks.forums}>Ask the Power Platform Community <ArrowUpRight size={14} /></a>
         <a href={sample.sourceUrl}>README on GitHub <ArrowUpRight size={14} /></a>
         <a href={sitePath('/getting-started/')}>Using the samples</a>
         <a href="https://github.com/pnp/powerplatform-samples/issues/new/choose">Report a sample issue</a>

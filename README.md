@@ -46,19 +46,25 @@ New sample contributions belong in this repository. Older per-product collection
 > You're welcome to bring samples from the other repositories! The more people help, the faster we'll move all the samples here.
 
 See the [legacy repository activity and archive-readiness assessment](./legacy-repositories-assessment.md) for recent contributions, open PRs/issues, migration gaps, and recommended prerequisites. No additional repositories are being archived as part of publishing this gallery.
+
 ## Have issues or questions?
 
-Please use following logic on submitting your questions or issues to right location to ensure that they are noticed and addressed as soon as possible.
+- **Questions and discussion:** use the [Power Platform Community forums](https://community.powerplatform.com/), our primary discussion space for product and how-to questions.
+- **Reproducible sample bugs and suggestions:** [open an issue in this repository](https://github.com/pnp/powerplatform-samples/issues/new/choose), including the sample name and reproduction details.
 
 ## Additional resources
 
-- [Power Platform Community](https://powerusers.microsoft.com/)
+- [Power Platform Community forums](https://community.powerplatform.com/)
+- [Microsoft Community Learning on YouTube](https://www.youtube.com/@MicrosoftCommunityLearning) - community call recordings and demos.
+- [Microsoft Power Platform on YouTube](https://www.youtube.com/@mspowerplatform) - Power Platform videos, demos, and tutorials.
 
 ## Join the community calls
 
 Stay up to date with the latest Copilot, Microsoft 365, and Power Platform topics by joining our weekly community calls. Everyone is welcome. Come to learn, ask questions, and connect with the community.
 
 [View the call schedule and download the recurring invites](https://aka.ms/community/calls) so you don't miss an upcoming call.
+
+Everyone is welcome to present. [Request a live community demo](https://aka.ms/community/request/demo) to share your sample, and watch recordings on [Microsoft Community Learning](https://www.youtube.com/@MicrosoftCommunityLearning).
 
 ## Using the samples
 

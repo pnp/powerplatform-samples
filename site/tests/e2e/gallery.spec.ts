@@ -4,6 +4,10 @@ import type { Catalog } from '../../src/lib/catalog';
 
 test.beforeEach(async ({ page }) => {
   await page.route('https://m365-visitor-stats.azurewebsites.net/**', (route) => route.abort());
+  await page.route('https://github.com/*.png*', (route) => route.fulfill({
+    contentType: 'image/svg+xml',
+    body: '<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><rect width="50" height="50" fill="#dfece5"/></svg>',
+  }));
 });
 
 test('shows all samples, working logo filters, composable facets, URL state, and reset', async ({ page, request }) => {
@@ -58,6 +62,60 @@ test('search, category, sort, and contributor counts agree with metadata', async
   await expect(page.locator('.contributor-card')).toHaveCount(catalog.contributors.length);
   const contributor = catalog.contributors.find((item) => item.gitHubAccount.toLowerCase() === 'solanki-manish')!;
   await expect(page.locator('.contributor-card').filter({ hasText: '@Solanki-Manish' })).toContainText(`${contributor.sampleSlugs.length} samples`);
+});
+
+test('each contributor uses their own GitHub profile image and profile link', async ({ page, request }) => {
+  const catalog: Catalog = await (await request.get('./catalog.json')).json();
+  await page.goto('./contributors/');
+  const avatars = page.locator('.contributor-avatar');
+  await expect(avatars).toHaveCount(catalog.contributors.length);
+  const profiles = await avatars.evaluateAll((links) => links.map((link) => ({
+    href: link.getAttribute('href'),
+    image: link.querySelector('img')?.getAttribute('src'),
+    loading: link.querySelector('img')?.getAttribute('loading'),
+  })));
+  expect(profiles).toEqual(catalog.contributors.map((author) => ({
+    href: `https://github.com/${author.gitHubAccount}`,
+    image: `https://github.com/${author.gitHubAccount}.png?size=128`,
+    loading: 'lazy',
+  })));
+  await avatars.first().scrollIntoViewIfNeeded();
+  await expect(avatars.first().locator('img')).toHaveJSProperty('naturalWidth', 50);
+  await expect(avatars.first().locator('.contributor-initials')).toBeHidden();
+});
+
+test('an unavailable GitHub image shows initials and logs an explicit warning', async ({ page }) => {
+  await page.route('https://github.com/*.png*', (route) => route.fulfill({ status: 404, body: 'Avatar unavailable' }));
+  const warnings: string[] = [];
+  page.on('console', (message) => { if (message.type() === 'warning') warnings.push(message.text()); });
+  await page.goto('./contributors/');
+  const avatar = page.locator('.contributor-avatar').first();
+  await avatar.scrollIntoViewIfNeeded();
+  await expect(avatar.locator('img')).toBeHidden();
+  await expect(avatar.locator('.contributor-initials')).toBeVisible();
+  await expect(avatar).toHaveAttribute('title', 'GitHub image unavailable; showing contributor initials');
+  const initials = await avatar.locator('.contributor-initials').innerText();
+  expect(await avatar.getAttribute('aria-label')).toContain(`${initials}: View`);
+  expect(warnings.some((warning) => warning.includes('GitHub avatar unavailable:'))).toBe(true);
+  expect((await new AxeBuilder({ page }).withRules(['label-content-name-mismatch', 'link-name']).analyze()).violations).toEqual([]);
+});
+
+test('forums are the primary discussion destination alongside calls, demos, and verified video channels', async ({ page }) => {
+  await page.goto('./community/');
+  await expect(page.locator('.page-hero .button--primary')).toHaveAttribute('href', 'https://community.powerplatform.com/');
+  await expect(page.getByRole('link', { name: 'Ask a question in the forums' })).toHaveAttribute('href', 'https://community.powerplatform.com/');
+  await expect(page.getByRole('link', { name: 'Join community calls', exact: true })).toHaveAttribute('href', 'https://aka.ms/community/calls');
+  await expect(page.getByRole('link', { name: 'Sign up to present a demo' })).toHaveAttribute('href', 'https://aka.ms/community/request/demo');
+  await expect(page.getByRole('link', { name: 'Watch recordings and demos' })).toHaveAttribute('href', 'https://www.youtube.com/@MicrosoftCommunityLearning');
+  await expect(page.getByRole('link', { name: 'Watch Power Platform videos', exact: true })).toHaveAttribute('href', 'https://www.youtube.com/@mspowerplatform');
+  const footer = page.getByRole('navigation', { name: 'Footer navigation' });
+  await expect(footer.getByRole('link').first()).toHaveAttribute('href', 'https://community.powerplatform.com/');
+  await expect(footer.getByRole('link', { name: 'Community recordings' })).toHaveAttribute('href', 'https://www.youtube.com/@MicrosoftCommunityLearning');
+  await expect(footer.getByRole('link', { name: 'Power Platform videos', exact: true })).toHaveAttribute('href', 'https://www.youtube.com/@mspowerplatform');
+  await page.goto('./samples/a-puzzle-a-day/');
+  await expect(page.getByRole('navigation', { name: 'Sample resources' }).getByRole('link').first()).toHaveAttribute('href', 'https://community.powerplatform.com/');
+  await page.goto('./');
+  await expect(page.locator('.call-ribbon').getByRole('link', { name: 'Power Platform Community forums' })).toHaveAttribute('href', 'https://community.powerplatform.com/');
 });
 
 test('sample details have valid actions, localized images, and exactly one route tracker', async ({ page, request }) => {

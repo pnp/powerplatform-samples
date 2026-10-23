@@ -2,6 +2,7 @@
 import { ArrowUpRight, GitFork, Menu, Moon, Sun } from '@lucide/astro';
 import { brandPath, sitePath } from '../lib/catalog';
 import { visitorStatsUrl } from '../../scripts/gallery-model.mjs';
+import { communityLinks } from '../lib/community';
 import '../styles/global.css';
 
 interface Props { title?: string; description?: string; image?: string; }
@@ -95,8 +96,11 @@ const backgrounds = [
           <span class="footer-motto">Sharing is caring.</span>
         </div>
         <nav aria-label="Footer navigation">
-          <a href="https://aka.ms/community/calls">Community calls</a>
+          <a href={communityLinks.forums}>Community forums</a>
+          <a href={communityLinks.calls}>Community calls</a>
           <a href={sitePath('/contributing/')}>Contribute a sample</a>
+          <a href={communityLinks.recordings}>Community recordings</a>
+          <a href={communityLinks.powerPlatformVideos}>Power Platform videos</a>
           <a href={sitePath('/catalog.json')}>Catalog JSON</a>
           <a href={sitePath('/legacy-samples/')}>Legacy sample collections</a>
           <a href="https://github.com/pnp/powerplatform-samples/issues/new/choose">Report an issue</a>
