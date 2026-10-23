@@ -1,17 +1,27 @@
 ---
-import { ArrowUpRight, CalendarDays, HeartHandshake, Mic } from '@lucide/astro';
+import { ArrowUpRight, CalendarDays, CirclePlay, MessageCircle, Mic } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import { sitePath } from '../lib/catalog';
+import { communityLinks } from '../lib/community';
 ---
-<BaseLayout title="Community" description="Join Microsoft 365 and Power Platform community calls, share a demo, and connect with other makers.">
-  <PageHero eyebrow="Everyone is welcome" title="Your community. Your next connection." description="Come with a question. Leave with an idea. Connect with the people building, learning, and sharing across Copilot, Microsoft 365, and Power Platform."><a class="button button--primary" href="https://aka.ms/community/calls"><CalendarDays size={18} /> Join the community calls</a></PageHero>
+<BaseLayout title="Community" description="Ask questions in the Power Platform Community forums, join community calls, present a demo, and watch recordings and product videos.">
+  <PageHero eyebrow="Everyone is welcome" title="Your community. Your next connection." description="Start a discussion in the Power Platform Community forums, our primary place for questions and answers. Then join a community call, share a demo, or catch up with videos.">
+    <div class="action-row"><a class="button button--primary" href={communityLinks.forums}><MessageCircle size={18} /> Ask the community</a><a class="button button--secondary" href={communityLinks.calls}><CalendarDays size={18} /> Join community calls</a></div>
+  </PageHero>
   <section class="container content-section">
     <div class="section-heading"><div><p class="eyebrow">Come as you are</p><h2>Let's learn something together.</h2></div></div>
     <div class="resource-grid">
-      <article class="resource-card"><CalendarDays size={30} /><h2>Find your next call.</h2><p>See real solutions, hear from the people building them, and ask questions. Browse the community call schedule and download recurring invites so you don't miss a session.</p><a class="text-link" href="https://aka.ms/community/calls">Call schedule &amp; invites <ArrowUpRight size={16} /></a></article>
-      <article class="resource-card"><Mic size={30} /><h2>Share what you've built.</h2><p>A community demo is a great way to share a technique, show a sample, and get feedback. Your experience could be exactly the spark another maker needs.</p><a class="text-link" href="https://aka.ms/community/request/demo">Sign up to present a demo <ArrowUpRight size={16} /></a></article>
-      <article class="resource-card"><HeartHandshake size={30} /><h2>Find your people.</h2><p>Explore the Microsoft 365 &amp; Power Platform Community, discover learning opportunities, and learn how contributions are recognized.</p><a class="text-link" href="https://aka.ms/community/home">Visit community home <ArrowUpRight size={16} /></a></article>
+      <article class="resource-card"><MessageCircle size={30} /><h2>Start with the forums.</h2><p>The Power Platform Community is our primary discussion forum. Ask product and how-to questions, find answers, and share what you learn with other makers.</p><a class="text-link" href={communityLinks.forums}>Ask a question in the forums <ArrowUpRight size={16} /></a></article>
+      <article class="resource-card"><CalendarDays size={30} /><h2>Find your next call.</h2><p>See real solutions and meet the people building them. Join our community calls, browse the schedule, and download recurring invites so you don't miss a session.</p><a class="text-link" href={communityLinks.calls}>Call schedule &amp; invites <ArrowUpRight size={16} /></a></article>
+      <article class="resource-card"><Mic size={30} /><h2>Share what you've built.</h2><p>Present a live community demo to share a technique, show your sample, and get feedback. Your experience could be exactly the spark another maker needs.</p><a class="text-link" href={communityLinks.demo}>Sign up to present a demo <ArrowUpRight size={16} /></a></article>
+    </div>
+  </section>
+  <section class="container content-section" aria-labelledby="community-videos">
+    <div class="section-heading"><div><p class="eyebrow">Learn at your own pace</p><h2 id="community-videos">Catch up. Get inspired.</h2></div></div>
+    <div class="two-columns">
+      <article class="resource-card"><CirclePlay size={30} /><h3>Microsoft Community Learning</h3><p>Watch community call recordings, demos, and practical sessions from the Microsoft 365 &amp; Power Platform Community.</p><a class="text-link" href={communityLinks.recordings}>Watch recordings and demos <ArrowUpRight size={16} /></a></article>
+      <article class="resource-card"><CirclePlay size={30} /><h3>Microsoft Power Platform</h3><p>Explore Power Platform product videos, demos, tutorials, and updates across apps, automation, agents, and data.</p><a class="text-link" href={communityLinks.powerPlatformVideos}>Watch Power Platform videos <ArrowUpRight size={16} /></a></article>
     </div>
   </section>
   <section class="content-section content-section--soft"><div class="container two-columns">

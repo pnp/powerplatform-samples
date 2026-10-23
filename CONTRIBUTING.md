@@ -13,11 +13,13 @@ Remember that this repository is maintained by community members who volunteer t
 
 Please do not open GitHub issues for general support questions as the GitHub list should be used for feature requests and bug reports. This way we can more easily track actual issues or bugs from the code and keep the general discussion separate from the actual code.
 
-If you have questions about how to use Power Platform or any of the provided samples, please visit the [Power Platform Community](https://powerusers.microsoft.com/) at <https://powerusers.microsoft.com/>
+For product and how-to questions, use the [Power Platform Community forums](https://community.powerplatform.com/), our primary discussion space. Use this repository's issue tracker for reproducible sample bugs and repository improvements.
 
 ## Community calls and demos
 
 Everyone is welcome to join the [weekly community calls](https://aka.ms/community/calls) for Copilot, Microsoft 365, and Power Platform updates. If you would like to share your learnings or gather community input, [sign up for a demo](https://aka.ms/community/request/demo).
+
+Watch call recordings and demos on [Microsoft Community Learning](https://www.youtube.com/@MicrosoftCommunityLearning), and find product videos and tutorials on [Microsoft Power Platform](https://www.youtube.com/@mspowerplatform).
 
 ## Typos, Issues, Bugs and contributions
 

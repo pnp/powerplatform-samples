@@ -116,7 +116,8 @@ html[data-theme="dark"] .home-hero, html[data-theme="dark"] .page-hero { backgro
 .call-icon { width: 36px; height: 36px; border-radius: 9px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
 .call-ribbon p { margin: 0; font-size: .86rem; color: var(--muted); }
 .call-ribbon strong { color: var(--ink); margin-right: 4px; }
-.call-ribbon a { display: inline-flex; gap: 7px; align-items: center; font-size: .82rem; font-weight: 700; text-decoration: none; margin-left: auto; white-space: nowrap; }
+.call-ribbon-inner > a { display: inline-flex; gap: 7px; align-items: center; font-size: .82rem; font-weight: 700; text-decoration: none; margin-left: auto; white-space: nowrap; }
+.call-ribbon p a { font-weight: 650; }
 .catalog-backdrop { position: relative; isolation: isolate; overflow: clip; }
 .catalog-backdrop::before, .catalog-backdrop::after { content: ''; position: absolute; z-index: -1; width: 330px; height: 700px; top: 550px; pointer-events: none; opacity: .2; background-repeat: no-repeat; background-size: 430px; }
 .catalog-backdrop::before { left: 0; background-image: var(--ribbon-blue); background-position: right center; }
@@ -222,6 +223,8 @@ pre { overflow-x: auto; padding: 22px; border: 1px solid var(--border); backgrou
 code { font-family: 'Cascadia Code', Consolas, monospace; font-size: .86em; overflow-wrap: anywhere; }
 .contributor-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .contributor-card { display: flex; gap: 17px; background: var(--surface); padding: 23px; border: 1px solid var(--border); border-radius: 10px; min-width: 0; }
+.contributor-avatar { position: relative; display: block; width: 50px; height: 50px; flex-shrink: 0; border-radius: 50%; text-decoration: none; }
+.contributor-avatar img { position: absolute; inset: 0; width: 50px; height: 50px; object-fit: cover; border-radius: inherit; background: var(--surface); }
 .contributor-initials { width: 50px; height: 50px; flex-shrink: 0; border-radius: 50%; background: var(--accent-soft); color: var(--accent-strong); display: grid; place-items: center; font-size: 1rem; font-weight: 700; }
 .contributor-card h2 { font-size: 1.05rem; margin-bottom: 7px; overflow-wrap: anywhere; }
 .contributor-card a { font-size: .77rem; overflow-wrap: anywhere; }
@@ -317,8 +320,8 @@ code { font-family: 'Cascadia Code', Consolas, monospace; font-size: .86em; over
   .hero-orbit { width: 220px; height: 220px; }
   .hero-art-label { bottom: 2px; right: 0; font-size: .68rem; }
   .call-ribbon-inner { flex-wrap: wrap; gap: 10px; padding-block: 17px; }
-  .call-ribbon p { flex: 1; font-size: .78rem; }
-  .call-ribbon a { margin-left: 46px; font-size: .75rem; }
+  .call-ribbon p { flex: 1 1 calc(100% - 44px); font-size: .78rem; }
+  .call-ribbon-inner > a { margin-left: 44px; font-size: .75rem; }
   .call-icon { width: 34px; height: 34px; }
   .catalog-section { padding-top: 36px; }
   .section-heading { align-items: start; flex-direction: column; gap: 10px; margin-bottom: 20px; }

@@ -58,7 +58,7 @@ The unit suite covers metadata normalization, real dates, product/category alias
 - Power BI is outside this repository's sample scope and is not listed in the gallery. Its supplied source icon is preserved but is not generated into website assets.
 - All products is genuinely unfiltered, not an alias for the generic Power Platform tag. Product counts count matching samples; their sum can exceed the total for multi-product samples.
 - Missing optional download URLs produce the standard partial-download URL for the verified current folder. Unknown licensing facts are not shown as false or free.
-- Contributor identities and counts come from metadata. Initials are used instead of runtime avatar fetching, so page rendering does not depend on the GitHub API or profile-image availability.
+- Contributor identities and counts come from metadata. Each contributor photo uses the corresponding GitHub account image and links to that profile; image loading is lazy and requires no authenticated GitHub API call. If an image is unavailable, the page logs a warning, shows initials, and retains the accessible profile link.
 
 The generator writes ignored data to `src/generated/`, ignored public `catalog.json` and `samples.json` exports, and optimized media/branding under `public/generated/`. Do not edit or commit generated files. The public catalog has versioned `samples`, `products`, `contributors`, categories, folder coverage, and a deterministic metadata-derived generation date; it does not contain rendered README HTML.
 
@@ -93,11 +93,16 @@ Without JavaScript, sample content/navigation remains usable; the website tracke
 
 ## Community and contribution guidance
 
+- [Power Platform Community forums](https://community.powerplatform.com/) are the primary destination for questions and discussion. GitHub issues are for reproducible sample bugs and repository improvements.
 - [Repository contribution guidance](../CONTRIBUTING.md).
 - [Sample template](../templates/sample-template/).
 - [Community call schedule and recurring invites](https://aka.ms/community/calls).
 - [Present a community demo](https://aka.ms/community/request/demo).
 - [Community home](https://aka.ms/community/home).
+- [Microsoft Community Learning](https://www.youtube.com/@MicrosoftCommunityLearning) hosts community call recordings and demos.
+- [Microsoft Power Platform](https://www.youtube.com/@mspowerplatform) provides Power Platform product videos and tutorials.
+
+Shared website destinations are maintained in [community.ts](src/lib/community.ts) and promoted on the Community page, shared footer, and relevant getting-started/sample guidance. Calls and presenting a live demo remain complementary ways to participate.
 
 ## GitHub validation and publication
 
