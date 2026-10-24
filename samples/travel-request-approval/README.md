@@ -39,12 +39,12 @@ Version|Date|Comments
 Component|Type
 ---------|-----
 Travel Request App | Canvas App
-Travel Request Admin Portal | Model Drivel App
+Travel Request Admin Portal | Model Driven App
 Approval Workflow | Power Automate Flow
 
 ## Minimal Path to Awesome
 
-1. [Download](./solution/TravelRequestApprovalApp_1_0_0_2.zip) the solution package
+1. [Download](./solutions/solution.zip) the solution package
 2. Import into Power Apps via **Solutions** > **Import solution**
 3. Deploy the Travel Request Approval app to your users
 
@@ -53,4 +53,7 @@ Approval Workflow | Power Automate Flow
 To modify and repackage using Power Apps CLI:
 
 ```bash
-pac solution pack --folder travel-request-src --zipfile travel-request-approval.zip --processCanvasApps
+pac solution pack --folder sourcecode/src --zipfile travel-request-approval.zip --processCanvasApps
+```
+
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/travel-request-approval" alt="" />
