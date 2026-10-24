@@ -1,0 +1,665 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365users_1": {
+        "api": {
+          "name": "shared_office365users"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "m365pnp_sharedoffice365users_c6163"
+        },
+        "runtimeSource": "embedded"
+      },
+      "shared_sharepointonline_1": {
+        "api": {
+          "name": "shared_sharepointonline"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "m365pnp_sharedsharepointonline_ffdb8"
+        },
+        "runtimeSource": "embedded"
+      },
+      "shared_office365groups_1": {
+        "api": {
+          "name": "shared_office365groups"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "m365pnp_sharedoffice365groups_b1cdb"
+        },
+        "runtimeSource": "embedded"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Site Type",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "Site Name",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "UserID",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_3"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "c8f4049a-9dc4-4d07-98bd-45bf77e7a469"
+          }
+        }
+      },
+      "actions": {
+        "Get_user_profile_(V2)": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "id": "@triggerBody()['text_3']"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users",
+              "operationId": "UserProfile_V2",
+              "connectionName": "shared_office365users_1"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_SitePath": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ebe33928-1f41-4845-8680-e44315fc9fd1"
+          }
+        },
+        "Initialize_variable_-_SitePath": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SitePath",
+                "type": "string",
+                "value": "@{replace(triggerBody()['text_1'],' ','')}"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_variable_-_SharePoint_Root": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b46e69e2-d9f0-4b6c-99fc-5644e525e842"
+          }
+        },
+        "Scope": {
+          "type": "Scope",
+          "actions": {
+            "Condition_-_Site_exists": {
+              "type": "If",
+              "expression": {
+                "and": [
+                  {
+                    "equals": [
+                      "@variables('SiteAlreadyExists')",
+                      "@false"
+                    ]
+                  },
+                  {
+                    "equals": [
+                      "@empty(variables('ErrorMessage'))",
+                      "@true"
+                    ]
+                  }
+                ]
+              },
+              "actions": {
+                "Switch": {
+                  "type": "Switch",
+                  "expression": "@triggerBody()['text']",
+                  "default": {
+                    "actions": {}
+                  },
+                  "cases": {
+                    "Case": {
+                      "actions": {
+                        "Send_an_HTTP_request_to_SharePoint": {
+                          "type": "OpenApiConnection",
+                          "description": "Site Design ID is fixed to the blank communication site for demo purposes, some logic could be added to use different designs.",
+                          "inputs": {
+                            "parameters": {
+                              "dataset": "@variables('SharePointRoot')",
+                              "parameters/method": "POST",
+                              "parameters/uri": "_api/SPSiteManager/create",
+                              "parameters/headers": {
+                                "Accept": "applicatoin/json;odata=none"
+                              },
+                              "parameters/body": "{\n  \"request\": {\n    \"Title\": \"@{triggerBody()['text_1']}\",\n    \"Url\":\"@{variables('SharePointRoot')}/sites/@{variables('SitePath')}\",\n    \"Lcid\": 1033,\n    \"ShareByEmailEnabled\":false,\n    \"Description\":\"@{triggerBody()['text_1']} - Created Via Copilot Studio\",\n    \"WebTemplate\":\"SITEPAGEPUBLISHING#0\",\n    \"Owner\":\"@{outputs('Get_user_profile_(V2)')?['body/mail']}\",\n    \"SiteDesignId\":\"f6cc5403-0d63-442e-96c0-285923709ffc\"\n }\n}"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                              "operationId": "HttpRequest",
+                              "connectionName": "shared_sharepointonline_1"
+                            }
+                          }
+                        }
+                      },
+                      "case": "Communication Site"
+                    },
+                    "Case_2": {
+                      "actions": {
+                        "Send_an_HTTP_request": {
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "Uri": "https://graph.microsoft.com/v1.0/groups",
+                              "Method": "POST",
+                              "Body": "{\n  \"description\": \"@{triggerBody()['text_1']}\",\n  \"displayName\": \"@{triggerBody()['text_1']}\",\n  \"groupTypes\": [\n    \"Unified\"\n  ],\n  \"mailEnabled\": true,\n  \"mailNickname\": \"@{variables('SitePath')}\",\n  \"securityEnabled\": false,\n  \"visibility\": \"Private\"\n}",
+                              "ContentType": "application/json"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365groups",
+                              "operationId": "HttpRequest",
+                              "connectionName": "shared_office365groups_1"
+                            }
+                          }
+                        },
+                        "Add_member_to_group": {
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "groupId": "@body('Send_an_HTTP_request')['id']",
+                              "userUpn": "@outputs('Get_user_profile_(V2)')?['body/mail']"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365groups",
+                              "operationId": "AddMemberToGroup",
+                              "connectionName": "shared_office365groups_1"
+                            }
+                          },
+                          "runAfter": {
+                            "Send_an_HTTP_request": [
+                              "Succeeded"
+                            ]
+                          }
+                        }
+                      },
+                      "case": "Team Site"
+                    }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "49d30cd3-dc0b-4c7e-9665-54da4b443e4a"
+                  }
+                },
+                "Set_variable": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "SiteCreated",
+                    "value": "@true"
+                  },
+                  "runAfter": {
+                    "Switch": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "c036bacd-4d76-4df9-8ce7-95bcba41f6d1"
+                  }
+                }
+              },
+              "else": {
+                "actions": {
+                  "Set_variable_-_Site_Created_-_To_False": {
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "SiteCreated",
+                      "value": false
+                    },
+                    "metadata": {
+                      "operationMetadataId": "41e31eb8-13e6-4ff9-b3e1-6891697586e5"
+                    }
+                  },
+                  "Condition": {
+                    "type": "If",
+                    "expression": {
+                      "equals": [
+                        "@empty(variables('ErrorMessage'))",
+                        "@true"
+                      ]
+                    },
+                    "actions": {
+                      "Set_variable_-_Error_Message_-_Site_Exists": {
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "ErrorMessage",
+                          "value": "A site already exists with this Name/Path"
+                        },
+                        "metadata": {
+                          "operationMetadataId": "073aca31-2c41-4f13-84cb-0fbce7168d27"
+                        }
+                      }
+                    },
+                    "else": {
+                      "actions": {}
+                    },
+                    "runAfter": {
+                      "Set_variable_-_Site_Created_-_To_False": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "d2427560-7591-4605-a62c-d18fc4d68b53"
+                    }
+                  }
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "16a829e6-3307-4f82-b774-71822917aafe"
+              }
+            }
+          },
+          "runAfter": {
+            "Scope_-_Site_Exists": [
+              "Skipped",
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "dedaa828-f88e-4265-8643-986dd8f9fc91"
+          }
+        },
+        "Scope_-_Error": {
+          "type": "Scope",
+          "actions": {
+            "Set_variable_-_Site_Created_to_False": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "SiteCreated",
+                "value": "@false"
+              },
+              "metadata": {
+                "operationMetadataId": "26478999-8c1c-41a5-ae0d-10aeb40a9986"
+              }
+            },
+            "Set_variable_-_Error_Message": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "ErrorMessage",
+                "value": "Error Happened"
+              },
+              "runAfter": {
+                "Set_variable_-_Site_Created_to_False": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "cc8ecc5d-a27f-4ba0-87ad-b273932addf8"
+              }
+            }
+          },
+          "runAfter": {
+            "Scope": [
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bfe1d562-6477-475d-9edf-dcead26fbc3c"
+          }
+        },
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "site_created": {
+                  "title": "Site Created",
+                  "x-ms-dynamically-added": true,
+                  "type": "boolean"
+                },
+                "url": {
+                  "title": "Url",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "error": {
+                  "title": "Error",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              },
+              "additionalProperties": {}
+            },
+            "statusCode": 200,
+            "body": {
+              "site_created": "@variables('SiteCreated')",
+              "url": "[@{variables('SharePointRoot')}/sites/@{variables('SitePath')}](@{variables('SharePointRoot')}/sites/@{variables('SitePath')})",
+              "error": "@variables('ErrorMessage')"
+            }
+          },
+          "runAfter": {
+            "Scope_-_Error": [
+              "Succeeded",
+              "Skipped"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cc48982f-1ce6-41e5-b000-680d627bb3bc"
+          }
+        },
+        "Initialize_variable_-_Site_Created": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SiteCreated",
+                "type": "boolean",
+                "value": false
+              }
+            ]
+          },
+          "runAfter": {
+            "Parse_JSON_-_Tenant_Root": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6a374ffe-1297-4d93-99aa-17f645745df1"
+          }
+        },
+        "Initialize_variable_-_Error_Message": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "ErrorMessage",
+                "type": "string"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_variable_-_Site_Already_Exists": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "83e060b4-b231-4691-a7c0-6d17b712b5c4"
+          }
+        },
+        "Initialize_variable_-_SharePoint_Root": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SharePointRoot",
+                "type": "string",
+                "value": "@body('Parse_JSON_-_Tenant_Root')?['webUrl']"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_variable_-_Error_Message": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7aefe01d-9fd8-45b3-9f7a-aea7027a14e5"
+          }
+        },
+        "Send_an_HTTP_request_to_SharePoint_-_Detect_If_Site_Exists": {
+          "type": "OpenApiConnection",
+          "description": "Do a get request on the site desired path only to check if it exists...so we do not try to create it and notify the user back",
+          "inputs": {
+            "parameters": {
+              "dataset": "@{variables('SharePointRoot')}/sites/@{variables('SitePath')}",
+              "parameters/method": "GET",
+              "parameters/uri": "_api/web/Url",
+              "parameters/headers": {
+                "Accept": "Application/JSON",
+                "Content-Type": "Application/JSON"
+              }
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "operationId": "HttpRequest",
+              "connectionName": "shared_sharepointonline_1"
+            }
+          },
+          "runAfter": {
+            "Get_user_profile_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c667e438-7861-4454-85d7-7b3458995e38"
+          }
+        },
+        "Scope_-_Site_Exists": {
+          "type": "Scope",
+          "description": "Either it does not throw an error or it is a 403",
+          "actions": {
+            "Parse_JSON": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Send_an_HTTP_request_to_SharePoint_-_Detect_If_Site_Exists')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "array"
+                    }
+                  }
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "72e14756-54f1-43e2-9b60-3fce53fb8035"
+              }
+            },
+            "Switch_2": {
+              "type": "Switch",
+              "expression": "@body('Parse_JSON')?['status']",
+              "default": {
+                "actions": {
+                  "Set_variable_-_Error_-_Handle_other_cases": {
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "ErrorMessage",
+                      "value": "@body('Parse_JSON')?['message']"
+                    }
+                  }
+                }
+              },
+              "cases": {
+                "Case-1": {
+                  "actions": {
+                    "Set_variable_-_Site_Exists": {
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "SiteAlreadyExists",
+                        "value": false
+                      },
+                      "metadata": {
+                        "operationMetadataId": "9dabe87d-dda6-4a65-a1f1-6719b2bb7bc0"
+                      }
+                    }
+                  },
+                  "case": 404
+                },
+                "Case_2-1": {
+                  "actions": {
+                    "Set_variable_-_Site_exists_if_403": {
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "SiteAlreadyExists",
+                        "value": true
+                      }
+                    }
+                  },
+                  "case": 403
+                }
+              },
+              "runAfter": {
+                "Parse_JSON": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "18da0f43-36f0-4180-a835-b2e0c8886383"
+              }
+            }
+          },
+          "runAfter": {
+            "Send_an_HTTP_request_to_SharePoint_-_Detect_If_Site_Exists": [
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e78e5940-916a-4a40-aa4e-8ade6e63b4bf"
+          }
+        },
+        "Initialize_variable_-_Site_Already_Exists": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SiteAlreadyExists",
+                "type": "boolean",
+                "value": true
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_variable_-_Site_Created": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e7b73f36-c843-4b18-b3a0-3282f0c30ac1"
+          }
+        },
+        "Send_an_HTTP_request_-_Get_Tenant_Root_Site": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "Uri": "https://graph.microsoft.com/v1.0/sites/root",
+              "Method": "GET",
+              "ContentType": "application/json"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365groups",
+              "operationId": "HttpRequest",
+              "connectionName": "shared_office365groups_1"
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "fff9bc6d-cdd5-4a92-b28b-a9b1cb9efdc1"
+          }
+        },
+        "Parse_JSON_-_Tenant_Root": {
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Send_an_HTTP_request_-_Get_Tenant_Root_Site')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "@@odata.context": {
+                  "type": "string"
+                },
+                "createdDateTime": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "lastModifiedDateTime": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "webUrl": {
+                  "type": "string"
+                },
+                "displayName": {
+                  "type": "string"
+                },
+                "root": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "siteCollection": {
+                  "type": "object",
+                  "properties": {
+                    "hostname": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Send_an_HTTP_request_-_Get_Tenant_Root_Site": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f11fda47-7665-40a8-ad87-7b7f1570f44a"
+          }
+        }
+      },
+      "outputs": {},
+      "description": "Call this flow from Power Virtual Agents."
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

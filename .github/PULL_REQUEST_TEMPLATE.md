@@ -25,9 +25,11 @@
 > Put an `x` in all the items that apply ([x], no spaces), make notes next to any that haven't been addressed.
 
 - [ ] My pull request affects only ONE sample.
-- [ ] I have updated the README file.
-- [ ] My README has at least one static high-resolution screenshot (i.e. not a GIF)
-- [ ] My README contains complete setup instructions, including pre-requisites and permissions required
+- [ ] My sample includes a completed `assets/sample.json` metadata file.
+- [ ] I have updated the sample's `README.md`.
+- [ ] My README has at least one static high-resolution screenshot (i.e. not a GIF).
+- [ ] My README contains complete setup instructions, including prerequisites and required permissions.
+- [ ] The final line of my README is `<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/{sample-path}" />`, with `{sample-path}` replaced by the repository-relative sample folder path.
 
 ## Submitter Guidance (DELETE AFTER READING)
 >

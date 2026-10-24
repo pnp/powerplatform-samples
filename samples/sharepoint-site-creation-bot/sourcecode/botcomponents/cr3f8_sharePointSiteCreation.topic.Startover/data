@@ -1,0 +1,25 @@
+kind: AdaptiveDialog
+startBehavior: UseLatestPublishedContentAndCancelOtherTopics
+beginDialog:
+  kind: OnSystemIntent
+  id: main
+  intent:
+    displayName: Start over
+    includeInOnSelectIntent: false
+    triggerQueries:
+      - start over
+      - restart
+      - let's begin again
+
+  actions:
+    - kind: ClearAllVariables
+      id: clearAllVariables_00000
+      variables: ConversationScopedVariables
+
+    - kind: SendActivity
+      id: c3e3eb0f-97b2-46ae-9f36-77f009b1152a
+      activity: Ok, I'll start over.
+
+    - kind: BeginDialog
+      id: 0bbb332e-08fa-4e16-885d-005d869fd509
+      dialog: cr3f8_sharePointSiteCreation.topic.Greeting

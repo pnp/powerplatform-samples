@@ -1,0 +1,610 @@
+{
+  "UsedTemplates": [
+    {
+      "Name": "groupContainer",
+      "Version": "1.3.0",
+      "Template": "<openAjax:widget spec=\"1.0\" id=\"http://microsoft.com/appmagic/groupContainer\" name=\"groupContainer\" jsClass=\"AppMagic.Controls.GroupContainer.GroupControl\" version=\"1.3.0\" styleable=\"true\" xmlns=\"http://schemas.microsoft.com/appMagic\" xmlns:openAjax=\"http://openajax.org/metadata\"><openAjax:author name=\"Microsoft AppMagic\" /><openAjax:license type=\"text/html\"><![CDATA[<p>TODO:  Need license text here.</p>]]></openAjax:license><openAjax:requires><openAjax:require type=\"css\" src=\"css/groupContainer.css\" /><openAjax:require type=\"javascript\" src=\"/ctrllib/common/js/container.js\" /><openAjax:require type=\"javascript\" src=\"js/groupContainer.js\" /></openAjax:requires><capabilities supportsNestedControls=\"true\" supportsNestedComponents=\"true\" replicatesNestedControls=\"false\" contextualViewsEnabled=\"false\" autoBorders=\"true\" autoFill=\"true\" autoPointerViewState=\"false\" autoDisabledViewState=\"false\" isVersionFlexible=\"true\" autoBorderRadius=\"true\" autoDropShadow=\"true\" /><includeProperties><includeProperty name=\"ContentLanguage\" /><includeProperty name=\"BorderColor\" /><includeProperty name=\"BorderStyle\" /><includeProperty name=\"BorderThickness\" /><includeProperty name=\"RadiusTopLeft\" defaultValue=\"0\" /><includeProperty name=\"RadiusTopRight\" defaultValue=\"0\" /><includeProperty name=\"RadiusBottomLeft\" defaultValue=\"0\" /><includeProperty name=\"RadiusBottomRight\" defaultValue=\"0\" /><includeProperty name=\"Fill\" /><includeProperty name=\"X\" /><includeProperty name=\"Y\" /><includeProperty name=\"Width\" defaultValue=\"500\" /><includeProperty name=\"Height\" defaultValue=\"200\" phoneDefaultValue=\"225\" /><includeProperty name=\"Visible\" /><includeProperty name=\"DisplayMode\" hidden=\"true\" /><includeProperty name=\"ChildTabPriority\" /><includeProperty name=\"EnableChildFocus\" /><!-- AutoLayout properties --><includeProperty name=\"LayoutMode\" /><includeProperty name=\"LayoutDirection\" /><includeProperty name=\"LayoutAlignItems\" /><includeProperty name=\"LayoutJustifyContent\" /><includeProperty name=\"LayoutGap\" /><includeProperty name=\"LayoutOverflowX\" /><includeProperty name=\"LayoutOverflowY\" /><includeProperty name=\"LayoutWrap\" /><includeProperty name=\"PaddingTop\" defaultValue=\"0\" /><includeProperty name=\"PaddingRight\" defaultValue=\"0\" /><includeProperty name=\"PaddingBottom\" defaultValue=\"0\" /><includeProperty name=\"PaddingLeft\" defaultValue=\"0\" /><!-- Hidden properties --><includeProperty name=\"minimumWidth\" defaultValue=\"20\" /><includeProperty name=\"minimumHeight\" defaultValue=\"20\" /><includeProperty name=\"maximumWidth\" defaultValue=\"1366\" phoneDefaultValue=\"640\" /><includeProperty name=\"maximumHeight\" defaultValue=\"7680\" phoneDefaultValue=\"11360\" /><includeProperty name=\"DropShadow\" defaultValue=\"%DropShadow.RESERVED%.None\" /></includeProperties><!-- Display metadata providing property visibility, order, sections, and grouping in UI (e.g. properties panel) --><displayMetadata><section><property name=\"LayoutMode\" /><property name=\"LayoutDirection\" displayType=\"EnumIcon\" /><property name=\"LayoutJustifyContent\" displayType=\"EnumButtons\" itemsOrder=\"Start;Center;End;SpaceBetween\" /><property name=\"LayoutAlignItems\" displayType=\"EnumButtons\" itemsOrder=\"Start;Center;End;Stretch\" /><property name=\"LayoutGap\" /><property name=\"LayoutOverflowX\" /><property name=\"LayoutOverflowY\" /><property name=\"LayoutWrap\" /></section><section><propertyGroup name=\"Position\"><property name=\"X\" /><property name=\"Y\" /></propertyGroup><propertyGroup name=\"Size\"><property name=\"Width\" /><property name=\"Height\" /></propertyGroup><propertyGroup name=\"Padding\"><property name=\"PaddingTop\" labelOverride=\"##Padding_Top_Title##\" /><property name=\"PaddingBottom\" labelOverride=\"##Padding_Bottom_Title##\" /><property name=\"PaddingLeft\" labelOverride=\"##Padding_Left_Title##\" /><property name=\"PaddingRight\" labelOverride=\"##Padding_Right_Title##\" /></propertyGroup></section><section><propertyGroup name=\"Color\"><property name=\"Fill\" /></propertyGroup><propertyGroup name=\"Border\"><property name=\"BorderStyle\" /><property name=\"BorderThickness\" /><property name=\"BorderColor\" /></propertyGroup><propertyGroup name=\"Radius\"><property name=\"RadiusTopLeft\" /><property name=\"RadiusTopRight\" /><property name=\"RadiusBottomLeft\" /><property name=\"RadiusBottomRight\" /></propertyGroup><property name=\"DropShadow\" itemsOrder=\"None;Light;Semilight;Regular;Semibold;Bold;ExtraBold\" /></section><section><property name=\"Visible\" /></section><section><property name=\"ChildTabPriority\" /><property name=\"EnableChildFocus\" /></section></displayMetadata><controlVariants><controlVariant name=\"horizontalAutoLayoutContainer\"><insertMetadata isDeviceOptimized=\"true\"><category name=\"Layout\" priority=\"100\" /></insertMetadata><overrideProperties><overrideProperty name=\"LayoutMode\" defaultValue=\"%LayoutMode.RESERVED%.Auto\" isExpr=\"true\" /><overrideProperty name=\"LayoutDirection\" hidden=\"false\" defaultValue=\"%LayoutDirection.RESERVED%.Horizontal\" isExpr=\"true\" /><overrideProperty name=\"LayoutAlignItems\" hidden=\"false\" /><overrideProperty name=\"LayoutJustifyContent\" hidden=\"false\" /><overrideProperty name=\"LayoutGap\" hidden=\"false\" /><overrideProperty name=\"LayoutOverflowX\" hidden=\"false\" /><overrideProperty name=\"LayoutOverflowY\" hidden=\"false\" /><overrideProperty name=\"LayoutWrap\" hidden=\"false\" defaultValue=\"false\" /><!-- Behavior of ChildTabPriority is always true in a layout container, so hide it --><overrideProperty name=\"ChildTabPriority\" hidden=\"true\" defaultValue=\"true\" /></overrideProperties></controlVariant><controlVariant name=\"verticalAutoLayoutContainer\"><insertMetadata isDeviceOptimized=\"true\"><category name=\"Layout\" priority=\"101\" /></insertMetadata><overrideProperties><overrideProperty name=\"LayoutMode\" defaultValue=\"%LayoutMode.RESERVED%.Auto\" isExpr=\"true\" /><overrideProperty name=\"LayoutDirection\" hidden=\"false\" defaultValue=\"%LayoutDirection.RESERVED%.Vertical\" isExpr=\"true\" /><overrideProperty name=\"LayoutAlignItems\" hidden=\"false\" /><overrideProperty name=\"LayoutJustifyContent\" hidden=\"false\" /><overrideProperty name=\"LayoutGap\" hidden=\"false\" /><overrideProperty name=\"LayoutOverflowX\" hidden=\"false\" /><overrideProperty name=\"LayoutOverflowY\" hidden=\"false\" /><overrideProperty name=\"LayoutWrap\" hidden=\"false\" defaultValue=\"false\" /><!-- Behavior of ChildTabPriority is always true in a layout container, so hide it --><overrideProperty name=\"ChildTabPriority\" hidden=\"true\" defaultValue=\"true\" /></overrideProperties></controlVariant><controlVariant name=\"manualLayoutContainer\"><insertMetadata isDeviceOptimized=\"true\"><category name=\"Layout\" priority=\"102\" /></insertMetadata><overrideProperties><overrideProperty name=\"LayoutMode\" defaultValue=\"%LayoutMode.RESERVED%.Manual\" isExpr=\"true\" /><overrideProperty name=\"LayoutDirection\" hidden=\"true\" /><overrideProperty name=\"LayoutAlignItems\" hidden=\"true\" /><overrideProperty name=\"LayoutJustifyContent\" hidden=\"true\" /><overrideProperty name=\"LayoutGap\" hidden=\"true\" /><overrideProperty name=\"LayoutOverflowX\" hidden=\"true\" /><overrideProperty name=\"LayoutOverflowY\" hidden=\"true\" /><overrideProperty name=\"LayoutWrap\" hidden=\"true\" /></overrideProperties></controlVariant></controlVariants><conversion from=\"1.0.1\" to=\"1.1.0\"><conversionAction type=\"add\" name=\"ChildTabPriority\" /><conversionAction type=\"add\" name=\"EnableChildFocus\" /></conversion><conversion from=\"1.1.0\" to=\"1.2.0\"><conversionAction type=\"add\" name=\"RadiusTopLeft\" /><conversionAction type=\"add\" name=\"RadiusTopRight\" /><conversionAction type=\"add\" name=\"RadiusBottomLeft\" /><conversionAction type=\"add\" name=\"RadiusBottomRight\" /></conversion><conversion from=\"1.2.0\" to=\"1.3.0\"><conversionAction type=\"add\" name=\"DropShadow\" /></conversion></openAjax:widget>"
+    },
+    {
+      "Name": "label",
+      "Version": "2.5.1",
+      "Template": "<widget xmlns=\"http://openajax.org/metadata\" spec=\"1.0\" id=\"http://microsoft.com/appmagic/label\" name=\"label\" jsClass=\"AppMagic.Controls.Label\" version=\"2.5.1\" styleable=\"true\" runtimeCost=\"1\" xmlns:appMagic=\"http://schemas.microsoft.com/appMagic\"><author name=\"Microsoft AppMagic\" /><license type=\"text/html\"><![CDATA[<p>TODO:  Need license text here.</p>]]></license><description><![CDATA[LABEL\r\n      Control description here.]]></description><requires><require type=\"css\" src=\"css/label.css\" /><require type=\"javascript\" src=\"js/label.js\" /></requires><appMagic:capabilities contextualViewsEnabled=\"true\" allowsPerCharacterFormatting=\"true\" autoBorders=\"true\" autoFill=\"true\" autoFocusedBorders=\"true\" autoPointerViewState=\"true\" autoDisabledViewState=\"true\" screenActiveAware=\"true\" isVersionFlexible=\"true\" supportsSetFocus=\"true\" /><content><![CDATA[\r\n  <div\r\n    class=\"appmagic-label no-focus-outline\"\r\n    touch-action=\"pan-x pan-y\"\r\n    tabIndex=\"-1\"\r\n    data-bind=\"\r\n      style: {\r\n        fontFamily: properties.Font,\r\n        fontSize: properties.Size,\r\n        color: autoProperties.Color,\r\n        fontWeight: properties.FontWeight,\r\n        fontStyle: properties.Italic,\r\n        textAlign: properties.Align,\r\n        paddingTop: properties.PaddingTop,\r\n        paddingRight: properties.PaddingRight,\r\n        paddingBottom: properties.PaddingBottom,\r\n        paddingLeft: properties.PaddingLeft,\r\n        lineHeight: properties.LineHeight,\r\n        overflowY: properties.Overflow,\r\n        display:  properties.Overflow() === 'auto' ? 'block' : ''\r\n      },\r\n      css: {\r\n        top: properties.AutoHeight() || properties.VerticalAlign() === 'top',\r\n        middle: !properties.AutoHeight() && properties.VerticalAlign() === 'middle',\r\n        bottom: !properties.AutoHeight() && properties.VerticalAlign() === 'bottom',\r\n        disabled: viewState.displayMode() === AppMagic.Constants.DisplayMode.Disabled,\r\n        readOnly: viewState.displayMode() === AppMagic.Constants.DisplayMode.View,\r\n        underline: properties.Underline,\r\n        strikethrough: properties.Strikethrough\r\n      },\r\n      attr: {\r\n        title: properties.Tooltip,\r\n        role: properties.TabIndex() >= 0 ? 'button' : 'presentation',\r\n        'aria-disabled': properties.TabIndex() >= 0 && viewState.displayMode() !== AppMagic.Constants.DisplayMode.Edit\r\n      },\r\n      event: {\r\n        click: handleClick\r\n      },\r\n      shortcut: {\r\n        provider: shortcutProvider,\r\n        enabled: shortcutsEnabled\r\n      }\"\r\n    >\r\n    <!-- ko if: properties.Role() !== 'heading1' && properties.Role() !== 'heading2' && properties.Role() !== 'heading3' && properties.Role() !== 'heading4' -->\r\n        <div\r\n          spellcheck=\"false\"\r\n          unselectable=\"off\"\r\n          class=\"appmagic-label-text\"\r\n          data-control-part=\"text\"\r\n          data-bind=\"{\r\n            inlineEditText: properties.Text,\r\n            css: {\r\n              'appmagic-label-single-line': !properties.Wrap()\r\n            },\r\n            attr: {\r\n              'aria-live': live,\r\n              'aria-atomic': live() ? 'true' : null\r\n            }\r\n          }\">\r\n        </div>\r\n    <!-- /ko -->\r\n    <!-- ko if: properties.Role() === 'heading1' -->\r\n        <h1\r\n          spellcheck=\"false\"\r\n          unselectable=\"off\"\r\n          class=\"appmagic-label-text\"\r\n          data-control-part=\"text\"\r\n          data-bind=\"{\r\n            inlineEditText: properties.Text,\r\n            css: {\r\n              'appmagic-label-single-line': !properties.Wrap()\r\n            },\r\n            attr: {\r\n              'aria-live': live,\r\n              'aria-atomic': live() ? 'true' : null\r\n            }\r\n          }\">\r\n         </h1>\r\n    <!-- /ko -->\r\n    <!-- ko if: properties.Role() === 'heading2' -->\r\n        <h2\r\n          spellcheck=\"false\"\r\n          unselectable=\"off\"\r\n          class=\"appmagic-label-text\"\r\n          data-control-part=\"text\"\r\n          data-bind=\"{\r\n            inlineEditText: properties.Text,\r\n            css: {\r\n              'appmagic-label-single-line': !properties.Wrap()\r\n            },\r\n            attr: {\r\n              'aria-live': live,\r\n              'aria-atomic': live() ? 'true' : null\r\n            }\r\n          }\">\r\n         </h2>\r\n    <!-- /ko -->\r\n    <!-- ko if: properties.Role() === 'heading3' -->\r\n        <h3\r\n          spellcheck=\"false\"\r\n          unselectable=\"off\"\r\n          class=\"appmagic-label-text\"\r\n          data-control-part=\"text\"\r\n          data-bind=\"{\r\n            inlineEditText: properties.Text,\r\n            css: {\r\n              'appmagic-label-single-line': !properties.Wrap()\r\n            },\r\n            attr: {\r\n              'aria-live': live,\r\n              'aria-atomic': live() ? 'true' : null\r\n            }\r\n          }\">\r\n         </h3>\r\n    <!-- /ko -->\r\n    <!-- ko if: properties.Role() === 'heading4' -->\r\n        <h4\r\n          spellcheck=\"false\"\r\n          unselectable=\"off\"\r\n          class=\"appmagic-label-text\"\r\n          data-control-part=\"text\"\r\n          data-bind=\"{\r\n            inlineEditText: properties.Text,\r\n            css: {\r\n              'appmagic-label-single-line': !properties.Wrap()\r\n            },\r\n            attr: {\r\n              'aria-live': live,\r\n              'aria-atomic': live() ? 'true' : null\r\n            }\r\n          }\">\r\n         </h4>\r\n    <!-- /ko -->\r\n  </div>\r\n  ]]></content><properties><!-- Data --><property name=\"Live\" localizedName=\"##label_Live##\" datatype=\"Live\" defaultValue=\"%Live.RESERVED%.Off\" isExpr=\"true\"><title>Live</title><appMagic:category>data</appMagic:category><appMagic:displayName>##label_Live_DisplayName##</appMagic:displayName><appMagic:tooltip>##label_Live_Tooltip##</appMagic:tooltip></property><!-- Design --><property name=\"LineHeight\" localizedName=\"##label_LineHeight##\" datatype=\"Number\" defaultValue=\"1.2\"><title>Line Height</title><appMagic:category>design</appMagic:category><appMagic:displayName>##label_LineHeight_DisplayName##</appMagic:displayName><appMagic:tooltip>##label_LineHeight_Tooltip##</appMagic:tooltip><appMagic:helperUI>lineWidth</appMagic:helperUI></property><property name=\"Overflow\" localizedName=\"##label_Overflow##\" datatype=\"Overflow\" defaultValue=\"%Overflow.RESERVED%.Hidden\" isExpr=\"true\" converter=\"overflowConverter\"><title>Overflow</title><appMagic:category>design</appMagic:category><appMagic:displayName>##label_Overflow_DisplayName##</appMagic:displayName><appMagic:tooltip>##label_Overflow_Tooltip##</appMagic:tooltip><appMagic:helperUI>overflow</appMagic:helperUI></property><!-- This is not an 'Auto' property. This is for allowing the label to grow vertically to display the content --><property name=\"AutoHeight\" localizedName=\"##CommonProperties_AutoHeight##\" datatype=\"Boolean\" defaultValue=\"false\"><title>AutoHeight</title><appMagic:category>design</appMagic:category><appMagic:displayName>##CommonProperties_AutoHeight_DisplayName##</appMagic:displayName><appMagic:tooltip>##CommonProperties_AutoHeight_Tooltip##</appMagic:tooltip></property><property name=\"Wrap\" localizedName=\"##label_Wrap##\" datatype=\"Boolean\" defaultValue=\"true\" canBeCompressed=\"false\"><title>Wrap</title><appMagic:category>design</appMagic:category><appMagic:displayName>##label_Wrap_DisplayName##</appMagic:displayName><appMagic:tooltip>##label_Wrap_Tooltip##</appMagic:tooltip></property><!-- IsErrorMessage is deprecated. Delete once a document converter is written to migrate IsErrorMessage=true -> Live=Live.Assertive --><property name=\"IsErrorMessage\" localizedName=\"##label_IsErrorMessage##\" datatype=\"Boolean\" defaultValue=\"false\" hidden=\"true\"><appMagic:category>design</appMagic:category></property></properties><appMagic:includeProperties><!-- Data --><appMagic:includeProperty name=\"Text\" defaultValue=\"##Label_DefaultValue_Text##\" isExpr=\"true\" isPrimaryInputProperty=\"true\" isPrimaryOutputProperty=\"true\"><appMagic:autoBind>true</appMagic:autoBind></appMagic:includeProperty><appMagic:includeProperty name=\"Tooltip\" /><appMagic:includeProperty name=\"Role\" /><appMagic:includeProperty name=\"ContentLanguage\" /><!-- Design --><appMagic:includeProperty name=\"Color\" allowsPerCharacterFormatting=\"true\" defaultValue=\"RGBA(71, 69, 64, 1)\" /><appMagic:includeProperty name=\"DisabledColor\" defaultValue=\"RGBA(186, 186, 186, 1)\" /><appMagic:includeProperty name=\"PressedColor\" defaultValue=\"Self.Color\" /><appMagic:includeProperty name=\"HoverColor\" defaultValue=\"Self.Color\" /><appMagic:includeProperty name=\"BorderColor\" /><appMagic:includeProperty name=\"DisabledBorderColor\" defaultValue=\"RGBA(56, 56, 56, 1)\" /><appMagic:includeProperty name=\"PressedBorderColor\" defaultValue=\"Self.BorderColor\" /><appMagic:includeProperty name=\"HoverBorderColor\" defaultValue=\"Self.BorderColor\" /><appMagic:includeProperty name=\"BorderStyle\" /><appMagic:includeProperty name=\"BorderThickness\" defaultValue=\"0\" /><appMagic:includeProperty name=\"FocusedBorderColor\" defaultValue=\"Self.BorderColor\" isExpr=\"true\" /><appMagic:includeProperty name=\"FocusedBorderThickness\" defaultValue=\"0\" /><appMagic:includeProperty name=\"Fill\" allowsPerCharacterFormatting=\"true\" /><appMagic:includeProperty name=\"DisabledFill\" defaultValue=\"RGBA(0, 0, 0, 0)\" /><appMagic:includeProperty name=\"PressedFill\" defaultValue=\"Self.Fill\" /><appMagic:includeProperty name=\"HoverFill\" defaultValue=\"Self.Fill\" /><appMagic:includeProperty name=\"Font\" allowsPerCharacterFormatting=\"true\" /><appMagic:includeProperty name=\"Size\" allowsPerCharacterFormatting=\"true\" defaultValue=\"14\" phoneDefaultValue=\"24\" /><appMagic:includeProperty name=\"FontWeight\" allowsPerCharacterFormatting=\"true\" /><appMagic:includeProperty name=\"Italic\" allowsPerCharacterFormatting=\"true\" /><appMagic:includeProperty name=\"Underline\" allowsPerCharacterFormatting=\"true\" /><appMagic:includeProperty name=\"Strikethrough\" allowsPerCharacterFormatting=\"true\" /><appMagic:includeProperty name=\"PaddingTop\" defaultValue=\"5\" /><appMagic:includeProperty name=\"PaddingRight\" defaultValue=\"5\" /><appMagic:includeProperty name=\"PaddingBottom\" defaultValue=\"5\" /><appMagic:includeProperty name=\"PaddingLeft\" defaultValue=\"5\" /><appMagic:includeProperty name=\"Align\" /><appMagic:includeProperty name=\"VerticalAlign\" defaultValue=\"%VerticalAlign.RESERVED%.Middle\" /><appMagic:includeProperty name=\"X\" /><appMagic:includeProperty name=\"Y\" /><appMagic:includeProperty name=\"Width\" defaultValue=\"150\" phoneDefaultValue=\"560\" webDefaultValue=\"260\" /><appMagic:includeProperty name=\"Height\" defaultValue=\"40\" phoneDefaultValue=\"70\" webDefaultValue=\"40\" /><appMagic:includeProperty name=\"Visible\" /><appMagic:includeProperty name=\"DisplayMode\" /><!-- TabIndex should be -1 to *prevent* making the control a tabstop unless explicitly changed --><appMagic:includeProperty name=\"TabIndex\" defaultValue=\"-1\" /><!-- Behavior Properties --><!-- TASK: 85476: Do Behavior properties make sense as input only? --><appMagic:includeProperty name=\"OnSelect\" direction=\"in\" /><!-- Hidden properties --><appMagic:includeProperty name=\"minimumWidth\" defaultValue=\"1\" /><appMagic:includeProperty name=\"minimumHeight\" defaultValue=\"1\" /><appMagic:includeProperty name=\"maximumWidth\" defaultValue=\"1366\" /><appMagic:includeProperty name=\"maximumHeight\" defaultValue=\"7680\" /></appMagic:includeProperties><appMagic:propertyDependencies><appMagic:propertyDependency input=\"AutoHeight\" output=\"Height\" /></appMagic:propertyDependencies><appMagic:insertMetadata isDeviceOptimized=\"true\"><appMagic:category name=\"Popular\" priority=\"10\" /><appMagic:category name=\"Display\" priority=\"10\" /><appMagic:category name=\"ClassicControls\" priority=\"10\" /></appMagic:insertMetadata><!-- Display metadata providing property visibility, order, sections, and grouping in UI (e.g. properties panel) --><appMagic:displayMetadata><appMagic:section><appMagic:property name=\"Text\" /><appMagic:property name=\"Font\" displayType=\"FontEnum\" showInFloatie=\"true\" showInCommandBar=\"true\" /><appMagic:property name=\"Size\" labelOverride=\"##FontSize_Property##\" showInFloatie=\"true\" showInCommandBar=\"true\" /><appMagic:property name=\"FontWeight\" displayType=\"EnumIcon\" itemsOrder=\"Bold;Semibold;Normal;Lighter\" showInCommandBar=\"true\" /><appMagic:propertyGroup name=\"Style\"><appMagic:property name=\"Italic\" displayType=\"ToggleButton\" /><appMagic:property name=\"Underline\" displayType=\"ToggleButton\" /><appMagic:property name=\"Strikethrough\" displayType=\"ToggleButton\" /></appMagic:propertyGroup><appMagic:property name=\"Align\" displayType=\"EnumButtons\" itemsOrder=\"Left;Center;Right;Justify\" labelOverride=\"##FontAlign_Property##\" showInFloatie=\"true\" showInCommandBar=\"true\" floatieDisplayType=\"FaceplateIconEnum\" /><appMagic:property name=\"AutoHeight\" /><appMagic:property name=\"LineHeight\" /><appMagic:property name=\"Overflow\" /><appMagic:property name=\"DisplayMode\" /></appMagic:section><appMagic:section><appMagic:property name=\"Visible\" /><appMagic:propertyGroup name=\"Position\"><appMagic:property name=\"X\" /><appMagic:property name=\"Y\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"Size\"><appMagic:property name=\"Width\" /><appMagic:property name=\"Height\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"Padding\"><appMagic:property name=\"PaddingTop\" labelOverride=\"##Padding_Top_Title##\" /><appMagic:property name=\"PaddingBottom\" labelOverride=\"##Padding_Bottom_Title##\" /><appMagic:property name=\"PaddingLeft\" labelOverride=\"##Padding_Left_Title##\" /><appMagic:property name=\"PaddingRight\" labelOverride=\"##Padding_Right_Title##\" /></appMagic:propertyGroup></appMagic:section><appMagic:section><appMagic:propertyGroup name=\"Color\"><appMagic:property name=\"Color\" showInFloatie=\"true\" showInCommandBar=\"true\" /><appMagic:property name=\"Fill\" showInFloatie=\"true\" showInCommandBar=\"true\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"Border\"><appMagic:property name=\"BorderStyle\" /><appMagic:property name=\"BorderThickness\" /><appMagic:property name=\"BorderColor\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"FocusedBorder\"><appMagic:property name=\"FocusedBorderThickness\" /><appMagic:property name=\"FocusedBorderColor\" /></appMagic:propertyGroup><appMagic:property name=\"Wrap\" /><appMagic:property name=\"VerticalAlign\" displayType=\"EnumIcon\" itemsOrder=\"Top;Middle;Bottom\" /></appMagic:section><appMagic:section><appMagic:propertyGroup name=\"DisabledColor\"><appMagic:property name=\"DisabledColor\" /><appMagic:property name=\"DisabledFill\" /><appMagic:property name=\"DisabledBorderColor\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"HoverColor\"><appMagic:property name=\"HoverColor\" /><appMagic:property name=\"HoverFill\" /><appMagic:property name=\"HoverBorderColor\" /></appMagic:propertyGroup><appMagic:property name=\"Tooltip\" /><appMagic:property name=\"TabIndex\" /></appMagic:section></appMagic:displayMetadata><appMagic:conversion from=\"2.0.0\" to=\"2.1.0\"><appMagic:conversionAction type=\"add\" name=\"IsErrorMessage\" /></appMagic:conversion><appMagic:conversion from=\"2.1.0\" to=\"2.2.0\"><appMagic:conversionAction type=\"add\" name=\"Live\" /></appMagic:conversion><appMagic:conversion from=\"2.2.0\" to=\"2.3.0\"><appMagic:conversionAction type=\"add\" name=\"Role\" /></appMagic:conversion><appMagic:conversion from=\"2.3.0\" to=\"2.3.1\"><!-- updated template for auto-height --></appMagic:conversion><appMagic:conversion from=\"2.3.1\" to=\"2.3.2\"><!-- KO template changes for accessibility fixes --></appMagic:conversion><appMagic:conversion from=\"2.3.2\" to=\"2.4.0\"><appMagic:conversionAction type=\"add\" name=\"ContentLanguage\" /></appMagic:conversion><appMagic:conversion from=\"2.4.0\" to=\"2.5.0\"><!-- Adding showInCommandBar flag --></appMagic:conversion><appMagic:conversion from=\"2.5.0\" to=\"2.5.1\"><!-- Adding role=presentation for TabIndex > -1 --></appMagic:conversion></widget>"
+    },
+    {
+      "Name": "button",
+      "Version": "2.2.0",
+      "Template": "<widget xmlns=\"http://openajax.org/metadata\" spec=\"1.0\" id=\"http://microsoft.com/appmagic/button\" name=\"button\" jsClass=\"AppMagic.Controls.Button\" version=\"2.2.0\" styleable=\"true\" runtimeCost=\"1\" xmlns:appMagic=\"http://schemas.microsoft.com/appMagic\"><author name=\"Microsoft AppMagic\" /><license type=\"text/html\"><![CDATA[<p>TODO:  Need license text here.</p>]]></license><description><![CDATA[BUTTON\r\n      Control description here.]]></description><requires><require type=\"css\" src=\"/ctrllib/common/css/button.css\" /><require type=\"javascript\" src=\"/ctrllib/common/js/button.js\" /></requires><appMagic:capabilities contextualViewsEnabled=\"true\" autoBorders=\"true\" autoFocusedBorders=\"true\" autoFill=\"true\" autoPointerViewState=\"true\" autoDisabledViewState=\"true\" autoBorderRadius=\"true\" isVersionFlexible=\"true\" supportsSetFocus=\"true\" /><appMagic:accessibilityChecks controlIsInteractive=\"true\" /><content><![CDATA[\r\n<div class=\"appmagic-button-wrapper\">\r\n  <div\r\n    class=\"a11y appmagic-button-busy\"\r\n    tabindex=\"-1\"\r\n    data-bind=\"\r\n      style: {\r\n        display: viewState.isAutoDisabled() ? null : 'none'\r\n      },\r\n      text: AppMagic.Strings.ButtonBusyMessage\r\n    \"\r\n  ></div>\r\n\r\n  <button\r\n    class=\"appmagic-button-container no-focus-outline\"\r\n    data-control-part=\"button\"\r\n    data-bind=\"\r\n      event: {\r\n        click: handleClick,\r\n        pointerdown: handleMouseDown,\r\n        pointerup: handleMouseUp,\r\n        pointerout: handleMouseOut\r\n      },\r\n      attr: {\r\n        title: properties.Tooltip,\r\n        disabled: viewState.displayMode() !== AppMagic.Constants.DisplayMode.Edit\r\n      }\r\n    \"\r\n  >\r\n    <div\r\n      class=\"appmagic-button\"\r\n      touch-action=\"pan-x pan-y\"\r\n      data-bind=\"\r\n        style: {\r\n            fontFamily: properties.Font,\r\n            fontSize: properties.Size,\r\n            color: autoProperties.Color,\r\n            fontWeight: properties.FontWeight,\r\n            fontStyle: properties.Italic,\r\n            textAlign: properties.Align,\r\n            paddingTop: properties.PaddingTop,\r\n            paddingRight: properties.PaddingRight,\r\n            paddingBottom: properties.PaddingBottom,\r\n            paddingLeft: properties.PaddingLeft,\r\n        },\r\n        css: {\r\n            top: properties.VerticalAlign() === 'top',\r\n            middle: properties.VerticalAlign() === 'middle',\r\n            bottom: properties.VerticalAlign() === 'bottom',\r\n            left: properties.Align() === 'left',\r\n            right: properties.Align() === 'right',\r\n            center: properties.Align() === 'center',\r\n            justify: properties.Align() === 'justify',\r\n            disabled: viewState.displayMode() === AppMagic.Constants.DisplayMode.Disabled,\r\n            underline: properties.Underline,\r\n            strikethrough: properties.Strikethrough,\r\n            readonly: viewState.displayMode() === AppMagic.Constants.DisplayMode.View\r\n        }\r\n      \"\r\n    >\r\n      <div\r\n        class=\"appmagic-button-label no-focus-outline\"\r\n        data-control-part=\"text\"\r\n        spellcheck=\"false\"\r\n        data-bind=\"inlineEditText: properties.Text\"\r\n      >\r\n      </div>\r\n    </div>\r\n  </button>\r\n<div>\r\n]]></content><properties><property name=\"Pressed\" localizedName=\"##button_Pressed##\" datatype=\"Boolean\" direction=\"out\" defaultValue=\"false\" isPrimaryOutputProperty=\"true\"><title>The pressed state of the button.</title><appMagic:category>data</appMagic:category><appMagic:helperUI>boolean</appMagic:helperUI></property></properties><appMagic:includeProperties><!-- Behavior --><appMagic:includeProperty name=\"OnSelect\" direction=\"in\" isPrimaryInputProperty=\"true\" /><appMagic:includeProperty name=\"AutoDisableOnSelect\" /><!-- Data --><appMagic:includeProperty name=\"Text\" defaultValue=\"##Button_DefaultValue_Text##\" isExpr=\"true\" /><appMagic:includeProperty name=\"Tooltip\" /><appMagic:includeProperty name=\"ContentLanguage\" /><!-- Design --><appMagic:includeProperty name=\"BorderColor\" defaultValue=\"ColorFade(Self.Fill, -15%)\" /><!-- TASK: 4548082: Add the Color and Fill in default theme json --><appMagic:includeProperty name=\"RadiusTopLeft\" defaultValue=\"10\" /><appMagic:includeProperty name=\"RadiusTopRight\" defaultValue=\"10\" /><appMagic:includeProperty name=\"RadiusBottomLeft\" defaultValue=\"10\" /><appMagic:includeProperty name=\"RadiusBottomRight\" defaultValue=\"10\" /><appMagic:includeProperty name=\"DisabledBorderColor\" defaultValue=\"ColorFade(Self.BorderColor, 70%)\" /><appMagic:includeProperty name=\"PressedBorderColor\" defaultValue=\"Self.Fill\" /><appMagic:includeProperty name=\"HoverBorderColor\" defaultValue=\"ColorFade(Self.BorderColor, 20%)\" /><appMagic:includeProperty name=\"BorderStyle\" /><appMagic:includeProperty name=\"BorderThickness\" defaultValue=\"2\" /><appMagic:includeProperty name=\"FocusedBorderColor\" defaultValue=\"Self.BorderColor\" isExpr=\"true\" /><appMagic:includeProperty name=\"FocusedBorderThickness\" defaultValue=\"4\" /><appMagic:includeProperty name=\"Color\" defaultValue=\"RGBA(255, 255, 255, 1)\" /><appMagic:includeProperty name=\"DisabledColor\" defaultValue=\"ColorFade(Self.Fill, 90%)\" /><appMagic:includeProperty name=\"PressedColor\" defaultValue=\"Self.Fill\" /><appMagic:includeProperty name=\"HoverColor\" defaultValue=\"Self.Color\" /><appMagic:includeProperty name=\"DisplayMode\" /><appMagic:includeProperty name=\"Fill\" defaultValue=\"RGBA(35, 31, 32, 1)\" /><appMagic:includeProperty name=\"DisabledFill\" defaultValue=\"ColorFade(Self.Fill, 70%)\" /><appMagic:includeProperty name=\"PressedFill\" defaultValue=\"Self.Color\" /><appMagic:includeProperty name=\"HoverFill\" defaultValue=\"ColorFade(Self.Fill, 20%)\" /><appMagic:includeProperty name=\"Font\" /><appMagic:includeProperty name=\"Size\" defaultValue=\"13\" phoneDefaultValue=\"23\" /><appMagic:includeProperty name=\"FontWeight\" defaultValue=\"%FontWeight.RESERVED%.Normal\" /><appMagic:includeProperty name=\"Italic\" /><appMagic:includeProperty name=\"Underline\" /><appMagic:includeProperty name=\"Strikethrough\" /><appMagic:includeProperty name=\"Align\" defaultValue=\"%Align.RESERVED%.Center\" /><appMagic:includeProperty name=\"PaddingTop\" defaultValue=\"5\" /><appMagic:includeProperty name=\"PaddingRight\" defaultValue=\"5\" /><appMagic:includeProperty name=\"PaddingBottom\" defaultValue=\"5\" /><appMagic:includeProperty name=\"PaddingLeft\" defaultValue=\"5\" /><appMagic:includeProperty name=\"Visible\" /><appMagic:includeProperty name=\"VerticalAlign\" defaultValue=\"%VerticalAlign.RESERVED%.Middle\" /><appMagic:includeProperty name=\"X\" /><appMagic:includeProperty name=\"Y\" /><appMagic:includeProperty name=\"Width\" defaultValue=\"160\" phoneDefaultValue=\"280\" webDefaultValue=\"85\" /><appMagic:includeProperty name=\"Height\" defaultValue=\"40\" phoneDefaultValue=\"70\" webDefaultValue=\"32\" /><appMagic:includeProperty name=\"TabIndex\" /><!-- Hidden properties --><appMagic:includeProperty name=\"maximumHeight\" defaultValue=\"768\" /><appMagic:includeProperty name=\"maximumWidth\" defaultValue=\"1366\" /><appMagic:includeProperty name=\"minimumHeight\" defaultValue=\"5\" /><appMagic:includeProperty name=\"minimumWidth\" defaultValue=\"5\" /></appMagic:includeProperties><appMagic:insertMetadata isDeviceOptimized=\"true\"><appMagic:category name=\"Popular\" priority=\"80\" /><appMagic:category name=\"Input\" priority=\"10\" /><appMagic:category name=\"ClassicControls\" priority=\"10\" /></appMagic:insertMetadata><!-- Display metadata providing property visibility, order, sections, and grouping in UI (e.g. properties panel) --><appMagic:displayMetadata><appMagic:section><appMagic:property name=\"Text\" /><appMagic:property name=\"DisplayMode\" /></appMagic:section><appMagic:section><appMagic:property name=\"Visible\" /><appMagic:propertyGroup name=\"Position\"><appMagic:property name=\"X\" /><appMagic:property name=\"Y\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"Size\"><appMagic:property name=\"Width\" /><appMagic:property name=\"Height\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"Padding\"><appMagic:property name=\"PaddingTop\" labelOverride=\"##Padding_Top_Title##\" /><appMagic:property name=\"PaddingBottom\" labelOverride=\"##Padding_Bottom_Title##\" /><appMagic:property name=\"PaddingLeft\" labelOverride=\"##Padding_Left_Title##\" /><appMagic:property name=\"PaddingRight\" labelOverride=\"##Padding_Right_Title##\" /></appMagic:propertyGroup></appMagic:section><appMagic:section><appMagic:propertyGroup name=\"Color\"><appMagic:property name=\"Color\" showInFloatie=\"true\" showInCommandBar=\"true\" /><appMagic:property name=\"Fill\" showInFloatie=\"true\" showInCommandBar=\"true\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"Border\"><appMagic:property name=\"BorderStyle\" /><appMagic:property name=\"BorderThickness\" /><appMagic:property name=\"BorderColor\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"Radius\"><appMagic:property name=\"RadiusTopLeft\" /><appMagic:property name=\"RadiusTopRight\" /><appMagic:property name=\"RadiusBottomLeft\" /><appMagic:property name=\"RadiusBottomRight\" /></appMagic:propertyGroup><appMagic:property name=\"Font\" displayType=\"FontEnum\" showInFloatie=\"true\" showInCommandBar=\"true\" /><appMagic:property name=\"Size\" labelOverride=\"##FontSize_Property##\" showInFloatie=\"true\" showInCommandBar=\"true\" /><appMagic:property name=\"FontWeight\" displayType=\"EnumIcon\" itemsOrder=\"Bold;Semibold;Normal;Lighter\" showInCommandBar=\"true\" /><appMagic:propertyGroup name=\"Style\"><appMagic:property name=\"Italic\" displayType=\"ToggleButton\" /><appMagic:property name=\"Underline\" displayType=\"ToggleButton\" /><appMagic:property name=\"Strikethrough\" displayType=\"ToggleButton\" /></appMagic:propertyGroup><appMagic:property name=\"Align\" displayType=\"EnumButtons\" itemsOrder=\"Left;Center;Right;Justify\" labelOverride=\"##FontAlign_Property##\" showInFloatie=\"true\" showInCommandBar=\"true\" floatieDisplayType=\"FaceplateIconEnum\" /><appMagic:property name=\"VerticalAlign\" displayType=\"EnumIcon\" itemsOrder=\"Top;Middle;Bottom\" /></appMagic:section><appMagic:section><appMagic:property name=\"AutoDisableOnSelect\" /><appMagic:propertyGroup name=\"DisabledColor\"><appMagic:property name=\"DisabledColor\" /><appMagic:property name=\"DisabledFill\" /><appMagic:property name=\"DisabledBorderColor\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"PressedColor\"><appMagic:property name=\"PressedColor\" /><appMagic:property name=\"PressedFill\" /><appMagic:property name=\"PressedBorderColor\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"HoverColor\"><appMagic:property name=\"HoverColor\" /><appMagic:property name=\"HoverFill\" /><appMagic:property name=\"HoverBorderColor\" /></appMagic:propertyGroup><appMagic:property name=\"Tooltip\" /><appMagic:property name=\"TabIndex\" /></appMagic:section></appMagic:displayMetadata><appMagic:conversion from=\"2.0.0\" to=\"2.0.1\"><!-- Accessibility fixes for KO template --></appMagic:conversion><appMagic:conversion from=\"2.0.1\" to=\"2.1.0\"><appMagic:conversionAction type=\"add\" name=\"ContentLanguage\" /></appMagic:conversion><appMagic:conversion from=\"2.1.0\" to=\"2.2.0\"><!-- Adding showInCommandBar flag --></appMagic:conversion></widget>"
+    },
+    {
+      "Name": "image",
+      "Version": "2.2.3",
+      "Template": "<widget xmlns=\"http://openajax.org/metadata\" spec=\"1.0\" id=\"http://microsoft.com/appmagic/image\" name=\"image\" jsClass=\"AppMagic.Controls.Image\" version=\"2.2.3\" styleable=\"true\" runtimeCost=\"1\" xmlns:appMagic=\"http://schemas.microsoft.com/appMagic\"><author name=\"Microsoft AppMagic\" /><license type=\"text/html\"><![CDATA[<p>TODO:  Need license text here.</p>]]></license><description><![CDATA[TEXT\r\n      Control description here.]]></description><requires><require type=\"css\" src=\"css/image.css\" /><require type=\"javascript\" src=\"js/image.js\" /></requires><appMagic:capabilities contextualViewsEnabled=\"true\" autoBorders=\"true\" autoFocusedBorders=\"true\" autoPointerViewState=\"true\" autoDisabledViewState=\"true\" autoBorderRadius=\"true\" isVersionFlexible=\"true\" supportsSetFocus=\"true\" /><content><!-- When the image is meant to be clickable, a <button> is overlaid on top of the actual image.\r\n         Unfortunately, the control does not know if OnSelect behavior is specified by the user,\r\n         so we use TabIndex >= 0 as a heuristic that the image should be a button.\r\n\r\n         When the image is intended to be non-interactive (TabIndex < 0), a <div> is overlaid instead.\r\n         Ideally, users should set TabIndex >= 0 whenever they have OnSelect behavior.\r\n         This div supports the case when OnSelect behavior is specified but users did not set\r\n         TabIndex >= 0. The div will catch clicks and trigger OnSelect.\r\n\r\n         <button> has to be used instead of <div role=\"button\"> because of VoiceOver/iOS bug where\r\n         <div> elements scaled down with CSS transforms are not selectable (bug 2504010).\r\n    --><![CDATA[\r\n  <div\r\n    class=\"appmagic-image no-focus-outline\"\r\n    data-bind=\"{\r\n      style: {\r\n        paddingTop: properties.PaddingTop,\r\n        paddingRight: properties.PaddingRight,\r\n        paddingBottom: properties.PaddingBottom,\r\n        paddingLeft: properties.PaddingLeft,\r\n        backgroundColor: autoProperties.Fill,\r\n        height: '100%',\r\n        width: '100%',\r\n        opacity: properties.Transparency() >= 1 ? '0' : 1 - properties.Transparency(),\r\n        visibility: properties.Transparency() >= 1 ? 'hidden' : ''\r\n      },\r\n      visible: properties.Visible\r\n    }\">\r\n      <!-- ko if: !$data.imageSrc || !properties.ImagePosition().objectFit || Core.Environment.getBrowserId() === Core.Environment.BrowserId.InternetExplorer -->\r\n      <div\r\n        data-bind=\"{\r\n          css: {\r\n            'appmagic-image-inner': true,\r\n            rotateHorizontal: $data.hasHorizontalRotation && $data.hasHorizontalRotation()\r\n          },\r\n          style: {\r\n            height: innerHeight,\r\n            width: innerWidth,\r\n            visibility: innerVisibility,\r\n            backgroundSize: backgroundSize,\r\n            backgroundRepeat: properties.ImagePosition().repeat,\r\n            backgroundPosition: properties.ImagePosition().position,\r\n            backgroundImage: imageUrl,\r\n            '-webkit-transform': transform,\r\n            transform: transform,\r\n            forcedColorAdjust: 'none'\r\n          },\r\n          attr: {\r\n            role: properties.TabIndex() < 0 && !!properties.AccessibleLabel() && 'img',\r\n            'aria-label': properties.TabIndex() < 0 && properties.AccessibleLabel() ? properties.AccessibleLabel() : null\r\n          }\r\n      }\">\r\n      </div>\r\n      <!-- /ko -->\r\n      <!-- ko if: $data.imageSrc && properties.ImagePosition().objectFit && Core.Environment.getBrowserId() !== Core.Environment.BrowserId.InternetExplorer -->\r\n      <img \r\n        data-bind=\"{\r\n          css: {\r\n            'appmagic-image-inner': true,\r\n            rotateHorizontal: $data.hasHorizontalRotation && $data.hasHorizontalRotation()\r\n          },\r\n          style: {\r\n            height: innerHeight,\r\n            width: innerWidth,\r\n            visibility: imageAvailable() ? innerVisibility() : 'hidden',\r\n            objectFit: properties.ImagePosition().objectFit,\r\n            objectPosition: properties.ImagePosition().objectPosition,\r\n            flex: '0 0 auto',\r\n            borderRadius: '0.1px',\r\n            '-webkit-transform': transform,\r\n            transform: transform\r\n          },\r\n          attr: {\r\n            src: $data.imageSrc && $data.imageSrc(),\r\n            alt: properties.TabIndex() < 0 && properties.AccessibleLabel() ? properties.AccessibleLabel() : ''\r\n          },\r\n          event: {\r\n            load: onImageLoad,\r\n            error: onImageError\r\n          }\r\n      }\">      \r\n      <!-- /ko -->\r\n      <div class=\"appmagic-image-stub-container\">\r\n      </div>\r\n      <button class=\"appmagic-image-button\"\r\n        data-bind=\"{\r\n          visible: properties.TabIndex() >= 0,\r\n          text: properties.AccessibleLabel() || '',\r\n          disable: viewState.displayMode() !== AppMagic.Constants.DisplayMode.Edit,\r\n          event: { click: onClickHandler },\r\n          attr: {\r\n            title: properties.Tooltip() || null\r\n          }\r\n      }\">\r\n      </button>\r\n      <div class=\"appmagic-image-pseudo-button\"\r\n        aria-hidden=\"true\"\r\n        data-bind=\"{\r\n          visible: properties.TabIndex() < 0,\r\n          event: { click: onClickHandler },\r\n          attr: {\r\n            title: properties.Tooltip() || null\r\n          }\r\n      }\">\r\n      </div>\r\n  </div>\r\n  ]]></content><properties><property name=\"Image\" localizedName=\"##image_Image##\" datatype=\"Image\" defaultValue=\"SampleImage\" converter=\"encodeImageUrl\" isExpr=\"true\" isPrimaryInputProperty=\"true\" isPrimaryOutputProperty=\"true\"><title>Image content</title><appMagic:autoBind>true</appMagic:autoBind><appMagic:category>data</appMagic:category><appMagic:displayName>##image_Image_DisplayName##</appMagic:displayName><appMagic:tooltip>##CommonProperties_Image_Tooltip##</appMagic:tooltip><appMagic:sampleDataSource name=\"SampleImage\" location=\"images/SampleImage.svg\" /></property><property name=\"Transparency\" localizedName=\"##image_Transparency##\" datatype=\"Number\" defaultValue=\"0\"><title>Image transparency</title><appMagic:category>design</appMagic:category><appMagic:displayName>##image_Transparency_DisplayName##</appMagic:displayName><appMagic:tooltip>##image_Transparency_Tooltip##</appMagic:tooltip></property><property name=\"ImagePosition\" localizedName=\"##image_ImagePosition##\" datatype=\"ImagePosition\" defaultValue=\"%ImagePosition.RESERVED%.Fit\" isExpr=\"true\" converter=\"imagePositionConverter\"><title>Image stretch style</title><appMagic:category>design</appMagic:category><appMagic:helperUI>imagePosition</appMagic:helperUI><appMagic:displayName>##image_ImagePosition_DisplayName##</appMagic:displayName><appMagic:tooltip>##CommonProperties_ImagePosition_Tooltip##</appMagic:tooltip></property><property name=\"CalculateOriginalDimensions\" localizedName=\"##image_CalculateOriginalDimensions##\" datatype=\"boolean\" defaultValue=\"false\" direction=\"in\"><title>CalculateOriginalDimensions</title><appMagic:category>design</appMagic:category><appMagic:helperUI>boolean</appMagic:helperUI><appMagic:displayName>##image_CalculateOriginalDimensions_DisplayName##</appMagic:displayName></property><property name=\"ImageRotation\" localizedName=\"##image_ImageRotation##\" datatype=\"ImageRotation\" defaultValue=\"%ImageRotation.RESERVED%.None\" isExpr=\"true\"><title>ImageRotation</title><appMagic:category>design</appMagic:category><appMagic:displayName>##image_ImageRotation_DisplayName##</appMagic:displayName><appMagic:tooltip>##image_ImageRotation_Tooltip##</appMagic:tooltip></property><property name=\"FlipHorizontal\" localizedName=\"##image_FlipHorizontal##\" datatype=\"boolean\" defaultValue=\"false\" direction=\"in\"><title>FlipHorizontal</title><appMagic:category>design</appMagic:category><appMagic:helperUI>boolean</appMagic:helperUI><appMagic:displayName>##image_FlipHorizontal_DisplayName##</appMagic:displayName></property><property name=\"FlipVertical\" localizedName=\"##image_FlipVertical##\" datatype=\"boolean\" defaultValue=\"false\" direction=\"in\"><title>FlipVertical</title><appMagic:category>design</appMagic:category><appMagic:helperUI>boolean</appMagic:helperUI><appMagic:displayName>##image_FlipVertical_DisplayName##</appMagic:displayName></property><property name=\"ApplyEXIFOrientation\" localizedName=\"##image_ApplyEXIFOrientation##\" datatype=\"boolean\" defaultValue=\"true\" direction=\"in\"><title>ApplyEXIFOrientation</title><appMagic:category>design</appMagic:category><appMagic:helperUI>boolean</appMagic:helperUI><appMagic:displayName>##image_ApplyEXIFOrientation_DisplayName##</appMagic:displayName></property><property name=\"EXIFOrientation\" localizedName=\"##image_EXIFOrientation##\" datatype=\"Number\" defaultValue=\"1\" direction=\"out\"><title>EXIFOrientation</title><appMagic:category>design</appMagic:category><appMagic:displayName>##image_EXIFOrientation_DisplayName##</appMagic:displayName></property><property name=\"OriginalWidth\" localizedName=\"##image_OriginalWidth##\" datatype=\"Number\" defaultValue=\"0\" direction=\"out\"><title>OriginalWidth</title><appMagic:category>design</appMagic:category><appMagic:helperUI>imagePosition</appMagic:helperUI><appMagic:displayName>##image_OriginalWidth_DisplayName##</appMagic:displayName></property><property name=\"OriginalHeight\" localizedName=\"##image_OriginalHeight##\" datatype=\"Number\" defaultValue=\"0\" direction=\"out\"><title>OriginalHeight</title><appMagic:category>design</appMagic:category><appMagic:helperUI>imagePosition</appMagic:helperUI><appMagic:displayName>##image_OriginalHeight_DisplayName##</appMagic:displayName></property><property name=\"DisplayedWidth\" localizedName=\"##image_DisplayedWidth##\" datatype=\"Number\" defaultValue=\"0\" direction=\"out\"><title>DisplayedWidth</title><appMagic:category>design</appMagic:category><appMagic:displayName>##image_DisplayedWidth_DisplayName##</appMagic:displayName></property><property name=\"DisplayedHeight\" localizedName=\"##image_DisplayedHeight##\" datatype=\"Number\" defaultValue=\"0\" direction=\"out\"><title>DisplayedHeight</title><appMagic:category>design</appMagic:category><appMagic:displayName>##image_DisplayedHeight_DisplayName##</appMagic:displayName></property><property name=\"OffsetX\" localizedName=\"##image_OffsetX##\" datatype=\"Number\" defaultValue=\"0\" direction=\"out\"><title>OffsetX</title><appMagic:category>design</appMagic:category><appMagic:displayName>##image_OffsetX_DisplayName##</appMagic:displayName></property><property name=\"OffsetY\" localizedName=\"##image_OffsetY##\" datatype=\"Number\" defaultValue=\"0\" direction=\"out\"><title>OffsetY</title><appMagic:category>design</appMagic:category><appMagic:displayName>##image_OffsetY_DisplayName##</appMagic:displayName></property></properties><appMagic:includeProperties><appMagic:includeProperty name=\"AccessibleLabel\" /><appMagic:includeProperty name=\"Tooltip\" /><appMagic:includeProperty name=\"ContentLanguage\" /><appMagic:includeProperty name=\"AutoDisableOnSelect\" /><appMagic:includeProperty name=\"X\" /><appMagic:includeProperty name=\"Y\" /><appMagic:includeProperty name=\"Width\" defaultValue=\"100\" phoneDefaultValue=\"320\" webDefaultValue=\"236\" /><appMagic:includeProperty name=\"Height\" defaultValue=\"100\" phoneDefaultValue=\"320\" webDefaultValue=\"175\" /><appMagic:includeProperty name=\"Visible\" /><appMagic:includeProperty name=\"Fill\" /><appMagic:includeProperty name=\"DisabledFill\" defaultValue=\"RGBA(119, 119, 119, 1)\" /><appMagic:includeProperty name=\"PressedFill\" defaultValue=\"ColorFade(Self.Fill, -20%)\" /><appMagic:includeProperty name=\"HoverFill\" defaultValue=\"ColorFade(Self.Fill, 20%)\" /><appMagic:includeProperty name=\"BorderColor\" /><appMagic:includeProperty name=\"RadiusTopLeft\" defaultValue=\"0\" /><appMagic:includeProperty name=\"RadiusTopRight\" defaultValue=\"0\" /><appMagic:includeProperty name=\"RadiusBottomLeft\" defaultValue=\"0\" /><appMagic:includeProperty name=\"RadiusBottomRight\" defaultValue=\"0\" /><appMagic:includeProperty name=\"DisabledBorderColor\" defaultValue=\"RGBA(56, 56, 56, 1)\" /><appMagic:includeProperty name=\"PressedBorderColor\" defaultValue=\"ColorFade(Self.BorderColor, -20%)\" /><appMagic:includeProperty name=\"HoverBorderColor\" defaultValue=\"ColorFade(Self.BorderColor, 20%)\" /><appMagic:includeProperty name=\"BorderThickness\" /><appMagic:includeProperty name=\"FocusedBorderColor\" defaultValue=\"Self.BorderColor\" isExpr=\"true\" /><appMagic:includeProperty name=\"FocusedBorderThickness\" /><appMagic:includeProperty name=\"BorderStyle\" /><appMagic:includeProperty name=\"PaddingTop\" /><appMagic:includeProperty name=\"PaddingRight\" /><appMagic:includeProperty name=\"PaddingBottom\" /><appMagic:includeProperty name=\"PaddingLeft\" /><appMagic:includeProperty name=\"DisplayMode\" /><!-- TabIndex should be -1 to *prevent* making the control a tabstop unless explicitly changed --><appMagic:includeProperty name=\"TabIndex\" defaultValue=\"-1\" /><!-- Behavior Properties --><!-- TASK: 85476: Do Behavior properties make sense as input only? --><appMagic:includeProperty name=\"OnSelect\" direction=\"in\" /><!-- Hidden properties --><appMagic:includeProperty name=\"minimumWidth\" defaultValue=\"1\" /><appMagic:includeProperty name=\"minimumHeight\" defaultValue=\"1\" /><appMagic:includeProperty name=\"maximumWidth\" defaultValue=\"1366\" /><appMagic:includeProperty name=\"maximumHeight\" defaultValue=\"768\" /></appMagic:includeProperties><appMagic:insertMetadata isDeviceOptimized=\"true\"><appMagic:category name=\"Media\" priority=\"10\" /></appMagic:insertMetadata><!-- Display metadata providing property visibility, order, sections, and grouping in UI (e.g. properties panel) --><appMagic:displayMetadata><appMagic:section><appMagic:property name=\"Image\" serverProvidesValue=\"true\" computedValueType=\"Media\" showInFloatie=\"true\" showInCanvasInlineActionBar=\"true\" /><appMagic:property name=\"ImagePosition\" displayType=\"EnumIcon\" showInFloatie=\"true\" /><appMagic:property name=\"Transparency\" /><appMagic:property name=\"DisplayMode\" /></appMagic:section><appMagic:section><appMagic:property name=\"Visible\" /><appMagic:propertyGroup name=\"Position\"><appMagic:property name=\"X\" /><appMagic:property name=\"Y\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"Size\"><appMagic:property name=\"Width\" /><appMagic:property name=\"Height\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"Padding\"><appMagic:property name=\"PaddingTop\" labelOverride=\"##Padding_Top_Title##\" /><appMagic:property name=\"PaddingBottom\" labelOverride=\"##Padding_Bottom_Title##\" /><appMagic:property name=\"PaddingLeft\" labelOverride=\"##Padding_Left_Title##\" /><appMagic:property name=\"PaddingRight\" labelOverride=\"##Padding_Right_Title##\" /></appMagic:propertyGroup></appMagic:section><appMagic:section><appMagic:propertyGroup name=\"Color\"><appMagic:property name=\"Fill\" showInFloatie=\"true\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"Border\"><appMagic:property name=\"BorderStyle\" /><appMagic:property name=\"BorderThickness\" /><appMagic:property name=\"BorderColor\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"Radius\"><appMagic:property name=\"RadiusTopLeft\" /><appMagic:property name=\"RadiusTopRight\" /><appMagic:property name=\"RadiusBottomLeft\" /><appMagic:property name=\"RadiusBottomRight\" /></appMagic:propertyGroup></appMagic:section><appMagic:section><appMagic:property name=\"AutoDisableOnSelect\" /><appMagic:propertyGroup name=\"DisabledColor\"><appMagic:property name=\"DisabledFill\" /><appMagic:property name=\"DisabledBorderColor\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"HoverColor\"><appMagic:property name=\"HoverFill\" /><appMagic:property name=\"HoverBorderColor\" /></appMagic:propertyGroup><appMagic:propertyGroup name=\"PressedColor\"><appMagic:property name=\"PressedFill\" /><appMagic:property name=\"PressedBorderColor\" /></appMagic:propertyGroup><appMagic:property name=\"Tooltip\" /><appMagic:property name=\"TabIndex\" /></appMagic:section></appMagic:displayMetadata><appMagic:conversion from=\"2.0.0\" to=\"2.1.0\"><appMagic:conversionAction type=\"add\" name=\"EXIFOrientation\" /><appMagic:conversionAction type=\"add\" name=\"DisplayedWidth\" /><appMagic:conversionAction type=\"add\" name=\"DisplayedHeight\" /><appMagic:conversionAction type=\"add\" name=\"OffsetX\" /><appMagic:conversionAction type=\"add\" name=\"OffsetY\" /></appMagic:conversion><appMagic:conversion from=\"2.1.0\" to=\"2.1.1\"><!--\r\n      KO template change: appmagic-image-pseudo-button element role=\"presentation\"\r\n      so that screen readers will not announce it as clickable (even though it may be).\r\n      If app makers truly intend the Image control as clickable, they have to set\r\n      TabIndex >= 0 as a hint.\r\n      Controls do not know if app makers have defined OnSelect. That's why they always\r\n      attach a click listener and rely on TabIndex as a hint about author's intentions.\r\n    --></appMagic:conversion><appMagic:conversion from=\"2.1.1\" to=\"2.1.2\"><!-- KO template changes for accessibility fixes --></appMagic:conversion><appMagic:conversion from=\"2.1.2\" to=\"2.2.0\"><appMagic:conversionAction type=\"add\" name=\"ContentLanguage\" /></appMagic:conversion><appMagic:conversion from=\"2.2.0\" to=\"2.2.1\"><!-- KO template changes to use <img> tag when possible --></appMagic:conversion><appMagic:conversion from=\"2.2.1\" to=\"2.2.2\"><!-- KO template changes to hide image when unavailable --></appMagic:conversion><appMagic:conversion from=\"2.2.2\" to=\"2.2.3\"><!-- Adding showInCanvasInlineActionBar flag--></appMagic:conversion></widget>"
+    }
+  ],
+  "ComponentTemplates": [
+    {
+      "Name": "b34d5797c09e4e86848a0805fd14281a",
+      "Version": "1.0",
+      "IsComponentLocked": false,
+      "ComponentType": "CanvasComponent",
+      "ComponentChangedSinceFileImport": true,
+      "ComponentAllowCustomization": true,
+      "CustomProperties": [
+        {
+          "Name": "Data",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Data\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"Label\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}",
+          "PropertyDataTypeKey": "Table",
+          "Hidden": false,
+          "DisplayName": "Data",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "ChartTitle",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "ChartTitle",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "DataSetName",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "DataSetName",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BackgroundColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BackgroundColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BorderColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderWidth",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Number",
+          "Hidden": false,
+          "DisplayName": "BorderWidth",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "RoundedBorders",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Boolean\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Boolean",
+          "Hidden": false,
+          "DisplayName": "RoundedBorders",
+          "Tooltip": "A custom property"
+        }
+      ]
+    },
+    {
+      "Name": "b82df1b3cc4949d9833c00b52b3681c4",
+      "OriginalName": "b34d5797c09e4e86848a0805fd14281a",
+      "Version": "1.0",
+      "IsComponentLocked": false,
+      "ComponentType": "CanvasComponent",
+      "ComponentChangedSinceFileImport": true,
+      "ComponentAllowCustomization": true,
+      "CustomProperties": [
+        {
+          "Name": "Data",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Data\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"Label\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}",
+          "PropertyDataTypeKey": "Table",
+          "Hidden": false,
+          "DisplayName": "Data",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "ChartTitle",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "ChartTitle",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "DataSetName",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "DataSetName",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BackgroundColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BackgroundColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BorderColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderWidth",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Number",
+          "Hidden": false,
+          "DisplayName": "BorderWidth",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "RoundedBorders",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Boolean\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Boolean",
+          "Hidden": false,
+          "DisplayName": "RoundedBorders",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "LineFill",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Boolean\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Boolean",
+          "Hidden": false,
+          "DisplayName": "LineFill",
+          "Tooltip": "A custom property"
+        }
+      ]
+    },
+    {
+      "Name": "d2ce541943394ce99c05d5e370ed125a",
+      "OriginalName": "b34d5797c09e4e86848a0805fd14281a",
+      "Version": "1.0",
+      "IsComponentLocked": false,
+      "ComponentType": "CanvasComponent",
+      "ComponentChangedSinceFileImport": true,
+      "ComponentAllowCustomization": true,
+      "CustomProperties": [
+        {
+          "Name": "Data",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Data\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"Label\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}",
+          "PropertyDataTypeKey": "Table",
+          "Hidden": false,
+          "DisplayName": "Data",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "ChartTitle",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "ChartTitle",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "DataSetName",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "DataSetName",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BackgroundColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BackgroundColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BorderColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderWidth",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Number",
+          "Hidden": false,
+          "DisplayName": "BorderWidth",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "RoundedBorders",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Boolean\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Boolean",
+          "Hidden": false,
+          "DisplayName": "RoundedBorders",
+          "Tooltip": "A custom property"
+        }
+      ]
+    },
+    {
+      "Name": "5ac09bb063bc42aba9a20012a9f072c9",
+      "OriginalName": "b82df1b3cc4949d9833c00b52b3681c4",
+      "Version": "1.0",
+      "IsComponentLocked": false,
+      "ComponentType": "CanvasComponent",
+      "ComponentChangedSinceFileImport": true,
+      "ComponentAllowCustomization": true,
+      "CustomProperties": [
+        {
+          "Name": "Data",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Data\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"Label\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}",
+          "PropertyDataTypeKey": "Table",
+          "Hidden": false,
+          "DisplayName": "Data",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "ChartTitle",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "ChartTitle",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "DataSetName",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "DataSetName",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BackgroundColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BackgroundColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BorderColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderWidth",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Number",
+          "Hidden": false,
+          "DisplayName": "BorderWidth",
+          "Tooltip": "A custom property"
+        }
+      ]
+    },
+    {
+      "Name": "62d8bbfb467a4c3f8c6b1abffcd9c91c",
+      "OriginalName": "5ac09bb063bc42aba9a20012a9f072c9",
+      "Version": "1.0",
+      "IsComponentLocked": false,
+      "ComponentType": "CanvasComponent",
+      "ComponentChangedSinceFileImport": true,
+      "ComponentAllowCustomization": true,
+      "CustomProperties": [
+        {
+          "Name": "Data",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Data\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"Label\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}",
+          "PropertyDataTypeKey": "Table",
+          "Hidden": false,
+          "DisplayName": "Data",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "ChartTitle",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "ChartTitle",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "DataSetName",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "DataSetName",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BackgroundColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BackgroundColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BorderColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderWidth",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Number",
+          "Hidden": false,
+          "DisplayName": "BorderWidth",
+          "Tooltip": "A custom property"
+        }
+      ]
+    },
+    {
+      "Name": "64bf8a94f3124f61857db3246773e6b8",
+      "OriginalName": "62d8bbfb467a4c3f8c6b1abffcd9c91c",
+      "Version": "1.0",
+      "IsComponentLocked": false,
+      "ComponentType": "CanvasComponent",
+      "ComponentChangedSinceFileImport": true,
+      "ComponentAllowCustomization": true,
+      "CustomProperties": [
+        {
+          "Name": "Data",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Data\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"Label\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}",
+          "PropertyDataTypeKey": "Table",
+          "Hidden": false,
+          "DisplayName": "Data",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "ChartTitle",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "ChartTitle",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "DataSetName",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "DataSetName",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BorderColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderWidth",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Number",
+          "Hidden": false,
+          "DisplayName": "BorderWidth",
+          "Tooltip": "A custom property"
+        }
+      ]
+    },
+    {
+      "Name": "7eaf7b2f7fa8493194cc0c15eac9093b",
+      "OriginalName": "62d8bbfb467a4c3f8c6b1abffcd9c91c",
+      "Version": "1.0",
+      "IsComponentLocked": false,
+      "ComponentType": "CanvasComponent",
+      "ComponentChangedSinceFileImport": true,
+      "ComponentAllowCustomization": true,
+      "CustomProperties": [
+        {
+          "Name": "Data",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Data\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"Label\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}",
+          "PropertyDataTypeKey": "Table",
+          "Hidden": false,
+          "DisplayName": "Data",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "ChartTitle",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "ChartTitle",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "DataSetName",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "DataSetName",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BackgroundColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BackgroundColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BorderColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderWidth",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Number",
+          "Hidden": false,
+          "DisplayName": "BorderWidth",
+          "Tooltip": "A custom property"
+        }
+      ]
+    },
+    {
+      "Name": "07d77282c2ee45c0997d2fe4c078cf1f",
+      "OriginalName": "7eaf7b2f7fa8493194cc0c15eac9093b",
+      "Version": "1.0",
+      "IsComponentLocked": false,
+      "ComponentType": "CanvasComponent",
+      "ComponentChangedSinceFileImport": true,
+      "ComponentAllowCustomization": true,
+      "CustomProperties": [
+        {
+          "Name": "Data",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Data\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"Label\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}",
+          "PropertyDataTypeKey": "Table",
+          "Hidden": false,
+          "DisplayName": "Data",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "ChartTitle",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "ChartTitle",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "DataSetName",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "DataSetName",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderWidth",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Number",
+          "Hidden": false,
+          "DisplayName": "BorderWidth",
+          "Tooltip": "A custom property"
+        }
+      ]
+    },
+    {
+      "Name": "ffd0d19496224f2c88d2771145114660",
+      "OriginalName": "64bf8a94f3124f61857db3246773e6b8",
+      "Version": "1.0",
+      "IsComponentLocked": false,
+      "ComponentType": "CanvasComponent",
+      "ComponentChangedSinceFileImport": true,
+      "ComponentAllowCustomization": true,
+      "CustomProperties": [
+        {
+          "Name": "Data",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"Data\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"Label\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}",
+          "PropertyDataTypeKey": "Table",
+          "Hidden": false,
+          "DisplayName": "Data",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "ChartTitle",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "ChartTitle",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "DataSetName",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "DataSetName",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderColor",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "String",
+          "Hidden": false,
+          "DisplayName": "BorderColor",
+          "Tooltip": "A custom property"
+        },
+        {
+          "Name": "BorderWidth",
+          "Category": 0,
+          "Type": "{\"Version\":\"1.345\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}",
+          "PropertyDataTypeKey": "Number",
+          "Hidden": false,
+          "DisplayName": "BorderWidth",
+          "Tooltip": "A custom property"
+        }
+      ]
+    }
+  ]
+}

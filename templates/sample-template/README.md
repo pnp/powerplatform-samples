@@ -30,6 +30,12 @@ You can add as many screen shots as you'd like to help users understand your sol
 
 ![Not so good](assets/notsogood.gif)
 
+## Gallery preview and metadata
+
+Complete `assets/sample.json` using your real sample folder, products, dates, author account, and screenshot URLs. The gallery uses the first `image` thumbnail by ascending `order` as the preview. Keep the referenced image in this sample's `assets` folder and provide descriptive alternative text.
+
+For new agent samples, use the product name `Copilot Studio`. Existing Power Virtual Agents samples remain compatible with the gallery. See [contribution guidance](../../CONTRIBUTING.md#gallery-metadata-and-local-validation) for validation commands.
+
 ## Applies to
 
 <!--
@@ -38,9 +44,8 @@ Update the applies to section below.
 If your solution includes all the products and features listed below, use the following:
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-Yes-green "Yes")
-![Power BI](https://img.shields.io/badge/Power%20BI-Yes-green "Yes")
 ![Power Pages](https://img.shields.io/badge/Power%20Pages-Yes-green "Yes")
-![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-Yes-green "Yes")
+![Copilot Studio](https://img.shields.io/badge/Copilot%20Studio-Yes-green "Yes")
 ![Dataverse](https://img.shields.io/badge/Dataverse-Yes-green "Yes")
 ![AI Builder](https://img.shields.io/badge/AI%20Builder-Yes-green "Yes")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-Yes-green "Yes")
@@ -49,9 +54,8 @@ If your solution includes all the products and features listed below, use the fo
 If your solution doesn't include the products and features listed below, use the following:
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-No-red "No")
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
-![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
 ![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
-![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
+![Copilot Studio](https://img.shields.io/badge/Copilot%20Studio-No-red "No")
 ![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
 ![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
@@ -65,9 +69,8 @@ Don't worry if you're unsure about the compatibility matrix above. We'll verify 
 
 ![Power Apps](https://img.shields.io/badge/Power%20Apps-Yes-green "Yes")
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-No-red "No")
-![Power BI](https://img.shields.io/badge/Power%20BI-No-red "No")
 ![Power Pages](https://img.shields.io/badge/Power%20Pages-No-red "No")
-![Power Virtual Agents](https://img.shields.io/badge/Power%20Virtual%20Agents-No-red "No")
+![Copilot Studio](https://img.shields.io/badge/Copilot%20Studio-No-red "No")
 ![Dataverse](https://img.shields.io/badge/Dataverse-No-red "No")
 ![AI Builder](https://img.shields.io/badge/AI%20Builder-No-red "No")
 ![Custom Connectors](https://img.shields.io/badge/Custom%20Connectors-No-red "No")
@@ -201,18 +204,13 @@ Or:
 @hugoabernier%20@VesaJuvonen%20@PopWarner
 -->
 
-> Note: don't worry about this section, we'll update the links.
+For product and how-to questions, visit the [Power Platform Community forums](https://community.powerplatform.com/), our primary discussion space. For a reproducible sample bug or repository suggestion, [open an issue in the Power Platform samples repository](https://github.com/pnp/powerplatform-samples/issues/new/choose).
 
-We do not support samples, but this community is always willing to help, and we want to improve these samples. We use GitHub to track issues, which makes it easy for  community members to volunteer their time and help resolve issues.
-
-If you encounter any issues while using this sample, you can [create a new issue](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=bug-report.yml&sample=YOUR-SOLUTION-NAME&authors=@YOURGITHUBUSERNAME&title=YOUR-SOLUTION-NAME%20-%20).
-
-For questions regarding this sample, [create a new question](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=question.yml&sample=YOUR-SOLUTION-NAME&authors=@YOURGITHUBUSERNAME&title=YOUR-SOLUTION-NAME%20-%20).
-
-Finally, if you have an idea for improvement, [make a suggestion](https://github.com/pnp/powerapps-samples/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&template=suggestion.yml&sample=YOUR-SOLUTION-NAME&authors=@YOURGITHUBUSERNAME&title=YOUR-SOLUTION-NAME%20-%20).
+Join the [community calls](https://aka.ms/community/calls), [present your sample](https://aka.ms/community/request/demo), and watch recordings and demos on [Microsoft Community Learning](https://www.youtube.com/@MicrosoftCommunityLearning). Find Power Platform product videos on [Microsoft Power Platform](https://www.youtube.com/@mspowerplatform).
 
 ## Disclaimer
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/YOUR-SOLUTION-NAME"  aria-hidden="true" />
+<!-- Keep this tracker as the final line. Replace YOUR-SOLUTION-NAME with the sample folder name. -->
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/YOUR-SOLUTION-NAME" />

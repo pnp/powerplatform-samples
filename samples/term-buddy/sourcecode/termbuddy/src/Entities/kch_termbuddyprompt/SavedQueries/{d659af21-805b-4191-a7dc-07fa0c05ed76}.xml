@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{d659af21-805b-4191-a7dc-07fa0c05ed76}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="kch_promptid" select="1" icon="1" preview="1">
+        <row name="result" id="kch_termbuddypromptid">
+          <cell name="kch_promptid" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>1</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="kch_termbuddyprompt">
+          <attribute name="kch_termbuddypromptid" />
+          <attribute name="kch_promptid" />
+          <attribute name="createdon" />
+          <order attribute="kch_promptid" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="termbuddy-prompt Advanced Find View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

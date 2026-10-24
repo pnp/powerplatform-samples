@@ -1,0 +1,303 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_teams": {
+        "api": {
+          "name": "shared_teams"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "pnp_sharedteams_fea83"
+        },
+        "runtimeSource": "invoker"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Mention To",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Choose the option to mention",
+                  "enum": [
+                    "Teams",
+                    "Channel"
+                  ],
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "Teams Name",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter Microsoft Teams name",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "Channel Name",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter the Teams Channel name",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "Message Text",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter the text to post",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2",
+                "text_3"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "66bb54be-214e-4ff2-9e83-f18a2d734fcd"
+          }
+        }
+      },
+      "actions": {
+        "List_teams": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+              "operationId": "GetAllTeams",
+              "connectionName": "shared_teams"
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "8f02e366-79a3-4e5c-b8cc-02e0cd5939a1"
+          }
+        },
+        "Filter_array": {
+          "type": "Query",
+          "inputs": {
+            "from": "@outputs('List_teams')?['body/value']",
+            "where": "@equals(item()?['displayName'], triggerBody()['text_1'])"
+          },
+          "runAfter": {
+            "List_teams": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ce249b05-400f-487b-9011-151b690643da"
+          }
+        },
+        "Condition": {
+          "type": "If",
+          "description": "length(body('Filter_array'))",
+          "expression": {
+            "greater": [
+              "@length(body('Filter_array'))",
+              0
+            ]
+          },
+          "actions": {
+            "List_channels": {
+              "type": "OpenApiConnection",
+              "description": "@{first(body('Filter_array'))?['id']}",
+              "inputs": {
+                "parameters": {
+                  "groupId": "@first(body('Filter_array'))?['id']"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+                  "operationId": "GetChannelsForGroup",
+                  "connectionName": "shared_teams"
+                }
+              }
+            },
+            "Condition_-_Validate_Channel_Name": {
+              "type": "If",
+              "expression": {
+                "and": [
+                  {
+                    "greater": [
+                      "@length(body('Filter_array_1'))",
+                      0
+                    ]
+                  }
+                ]
+              },
+              "actions": {
+                "Condition_-_Check_Mention_To_option": {
+                  "type": "If",
+                  "expression": {
+                    "and": [
+                      {
+                        "equals": [
+                          "@triggerBody()?['text']",
+                          "Channel"
+                        ]
+                      }
+                    ]
+                  },
+                  "actions": {
+                    "Send_a_Microsoft_Graph_HTTP_request-Mention_Channel": {
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "parameters": {
+                          "Uri": "https://graph.microsoft.com/v1.0/teams/@{first(body('Filter_array'))?['id']}/channels/@{first(body('Filter_array_1'))?['id']}/messages",
+                          "Method": "POST",
+                          "Body": "{\n  \"body\": {\n    \"contentType\": \"html\",\n    \"content\": \"<div><div><at id=\\\"0\\\">@{first(body('Filter_array_1'))?['displayName']}</at>&nbsp;@{triggerBody()?['text_3']}</div></div>\"\n  },\n  \"mentions\": [\n    {\n      \"id\": 0,\n      \"mentionText\": \"@{first(body('Filter_array_1'))?['displayName']}\",\n      \"mentioned\": {\n        \"conversation\": {\n          \"id\": \"@{first(body('Filter_array_1'))?['id']}\",\n          \"displayName\": \"@{first(body('Filter_array_1'))?['displayName']}\",\n          \"conversationIdentityType\": \"channel\"\n        }\n      }\n    }\n  ]\n}",
+                          "ContentType": "application/json"
+                        },
+                        "host": {
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+                          "operationId": "HttpRequest",
+                          "connectionName": "shared_teams"
+                        }
+                      }
+                    }
+                  },
+                  "else": {
+                    "actions": {
+                      "Send_a_Microsoft_Graph_HTTP_request-Mention_Team": {
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "parameters": {
+                            "Uri": "https://graph.microsoft.com/v1.0/teams/@{first(body('Filter_array'))?['id']}/channels/@{first(body('Filter_array_1'))?['id']}/messages",
+                            "Method": "POST",
+                            "Body": "{\n  \"body\": {\n    \"contentType\": \"html\",\n    \"content\": \"<div><div><at id=\\\"0\\\">@{first(body('Filter_array'))?['displayName']}</at>&nbsp;@{triggerBody()?['text_3']}</div></div>\"\n  },\n  \"mentions\": [\n    {\n      \"id\": 0,\n      \"mentionText\": \"@{first(body('Filter_array'))?['displayName']}\",\n      \"mentioned\": {\n        \"conversation\": {\n          \"id\": \"@{first(body('Filter_array'))?['id']}\",\n          \"displayName\": \"@{first(body('Filter_array'))?['displayName']}\",\n          \"conversationIdentityType\": \"team\"\n        }\n      }\n    }\n  ]\n}",
+                            "ContentType": "application/json"
+                          },
+                          "host": {
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+                            "operationId": "HttpRequest",
+                            "connectionName": "shared_teams"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Respond_to_a_Power_App_or_flow_1": {
+                  "type": "Response",
+                  "kind": "PowerApp",
+                  "inputs": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "title": "Status",
+                          "type": "string",
+                          "x-ms-content-hint": "TEXT",
+                          "x-ms-dynamically-added": true
+                        },
+                        "error": {
+                          "title": "Error",
+                          "type": "string",
+                          "x-ms-content-hint": "TEXT",
+                          "x-ms-dynamically-added": true
+                        }
+                      },
+                      "additionalProperties": {}
+                    },
+                    "statusCode": 200,
+                    "body": {
+                      "status": "Success"
+                    }
+                  },
+                  "runAfter": {
+                    "Condition_-_Check_Mention_To_option": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "else": {
+                "actions": {
+                  "Respond_to_a_Power_App_or_flow-copy": {
+                    "type": "Response",
+                    "kind": "PowerApp",
+                    "inputs": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "status": {
+                            "title": "Status",
+                            "type": "string",
+                            "x-ms-content-hint": "TEXT",
+                            "x-ms-dynamically-added": true
+                          },
+                          "error": {
+                            "title": "Error",
+                            "type": "string",
+                            "x-ms-content-hint": "TEXT",
+                            "x-ms-dynamically-added": true
+                          }
+                        },
+                        "additionalProperties": {}
+                      },
+                      "statusCode": 200,
+                      "body": {
+                        "status": "Failed",
+                        "error": "Invalid Channel Name"
+                      }
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Filter_array_1": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Filter_array_1": {
+              "type": "Query",
+              "inputs": {
+                "from": "@outputs('List_channels')?['body/value']",
+                "where": "@equals(item()?['displayName'],triggerBody()?['text_2'])"
+              },
+              "runAfter": {
+                "List_channels": [
+                  "Succeeded"
+                ]
+              }
+            }
+          },
+          "else": {
+            "actions": {}
+          },
+          "runAfter": {
+            "Filter_array": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e86278a1-a74f-4cae-ba30-15596667afda"
+          }
+        }
+      },
+      "description": "This flow is triggered manually and retrieves a list of Microsoft Teams. It filters the list to find a specific team based on user input. If the team is found, it retrieves the channels for that team and validates the specified channel name. Depending on the user's choice to mention a team or channel, it sends a message to the appropriate target. The flow concludes by responding with a success or failure status based on the validation results."
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -4,7 +4,7 @@
 
 This sample gets the image from SharePoint document library and post it on *Microsoft Teams* channel using **Power Automate**. The flow utilizes standard **Send Microsoft graph request** action to overcome the payload size limit of 28 KB.
 
-![Flow overview](/samples/Send-Inline-Image-In-Teams-Channel/assets/flow-overview.png "Flow overview")
+![Flow overview](/samples/send-inline-image-in-teams-channel/assets/flow-overview.png "Flow overview")
 
 
 ## Applies to
@@ -95,4 +95,4 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/Send-Inline-Image-In-Teams-Channel" aria-hidden="true" />
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/send-inline-image-in-teams-channel" />

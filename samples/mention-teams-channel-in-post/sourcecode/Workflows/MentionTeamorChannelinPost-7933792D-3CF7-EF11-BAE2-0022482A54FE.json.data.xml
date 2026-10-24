@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{7933792d-3cf7-ef11-bae2-0022482a54fe}" Name="Mention Team or Channel in Post " Description="This flow is triggered manually and retrieves a list of Microsoft Teams. It filters the list to find a specific team based on user input. If the team is found, it retrieves the channels for that team and validates the specified channel name. Depending on the user's choice to mention a team or channel, it sends a message to the appropriate target. The flow concludes by responding with a success or failure status based on the validation results." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/MentionTeamorChannelinPost-7933792D-3CF7-EF11-BAE2-0022482A54FE.json</JsonFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>5</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <PrimaryEntity>none</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="Mention Team or Channel in Post " />
+  </LocalizedNames>
+  <Descriptions>
+    <Description languagecode="1033" description="This flow is triggered manually and retrieves a list of Microsoft Teams. It filters the list to find a specific team based on user input. If the team is found, it retrieves the channels for that team and validates the specified channel name. Depending on the user's choice to mention a team or channel, it sends a message to the appropriate target. The flow concludes by responding with a success or failure status based on the validation results." />
+  </Descriptions>
+</Workflow>

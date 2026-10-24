@@ -1,0 +1,13 @@
+---
+import { brandPath } from '../lib/catalog';
+interface Props { eyebrow: string; title: string; description: string; portrait?: number; }
+const { eyebrow, title, description, portrait } = Astro.props;
+---
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <div><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p class="page-hero-description">{description}</p><slot /></div>
+    {portrait
+      ? <img class="page-portrait" src={brandPath(`portrait-${portrait}-480.webp`)} srcset={`${brandPath(`portrait-${portrait}-480.webp`)} 480w, ${brandPath(`portrait-${portrait}-800.webp`)} 800w`} sizes="(max-width: 650px) 180px, 280px" alt="" width="1000" height="1125" />
+      : <img class="page-ribbon" src={brandPath('ribbon-teal.webp')} alt="" width="1000" height="1000" />}
+  </div>
+</section>

@@ -47,7 +47,7 @@ This template not only gives you a good foundation for customizing your own leav
 * A history page where users can see all of their submitted requests and filter by status.
 ![Prompt Admin Products](assets/History.png)
 * An approvals page for designated approvers to process leave requests. When a request is processed by the approver, an email is automatically sent to the requestor informing them of the outcome.
-![Prompt Admin Products](assets/approvals.png)
+![Prompt Admin Products](assets/Approvals.png)
 
 
 

@@ -1,0 +1,191 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "pnp_sharedsharepointonline_eefbc"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "ev_site (pnp_ev_site)": {
+          "defaultValue": "https://chernevskayakaterinagmail.sharepoint.com/sites/pnp",
+          "type": "String",
+          "metadata": {
+            "schemaName": "pnp_ev_site"
+          }
+        },
+        "ev_list (pnp_ev_list)": {
+          "defaultValue": "741c500e-a7a2-4def-993c-d5caea74e331",
+          "type": "String",
+          "metadata": {
+            "schemaName": "pnp_ev_list"
+          }
+        }
+      },
+      "triggers": {
+        "When_an_item_is_created": {
+          "recurrence": {
+            "interval": 1,
+            "frequency": "Minute"
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "7890832d-bafb-455f-b25a-c834fa6eb2b1"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetOnNewItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('ev_site (pnp_ev_site)')",
+              "table": "@parameters('ev_list (pnp_ev_list)')"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Replace Site Address and List Name to match your site and list."
+        }
+      },
+      "actions": {
+        "Create_new_folder": {
+          "runAfter": {
+            "Compose_-_varParameters": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ea64d6e9-1fcb-4f4f-a2eb-79d3e1cc637d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "CreateNewFolder",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@variables('varParameters')['varSiteURL']",
+              "table": "@variables('varParameters')['varDocumentDisplayLibraryName']",
+              "parameters/path": "@variables('varParameters')['varFolderName']"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "If you rename this action be certain to update the outputs('Create_new_folder')?['body/{Link}'] expression included in the Send an HTTP request to SharePoint action"
+        },
+        "Send_an_HTTP_request_to_SharePoint": {
+          "runAfter": {
+            "Send_an_HTTP_request_to_SharePoint_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4140c059-c011-4c02-a159-3e375dd82090"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@variables('varParameters')['varSiteURL']",
+              "parameters/method": "POST",
+              "parameters/uri": "_api/web/lists(guid'@{parameters('ev_list (pnp_ev_list)')}')/items(@{triggerOutputs()?['body/ID']})",
+              "parameters/headers": {
+                "Content-Type": "application/json;odata=nometadata",
+                "X-HTTP-Method": "MERGE",
+                "IF-MATCH": "*"
+              },
+              "parameters/body": "{'FolderLocation': {'Url':'@{outputs('Create_new_folder')?['body/{Link}']}'}}"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_variable_-_varParameters": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "09ded3eb-54e7-4bdd-a8b6-598cf57fa4f6"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varParameters",
+                "type": "object",
+                "value": {
+                  "varSiteURL": "@{parameters('ev_site (pnp_ev_site)')}",
+                  "varListInternalName": "@{parameters('ev_list (pnp_ev_list)')}",
+                  "varListDisplayName": "@{parameters('ev_list (pnp_ev_list)')}",
+                  "varColumnInternalName": "FolderLocation",
+                  "varDocumentDisplayLibraryName": "Documents",
+                  "varFolderName": "@{concat(triggerOutputs()?['body/ID'], '-', triggerOutputs()?['body/Title'])}"
+                }
+              }
+            ]
+          },
+          "description": "The Object variable type is used in place of multiple variable declarations. See Comments for notes on each object variable in varParameters."
+        },
+        "Compose_-_varParameters": {
+          "runAfter": {
+            "Initialize_variable_-_varParameters": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4850603d-5ac6-48b7-aac7-ff9cb236aa35"
+          },
+          "type": "Compose",
+          "inputs": "@variables('varParameters')"
+        },
+        "Send_an_HTTP_request_to_SharePoint_2": {
+          "runAfter": {
+            "Create_new_folder": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4140c059-c011-4c02-a159-3e375dd82090"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('ev_site (pnp_ev_site)')",
+              "parameters/method": "GET",
+              "parameters/uri": "_api/web/lists(guid'@{parameters('ev_list (pnp_ev_list)')}')/fields?$select=Title,InternalName,TypeAsString&$filter=Hidden eq false and ReadOnlyField eq false",
+              "parameters/headers": {
+                "Accept": "application/json;odata=nometadata"
+              }
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

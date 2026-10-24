@@ -1,0 +1,909 @@
+Analytics As screen:
+    BackgroundImage: ='termbuddy-background3'
+    Fill: =Color.White
+    ImagePosition: =ImagePosition.Fill
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    "'Analytcs Main Container' As groupContainer.horizontalAutoLayoutContainer":
+        DropShadow: =DropShadow.Light
+        Height: =Parent.Height
+        LayoutGap: =nfTheming.layoutGap
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =nfTheming.layoutGap
+        PaddingLeft: =nfTheming.layoutGap
+        PaddingRight: =nfTheming.layoutGap
+        PaddingTop: =nfTheming.layoutGap
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        "'Analytcs Menu Container' As groupContainer.verticalAutoLayoutContainer":
+            DropShadow: =DropShadow.Light
+            Fill: =nfTheming.backFill
+            FillPortions: =0
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =nfTheming.layoutGap
+            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutMinHeight: =nfTheming.menuWidth
+            LayoutMinWidth: =100
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =nfTheming.radius
+            RadiusBottomRight: =nfTheming.radius
+            RadiusTopLeft: =nfTheming.radius
+            RadiusTopRight: =nfTheming.radius
+            Width: =100
+            ZIndex: =2
+
+            "'Analytcs menu component' As 'menu component'":
+                currentScreen: =App.ActiveScreen.Name
+                iconColor: =nfColor.Accent2
+                iconColorCurrent: =nfColor.Primary
+                LayoutMinHeight: =640
+                LayoutMinWidth: =640
+                menuIcons: =nfMenu
+
+        "'Analytcs Prompt Container' As groupContainer.verticalAutoLayoutContainer":
+            Fill: =Color.Transparent
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =nfTheming.layoutGap
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            Width: =App.Width - 3 * nfTheming.layoutGap - 100
+            ZIndex: =4
+
+            "'Analytcs screen Header' As groupContainer.horizontalAutoLayoutContainer":
+                FillPortions: =0
+                Height: =100
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.Width
+                ZIndex: =1
+
+                "'Analytcs header component' As 'screen header'":
+                    LayoutMinHeight: =640
+                    LayoutMinWidth: =640
+                    parentWidth: =Parent.Width
+                    screenName: ="Analytics and Insights"
+                    Width: ='Analytcs header component'.parentWidth
+
+            "'Analytcs screen - Main part' As groupContainer.verticalAutoLayoutContainer":
+                DropShadow: =DropShadow.Light
+                Fill: =nfTheming.backFill
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =nfTheming.radius
+                RadiusBottomRight: =nfTheming.radius
+                RadiusTopLeft: =nfTheming.radius
+                RadiusTopRight: =nfTheming.radius
+                Width: =Parent.Width
+                ZIndex: =2
+
+                "'Analytcs screen - Metrics container' As groupContainer.horizontalAutoLayoutContainer":
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =141
+                    LayoutGap: =10
+                    LayoutMinHeight: =161
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =nfTheming.controlPadding
+                    PaddingLeft: =nfTheming.controlPadding
+                    PaddingRight: =nfTheming.controlPadding
+                    PaddingTop: =nfTheming.controlPadding
+                    Width: =Parent.Width
+                    ZIndex: =7
+
+                    "'Analytics screen - Messages Container' As groupContainer.manualLayoutContainer":
+                        FillPortions: =0
+                        Height: =Parent.Height - 2 * nfTheming.controlPadding
+                        LayoutMinHeight: =64
+                        LayoutMinWidth: =10
+                        Width: =70 + 30
+                        ZIndex: =2
+
+                        "'Analytics screen - Messages header' As Text":
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =false
+                            DisplayMode: =DisplayMode.Edit
+                            Font: =Font.'Lato Black'
+                            FontColor: =nfColor.Primary
+                            Height: =25
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Index(nfAppData.analyticsMetrics, 2).name
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =70
+                            Wrap: =false
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                        "'Analytics screen - Messages value' As Text":
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =true
+                            DisplayMode: =DisplayMode.Edit
+                            Font: =Font.Lato
+                            Height: =32
+                            PaddingBottom: =0
+                            PaddingLeft: =nfTheming.metricsPadding
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: |-
+                                =First(
+                                    Filter(
+                                        udfMetricsCount('Analytics screen - Period dropdown'.Selected.days, 'Analytics screen - Period dropdown'.Selected.startDate, 'Analytics screen - Period dropdown'.Selected.endDate),
+                                        metric = "Messages"
+                                    )
+                                ).count
+                            Width: =70
+                            X: =0
+                            Y: ='Analytics screen - Messages header'.Y + 'Analytics screen - Messages header'.Height
+                            ZIndex: =3
+
+                        "'Analytics screen - Messages info' As image":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =15
+                            Image: |-
+                                ="data:image/svg+xml;utf8, "&EncodeUrl("
+                                    
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='" & nfColor.Regular & "' viewBox='0 0 16 16'>
+                                
+                                    <path d='m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0'/>
+                                
+                                    </svg>
+                                
+                                ")
+                            Tooltip: ="Total number of messages exchanged during the selected period."
+                            Width: =15
+                            X: ='Analytics screen - Messages header'.X + 'Analytics screen - Messages header'.Width
+                            Y: =3
+                            ZIndex: =4
+
+                    "'Analytics screen - Quiz Container' As groupContainer.manualLayoutContainer":
+                        FillPortions: =0
+                        Height: =Parent.Height - 2 * nfTheming.controlPadding
+                        LayoutMinHeight: =64
+                        LayoutMinWidth: =10
+                        Width: =57 + 30
+                        ZIndex: =3
+
+                        "'Analytics screen - Quiz header' As Text":
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =false
+                            DisplayMode: =DisplayMode.Edit
+                            Font: =Font.'Lato Black'
+                            FontColor: =nfColor.Primary
+                            Height: =25
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Index(nfAppData.analyticsMetrics, 3).name
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =57
+                            Wrap: =false
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                        "'Analytics screen - Quiz value' As Text":
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =true
+                            DisplayMode: =DisplayMode.Edit
+                            Font: =Font.Lato
+                            Height: =32
+                            PaddingBottom: =0
+                            PaddingLeft: |
+                                =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: |-
+                                =First(
+                                    Filter(
+                                        udfMetricsCount('Analytics screen - Period dropdown'.Selected.days, 'Analytics screen - Period dropdown'.Selected.startDate, 'Analytics screen - Period dropdown'.Selected.endDate),
+                                        metric = "Quizes"
+                                    )
+                                ).count
+                            Width: =57
+                            X: =0
+                            Y: ='Analytics screen - Quiz header'.Y + 'Analytics screen - Quiz header'.Height
+                            ZIndex: =3
+
+                        "'Analytics screen - Quiz info' As image":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =15
+                            Image: |-
+                                ="data:image/svg+xml;utf8, "&EncodeUrl("
+                                    
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='" & nfColor.Regular & "' viewBox='0 0 16 16'>
+                                
+                                    <path d='m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0'/>
+                                
+                                    </svg>
+                                
+                                ")
+                            Tooltip: ="Number of quizzes initiated during the selected period."
+                            Width: =15
+                            X: ='Analytics screen - Quiz header'.X + 'Analytics screen - Quiz header'.Width
+                            Y: =3
+                            ZIndex: =4
+
+                    "'Analytics screen - Examples Container' As groupContainer.manualLayoutContainer":
+                        FillPortions: =0
+                        Height: =Parent.Height - 2 * nfTheming.controlPadding
+                        LayoutMinHeight: =64
+                        LayoutMinWidth: =10
+                        Width: =68 + 30
+                        ZIndex: =4
+
+                        "'Analytics screen - Examples header' As Text":
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =false
+                            DisplayMode: =DisplayMode.Edit
+                            Font: =Font.'Lato Black'
+                            FontColor: =nfColor.Primary
+                            Height: =25
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Index(nfAppData.analyticsMetrics, 4).name
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =68
+                            Wrap: =false
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                        "'Analytics screen - Examples value' As Text":
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =true
+                            DisplayMode: =DisplayMode.Edit
+                            Font: =Font.Lato
+                            Height: =32
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: |-
+                                =First(
+                                    Filter(
+                                        udfMetricsCount('Analytics screen - Period dropdown'.Selected.days, 'Analytics screen - Period dropdown'.Selected.startDate, 'Analytics screen - Period dropdown'.Selected.endDate),
+                                        metric = "Examples"
+                                    )
+                                ).count
+                            Width: =68
+                            X: =0
+                            Y: ='Analytics screen - Examples header'.Y + 'Analytics screen - Examples header'.Height
+                            ZIndex: =3
+
+                        "'Analytics screen - Examples info' As image":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =15
+                            Image: |-
+                                ="data:image/svg+xml;utf8, "&EncodeUrl("
+                                    
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='" & nfColor.Regular & "' viewBox='0 0 16 16'>
+                                
+                                    <path d='m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0'/>
+                                
+                                    </svg>
+                                
+                                ")
+                            Tooltip: ="Number of example requests made during the selected period."
+                            Width: =15
+                            X: ='Analytics screen - Examples header'.X + 'Analytics screen - Examples header'.Width
+                            Y: =3
+                            ZIndex: =4
+
+                    "'Analytics screen - Renews definition Container' As groupContainer.manualLayoutContainer":
+                        FillPortions: =0
+                        Height: =Parent.Height - 2 * nfTheming.controlPadding
+                        LayoutMinHeight: =64
+                        LayoutMinWidth: =10
+                        Width: =127 + 30
+                        ZIndex: =5
+
+                        "'Analytics screen - Renews definition header' As Text":
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =false
+                            DisplayMode: =DisplayMode.Edit
+                            Font: =Font.'Lato Black'
+                            FontColor: =nfColor.Primary
+                            Height: =25
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Index(nfAppData.analyticsMetrics, 5).name
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =127
+                            Wrap: =false
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                        "'Analytics screen - Renews definition value' As Text":
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =true
+                            DisplayMode: =DisplayMode.Edit
+                            Font: =Font.Lato
+                            Height: =32
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: |-
+                                =First(
+                                    Filter(
+                                        udfMetricsCount('Analytics screen - Period dropdown'.Selected.days, 'Analytics screen - Period dropdown'.Selected.startDate, 'Analytics screen - Period dropdown'.Selected.endDate),
+                                        metric = "Refreshes"
+                                    )
+                                ).count
+                            Width: =127
+                            X: =0
+                            Y: ='Analytics screen - Renews definition header'.Y + 'Analytics screen - Renews definition header'.Height
+                            ZIndex: =3
+
+                        "'Analytics screen - Renews definition info' As image":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =15
+                            Image: |-
+                                ="data:image/svg+xml;utf8, "&EncodeUrl("
+                                    
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='" & nfColor.Regular & "' viewBox='0 0 16 16'>
+                                
+                                    <path d='m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0'/>
+                                
+                                    </svg>
+                                
+                                ")
+                            Tooltip: ="Number of term definition updates requested during the selected period."
+                            Width: =15
+                            X: ='Analytics screen - Renews definition header'.X + 'Analytics screen - Renews definition header'.Width
+                            Y: =3
+                            ZIndex: =4
+
+                    "'Analytics screen - Terms Container' As groupContainer.manualLayoutContainer":
+                        FillPortions: =0
+                        Height: =Parent.Height - 2 * nfTheming.controlPadding
+                        LayoutMinHeight: =64
+                        LayoutMinWidth: =10
+                        Width: =44 + 30
+                        ZIndex: =6
+
+                        "'Analytics screen - Terms header' As Text":
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =false
+                            DisplayMode: =DisplayMode.Edit
+                            Font: =Font.'Lato Black'
+                            FontColor: =nfColor.Primary
+                            Height: =25
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Index(nfAppData.analyticsMetrics, 6).name
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =44
+                            Wrap: =false
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                        "'Analytics screen - Terms value' As Text":
+                            Align: ='TextCanvas.Align'.Center
+                            AutoHeight: =true
+                            DisplayMode: =DisplayMode.Edit
+                            Font: =Font.Lato
+                            Height: =32
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: |-
+                                =First(
+                                    Filter(
+                                        udfMetricsCount('Analytics screen - Period dropdown'.Selected.days, 'Analytics screen - Period dropdown'.Selected.startDate, 'Analytics screen - Period dropdown'.Selected.endDate),
+                                        metric = "Terms"
+                                    )
+                                ).count
+                            Width: =44
+                            X: =0
+                            Y: ='Analytics screen - Terms header'.Y + 'Analytics screen - Terms header'.Height
+                            ZIndex: =3
+
+                        "'Analytics screen - Terms info' As image":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =15
+                            Image: |-
+                                ="data:image/svg+xml;utf8, "&EncodeUrl("
+                                    
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='" & nfColor.Regular & "' viewBox='0 0 16 16'>
+                                
+                                    <path d='m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0'/>
+                                
+                                    </svg>
+                                
+                                ")
+                            Tooltip: ="Number of unique terms queried in the chat during the selected period."
+                            Width: =15
+                            X: ='Analytics screen - Terms header'.X + 'Analytics screen - Terms header'.Width
+                            Y: =3
+                            ZIndex: =4
+
+                    "'Analytics screen - Period container' As groupContainer.verticalAutoLayoutContainer":
+                        FillPortions: =0
+                        LayoutAlignItems: =LayoutAlignItems.End
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =64
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        Width: =150
+                        ZIndex: =8
+
+                        "'Analytics screen - Period header' As Text":
+                            AlignInContainer: =AlignInContainer.Stretch
+                            AutoHeight: =false
+                            DisplayMode: =DisplayMode.Edit
+                            Font: =Font.'Lato Black'
+                            FontColor: =App.Theme.Colors.Primary
+                            Height: =25
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: ="Analytics Period"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        "'Analytics screen - Period dropdown' As Dropdown.pcfdataset":
+                            AccessibleLabel: ="Analytics Period"
+                            Appearance: ='DropdownCanvas.Appearance'.Outline
+                            DefaultSelectedItems: =Index(nfAppData.analyticsRanges,2)
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =32
+                            Items: =nfAppData.analyticsRanges
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =320
+                            Required: =true
+                            Width: =150
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                            name1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                                FieldDisplayName: ="name"
+                                FieldName: ="name"
+                                FieldType: ="s"
+                                FieldVariantName: ="textualColumn"
+                                Order: =1
+                                ZIndex: =13
+
+                "'Analytics screen - Charts container' As groupContainer.horizontalAutoLayoutContainer":
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =nfTheming.controlPadding
+                    PaddingLeft: =nfTheming.controlPadding
+                    PaddingRight: =nfTheming.controlPadding
+                    PaddingTop: =1
+                    Width: =Parent.Width
+                    ZIndex: =9
+
+                    "'Analytics screen - Chart container' As groupContainer.verticalAutoLayoutContainer":
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        ZIndex: =1
+
+                        "'Analytics screen - Chart' As image":
+                            AlignInContainer: =AlignInContainer.Stretch
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            FillPortions: =3
+                            Image: |-
+                                ="https://quickchart.io/chart?c=" &EncodeUrl
+                                ("
+                                {
+                                  'type': 'line',
+                                  'data': {
+                                    'labels': ["&
+                                        Concat(
+                                            Sort(ForAll(
+                                                Sequence( 
+                                                    If(
+                                                        'Analytics screen - Period dropdown'.Selected.days < 200,
+                                                        'Analytics screen - Period dropdown'.Selected.days,
+                                                        200
+                                                    ),
+                                                    0, 
+                                                    1
+                                                ),
+                                                Text(
+                                                    DateAdd(
+                                                        Today(), 
+                                                        Value * (-1), 
+                                                        TimeUnit.Days), "yy-mm-dd"
+                                                    )
+                                            ),Value,SortOrder.Ascending),
+                                            "'" & Value & "',"
+                                        )
+                                    &"],
+                                    'datasets': [
+                                      {
+                                        'label': 'Messages',
+                                        'fill': false,
+                                        'backgroundColor': '"& nfColor.Primary &"',
+                                        'borderColor': '"& nfColor.Primary &"',
+                                        lineTension: 0.4,
+                                        borderWidth: 2,
+                                        'data': ["&
+                                          Concat(
+                                            Sort(
+                                                ForAll(
+                                                    Sequence(
+                                                        If(
+                                                            'Analytics screen - Period dropdown'.Selected.days < 200,
+                                                            'Analytics screen - Period dropdown'.Selected.days,
+                                                            200
+                                                        ), 
+                                                        0, 
+                                                        1
+                                                    ),
+                                                    With(
+                                                        {
+                                                            DateValue: Text(
+                                                                        DateAdd(
+                                                                            Today(), 
+                                                                            -Value, 
+                                                                            TimeUnit.Days
+                                                                            ),
+                                                                            "yyyy-mm-dd"
+                                                                        ),
+                                                            Transactions: LookUp(
+                                                                AddColumns(
+                                                                    GroupBy(
+                                                                        AddColumns(
+                                                                            'termbuddy-statistics', 
+                                                                            _date, 
+                                                                            Text(CreatedDateTime, "yyyy-mm-dd")
+                                                                        ), 
+                                                                        _date,
+                                                                        grouped
+                                                                    ), 
+                                                                    _count, 
+                                                                    CountRows(grouped)
+                                                                ),
+                                                                _date = Text(DateAdd(Today(), -Value, TimeUnit.Days), "yyyy-mm-dd"),
+                                                                _count
+                                                            )
+                                                        },
+                                                        {
+                                                            date2: DateValue,
+                                                            count: If(IsBlank(Transactions), 0, Transactions)
+                                                        }
+                                                    )
+                                                ),
+                                                date2,
+                                                SortOrder.Ascending
+                                            ),
+                                            "'" & count & "',"
+                                          )
+                                        &"]
+                                      },
+                                      {
+                                        'label': 'Quizzes',
+                                        'fill': false,
+                                        'backgroundColor': '"& nfColor.Secondary &"',
+                                        'borderColor': '"& nfColor.Secondary &"',
+                                        lineTension: 0.4,
+                                        borderWidth: 2,
+                                        'data': ["&
+                                          Concat(
+                                            Sort(
+                                                ForAll(
+                                                    Sequence(
+                                                        If(
+                                                            'Analytics screen - Period dropdown'.Selected.days < 200,
+                                                            'Analytics screen - Period dropdown'.Selected.days,
+                                                            200
+                                                        ),  
+                                                        0, 
+                                                        1
+                                                    ),
+                                                    With(
+                                                        {
+                                                            DateValue: Text(
+                                                                        DateAdd(
+                                                                            Today(), 
+                                                                            -Value, 
+                                                                            TimeUnit.Days
+                                                                            ),
+                                                                            "yyyy-mm-dd"
+                                                                        ),
+                                                            Transactions: LookUp(
+                                                                AddColumns(
+                                                                    GroupBy(
+                                                                        AddColumns(
+                                                                            Filter(
+                                                                                'termbuddy-statistics',
+                                                                                action = "quiz"
+                                                                            ),
+                                                                            _date, 
+                                                                            Text(CreatedDateTime, "yyyy-mm-dd")
+                                                                        ), 
+                                                                        _date,
+                                                                        grouped
+                                                                    ), 
+                                                                    _count, 
+                                                                    CountRows(grouped)
+                                                                ),
+                                                                _date = Text(DateAdd(Today(), -Value, TimeUnit.Days), "yyyy-mm-dd"),
+                                                                _count
+                                                            )
+                                                        },
+                                                        {
+                                                            date2: DateValue,
+                                                            count: If(IsBlank(Transactions), 0, Transactions)
+                                                        }
+                                                    )
+                                                ),
+                                                date2,
+                                                SortOrder.Ascending
+                                            ),
+                                            "'" & count & "',"
+                                          )
+                                        &"]
+                                      },
+                                      {
+                                        'label': 'Examples',
+                                        'fill': false,
+                                        'backgroundColor': '"& nfColor.Accent2 &"',
+                                        'borderColor': '"& nfColor.Accent2 &"',
+                                        lineTension: 0.4,
+                                        borderWidth: 2,
+                                        'data': ["&
+                                          Concat(
+                                            Sort(
+                                                ForAll(
+                                                    Sequence(
+                                                        If(
+                                                            'Analytics screen - Period dropdown'.Selected.days < 200,
+                                                            'Analytics screen - Period dropdown'.Selected.days,
+                                                            200
+                                                        ),  
+                                                        0, 
+                                                        1
+                                                    ),
+                                                    With(
+                                                        {
+                                                            DateValue: Text(
+                                                                        DateAdd(
+                                                                            Today(), 
+                                                                            -Value, 
+                                                                            TimeUnit.Days
+                                                                            ),
+                                                                            "yyyy-mm-dd"
+                                                                        ),
+                                                            Transactions: LookUp(
+                                                                AddColumns(
+                                                                    GroupBy(
+                                                                        AddColumns(
+                                                                            Filter(
+                                                                                'termbuddy-statistics',
+                                                                                action = "example"
+                                                                            ), 
+                                                                            _date, 
+                                                                            Text(CreatedDateTime, "yyyy-mm-dd")
+                                                                        ), 
+                                                                        _date,
+                                                                        grouped
+                                                                    ), 
+                                                                    _count, 
+                                                                    CountRows(grouped)
+                                                                ),
+                                                                _date = Text(DateAdd(Today(), -Value, TimeUnit.Days), "yyyy-mm-dd"),
+                                                                _count
+                                                            )
+                                                        },
+                                                        {
+                                                            date2: DateValue,
+                                                            count: If(IsBlank(Transactions), 0, Transactions)
+                                                        }
+                                                    )
+                                                ),
+                                                date2,
+                                                SortOrder.Ascending
+                                            ),
+                                            "'" & count & "',"
+                                          )
+                                        &"]
+                                      }
+                                    ]
+                                  },
+                                  'options': {
+                                    legend: {
+                                      display: true
+                                    },
+                                    'responsive': true,
+                                    'title': {
+                                      'display': false,
+                                      'text': 'Analytics'
+                                    }
+                                  }
+                                }
+                                ")
+                            ZIndex: =2
+
+                    "'Analytics screen - Histogram container' As groupContainer.verticalAutoLayoutContainer":
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        ZIndex: =2
+
+                        "'Analytics screen - Histogram' As image":
+                            AlignInContainer: =AlignInContainer.Stretch
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            FillPortions: =3
+                            Image: |-
+                                ="https://quickchart.io/chart?c=" &EncodeUrl
+                                ("
+                                {
+                                  type: 'horizontalBar',
+                                  data: {
+                                    labels: ["&
+                                            Concat(
+                                                FirstN(
+                                                    Sort(
+                                                        AddColumns(
+                                                            GroupBy(
+                                                                Filter(
+                                                                    'termbuddy-statistics',
+                                                                    And(
+                                                                        CreatedDateTime >= 'Analytics screen - Period dropdown'.Selected.startDate,
+                                                                        CreatedDateTime <= 'Analytics screen - Period dropdown'.Selected.endDate
+                                                                    ) && action = "new_term"
+                                                                ),
+                                                                term,
+                                                                GroupedRows
+                                                            ),
+                                                            _termName, kch_term,
+                                                            _rowCount, CountRows(GroupedRows)
+                                                        ),
+                                                        _rowCount,
+                                                        SortOrder.Descending
+                                                    ),
+                                                    10
+                                                ),
+                                            "'" & _termName & "',"
+                                        )
+                                        &"],
+                                    datasets: [
+                                      {
+                                        label: 'Terms',
+                                        data: ["&
+                                            Concat(
+                                                FirstN(
+                                                    Sort(
+                                                        AddColumns(
+                                                            GroupBy(
+                                                                Filter(
+                                                                    'termbuddy-statistics',
+                                                                    And(
+                                                                        CreatedDateTime >= 'Analytics screen - Period dropdown'.Selected.startDate,
+                                                                        CreatedDateTime <= 'Analytics screen - Period dropdown'.Selected.endDate
+                                                                    ) && action = "new_term"
+                                                                ),
+                                                                term,
+                                                                GroupedRows
+                                                            ), 
+                                                            _rowCount, 
+                                                            CountRows(GroupedRows)
+                                                        ),
+                                                        _rowCount,
+                                                        SortOrder.Descending
+                                                    ),
+                                                    10
+                                                ),
+                                            "'" & _rowCount & "',"
+                                        )
+                                        &"],
+                                        backgroundColor: getGradientFillHelper('horizontal', ['"& nfColor.Accent4 &"', '"& nfColor.Accent3 &"']),
+                                        borderRadius: 5
+                                      },
+                                    ],
+                                  },
+                                  options: {
+                                    'responsive': true,
+                                    'title': {
+                                      'display': true,
+                                      'text': 'TOP-10 terms'
+                                    },
+                                    scales: {
+                                      xAxes: [
+                                        {
+                                          gridLines: {
+                                            display: false,
+                                            drawOnChartArea: false,
+                                            tickMarkLength: 1,
+                                            zeroLineWidth: 1,
+                                            zeroLineColor: 'black',
+                                            color: 'black',
+                                          },
+                                          ticks: {
+                                            fontColor: getGradientFillHelper('vertical', ['#eb3639', '#a336eb', '#36a2eb']),
+                                            beginAtZero: true,
+                                            display: false
+                                          },
+                                        },
+                                      ],
+                                      yAxes: [
+                                        {
+                                          display: true,
+                                          position: 'left',
+                                          gridLines: {
+                                            display: false,
+                                            drawOnChartArea: false,
+                                            tickMarkLength: 8,
+                                            color: '"& nfColor.Regular &"',
+                                          },
+                                          ticks: {
+                                            fontColor: '"& nfColor.Regular &"',
+                                          },
+                                        },
+                                      ],
+                                    },
+                                    legend: {
+                                      display: false,
+                                    },
+                                    plugins: {
+                                      roundedBars: true,
+                                      datalabels: {
+                                        anchor: 'end',
+                                        align: 'start',
+                                        color: '"& nfColor.Regular &"',
+                                        formatter: function (value, context) {
+                                          return value;
+                                        },
+                                        font: {
+                                          size: 12,
+                                          weight: 'normal',
+                                        },
+                                      },
+                                    },
+                                  },
+                                }
+                                ")
+                            ZIndex: =1
+

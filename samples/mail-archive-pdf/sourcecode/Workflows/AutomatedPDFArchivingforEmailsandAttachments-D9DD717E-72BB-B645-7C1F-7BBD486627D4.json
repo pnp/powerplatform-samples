@@ -1,0 +1,304 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365-1": {
+        "api": {
+          "name": "shared_office365"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "pnp_sharedoffice365_56894"
+        },
+        "runtimeSource": "embedded"
+      },
+      "shared_onedriveforbusiness": {
+        "api": {
+          "name": "shared_onedriveforbusiness"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedonedriveforbusiness_1a9c7"
+        },
+        "runtimeSource": "embedded"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "Email Subject (pnp_EmailSubject)": {
+          "defaultValue": "Email Archival Test",
+          "type": "String",
+          "metadata": {
+            "schemaName": "pnp_EmailSubject",
+            "description": "Subject filter for the incoming email"
+          }
+        },
+        "Output Archive folder (pnp_OutputArchivefolder)": {
+          "defaultValue": "Archive Emails",
+          "type": "String",
+          "metadata": {
+            "schemaName": "pnp_OutputArchivefolder",
+            "description": "Output one drive folder for storing archival email"
+          }
+        }
+      },
+      "triggers": {
+        "When_a_new_email_arrives_(V3)": {
+          "type": "OpenApiConnectionNotification",
+          "inputs": {
+            "parameters": {
+              "includeAttachments": true,
+              "subjectFilter": "@parameters('Email Subject (pnp_EmailSubject)')",
+              "importance": "Any",
+              "fetchOnlyWithAttachment": true,
+              "folderPath": "Inbox"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "operationId": "OnNewEmailV3",
+              "connectionName": "shared_office365-1"
+            }
+          },
+          "splitOn": "@triggerOutputs()?['body/value']"
+        }
+      },
+      "actions": {
+        "Convert_file_-_email_msg_to_HTML_format": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "id": "@outputs('Create_file_-_email_msg_file')?['body/Id']",
+              "type": "HTML"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+              "operationId": "ConvertFile",
+              "connectionName": "shared_onedriveforbusiness"
+            }
+          },
+          "runAfter": {
+            "Create_file_-_email_msg_file": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "b!4JYKcAxS2EW65T2DQwmtjA0tBYQhCQVBpQzW5Rb24NNrFhp_9Cs6TokRPBMyQyfp.01VTD6ZWSKVHRPTSBCT5H3WWO5DCJ7MQJN": "/Documents/RE_ Monthly Timesheet - Manish Solanki - Jun'25.msg"
+          }
+        },
+        "Export_email_(V2)": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "messageId": "@triggerOutputs()?['body/id']"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "operationId": "ExportEmail_V2",
+              "connectionName": "shared_office365-1"
+            }
+          },
+          "runAfter": {
+            "Filter_array_-_attachment_with_allowed_extension": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Create_file_-_email_msg_file": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "folderPath": "/@{parameters('Output Archive folder (pnp_OutputArchivefolder)')}/@{triggerOutputs()?['body/id']}",
+              "name": "@{triggerOutputs()?['body/subject']}.msg",
+              "body": "@body('Export_email_(V2)')"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+              "operationId": "CreateFile",
+              "connectionName": "shared_onedriveforbusiness"
+            }
+          },
+          "runAfter": {
+            "Export_email_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "runtimeConfiguration": {
+            "contentTransfer": {
+              "transferMode": "Chunked"
+            }
+          }
+        },
+        "Compose_-_allowed_file_extension": {
+          "type": "Compose",
+          "inputs": "3g2,3gp,3gp2,3gpp,3mf,ai,arw,asf,avi,bas,bash,bat,bmp,c,cbl,cmd,cool,cpp,cr2,crw,cs,css,csv,cur,dcm,dcm30,dic,dicm,dicom,dng,doc,docx,dwg,eml,epi,eps,epsf,epsi,epub,erf,fbx,fppx,gif,glb,h,hcp,heic,heif,htm,html,ico,icon,java,jfif,jpeg,jpg,js,json,key,log,m2ts,m4a,m4v,markdown,md,mef,mov,movie,mp3,mp4,mp4v,mrw,msg,mts,nef,nrw,numbers,obj,odp,odt,ogg,orf,pages,pano,pdf,pef,php,pict,pl,ply,png,pot,potm,potx,pps,ppsx,ppsxm,ppt,pptm,pptx,ps,ps1,psb,psd,py,raw,rb,rtf,rw1,rw2,sh,sketch,sql,sr2,stl,tif,tiff,ts,txt,vb,webm,wma,wmv,xaml,xbm,xcf,xd,xml,xpm,yaml,yml",
+          "runAfter": {}
+        },
+        "Filter_array_-_attachment_with_allowed_extension": {
+          "type": "Query",
+          "description": "@contains(@{split(outputs('Compose_-_allowed_file_extension'),',')},@{toLower(last(split(item()['name'],'.')))})",
+          "inputs": {
+            "from": "@triggerOutputs()?['body/attachments']",
+            "where": "@contains(split(outputs('Compose_-_allowed_file_extension'),','),toLower(last(split(item()['name'],'.'))))"
+          },
+          "runAfter": {
+            "Compose_-_allowed_file_extension": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Apply_to_each_-_email_attachment": {
+          "type": "Foreach",
+          "foreach": "@body('Filter_array_-_attachment_with_allowed_extension')",
+          "actions": {
+            "Convert_file_-_attachment": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "id": "@outputs('Create_file_-_attachment')?['body/Id']",
+                  "type": "JPG"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+                  "operationId": "ConvertFile",
+                  "connectionName": "shared_onedriveforbusiness"
+                }
+              },
+              "runAfter": {
+                "Create_file_-_attachment": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Create_file_-_attachment": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "folderPath": "/@{parameters('Output Archive folder (pnp_OutputArchivefolder)')}/@{triggerOutputs()?['body/id']}",
+                  "name": "@items('Apply_to_each_-_email_attachment')?['name']",
+                  "body": "@items('Apply_to_each_-_email_attachment')?['contentBytes']"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+                  "operationId": "CreateFile",
+                  "connectionName": "shared_onedriveforbusiness"
+                }
+              },
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            },
+            "Compose_-_attachment_as_image": {
+              "type": "Compose",
+              "description": "@{concat('<div><b><span>Attachment - ',items('Apply_to_each_-_email_attachment')?['name'],'</span></b><br><img src=\"data:image/jpeg;base64,',body('Convert_file_-_attachment')?['$content'],'\"></div>')}",
+              "inputs": "@concat('<div><b><span>Attachment - ',items('Apply_to_each_-_email_attachment')?['name'],'</span></b><br><img src=\"data:image/jpeg;base64,',body('Convert_file_-_attachment')?['$content'],'\"></div>')",
+              "runAfter": {
+                "Convert_file_-_attachment": [
+                  "Succeeded"
+                ]
+              }
+            }
+          },
+          "runAfter": {
+            "Filter_array_-_attachment_with_allowed_extension": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Compose_-_combine_email_HTML_with_all_image_attachment": {
+          "type": "Compose",
+          "description": "@{concat(body('Convert_file_-_email_msg_to_HTML_format'),join(outputs('Compose_-_attachment_as_image'),'<br>'))}",
+          "inputs": "@concat(body('Convert_file_-_email_msg_to_HTML_format'),join(outputs('Compose_-_attachment_as_image'),'<br>'))",
+          "runAfter": {
+            "Convert_file_-_email_msg_to_HTML_format": [
+              "Succeeded"
+            ],
+            "Apply_to_each_-_email_attachment": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Create_file_-_combines_HTML_file": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "folderPath": "/@{parameters('Output Archive folder (pnp_OutputArchivefolder)')}/@{triggerOutputs()?['body/id']}",
+              "name": "@{triggerOutputs()?['body/subject']}.htm",
+              "body": "@outputs('Compose_-_combine_email_HTML_with_all_image_attachment')"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+              "operationId": "CreateFile",
+              "connectionName": "shared_onedriveforbusiness"
+            }
+          },
+          "runAfter": {
+            "Compose_-_combine_email_HTML_with_all_image_attachment": [
+              "Succeeded"
+            ]
+          },
+          "runtimeConfiguration": {
+            "contentTransfer": {
+              "transferMode": "Chunked"
+            }
+          }
+        },
+        "Convert_file_-_Combined_HTML_to_PDF": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "id": "@outputs('Create_file_-_combines_HTML_file')?['body/Id']",
+              "type": "PDF"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+              "operationId": "ConvertFile",
+              "connectionName": "shared_onedriveforbusiness"
+            }
+          },
+          "runAfter": {
+            "Create_file_-_combines_HTML_file": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Create_file_-_Email_with_attachments_in_a_single_pdf_file": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "folderPath": "/@{parameters('Output Archive folder (pnp_OutputArchivefolder)')}",
+              "name": "@outputs('Convert_file_-_Combined_HTML_to_PDF')?['headers/x-ms-file-name']",
+              "body": "@body('Convert_file_-_Combined_HTML_to_PDF')"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+              "operationId": "CreateFile",
+              "connectionName": "shared_onedriveforbusiness"
+            }
+          },
+          "runAfter": {
+            "Convert_file_-_Combined_HTML_to_PDF": [
+              "Succeeded"
+            ]
+          },
+          "runtimeConfiguration": {
+            "contentTransfer": {
+              "transferMode": "Chunked"
+            }
+          }
+        }
+      },
+      "description": "This flow exports an email in MSG format and converts it into HTML. All email attachments are transformed into JPG files and embedded within the HTML as <img> tags. The flow then merges the email body and the attachment HTML using a Compose action. Finally, the combined HTML content is converted into a PDF file using standard OneDrive connector."
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

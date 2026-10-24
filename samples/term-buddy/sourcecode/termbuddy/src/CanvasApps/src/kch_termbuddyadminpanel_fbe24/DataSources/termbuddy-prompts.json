@@ -1,0 +1,98 @@
+[
+  {
+    "DisplayName": "termbuddy-prompts (Views)",
+    "Name": "_kch_termbuddyprompt_views",
+    "RelatedEntityName": "termbuddy-prompts",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "49b2f4b2-ccf2-4a28-bafd-2582591cd895": "termbuddy-prompt Lookup View",
+      "91eb8037-7d82-4a7e-af77-6a7289255d75": "Active termbuddy-prompts",
+      "addd1f93-7b9d-47b8-9a46-5b8a8477434b": "termbuddy-prompt Associated View",
+      "cac3d93b-5186-419b-9494-a05d13c8d2b6": "Inactive termbuddy-prompts",
+      "d659af21-805b-4191-a7dc-07fa0c05ed76": "termbuddy-prompt Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (termbuddy-prompts)",
+    "Name": "kch_termbuddyprompt_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "termbuddy-prompts"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "termbuddy-prompts",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (termbuddy-prompts)",
+    "Name": "kch_termbuddyprompt_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "termbuddy-prompts"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "termbuddy-prompts",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "kch_termbuddyprompts",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "kch_termbuddyprompt",
+    "MaxGetRowsCount": 500,
+    "Name": "termbuddy-prompts",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "kch_promptid": "prompt-id",
+      "kch_termbuddyprompt_AsyncOperations": "System Jobs",
+      "kch_termbuddyprompt_BulkDeleteFailures": "Bulk Delete Failures",
+      "kch_termbuddyprompt_DuplicateBaseRecord": "Duplicate Records (kch_termbuddyprompt_DuplicateBaseRecord)",
+      "kch_termbuddyprompt_DuplicateMatchingRecord": "Duplicate Records (kch_termbuddyprompt_DuplicateMatchingRecord)",
+      "kch_termbuddyprompt_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "kch_termbuddyprompt_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "kch_termbuddyprompt_ProcessSession": "Process Sessions",
+      "kch_termbuddyprompt_SyncErrors": "Sync Errors",
+      "kch_termbuddypromptid": "termbuddy-prompt",
+      "kch_userprompt": "user-prompt",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "termbuddy-prompts",
+    "Type": "NativeCDSDataSourceInfo"
+  }
+]

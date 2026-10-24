@@ -1,0 +1,31 @@
+---
+import { ArrowRight, GitPullRequest } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import BadgePanel from '../components/BadgePanel.astro';
+---
+<BaseLayout title="Contributing" description="Share a Power Platform sample, help other makers, and contribute to the community.">
+  <PageHero eyebrow="Your experience is someone else's starting point" title="Build it. Share it. Pass it on." description="A clever flow. A helpful app. A new way to solve a familiar problem. Share what you've learned and help the next maker go further." portrait={2}><a class="button button--primary" href="https://github.com/pnp/powerplatform-samples/blob/main/CONTRIBUTING.md"><GitPullRequest size={17} /> Read the contribution guide</a></PageHero>
+  <div class="container section-space"><BadgePanel actionHref="#contribution-steps" actionLabel="See how to contribute" /></div>
+  <section class="content-section content-section--soft" id="contribution-steps"><ol class="container steps-grid">
+    <li><h2>Fork and branch.</h2><p>Start from the latest main branch, check for similar samples, and keep your pull request focused. You'll need to sign the Microsoft Contributor License Agreement.</p></li>
+    <li><h2>Tell the whole story.</h2><p>Include your source, a clear README, prerequisites, a real screenshot, and complete sample metadata. Make it possible for someone else to reproduce your result.</p></li>
+    <li><h2>Validate and share.</h2><p>Run the catalog checks, verify the preview locally, then open a pull request using the repository template. Include what you tested and anything reviewers need to know.</p></li>
+  </ol></section>
+  <section class="container content-section two-columns">
+    <div><p class="eyebrow">A home for your sample</p><h2>Keep it self-contained.</h2><pre tabindex="0" aria-label="Sample folder structure"><code>{`samples/your-sample-name/
+  README.md
+  assets/
+    sample.json
+    preview.png
+  sourcecode/
+  solution/`}</code></pre><p>Use lowercase folder names. Include source and packaged solutions where appropriate for your sample type; not every sample uses the same structure.</p><nav class="stacked-links"><a class="text-link" href="https://github.com/pnp/powerplatform-samples/tree/main/templates/sample-template">Start with the sample template <ArrowRight size={16} /></a><a class="text-link" href="https://cla.microsoft.com">About the contributor agreement <ArrowRight size={16} /></a></nav></div>
+    <div><p class="eyebrow">Help your sample get discovered</p><h2>Make a great first impression.</h2><ul><li>Give it a clear name, summary, product labels, categories, author information, and accurate dates.</li><li>Add a high-resolution screenshot showing the configured experience. The gallery selects the first image thumbnail by ascending <code>order</code>.</li><li>Store referenced screenshots inside your sample's assets folder. Provide descriptive alternative text.</li><li>Include permissions, connector/licensing requirements, setup instructions, and a minimal path to a working result.</li><li>Keep one sample-view tracker as the final line of your README. Its URL must match your actual sample folder.</li></ul><p>Use <strong>Copilot Studio</strong> for new agent samples. Existing Power Virtual Agents metadata remains supported.</p></div>
+  </section>
+  <section class="container content-section content-narrow"><p class="eyebrow">Before opening a pull request</p><h2>Check the gallery, too.</h2><pre tabindex="0" aria-label="Gallery validation commands"><code>{`cd site
+npm ci
+npm run validate:readme-trackers
+npm test
+npm run check
+npm run build`}</code></pre><p>For interface changes, also run <code>npm run test:e2e</code> after building. The generator checks every sample folder and reports failures rather than hiding incomplete entries.</p><p>Your final README image should use this address, replacing <code>your-sample-name</code>:</p><pre tabindex="0" aria-label="Sample view tracking image"><code>{`<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/your-sample-name" />`}</code></pre><p>Don't include secrets, private data, or credentials in your solution, source files, metadata, or screenshots.</p></section>
+</BaseLayout>

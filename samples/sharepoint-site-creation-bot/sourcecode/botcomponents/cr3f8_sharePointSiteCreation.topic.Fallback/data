@@ -1,0 +1,19 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnUnknownIntent
+  id: main
+  actions:
+    - kind: ConditionGroup
+      id: conditionGroup_LktzXw
+      conditions:
+        - id: conditionItem_tlGIVo
+          condition: =System.FallbackCount < 3
+          actions:
+            - kind: SendActivity
+              id: sendMessage_QZreqo
+              activity: Sorry, I am not able to find a related topic. Can you rephrase and try again?
+
+      elseActions:
+        - kind: BeginDialog
+          id: 5aXj5M
+          dialog: cr3f8_sharePointSiteCreation.topic.Escalate

@@ -1,0 +1,114 @@
+name: Deploy gallery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "samples/**"
+      - "assets/**"
+      - "templates/**"
+      - ".github/workflows/deploy-gallery.yml"
+      - ".github/workflows/validate-gallery.yml"
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages-gallery
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build and verify gallery
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - name: Check out the published revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Preserve the historical catalog
+        working-directory: .
+        run: |
+          git fetch --no-tags --depth=1 origin gh-pages
+          git show FETCH_HEAD:samples.json > "$RUNNER_TEMP/legacy-samples.json"
+          echo "LEGACY_CATALOG_PATH=$RUNNER_TEMP/legacy-samples.json" >> "$GITHUB_ENV"
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Validate trackers and test the model
+        run: |
+          npm run validate:readme-trackers
+          npm test
+      - name: Test the collectible-card sample reference source
+        working-directory: samples/collectible-card-binder
+        run: python3 -B -m unittest discover -s tests -v
+      - name: Check the gallery
+        run: npm run check
+      - name: Build with preserved and refreshed legacy metadata
+        run: npm run build:publication
+      - name: Validate built links
+        run: npm run validate:links
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Verify desktop, mobile, accessibility, and tracking
+        run: npm run test:e2e
+      - name: Upload the Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: site/dist
+      - name: Save failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: gallery-deployment-failure-${{ github.run_id }}
+          path: site/test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+  deploy:
+    name: Publish GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    steps:
+      - name: Publish the verified artifact
+        id: pages
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+      - name: Check out the deployment verifier
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+      - name: Verify the live revision and all sample routes
+        working-directory: site
+        env:
+          SITE_URL: ${{ steps.pages.outputs.page_url }}
+          EXPECTED_COMMIT_SHA: ${{ github.sha }}
+        run: |
+          for attempt in 1 2 3 4 5; do
+            if npm run deployment:verify; then
+              exit 0
+            fi
+            echo "Live verification attempt $attempt failed; allowing CDN propagation before retry."
+            sleep 10
+          done
+          exit 1

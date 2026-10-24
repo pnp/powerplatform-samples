@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{1e95afa4-a3be-43bc-800f-99f4e3b723f0}</savedqueryid>
+    <layoutxml>
+      <grid name="gmx_expensereports" jump="gmx_expensereportid2" select="1" icon="1" preview="1">
+        <row name="gmx_expensereport" id="gmx_expensereportid">
+          <cell name="gmx_expensereportid2" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="gmx_expensereport">
+          <attribute name="gmx_expensereportid" />
+          <attribute name="gmx_expensereportid2" />
+          <attribute name="createdon" />
+          <order attribute="gmx_expensereportid2" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Expense Report Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

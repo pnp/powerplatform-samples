@@ -1,0 +1,234 @@
+cmpHeader As CanvasComponent:
+    eventLangDDOnSelect():
+        ThisProperty:
+            Default: =false
+    cmpHeaderHeight: =88
+    Fill: =RGBA(0, 0, 0, 0)
+    HeaderTitle: ="Text"
+    Height: =Self.cmpHeaderHeight
+    HideShowLangDD: =true
+    LangDDPosition: =IconLangShow.X
+    LanguageDDOutputState: =true
+    showHelpIcon: =true
+    ShowLangDD: =Self.LanguageDDOutputState
+    showSearchBox: =true
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    rectHeader As rectangle:
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(16, 6, 159, 1)
+        Height: =Parent.Height
+        Width: =Parent.Width
+        Y: =0.00
+        ZIndex: =1
+
+    imgHeader As image:
+        Height: =Parent.Height - 10
+        Image: ='logo-raspberry-pi-open-source-svgrepo-com'
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        Width: =33
+        X: =40
+        Y: =(Parent.cmpHeaderHeight - Self.Height) / 2
+        ZIndex: =2
+
+    lblHeader As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Font: ="RR Pioneer Medium"
+        Height: =Parent.Height
+        PaddingLeft: =18
+        Size: =15
+        Text: =Parent.HeaderTitle
+        Width: =Parent.Width/3
+        X: =imgHeader.X+imgHeader.Width
+        Y: =0.00
+        ZIndex: =3
+
+    lblUserName As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Font: ="RR Pioneer Regular, Open Sans"
+        Height: =Parent.Height
+        Size: =10
+        Text: =User().FullName
+        Visible: =false
+        Width: =If((Len(Self.Text))*10<100,100,(Len(Self.Text)*10))
+        X: =btnUserName.X+btnUserName.Width
+        Y: =0.00
+        ZIndex: =4
+
+    btnUserName As button:
+        Color: |-
+            =ColorValue("#1C1E22")
+        DisplayMode: =DisplayMode.View
+        Fill: |-
+            =ColorValue("#00E6E3")
+        Font: ="RR Pioneer Medium"
+        FontWeight: =FontWeight.Normal
+        Height: =32
+        PaddingBottom: =2
+        PaddingLeft: =2
+        PaddingRight: =2
+        PaddingTop: =2
+        RadiusBottomLeft: =50
+        RadiusBottomRight: =50
+        RadiusTopLeft: =50
+        RadiusTopRight: =50
+        Size: =10
+        Text: |-
+            =Concatenate(
+                Left(
+                    Office365Users.UserProfileV2(User().Email).givenName,
+                    1
+                ),
+                Left(
+                    Office365Users.UserProfileV2(User().Email).surname,
+                    1
+                )
+            )
+        Visible: =true//!Office365Users.UserPhotoMetadata(User().Email).HasPhoto
+        Width: =32
+        X: =If(imgHelp.Visible,Parent.Width * .85,Parent.Width - Self.Width - 80)
+        Y: =Parent.Height/3.5
+        ZIndex: =5
+
+    IconLangShow As icon.ChevronDown:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =24
+        Icon: =If(Parent.ShowLangDD, Icon.ChevronUp,Icon.ChevronDown)
+        OnSelect: =Parent.eventLangDDOnSelect()
+        PaddingBottom: =0.00
+        PaddingLeft: =5
+        PaddingTop: =9
+        Tooltip: ="Select Language"
+        Visible: =Parent.HideShowLangDD
+        Width: =24
+        X: =btnUserName.X+btnUserName.Width + 12
+        Y: =Parent.Height/3.5
+        ZIndex: =6
+
+    lblLangValue As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =1136.00
+        PaddingBottom: =64.55
+        PaddingLeft: =64.55
+        Size: =167.82
+        Text: =//If(varbrowserLang = "de", "DE", "EN")
+        Visible: =false
+        Width: =40
+        X: =lblUserName.X+lblUserName.Width
+        Y: =0.00
+        ZIndex: =7
+
+    imgUser As image:
+        Height: =32
+        Image: =Office365Users.UserPhotoV2(User().Email)
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        RadiusBottomLeft: =50
+        RadiusBottomRight: =50
+        RadiusTopLeft: =50
+        RadiusTopRight: =50
+        Visible: =false//Office365Users.UserPhotoMetadata(User().Email).HasPhoto
+        Width: =32
+        X: =700
+        Y: =324.57
+        ZIndex: =8
+
+    txtSearchBox As text:
+        BorderColor: |-
+            =ColorValue("#8A98AB")
+        Color: |-
+            =ColorValue("#1C1E22")
+        Default: =
+        DisabledBorderColor: =Self.BorderColor
+        DisabledColor: =Self.Color
+        DisabledFill: =
+        Fill: |-
+            =ColorValue("#FFFFFF")
+        FocusedBorderThickness: =Self.BorderThickness
+        Font: ="RR Pioneer"
+        Height: =32
+        HintText: ="Search..."
+        HoverBorderColor: =Self.BorderColor
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        PaddingBottom: =12
+        PaddingLeft: =24 + imgSearch.Width
+        PaddingRight: =12
+        PaddingTop: =12
+        PressedBorderColor: =Self.BorderColor
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Size: =11
+        Visible: =Parent.showSearchBox
+        Width: =304
+        X: =Parent.Width/2.5
+        Y: =Parent.Height/3.5
+        ZIndex: =9
+
+    imgSearch As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        Height: =24
+        Image: ='search-svgrepo-com (1)'
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        Visible: =Parent.showSearchBox
+        Width: =24
+        X: =txtSearchBox.X + 12
+        Y: =txtSearchBox.Y + 4
+        ZIndex: =10
+
+    imgHelp As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        Height: =24
+        Image: ='question-mark-svgrepo-com (1)'
+        PaddingBottom: =0.00
+        PaddingLeft: =4
+        PaddingTop: =4
+        Visible: =Parent.showHelpIcon
+        Width: =24 
+        X: =IconLangShow.X+IconLangShow.Width*2
+        Y: =txtSearchBox.Y + 2
+        ZIndex: =11
+
+    Image4 As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        Height: =24
+        Image: ='apple-svgrepo-com (1)'
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        Visible: =Parent.showHelpIcon
+        Width: =24
+        X: =btnUserName.X - Self.Width*2
+        Y: =txtSearchBox.Y + 2
+        ZIndex: =12
+
+    Image4_1 As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        Height: =24
+        Image: ='apple-svgrepo-com (1)'
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        Visible: =Parent.showHelpIcon
+        Width: =24
+        X: =Image4.X - Self.Width*2
+        Y: =txtSearchBox.Y + 2
+        ZIndex: =13
+
+    Image4_2 As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        Height: =24
+        Image: ='apple-svgrepo-com (1)'
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        Visible: =Parent.showHelpIcon
+        Width: =24
+        X: =Image4_1.X - Self.Width*2
+        Y: =txtSearchBox.Y + 2
+        ZIndex: =14
+

@@ -1,0 +1,258 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+#
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+#
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  PackScreen:
+    Properties:
+      Fill: =ColorValue("#101C25")
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - PackBack:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =ColorValue("#F5F1E8")
+            Fill: =ColorValue("#1D303C")
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Height: =44
+            OnSelect: =Navigate(BinderScreen, ScreenTransition.None)
+            Text: ="← Binder"
+            Width: =180
+            X: =38
+            Y: =24
+      - PackTitle:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#F5F1E8")
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Bold
+            Height: =58
+            OnSelect: =
+            Size: =28
+            Text: ="A little wonder, three times."
+            Width: =750
+            X: =250
+            Y: =20
+      - PackKicker:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#EACB88")
+            Font: =Font.Lato
+            Height: =30
+            OnSelect: =
+            Text: ="FREE PACKS  ·  THREE CARDS  ·  NO LIMITS"
+            Width: =1250
+            X: =38
+            Y: =88
+      - PackOdds:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#F5F1E8")
+            Font: =Font.Lato
+            Height: =34
+            OnSelect: =
+            Size: =14
+            Text: |-
+              ="Per-card odds: Common 60%  ·  Uncommon 25%  ·  Rare 12%  ·  Legendary 3%"
+            Width: =1270
+            X: =38
+            Y: =126
+      - GeneratePack:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorValue("#EACB88")
+            Color: =ColorValue("#F5F1E8")
+            DisplayMode: =If(Coalesce(varPackBusy, false) || (!IsEmpty(colPack) && CountIf(colPack, !Revealed) > 0), DisplayMode.Disabled, DisplayMode.Edit)
+            Fill: =ColorValue("#1D303C")
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Font: =Font.Lato
+            Height: =44
+            OnSelect: |-
+              =If(!Coalesce(varPackBusy, false) && (IsEmpty(colPack) || CountIf(colPack, !Revealed) = 0), Set(varPackBusy, true); ClearCollect(colPackDraws, ForAll(Sequence(3) As slot, With({rarityRoll: Rand()}, With({drawRarity: If(rarityRoll < 0.60, "Common", rarityRoll < 0.85, "Uncommon", rarityRoll < 0.97, "Rare", "Legendary")}, With({choices: Filter(colCards, Rarity = drawRarity)}, {Slot: slot.Value, Card: Index(choices, RandBetween(1, CountRows(choices)))}))))); ClearCollect(colPack, ForAll(colPackDraws As draw, {Slot: draw.Slot, Card: draw.Card, Revealed: false, IsNew: !(draw.Card.Id in colOwned.Id) && IsEmpty(Filter(colPackDraws, Slot < draw.Slot && Card.Id = draw.Card.Id))})); Collect(colOwned, RenameColumns(Filter(Distinct(colPack, Card.Id), !(Value in colOwned.Id)), Value, Id)); IfError(SaveData(colOwned, "MoonfieldOwnedV1"), Set(varStorageWarning, true), Set(varStorageWarning, false)); Set(varPackBusy, false))
+            Size: =16
+            Text: =If(IsEmpty(colPack), "Open free pack", "Open next pack")
+            Width: =288
+            X: =1040
+            Y: =160
+      - PackSummary:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#F5F1E8")
+            Font: =Font.Lato
+            Height: =34
+            Live: =Live.Polite
+            OnSelect: =
+            Size: =15
+            Text: =If(IsEmpty(colPack), "Open a pack to discover three cards.", CountIf(colPack, Revealed) & " / 3 revealed  ·  " & CountRows(Distinct(colOwned, Id)) & " / 12 collected")
+            Width: =960
+            X: =38
+            Y: =169
+      - PackGallery:
+          Control: Gallery@2.15.0
+          Variant: Vertical
+          Properties:
+            AccessibleLabel: ="Three-card pack. Reveal each card in order or choose any card."
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Height: =415
+            Items: =Sort(colPack, Slot)
+            OnSelect: =
+            TabIndex: =0
+            TemplatePadding: =8
+            TemplateSize: =405
+            Width: =1310
+            WrapCount: =3
+            X: =28
+            Y: =215
+          Children:
+            - PackFrame:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorValue("#EACB88")
+                  Color: =ColorValue("#F5F1E8")
+                  DisabledBorderColor: =If(ThisItem.Revealed, Switch(ThisItem.Card.Rarity, "Legendary", ColorValue("#EACB88"), "Rare", ColorValue("#BBA7EA"), "Uncommon", ColorValue("#8ECFB4"), ColorValue("#AFC3CC")), ColorValue("#EACB88"))
+                  DisabledFill: =ColorValue("#1D303C")
+                  DisplayMode: =DisplayMode.Disabled
+                  Fill: =ColorValue("#1D303C")
+                  FocusedBorderColor: =ColorValue("#EACB88")
+                  FocusedBorderThickness: =3
+                  Font: =Font.Lato
+                  Height: =400
+                  OnSelect: =
+                  Text: =""
+                  Width: =Parent.TemplateWidth - 10
+                  X: =5
+            - PackArt:
+                Control: Image@2.2.3
+                Properties:
+                  AccessibleLabel: =ThisItem.Card.Name & ", original fictional illustration"
+                  Height: =212
+                  Image: ="data:image/svg+xml;utf8," & EncodeUrl(ThisItem.Card.Art)
+                  OnSelect: =
+                  Visible: =ThisItem.Revealed
+                  Width: =Parent.TemplateWidth - 40
+                  X: =20
+                  Y: =12
+            - PackRarity:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =ColorValue("#F5F1E8")
+                  Font: =Font.Lato
+                  Height: =26
+                  OnSelect: =
+                  Size: =12
+                  Text: =ThisItem.Card.Id & "  /  " & Upper(ThisItem.Card.Rarity)
+                  Visible: =ThisItem.Revealed
+                  Width: =Parent.TemplateWidth - 40
+                  X: =20
+                  Y: =230
+            - PackName:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =ColorValue("#F5F1E8")
+                  Font: =Font.Lato
+                  FontWeight: =FontWeight.Bold
+                  Height: =44
+                  OnSelect: =
+                  Size: =20
+                  Text: =ThisItem.Card.Name
+                  Visible: =ThisItem.Revealed
+                  Width: =Parent.TemplateWidth - 40
+                  X: =20
+                  Y: =260
+            - PackOutcome:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =If(ThisItem.IsNew, ColorValue("#8ECFB4"), ColorValue("#B7C8CC"))
+                  Font: =Font.Lato
+                  Live: =Live.Polite
+                  OnSelect: =
+                  Size: =12
+                  Text: =If(ThisItem.IsNew, "NEW · Added to your binder", "ALREADY OWNED · Completion unchanged")
+                  Visible: =ThisItem.Revealed
+                  Width: =Parent.TemplateWidth - 40
+                  X: =20
+                  Y: =308
+            - PackDetails:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorValue("#EACB88")
+                  Color: =ColorValue("#F5F1E8")
+                  Fill: =ColorValue("#1D303C")
+                  FocusedBorderColor: =ColorValue("#EACB88")
+                  FocusedBorderThickness: =3
+                  Font: =Font.Lato
+                  OnSelect: =Set(varCard, ThisItem.Card); Navigate(DetailScreen, ScreenTransition.Fade)
+                  Size: =13
+                  Text: ="Card details"
+                  Tooltip: ="Read " & ThisItem.Card.Name & " details"
+                  Visible: =ThisItem.Revealed
+                  Width: =Parent.TemplateWidth - 40
+                  X: =20
+                  Y: =350
+            - RevealCard:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorValue("#EACB88")
+                  Color: =ColorValue("#F5F1E8")
+                  Fill: =ColorValue("#1D303C")
+                  FocusedBorderColor: =ColorValue("#EACB88")
+                  FocusedBorderThickness: =3
+                  Font: =Font.Lato
+                  Height: =400
+                  OnSelect: |-
+                    =If(!ThisItem.Revealed, Patch(colPack, ThisItem, {Revealed: true}))
+                  Size: =22
+                  Text: ="✦" & Char(10) & "REVEAL CARD " & ThisItem.Slot
+                  Tooltip: ="Reveal card " & ThisItem.Slot & ". Ownership was awarded when the pack opened."
+                  Visible: =!ThisItem.Revealed
+                  Width: =Parent.TemplateWidth - 10
+                  X: =5
+      - PackRules:
+          Control: Label@2.5.1
+          Properties:
+            Color: =ColorValue("#B7C8CC")
+            Font: =Font.Lato
+            Height: =56
+            OnSelect: =
+            Size: =12
+            Text: ="Cards are awarded before reveal. Each slot rolls independently; duplicates are possible." & Char(10) & "Rarity is chosen first, then a card uniformly within that rarity. Duplicates never increase completion."
+            Width: =1285
+            X: =38
+            Y: =638
+      - PackSaveStatus:
+          Control: Label@2.5.1
+          Properties:
+            Color: =If(varStorageWarning, ColorValue("#FFB8A8"), ColorValue("#B7C8CC"))
+            Font: =Font.Lato
+            Height: =54
+            Live: =Live.Polite
+            OnSelect: =
+            Size: =12
+            Text: =If(varStorageWarning, "NOT SAVED · Session only. Keep this app open and retry saving; closing can lose your cards.", If(IsEmpty(colPack), "Your existing binder stays with you. Free packs have no purchases or currency.", "Saved on this device. You can leave mid-reveal; awarded cards stay in your binder."))
+            Width: =1020
+            X: =38
+            Y: =700
+      - RetryPackSave:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorValue("#EACB88")
+            Color: =ColorValue("#F5F1E8")
+            Fill: =ColorValue("#1D303C")
+            FocusedBorderColor: =ColorValue("#EACB88")
+            FocusedBorderThickness: =3
+            Font: =Font.Lato
+            Height: =44
+            OnSelect: =IfError(SaveData(colOwned, "MoonfieldOwnedV1"), Set(varStorageWarning, true), Set(varStorageWarning, false))
+            Size: =14
+            Text: ="Retry saving"
+            Visible: =varStorageWarning
+            Width: =238
+            X: =1090
+            Y: =702

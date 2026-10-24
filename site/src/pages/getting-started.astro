@@ -1,0 +1,30 @@
+---
+import { ArrowRight, BookOpen, Boxes, Terminal } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CallRibbon from '../components/CallRibbon.astro';
+import { sitePath } from '../lib/catalog';
+import { communityLinks } from '../lib/community';
+---
+<BaseLayout title="Getting started" description="Take your first Power Platform sample from inspiration to a working app, automation, or agent.">
+  <PageHero eyebrow="A little guidance. A lot of possibility." title="Your next idea starts here." description="You don't have to start from a blank canvas. Find a sample, understand how it works, and make it your own." portrait={3}><a class="button button--primary" href={sitePath('/#sample-catalog')}>Find a sample <ArrowRight size={17} /></a></PageHero>
+  <section class="content-section content-section--soft"><ol class="container steps-grid">
+    <li><h2>Find your starting point.</h2><p>Choose a product or a scenario that sparks an idea. Open the sample to see screenshots, authors, and the complete setup guide.</p></li>
+    <li><h2>Check the essentials.</h2><p>Read prerequisites, licensing, required connectors, permissions, and environment requirements. Premium services can have separate costs.</p></li>
+    <li><h2>Try it. Then make it yours.</h2><p>Follow the sample README to import its solution or build from source. Use a development environment and verify connections before running it.</p></li>
+  </ol></section>
+  <section class="container content-section">
+    <div class="section-heading"><div><p class="eyebrow">Choose the path that fits</p><h2>From sample to solution.</h2></div></div>
+    <div class="resource-grid">
+      <article class="resource-card"><Boxes size={29} /><h3>Import a solution</h3><p>When the sample includes a solution ZIP, download it and follow its import instructions. Review connection references, environment variables, and required data before using the app or flow.</p><a class="text-link" href="https://learn.microsoft.com/power-apps/maker/data-platform/import-update-export-solutions">Understand solution imports <ArrowRight size={16} /></a></article>
+      <article class="resource-card"><Terminal size={29} /><h3>Work with the source</h3><p>Clone or download a sample to explore the implementation. Power Platform CLI can pack unpacked solutions. Components and other sample types may use different build tools; follow their own README.</p><a class="text-link" href="https://learn.microsoft.com/power-platform/developer/cli/introduction">Explore Power Platform CLI <ArrowRight size={16} /></a></article>
+      <article class="resource-card"><BookOpen size={29} /><h3>Build your understanding</h3><p>Use official documentation alongside community examples. Start small, inspect what the sample changes, and keep secrets and production data out of shared solutions.</p><a class="text-link" href="https://learn.microsoft.com/power-platform/">Power Platform documentation <ArrowRight size={16} /></a></article>
+    </div>
+  </section>
+  <section class="container content-section two-columns">
+    <div><p class="eyebrow">Make room to experiment</p><h2>A safe place to learn.</h2><p>Use an appropriate development or test environment. Importing a sample doesn't replace your organization's security, data loss prevention, licensing, or application lifecycle policies.</p><a class="text-link" href="https://learn.microsoft.com/power-platform/developer/plan">Explore the developer plan <ArrowRight size={16} /></a></div>
+    <div><p class="eyebrow">Good to know</p><h2>Every sample is different.</h2><p>The sample README is the authoritative guide. Not all samples have a solution ZIP, use Dataverse, or need the same Power Platform products. Community samples are provided as is, not as supported production products.</p><a class="text-link" href={sitePath('/community/')}>Learn with the community <ArrowRight size={16} /></a></div>
+  </section>
+  <section class="container content-section content-narrow"><p class="eyebrow">Need a hand?</p><h2>Start a conversation.</h2><p>For product and how-to questions, the <a href={communityLinks.forums}>Power Platform Community forums</a> are our primary discussion space. For a reproducible problem with a specific repository sample, <a href="https://github.com/pnp/powerplatform-samples/issues/new/choose">report a sample issue on GitHub</a>.</p><a class="text-link" href={sitePath('/community/')}>Find calls, demos, and video recordings <ArrowRight size={16} /></a></section>
+  <CallRibbon />
+</BaseLayout>

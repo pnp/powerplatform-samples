@@ -1,0 +1,648 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline": {
+        "api": {
+          "name": "shared_sharepointonline"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "wjw_sharedsharepointonline_c41d4"
+        },
+        "runtimeSource": "invoker"
+      },
+      "shared_teams": {
+        "api": {
+          "name": "shared_teams"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "wjw_sharedteams_05c52"
+        },
+        "runtimeSource": "invoker"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "description": "Set Site Address and List to refer to the TARGET list",
+          "kind": "ApiConnection",
+          "inputs": {
+            "operationId": "GetItemHybridTriggerSchema",
+            "parameters": {
+              "dataset": "https://wjwdev.sharepoint.com/sites/test",
+              "table": "86cbe7cf-4675-4c0b-b05d-9f820497f12c"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "rows": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "entity": {
+                        "properties": {},
+                        "type": "object",
+                        "required": []
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "rows"
+              ]
+            },
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['shared_sharepointonline']['connectionId']"
+              }
+            }
+          },
+          "splitOn": "@triggerBody()['rows']"
+        }
+      },
+      "actions": {
+        "Scope_|_Copy_List_Item": {
+          "type": "Scope",
+          "actions": {
+            "Parse_JSON_|_Constants": {
+              "type": "ParseJson",
+              "inputs": {
+                "content": {
+                  "targetSiteUrl": "@{toLower(\r\n  if(\r\n    endsWith(\r\n      trigger()['inputs/parameters/dataset'],\r\n      '/'\r\n    ),\r\n    substring(\r\n      trigger()['inputs/parameters/dataset'],\r\n      0,\r\n      sub(\r\n        length(\r\n          trigger()['inputs/parameters/dataset']\r\n        ),\r\n        1\r\n      )\r\n    ),\r\n    trigger()['inputs/parameters/dataset']\r\n  )\r\n)}",
+                  "targetListId": "@{trigger()['inputs/parameters/table']}",
+                  "sourceSiteUrl": "@{split(\r\n  triggerBody()['entity/itemUrl'],\r\n  '/_layouts'\r\n)[0]}",
+                  "sourceListId": "@{split(\r\n  split(\r\n    triggerBody()['entity/itemUrl'],\r\n    'ListId=%7B'\r\n  )[1],\r\n  '%7D'\r\n)[0]}",
+                  "sourceItemId": "@triggerBody()['entity/ID']",
+                  "rootSiteUrl": "@{concat(\r\n  toLower(\r\n    split(\r\n      trigger()['inputs/parameters/dataset'],\r\n      'sharepoint.com'\r\n    )[0]\r\n  ),\r\n  'sharepoint.com'\r\n)}",
+                  "rootSiteUrlNoScheme": "@{concat(\r\n  toLower(\r\n    split(\r\n      split(\r\n        trigger()['inputs/parameters/dataset'],\r\n        'sharepoint.com'\r\n      )[0],\r\n      'https://'\r\n    )[1]\r\n  ),\r\n  'sharepoint.com'\r\n)}"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "targetSiteUrl": {
+                      "type": "string"
+                    },
+                    "targetListId": {
+                      "type": "string"
+                    },
+                    "sourceSiteUrl": {
+                      "type": "string"
+                    },
+                    "sourceListId": {
+                      "type": "string"
+                    },
+                    "sourceItemId": {
+                      "type": "integer"
+                    },
+                    "rootSiteUrl": {
+                      "type": "string"
+                    },
+                    "rootSiteUrlNoScheme": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "f5b39622-fedc-4306-a20b-e49b466d44af"
+              }
+            },
+            "Send_an_HTTP_request_to_SharePoint_|_Target_Site_Details": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@body('Parse_JSON_|_Constants')?['rootSiteUrl']",
+                  "parameters/method": "GET",
+                  "parameters/uri": "_api/v2.1/sites/@{if(\r\n  equals(\r\n    body('Parse_JSON_|_Constants')['rootSiteUrl'],\r\n    body('Parse_JSON_|_Constants')['targetSiteUrl']\r\n  ),\r\n  body('Parse_JSON_|_Constants')['rootSiteUrlNoScheme'],\r\n  concat(\r\n    body('Parse_JSON_|_Constants')['rootSiteUrlNoScheme'],\r\n    replace(\r\n      body('Parse_JSON_|_Constants')['targetSiteUrl'],\r\n      body('Parse_JSON_|_Constants')['rootSiteUrl'],\r\n      ':'\r\n    )\r\n  )\r\n)}"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "HttpRequest",
+                  "connectionName": "shared_sharepointonline"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Parse_JSON_|_Constants": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ad30a099-1fee-42b3-a187-1b5b4adb24df"
+              }
+            },
+            "Send_an_HTTP_request_to_SharePoint_|_List_Data": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@body('Parse_JSON_|_Constants')?['sourceSiteUrl']",
+                  "parameters/method": "POST",
+                  "parameters/uri": "_api/web/lists('@{body('Parse_JSON_|_Constants')?['sourceListId']}')/RenderListDataAsStream",
+                  "parameters/body": "{\n  \"parameters\": {\n    \"AddRequiredFields\": \"true\",\n    \"DatesInUtc\": \"true\",\n    \"ViewXml\": \"<View><Query><Where><Eq><FieldRef Name='ID'/><Value Type='Number'>@{body('Parse_JSON_|_Constants')?['sourceItemId']}</Value></Eq></Where></Query></View>\",\n    \"RenderOptions\": 2\n  }\n}"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "HttpRequest",
+                  "connectionName": "shared_sharepointonline"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Parse_JSON_|_Constants": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "1ec46d3b-38bf-45ef-bc5f-f4f5badbd866"
+              }
+            },
+            "Send_an_HTTP_request_to_SharePoint_|_Target_Site_Settings": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@body('Parse_JSON_|_Constants')?['rootSiteUrl']",
+                  "parameters/method": "GET",
+                  "parameters/uri": "_api/v2.1/sites/@{body('Send_an_HTTP_request_to_SharePoint_|_Target_Site_Details')['id']}/settings"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "HttpRequest",
+                  "connectionName": "shared_sharepointonline"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Send_an_HTTP_request_to_SharePoint_|_Target_Site_Details": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ad30a099-1fee-42b3-a187-1b5b4adb24df"
+              }
+            },
+            "Send_an_HTTP_request_to_SharePoint_|_Target_List_Schema": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@body('Parse_JSON_|_Constants')?['targetSiteUrl']",
+                  "parameters/method": "POST",
+                  "parameters/uri": "_api/web/lists('@{body('Parse_JSON_|_Constants')?['targetListId']}')/RenderListDataAsStream",
+                  "parameters/body": "{\n  \"parameters\": {\n    \"AddRequiredFields\": \"true\",\n    \"DatesInUtc\": \"true\",\n    \"ViewXml\": \"<View></View>\",\n    \"RenderOptions\": 64\n  }\n}"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "HttpRequest",
+                  "connectionName": "shared_sharepointonline"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Parse_JSON_|_Constants": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5140904f-4b4c-4e82-9f75-7499204f4f9b"
+              }
+            },
+            "Filter_|_Compatible_Target_Fields": {
+              "type": "Query",
+              "inputs": {
+                "from": "@union(body('Send_an_HTTP_request_to_SharePoint_|_Target_List_Schema')['ClientForms/New/Item'],json('[{\"InternalName\":\"Modified\",\"FieldType\":\"DateTime\"},{\"InternalName\":\"Created\",\"FieldType\":\"DateTime\"},{\"InternalName\":\"Editor\",\"FieldType\":\"User\"},{\"InternalName\":\"Author\",\"FieldType\":\"User\"}]'))",
+                "where": "@and( \r\n  contains(\r\n    json('[\"Text\",\"Note\",\"Choice\",\"MultiChoice\",\"DateTime\",\"User\",\"UserMulti\",\"Number\",\"Boolean\",\"URL\",\"Location\",\"TaxonomyFieldType\",  \"TaxonomyFieldTypeMulti\",\"Lookup\",\"LookupMulti\",\"Currency\",\"Thumbnail\"]'),\r\n    item()['FieldType']\r\n  ),\r\n  contains(\r\n    body('Select_|_Source_field_names_and_types'),\r\n    addProperty(\r\n      addProperty(\r\n        json('{}'),\r\n        'InternalName',\r\n        item()['InternalName']\r\n      ),\r\n      'FieldType',\r\n      item()['FieldType']\r\n    )\r\n  )\r\n)"
+              },
+              "runAfter": {
+                "Select_|_Source_field_names_and_types": [
+                  "Succeeded"
+                ],
+                "Send_an_HTTP_request_to_SharePoint_|_Target_List_Schema": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a8dab451-f91f-4ba8-bab6-cf859aaf3807"
+              }
+            },
+            "Send_an_HTTP_request_to_SharePoint_|_Source_List_Schema": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@body('Parse_JSON_|_Constants')?['sourceSiteUrl']",
+                  "parameters/method": "POST",
+                  "parameters/uri": "_api/web/lists('@{body('Parse_JSON_|_Constants')?['sourceListId']}')/RenderListDataAsStream",
+                  "parameters/body": "{\n  \"parameters\": {\n    \"AddRequiredFields\": \"true\",\n    \"DatesInUtc\": \"true\",\n    \"ViewXml\": \"<View></View>\",\n    \"RenderOptions\": 64\n  }\n}"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "HttpRequest",
+                  "connectionName": "shared_sharepointonline"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Parse_JSON_|_Constants": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5140904f-4b4c-4e82-9f75-7499204f4f9b"
+              }
+            },
+            "Get_item": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@body('Parse_JSON_|_Constants')?['sourceSiteUrl']",
+                  "table": "@body('Parse_JSON_|_Constants')?['sourceListId']",
+                  "id": "@body('Parse_JSON_|_Constants')?['sourceItemId']"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "GetItem",
+                  "connectionName": "shared_sharepointonline"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Parse_JSON_|_Constants": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Select_|_Source_field_names_and_types": {
+              "type": "Select",
+              "inputs": {
+                "from": "@union(\r\n  body('Send_an_HTTP_request_to_SharePoint_|_Source_List_Schema')['ClientForms/New/Item'],\r\n  json(\r\n    if(\r\n      outputs('Compose_|_Has_Manage_Permissions'),\r\n      '[{\"InternalName\":\"Modified\",\"FieldType\":\"DateTime\"},{\"InternalName\":\"Created\",\"FieldType\":\"DateTime\"},{\"InternalName\":\"Editor\",\"FieldType\":\"User\"},{\"InternalName\":\"Author\",\"FieldType\":\"User\"}]',\r\n      '[]'\r\n    )\r\n  )\r\n)",
+                "select": {
+                  "InternalName": "@item()['InternalName']",
+                  "FieldType": "@item()['FieldType']"
+                }
+              },
+              "runAfter": {
+                "Send_an_HTTP_request_to_SharePoint_|_Source_List_Schema": [
+                  "Succeeded"
+                ],
+                "Compose_|_Has_Manage_Permissions": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Send_an_HTTP_request_to_SharePoint_|_AddValidateUpdateItemUsingPath": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@body('Parse_JSON_|_Constants')?['targetSiteUrl']",
+                  "parameters/method": "POST",
+                  "parameters/uri": "_api/web/lists('@{body('Parse_JSON_|_Constants')?['targetListId']}')/AddValidateUpdateItemUsingPath()",
+                  "parameters/headers": {
+                    "Accept": "application/json; odata=nometadata",
+                    "Content-Type": "application/json; odata=nometadata"
+                  },
+                  "parameters/body": "@addProperty(\r\n  json('{\"bNewDocumentUpdate\": true}'),\r\n  'formValues',\r\n  body('Select_|_Field_Values')\r\n)"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "HttpRequest",
+                  "connectionName": "shared_sharepointonline"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Select_|_Field_Values": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5140904f-4b4c-4e82-9f75-7499204f4f9b"
+              }
+            },
+            "Compose_|_Throw_if_exception_on_AddValidateUpdateItemUsingPath": {
+              "type": "Compose",
+              "inputs": "@if(\r\n  greater(\r\n    length(\r\n      xpath(\r\n        xml(\r\n          addProperty(\r\n            json('{}'),\r\n            'root',\r\n            addProperty(\r\n              json('{}'),\r\n              'value',\r\n              body('Send_an_HTTP_request_to_SharePoint_|_AddValidateUpdateItemUsingPath')['value']\r\n            )\r\n          )\r\n        ),\r\n        '//value[HasException=''true'']' \r\n      )\r\n    ),\r\n  0),\r\n  json('throw'),\r\n  'OK'\r\n)",
+              "runAfter": {
+                "Send_an_HTTP_request_to_SharePoint_|_AddValidateUpdateItemUsingPath": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Select_|_Field_Values": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Filter_|_Compatible_Target_Fields')",
+                "select": "@addProperty(\r\n  json(concat('{\"FieldName\":\"',item()['InternalName'],'\"}')),\r\n  'FieldValue',\r\n  if(\r\n    equals('',first(body('Send_an_HTTP_request_to_SharePoint_|_List_Data')['Row'])[item()['InternalName']]),\r\n    '',\r\n    if(\r\n      contains(json('[\"Text\",\"Note\",\"Choice\",\"Number\",\"Location\",\"Currency\",\"Thumbnail\"]'),item()['FieldType']),\r\n      string(first(body('Send_an_HTTP_request_to_SharePoint_|_List_Data')['Row'])[item()['InternalName']]),\r\n      if(\r\n        equals('MultiChoice',item()['FieldType']),\r\n        join(first(body('Send_an_HTTP_request_to_SharePoint_|_List_Data')['Row'])[item()['InternalName']],';#'),\r\n        if(\r\n          equals('DateTime',item()['FieldType']),\r\n          addMinutes(first(body('Send_an_HTTP_request_to_SharePoint_|_List_Data')['Row'])[item()['InternalName']],mul(body('Send_an_HTTP_request_to_SharePoint_|_Target_Site_Settings')['timeZoneBias'],-1),'yyyy-MM-dd HH:mm:ss'),\r\n          if(\r\n            equals('User',item()['FieldType']),\r\n            concat('[{''Key'':''',body('Get_item')[item()['InternalName']]['Claims'],'''}]'),\r\n            if(\r\n              equals('UserMulti',item()['FieldType']),\r\n              concat('[{\"Key\":\"',join(body('Get_item')[concat(item()['InternalName'],'#Claims')],'\"},{\"Key\":\"'),'\"}]'),\r\n              if(\r\n                equals('Boolean',item()['FieldType']),\r\n                string(body('Get_item')[item()['InternalName']]),\r\n                if(\r\n                  equals('URL',item()['FieldType']),\r\n                  concat(\r\n                    first(body('Send_an_HTTP_request_to_SharePoint_|_List_Data')['Row'])[item()['InternalName']],\r\n                    if(\r\n                      equals(first(body('Send_an_HTTP_request_to_SharePoint_|_List_Data')['Row'])[concat(item()['InternalName'],'.desc')],''),\r\n                      '',\r\n                      concat(', ',first(body('Send_an_HTTP_request_to_SharePoint_|_List_Data')['Row'])[concat(item()['InternalName'],'.desc')])\r\n                    )\r\n                  ),\r\n                  if(\r\n                    contains(json('[\"TaxonomyFieldType\",\"TaxonomyFieldTypeMulti\"]'),item()['FieldType']),\r\n                    first(\r\n                      xpath(\r\n                        xml(\r\n                          addProperty(\r\n                            json('{}'),\r\n                            'root',\r\n                            body('Send_an_HTTP_request_to_SharePoint_|_List_Data')\r\n                          )\r\n                        ),\r\n                        concat(\r\n                          '//Row/',\r\n                          EncodeXmlName(item()['InternalName']),\r\n                          './following-sibling::*[position()=1]/text()'\r\n                        )\r\n                      )\r\n                    ),\r\n                    if(\r\n                      contains(json('[\"Lookup\",\"LookupMulti\"]'),item()['FieldType']),\r\n                      first(body('Send_an_HTTP_request_to_SharePoint_|_List_Data')['Row'])[concat(item()['InternalName'],'.')],\r\n                      ''\r\n                    )\r\n                  )\r\n                )\r\n              )\r\n            )\r\n          )\r\n        )\r\n      )\r\n    )\r\n  )\r\n)"
+              },
+              "runAfter": {
+                "Filter_|_Compatible_Target_Fields": [
+                  "Succeeded"
+                ],
+                "Send_an_HTTP_request_to_SharePoint_|_Target_Site_Settings": [
+                  "Succeeded"
+                ],
+                "Get_item": [
+                  "Succeeded"
+                ],
+                "Send_an_HTTP_request_to_SharePoint_|_List_Data": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Compose_|_New_Item_ID": {
+              "type": "Compose",
+              "inputs": "@int(\r\n  first(\r\n    xpath(\r\n      xml(\r\n        addProperty(\r\n          json('{}'),\r\n          'root',\r\n          addProperty(\r\n            json('{}'),\r\n            'value',\r\n            body('Send_an_HTTP_request_to_SharePoint_|_AddValidateUpdateItemUsingPath')['value']\r\n          )\r\n        )\r\n      ),\r\n      '//value[FieldName=''Id'']/FieldValue/text()'\r\n    )\r\n  ) \r\n)",
+              "runAfter": {
+                "Compose_|_Throw_if_exception_on_AddValidateUpdateItemUsingPath": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Post_card_in_a_chat_or_channel_|_Error_notification": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "poster": "Flow bot",
+                  "location": "Chat with Flow bot",
+                  "body/recipient": "@triggerOutputs()['headers/x-ms-user-email']",
+                  "body/messageBody": "@concat(\r\n  '{\r\n    \"type\": \"AdaptiveCard\",\r\n    \"$schema\": \"https://adaptivecards.io/schemas/adaptive-card.json\",\r\n    \"version\": \"1.4\",\r\n    \"body\": [\r\n        {\r\n            \"type\": \"TextBlock\",\r\n            \"text\": \"⚠️ Error copying list item ⚠️\",\r\n            \"wrap\": true,\r\n            \"style\": \"heading\"\r\n        },\r\n        {\r\n            \"type\": \"TextBlock\",\r\n            \"text\": \"There was an error in the automation copying your list item.\\n\\n',\r\n              if(\r\n                equals(null,outputs('Compose_|_New_Item_ID')),\r\n                'Please see a link to the source item below.\\n\\n',\r\n                'A new item was created in the target list but there was an error copying the item''s attachment(s).\\n\\nPlease see a link to the source and new items below.\\n\\n'\r\n              ),\r\n              'You can also generate a draft email asking for support using the button below. The draft contains all the details the flow owner needs to understand the error.\",\r\n            \"wrap\": true\r\n        },\r\n        {\r\n            \"type\": \"ActionSet\",\r\n            \"actions\": [\r\n                {\r\n                    \"type\": \"Action.OpenUrl\",\r\n                    \"title\": \"Source Item\",\r\n                    \"url\": \"',\r\n                    triggerBody()['entity/itemUrl'],\r\n                    '\",\r\n                    \"iconUrl\": \"icon:Link\"\r\n                },',\r\n                if(\r\n                  equals(null,outputs('Compose_|_New_Item_ID')),\r\n                  '',\r\n                  concat(\r\n                    '{\r\n                    \"type\": \"Action.OpenUrl\",\r\n                    \"title\": \"New Item\",\r\n                    \"url\": \"',\r\n                    body('Parse_JSON_|_Constants')?['targetSiteUrl'],\r\n                    '/_layouts/15/listform.aspx?PageType=4&ListId=%7B',\r\n                    body('Parse_JSON_|_Constants')?['targetListId'],\r\n                    '%7D&ID=',\r\n                    outputs('Compose_|_New_Item_ID'),\r\n                    '\",\r\n                    \"iconUrl\": \"icon:Link\"\r\n                    },'\r\n                  )\r\n                ),\r\n                '{\r\n                    \"type\": \"Action.OpenUrl\",\r\n                    \"title\": \"Email for support\",\r\n                    \"url\": \"mailto:?subject=Report%3A%20Error%20copying%20list%20item%20using%20Power%20Automate%20Quick%20Step&body=I%20have%20encountered%20an%20error%20attempting%20to%20copy%20a%20list%20item%20using%20a%20Power%20Automate%20Quick%20Step.%0A%0APlease%20find%20a%20link%20to%20the%20failed%20flow%20run%20below%3A%0A',\r\n                    encodeUriComponent(\r\n                      concat(\r\n                        'https://make.powerautomate.com/environments/',\r\n                        workflow().tags.environmentName,\r\n                        '/flows/',\r\n                        workflow().name,\r\n                        '/runs/',\r\n                        workflow().run.name\r\n                      )\r\n                    ),\r\n                    '\",\r\n                    \"iconUrl\": \"icon:Bug\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n  }'\r\n)"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+                  "operationId": "PostCardToConversation",
+                  "connectionName": "shared_teams"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Condition_|_Modified_Date_Needs_Update": [
+                  "Skipped",
+                  "Failed"
+                ]
+              }
+            },
+            "Terminate": {
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "Copy Error",
+                  "message": "An unknown error occurred copying this list item."
+                }
+              },
+              "runAfter": {
+                "Post_card_in_a_chat_or_channel_|_Error_notification": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Get_attachments": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@body('Parse_JSON_|_Constants')?['sourceSiteUrl']",
+                  "table": "@body('Parse_JSON_|_Constants')?['sourceListId']",
+                  "itemId": "@body('Parse_JSON_|_Constants')?['sourceItemId']"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "GetItemAttachments",
+                  "connectionName": "shared_sharepointonline"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Compose_|_New_Item_ID": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Apply_to_each_|_Attachment": {
+              "type": "Foreach",
+              "foreach": "@body('Get_attachments')",
+              "actions": {
+                "Get_attachment_content": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "dataset": "@body('Parse_JSON_|_Constants')?['sourceSiteUrl']",
+                      "table": "@body('Parse_JSON_|_Constants')?['sourceListId']",
+                      "itemId": "@body('Parse_JSON_|_Constants')?['sourceItemId']",
+                      "attachmentId": "@items('Apply_to_each_|_Attachment')?['Id']"
+                    },
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                      "operationId": "GetAttachmentContent",
+                      "connectionName": "shared_sharepointonline"
+                    },
+                    "retryPolicy": {
+                      "type": "none"
+                    }
+                  }
+                },
+                "Add_attachment": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "dataset": "@body('Parse_JSON_|_Constants')?['targetSiteUrl']",
+                      "table": "@body('Parse_JSON_|_Constants')?['targetListId']",
+                      "itemId": "@outputs('Compose_|_New_Item_ID')",
+                      "displayName": "@items('Apply_to_each_|_Attachment')?['DisplayName']",
+                      "body": "@body('Get_attachment_content')"
+                    },
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                      "operationId": "CreateAttachment",
+                      "connectionName": "shared_sharepointonline"
+                    },
+                    "retryPolicy": {
+                      "type": "none"
+                    }
+                  },
+                  "runAfter": {
+                    "Get_attachment_content": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_attachments": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Send_an_HTTP_request_to_SharePoint_|_Get_Current_User_Login_Name": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@body('Parse_JSON_|_Constants')?['targetSiteUrl']",
+                  "parameters/method": "GET",
+                  "parameters/uri": "_api/web/currentuser/loginname",
+                  "parameters/headers": {
+                    "Accept": "application/json; odata=nometadata",
+                    "Content-Type": "application/json; odata=nometadata"
+                  }
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "HttpRequest",
+                  "connectionName": "shared_sharepointonline"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Parse_JSON_|_Constants": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5140904f-4b4c-4e82-9f75-7499204f4f9b"
+              }
+            },
+            "Send_an_HTTP_request_to_SharePoint_|_Get_Effective_List_Permissions": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "dataset": "@body('Parse_JSON_|_Constants')?['targetSiteUrl']",
+                  "parameters/method": "GET",
+                  "parameters/uri": "_api/web/lists('@{body('Parse_JSON_|_Constants')?['targetListId']}')/GetUserEffectivePermissions('@{encodeUriComponent(body('Send_an_HTTP_request_to_SharePoint_|_Get_Current_User_Login_Name')['value'])}')",
+                  "parameters/headers": {
+                    "Accept": "application/json; odata=nometadata",
+                    "Content-Type": "application/json; odata=nometadata"
+                  }
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "operationId": "HttpRequest",
+                  "connectionName": "shared_sharepointonline"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Send_an_HTTP_request_to_SharePoint_|_Get_Current_User_Login_Name": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5140904f-4b4c-4e82-9f75-7499204f4f9b"
+              }
+            },
+            "Compose_|_Has_Manage_Permissions": {
+              "type": "Compose",
+              "description": "\"Manage Permissions\" (permission level on list required to overwrite system columns) is bit 25 of the Low 32‑bit value. 33554432 = 2^25. Enumerate Permissions required to get effective permissions so previous action would fail without that.",
+              "inputs": "@if(\r\n  equals(null,body('Send_an_HTTP_request_to_SharePoint_|_Get_Effective_List_Permissions')?['Low']),\r\n  false,\r\n  equals(\r\n    mod(\r\n      div(\r\n        int(body('Send_an_HTTP_request_to_SharePoint_|_Get_Effective_List_Permissions')['Low']), 33554432\r\n      ),\r\n      2\r\n    ),\r\n    1\r\n  )\r\n)",
+              "runAfter": {
+                "Send_an_HTTP_request_to_SharePoint_|_Get_Effective_List_Permissions": [
+                  "Succeeded",
+                  "Failed"
+                ]
+              }
+            },
+            "Condition_|_Modified_Date_Needs_Update": {
+              "type": "If",
+              "description": "Adding attachments adds new versions of the list item which will update the modified date. If we were overwriting the modified date, overwrite it again.",
+              "expression": {
+                "and": [
+                  {
+                    "greater": [
+                      "@length(body('Get_attachments'))",
+                      0
+                    ]
+                  },
+                  {
+                    "equals": [
+                      "@outputs('Compose_|_Has_Manage_Permissions')",
+                      "@true"
+                    ]
+                  }
+                ]
+              },
+              "actions": {
+                "Send_an_HTTP_request_to_SharePoint_|_validateUpdateListItem": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "dataset": "@body('Parse_JSON_|_Constants')?['targetSiteUrl']",
+                      "parameters/method": "POST",
+                      "parameters/uri": "_api/web/lists('@{body('Parse_JSON_|_Constants')?['targetListId']}')/items(@{outputs('Compose_|_New_Item_ID')})/validateUpdateListItem()",
+                      "parameters/headers": {
+                        "Accept": "application/json; odata=nometadata",
+                        "Content-Type": "application/json; odata=nometadata"
+                      },
+                      "parameters/body": "@addProperty(\r\n  json('{\"bNewDocumentUpdate\": true}'),\r\n  'formValues',\r\n  createArray(\r\n    addProperty(\r\n      json('{\"FieldName\": \"Modified\"}'),\r\n      'FieldValue',\r\n      addMinutes(body('Get_item')['Modified'],mul(body('Send_an_HTTP_request_to_SharePoint_|_Target_Site_Settings')['timeZoneBias'],-1),'yyyy-MM-dd HH:mm:ss')\r\n    )\r\n  )\r\n)"
+                    },
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                      "operationId": "HttpRequest",
+                      "connectionName": "shared_sharepointonline"
+                    },
+                    "retryPolicy": {
+                      "type": "none"
+                    }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "5140904f-4b4c-4e82-9f75-7499204f4f9b"
+                  }
+                },
+                "Compose_|_Throw_if_exception_on_validateUpdateListItem": {
+                  "type": "Compose",
+                  "inputs": "@if(\r\n  greater(\r\n    length(\r\n      xpath(\r\n        xml(\r\n          addProperty(\r\n            json('{}'),\r\n            'root',\r\n            addProperty(\r\n              json('{}'),\r\n              'value',\r\n              body('Send_an_HTTP_request_to_SharePoint_|_validateUpdateListItem')['value']\r\n            )\r\n          )\r\n        ),\r\n        '//value[HasException=''true'']' \r\n      )\r\n    ),\r\n  0),\r\n  json('throw'),\r\n  'OK'\r\n)",
+                  "runAfter": {
+                    "Send_an_HTTP_request_to_SharePoint_|_validateUpdateListItem": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "else": {
+                "actions": {}
+              },
+              "runAfter": {
+                "Apply_to_each_|_Attachment": [
+                  "Succeeded"
+                ]
+              }
+            }
+          },
+          "runAfter": {}
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,74 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    displayName: Create a SharePoint Site
+    triggerQueries:
+      - give me a site
+      - I want a site
+      - I want a SharePoint site
+      - Create a SharePoint Site
+      - Create a Site
+
+  actions:
+    - kind: Question
+      id: b41a8787-879c-4c86-8dde-c2c517bf4fae
+      alwaysPrompt: false
+      variable: init:Topic.varSpSiteType
+      prompt: Okay, what is the site type you want to create?
+      entity:
+        kind: ClosedListEntityReference
+        entityId: cr3f8_sharePointSiteCreation.entity.SharePointSiteType
+        selectedItems:
+          - Team Site
+          - Communication Site
+
+    - kind: Question
+      id: d3c10a72-6b15-486e-8ba6-41dbdff141f0
+      interruptionPolicy:
+        allowInterruption: false
+
+      alwaysPrompt: false
+      variable: init:Topic.varSiteName
+      prompt: What is your site name?
+      entity: StringPrebuiltEntity
+
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_4Jswrt
+      input:
+        binding:
+          text: =OptionSetInfo(Topic.varSpSiteType)
+          text_1: =Topic.varSiteName
+          text_3: =System.User.Id
+
+      output:
+        binding:
+          error: Topic.Error
+          site_created: Topic.SiteCreated
+          url: Topic.Url
+
+      flowId: fe41089d-04cf-ec11-a7b5-6045bd8e353d
+
+    - kind: ConditionGroup
+      id: condition-0
+      conditions:
+        - id: condition-0-item-0
+          condition: =Topic.SiteCreated = true
+          actions:
+            - kind: SendActivity
+              id: 887d4a68-1312-42ce-a24f-06e1f71e9ff1
+              activity: |-
+                Your site was created😁!
+
+                Access it here:
+
+                {Topic.Url}
+
+      elseActions:
+        - kind: SendActivity
+          id: a5f9bcc2-502b-42db-ab50-2a7906338ab5
+          activity: |-
+            Error happened when creating the site☹️
+
+            Details: {Topic.Error}

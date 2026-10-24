@@ -1,0 +1,11 @@
+---
+import { ArrowUpRight, CalendarDays } from '@lucide/astro';
+import { communityLinks } from '../lib/community';
+---
+<aside class="call-ribbon" aria-label="Community support and calls">
+  <div class="container call-ribbon-inner">
+    <span class="call-icon"><CalendarDays size={21} /></span>
+    <p><strong>Better together.</strong> Ask questions in the <a href={communityLinks.forums}>Power Platform Community forums</a> and learn at our community calls.</p>
+    <a href={communityLinks.calls}>Find your next call <ArrowUpRight size={17} /></a>
+  </div>
+</aside>

@@ -1,0 +1,205 @@
+LeftNavigation As CanvasComponent:
+    Fill: =
+    Height: =Max(App.Height,App.DesignHeight)
+    leftNavOnSelect: =
+    LeftNavOnSelect2: =
+    MenuWidth: =If(varOpenMenu, 280, 56)
+    NavigationItems: =colLeftNavigationDetails
+    Width: =LeftNavigation.MenuWidth
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    galNavigation As gallery.galleryVertical:
+        '#CopilotOverlayLabel': ="Filtered"
+        Default: =LookUp(LeftNavigation.NavigationItems,ScreenValue=App.ActiveScreen)
+        Height: =Parent.Height - Self.Y
+        Items: =LeftNavigation.NavigationItems
+        Layout: =Layout.Vertical
+        OnSelect: |
+            =//Pass the Id of the tiles of the navigation to gallery and use the same in switch condition to navigate and call to actions on different screen
+            Set(
+                varCurrentTile,
+                ThisItem.OrderID
+            );
+            Set(varADTabSelectedChanged, false);
+            Switch(
+                varCurrentTile,
+                1,    
+                Navigate(
+                    Screen1,
+                    ScreenTransition.Fade
+                ),
+                2,
+                Navigate(
+                    CreateScreen,
+                    ScreenTransition.Fade
+                )
+            );
+            //Close leftNavigation
+            Set(
+                varOpenMenu,
+                false
+            );
+        TemplateFill: |-
+            =If(ThisItem.ScreenValue = App.ActiveScreen, ColorValue("#EFEFF4"), RGBA(0, 0, 0, 0))
+        TemplatePadding: =0
+        TemplateSize: =64
+        Width: =Parent.Width
+        Y: =Container2.Y +Container2.Height
+        ZIndex: =1
+
+        rectSelected As rectangle:
+            Fill: |-
+                =If(ThisItem.ScreenValue = App.ActiveScreen, ColorValue("#00E6E3"), RGBA(0, 0, 0, 0))
+            Height: =Parent.TemplateHeight
+            OnSelect: =Select(Parent)
+            Tooltip: =ThisItem.Title
+            Width: =4
+            ZIndex: =1
+
+        lblNav As label:
+            Color: |-
+                =ColorValue("#1C1E22")
+            Font: ="RR Pioneer Medium"
+            Height: =Parent.TemplateHeight
+            HoverFill: |-
+                =ColorValue("#EFEFF4")
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =imgNav.X + imgNav.Width + 8
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =11
+            Text: =If(varOpenMenu, ThisItem.Title)
+            Tooltip: =ThisItem.Title
+            Width: =Parent.Width - Self.X
+            ZIndex: =2
+
+        IconNavigation As icon.Add:
+            Color: =RGBA(16, 6, 159, 1)
+            Height: =Parent.TemplateHeight
+            Icon: =ThisItem.Icons
+            OnSelect: =Select(Parent)
+            PaddingBottom: =15
+            PaddingLeft: =15
+            PaddingRight: =20
+            PaddingTop: =12
+            Tooltip: =ThisItem.Title
+            Visible: =false
+            Width: =55
+            X: =rectSelected.Width - 5
+            ZIndex: =3
+
+        imgNav As image:
+            Height: =32
+            HoverBorderColor: |-
+                =ColorValue("#EFEFF4")
+            Image: =ThisItem.Icons
+            OnSelect: |-
+                =//on Click of Hamburger menu, expand the width of the Left Navigation and close if Language dropdown is opened
+                Set(varOpenMenu, !varOpenMenu);
+                Set(varShowLangDDHeader, false);
+            Width: =32  
+            X: =12
+            Y: =Parent.TemplateHeight/4
+            ZIndex: =4
+
+        Button3 As button:
+            Color: =RGBA(0, 0, 0, 0)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: ="RR Pioneer Medium, Open Sans"
+            Height: =Parent.TemplateHeight
+            HoverBorderColor: =
+            HoverColor: =RGBA(0, 0, 0, 0)
+            HoverFill: |-
+                =//ColorValue("#EFEFF4")
+            OnSelect: =Select(Parent)
+            PaddingLeft: =imgNav.X + imgNav.Width + 8
+            PressedBorderColor: =
+            PressedColor: =
+            PressedFill: =
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: =//If(varOpenMenu, ThisItem.Title)
+            Tooltip: =ThisItem.Title
+            Width: =Parent.TemplateWidth - Self.X
+            X: =rectSelected.X+rectSelected.Width
+            ZIndex: =5
+
+    Container2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.None
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =6
+
+        IconHamburgerMenu As icon.Hamburger:
+            Height: =70
+            Icon: =If(varOpenMenu, Icon.Cancel, Icon.Hamburger)
+            OnSelect: |-
+                =//on Click of Hamburger menu, expand the width of the Left Navigation and close if Language dropdown is opened
+                Set(varOpenMenu, !varOpenMenu);
+                Set(varShowLangDDHeader, false);
+            PaddingBottom: =15
+            PaddingLeft: =15
+            PaddingRight: =20
+            PaddingTop: =15
+            Visible: =false
+            Width: =50
+            ZIndex: =1
+
+        lblMenuText As label:
+            Color: |-
+                =ColorValue("#1C1E22")
+            Font: ="RR Pioneer Medium"
+            Height: =24
+            PaddingBottom: =0
+            PaddingLeft: =8
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =11
+            Text: =If(varOpenMenu, "Menu")
+            Visible: =varOpenMenu
+            Width: =Parent.Width - Self.X
+            X: =imgMenu.X+imgMenu.Width
+            Y: =imgMenu.Y + Self.Height/4
+            ZIndex: =2
+
+        imgMenu As image:
+            Height: =32
+            Image: |-
+                ='menu-svgrepo-com'
+                //If(varOpenMenu,cross,menu)
+            OnSelect: |-
+                =//on Click of Hamburger menu, expand the width of the Left Navigation and close if Language dropdown is opened
+                Set(varOpenMenu, !varOpenMenu);
+                Set(varShowLangDDHeader, false);
+            Width: =32
+            X: =12
+            Y: =16
+            ZIndex: =3
+
+        btnMenu As button:
+            Color: =RGBA(0, 0, 0, 0)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: ="RR Pioneer Medium, Open Sans"
+            Height: =Parent.Height
+            HoverBorderColor: =
+            HoverColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =
+            OnSelect: =Select(IconHamburgerMenu)
+            PressedBorderColor: =
+            PressedColor: =
+            PressedFill: =
+            Text: =
+            Tooltip: =lblMenuText.Text
+            Width: =Parent.Width
+            ZIndex: =4
+

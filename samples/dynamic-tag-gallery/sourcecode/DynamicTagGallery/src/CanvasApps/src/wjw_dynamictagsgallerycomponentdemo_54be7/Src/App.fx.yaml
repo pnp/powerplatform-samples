@@ -1,0 +1,17 @@
+App As appinfo:
+    BackEnabled: =true
+    Formulas: |-
+        =frmButtonPadding = 5;
+        frmButtonMargin = 20; 
+        frmCharacterWidth = 12;
+        frmBorderColour = Color.RoyalBlue;
+        frmBorderThickness = 2;
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

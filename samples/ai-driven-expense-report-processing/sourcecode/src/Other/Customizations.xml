@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25024.216" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25024.00216">
+  <Entities />
+  <Roles />
+  <Workflows />
+  <FieldSecurityProfiles />
+  <Templates />
+  <EntityImageConfigs>
+    <EntityImageConfig>
+      <parententitylogicalname>gmx_expense</parententitylogicalname>
+      <primaryimageattribute>gmx_receipt</primaryimageattribute>
+    </EntityImageConfig>
+  </EntityImageConfigs>
+  <AttributeImageConfigs>
+    <AttributeImageConfig>
+      <attributelogicalname>gmx_receipt</attributelogicalname>
+      <parententitylogicalname>gmx_expense</parententitylogicalname>
+      <canstorefullimage>1</canstorefullimage>
+    </AttributeImageConfig>
+  </AttributeImageConfigs>
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <AIModels>
+    <AIModel>
+      <msdyn_aimodelid>{064f86df-1425-4005-a244-34cfecd1458f}</msdyn_aimodelid>
+      <msdyn_name>Expense Processor</msdyn_name>
+      <msdyn_templateid>{edfdb190-3791-45d8-9a6c-8f90a37c278a}</msdyn_templateid>
+      <statecode>1</statecode>
+      <statuscode>1</statuscode>
+      <IsCustomizable>1</IsCustomizable>
+      <msdyn_activerunconfigurationid>{4977c27e-e2ed-ef11-9342-7c1e526879b6}</msdyn_activerunconfigurationid>
+      <AIConfigurations>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{4977c27e-e2ed-ef11-9342-7c1e526879b6}</msdyn_aiconfigurationid>
+          <msdyn_customconfiguration>{"version":"GptDynamicPrompt-2","prompt":[{"type":"literal","text":"You are an AI assistant designed to process incoming "},{"type":"inputVariable","id":"email"},{"type":"literal","text":" and associated expense "},{"type":"inputVariable","id":"receipts"},{"type":"literal","text":" for accurate and efficient expense reporting. \n\nFor each email and associated receipt attachments that you receive, perform the following tasks:\n\n1. Categorise the expense: Use the categories listed in "},{"type":"data","id":"gmx_expensecategory.gmx_categoryname","text":"Expense Category.Category Name"},{"type":"literal","text":" and use the "},{"type":"data","id":"gmx_expensecategory.gmx_categorydescription","text":"Expense Category.Category Description"},{"type":"literal","text":" to help you determine the correct category based on the receipt information. \n2. Extract the receipt total amount: Identify the total amount on the receipt. If it is in a foreign currency, convert to USD.\n3. Extract the vendor's name: Identify and return the cleaned name of the vendor that issued the receipt.\n4. Extract the expense date: Identify the date of the expense from the receipt, ensuring it's formatted correctly (YYYY-MM-DD).\n5. Summarise the purpose: From the email body, summarise the purpose of this expense report in no more than 8 words.\n\nReturn the extracted data in the following format:\n\n- Category: The correct expense category based on the receipt details.\n- Amount: The total amount in USD formatted to 2 decimal places. If the receipt is in a foreign currency, convert it to USD.\n- Vendor: The cleaned name of the vendor, removing unnecessary details.\n- Expense Date: The date of the expense in YYYY-MM-DD format.\n- Purpose: A summary of the expense report's purpose. No more than 8 words.\n- Notes: Any relevant notes about the receipt, such as the original currency and amount, missing or unclear dates, non-economy class ticket, or any potential issues with the receipt."}],"definitions":{"inputs":[{"id":"receipts","text":"receipts","type":"document"},{"id":"email","text":"email","type":"text","quickTestValue":"Hi,\n\nI hope you're doing well.\n\nPlease find attached my expense receipts for my trip to Johannesburg, where I participated as a speaker at the Microsoft AI Tour.\n\nLet me know if you need any additional details.\n\nBest,\nGomo"}],"data":[{"id":"gmx_expensecategory","displayName":"Expense Category","type":"dataverseTable","connectionId":null,"filters":[]}],"output":{"formats":["json"],"jsonSchema":{"type":"object","properties":{"Category":{"type":"string"},"Amount":{"type":"number"},"Vendor":{"type":"string"},"ExpenseDate":{"type":"string"},"Notes":{"type":"string"},"Purpose":{"type":"string"}}},"jsonExamples":[{"Category":"Meals","Amount":7.5,"Vendor":"The Balalaika","ExpenseDate":"2025-01-23","Notes":"Original amount in ZAR: R143.00","Purpose":"Speaker at Microsoft AI Tour"}],"isCustomUserFormat":true}},"modelParameters":{"modelType":"gpt-4","gptParameters":{"temperature":0}},"settings":{"recordRetrievalLimit":30,"shouldPreserveRecordLinks":null}}</msdyn_customconfiguration>
+          <msdyn_majoriterationnumber>3</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_name>064f86df-1425-4005-a244-34cfecd1458f_2025-02-18T10:24:13.050Z</msdyn_name>
+          <msdyn_modelrundataspecification>H4sIAAAAAAAACp1TyU7DMBD9lWrOuSAhDrmFLhKXFrWl90k8LUaJbdljqVHFv+MsjQp2JSAnZ94yb7xcYGeoWmnbIB/IOqkV5A8ZvCjjeas1LxVLbiG/wEI6U2O7xoYgB8igYLay9Eyugy1VJA27JHXfmm61KT+o4vD/a9cSHT09LlWlBYmYPzXNYGM4hMca8iPWjqaez73DLpiqE3yGLwNqUNax2VC+73T1yACFkANnrhXTmWOzIqLcGrP19xMGoue/bn86xX5oHA1wlEq69y2h6877p2rVo7MRTshdyF+xtySGpJ3Fv494jkwnbRPUCUlEKBrtVWrfh/qkCEPUHf9ASmgb88d6osPybEg5WoQQsewWTGjXehzuu2ooJ/iv3hrtEn2uQKTp74lAxjeXehghGM56KKX8AncVZfz2AwAA</msdyn_modelrundataspecification>
+          <msdyn_type>190690001</msdyn_type>
+          <msdyn_aimodelid>{064f86df-1425-4005-a244-34cfecd1458f}</msdyn_aimodelid>
+          <msdyn_trainedmodelaiconfigurationpareid>{1bffa7df-66ed-ef11-9342-7c1e526879b6}</msdyn_trainedmodelaiconfigurationpareid>
+          <statecode>2</statecode>
+          <statuscode>7</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{1bffa7df-66ed-ef11-9342-7c1e526879b6}</msdyn_aiconfigurationid>
+          <msdyn_databinding>{"schemaVersion":2}</msdyn_databinding>
+          <msdyn_majoriterationnumber>1</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_modeldata>33ef340a-52ef-4498-90ef-767b3db553aa</msdyn_modeldata>
+          <msdyn_name>064f86df-1425-4005-a244-34cfecd1458f_2025-02-17T19:39:15.354Z</msdyn_name>
+          <msdyn_modelrundataspecification>
+        {
+          "schemaVersion": 2,
+          "input": {},
+          "output": {}
+        }
+      </msdyn_modelrundataspecification>
+          <msdyn_type>190690000</msdyn_type>
+          <msdyn_aimodelid>{064f86df-1425-4005-a244-34cfecd1458f}</msdyn_aimodelid>
+          <statecode>2</statecode>
+          <statuscode>6</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+      </AIConfigurations>
+    </AIModel>
+  </AIModels>
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="gmx_sharedcommondataserviceforapps_81dff">
+      <connectionreferencedisplayname>Microsoft Dataverse AutomatedExpenseReporting-81dff</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="gmx_sharedoffice365_f8aeb">
+      <connectionreferencedisplayname>Office 365 Outlook AutomatedExpenseReporting-f8aeb</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="gmx_sharedoffice365users_2479c">
+      <connectionreferencedisplayname>Office 365 Users AutomatedExpenseReporting-2479c</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365users</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedcommondataserviceforapps_df8b0">
+      <connectionreferencedisplayname>Microsoft Dataverse</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedoffice365_71810">
+      <connectionreferencedisplayname>Office 365 Outlook</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedoffice365users_8c030">
+      <connectionreferencedisplayname>Office 365 Users</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365users</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>

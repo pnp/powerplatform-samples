@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{34b417a0-1fea-4bc5-a4d9-8ad67fabff35}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="gmx_categoryname" select="1" icon="1" preview="1">
+        <row name="result" id="gmx_expensecategoryid">
+          <cell name="gmx_categoryname" width="300" />
+          <cell name="createdon" width="125" />
+          <cell name="gmx_categorydescription" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="gmx_expensecategory">
+          <attribute name="gmx_expensecategoryid" />
+          <attribute name="gmx_categoryname" />
+          <attribute name="createdon" />
+          <order attribute="gmx_categoryname" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="gmx_categorydescription" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Expense Categories" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

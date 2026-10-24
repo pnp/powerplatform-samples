@@ -1,0 +1,22 @@
+"'screen header' As CanvasComponent":
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =100
+    parentWidth: =600
+    screenName: ="Instructions"
+    Width: ='screen header'.parentWidth
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    "'header text_1' As Text":
+        DisplayMode: =DisplayMode.Edit
+        Font: =Font.'Lato Black'
+        Height: =Parent.Height
+        Size: =32
+        Text: ='screen header'.screenName
+        VerticalAlign: =VerticalAlign.Middle
+        Width: =Parent.Width
+        X: =0
+        Y: =0
+        ZIndex: =1
+

@@ -95,3 +95,5 @@ Finally, if you have an idea for improvement, [make a suggestion](https://github
 * Credit to aprildunnam for the content of this ReadMe. Without this, I wont even know where to start
 * Thanks to David Warner and Hugo Bernier for the Nov 22 SharingIsCaring session. Lets just say that was my first official Github training
 * First time contributing, please be gentle
+
+<img src="https://m365-visitor-stats.azurewebsites.net/powerplatform-samples/samples/bodypart-gallery" />

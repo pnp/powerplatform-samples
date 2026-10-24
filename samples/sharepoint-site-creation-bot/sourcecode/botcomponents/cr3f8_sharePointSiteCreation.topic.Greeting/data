@@ -1,0 +1,65 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnSystemIntent
+  id: main
+  intent:
+    displayName: Greeting
+    includeInOnSelectIntent: false
+    triggerQueries:
+      - Good afternoon
+      - Good morning
+      - Hello
+      - Hello agent!
+      - Hello and good morning to you
+      - Hello can you help me?
+      - Hello can you please help me
+      - Hello friend
+      - Hello good afternoon
+      - Hello good evening
+      - Hello greeting
+      - Hello how are you
+      - Hello how are you doing?
+      - Hello how are you?
+      - Hello I need help
+      - Hello madam
+      - Hello my friend
+      - Hello sir
+      - Hello support
+      - Hello team
+      - Hello there
+      - Hello there, how are you?
+      - Hello virtual agent
+      - Hello!
+      - Hello, good day to you
+      - Hello, good evening
+      - Hello, good morning
+      - Hello, how are you doing today?
+      - Hello, how are you?
+      - Hello, I need help
+      - Hey
+      - Hey !
+      - "Hey :)"
+      - Hey good morning
+      - Hey how are u
+      - Hey I need help
+      - Hey man
+      - Hi
+      - Hi agent
+      - Hi can you help me
+      - Hi good afternoon
+      - Hi good day
+      - Hi good evening
+      - Hi how are you
+      - Hi how are you doing today?
+      - Hi I hope you can help me
+      - Hi I need help
+      - Hi I need help here
+      - Hi support
+      - Hi support team
+      - Hi there!
+      - Hi virtual agent
+
+  actions:
+    - kind: SendActivity
+      id: 4c32d4d5-9bdc-47f0-afaf-614883acef7b
+      activity: So, what can I help you with today?

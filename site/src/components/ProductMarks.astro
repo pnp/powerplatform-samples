@@ -1,0 +1,15 @@
+---
+import { brandPath, catalog } from '../lib/catalog';
+interface Props { products: string[]; compact?: boolean; }
+const { products, compact = false } = Astro.props;
+const visible = products.filter((name) => name !== 'Power Platform' || products.length === 1);
+---
+<div class:list={['product-marks', { 'product-marks--compact': compact }]}>
+  {visible.map((name) => {
+    const product = catalog.products.find((item) => item.name === name);
+    return <span class="product-mark" title={name}>
+      {product?.logo && <img src={brandPath(product.logo)} alt="" width={compact ? 18 : 24} height={compact ? 18 : 24} loading="lazy" />}
+      <span>{name}</span>
+    </span>;
+  })}
+</div>

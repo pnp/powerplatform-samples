@@ -1,0 +1,37 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: Question
+      id: question_JcVZK2
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.varFavouriteTeam
+      prompt: Please enter the name of your favourite team.
+      entity: StringPrebuiltEntity
+
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_15Rb3E
+      input:
+        binding:
+          text: =Topic.varFavouriteTeam
+          text_1: =System.User.DisplayName
+
+      output:
+        binding:
+          response: Topic.Response
+
+      flowId: b320508c-d212-f011-998a-6045bd0e2fc6
+
+    - kind: SendActivity
+      id: sendActivity_9k7mMM
+      activity: |-
+        {Topic.Response}
+        
+        I can provide you with team information and details of their last and next fixture.
+
+inputType: {}
+outputType: {}

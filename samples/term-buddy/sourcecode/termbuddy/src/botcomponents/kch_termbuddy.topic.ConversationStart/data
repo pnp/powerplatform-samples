@@ -1,0 +1,50 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnConversationStart
+  id: main
+  actions:
+    - kind: SendActivity
+      id: sendMessage_M0LuhV
+      activity:
+        text:
+          - Hello, I'm {System.Bot.Name}, your AI-powered terminology assistant. I can provide clear term definitions, generate quizzes to test your knowledge, and offer real-world examples to enhance your learning. Ask me about any term, and I'll guide you through it! Please be aware that AI responses may be inaccurate, and do not send confidential or private information to this bot.
+        speak:
+          - Thanks for calling, how can I help?
+
+    - kind: SetVariable
+      id: setVariable_qTeCSE
+      variable: Global.gv_question
+      value: =Blank()
+
+    - kind: SetVariable
+      id: setVariable_tJiyGn
+      variable: Global.gv_userprompt
+      value: =Blank()
+
+    - kind: SetVariable
+      id: setVariable_mgOe4M
+      variable: Global.gv_action
+      value: new_term
+
+    - kind: SetVariable
+      id: setVariable_fsg4uQ
+      variable: Global.gv_term
+      value: =Blank()
+
+    - kind: SetVariable
+      id: setVariable_YfQYn5
+      variable: Global.history
+      value: |-
+        =Table(
+            { 
+                inputs: {
+                    chat_history: [],
+                    question: "",
+                    user_prompt: "",
+                    temperature: 0.5,
+                    action: "new_term",
+                    term: ""
+                },  
+                outputs: { answer: "" } 
+            }
+        )

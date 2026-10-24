@@ -1,0 +1,44 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import BadgePanel from '../components/BadgePanel.astro';
+import { catalog, sitePath } from '../lib/catalog';
+const contributors = catalog.contributors.map((author) => ({
+  ...author,
+  initials: author.name.split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase(),
+}));
+---
+<BaseLayout title="Contributors" description="Meet the community members sharing Power Platform samples and helping makers get started.">
+  <PageHero eyebrow={`${catalog.contributors.length} people. Countless possibilities.`} title="Good things happen when we share." description="Meet the people turning their experience into your next starting point. Every contribution helps our community learn, build, and grow." portrait={5}><a class="button button--primary" href={sitePath('/contributing/')}>Join our contributors <ArrowRight size={17} /></a></PageHero>
+  <section class="container content-section" aria-labelledby="contributors-heading">
+    <div class="section-heading"><div><p class="eyebrow">The people behind the samples</p><h2 id="contributors-heading">Made by the community.</h2></div><span class="text-link">{catalog.contributors.length} contributors</span></div>
+    <div class="contributor-grid">{contributors.map((author) => <article class="contributor-card">
+      <a class="contributor-avatar" href={`https://github.com/${author.gitHubAccount}`} aria-label={`View ${author.name}'s GitHub profile`} data-fallback-label={`${author.initials}: View ${author.name}'s GitHub profile`}>
+        <span class="contributor-initials" aria-hidden="true" hidden>{author.initials}</span>
+        <img src={`https://github.com/${author.gitHubAccount}.png?size=128`} alt="" width="50" height="50" loading="lazy" decoding="async" />
+      </a>
+      <div><h2>{author.name}</h2><a href={`https://github.com/${author.gitHubAccount}`}>@{author.gitHubAccount}</a><p><a href={`${sitePath('/')}?author=${encodeURIComponent(author.gitHubAccount.toLowerCase())}#sample-catalog`}>{author.sampleSlugs.length} {author.sampleSlugs.length === 1 ? 'sample' : 'samples'} <ArrowRight size={13} /></a></p></div>
+    </article>)}</div>
+  </section>
+  <div class="container section-space"><BadgePanel /></div>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLImageElement>('.contributor-avatar img').forEach((image) => {
+    const avatar = image.closest<HTMLAnchorElement>('.contributor-avatar');
+    const initials = avatar?.querySelector<HTMLSpanElement>('.contributor-initials');
+    const fallbackLabel = avatar?.dataset.fallbackLabel;
+    if (!avatar || !initials || !fallbackLabel) throw new Error('Contributor image is missing its profile link or initials');
+    const showInitials = () => {
+      if (image.hidden) return;
+      image.hidden = true;
+      initials.hidden = false;
+      avatar.setAttribute('aria-label', fallbackLabel);
+      avatar.title = 'GitHub image unavailable; showing contributor initials';
+      console.warn(`GitHub avatar unavailable: ${image.src}. Showing contributor initials.`);
+    };
+    image.addEventListener('error', showInitials, { once: true });
+    if (image.complete && image.naturalWidth === 0) showInitials();
+  });
+</script>

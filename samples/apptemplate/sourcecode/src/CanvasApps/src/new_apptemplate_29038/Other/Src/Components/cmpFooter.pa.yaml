@@ -1,0 +1,178 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps is in preview. The schema is being actively developed.
+# Content may be incomplete and subject to change.
+# This file is read-only and should only be used to review changes made within Power Apps Studio.
+# This file isn't used when loading the app. External editing, merging and conflict resolution are
+# not supported.
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  cmpFooter:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      cmpHeight:
+        PropertyKind: Input
+        DisplayName: cmpHeight
+        Description: A custom property
+        DataType: Number
+      lblLink1:
+        PropertyKind: Input
+        DisplayName: lblLink1
+        Description: A custom property
+        DataType: Text
+      lblLink2:
+        PropertyKind: Input
+        DisplayName: lblLink2
+        Description: A custom property
+        DataType: Text
+      lblLink3:
+        PropertyKind: Input
+        DisplayName: lblLink3
+        Description: A custom property
+        DataType: Text
+      showbtnLinks:
+        PropertyKind: Input
+        DisplayName: showbtnLinks
+        Description: A custom property
+        DataType: Boolean
+    Properties:
+      Height: =Self.cmpHeight
+      Width: =App.Width
+    Children:
+      - rectFooter:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(16, 6, 159, 1)
+            Height: =Parent.Height
+            Width: =Parent.Width
+            Y: =0.00
+      - lblFooter:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#FFFFFF")
+            Font: ="RR Pioneer"
+            Height: =Parent.Height
+            PaddingBottom: =0.00
+            PaddingLeft: =8
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =9
+            Text: ="Copyright ©"&" "&Year(Now()) & " ABC Company"
+            Width: =Parent.Width/3
+            Y: =0.00
+      - imgFooter:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =23
+            Image: ='logo-svgrepo-com'
+            PaddingLeft: =8
+            Width: =106
+            X: =Parent.Width - Self.Width - Self.PaddingLeft*2
+            Y: =Parent.Height/3
+      - btnLink1:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =
+            Color: =ColorValue("#FFFFFF")
+            DisabledBorderColor: =
+            DisabledColor: =
+            DisabledFill: =
+            Fill: =ColorValue("#10069F")
+            FocusedBorderThickness: =
+            Font: ="RR Pioneer Medium"
+            FontWeight: =FontWeight.Normal
+            Height: =24
+            HoverBorderColor: =Self.BorderColor
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            PaddingRight: =
+            PaddingTop: =
+            PressedBorderColor: =Self.BorderColor
+            PressedFill: =Self.Fill
+            RadiusBottomLeft: =
+            RadiusBottomRight: =
+            RadiusTopLeft: =
+            RadiusTopRight: =
+            Size: =11
+            Text: =Parent.lblLink1
+            Visible: =Parent.showbtnLinks
+            Width: =Len(Self.Text)*12
+            X: =imgFooter.X - Self.Width - imgFooter.PaddingLeft*2
+            Y: =Parent.Height/3
+      - btnLink2:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =
+            Color: =ColorValue("#FFFFFF")
+            DisabledBorderColor: =
+            DisabledColor: =
+            DisabledFill: =
+            Fill: =ColorValue("#10069F")
+            FocusedBorderThickness: =
+            Font: ="RR Pioneer Medium"
+            FontWeight: =FontWeight.Normal
+            Height: =24
+            HoverBorderColor: =Self.BorderColor
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            PaddingRight: =
+            PaddingTop: =
+            PressedBorderColor: =Self.BorderColor
+            PressedFill: =Self.Fill
+            RadiusBottomLeft: =
+            RadiusBottomRight: =
+            RadiusTopLeft: =
+            RadiusTopRight: =
+            Size: =11
+            Text: =Parent.lblLink2
+            Visible: =Parent.showbtnLinks
+            Width: =Len(Self.Text)*12
+            X: =btnLink1.X - Self.Width
+            Y: =Parent.Height/3
+      - btnLink3:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =
+            Color: =ColorValue("#FFFFFF")
+            DisabledBorderColor: =
+            DisabledColor: =
+            DisabledFill: =
+            Fill: =ColorValue("#10069F")
+            FocusedBorderThickness: =
+            Font: ="RR Pioneer Medium"
+            FontWeight: =FontWeight.Normal
+            Height: =24
+            HoverBorderColor: =Self.BorderColor
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            PaddingRight: =
+            PaddingTop: =
+            PressedBorderColor: =Self.BorderColor
+            PressedFill: =Self.Fill
+            RadiusBottomLeft: =
+            RadiusBottomRight: =
+            RadiusTopLeft: =
+            RadiusTopRight: =
+            Size: =11
+            Text: =Parent.lblLink3
+            Visible: =Parent.showbtnLinks
+            Width: =Len(Self.Text)*12
+            X: '=btnLink2.X - Self.Width '
+            Y: =Parent.Height/3

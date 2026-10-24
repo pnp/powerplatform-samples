@@ -1,0 +1,265 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "description": "Please enter your input",
+                  "title": "InputArray",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_1": {
+                  "description": "Please enter your input",
+                  "title": "PropertyName",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_2": {
+                  "description": "Please enter your input",
+                  "title": "Operation",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true,
+                  "enum": [
+                    "Sum",
+                    "Average",
+                    "Min",
+                    "Max",
+                    "Count"
+                  ]
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Compose_-_convert_input_array_to_xml": {
+          "runAfter": {},
+          "type": "Compose",
+          "inputs": "@xml(json(concat('{\"root\":{\"items\":',json(triggerBody()?['text']),'}}')))",
+          "description": "xml(json(concat('{\"root\":{\"items\":',json(triggerBody()?['text']),'}}')))"
+        },
+        "Switch_-_Operation": {
+          "runAfter": {
+            "Initialize_variable_-_store_output": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case_-_Sum": {
+              "case": "Sum",
+              "actions": {
+                "Calculate_Sum_using_XPath": {
+                  "type": "Compose",
+                  "inputs": "@string(xpath(outputs('Compose_-_convert_input_array_to_xml'),concat('sum(//',triggerBody()?['text_1'],')')))",
+                  "description": "string(xpath(outputs('Compose_-_convert_input_array_to_xml'),concat('sum(//',triggerBody()?['text_1'],')')))"
+                },
+                "Set_variable_-_Sum_Output": {
+                  "runAfter": {
+                    "Calculate_Sum_using_XPath": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "varOutput",
+                    "value": "@outputs('Calculate_Sum_using_XPath')"
+                  }
+                }
+              }
+            },
+            "Case_-_Average": {
+              "case": "Average",
+              "actions": {
+                "Calculate_Avg_using_XPath": {
+                  "type": "Compose",
+                  "inputs": "@string(xpath(outputs('Compose_-_convert_input_array_to_xml'),concat('(sum(//',triggerBody()?['text_1'],') div count(//',triggerBody()?['text_1'],'))')))",
+                  "description": "string(xpath(outputs('Compose_-_convert_input_array_to_xml'),concat('(sum(//',triggerBody()?['text_1'],') div count(//',triggerBody()?['text_1'],'))')))"
+                },
+                "Set_variable_-_Avg_Output": {
+                  "runAfter": {
+                    "Calculate_Avg_using_XPath": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "varOutput",
+                    "value": "@outputs('Calculate_Avg_using_XPath')"
+                  }
+                }
+              }
+            },
+            "Case_-_Count": {
+              "case": "Count",
+              "actions": {
+                "Calculate_Count_using_XPath": {
+                  "type": "Compose",
+                  "inputs": "@string(xpath(outputs('Compose_-_convert_input_array_to_xml'),concat('count(//',triggerBody()?['text_1'],')')))",
+                  "description": "string(xpath(outputs('Compose_-_convert_input_array_to_xml'),concat('count(//',triggerBody()?['text_1'],')')))"
+                },
+                "Set_variable_-_Count_Output": {
+                  "runAfter": {
+                    "Calculate_Count_using_XPath": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "varOutput",
+                    "value": "@outputs('Calculate_Count_using_XPath')"
+                  }
+                }
+              }
+            },
+            "Case_-_Min": {
+              "case": "Min",
+              "actions": {
+                "Calculate_Min_using_XPath": {
+                  "type": "Compose",
+                  "inputs": "@xpath(outputs('Compose_-_convert_input_array_to_xml'),concat('string(//',triggerBody()?['text_1'],'[not(text() > //',triggerBody()?['text_1'],'/text())]/text())'))",
+                  "description": "xpath(outputs('Compose_-_convert_input_array_to_xml'),concat('string(//',triggerBody()?['text_1'],'[not(text() > //',triggerBody()?['text_1'],'/text())]/text())'))"
+                },
+                "Set_variable_-_Min_Output": {
+                  "runAfter": {
+                    "Calculate_Min_using_XPath": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "varOutput",
+                    "value": "@outputs('Calculate_Min_using_XPath')"
+                  }
+                }
+              }
+            },
+            "Case_-_Max": {
+              "case": "Max",
+              "actions": {
+                "Calculate_Max_using_XPath": {
+                  "type": "Compose",
+                  "inputs": "@xpath(outputs('Compose_-_convert_input_array_to_xml'),concat('string(//',triggerBody()?['text_1'],'[not(text() < //',triggerBody()?['text_1'],'/text())][1]/text())'))",
+                  "description": "xpath(outputs('Compose_-_convert_input_array_to_xml'),concat('string(//',triggerBody()?['text_1'],'[not(text() < //',triggerBody()?['text_1'],'/text())][1]/text())'))"
+                },
+                "Set_variable_-_Max_Output": {
+                  "runAfter": {
+                    "Calculate_Max_using_XPath": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "varOutput",
+                    "value": "@outputs('Calculate_Max_using_XPath')"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {
+              "Respond_to_a_Power_App_or_flow-copy": {
+                "type": "Response",
+                "kind": "PowerApp",
+                "inputs": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "result": {
+                        "title": "result",
+                        "type": "string",
+                        "x-ms-content-hint": "TEXT",
+                        "x-ms-dynamically-added": true
+                      }
+                    },
+                    "additionalProperties": {}
+                  },
+                  "statusCode": 200,
+                  "body": {
+                    "result": "@{null}"
+                  }
+                }
+              }
+            }
+          },
+          "expression": "@triggerBody()?['text_2']",
+          "type": "Switch"
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Switch_-_Operation": [
+              "Succeeded"
+            ]
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "title": "result",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "additionalProperties": {}
+            },
+            "statusCode": 200,
+            "body": {
+              "result": "@{variables('varOutput')}"
+            }
+          }
+        },
+        "Initialize_variable_-_store_output": {
+          "runAfter": {
+            "Compose_-_convert_input_array_to_xml": [
+              "Succeeded"
+            ]
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varOutput",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
