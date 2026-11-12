@@ -1,0 +1,80 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =Set(
+            theme,
+            {
+                Name: "Theme",
+                mainColor: ColorValue("#072B73"),
+                primaryDark: ColorValue("#021747"),
+                secondaryDark: ColorValue("#313940"),
+                contrastColor: ColorValue("#F9A058"),
+                bgColor: ColorValue("#FAEBE3"),
+                darkFont: ColorValue("#012340"),
+                lightFont: ColorValue("#F2E9F0")
+            }
+        );
+        ClearCollect(
+            MenuData,
+            [
+               {
+                    Name: "Add User",
+                    Action: "Navigate",
+                    Screen: addUser_scr
+                },
+              {
+                    Name:"Users",
+                    Action: "Navigate",
+                    Screen: Users_scr
+                },
+                {
+                    Name: "Tasks",
+                    Action: "Navigate",
+                    Screen: userTask_scr
+                },
+                {
+                    Name: "Events",
+                    Action: "Navigate",
+                    Screen: Events_scr
+                },
+                {
+                    Name: "Logout",
+                    Action: "Logout",
+                    Screen: Login_scr
+                }
+            ]
+        );
+        Set(
+            password_Login_Hide,
+            false
+        );
+        Set(
+            password_Reg_Hide,
+            false
+        );
+        Set(
+            toggle,
+            false
+        );
+        Set(
+            sortDueDate,
+            false
+        );
+        Set(
+            ShowMenu,
+            false
+        );
+        Set(
+            showErr,
+            false
+        )
+    StartScreen: =
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
