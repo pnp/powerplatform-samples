@@ -1,0 +1,79 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://asia-001.azure-apim.net/apim/chatgpt-20connector-5f4d247a0effe063a6-5fbaeb9206c9a14d0f" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="ChatGPTConnector" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="ChatGPT Connector"></doc>
+  <grammars>
+    <jsonTypes targetNamespace="https://asia-001.azure-apim.net/apim/chatgpt-20connector-5f4d247a0effe063a6-5fbaeb9206c9a14d0f" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <string name="ChatAPI_param_body_def_model_def" />
+      <string name="ChatAPI_param_body_def_messages_def_items_def_role_def" />
+      <string name="ChatAPI_param_body_def_messages_def_items_def_content_def" />
+      <object name="ChatAPI_param_body_def_messages_def_items_def">
+        <property name="role" type="string" />
+        <property name="content" type="string" />
+      </object>
+      <array typeRef="ChatAPI_param_body_def_messages_def_items_def" name="ChatAPI_param_body_def_messages_def" />
+      <object name="ChatAPI_param_body_def">
+        <property name="model" type="string" />
+        <property name="messages" typeRef="ChatAPI_param_body_def_messages_def" />
+      </object>
+      <string name="ChatAPI_responses_default_def_id_def" />
+      <string name="ChatAPI_responses_default_def_object_def" />
+      <integer name="ChatAPI_responses_default_def_created_def" />
+      <string name="ChatAPI_responses_default_def_model_def" />
+      <integer name="ChatAPI_responses_default_def_choices_def_items_def_index_def" />
+      <string name="ChatAPI_responses_default_def_choices_def_items_def_message_def_role_def" />
+      <string name="ChatAPI_responses_default_def_choices_def_items_def_message_def_content_def" />
+      <object name="ChatAPI_responses_default_def_choices_def_items_def_message_def">
+        <property name="role" type="string" />
+        <property name="content" type="string" />
+      </object>
+      <string name="ChatAPI_responses_default_def_choices_def_items_def_finish_reason_def" />
+      <object name="ChatAPI_responses_default_def_choices_def_items_def">
+        <property name="index" type="integer" />
+        <property name="message" typeRef="ChatAPI_responses_default_def_choices_def_items_def_message_def" />
+        <property name="finish_reason" type="string" />
+      </object>
+      <array typeRef="ChatAPI_responses_default_def_choices_def_items_def" name="ChatAPI_responses_default_def_choices_def" />
+      <integer name="ChatAPI_responses_default_def_usage_def_prompt_tokens_def" />
+      <integer name="ChatAPI_responses_default_def_usage_def_completion_tokens_def" />
+      <integer name="ChatAPI_responses_default_def_usage_def_total_tokens_def" />
+      <object name="ChatAPI_responses_default_def_usage_def">
+        <property name="prompt_tokens" type="integer" />
+        <property name="completion_tokens" type="integer" />
+        <property name="total_tokens" type="integer" />
+      </object>
+      <object name="ChatAPI_responses_default_def">
+        <property name="id" type="string" />
+        <property name="object" type="string" />
+        <property name="created" type="integer" />
+        <property name="model" type="string" />
+        <property name="choices" typeRef="ChatAPI_responses_default_def_choices_def" />
+        <property name="usage" typeRef="ChatAPI_responses_default_def_usage_def" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://asia-001.azure-apim.net/apim/chatgpt-20connector-5f4d247a0effe063a6-5fbaeb9206c9a14d0f">
+    <resource path="/{connectionId}/v1/chat/completions">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="ChatAPI" actionName="ChatAPI" siena:isDeprecated="false">
+        <doc title="ChatGPT API" />
+        <request>
+          <param style="header" name="Content-Type" type="xs:string" required="true" fixed="application/json" />
+          <representation mediaType="application/json">
+            <param style="plain" name="model" path="/model" type="xs:string" required="true" />
+            <param style="plain" name="messages" path="/messages" type="service:ChatAPI_param_body_def_messages_def" required="true" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:ChatAPI_responses_default_def" />
+        </response>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="shared_chatgpt-20connector-5f4d247a0effe063a6-5fbaeb9206c9a14d0f" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

@@ -1,0 +1,23 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =Set(varSpinner,false);
+        Set(varTabSelected,"Dashboard");
+        Set(varCourseVisible, false);
+        
+        
+        Collect(colAssignments,
+        {title:"Assignment", description:"Assignment"},
+        {title:"Literary Analysis Essay", description: "Write a literary analysis essay on a novel of your choice. Analyze the themes, characters, and symbolism used in the novel to convey its message."},
+        {title:"Book Review", description: "Read a classic novel assigned by the teacher and write a detailed book review. Share your thoughts on the plot, character development, and overall impact of the book."}
+        
+        )
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
