@@ -15,7 +15,7 @@ const pageTitle = title === 'Power Platform sample gallery' ? title : `${title} 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const navigation = [
   ['Samples', '/'], ['Getting started', '/getting-started/'], ['Contributors', '/contributors/'],
-  ['Contributing', '/contributing/'], ["What's new", '/whats-new/'], ['Community', '/community/'],
+  ['Contributing', '/contributing/'], ["What's new", '/whats-new/'],
 ];
 const current = (href: string) => href === '/'
   ? Astro.url.pathname === sitePath('/') || Astro.url.pathname.startsWith(sitePath('/samples/'))
@@ -70,6 +70,7 @@ const backgrounds = [
           <span><strong>Power Platform</strong> <span>sample gallery</span></span>
         </a>
         <nav class="desktop-nav" aria-label="Primary navigation">
+          <a href={communityLinks.home}>Community <ArrowUpRight size={12} aria-hidden="true" /></a>
           {navigation.map(([label, href]) => <a href={sitePath(href)} aria-current={current(href) ? 'page' : undefined}>{label}</a>)}
         </nav>
         <div class="header-actions">
@@ -80,6 +81,7 @@ const backgrounds = [
           <details class="mobile-menu">
             <summary aria-label="Open navigation"><Menu size={23} /></summary>
             <nav aria-label="Mobile navigation">
+              <a href={communityLinks.home}>Community <ArrowUpRight size={12} aria-hidden="true" /></a>
               {navigation.map(([label, href]) => <a href={sitePath(href)} aria-current={current(href) ? 'page' : undefined}>{label}</a>)}
               <a href="https://github.com/pnp/powerplatform-samples">GitHub</a>
             </nav>
@@ -91,7 +93,7 @@ const backgrounds = [
     <footer class="site-footer">
       <div class="container footer-top">
         <div>
-          <a class="footer-brand" href="https://aka.ms/community/home">Microsoft 365 &amp; Power Platform Community <ArrowUpRight size={17} /></a>
+          <a class="footer-brand" href={communityLinks.home}>Microsoft 365 &amp; Power Platform Community <ArrowUpRight size={17} /></a>
           <p>Built by the community. Shared with everyone.</p>
           <span class="footer-motto">Sharing is caring.</span>
         </div>

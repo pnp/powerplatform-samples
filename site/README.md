@@ -104,6 +104,8 @@ Without JavaScript, sample content/navigation remains usable; the website tracke
 
 Shared website destinations are maintained in [community.ts](src/lib/community.ts) and promoted on the Community page, shared footer, and relevant getting-started/sample guidance. Calls and presenting a live demo remain complementary ways to participate.
 
+Desktop and mobile navigation start with a Community link and external-link arrow pointing to the community home, matching the SPFx gallery. The local `/community/` page remains available for Power Platform-specific resources.
+
 ## GitHub validation and publication
 
 Every pull request to `main` runs the read-only [gallery validation workflow](../.github/workflows/validate-gallery.yml): locked dependency installation, README tracking, unit tests, the collectible-card sample's dependency-free Python reference/source checks, metadata/type checks, a production build, internal link/image checks, and desktop/mobile browser/accessibility tests. It tests the PR merge tree and has no deployment or write credentials. Reference checks do not execute Power Fx or import a solution into a tenant.
