@@ -618,8 +618,8 @@
                                             Picture: ""
                                         },
                                         Status: {
-                                            ID: 2,
-                                            Value: "Submitted for Approval"
+                                            ID: 1,
+                                            Value: "Pending"
                                         }
                                     }
                                 ),
@@ -737,13 +737,13 @@
                                             Value: ddBillTo_1.Selected.Title
                                         },
                                         Manager: {
-                                            '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
-                                            Claims: "i:0#.f|membership|" & currentUser.Email,
-                                            Department: "",
-                                            DisplayName: currentUser.FullName,
-                                            Email: currentUser.Email,
-                                            JobTitle: "",
-                                            Picture: ""
+                                          '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+                                                Claims: "i:0#.f|membership|" &  Office365Users.ManagerV2(User().Email).mail,
+                                                Department: "",
+                                                DisplayName:  Office365Users.ManagerV2(User().Email).displayName,
+                                                Email:  Office365Users.ManagerV2(User().Email).mail,
+                                                JobTitle: "",
+                                                Picture: ""
                                         },
                                         Status: {
                                             ID: 2,
@@ -788,13 +788,13 @@
                                             Value: ddBillTo_1.Selected.Title
                                         },
                                         Manager: {
-                                            '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
-                                            Claims: "i:0#.f|membership|" & currentUser.Email,
-                                            Department: "",
-                                            DisplayName: currentUser.FullName,
-                                            Email: currentUser.Email,
-                                            JobTitle: "",
-                                            Picture: ""
+                                          '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+                                                Claims: "i:0#.f|membership|" &  Office365Users.ManagerV2(User().Email).mail,
+                                                Department: "",
+                                                DisplayName:  Office365Users.ManagerV2(User().Email).displayName,
+                                                Email:  Office365Users.ManagerV2(User().Email).mail,
+                                                JobTitle: "",
+                                                Picture: ""
                                         },
                                         Status: {
                                             ID: 2,
