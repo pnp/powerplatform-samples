@@ -137,6 +137,24 @@ test('sample details have valid actions, localized images, and exactly one route
   await expect(page.getByRole('link', { name: 'Call schedule & invites' })).toHaveAttribute('href', 'https://aka.ms/community/calls');
 });
 
+test('Community leads navigation with an external arrow and links to the community home', async ({ page }, testInfo) => {
+  await page.goto('./');
+  if (testInfo.project.name === 'mobile') await page.locator('.mobile-menu summary').click();
+  const navigation = page.getByRole('navigation', { name: testInfo.project.name === 'mobile' ? 'Mobile navigation' : 'Primary navigation' });
+  const community = navigation.getByRole('link', { name: 'Community', exact: true });
+  await expect(navigation.getByRole('link').first()).toHaveAccessibleName('Community');
+  await expect(community).toBeVisible();
+  await expect(community).toHaveAttribute('href', 'https://aka.ms/community/home');
+  await expect(community).not.toHaveAttribute('aria-current');
+  await expect(community.locator('svg')).toBeVisible();
+  await expect(community.locator('svg')).toHaveAttribute('aria-hidden', 'true');
+  await expect(community.locator('svg')).toHaveAttribute('width', '12');
+  await expect(navigation.getByRole('link', { name: 'Samples', exact: true })).toHaveAttribute('aria-current', 'page');
+  await page.route('https://aka.ms/community/home', (route) => route.fulfill({ contentType: 'text/html', body: '<title>Community home</title>' }));
+  await community.click();
+  await expect(page).toHaveURL('https://aka.ms/community/home');
+});
+
 test('theme defaults to light, persists dark mode, and navigation is keyboard accessible', async ({ page }, testInfo) => {
   await page.emulateMedia({ colorScheme: 'dark' });
   await page.goto('./');
