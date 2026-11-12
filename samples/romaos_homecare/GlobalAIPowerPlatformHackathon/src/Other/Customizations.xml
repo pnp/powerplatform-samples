@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Entities />
+  <Roles />
+  <Workflows />
+  <FieldSecurityProfiles />
+  <Templates />
+  <EntityImageConfigs>
+    <EntityImageConfig>
+      <parententitylogicalname>rms_patient</parententitylogicalname>
+      <primaryimageattribute>rms_photo</primaryimageattribute>
+    </EntityImageConfig>
+  </EntityImageConfigs>
+  <AttributeImageConfigs>
+    <AttributeImageConfig>
+      <attributelogicalname>rms_photo</attributelogicalname>
+      <parententitylogicalname>rms_patient</parententitylogicalname>
+      <canstorefullimage>1</canstorefullimage>
+    </AttributeImageConfig>
+  </AttributeImageConfigs>
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <WebResources />
+  <CustomControls />
+  <AppModuleSiteMaps />
+  <AppModules />
+  <EntityDataProviders />
+  <CanvasApps />
+  <Connectors />
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="new_sharedwhisper5f0e8bc62c96c6e8675f2435fd0d1e382012_d4261">
+      <connectionreferencedisplayname>Whisper</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_whisper-5f0e8bc62c96c6e867-5f2435fd0d1e382012</connectorid>
+      <customconnectorid>
+        <connectorid>9a4abbc3-17fb-4928-ad67-8f46396047b6</connectorid>
+      </customconnectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedazureblob_29eb6">
+      <connectionreferencedisplayname>Azure Blob Storage GlobalAIPowerPlatformHackathon-29eb6</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_azureblob</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedazureblob_670f1">
+      <connectionreferencedisplayname>Azure Blob Storage GlobalAIPowerPlatformHackathon-670f1</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_azureblob</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedazureblob_a8e3b">
+      <connectionreferencedisplayname>Azure Blob Storage GlobalAIPowerPlatformHackathon-a8e3b</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_azureblob</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedbingmaps_4c1a2">
+      <connectionreferencedisplayname>Bing Maps GlobalAIPowerPlatformHackathon-4c1a2</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_bingmaps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedcognitiveservicescomputervision_22d50">
+      <connectionreferencedisplayname>Computer Vision API GlobalAIPowerPlatformHackathon-22d50</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_cognitiveservicescomputervision</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedcognitiveservicescustomvision_4753b">
+      <connectionreferencedisplayname>Custom Vision GlobalAIPowerPlatformHackathon-4753b</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_cognitiveservicescustomvision</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedcognitiveservicestextanalytics_f7326">
+      <connectionreferencedisplayname>Azure Cognitive Service for Language GlobalAIPowerPlatformHackathon-f7326</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_cognitiveservicestextanalytics</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedcommondataserviceforapps_c37ac">
+      <connectionreferencedisplayname>Microsoft Dataverse GlobalAIPowerPlatformHackathon-c37ac</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedfaceapi_18844">
+      <connectionreferencedisplayname>Face API GlobalAIPowerPlatformHackathon-18844</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_faceapi</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedfaceapi_1bc01">
+      <connectionreferencedisplayname>Face API GlobalAIPowerPlatformHackathon-1bc01</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_faceapi</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedfaceapi_8a105">
+      <connectionreferencedisplayname>Face API GlobalAIPowerPlatformHackathon-8a105</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_faceapi</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedfaceapi_a15ed">
+      <connectionreferencedisplayname>Face API GlobalAIPowerPlatformHackathon-a15ed</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_faceapi</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="rms_sharedsharepointonline_b4a8e">
+      <connectionreferencedisplayname>SharePoint GlobalAIPowerPlatformHackathon-b4a8e</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>

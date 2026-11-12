@@ -1,0 +1,100 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "rms_audioreferences",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "rms_audioreference",
+    "MaxGetRowsCount": 500,
+    "Name": "Audio References",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "rms_audioreference_AsyncOperations": "System Jobs",
+      "rms_audioreference_BulkDeleteFailures": "Bulk Delete Failures",
+      "rms_audioreference_DuplicateBaseRecord": "Duplicate Records (rms_audioreference_DuplicateBaseRecord)",
+      "rms_audioreference_DuplicateMatchingRecord": "Duplicate Records (rms_audioreference_DuplicateMatchingRecord)",
+      "rms_audioreference_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "rms_audioreference_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "rms_audioreference_ProcessSession": "Process Sessions",
+      "rms_audioreference_SyncErrors": "Sync Errors",
+      "rms_audioreferenceid": "Audio Reference",
+      "rms_azurestorageitemid": "AzureStorageItemId",
+      "rms_name": "Name",
+      "rms_transcript": "Transcript",
+      "rms_Visit": "Visit",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Audio References",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Audio References (Views)",
+    "Name": "_rms_audioreference_views",
+    "RelatedEntityName": "Audio References",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "132189ba-11f1-4955-a6c7-4f38b1a354cd": "Inactive Audio References",
+      "19619aca-491a-4344-af74-d22736071280": "Audio Reference Advanced Find View",
+      "7d3be92e-9e13-42bb-82a4-7628ecb2f603": "Audio Reference Lookup View",
+      "8a3a28c2-b2ff-4869-9207-5989496e235a": "Active Audio References",
+      "ff5693aa-f414-4305-8d7b-12cebc7a64f3": "Audio Reference Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Audio References)",
+    "Name": "rms_audioreference_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Audio References"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Audio References",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Audio References)",
+    "Name": "rms_audioreference_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Audio References"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Audio References",
+    "Type": "OptionSetInfo"
+  }
+]

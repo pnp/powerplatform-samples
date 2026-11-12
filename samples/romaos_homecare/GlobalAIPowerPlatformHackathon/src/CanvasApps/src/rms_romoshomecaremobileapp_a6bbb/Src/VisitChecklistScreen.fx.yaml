@@ -1,0 +1,203 @@
+VisitChecklistScreen As screen:
+    Fill: =RGBA(245, 247, 254, 1)
+
+    "Gallery2_1 As gallery.'BrowseLayout_Vertical_ThreeTextOneImageVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =850
+        Items: =Filter('Visit Checklist Items', Visit.Visit = selectedVisitForChecklist.Visit)
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =10
+        TemplateSize: =116
+        Visible: =selectedView = "List" || IsBlank(selectedView)
+        Width: =572
+        X: =35
+        Y: =101
+        ZIndex: =2
+
+        Button3_20 As button:
+            BorderThickness: =0
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =108
+            HoverFill: =Self.Fill
+            Size: =24
+            Text: =""
+            Width: =552
+            ZIndex: =1
+
+        Title2_1 As label:
+            Color: =RGBA(16, 20, 82, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Question
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 185
+            X: =29
+            Y: =15
+            ZIndex: =2
+
+        NextArrow2_1 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(54, 176, 75, 1)
+            Height: =50
+            Icon: =Icon.Check
+            OnSelect: |-
+                =Patch('Visit Checklist Items', ThisItem, { Answer: 'Answer (Visit Checklist Items)'.Yes })
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =50
+            X: =29
+            Y: =50
+            ZIndex: =5
+
+        NextArrow2_2 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(255, 0, 0, 1)
+            Height: =50
+            Icon: =Icon.Cancel
+            OnSelect: |-
+                =Patch('Visit Checklist Items', ThisItem, { Answer: 'Answer (Visit Checklist Items)'.No })
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =50
+            X: =96
+            Y: =50
+            ZIndex: =6
+
+        Title2_2 As label:
+            Color: =RGBA(16, 20, 82, 1)
+            Height: =30
+            Italic: =true
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: |-
+                ="Answer: "& ThisItem.Answer
+            Width: =153
+            X: =170
+            Y: =60
+            ZIndex: =7
+
+    Label1_23 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =16
+        Text: ="Visit Checklist"
+        Width: =311
+        X: =165
+        ZIndex: =3
+
+    "Map1_2 As 'Map (preview)'.pcfdataset":
+        BorderColor: =RGBA(0, 18, 107, 1)
+        BorderRadius: =20
+        CurrentLocation: =true
+        DefaultLocation: =false
+        DefaultZoomLevel: =10
+        DisplayMode: =DisplayMode.Edit
+        Height: =856
+        InfoCards: ='Map.InfoCards'.OnClick
+        Items: =Visits
+        ItemsLabels: ="rms_title"
+        ItemsLatitudes: ="rms_latitude"
+        ItemsLongitudes: ="rms_longitude"
+        PinColor: |-
+            =ColorValue("#7889d3")
+        RouteMaintainOrder: =true
+        RouteOptimization: ='Map.RouteOptimization'.Time
+        SatelliteView: =false
+        ShapeDrawing: =false
+        ShapeEditingDeleting: =false
+        UseRouting: =true
+        Visible: =selectedView = "Map"
+        Width: =572
+        X: =35
+        Y: =224
+        ZIndex: =4
+
+        Title4_1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Title"
+            FieldName: ="rms_title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =4
+            ZIndex: =12
+
+        Latitude1_1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Latitude"
+            FieldName: ="rms_latitude"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =13
+
+        Longitude1_1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Longitude"
+            FieldName: ="rms_longitude"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =3
+            ZIndex: =14
+
+        Patient1_1 As pcfDataField:
+            FieldDisplayName: ="Patient"
+            FieldName: ="rms_Patient"
+            FieldType: ="E"
+            FieldVariantName: ="complexTypeColumn"
+            Order: =4
+            ZIndex: =15
+
+        "'Planned Date and Time1_1' As pcfDataField.textualColumn":
+            FieldDisplayName: ="Planned Date and Time"
+            FieldName: ="rms_planneddateandtime"
+            FieldType: ="d"
+            FieldVariantName: ="textualColumn"
+            Order: =5
+            ZIndex: =16
+
+    Icon3_8 As icon.BackArrow:
+        Color: |-
+            =ColorValue("#7889d3")
+        Height: =35
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Back()
+        Width: =35
+        X: =35
+        Y: =17
+        ZIndex: =7
+
+    Button3_18 As button:
+        BorderThickness: =0
+        Fill: |-
+            =ColorValue("#7889d3")
+        Font: =Font.Arial
+        Height: =87
+        HoverFill: |-
+            =ColorValue("#7889d3")
+        OnSelect: |+
+            =Set(updatedScore, Value('AIHackathon-GenerateHealthScoreforVisit'.Run(selectedVisitForChecklist.Visit).score));
+            Back();
+            
+        Size: =16
+        Text: ="Submit to AI 🤖"
+        Width: =269
+        X: =186
+        Y: =993
+        ZIndex: =8
+

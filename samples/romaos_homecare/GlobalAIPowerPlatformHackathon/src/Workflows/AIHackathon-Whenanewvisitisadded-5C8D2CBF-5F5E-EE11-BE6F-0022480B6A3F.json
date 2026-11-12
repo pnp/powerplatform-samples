@@ -1,0 +1,97 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "rms_sharedcommondataserviceforapps_c37ac"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "2c31a83b-8a61-409c-bf4a-ee952e29f051"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "rms_visit",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Compose_-_Checklist_Items": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "6453dc37-b941-4b0c-abb7-febad5632456"
+          },
+          "type": "Compose",
+          "inputs": "The patient's vital signs, including heart rate, are within the normal range.|The patient engages in regular physical activity.|The patient has excellent nutritional habits.|The patient experiences good sleep quality.|The patient reports low stress levels.|The patient's mental health is in good condition.|The patient is well-hydrated.|The patient strictly adheres to prescribed medications.|The patient's chronic condition is excellently managed.|The patient self-reports good overall well-being."
+        },
+        "Apply_to_each": {
+          "foreach": "@split(outputs('Compose_-_Checklist_Items'), '|')",
+          "actions": {
+            "Add_a_new_row": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "58571fe5-07b3-4026-93bb-7b93186305e3"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "rms_visitchecklistitems",
+                  "item/rms_question": "@items('Apply_to_each')",
+                  "item/rms_Visit@odata.bind": "rms_visits(@{triggerOutputs()?['body/rms_visitid']})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Compose_-_Checklist_Items": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e615f988-ddb2-4374-b76e-b44f66deabe3"
+          },
+          "type": "Foreach"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
