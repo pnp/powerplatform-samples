@@ -1,0 +1,192 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_e2353"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "7245d9dc-2c6e-486f-bb96-fac9560bb4fc"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Apply_to_each_3": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9e93d925-9175-4605-9c88-39673532f073"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "tableoutput": "@variables('Table')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tableoutput": {
+                  "title": "Tableoutput",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d4b47eb2-c714-410c-83bd-d281c04e8261"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Table",
+                "type": "string",
+                "value": "|Vendor Invoice Number |Date of Invoice received|Vendor Name|Item Number|Quantity|Amount|\n|---------------------------|--------------------------|----------------|-----------------------|---------|----------|\n"
+              }
+            ]
+          }
+        },
+        "Get_items_2": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "02af9fb8-7b25-42f1-b8b7-289d85407b62"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "https://saglobal.sharepoint.com/sites/RPACoETeam",
+              "table": "ca930e7a-0fe5-4db4-b5cb-f20d0e469d69",
+              "$top": 30
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_items_3": {
+          "runAfter": {
+            "Get_items_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e6c522ca-ac91-4d7e-9ba5-c7f4825244ff"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "https://saglobal.sharepoint.com/sites/RPACoETeam",
+              "table": "a53a3ff4-1fe3-46d1-976d-73bb60afc789",
+              "$top": 30
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each_3": {
+          "foreach": "@outputs('Get_items_2')?['body/value']",
+          "actions": {
+            "Apply_to_each_4": {
+              "foreach": "@outputs('Get_items_3')?['body/value']",
+              "actions": {
+                "Condition_2": {
+                  "actions": {
+                    "Append_to_string_variable_2": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "12e7584b-8c81-4d7f-96a7-ddf7cd4c1ffa"
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "Table",
+                        "value": "|@{items('Apply_to_each_4')?['Title']}|@{items('Apply_to_each_3')?['InvoiceDate']}|@{items('Apply_to_each_3')?['VendorName']}|@{items('Apply_to_each_4')?['ItemNumber']}|@{items('Apply_to_each_4')?['Quantity']}|@{items('Apply_to_each_3')?['TotalAmount']}|\n"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "expression": {
+                    "equals": [
+                      "@items('Apply_to_each_3')?['ID']",
+                      "@items('Apply_to_each_4')?['ID']"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3ff315f6-1bc8-468e-b689-6cdfee7e6e50"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "fd1f30bd-fbab-40e6-867d-ab4ba1ad98ca"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Get_items_3": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2503b6fb-8a7f-4590-9ad3-e0d468796d57"
+          },
+          "type": "Foreach"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

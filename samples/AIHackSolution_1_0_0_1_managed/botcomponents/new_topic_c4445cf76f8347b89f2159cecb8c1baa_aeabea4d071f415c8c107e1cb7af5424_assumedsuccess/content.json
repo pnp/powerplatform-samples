@@ -1,0 +1,114 @@
+{
+  "intents": [
+    {
+      "systemIntentTypes": [
+        "AssumedSuccess"
+      ],
+      "intentType": "System",
+      "dialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess",
+      "displayName": "End of Conversation",
+      "description": "System Intent Default Customer Survey",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "41d42054-d4cb-4e90-b922-2b16b37fe379",
+      "dialogType": "System",
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_db1f76b081dc43389df9dd2df7518737_confirmedsuccess",
+          "nodeType": "DialogChangeNode",
+          "id": "f4de4350-1dee-477d-ae36-d9a0d8f5b93f"
+        },
+        {
+          "targetDialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_d2198a5ee41a48a5bf70ab8970145a9f_confirmedfailure",
+          "nodeType": "DialogChangeNode",
+          "id": "9b23998f-839a-4900-985b-e7855c6eff26"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "48673479-2ccb-44aa-bd48-2e184726ef94",
+          "nodeType": "QuestionNode",
+          "id": "41d42054-d4cb-4e90-b922-2b16b37fe379",
+          "routes": [
+            {
+              "expression": "@equals(parameters('48673479-2ccb-44aa-bd48-2e184726ef94'), true)",
+              "targetNodeId": "f4de4350-1dee-477d-ae36-d9a0d8f5b93f"
+            },
+            {
+              "expression": "@equals(parameters('48673479-2ccb-44aa-bd48-2e184726ef94'), false)",
+              "targetNodeId": "9b23998f-839a-4900-985b-e7855c6eff26"
+            }
+          ]
+        }
+      ],
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess",
+      "displayName": "Dialog",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Did that answer your question?"
+        }
+      },
+      "id": "eb394d80-6d36-434d-9ea8-6e50a36a7ade",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Sorry, I didn't get that. Did that answer your question?"
+        }
+      },
+      "id": "03f0830a-59bb-4b51-a750-8c94ac4fb847",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "Boolean",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "messages": {
+        "GetValue": [
+          "eb394d80-6d36-434d-9ea8-6e50a36a7ade"
+        ],
+        "InvalidInput": [
+          "03f0830a-59bb-4b51-a750-8c94ac4fb847"
+        ]
+      },
+      "isGlobal": false,
+      "id": "48673479-2ccb-44aa-bd48-2e184726ef94",
+      "displayName": "PRR Survey Question",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "createdUtc": "0001-01-01T00:00:00Z"
+}
