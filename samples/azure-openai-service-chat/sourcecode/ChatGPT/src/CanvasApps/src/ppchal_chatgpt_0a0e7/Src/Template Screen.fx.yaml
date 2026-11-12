@@ -1,0 +1,48 @@
+"'Template Screen' As screen":
+    Fill: =ColorValue(AppTheme.palette.white)
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnVisible: =
+
+    RootLayoutContainer_TS As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(250, 250, 250, 0)
+        Height: =App.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        Width: =App.Width
+        Y: =
+        ZIndex: =1
+
+        PowerCATHeader_TS As Header:
+            Height: =70
+            LayoutMinHeight: =640
+            LayoutMinWidth: =640
+            RightButtonVisible: =false
+            Text: ="APPLICATION TITLE"
+            Theme: =AppTheme
+            Visible: =true
+            ZIndex: =2
+
+        CenterContainer_TS As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =Color.Transparent
+            Height: =
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingRight: =10
+            Width: =App.Width
+            ZIndex: =2
+
+            SubheaderContainer_TS As groupContainer.horizontalAutoLayoutContainer:
+                FillPortions: =0
+                Height: =44
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                ZIndex: =1
+

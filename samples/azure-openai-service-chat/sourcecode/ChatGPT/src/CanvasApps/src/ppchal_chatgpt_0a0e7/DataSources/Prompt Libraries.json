@@ -1,0 +1,105 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr84c_promptlibraries",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr84c_promptlibrary",
+    "MaxGetRowsCount": 500,
+    "Name": "Prompt Libraries",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr84c_Category": "Category",
+      "cr84c_name": "Name",
+      "cr84c_notes": "Notes",
+      "cr84c_Product": "Product",
+      "cr84c_Promp_cr84c_promptlibrary": "Prompt Ratings",
+      "cr84c_prompt": "Prompt",
+      "cr84c_Prompt_cr84c_promptlibrary": "Prompt Favorites",
+      "cr84c_promptlibrary_AsyncOperations": "System Jobs",
+      "cr84c_promptlibrary_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr84c_promptlibrary_DuplicateBaseRecord": "Duplicate Records (cr84c_promptlibrary_DuplicateBaseRecord)",
+      "cr84c_promptlibrary_DuplicateMatchingRecord": "Duplicate Records (cr84c_promptlibrary_DuplicateMatchingRecord)",
+      "cr84c_promptlibrary_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr84c_promptlibrary_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr84c_promptlibrary_ProcessSession": "Process Sessions",
+      "cr84c_promptlibrary_SyncErrors": "Sync Errors",
+      "cr84c_promptlibraryid": "Prompt Library",
+      "cr84c_rating": "Rating",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "ppchal_ppchal_chat_Prompt_cr84c_promptlibrary": "Chats",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Prompt Libraries",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Prompt Libraries (Views)",
+    "Name": "_cr84c_promptlibrary_views",
+    "RelatedEntityName": "Prompt Libraries",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "58637328-d5f9-4ecd-b5e8-77b0b9b6df50": "Inactive Prompt Libraries",
+      "7f8670a6-634c-4aac-baca-ea8aa1f31365": "Prompt Library Advanced Find View",
+      "bcb0741e-ddd4-4ad7-be13-a68ebb933fe7": "Prompt Library Lookup View",
+      "dde83c11-75c9-47ed-bd92-80c0a751deac": "Prompt Library Associated View",
+      "e0c5fff2-85b8-4a07-9fb3-17f45930b2ed": "Active Prompt Libraries"
+    }
+  },
+  {
+    "DisplayName": "Status (Prompt Libraries)",
+    "Name": "cr84c_promptlibrary_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Prompt Libraries"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Prompt Libraries",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Prompt Libraries)",
+    "Name": "cr84c_promptlibrary_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Prompt Libraries"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Prompt Libraries",
+    "Type": "OptionSetInfo"
+  }
+]
