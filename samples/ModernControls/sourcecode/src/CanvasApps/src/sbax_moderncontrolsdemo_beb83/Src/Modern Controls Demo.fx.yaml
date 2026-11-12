@@ -1,0 +1,784 @@
+"'Modern Controls Demo' As screen.'autoLayout_HeaderFooter_ver1.0'":
+
+    ScreenContainer As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =1
+
+            Header As Header:
+                DisplayMode: =DisplayMode.Edit
+                Height: =75
+                IsLogoVisible: =true
+                IsProfilePictureVisible: =true
+                LayoutMinHeight: =75
+                LayoutMinWidth: =Parent.Width
+                Logo: =appLogo
+                LogoTooltip: ="Power Apps Logo"
+                ThemeStyle: ='Header.ThemeStyle'.Primary
+                Title: =App.ActiveScreen.Name
+                UserEmail: =User().Email
+                UserImage: =User().Image
+                UserName: =User().FullName
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+        ContainerMenu As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =75
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            "TabList1 As 'Tab list'.pcfdataset":
+                Alignment: ='TabList.Alignment'.Horizontal
+                DefaultSelectedItems: =["Input Controls"]
+                DisplayMode: =DisplayMode.Edit
+                Height: =55
+                Items: =MenuItems
+                LayoutMinHeight: =55
+                LayoutMinWidth: =280
+                OnSelect: =
+                Size: ='TabList.Size'.Small
+                Width: =280
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+        MainContainer As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =5
+            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            LayoutWrap: =true
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =3
+
+            ContainerInputsControls As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =5
+                LayoutMinHeight: =Parent.Height - 100
+                LayoutMinWidth: =200
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowY: =LayoutOverflow.Scroll
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingRight: =5
+                PaddingTop: =5
+                Visible: =TabList1.Selected.Value = "Input Controls"
+                ZIndex: =2
+
+                TextCanvas_InputControls As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Input Controls"
+                    Underline: =true
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                "InfoButtonCanvasInputControls As 'Information button'":
+                    Content: ="This section  shows the various input controls"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    IconSize: ='InfoButtonCanvas.IconSize'.Large
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =32
+                    Width: =32
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+                TextCanvas_TextInput As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Text Input"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                "TextInputCanvas As 'Text input'":
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =100
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Placeholder: ="I am a modern text input"
+                    Required: =true
+                    Type: ='TextInputCanvas.Type'.Text
+                    Width: =320
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                TextCanvas_DatePicker As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Date Picker"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =5
+
+                "DatePickerCanvas As 'Date picker'":
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =320
+                    X: =0
+                    Y: =0
+                    ZIndex: =6
+
+                TextCanvas_Slider As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Slider"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =7
+
+                Slider As Slider:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =35
+                    LayoutMinHeight: =35
+                    LayoutMinWidth: =200
+                    Width: =200
+                    X: =0
+                    Y: =0
+                    ZIndex: =8
+
+            Container_SelectionControls As groupContainer.verticalAutoLayoutContainer:
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =5
+                LayoutMinHeight: =Parent.Height - 100
+                LayoutMinWidth: =200
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingRight: =5
+                PaddingTop: =5
+                Visible: =TabList1.Selected.Value = "Selection Controls"
+                ZIndex: =3
+
+                TextCanvas_SelectionControls As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Selection Controls"
+                    Underline: =true
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                "InfoButtonCanvas_SelectionControls As 'Information button'":
+                    Content: ="This section  shows the various selection controls"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    IconSize: ='InfoButtonCanvas.IconSize'.Large
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =32
+                    Width: =32
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+                TextCanvasDropdown As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Drop Down - select a theme for a bonus feature"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                DropdownCanvas As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =[PowerAppsTheme]
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    Items: =appThemes.Name
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =320
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                    Name4 As pcfDataField.textualColumn:
+                        FieldDisplayName: ="Name"
+                        FieldName: ="Name"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =11
+
+                TextCanvas_ComboBox As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Combo Box"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =5
+
+                ComboboxCanvas As Combobox.pcfdataset:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    InputTextPlaceholder: ="I am a combobox"
+                    Items: =Choices('Sample Choice')
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =320
+                    X: =0
+                    Y: =0
+                    ZIndex: =6
+
+                TextCanvas_RadioButtons As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Radio Buttons"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =7
+
+                RadioGroupCanvas As Radio.pcfdataset:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =100
+                    Items: =Choices('Sample Choice')
+                    LayoutMinHeight: =96
+                    LayoutMinWidth: =320
+                    Width: =320
+                    X: =0
+                    Y: =0
+                    ZIndex: =8
+
+                CheckboxCanvas As Checkbox:
+                    Checked: =false
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    Label: ="I am a moderrn checkbox"
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =160
+                    Width: =160
+                    X: =0
+                    Y: =0
+                    ZIndex: =9
+
+                Toggle As Toggle:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =35
+                    Label: ="I am a modern toggle"
+                    LayoutMinHeight: =35
+                    LayoutMinWidth: =110
+                    Width: =110
+                    X: =0
+                    Y: =0
+                    ZIndex: =10
+
+            Container_Utilities As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =5
+                LayoutMinHeight: =Parent.Height - 100
+                LayoutMinWidth: =200
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowY: =LayoutOverflow.Scroll
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingRight: =5
+                PaddingTop: =5
+                Visible: =TabList1.Selected.Value = "Utilities"
+                ZIndex: =4
+
+                TextCanvas_Utilities As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Utilities"
+                    Underline: =true
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                "InfoButtonCanvas2_Utilities As 'Information button'":
+                    Content: ="This section  shows the various utility controls"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    IconSize: ='InfoButtonCanvas.IconSize'.Large
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =32
+                    Width: =32
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+                TextCanvas_ProgressBar As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Progress Bar"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                "Progress As 'Progress Bar'":
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =45
+                    LayoutMinHeight: =45
+                    LayoutMinWidth: =100
+                    Width: =450
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                TextCanvas_Badges As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Badges"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =5
+
+                BadgeCanvas_Brand As Badge:
+                    Appearance: ='BadgeCanvas.Appearance'.Filled
+                    Content: ="Brand"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =32
+                    Shape: ='BadgeCanvas.Shape'.Rounded
+                    ThemeColor: ='BadgeCanvas.ThemeColor'.Brand
+                    Width: =32
+                    X: =0
+                    Y: =0
+                    ZIndex: =6
+
+                BadgeCanvas_Important As Badge:
+                    Appearance: ='BadgeCanvas.Appearance'.Filled
+                    Content: ="Important"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =32
+                    Shape: ='BadgeCanvas.Shape'.Rounded
+                    ThemeColor: ='BadgeCanvas.ThemeColor'.Important
+                    Width: =32
+                    X: =0
+                    Y: =0
+                    ZIndex: =7
+
+                BadgeCanvas_Informative As Badge:
+                    Appearance: ='BadgeCanvas.Appearance'.Filled
+                    Content: ="Informative"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =32
+                    Shape: ='BadgeCanvas.Shape'.Rounded
+                    ThemeColor: ='BadgeCanvas.ThemeColor'.Informative
+                    Width: =32
+                    X: =0
+                    Y: =0
+                    ZIndex: =8
+
+                BadgeCanvas_Severe As Badge:
+                    Appearance: ='BadgeCanvas.Appearance'.Filled
+                    Content: ="Severe"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =32
+                    Shape: ='BadgeCanvas.Shape'.Rounded
+                    ThemeColor: ='BadgeCanvas.ThemeColor'.Severe
+                    Width: =32
+                    X: =0
+                    Y: =0
+                    ZIndex: =9
+
+                BadgeCanvas_Danger As Badge:
+                    Appearance: ='BadgeCanvas.Appearance'.Filled
+                    Content: ="Danger"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =32
+                    Shape: ='BadgeCanvas.Shape'.Rounded
+                    ThemeColor: ='BadgeCanvas.ThemeColor'.Danger
+                    Width: =32
+                    X: =0
+                    Y: =0
+                    ZIndex: =10
+
+                BadgeCanvas_Warning As Badge:
+                    Appearance: ='BadgeCanvas.Appearance'.Filled
+                    Content: ="Warning"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =32
+                    Shape: ='BadgeCanvas.Shape'.Rounded
+                    ThemeColor: ='BadgeCanvas.ThemeColor'.Warning
+                    Width: =32
+                    X: =0
+                    Y: =0
+                    ZIndex: =11
+
+                BadgeCanvas_Success As Badge:
+                    Appearance: ='BadgeCanvas.Appearance'.Filled
+                    Content: ="Success"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =32
+                    Shape: ='BadgeCanvas.Shape'.Rounded
+                    ThemeColor: ='BadgeCanvas.ThemeColor'.Success
+                    Width: =32
+                    X: =0
+                    Y: =0
+                    ZIndex: =12
+
+                TextCanvas_buttons As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Buttons"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =13
+
+                ButtonCanvas_Primary As Button:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =25
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: =SubmitForm(Form)
+                    Text: ="Primary Button"
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =14
+
+                ButtonCanvas_Secondary As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =25
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: =ResetForm(Form)
+                    Text: ="Secondary Button"
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =15
+
+                TextCanvas_Link As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Link"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =16
+
+                LinkCanvas As Link:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Text: ="link to make.powerapps.com"
+                    URL: |-
+                        ="https://make.powerapps.com"
+                    Width: =320
+                    X: =0
+                    Y: =0
+                    ZIndex: =17
+
+            Container_FormsAndGrids As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =Parent.Height - 100
+                LayoutMinWidth: =200
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowY: =LayoutOverflow.Scroll
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingRight: =5
+                PaddingTop: =5
+                Visible: =TabList1.Selected.Value = "Forms & Grids"
+                ZIndex: =5
+
+                TextCanvas_FormsAndGrids As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Forms and Grids"
+                    Underline: =true
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                "InfoButtonCanvas_FormsAndGrids As 'Information button'":
+                    Content: ="This section  shows the grid control and a modern form"
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    IconSize: ='InfoButtonCanvas.IconSize'.Large
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =32
+                    Width: =32
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+                TextCanvas_Grid As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Grid"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                "PowerAppsOneGrid As 'Table (Dataverse only)'.pcfdataset":
+                    DisplayMode: =DisplayMode.Edit
+                    FillPortions: =1
+                    Height: =If(Self.Y + 500 > Parent.Height, Parent.Height - Self.Y, 500)
+                    Items: ='Sample Tables'
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =If(Self.X + 800 > Parent.Width, Parent.Width - Self.X, 800)
+                    ParentId: ="Name"
+                    ReflowBehavior: ='PowerAppsOneGrid.ReflowBehavior'.Reflow
+                    Width: =If(Self.X + 800 > Parent.Width, Parent.Width - Self.X, 800)
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                    Name3_1 As pcfDataField.textualColumn:
+                        FieldDisplayName: ="Name"
+                        FieldName: ="sbax_name"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =10
+
+                TextCanvas_Form As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Form"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =5
+
+                Form As form.PowerApps_CoreControls_Form:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DataSource: ='Sample Tables'
+                    Item: =First('Sample Tables')
+                    LayoutMinHeight: =250
+                    LayoutMinWidth: =100
+                    UseFluentV9Cards: =true
+                    ZIndex: =6
+
+                    Name_DataCard As typedDataCard.fluentV9TextualEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="sbax_name"
+                        Default: =ThisItem.Name
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@'Sample Tables'],DataSourceInfo.DisplayName,"sbax_name")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        MaxLength: =DataSourceInfo([@'Sample Tables'], DataSourceInfo.MaxLength, "sbax_name")
+                        Required: =true
+                        Update: =DataCardValue.Value
+                        Width: =141
+                        WidthFit: =true
+                        X: =0
+                        Y: =0
+                        ZIndex: =6
+
+                        DataCardKey As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Required: =Parent.Required
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey.Y + DataCardKey.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue.Y + DataCardValue.Height
+                            ZIndex: =3
+
+                        StarVisible As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey.Y
+                            ZIndex: =4
+
+    ContainerLoading As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(255, 255, 255, 90%)
+        Height: =Parent.Height
+        Visible: =Loading
+        Width: =Parent.Width
+        ZIndex: =2
+
+        Spinner As Spinner:
+            Appearance: ='Spinner.Appearance'.Primary
+            DisplayMode: =DisplayMode.Edit
+            Height: =Parent.Height
+            Label: ="Loading..."
+            SpinnerSize: ='Spinner.SpinnerSize'.ExtraLarge
+            Visible: =true
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+    Timer As timer:
+        AutoStart: =true
+        Duration: =5000
+        OnTimerEnd: |-
+            =UpdateContext({Loading:false})
+        OnTimerStart: |-
+            =UpdateContext({Loading:true})
+        Visible: =false
+        X: =40
+        Y: =40
+        ZIndex: =3
+

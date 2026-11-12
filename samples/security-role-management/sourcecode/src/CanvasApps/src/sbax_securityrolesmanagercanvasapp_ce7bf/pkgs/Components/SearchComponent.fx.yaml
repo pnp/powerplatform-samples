@@ -51,7 +51,10 @@ SearchComponent As CanvasComponent:
             Height: =32
             LayoutMinHeight: =32
             LayoutMinWidth: =10
+            MaxLength: =-1
             OnChange: =Set(varSelectedSearchText,TextInputSearch.Value)
+            Placeholder: =""
+            Type: ="Text"
             Width: =Parent.Width - Self.Height
             X: =0
             Y: =0
