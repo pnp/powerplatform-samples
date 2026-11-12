@@ -1,0 +1,246 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "crd69_sharedcommondataserviceforapps_02f23"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "f6dda348-cc30-466b-adc8-e5951cca058a"
+          },
+          "type": "Request",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "HTTP_Body": {
+                  "type": "any",
+                  "description": "Enter request content. This parameter is used as part of \"FE9C7235-8D83-4944-9D28-B6010A7E6B98\"",
+                  "x-ms-powerflows-param-ispartial": true
+                },
+                "HTTP_Body_1": {
+                  "type": "any"
+                },
+                "HTTP_Body_2": {
+                  "type": "any"
+                }
+              },
+              "required": [
+                "HTTP_Body",
+                "HTTP_Body_1",
+                "HTTP_Body_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "HTTP": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "f5e85e9d-b6bc-415b-8c88-a30f9d162b03"
+          },
+          "type": "Http",
+          "inputs": {
+            "method": "POST",
+            "uri": "https://api.heygen.com/v1/video.generate",
+            "headers": {
+              "X-Api-Key": "YjkyMjc2MzdjMjllNDJkZDhkMTgyMTgzYTIzYWVlYjUtMTY5NTg3ODM2Mg==",
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "background": "#ffffff",
+              "clips": [
+                {
+                  "talking_photo_id": "@{triggerBody()['HTTP_Body_2']}",
+                  "avatar_style": "normal",
+                  "input_text": "@{triggerBody()['HTTP_Body']}",
+                  "offset": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "scale": 1,
+                  "voice_id": "@{triggerBody()['HTTP_Body_1']}"
+                }
+              ],
+              "ratio": "16:9",
+              "test": true,
+              "version": "v1alpha"
+            }
+          }
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "Delay": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fad3a773-778e-4d75-92b8-2732cc4a20df"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('HTTP')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "video_id": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "HTTP_2": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b70e517a-bd13-454c-9631-4ca2f2bd9600"
+          },
+          "type": "Http",
+          "inputs": {
+            "method": "GET",
+            "uri": "https://api.heygen.com/v1/video_status.get?video_id=@{body('Parse_JSON')?['data']?['video_id']}",
+            "headers": {
+              "X-Api-Key": "YjkyMjc2MzdjMjllNDJkZDhkMTgyMTgzYTIzYWVlYjUtMTY5NTg3ODM2Mg==",
+              "Content-Type": "application/json"
+            }
+          }
+        },
+        "Parse_JSON_2": {
+          "runAfter": {
+            "HTTP_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f4bb610d-66e7-49e6-8ee4-1be41995adc4"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('HTTP_2')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "callback_id": {},
+                    "caption_url": {
+                      "type": "string"
+                    },
+                    "duration": {
+                      "type": "number"
+                    },
+                    "error": {},
+                    "id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "thumbnail_url": {
+                      "type": "string"
+                    },
+                    "video_url": {
+                      "type": "string"
+                    },
+                    "video_url_caption": {}
+                  }
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Add_a_new_row": {
+          "runAfter": {
+            "Parse_JSON_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0d476a08-c2c3-4eea-9e62-ffb5cfec1ea8"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "CreateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "crd69_heygens",
+              "item/crd69_name": "@body('Parse_JSON')?['data']?['video_id']",
+              "item/crd69_videourl": "@body('Parse_JSON_2')?['data']?['video_url']"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Delay": {
+          "runAfter": {
+            "HTTP": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "666af7bb-0343-482f-abd9-119a8c53a335"
+          },
+          "type": "Wait",
+          "inputs": {
+            "interval": {
+              "count": 3,
+              "unit": "Minute"
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
