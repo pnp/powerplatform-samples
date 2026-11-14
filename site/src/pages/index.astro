@@ -32,7 +32,7 @@ import BadgePanel from '../components/BadgePanel.astro';
     <section class="container catalog-section" id="sample-catalog" aria-labelledby="catalog-heading">
       <div class="section-heading"><div><p class="eyebrow">A starting point for your next idea</p><h2 id="catalog-heading">Find your inspiration.</h2></div><a class="text-link" href={sitePath('/getting-started/')}>New here? Start with the basics <ArrowUpRight size={17} /></a></div>
       <div class="product-selector js-only" role="group" aria-label="Filter by product">
-        <button class="product-filter is-active" data-product-filter="" aria-pressed="true"><img src={brandPath('powerplatform_256x256.png')} alt="" width="36" height="36" /><span>All products</span><small>{catalog.samples.length}</small></button>
+        <button class="product-filter is-active" data-product-filter="" aria-pressed="true"><img src={brandPath('PowerPlatform_scalable.svg')} alt="" width="36" height="36" /><span>All products</span><small>{catalog.samples.length}</small></button>
         {catalog.products.filter((product) => product.kind === 'product').map((product) => <button class="product-filter" data-product-filter={product.name} aria-pressed="false"><img src={brandPath(product.logo!)} alt="" width="36" height="36" /><span>{product.name}</span><small>{product.count}</small></button>)}
       </div>
       <div class="capability-filters js-only" role="group" aria-label="Additional product and capability filters"><span>Also explore</span>{catalog.products.filter((product) => product.kind !== 'product').map((product) => <button class="capability-filter" data-product-filter={product.name} aria-pressed="false">{product.name}<span>{product.count}</span></button>)}</div>

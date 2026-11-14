@@ -1,6 +1,7 @@
 ---
 import { ArrowRight } from '@lucide/astro';
 import { brandPath, sitePath } from '../lib/catalog';
+import { communityLinks } from '../lib/community';
 interface Props { compact?: boolean; actionHref?: string; actionLabel?: string; }
 const {
   compact = false,
@@ -15,6 +16,7 @@ const {
     <h2 id="badge-heading">Share a little. Make a difference.</h2>
     <p>Every sample starts with someone sharing what they know. Join our contributors and help the next maker get moving.</p>
     <p class="badge-caption">The community contributor badge celebrates people who share their knowledge.</p>
+    <p class="badge-caption">Sharing is caring. New to contributing? Our <a href={communityLinks.sharingIsCaring}>Sharing is Caring sessions</a> help you take the first step.</p>
     <div class="action-row"><a class="button button--primary" href={actionHref}>{actionLabel} <ArrowRight size={17} /></a><a class="text-link" href="https://aka.ms/community/recognition">About community recognition <ArrowRight size={16} /></a></div>
   </div>
 </section>

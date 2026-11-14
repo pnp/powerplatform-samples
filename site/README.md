@@ -69,6 +69,7 @@ The originals in [assets](../assets/) are the source of truth. Keep them intact 
 - Five responsive portrait pairs preserve transparency; only portrait 001 is used on the homepage.
 - Selected StandardPath ribbons and light/dark GradientMesh backgrounds form decorative page/section treatments.
 - Product logos retain their original appearance and are always accompanied by accessible product names.
+- Applicable product logos use the supplied current SVG artwork, served intact rather than rasterized. The correct Copilot Studio mark is retained; the supplied Microsoft 365 Copilot icon represents a different product.
 - The contributor badge has a 480 px optimized derivative rather than serving the original 2048 px PNG to small panels.
 - Card previews have 640/960 px variants, use explicit dimensions, and preserve screenshot content. Additional documentation images are optimized and lazy-loaded. Animated images are copied intact to avoid flattening them or decoding all frames during the build.
 - Shared documentation images are processed once per generation pass. Each build regenerates derivatives so changing a thumbnail source cannot retain a stale preview. System fonts avoid external font requests and additional licensing requirements.
@@ -76,6 +77,8 @@ The originals in [assets](../assets/) are the source of truth. Keep them intact 
 Keep artwork decorative where appropriate; portraits are not contributor identities. Badge wording links to [community recognition](https://aka.ms/community/recognition) without promising automatic issuance.
 
 The Contributing page places its contributor-badge callout immediately below the hero, before the contribution steps. Its primary action jumps to those steps; the home and Contributors pages retain their links to Contributing.
+
+The shared gallery switcher links to the [Power Platform snippet gallery](https://pnp.github.io/powerplatform-snippets/), identifying samples as apps and solutions and snippets as patterns and components. Samples keep the teal identity; snippets use purple styling and different hero artwork. Both root READMEs cross-link the galleries. Badge callouts and the footer also link to [Sharing is Caring sessions](https://pnp.github.io/sharing-is-caring/) for first-time contributors.
 
 ## Visitor-statistics images
 

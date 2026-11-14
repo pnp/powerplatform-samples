@@ -14,6 +14,13 @@ Great ideas grow when we share them. This collection brings together makers and 
 
 Whether you're trying your first sample or sharing a solution you've built, you're welcome here. Connect with the [Copilot, Microsoft 365 & Power Platform Community](https://aka.ms/community/home) to learn from others, find new ideas, and meet the people behind the samples.
 
+### One community. Two ways to build.
+
+- **[Power Platform Samples](https://pnp.github.io/powerplatform-samples/):** community-built apps, automations, agents, and solutions that show how the pieces come together.
+- **[Power Platform Snippets](https://pnp.github.io/powerplatform-snippets/):** focused patterns, components, formulas, and topics you can reuse in your own work. Visit the [snippets repository](https://github.com/pnp/powerplatform-snippets) for the source.
+
+The galleries share a familiar browsing experience with distinct identities: teal apps and solutions here, purple building blocks in the snippet gallery.
+
 ## Get started with a sample
 
 1. **Find your inspiration.** Browse the [gallery](https://pnp.github.io/powerplatform-samples/) by product, scenario, or contributor.
@@ -46,6 +53,8 @@ Your experience can be someone else's starting point. Contributions of all sizes
 - Present a demo and explain how you solved a real problem.
 
 Start with the [contribution guide](https://pnp.github.io/powerplatform-samples/contributing/) for sample requirements and how to submit a pull request. Meet the people already sharing their work on the [Contributors page](https://pnp.github.io/powerplatform-samples/contributors/).
+
+New to contributing? The community's [Sharing is Caring sessions](https://pnp.github.io/sharing-is-caring/) provide hands-on guidance for first-time contributors. A small improvement can make a real difference.
 
 ### Community contributor badge
 

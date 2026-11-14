@@ -10,6 +10,23 @@ test.beforeEach(async ({ page }) => {
   }));
 });
 
+test('related galleries retain distinct identities and current logos with sharing guidance', async ({ page, request }) => {
+  const catalog: Catalog = await (await request.get('./catalog.json')).json();
+  await page.goto('./');
+  const related = page.getByRole('navigation', { name: 'Related galleries' });
+  await expect(related.getByRole('link', { name: /Samples/ })).toHaveAttribute('aria-current', 'page');
+  await expect(related.getByRole('link', { name: /Snippets/ })).toHaveAttribute('href', 'https://pnp.github.io/powerplatform-snippets/');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Build something powerful');
+  for (const product of catalog.products.filter((item) => item.logo)) {
+    const response = await request.get(`./generated/brand/${product.logo}`);
+    expect(response.ok(), product.name).toBe(true);
+    expect(response.headers()['content-type']).toContain('image/svg+xml');
+    expect(await response.text()).toContain('<svg');
+  }
+  await page.goto('./contributing/');
+  await expect(page.locator('.badge-panel').getByRole('link', { name: 'Sharing is Caring sessions' })).toHaveAttribute('href', 'https://pnp.github.io/sharing-is-caring/');
+});
+
 test('shows all samples, working logo filters, composable facets, URL state, and reset', async ({ page, request }) => {
   const catalog: Catalog = await (await request.get('./catalog.json')).json();
   expect(catalog.samples.length).toBe(catalog.sampleFolderCount);

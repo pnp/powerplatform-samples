@@ -1,0 +1,33 @@
+---
+import { ArrowUpRight } from '@lucide/astro';
+interface Props { current: 'samples' | 'snippets'; }
+const { current } = Astro.props;
+---
+<aside class="gallery-switcher" aria-label="Power Platform community galleries">
+  <div class="container gallery-switcher-inner">
+    <p>One community. Two ways to build.</p>
+    <nav aria-label="Related galleries">
+      <a class="gallery-link gallery-link--samples" href="https://pnp.github.io/powerplatform-samples/" aria-current={current === 'samples' ? 'page' : undefined}><strong>Samples</strong><span>Apps &amp; solutions</span>{current !== 'samples' && <ArrowUpRight size={14} aria-hidden="true" />}</a>
+      <a class="gallery-link gallery-link--snippets" href="https://pnp.github.io/powerplatform-snippets/" aria-current={current === 'snippets' ? 'page' : undefined}><strong>Snippets</strong><span>Patterns &amp; components</span>{current !== 'snippets' && <ArrowUpRight size={14} aria-hidden="true" />}</a>
+    </nav>
+  </div>
+</aside>
+<style>
+  .gallery-switcher { background: var(--surface); border-bottom: 1px solid var(--border); }
+  .gallery-switcher-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
+  p { margin: 0; font-size: .76rem; font-weight: 600; color: var(--muted); }
+  nav { display: flex; flex-wrap: wrap; gap: 8px; }
+  .gallery-link { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 7px; padding: 6px 12px; border: 1px solid var(--border); border-radius: 7px; text-decoration: none; font-size: .72rem; }
+  .gallery-link span { color: var(--muted); }
+  .gallery-link--samples { color: #075e49; }
+  .gallery-link--snippets { color: #7034a3; }
+  .gallery-link[aria-current] { background: var(--soft); border-color: currentColor; }
+  :global(html[data-theme="dark"]) .gallery-link--samples { color: #9ee6c3; }
+  :global(html[data-theme="dark"]) .gallery-link--snippets { color: #d7b5ff; }
+  @media (max-width: 650px) {
+    .gallery-switcher-inner { align-items: flex-start; flex-direction: column; gap: 8px; }
+    nav { width: 100%; }
+    .gallery-link { flex: 1; font-size: .7rem; }
+    .gallery-link span { display: none; }
+  }
+</style>
