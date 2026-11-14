@@ -3,6 +3,7 @@ import { ArrowUpRight, GitFork, Menu, Moon, Sun } from '@lucide/astro';
 import { brandPath, sitePath } from '../lib/catalog';
 import { visitorStatsUrl } from '../../scripts/gallery-model.mjs';
 import { communityLinks } from '../lib/community';
+import GallerySwitcher from '../components/GallerySwitcher.astro';
 import '../styles/global.css';
 
 interface Props { title?: string; description?: string; image?: string; }
@@ -51,7 +52,7 @@ const backgrounds = [
       })();
     </script>
     <title>{pageTitle}</title>
-    <link rel="icon" type="image/png" href={brandPath('powerplatform_256x256.png')} />
+    <link rel="icon" type="image/svg+xml" href={brandPath('PowerPlatform_scalable.svg')} />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
@@ -66,7 +67,7 @@ const backgrounds = [
       <div class="product-spectrum" aria-hidden="true"></div>
       <div class="header-inner container">
         <a class="brand" href={sitePath('/')}>
-          <img src={brandPath('powerplatform_256x256.png')} alt="" width="42" height="42" />
+          <img src={brandPath('PowerPlatform_scalable.svg')} alt="" width="42" height="42" />
           <span><strong>Power Platform</strong> <span>sample gallery</span></span>
         </a>
         <nav class="desktop-nav" aria-label="Primary navigation">
@@ -89,6 +90,7 @@ const backgrounds = [
         </div>
       </div>
     </header>
+    <GallerySwitcher current="samples" />
     <main id="main-content"><slot /></main>
     <footer class="site-footer">
       <div class="container footer-top">
@@ -101,6 +103,8 @@ const backgrounds = [
           <a href={communityLinks.forums}>Community forums</a>
           <a href={communityLinks.calls}>Community calls</a>
           <a href={sitePath('/contributing/')}>Contribute a sample</a>
+          <a href={communityLinks.sharingIsCaring}>Sharing is Caring sessions</a>
+          <a href="https://pnp.github.io/powerplatform-snippets/">Power Platform snippets</a>
           <a href={communityLinks.recordings}>Community recordings</a>
           <a href={communityLinks.powerPlatformVideos}>Power Platform videos</a>
           <a href={sitePath('/catalog.json')}>Catalog JSON</a>

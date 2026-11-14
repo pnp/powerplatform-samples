@@ -298,7 +298,14 @@ export async function generateGallery({ repositoryRoot, siteRoot }) {
   const definitions = JSON.parse(await readFile(path.join(siteRoot, 'src', 'lib', 'products.json'), 'utf8'));
   const products = definitions.map((product) => ({ ...product, count: samples.filter((sample) => sample.products.includes(product.name)).length }));
   for (const product of definitions) {
-    if (product.logo) await optimize(path.join(repositoryRoot, 'assets', 'logos', product.logo), `generated/brand/${product.logo}`, 128);
+    if (!product.logo) continue;
+    const source = path.join(repositoryRoot, 'assets', 'logos', product.logo);
+    if (product.logo.endsWith('.svg')) {
+      await mkdir(path.join(publicRoot, 'generated', 'brand'), { recursive: true });
+      await copyFile(source, path.join(publicRoot, 'generated', 'brand', product.logo));
+    } else {
+      await optimize(source, `generated/brand/${product.logo}`, 128);
+    }
   }
   for (let index = 1; index <= 5; index++) {
     const source = path.join(repositoryRoot, 'assets', 'graphics', `FY26AE-PowerPlatform-Composite-Portrait-00${index}.png`);
