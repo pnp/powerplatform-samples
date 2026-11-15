@@ -1,0 +1,641 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontentsv2_1": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "kk_sharedwebcontentsv2_71133"
+        },
+        "api": {
+          "name": "shared_webcontentsv2"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "ad2202dc-c0b7-4d94-aaea-f7b81c199995"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "teamId",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "channelId",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Initialize_variable_:_teamGuid": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "482eea27-a42b-4a4d-b54d-9360bac23b80"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "teamGuid",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Scope_:_get_team_Id_from_internalId_": {
+          "actions": {
+            "Invoke_an_HTTP_request_:_get_team_InternalId": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "7aadccca-385e-41d8-9769-2522510764da"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_webcontentsv2_1",
+                  "operationId": "InvokeHttp",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontentsv2"
+                },
+                "parameters": {
+                  "request/method": "GET",
+                  "request/url": "https://graph.microsoft.com/v1.0/teams?$select=id"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "description": "get all teams and fetch their Ids"
+            },
+            "Parse_JSON_:_get_Id": {
+              "runAfter": {
+                "Invoke_an_HTTP_request_:_get_team_InternalId": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "26eecae5-045e-4dd9-9fdc-3b420e88e51f"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Invoke_an_HTTP_request_:_get_team_InternalId')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@@odata.context": {
+                      "type": "string"
+                    },
+                    "@@odata.count": {
+                      "type": "integer"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Apply_to_each_:_team_": {
+              "foreach": "@body('Parse_JSON_:_get_Id')?['value']",
+              "actions": {
+                "Invoke_an_HTTP_request_:_get_internalId": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "07b6135b-dc1b-44a1-8128-91e4bcd2603e"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontentsv2_1",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontentsv2"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "https://graph.microsoft.com/v1.0/teams/@{items('Apply_to_each_:_team_')?['id']}?$select=internalId"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Parse_JSON_:_get_internalId": {
+                  "runAfter": {
+                    "Invoke_an_HTTP_request_:_get_internalId": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "883d1730-78e7-464e-8bcf-6c1a0331616e"
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Invoke_an_HTTP_request_:_get_internalId')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "@@odata.context": {
+                          "type": "string"
+                        },
+                        "@@microsoft.graph.tips": {
+                          "type": "string"
+                        },
+                        "internalId": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "internalId_==_Param(teamId)": {
+                  "actions": {
+                    "Set_variable_:_teamGuid": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "81e36daf-d86d-45f0-86bf-e030a6cccfd3"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "teamGuid",
+                        "value": "@items('Apply_to_each_:_team_')?['id']"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_:_get_internalId": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "equals": [
+                      "@body('Parse_JSON_:_get_internalId')?['internalId']",
+                      "@triggerBody()['text']"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "5c8ca8cd-d2b7-4b9a-920b-e159e95be7cf"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "Parse_JSON_:_get_Id": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "4b95526e-e828-4170-a1ed-b39be25e7cf0"
+              },
+              "type": "Foreach",
+              "description": "For each team Id, fetch internalId and compare with the teamId parameter (which is in internalId format)"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_:_teamGuid": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0e862ee6-72c3-473b-9a14-2ef9d46234bf"
+          },
+          "type": "Scope"
+        },
+        "Condition:_if_team_found": {
+          "actions": {
+            "Invoke_an_HTTP_request_:_get_folder_for_channel": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "c678cc4d-5d0e-4181-93b1-15ce88cef2a5"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_webcontentsv2_1",
+                  "operationId": "InvokeHttp",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontentsv2"
+                },
+                "parameters": {
+                  "request/method": "GET",
+                  "request/url": "https://graph.microsoft.com/v1.0/teams/@{variables('teamGuid')}/channels/@{triggerBody()['text_1']}/filesFolder?$select=id,name,parentReference"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "description": "get id,displayName of the folder, and driveId of the library (parentReference)"
+            },
+            "Parse_JSON_:_get_folder_Info": {
+              "runAfter": {
+                "Invoke_an_HTTP_request_:_get_folder_for_channel": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "82b57f2f-8c47-47ac-9c37-9d2663cd1171"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Invoke_an_HTTP_request_:_get_folder_for_channel')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@@odata.context": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "parentReference": {
+                      "type": "object",
+                      "properties": {
+                        "driveId": {
+                          "type": "string"
+                        },
+                        "driveType": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "description": "get id, webUrl, driveId"
+            },
+            "Invoke_an_HTTP_request_:_get_library_by_driveId": {
+              "runAfter": {
+                "Parse_JSON:_get_folder_by_Id_info": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "8c90df2b-ea9b-4189-a5dd-c3acf10965c4"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_webcontentsv2_1",
+                  "operationId": "InvokeHttp",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontentsv2"
+                },
+                "parameters": {
+                  "request/method": "GET",
+                  "request/url": "https://graph.microsoft.com/v1.0/drives/@{body('Parse_JSON_:_get_folder_Info')?['parentReference']?['driveId']}/list?$select=id,webUrl,name,displayName,parentReference"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "description": "get id (guid), url, name,displayname of the library and parentReference/siteId; siteId=tenantname,siteId,webId"
+            },
+            "Parse_JSON_:_get_list_and_site_info": {
+              "runAfter": {
+                "Invoke_an_HTTP_request_:_get_library_by_driveId": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d0d0be24-f8f4-485e-8e4e-e854567c6ae5"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Invoke_an_HTTP_request_:_get_library_by_driveId')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@@odata.context": {
+                      "type": "string"
+                    },
+                    "@@odata.etag": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "webUrl": {
+                      "type": "string"
+                    },
+                    "displayName": {
+                      "type": "string"
+                    },
+                    "parentReference": {
+                      "type": "object",
+                      "properties": {
+                        "siteId": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Invoke_an_HTTP_request_:_get_folder_by_Id": {
+              "runAfter": {
+                "Parse_JSON_:_get_folder_Info": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "674bf34f-afbc-42cf-af5e-297ec06dbc47"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_webcontentsv2_1",
+                  "operationId": "InvokeHttp",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontentsv2"
+                },
+                "parameters": {
+                  "request/method": "GET",
+                  "request/url": "https://graph.microsoft.com/v1.0/drives/@{body('Parse_JSON_:_get_folder_Info')?['parentReference']?['driveId']}/items/@{body('Parse_JSON_:_get_folder_Info')?['id']}/listItem?$select=id,webUrl,parentReference"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "description": "get folder id (int) and absoluteUrl,  and libraryId (guid) and site id (tenantname,siteguid,another guid)"
+            },
+            "Parse_JSON:_get_folder_by_Id_info": {
+              "runAfter": {
+                "Invoke_an_HTTP_request_:_get_folder_by_Id": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "814444df-74f3-4d1a-affb-56c8566ebad3"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Invoke_an_HTTP_request_:_get_folder_by_Id')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@@odata.context": {
+                      "type": "string"
+                    },
+                    "@@odata.etag": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "webUrl": {
+                      "type": "string"
+                    },
+                    "parentReference": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "siteId": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Invoke_an_HTTP_request:_get_site_info": {
+              "runAfter": {
+                "Compose": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d3ca1ace-f02b-4a9c-b18b-6dcf900b797a"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_webcontentsv2_1",
+                  "operationId": "InvokeHttp",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontentsv2"
+                },
+                "parameters": {
+                  "request/method": "GET",
+                  "request/url": "https://graph.microsoft.com/v1.0/sites/@{body('Parse_JSON_:_get_list_and_site_info')?['parentReference']?['siteId']}?$select=name,weburl,displayName"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Compose": {
+              "runAfter": {
+                "Parse_JSON_:_get_list_and_site_info": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a3ccc14c-8599-4771-960e-28b8447701f7"
+              },
+              "type": "Compose",
+              "inputs": "@split(body('Parse_JSON_:_get_list_and_site_info')?['parentReference']?['siteId'],',')"
+            },
+            "Parse_JSON_:_get_site_info": {
+              "runAfter": {
+                "Invoke_an_HTTP_request:_get_site_info": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "64a9021e-fd17-46f1-8114-429c246806c5"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Invoke_an_HTTP_request:_get_site_info')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@@odata.context": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "webUrl": {
+                      "type": "string"
+                    },
+                    "displayName": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Scope_:_get_team_Id_from_internalId_": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@variables('teamGuid')",
+                ""
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "1d294458-f608-4e01-8a5f-89924c97b393"
+          },
+          "type": "If",
+          "description": "if team found, retrieve details of the folder, library and site"
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Condition:_if_team_found": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bfc87f46-9241-4c18-8f27-dc6582502107"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "folder_display_name": "@body('Parse_JSON_:_get_folder_Info')?['name']",
+              "folder_id": "@body('Parse_JSON:_get_folder_by_Id_info')?['id']",
+              "folder_drive_id": "@body('Parse_JSON_:_get_folder_Info')?['id']",
+              "folder_absolute_url": "@body('Parse_JSON:_get_folder_by_Id_info')?['webUrl']",
+              "library_name": "@body('Parse_JSON_:_get_list_and_site_info')?['name']",
+              "library_title": "@body('Parse_JSON_:_get_list_and_site_info')?['displayName']",
+              "library_id": "@body('Parse_JSON_:_get_list_and_site_info')?['id']",
+              "library_drive_id": "@body('Parse_JSON_:_get_folder_Info')?['parentReference']?['driveId']",
+              "library_absolute_url": "@body('Parse_JSON_:_get_list_and_site_info')?['webUrl']",
+              "web_id": "@{outputs('Compose')?[2]}",
+              "site_id": "@{outputs('Compose')[1]}",
+              "tenant_name": "@{outputs('Compose')?[0]}",
+              "team_id": "@variables('teamGuid')",
+              "site_url": "@body('Parse_JSON_:_get_site_info')?['webUrl']",
+              "site_title": "@body('Parse_JSON_:_get_site_info')?['displayName']"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "folder_display_name": {
+                  "title": "Folder Display Name",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "folder_id": {
+                  "title": "Folder Id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "folder_drive_id": {
+                  "title": "Folder Drive Id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "folder_absolute_url": {
+                  "title": "Folder Absolute Url",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "library_name": {
+                  "title": "Library Name",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "library_title": {
+                  "title": "Library Title",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "library_id": {
+                  "title": "Library Id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "library_drive_id": {
+                  "title": "Library Drive Id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "library_absolute_url": {
+                  "title": "Library Absolute Url",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "web_id": {
+                  "title": "web Id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "site_id": {
+                  "title": "site Id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "tenant_name": {
+                  "title": "tenant Name",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "team_id": {
+                  "title": "team Id",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "site_url": {
+                  "title": "site Url",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "site_title": {
+                  "title": "site Title",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
