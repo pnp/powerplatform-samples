@@ -1,0 +1,100 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "rms_automations",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "rms_automation",
+    "MaxGetRowsCount": 500,
+    "Name": "Automations",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "rms_automation_AsyncOperations": "System Jobs",
+      "rms_automation_BulkDeleteFailures": "Bulk Delete Failures",
+      "rms_automation_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "rms_automation_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "rms_automation_ProcessSession": "Process Sessions",
+      "rms_automation_SyncErrors": "Sync Errors",
+      "rms_automationid": "Automation",
+      "rms_parameters": "Parameters",
+      "rms_rms_automationlog_Automation_rms_automati": "Automation Logs",
+      "rms_title": "Title",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Automations",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Automations (Views)",
+    "Name": "_rms_automation_views",
+    "RelatedEntityName": "Automations",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "51f7abfb-c6a6-495b-aee2-5e9f18c5aae9": "Active Automations",
+      "72f63eff-1e18-4a3f-9713-fd381719cd60": "Automation Lookup View",
+      "73131fb6-e690-4db3-ac41-75f66c41ea12": "Inactive Automations",
+      "c74b7012-cc56-4020-9fc9-6eda444f3a5e": "Automation Associated View",
+      "f01e0d0f-9d53-4afd-9cd9-02e61bb42d36": "Automation Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Automations)",
+    "Name": "rms_automation_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Automations"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Automations",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Automations)",
+    "Name": "rms_automation_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "New",
+      "100000001": "Pending",
+      "100000002": "Running",
+      "100000003": "Errored",
+      "2": "Completed"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Automations"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Automations",
+    "Type": "OptionSetInfo"
+  }
+]

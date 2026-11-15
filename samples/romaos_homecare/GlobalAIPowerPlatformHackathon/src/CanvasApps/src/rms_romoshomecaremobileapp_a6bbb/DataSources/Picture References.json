@@ -1,0 +1,102 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "rms_picturereferences",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "rms_picturereference",
+    "MaxGetRowsCount": 500,
+    "Name": "Picture References",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "rms_aijson": "AI Json",
+      "rms_azurestorageitemid": "AzureStorageItemId",
+      "rms_description": "Description",
+      "rms_healthscore": "Health Score",
+      "rms_name": "Name",
+      "rms_picturereference_AsyncOperations": "System Jobs",
+      "rms_picturereference_BulkDeleteFailures": "Bulk Delete Failures",
+      "rms_picturereference_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "rms_picturereference_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "rms_picturereference_ProcessSession": "Process Sessions",
+      "rms_picturereference_SyncErrors": "Sync Errors",
+      "rms_picturereferenceid": "Picture Reference",
+      "rms_Visit": "Visit",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Picture References",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Picture References (Views)",
+    "Name": "_rms_picturereference_views",
+    "RelatedEntityName": "Picture References",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "02f31f58-f1e8-4298-8c1b-4c73fcc61a5c": "Picture Reference Lookup View",
+      "180f4a57-27fd-4673-859e-1d186a6a8717": "Picture Reference Associated View",
+      "2f989935-c071-4e27-8f8f-8da2d639ded6": "Picture Reference Advanced Find View",
+      "80fa64eb-ce95-4d1b-9145-553e4ad2edf5": "Active Picture References",
+      "f9123c32-e45f-446b-972f-77c5b6a1ba91": "Inactive Picture References"
+    }
+  },
+  {
+    "DisplayName": "Status (Picture References)",
+    "Name": "rms_picturereference_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Picture References"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Picture References",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Picture References)",
+    "Name": "rms_picturereference_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Pending Processing",
+      "100000001": "Processing",
+      "100000002": "Processed Successfully",
+      "2": "Errored"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Picture References"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Picture References",
+    "Type": "OptionSetInfo"
+  }
+]
