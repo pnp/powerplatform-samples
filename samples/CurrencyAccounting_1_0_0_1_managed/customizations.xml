@@ -1,0 +1,51 @@
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.24124.146" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.24124.00146">
+  <Entities></Entities>
+  <Roles></Roles>
+  <Workflows>
+    <Workflow WorkflowId="{7b448352-dbb2-4d4f-8acf-af52af5b1490}" Name="CurrenciesAccounting">
+      <JsonFileName>/Workflows/CurrenciesAccounting-7B448352-DBB2-4D4F-8ACF-AF52AF5B1490.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>6</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <UIFlowType>2</UIFlowType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <Metadata>{"clientversion":"2.52.62.25009","isvalid":true,"$schema":"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#","schemaVersion":"ROBIN_20211012","containsActiveConnections":true,"containsGptPredictActions":false,"containsActiveCopilotActions":false,"containsActiveWorkQueuesActions":false,"containsActiveLogMessageActions":false,"containsActiveCredentialsActions":false,"multipleRequestsState":0,"scriptType":0,"disableScreenshotCaptureOnError":false,"missingUiElementRepairType":null,"flowTimeout":null}</Metadata>
+      <Inputs>{"schema":null}</Inputs>
+      <Outputs>{"schema":null}</Outputs>
+      <Dependencies>{"childFlows":[],"workQueues":[],"environmentVariables":[],"requiredBinaries":["11cac96d-797c-4e28-a325-41077ee858e4","edbf4ff7-fd36-40a2-88c2-826155d385da","f4b6c4fe-24ea-4ab0-ab1e-27e98046e706","eaf61321-d05f-4f12-a5f6-3a921986630c","7c397793-b90d-4a03-9096-94c79a1d0edf"]}</Dependencies>
+      <ConnectionReferences>[{"api":{"name":"/providers/Microsoft.PowerApps/apis/shared_office365"},"displayName":"Cr68bf2_shared_office365_6e3d6883","isDisabled":false,"connectionReferenceLogicalName":"Cr68bf2_shared_office365_6e3d68835ba8412a89a5a561dee1c61e","name":"shared-office365-2199d7b7-f1c0-45f5-a43a-d5d1d1e99afe","connectionDisplayName":"admin@ognatsolutions.com","ownerId":null,"padInternalId":"4c5579a2-6916-4b43-a56c-4e6622fcbd90","isEmbedded":false}]</ConnectionReferences>
+      <Definition>"@@ConnectionString: ''\r\n@@Type: 'Local'\r\n@@DesktopType: 'local'\r\n@@DisplayName: 'Local computer'\r\nIMPORT 'controlRepo.appmask' AS appmask\r\nIMPORT 'imageRepo.imgrepo' AS imgrepo\r\n@SENSITIVE: []\r\nCALL Initialization\r\nCALL GetCurrencyRates\r\nCALL Accounting\r\nCALL 'End Process'\r\nFUNCTION Initialization GLOBAL\r\n    SET ProjectPath TO $'''C:\\\\Users\\\\Lenovo\\\\OneDrive\\\\Desktop\\\\Currency RPA'''\r\n    DateTime.GetCurrentDateTime.Local DateTimeFormat: DateTime.DateTimeFormat.DateAndTime CurrentDateTime=&gt; CurrentDateTime\r\n    Text.ConvertDateTimeToText.FromDateTime DateTime: CurrentDateTime StandardFormat: Text.WellKnownDateTimeFormat.FullDateTimeLongTime Result=&gt; FormattedDateTime\r\n    SET log TO $'''&lt;p&gt;The robot ran at %FormattedDateTime%&lt;/p&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;with the following results:&lt;/b&gt;&lt;/p&gt;'''\r\n    System.TerminateProcess.TerminateProcessByName ProcessName: $'''excel'''\r\n    Excel.LaunchExcel.LaunchAndOpenUnderExistingProcess Path: $'''%ProjectPath%\\\\Currencydata.xlsx''' Visible: False ReadOnly: False Instance=&gt; ExcelInstance\r\n    Excel.SetActiveWorksheet.ActivateWorksheetByName Instance: ExcelInstance Name: $'''2a. Currencies'''\r\n    Excel.ReadFromExcel.ReadAllCells Instance: ExcelInstance ReadAsText: False FirstLineIsHeader: True RangeValue=&gt; ExcelDataCurrencies\r\n    WebAutomation.LaunchEdge.LaunchEdge Url: $'''https://www.nationalbanken.dk/en/what-we-do/stable-prices-monetary-policy-and-the-danish-economy/exchange-rates''' WindowState: WebAutomation.BrowserWindowState.Maximized ClearCache: False ClearCookies: False WaitForPageToLoadTimeout: 60 Timeout: 60 PiPUserDataFolderMode: WebAutomation.PiPUserDataFolderModeEnum.AutomaticProfile TargetDesktop: $'''{\\\"DisplayName\\\":\\\"Local computer\\\",\\\"Route\\\":{\\\"ServerType\\\":\\\"Local\\\",\\\"ServerAddress\\\":\\\"\\\"},\\\"DesktopType\\\":\\\"local\\\"}''' BrowserInstance=&gt; Browser\r\nEND FUNCTION\r\nFUNCTION GetCurrencyRates GLOBAL\r\n    WebAutomation.ExtractData.ExtractList BrowserInstance: Browser Control: $'''html &gt; body &gt; main &gt; section &gt; div:eq(1) &gt; div &gt; div &gt; div:eq(0) &gt; dnb-market-info-table &gt; div &gt; dnb-currency-rates &gt; table &gt; tbody &gt; tr''' ExtractionParameters: {[$'''td:eq(2)''', $'''Own Text''', $''''''] } PostProcessData: False TimeoutInSeconds: 60 ExtractedData=&gt; CurrenciesScraped\r\n    Excel.WriteToExcel.WriteCell Instance: ExcelInstance Value: CurrenciesScraped Column: $'''D''' Row: 2\r\n    WebAutomation.ExtractData.ExtractSingleValue BrowserInstance: Browser ExtractionParameters: {[$'''html &gt; body &gt; main &gt; section &gt; div:eq(1) &gt; div &gt; div &gt; div:eq(0) &gt; dnb-market-info-table &gt; div &gt; dnb-currency-rates &gt; table &gt; thead &gt; tr &gt; th:eq(2)''', $'''Own Text''', $''''''] } TimeoutInSeconds: 60 ExtractedData=&gt; DateScrapped\r\n    WebAutomation.CloseWebBrowser BrowserInstance: Browser\r\n    SET ExcelRowIndex TO 2\r\n    LOOP FOREACH CurrentItem IN ExcelDataCurrencies\r\n        Excel.WriteToExcel.WriteCell Instance: ExcelInstance Value: DateScrapped[0][0] Column: $'''C''' Row: ExcelRowIndex\r\n        SET ExcelRowIndex TO ExcelRowIndex + 1\r\n    END\r\nEND FUNCTION\r\nFUNCTION 'End Process' GLOBAL\r\n    @@'emailMessage/Sensitivity': ''\r\n@@connectionDisplayName: 'Cr68bf2_shared_office365_6e3d6883'\r\nExternal.InvokeCloudConnector Connection: '4c5579a2-6916-4b43-a56c-4e6622fcbd90' ConnectorId: '/providers/Microsoft.PowerApps/apis/shared_office365' OperationId: 'SendEmailV2' @'emailMessage/To': $'''admin@ognatsolutions.com''' @'emailMessage/Subject': $'''Larger Amount ''' @'emailMessage/Body': $'''Hi Praveen,\r\n\r\n&lt;p&gt;%log%&lt;/p&gt;\r\n\r\n&lt;p&gt;Kind Regards,&lt;/p&gt;\r\n&lt;p&gt;Your RPA Robot,&lt;/p&gt;'''\r\n    Excel.CloseExcel.CloseAndSave Instance: ExcelInstance\r\nEND FUNCTION\r\nFUNCTION Accounting GLOBAL\r\n    Excel.ReadFromExcel.ReadAllCells Instance: ExcelInstance ReadAsText: False FirstLineIsHeader: True RangeValue=&gt; ExcelDataCurrencies\r\n    Excel.SetActiveWorksheet.ActivateWorksheetByName Instance: ExcelInstance Name: $'''2a. Accounting'''\r\n    Excel.ReadFromExcel.ReadAllCells Instance: ExcelInstance ReadAsText: False FirstLineIsHeader: True RangeValue=&gt; ExcelDataAccounting\r\n    SET ExcelRowIndex TO 2\r\n    LOOP FOREACH Transaction IN ExcelDataAccounting\r\n        Variables.FindOrReplaceInDataTable.FindItemInDataTableByColumnIndex DataTable: ExcelDataCurrencies AllMatches: True ValueToFind: Transaction['Currency'] MatchCase: False MatchEntireCellContents: False ColumnNameOrIndex: $'''ISO''' DataTableMatches=&gt; DataTableMatchesISO\r\n        Text.ToNumber Text: DataTableMatchesISO[0][0] Number=&gt; CurrencyRow\r\n        Excel.WriteToExcel.WriteCell Instance: ExcelInstance Value: ExcelDataCurrencies[CurrencyRow][3] Column: $'''E''' Row: ExcelRowIndex\r\n        Text.ToNumber Text: Transaction['Currency Amount'] Number=&gt; CurrencyAmount\r\n        Text.ToNumber Text: ExcelDataCurrencies[CurrencyRow][3] Number=&gt; ExchangeRate\r\n        Excel.WriteToExcel.WriteCell Instance: ExcelInstance Value: CurrencyAmount * ExchangeRate / 100 Column: $'''F''' Row: ExcelRowIndex\r\n        CALL FourEyesCheck\r\n        SET ExcelRowIndex TO ExcelRowIndex + 1\r\n    END\r\nEND FUNCTION\r\nFUNCTION FourEyesCheck GLOBAL\r\n    IF (CurrencyAmount * Exchangerate / 100) &gt; 100000 THEN\r\n        SET log TO $'''%log%\r\n\r\n&lt;p&gt;- I found a larger amount in the 2a. Accounting sheet at row index %ExcelRowIndex%&lt;/p&gt;'''\r\n    END\r\n    IF IsEmpty(Transaction['Description']) THEN\r\n        SET log TO $'''%log%\r\n\r\n&lt;p&gt;- The description is emply in the 2a. Accounting sheet at row index %ExcelRowIndex%&lt;/p&gt;'''\r\n    END\r\nEND FUNCTION\r\n"</Definition>
+      <SchemaVersion>2022.07</SchemaVersion>
+      <DesktopFlowModules>[]</DesktopFlowModules>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="CurrenciesAccounting" />
+      </LocalizedNames>
+    </Workflow>
+  </Workflows>
+  <FieldSecurityProfiles></FieldSecurityProfiles>
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>
