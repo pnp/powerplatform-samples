@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{d887c4c2-224f-4d8f-aa53-88963a6dc91c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="appr_name" select="1" icon="1" preview="1">
+        <row name="result" id="appr_llmrequestid">
+          <cell name="appr_name" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="appr_llmrequest">
+          <attribute name="appr_llmrequestid" />
+          <attribute name="appr_name" />
+          <attribute name="createdon" />
+          <order attribute="appr_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Inactive LLMRequests" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
