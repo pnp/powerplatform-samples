@@ -1,0 +1,246 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "What is the best product for me",
+        "I want a laptop powerful enough for gaming",
+        "I want a business laptop",
+        "What is a product for the home",
+        "I am a home user"
+      ],
+      "dialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_85df75ce08a44a9b82cc8f3fdb25f669",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_85df75ce08a44a9b82cc8f3fdb25f669",
+      "displayName": "Lesson 4 - A topic with a condition, variables and custom entity.",
+      "description": "Lesson 4 - This lesson continues to show you how you can create a topic with a conditional branch, variable, and custom entity.  \n\nIn particular it will allow an entity to bypass a follow up question. For instance, try testing with \"I want a business laptop.\"",
+      "createdTime": "2019-10-25T14:05:07.4033156Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "04f33a2f-64d3-4698-bd3e-5fe0965ec78c",
+      "messageNodes": [
+        {
+          "botMessageId": "f39e45e5-6315-47fe-b425-0feacf2d3292",
+          "nodeType": "BotMessageNode",
+          "id": "4562fc54-7872-44c1-a218-19e2f1bba534",
+          "defaultTargetNodeId": "0a73e756-9c83-45aa-9be6-86aba432423e"
+        },
+        {
+          "botMessageId": "9d4bc72a-2f4f-47a0-90ec-fc0612750e70",
+          "nodeType": "BotMessageNode",
+          "id": "28d7244f-b52c-45f1-bc35-d48cf9c76d24",
+          "defaultTargetNodeId": "0a73e756-9c83-45aa-9be6-86aba432423e"
+        },
+        {
+          "botMessageId": "6339ff9c-f4d3-4969-82d4-88f301d98b10",
+          "nodeType": "BotMessageNode",
+          "id": "243d235a-417c-4056-b7bd-174572d42c11",
+          "defaultTargetNodeId": "0a73e756-9c83-45aa-9be6-86aba432423e"
+        },
+        {
+          "botMessageId": "6b594d63-379c-4f19-9907-318d5f73d66d",
+          "nodeType": "BotMessageNode",
+          "id": "5bf5e2f0-e06a-4568-a08d-c0f6f4eaadd0",
+          "defaultTargetNodeId": "3aad311e-7cfc-4ea7-93fd-05f8c90428b0"
+        },
+        {
+          "botMessageId": "d44fb653-abe2-4fef-b452-c68efdcf6fec",
+          "nodeType": "BotMessageNode",
+          "id": "8aff95f1-bd34-4943-857b-957976c0b453",
+          "defaultTargetNodeId": "3aad311e-7cfc-4ea7-93fd-05f8c90428b0"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess",
+          "nodeType": "DialogChangeNode",
+          "id": "3aad311e-7cfc-4ea7-93fd-05f8c90428b0"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "49138b46-c46f-4104-9252-6988d4524d14",
+          "nodeType": "QuestionNode",
+          "id": "04f33a2f-64d3-4698-bd3e-5fe0965ec78c",
+          "routes": [
+            {
+              "expression": "@equals(parameters('49138b46-c46f-4104-9252-6988d4524d14'), 'ff0ca6dd-de7a-4bee-b849-16210d63f3c5')",
+              "targetNodeId": "4562fc54-7872-44c1-a218-19e2f1bba534"
+            },
+            {
+              "expression": "@equals(parameters('49138b46-c46f-4104-9252-6988d4524d14'), '2ccf421b-89a6-43a8-8b4f-b8d8f63b58bf')",
+              "targetNodeId": "28d7244f-b52c-45f1-bc35-d48cf9c76d24"
+            },
+            {
+              "expression": "@equals(parameters('49138b46-c46f-4104-9252-6988d4524d14'), '2d32734c-9552-47c5-963b-563fe1d9ea7e')",
+              "targetNodeId": "243d235a-417c-4056-b7bd-174572d42c11"
+            }
+          ]
+        },
+        {
+          "contextVariableId": "3d38f739-d65f-4e53-b6ab-b7bb5491b527",
+          "nodeType": "QuestionNode",
+          "id": "0a73e756-9c83-45aa-9be6-86aba432423e",
+          "routes": [
+            {
+              "expression": "@equals(parameters('3d38f739-d65f-4e53-b6ab-b7bb5491b527'), true)",
+              "targetNodeId": "5bf5e2f0-e06a-4568-a08d-c0f6f4eaadd0"
+            }
+          ],
+          "defaultTargetNodeId": "8aff95f1-bd34-4943-857b-957976c0b453"
+        }
+      ],
+      "id": "new_topic_c4445cf76f8347b89f2159cecb8c1baa_85df75ce08a44a9b82cc8f3fdb25f669",
+      "displayName": "Dialog for Lesson 4- A simple dialog with a condition, variable and custom slot/entity.",
+      "createdTime": "2019-10-25T14:05:07.4033156Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Do you see yourself as a home user, a gamer or a business user?"
+        }
+      },
+      "id": "0f276f67-9371-4403-9139-969c212021be",
+      "createdTime": "2019-10-25T14:08:32.926Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "We have the product for you!\n\nThe Contoso Laptop i3 has enough power and memory to last you years."
+        }
+      },
+      "id": "f39e45e5-6315-47fe-b425-0feacf2d3292",
+      "createdTime": "2019-10-25T14:11:07.108Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "We have the product for you!\n\nThe Contoso Laptop i7 has enough power and memory to let you play the latest games without missing a beat."
+        }
+      },
+      "id": "9d4bc72a-2f4f-47a0-90ec-fc0612750e70",
+      "createdTime": "2019-10-25T14:12:01.075Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "We have the product for you!\n\nThe Contoso Laptop i5 has enough power and memory to last you years. It is also mobile, with an extra camera for crisp and clear video conferences."
+        }
+      },
+      "id": "6339ff9c-f4d3-4969-82d4-88f301d98b10",
+      "createdTime": "2019-10-25T14:12:40.524Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Excellent. The item has been added to your cart."
+        }
+      },
+      "id": "6b594d63-379c-4f19-9907-318d5f73d66d",
+      "createdTime": "2019-10-25T14:15:42.714Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Shall I add this to your cart?"
+        }
+      },
+      "id": "30334817-37ef-4f56-8364-89acaeb2234d",
+      "createdTime": "2019-10-25T14:15:09.19Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Understood. Please return when you are ready to buy our products."
+        }
+      },
+      "id": "d44fb653-abe2-4fef-b452-c68efdcf6fec",
+      "createdTime": "2019-10-25T14:26:26.207Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "contextVariables": [
+    {
+      "customTypeId": "new_customtype_c4445cf76f8347b89f2159cecb8c1baa_f86fcadfd497444e91ed11c12b059d10",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "ff0ca6dd-de7a-4bee-b849-16210d63f3c5",
+        "2ccf421b-89a6-43a8-8b4f-b8d8f63b58bf",
+        "2d32734c-9552-47c5-963b-563fe1d9ea7e"
+      ],
+      "messages": {
+        "GetValue": [
+          "0f276f67-9371-4403-9139-969c212021be"
+        ]
+      },
+      "isGlobal": false,
+      "id": "49138b46-c46f-4104-9252-6988d4524d14",
+      "displayName": "pva_UsageType",
+      "createdTime": "2019-10-25T14:08:32.927Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    },
+    {
+      "systemType": "Boolean",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "messages": {
+        "GetValue": [
+          "30334817-37ef-4f56-8364-89acaeb2234d"
+        ]
+      },
+      "isGlobal": false,
+      "id": "3d38f739-d65f-4e53-b6ab-b7bb5491b527",
+      "displayName": "pva_AddToCart",
+      "createdTime": "2019-10-25T14:15:09.19Z",
+      "updatedTime": "2021-09-17T06:35:28.9165166Z",
+      "createdUserId": "user0",
+      "updatedUserId": "2d6cf2d7-fad0-4185-94ca-3f66e090f31f"
+    }
+  ],
+  "createdUtc": "0001-01-01T00:00:00Z"
+}

@@ -1,0 +1,464 @@
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Entities></Entities>
+  <Roles></Roles>
+  <Workflows>
+    <Workflow WorkflowId="{b80648d8-9f0f-ec11-b6e6-000d3a3b88d7}" Name="Pending Vendor invoice List" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/PendingVendorinvoiceList-B80648D8-9F0F-EC11-B6E6-000D3A3B88D7.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Pending Vendor invoice List" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{58cd68a7-7010-ec11-b6e6-000d3a3b88d7}" Name="Automatathon0.2_MR TB Reconciliation">
+      <JsonFileName>/Workflows/Automatathon02_MRTBReconciliation-58CD68A7-7010-EC11-B6E6-000D3A3B88D7.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>6</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <UIFlowType>2</UIFlowType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <Metadata>{"isvalid":true,"schemaVersion":"ROBIN_20211012","containsActiveConnections":false}</Metadata>
+      <Inputs>{"schema":{"properties":{"FinancialReportName":{"default":"","description":"","format":null,"title":"FinancialReportName","type":"string","value":""},"FinReportDate":{"default":"","description":"","format":null,"title":"FinReportDate","type":"string","value":""},"EntityListValue":{"default":"","description":"","format":null,"title":"EntityListValue","type":"string","value":""},"UserEmailID":{"default":"","description":"","format":null,"title":"UserEmailID","type":"string","value":""},"TBFromDate":{"default":"","description":"","format":null,"title":"TBFromDate","type":"string","value":""},"TBtoDate":{"default":"","description":"","format":null,"title":"TBtoDate","type":"string","value":""},"FinancialDimensionSet":{"default":"","description":"","format":null,"title":"FinancialDimensionSet","type":"string","value":""},"PWD":{"default":"","description":"","format":null,"title":"PWD","type":"string","value":""}},"type":"object"}}</Inputs>
+      <Outputs>{"schema":null}</Outputs>
+      <Dependencies>{"childFlows":["b54c1e97-2c4a-4678-946f-57908f99ef3a"]}</Dependencies>
+      <ConnectionReferences>[]</ConnectionReferences>
+      <Definition>"@@ConnectionString: ''\r\n@@Type: 'Local'\r\n@@DesktopType: 'local'\r\n@@DisplayName: 'Computer'\r\nIMPORT 'controlRepo.appmask' AS appmask\r\nIMPORT 'imageRepo.imgrepo' AS imgrepo\r\n@SENSITIVE: []\r\n@INPUT FinancialReportName : { 'Description': '', 'FriendlyName': 'FinancialReportName', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT FinReportDate : { 'Description': '', 'FriendlyName': 'FinReportDate', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT EntityListValue : { 'Description': '', 'FriendlyName': 'EntityListValue', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT UserEmailID : { 'Description': '', 'FriendlyName': 'UserEmailID', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT TBFromDate : { 'Description': '', 'FriendlyName': 'TBFromDate', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT TBtoDate : { 'Description': '', 'FriendlyName': 'TBtoDate', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT FinancialDimensionSet : { 'Description': '', 'FriendlyName': 'FinancialDimensionSet', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT PWD : { 'Description': '', 'FriendlyName': 'PWD', 'DefaultValue': '', 'Type': 'String' } \r\n@@flowname: 'Automatathon_2021_Login Process Script'\r\nExternal.RunFlow FlowId: 'b54c1e97-2c4a-4678-946f-57908f99ef3a' @UserID: UserEmailID @NewPwd: PWD\r\nWAIT 30\r\nWebAutomation.LaunchChrome.AttachToForegroundChrome BrowserInstance=&gt; Browser2\r\nCALL Read_Excel\r\nWebAutomation.CloseWebBrowser BrowserInstance: Browser2\r\nExcel.LaunchExcel.LaunchAndOpen Path: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports\\\\Merge_Report_File.xlsx''' Visible: True ReadOnly: False LoadAddInsAndMacros: False Instance=&gt; ExcelInstance8\r\nMouseAndKeyboard.SendKeys.FocusAndSendKeys TextToSend: $'''{Control}({F10})''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: False\r\nWAIT 5\r\nWorkstation.TakeScreenshot.TakeScreenshotOfScreenAndSaveToFile ScreenToCapture: 1 File: ImagePath ImageFormat: System.ImageFormat.Bmp\r\nCALL SendEmail\r\nExcel.CloseExcel.Close Instance: ExcelInstance8\r\nFUNCTION SummaryTrialBalance_Default GLOBAL\r\n    WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... s&amp;cmp=frrt\\'']['ReportNameFilterInput'] Text: FinancialReportName EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n    MouseAndKeyboard.SendKeys.FocusAndSendKeys TextToSend: $'''{Return}''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: False\r\n    DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... s&amp;cmp=frrt\\'']['SearchButton'] MouseClick: False\r\n    # Start of autogenerated actions using the web recorder\r\n    DISABLE WebAutomation.GetDetailsOfElement BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... s&amp;cmp=frrt\\'']['H1_tah of report Name'] AttributeName: $'''innertext''' AttributeValue=&gt; innertext\r\n    IF $'''Summary Trial Balance - Default''' = FinancialReportName THEN\r\n        WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ialReports\\' 2']['Ganerate_BTN'] MouseClick: False\r\n        WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... s&amp;cmp=frrt\\'']['Date field'] MouseClick: False\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... s&amp;cmp=frrt\\'']['Date field'] Text: FinReportDate Mode: WebAutomation.PopulateTextMode.Replace EmulateTyping: True UnfocusAfterPopulate: False WaitForPageToLoadTimeout: 60\r\n        WAIT 2\r\n        WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... s&amp;cmp=frrt\\'']['Okbutton'] MouseClick: False\r\n        WAIT 30\r\n        WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... s&amp;cmp=frrt\\'']['RefreshButton'] MouseClick: False\r\n        WAIT 30\r\n        WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... s&amp;cmp=frrt\\'']['RefreshButton'] MouseClick: False\r\n        WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ialReports\\' 4']['Svg \\'[object SVGAnimatedString]\\''] ClickType: WebAutomation.ClickType.LeftClick MouseClick: True WaitForPageToLoadTimeout: 60 MousePositionRelativeToElement: WebAutomation.RectangleEdgePoint.MiddleCenter OffsetX: 0 OffsetY: 0\r\n        DISABLE MouseAndKeyboard.SendKeys.FocusAndSendKeys TextToSend: $'''{F5}''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: False\r\n        @@timestamp: '08/20/2021 06:58:34'\r\n        @@source: 'Recorder'\r\n        @@recordertype: 'Web'\r\n        @@culture: 'en-US'\r\n        DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\'']['CheckMarkBox'] MouseClick: False\r\n        UIAutomation.PressButton Button: appmask['Pane \\'Balance Sheet  ...  - Google Chrome\\'']['Button \\'View\\'']\r\n        DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... s&amp;cmp=frrt\\'']['Click_View Button'] MouseClick: False\r\n        WAIT (WebAutomation.WaitForWebPageContent.WebPageToContainElement BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\' 7']['Options Button'])\r\n        WAIT 4\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\' 27']['&lt;div&gt; \\'ExportNewbutton-container\\' 2'] WaitForPageToLoadTimeout: 60\r\n        DISABLE WAIT (WebAutomation.WaitForWebPageContent.WebPageToContainElement BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\' 7']['OptionsButton'])\r\n        # Start of autogenerated actions using the desktop recorder\r\n        DISABLE WebAutomation.PressButton.PressButton BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\' 27']['ExportButton']\r\n        DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\' 25']['AccountToggleButton'] MouseClick: False\r\n        DISABLE WebAutomation.PressButton.PressButton BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\' 23']['ExportButton']\r\n        WAIT 2\r\n        WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\' 2 4']['Span \\'399_toggle\\''] ClickType: WebAutomation.ClickType.MiddleClick MouseClick: False WaitForPageToLoadTimeout: 60 MousePositionRelativeToElement: WebAutomation.RectangleEdgePoint.MiddleCenter OffsetX: 0 OffsetY: 0\r\n        # @@@VenkataPavan - Commenting on the below lines due to IMAGE usage\r\n        # Start of autogenerated actions using the desktop recorder\r\n        DISABLE MouseAndKeyboard.MoveMouseToImage.ClickImage Images: [imgrepo['Image_11']] SearchForImageOn: MouseAndKeyboard.SearchTarget.EntireScreen MousePositionOnImage: MouseAndKeyboard.PositionOnImage.MiddleCenter OffsetX: 0 OffsetY: 0 Tolerance: 4 MovementStyle: MouseAndKeyboard.MovementStyle.Instant Occurence: 1 Timeout: 5 ClickType: MouseAndKeyboard.ClickType.LeftClick SecondsBeforeClick: 0 SearchAlgorithm: MouseAndKeyboard.ImageFinderAlgorithm.Template\r\n        # End of autogenerated actions using the desktop recorder\r\n        DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\' 21']['Export_BTN'] MouseClick: False\r\n        DISABLE WAIT 2\r\n        DISABLE MouseAndKeyboard.MoveMouseToImage.ClickImage Images: [imgrepo['Image_3']] SearchForImageOn: MouseAndKeyboard.SearchTarget.EntireScreen MousePositionOnImage: MouseAndKeyboard.PositionOnImage.MiddleCenter OffsetX: 0 OffsetY: 0 Tolerance: 4 MovementStyle: MouseAndKeyboard.MovementStyle.Instant Occurence: 1 Timeout: 5 ClickType: MouseAndKeyboard.ClickType.LeftClick SecondsBeforeClick: 0 SearchAlgorithm: MouseAndKeyboard.ImageFinderAlgorithm.Template\r\n        # Start of autogenerated actions using the desktop recorder\r\n        DISABLE MouseAndKeyboard.MoveMouseToImage.ClickImage Images: [imgrepo['Image_7']] SearchForImageOn: MouseAndKeyboard.SearchTarget.EntireScreen MousePositionOnImage: MouseAndKeyboard.PositionOnImage.MiddleCenter OffsetX: 0 OffsetY: 0 Tolerance: 4 MovementStyle: MouseAndKeyboard.MovementStyle.Instant Occurence: 1 Timeout: 5 ClickType: MouseAndKeyboard.ClickType.LeftClick SecondsBeforeClick: 0 SearchAlgorithm: MouseAndKeyboard.ImageFinderAlgorithm.Template\r\n        # Start of autogenerated actions using the desktop recorder\r\n        # End of autogenerated actions using the desktop recorder\r\n        DISABLE WAIT 3\r\n        # End of autogenerated actions using the desktop recorder\r\n        # Start of autogenerated actions using the desktop recorder\r\n        # Start of autogenerated actions using the web recorder\r\n        /# @@@Venkata Pavan - Commented above steps due to IMAGE usage\r\n#/\r\n        @@timestamp: '09/01/2021 05:10:52'\r\n        @@source: 'Recorder'\r\n        @@recordertype: 'Web'\r\n        @@culture: 'en-US'\r\n        DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\'']['Second_Export_Button'] MouseClick: False\r\n        WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\'']['Second_Export_Button 2'] ClickType: WebAutomation.ClickType.LeftClick MouseClick: False WaitForPageToLoadTimeout: 60 MousePositionRelativeToElement: WebAutomation.RectangleEdgePoint.MiddleCenter OffsetX: 0 OffsetY: 0\r\n        # End of autogenerated actions using the web recorder\r\n        DISABLE MouseAndKeyboard.MoveMouseToImage.ClickImage Images: [imgrepo['Image_9']] SearchForImageOn: MouseAndKeyboard.SearchTarget.EntireScreen MousePositionOnImage: MouseAndKeyboard.PositionOnImage.MiddleCenter OffsetX: 0 OffsetY: 73 Tolerance: 4 MovementStyle: MouseAndKeyboard.MovementStyle.Instant Occurence: 1 Timeout: 5 ClickType: MouseAndKeyboard.ClickType.LeftClick SecondsBeforeClick: 0 SearchAlgorithm: MouseAndKeyboard.ImageFinderAlgorithm.Template\r\n        # End of autogenerated actions using the desktop recorder\r\n        DISABLE MouseAndKeyboard.SendKeys.FocusAndSendKeys TextToSend: $'''{Return}''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: False\r\n        WAIT 3\r\n        WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\' 22']['DownloadButton\\''] MouseClick: False\r\n        DISABLE WAIT (WebAutomation.WaitForWebPageContent.WebPageToContainElement BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\' 20']['&lt;div&gt; \\'dialog-header fill-width\\''])\r\n        DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ancial%3D0\\' 22']['DownloadButton\\''] MouseClick: False\r\n        WAIT 3\r\n        # End of autogenerated actions using the desktop recorder\r\n        DateTime.GetCurrentDateTime.Local DateTimeFormat: DateTime.DateTimeFormat.DateAndTime CurrentDateTime=&gt; CurrentDateTime\r\n        WAIT (UIAutomation.WaitForWindowContent.WindowToContainElement Element: appmask['Pane \\'Balance Sheet  ...  - Google Chrome\\'']['SaveButton'])\r\n        UIAutomation.PopulateTextField TextField: appmask['Pane \\'Balance Sheet  ...  - Google Chrome\\'']['FileNameTextBox'] Text: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports\\\\%ReportName%_%SplitedEntity%_%CurrentDateTime.Day%%CurrentDateTime.month%%CurrentDateTime.year%_%CurrentDateTime.Hour%%CurrentDateTime.minute%%CurrentDateTime.second%.xlsx''' Mode: UIAutomation.PopulateTextMode.Replace ClickType: UIAutomation.PopulateMouseClickType.SingleClick\r\n        UIAutomation.GetElementDetails Element: appmask['Pane \\'Balance Sheet  ...  - Google Chrome\\'']['FileNameTextBox'] AttributeName: $'''owntext''' AttributeValue=&gt; AttributeValue_2\r\n        SET Path TO AttributeValue_2\r\n        @@timestamp: '08/20/2021 12:17:41'\r\n        @@source: 'Recorder'\r\n        @@recordertype: 'Desktop'\r\n        @@culture: 'en-US'\r\n        UIAutomation.PressButton Button: appmask['Pane \\'Balance Sheet  ...  - Google Chrome\\'']['SaveButton']\r\n        WAIT 3\r\n        Excel.LaunchExcel.LaunchAndOpen Path: Path Visible: True ReadOnly: False LoadAddInsAndMacros: False Instance=&gt; ExcelInstance2\r\n        Excel.SetActiveWorksheet.ActivateWorksheetByName Instance: ExcelInstance2 Name: $'''Summary Trial Balance - Defau-F'''\r\n        Excel.GetFirstFreeColumnRow Instance: ExcelInstance2 FirstFreeColumn=&gt; FirstFreeColumn2 FirstFreeRow=&gt; FirstFreeRow2\r\n        Excel.ReadFromExcel.ReadCells Instance: ExcelInstance2 StartColumn: $'''A''' StartRow: 1 EndColumn: FirstFreeColumn2 - 1 EndRow: FirstFreeRow2 - 1 ReadAsText: False FirstLineIsHeader: False RangeValue=&gt; ExcelData\r\n        Excel.LaunchExcel.LaunchAndOpen Path: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports\\\\Merge_Report_File.xlsx''' Visible: True ReadOnly: False LoadAddInsAndMacros: False Instance=&gt; ExcelInstance3\r\n        WAIT 3\r\n        Excel.AddWorksheet Instance: ExcelInstance3 Name: $'''Summary Trial Balance-%SplitedEntity%-L1''' WorksheetPosition: Excel.WorksheetPosition.Last\r\n        WAIT 3\r\n        Excel.SetActiveWorksheet.ActivateWorksheetByName Instance: ExcelInstance3 Name: $'''Summary Trial Balance-%SplitedEntity%-L1'''\r\n        WAIT 3\r\n        Excel.WriteToExcel.Write Instance: ExcelInstance3 Value: ExcelData\r\n        WAIT 3\r\n        Excel.SetActiveWorksheet.ActivateWorksheetByName Instance: ExcelInstance2 Name: $'''Summary Trial Balance - Defau-A'''\r\n        Excel.GetFirstFreeColumnRow Instance: ExcelInstance2 FirstFreeColumn=&gt; FirstFreeColumn3 FirstFreeRow=&gt; FirstFreeRow3\r\n        Excel.ReadFromExcel.ReadCells Instance: ExcelInstance2 StartColumn: $'''A''' StartRow: 1 EndColumn: FirstFreeColumn3 - 1 EndRow: FirstFreeRow3 - 1 ReadAsText: False FirstLineIsHeader: False RangeValue=&gt; ExcelData2\r\n        WAIT 3\r\n        Excel.AddWorksheet Instance: ExcelInstance3 Name: $'''Summary Trial Balance -%SplitedEntity%-L2''' WorksheetPosition: Excel.WorksheetPosition.First\r\n        WAIT 3\r\n        Excel.SetActiveWorksheet.ActivateWorksheetByName Instance: ExcelInstance3 Name: $'''Summary Trial Balance -%SplitedEntity%-L2'''\r\n        WAIT 3\r\n        Excel.WriteToExcel.Write Instance: ExcelInstance3 Value: ExcelData2\r\n        Excel.CloseExcel.Close Instance: ExcelInstance2\r\n        Excel.SaveExcel.Save Instance: ExcelInstance3\r\n        Excel.CloseExcel.Close Instance: ExcelInstance3\r\n    END\r\n    Excel.CloseExcel.CloseAndSaveAs Instance: Merge_Excel DocumentFormat: Excel.ExcelFormat.OpenXmlWorkbook DocumentPath: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports\\\\MergeReport_%CurrentDateTime.Day%%CurrentDateTime.month%%CurrentDateTime.year%_%CurrentDateTime.Hour%%CurrentDateTime.minute%%CurrentDateTime.second%'''\r\nEND FUNCTION\r\nFUNCTION changeEntity GLOBAL\r\n    DISABLE WebAutomation.LaunchChrome.AttachToChromeByUrl TabUrl: $'''https://mshackatonse0f68679d9d2f47baos.cloudax.dynamics.com/?cmp=usmf&amp;mi=FinancialReports''' BrowserInstance=&gt; Browser2\r\n    WAIT 3\r\n    WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... tdashboard\\'']['CompanyButton'] MouseClick: False\r\n    WAIT 3\r\n    WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ialReports\\'']['CompanyTextfiled to enter'] Text: SplitedEntity Mode: WebAutomation.PopulateTextMode.Replace EmulateTyping: True UnfocusAfterPopulate: False WaitForPageToLoadTimeout: 60\r\n    WAIT 1\r\n    WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ialReports\\'']['&lt;button&gt; \\'navBarSettings_button\\''] MouseClick: False\r\nEND FUNCTION\r\nFUNCTION Read_Excel GLOBAL\r\n    DISABLE Excel.LaunchExcel.LaunchAndOpen Path: $'''C:\\\\Users\\\\SiddarudaS\\\\OneDrive - sa.global\\\\AutomathonFiles\\\\Automatathon_forPVS_2021.xlsx''' Visible: True ReadOnly: True LoadAddInsAndMacros: False Instance=&gt; ExcelInstance\r\n    Excel.LaunchExcel.LaunchAndOpen Path: $'''D:\\\\MR_TB_Reconciled_SummarySheet.xlsx''' Visible: True ReadOnly: True LoadAddInsAndMacros: False Instance=&gt; ExcelInstance\r\n    Excel.SetActiveWorksheet.ActivateWorksheetByName Instance: ExcelInstance Name: $'''Sheet1'''\r\n    Excel.GetFirstFreeColumnRow Instance: ExcelInstance FirstFreeColumn=&gt; FirstFreeColumn FirstFreeRow=&gt; FirstFreeRow\r\n    Excel.ReadFromExcel.ReadCell Instance: ExcelInstance StartColumn: 1 StartRow: FirstFreeRow - 1 ReadAsText: False CellValue=&gt; Entitylist\r\n    Excel.ReadFromExcel.ReadCell Instance: ExcelInstance StartColumn: 2 StartRow: FirstFreeRow - 1 ReadAsText: False CellValue=&gt; ReportName\r\n    Excel.ReadFromExcel.ReadCell Instance: ExcelInstance StartColumn: 3 StartRow: FirstFreeRow - 1 ReadAsText: False CellValue=&gt; ReportDate\r\n    Excel.CloseExcel.Close Instance: ExcelInstance\r\n    DISABLE Display.ShowMessageDialog.ShowMessage Title: ReportDate Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=&gt; ButtonPressed\r\n    Text.SplitText.SplitWithDelimiter Text: EntityListValue CustomDelimiter: $''',''' IsRegEx: False Result=&gt; TextList\r\n    DISABLE Text.SplitText.SplitWithDelimiter Text: ReportDate CustomDelimiter: $'''-''' IsRegEx: False Result=&gt; TextList2\r\n    DISABLE SET Year_Splited TO TextList2[0]\r\n    DISABLE SET Month_Splited TO TextList2[1]\r\n    DISABLE SET Day_Splited TO TextList2[2]\r\n    DateTime.GetCurrentDateTime.Local DateTimeFormat: DateTime.DateTimeFormat.DateAndTime CurrentDateTime=&gt; CurrentDateTime2\r\n    IF (Folder.IfFolderExists.Exists Path: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports''') THEN\r\n        Folder.Rename Folder: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports''' NewName: $'''Downloaded_Reports_%CurrentDateTime2.Day%%CurrentDateTime2.month%%CurrentDateTime2.year%_%CurrentDateTime2.Hour%%CurrentDateTime2.minute%%CurrentDateTime2.second%''' RenamedFolder=&gt; RenamedFolder\r\n    END\r\n    IF (Folder.IfFolderExists.DoesNotExist Path: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports''') THEN\r\n        Folder.Create FolderPath: $'''D:\\\\Automatathon_DownloadReports''' FolderName: $'''Downloaded_Reports''' Folder=&gt; NewFolder\r\n    END\r\n    Excel.LaunchExcel.Launch Visible: True LoadAddInsAndMacros: False Instance=&gt; Merge_Excel\r\n    Excel.SaveExcel.SaveAs Instance: Merge_Excel DocumentFormat: Excel.ExcelFormat.OpenXmlWorkbook DocumentPath: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports\\\\Merge_Report_File'''\r\n    Excel.CloseExcel.CloseAndSave Instance: Merge_Excel\r\n    LOOP FOREACH CurrentItem IN TextList\r\n        SET SplitedEntity TO CurrentItem\r\n        CALL changeEntity\r\n        CALL SummaryTrialBalance_Default\r\n        CALL TB_Report\r\n    END\r\n    CALL AddSummerySheet\r\nEND FUNCTION\r\nFUNCTION TB_Report GLOBAL\r\n    WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... tdashboard\\'']['NavigationSearchBox'] MouseClick: False\r\n    WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... tdashboard\\'']['NavigationSearchBox'] Text: $'''trial balance''' EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n    MouseAndKeyboard.SendKeys.FocusAndSendKeys TextToSend: $'''{Return}{Return}''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: False\r\n    WAIT 8\r\n    WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['FromDate'] MouseClick: False\r\n    WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['FromDate'] Text: TBFromDate EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n    WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['ToDate'] Text: TBtoDate EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n    WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['DimensionSet'] Text: FinancialDimensionSet EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n    DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['PostingLayerField'] MouseClick: False\r\n    CALL Subflow_1\r\n    DISABLE WAIT 2\r\n    @@timestamp: '09/08/2021 07:09:14'\r\n    @@source: 'Recorder'\r\n    @@recordertype: 'Desktop'\r\n    @@culture: 'en-US'\r\n    DISABLE UIAutomation.SetCheckboxState Checkbox: appmask['Pane \\'Balance Sheet  ...  - Google Chrome\\'']['Check Box \\'Select all rows\\''] CheckboxState: UIAutomation.CheckboxState.UnChecked\r\n    DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['CheckAllbox'] MouseClick: False\r\n    DISABLE WAIT 2\r\n    DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['uncheckBox'] MouseClick: False\r\n    DISABLE WAIT 2\r\n    DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['CheckCurrentBox'] MouseClick: False\r\n    DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['selectButton'] MouseClick: False\r\n    DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['Calculatebalncebutton'] MouseClick: False\r\n    DISABLE WAIT 8\r\n    DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['OfficeImage'] MouseClick: False\r\n    DISABLE WAIT 2\r\n    DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['TrailBalncebutton'] MouseClick: False\r\n    DISABLE WAIT 2\r\n    DISABLE WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... ceListPage\\'']['DownloadButton'] MouseClick: False\r\n    DISABLE WAIT (UIAutomation.WaitForImage.ToAppearOnScreen Images: [imgrepo['Image_12']] FindAllImages: False Tolerance: 4 SearchAlgorithm: UIAutomation.ImageFinderAlgorithm.Template X=&gt; X Y=&gt; Y)\r\n    SET TB_ReportName TO $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports\\\\TB_Report_%SplitedEntity%_%CurrentDateTime.Day%%CurrentDateTime.month%%CurrentDateTime.year%_%CurrentDateTime.Hour%%CurrentDateTime.minute%%CurrentDateTime.second%.xlsx'''\r\n    UIAutomation.PopulateTextField TextField: appmask['Pane \\'Balance Sheet  ...  - Google Chrome\\'']['FileNameField'] Text: TB_ReportName Mode: UIAutomation.PopulateTextMode.Replace ClickType: UIAutomation.PopulateMouseClickType.SingleClick\r\n    UIAutomation.Click Element: appmask['Pane \\'Balance Sheet  ...  - Google Chrome\\'']['Button \\'Save\\' 2'] ClickType: UIAutomation.ClickType.LeftClick MousePositionRelativeToElement: UIAutomation.RectangleEdgePoint.MiddleCenter OffsetX: 0 OffsetY: 0\r\n    WAIT 3\r\n    Excel.LaunchExcel.LaunchAndOpen Path: TB_ReportName Visible: True ReadOnly: False LoadAddInsAndMacros: False Instance=&gt; ExcelInstance4\r\n    Excel.GetFirstFreeColumnRow Instance: ExcelInstance4 FirstFreeColumn=&gt; FirstFreeColumn4 FirstFreeRow=&gt; FirstFreeRow4\r\n    Excel.ReadFromExcel.ReadCells Instance: ExcelInstance4 StartColumn: $'''A''' StartRow: 1 EndColumn: FirstFreeColumn4 - 1 EndRow: FirstFreeRow4 - 1 ReadAsText: False FirstLineIsHeader: False RangeValue=&gt; TB_ReportData\r\n    Excel.LaunchExcel.LaunchAndOpen Path: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports\\\\Merge_Report_File.xlsx''' Visible: True ReadOnly: False LoadAddInsAndMacros: False Instance=&gt; ExcelInstance5\r\n    Excel.AddWorksheet Instance: ExcelInstance5 Name: $'''TrailBalanceSheet-%SplitedEntity%''' WorksheetPosition: Excel.WorksheetPosition.Last\r\n    Excel.SetActiveWorksheet.ActivateWorksheetByName Instance: ExcelInstance5 Name: $'''TrailBalanceSheet-%SplitedEntity%'''\r\n    Excel.WriteToExcel.Write Instance: ExcelInstance5 Value: TB_ReportData\r\n    Excel.SaveExcel.Save Instance: ExcelInstance5\r\n    Excel.CloseExcel.CloseAndSave Instance: ExcelInstance5\r\n    Excel.CloseExcel.Close Instance: ExcelInstance4\r\n    WebAutomation.Click.Click BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... tdashboard\\'']['NavigationSearchBox'] MouseClick: False\r\n    WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser2 Control: appmask['Web Page \\'h ... tdashboard\\'']['NavigationSearchBox'] Text: $'''Financial Reports''' EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n    MouseAndKeyboard.SendKeys.FocusAndSendKeys TextToSend: $'''{Return}{Return}''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: False\r\n    WAIT 6\r\nEND FUNCTION\r\nFUNCTION SendEmail GLOBAL\r\n    Compression.ZipFiles ArchivePath: $'''D:\\\\Automatathon_DownloadReports\\\\Zip_Files_From_PAD\\\\Zip_MR TB Reconciled %FinancialReportName%_%CurrentDateTime2.Day%%CurrentDateTime2.month%%CurrentDateTime2.year%_%CurrentDateTime2.Hour%%CurrentDateTime2.minute%%CurrentDateTime2.second%.zip''' FilesOrFoldersToZip: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports''' CompressionLevel: Compression.CompressionLevel.BestBalanceOfSpeedAndCompression ArchiveComment: $'''''' ZipFile=&gt; ZipFile\r\n    File.GetPathPart File: ImagePath RootPath=&gt; RootPath Directory=&gt; Directory FileName=&gt; summeryimagename FileNameWithoutExtension=&gt; FileNameNoExtension Extension=&gt; FileExtension\r\n    Outlook.Launch Instance=&gt; OutlookInstance\r\n    SET screenSummary TO $'''D:\\\\Screenshot of the MR TB Recon Summary.JPG'''\r\n    Outlook.SendEmailThroughOutlook.SendEmail Instance: OutlookInstance Account: UserEmailID SendTo: UserEmailID CC: $'''siddarudas@saglobal.com''' Subject: $'''&lt;Email Triggered from Automation-Do Not Reply&gt;''' Body: $'''&lt;html&gt;\r\n&lt;body&gt;\r\n&lt;br&gt;\r\nHi User,\r\n&lt;br&gt;\r\n&lt;br&gt;\r\n\r\nPlease find the Reconciled reports for the MR (Summary Trial Balance) &amp; Trial Balance repots.\r\n&lt;br&gt;\r\nPlease find the screenshot of the Summary below:\r\n&lt;br&gt;\r\n&lt;br&gt;\r\n&lt;img src=\\\"cid:%summeryimagename%\\\"&gt;\r\n&lt;br&gt;\r\n&lt;br&gt;\r\nThanks for connecting with FinHelp Chatbot.\r\n&lt;br&gt;\r\n&lt;br&gt;\r\n&lt;/body&gt;\r\n&lt;/html&gt;\r\n''' IsBodyHtml: True Attachments: $'''\\\"%ZipFile%\\\" \\\"%ImagePath%\\\"'''\r\nEND FUNCTION\r\nFUNCTION AddSummerySheet GLOBAL\r\n    Excel.LaunchExcel.LaunchAndOpen Path: $'''D:\\\\MR_TB_Reconciled_SummarySheet.xlsx''' Visible: True ReadOnly: False LoadAddInsAndMacros: False Instance=&gt; ExcelInstance6\r\n    Excel.GetFirstFreeColumnRow Instance: ExcelInstance6 FirstFreeColumn=&gt; FirstFreeColumn5 FirstFreeRow=&gt; FirstFreeRow5\r\n    Excel.SetActiveWorksheet.ActivateWorksheetByName Instance: ExcelInstance6 Name: $'''SummarySheet'''\r\n    Excel.ReadFromExcel.ReadCells Instance: ExcelInstance6 StartColumn: $'''A''' StartRow: 1 EndColumn: FirstFreeColumn5 - 1 EndRow: FirstFreeRow5 ReadAsText: False FirstLineIsHeader: False RangeValue=&gt; SummaryData\r\n    Excel.LaunchExcel.LaunchAndOpen Path: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports\\\\Merge_Report_File.xlsx''' Visible: True ReadOnly: False LoadAddInsAndMacros: False Instance=&gt; ExcelInstance7\r\n    Excel.AddWorksheet Instance: ExcelInstance7 Name: $'''Summary Sheet''' WorksheetPosition: Excel.WorksheetPosition.First\r\n    Excel.SetActiveWorksheet.ActivateWorksheetByName Instance: ExcelInstance7 Name: $'''Summary Sheet'''\r\n    Excel.WriteToExcel.Write Instance: ExcelInstance7 Value: SummaryData\r\n    Excel.CloseExcel.CloseAndSave Instance: ExcelInstance7\r\n    Excel.LaunchExcel.LaunchAndOpen Path: $'''D:\\\\Automatathon_MRTBRecon_Macro.xlsm''' Visible: True ReadOnly: False LoadAddInsAndMacros: True Instance=&gt; Macroexcel\r\n    Excel.RunMacro Instance: Macroexcel Macro: $'''Macro_Automatathon_MRTBRecon'''\r\n    DISABLE Excel.LaunchExcel.LaunchAndOpen Path: $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports\\\\Merge_Report_File''' Visible: True ReadOnly: False LoadAddInsAndMacros: False Instance=&gt; ExcelInstance8\r\n    DISABLE Excel.SetActiveWorksheet.ActivateWorksheetByName Instance: ExcelInstance8 Name: $'''Summary Sheet'''\r\n    SET ImagePath TO $'''D:\\\\Automatathon_DownloadReports\\\\Downloaded_Reports\\\\SummerySheet_%CurrentDateTime2.Day%%CurrentDateTime2.month%%CurrentDateTime2.year%_%CurrentDateTime2.Hour%%CurrentDateTime2.minute%%CurrentDateTime2.second%.jpg'''\r\n    DISABLE Workstation.TakeScreenshot.TakeScreenshotOfScreenAndSaveToFile ScreenToCapture: 1 File: ImagePath ImageFormat: System.ImageFormat.Bmp\r\n    Excel.CloseExcel.Close Instance: ExcelInstance6\r\n    Excel.CloseExcel.CloseAndSave Instance: ExcelInstance7\r\n    Excel.CloseExcel.CloseAndSave Instance: Macroexcel\r\nEND FUNCTION\r\nFUNCTION Subflow_1 GLOBAL\r\n    WebAutomation.LaunchChrome.AttachToForegroundChrome AttachTimeout: 5 BrowserInstance=&gt; Browser\r\n    WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 2']['&lt;div&gt; \\'lookupButton\\''] ClickType: WebAutomation.ClickType.LeftClick MouseClick: False WaitForPageToLoadTimeout: 60 MousePositionRelativeToElement: WebAutomation.RectangleEdgePoint.MiddleCenter OffsetX: 0 OffsetY: 0\r\n    WAIT (WebAutomation.WaitForWebPageContent.WebPageToContainElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 2']['&lt;div&gt; \\'Values\\''])\r\n    WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 2']['&lt;div&gt; \\'Values\\''] MouseClick: False\r\n    WAIT (WebAutomation.WaitForWebPageContent.WebPageToContainElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 2']['&lt;button&gt; \\'&lt;span  ... rue\\\"&gt;Clear\\''])\r\n    WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 2']['&lt;button&gt; \\'&lt;span  ... rue\\\"&gt;Clear\\''] MouseClick: False\r\n    WAIT (WebAutomation.WaitForWebPageContent.WebPageToContainElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 2']['&lt;input:text&gt; \\'Values\\' 2'])\r\n    WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 2']['&lt;input:text&gt; \\'Values\\' 2'] MouseClick: False\r\n    DISABLE WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 2']['&lt;input:text&gt; \\'Values\\' 2'] MouseClick: False\r\n    WAIT (WebAutomation.WaitForWebPageContent.WebPageToContainElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 2']['&lt;button&gt; \\'&lt;span  ... ue\\\"&gt;Select\\''])\r\n    WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 2']['&lt;button&gt; \\'&lt;span  ... ue\\\"&gt;Select\\''] MouseClick: False\r\n    WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 3']['CalculateBalancesButton']\r\n    WAIT (WebAutomation.WaitForWebPageContent.WebPageToContainElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 2']['OperationCompletedMsg']) FOR 60 \r\n    ON ERROR REPEAT 1 TIMES WAIT 30\r\n    ON ERROR\r\n\r\n    END\r\n    WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 3']['button-commandRing MicrosoftOffice-symbol'] MouseClick: False\r\n    WAIT (WebAutomation.WaitForWebPageContent.WebPageToContainElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 3']['TrialBalanceButton']) FOR 60 \r\n    ON ERROR REPEAT 1 TIMES WAIT 2\r\n    ON ERROR\r\n\r\n    END\r\n    WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 3']['TrialBalanceButton'] MouseClick: False\r\n    WAIT (WebAutomation.WaitForWebPageContent.WebPageToContainElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 3']['DownloadButton']) FOR 60 \r\n    ON ERROR REPEAT 1 TIMES WAIT 2\r\n    ON ERROR\r\n\r\n    END\r\n    WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ceListPage\\' 3']['DownloadButton'] ClickType: WebAutomation.ClickType.LeftClick MouseClick: False WaitForPageToLoadTimeout: 60 MousePositionRelativeToElement: WebAutomation.RectangleEdgePoint.MiddleCenter OffsetX: 0 OffsetY: 0\r\n    WAIT (UIAutomation.WaitForWindowContent.WindowToContainElement Element: appmask['Pane \\'Finance and Operations - Google Chrome\\'']['File name text Field']) FOR 60 \r\n    ON ERROR REPEAT 1 TIMES WAIT 2\r\n    END\r\nEND FUNCTION\r\n"</Definition>
+      <SchemaVersion>2022.06</SchemaVersion>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Automatathon0.2_MR TB Reconciliation" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{c2f404ad-bf0f-ec11-b6e6-000d3a3b8b16}" Name="Automatathon_2021_Login Process Script_For_Pending Vendor Invoice">
+      <JsonFileName>/Workflows/Automatathon_2021_LoginProcessScript_For_PendingVe-C2F404AD-BF0F-EC11-B6E6-000D3A3B8B16.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>6</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <UIFlowType>2</UIFlowType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <Metadata>{"isvalid":true,"schemaVersion":"ROBIN_20211012","containsActiveConnections":false}</Metadata>
+      <Inputs>{"schema":{"properties":{"UserName_Pickanaccount":{"default":"","description":"","format":null,"title":"UserName_Pickanaccount","type":"string","value":""},"Password_Picknaccount":{"default":"","description":"","format":null,"title":"Password_Picknaccount","type":"string","value":""}},"type":"object"}}</Inputs>
+      <Outputs>{"schema":null}</Outputs>
+      <Dependencies>{"childFlows":[]}</Dependencies>
+      <ConnectionReferences>[]</ConnectionReferences>
+      <Definition>"@@ConnectionString: ''\r\n@@Type: 'Local'\r\n@@DesktopType: 'local'\r\n@@DisplayName: 'Computer'\r\nIMPORT 'controlRepo.appmask' AS appmask\r\nIMPORT 'imageRepo.imgrepo' AS imgrepo\r\n@SENSITIVE: []\r\n@INPUT UserName_Pickanaccount : { 'Description': '', 'FriendlyName': 'UserName_Pickanaccount', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT Password_Picknaccount : { 'Description': '', 'FriendlyName': 'Password_Picknaccount', 'DefaultValue': '', 'Type': 'String' } \r\nCALL Login_Process\r\nFUNCTION Login_Process GLOBAL\r\n    WebAutomation.LaunchChrome.LaunchChromeNoWait Url: $'''https://mshackatons6787d3f0e221d0dddevaos.cloudax.dynamics.com''' WindowState: WebAutomation.BrowserWindowState.Maximized ClearCache: False ClearCookies: False Timeout: 60 BrowserInstance=&gt; Browser\r\n    WAIT 10\r\n    IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Click Use Another Account']) THEN\r\n        WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Click Use Another Account'] MouseClick: False\r\n        DISABLE Display.InputDialog Title: $'''Enter the Username''' Message: $'''Please Enter the Username''' InputType: Display.InputType.SingleLine IsTopMost: False UserInput=&gt; UserName_Pickanaccount ButtonPressed=&gt; ButtonPressed\r\n        DISABLE Display.InputDialog Title: $'''Enter Password''' Message: $'''Please Enter Password''' InputType: Display.InputType.Password IsTopMost: False UserInput=&gt; Password_Picknaccount ButtonPressed=&gt; ButtonPressed2\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Enter Username Text filed'] Text: UserName_Pickanaccount EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Next Button']\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Passwotd textfiled'] Text: Password_Picknaccount EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Sign in Button']\r\n        DISABLE WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... 5f4b/login\\'']['&lt;img&gt; \\'tile-img\\''] MouseClick: False\r\n        WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... .com/login\\'']['&lt;img&gt; \\'tile-img\\' 2'] MouseClick: False\r\n        WAIT 60\r\n    END\r\n    IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Enter Username Text filed']) THEN\r\n        DISABLE Display.InputDialog Title: $'''Enter the Username''' Message: $'''Please Enter the Username''' InputType: Display.InputType.SingleLine IsTopMost: False UserInput=&gt; UserName_Signin ButtonPressed=&gt; ButtonPressed\r\n        DISABLE Display.InputDialog Title: $'''Enter Password''' Message: $'''Please Enter Password''' InputType: Display.InputType.Password IsTopMost: False UserInput=&gt; Password_Signin ButtonPressed=&gt; ButtonPressed2\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Enter Username Text filed'] Text: UserName_Pickanaccount EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Next Button']\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Passwotd textfiled'] Text: Password_Picknaccount EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Sign in Button']\r\n        DISABLE WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... 5f4b/login\\'']['&lt;img&gt; \\'tile-img\\''] MouseClick: False\r\n        WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... .com/login\\'']['&lt;img&gt; \\'tile-img\\' 2'] MouseClick: False\r\n        WAIT 60\r\n    END\r\n    IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... tDashboard\\'']['Setting Button']) THEN\r\n    END\r\nEND FUNCTION\r\n"</Definition>
+      <SchemaVersion>2022.06</SchemaVersion>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Automatathon_2021_Login Process Script_For_Pending Vendor Invoice" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{6aebdcda-6f14-ec11-b6e6-00224808e976}" Name="Delay between the meassage" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/Delaybetweenthemeassage-6AEBDCDA-6F14-EC11-B6E6-00224808E976.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Delay between the meassage" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{997c8d2d-1816-ec11-b6e6-00224808e976}" Name="UpdateToSharePointListForExecutingLater" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/UpdateToSharePointListForExecutingLater-997C8D2D-1816-EC11-B6E6-00224808E976.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="UpdateToSharePointListForExecutingLater" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{17204fef-3716-ec11-b6e6-00224808e976}" Name="Updateto_SharePointList_MR_TB_Reconciliation" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/Updateto_SharePointList_MR_TB_Reconciliation-17204FEF-3716-EC11-B6E6-00224808E976.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Updateto_SharePointList_MR_TB_Reconciliation" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{8c49469d-3b16-ec11-b6e6-00224808ef60}" Name="Updateto_SharePointList_PendingVendorInvoice" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/Updateto_SharePointList_PendingVendorInvoice-8C49469D-3B16-EC11-B6E6-00224808EF60.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Updateto_SharePointList_PendingVendorInvoice" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{009e9b39-b316-ec11-b6e6-00224808ef60}" Name="CurrencyExchangeRates" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/CurrencyExchangeRates-009E9B39-B316-EC11-B6E6-00224808EF60.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="CurrencyExchangeRates" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{fa43016a-3cf0-47e7-931d-52f4b375880e}" Name="Post PVI">
+      <JsonFileName>/Workflows/PostPVI-FA43016A-3CF0-47E7-931D-52F4B375880E.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>6</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <UIFlowType>2</UIFlowType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <Metadata>{"isvalid":true,"schemaVersion":"ROBIN_20211012","containsActiveConnections":false}</Metadata>
+      <Inputs>{"schema":{"properties":{"VendorInvoiceNumber":{"default":"","description":"","format":null,"title":"VendorInvoiceNumber","type":"string","value":""},"UserEmailID":{"default":"","description":"","format":null,"title":"UserEmailID","type":"string","value":""},"UserPassword":{"default":"","description":"","format":null,"title":"UserPassword","type":"string","value":""}},"type":"object"}}</Inputs>
+      <Outputs>{"schema":null}</Outputs>
+      <Dependencies>{"childFlows":["ffa1e523-2347-48b7-b0db-a05d91c61a22"]}</Dependencies>
+      <ConnectionReferences>[]</ConnectionReferences>
+      <Definition>"@@ConnectionString: ''\r\n@@Type: 'Local'\r\n@@DesktopType: 'local'\r\n@@DisplayName: 'Computer'\r\nIMPORT 'controlRepo.appmask' AS appmask\r\nIMPORT 'imageRepo.imgrepo' AS imgrepo\r\n@SENSITIVE: []\r\n@INPUT VendorInvoiceNumber : { 'Description': '', 'FriendlyName': 'VendorInvoiceNumber', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT UserEmailID : { 'Description': '', 'FriendlyName': 'UserEmailID', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT UserPassword : { 'Description': '', 'FriendlyName': 'UserPassword', 'DefaultValue': '', 'Type': 'String' } \r\n@@flowname: 'Automatathon_2021_Login Process Script -PVI-6_01_2023'\r\nExternal.RunFlow FlowId: 'ffa1e523-2347-48b7-b0db-a05d91c61a22' @UserID: UserEmailID @NewPwd: UserPassword\r\nWAIT 20\r\nWebAutomation.LaunchChrome.AttachToChromeByUrl TabUrl: $'''https://mshackatons6787d3f0e221d0dddevaos.cloudax.dynamics.com/?cmp=usmf&amp;mi=VendInvoiceInfoListPage''' AttachTimeout: 5 BrowserInstance=&gt; Browser\r\nWAIT 8\r\n@@timestamp: '09/06/2021 09:54:13'\r\n@@source: 'Recorder'\r\n@@recordertype: 'Web'\r\n@@culture: 'en-US'\r\nWebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Recording']['FilterInput'] MouseClick: False\r\nWebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Recording']['FilterInput'] Text: VendorInvoiceNumber EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\nMouseAndKeyboard.SendKeys.FocusAndSendKeys TextToSend: $'''{Return}''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: False\r\nWAIT 4\r\nWebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... foListPage\\'']['Div \\'fixedD ... Cell_wrap3\\''] ClickType: WebAutomation.ClickType.LeftClick MouseClick: False WaitForPageToLoadTimeout: 60 MousePositionRelativeToElement: WebAutomation.RectangleEdgePoint.MiddleCenter OffsetX: 0 OffsetY: 0\r\nWAIT 4\r\n@@timestamp: '09/06/2021 09:54:40'\r\n@@source: 'Recorder'\r\n@@recordertype: 'Web'\r\n@@culture: 'en-US'\r\nWebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Recording']['PostButton'] MouseClick: False\r\nWAIT 120\r\nWebAutomation.CloseWebBrowser BrowserInstance: Browser\r\n"</Definition>
+      <SchemaVersion>2022.06</SchemaVersion>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Post PVI" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{b54c1e97-2c4a-4678-946f-57908f99ef3a}" Name="Automatathon_2021_Login Process Script">
+      <JsonFileName>/Workflows/Automatathon_2021_LoginProcessScript-B54C1E97-2C4A-4678-946F-57908F99EF3A.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>6</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <UIFlowType>2</UIFlowType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <Metadata>{"isvalid":true,"schemaVersion":"ROBIN_20211012","containsActiveConnections":false}</Metadata>
+      <Inputs>{"schema":{"properties":{"UserID":{"default":"","description":"","format":null,"title":"UserID","type":"string","value":""},"NewPwd":{"default":"","description":"","format":null,"title":"NewPwd","type":"string","value":""}},"type":"object"}}</Inputs>
+      <Outputs>{"schema":null}</Outputs>
+      <Dependencies>{"childFlows":[]}</Dependencies>
+      <ConnectionReferences>[]</ConnectionReferences>
+      <Definition>"@@ConnectionString: ''\r\n@@Type: 'Local'\r\n@@DesktopType: 'local'\r\n@@DisplayName: 'Computer'\r\nIMPORT 'controlRepo.appmask' AS appmask\r\nIMPORT 'imageRepo.imgrepo' AS imgrepo\r\n@SENSITIVE: []\r\n@INPUT UserID : { 'Description': '', 'FriendlyName': 'UserID', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT NewPwd : { 'Description': '', 'FriendlyName': 'NewPwd', 'DefaultValue': '', 'Type': 'String' } \r\nCALL Login_Process\r\nFUNCTION Login_Process GLOBAL\r\n    WebAutomation.LaunchChrome.LaunchChrome Url: $'''https://mshackatons6787d3f0e221d0dddevaos.cloudax.dynamics.com/?cmp=DAT&amp;mi=FinancialReports''' WindowState: WebAutomation.BrowserWindowState.Maximized ClearCache: False ClearCookies: False WaitForPageToLoadTimeout: 60 Timeout: 60 BrowserInstance=&gt; Browser\r\n    WAIT 3\r\n    IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Click Use Another Account']) THEN\r\n        WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Click Use Another Account'] MouseClick: False\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Enter Username Text filed'] Text: UserID EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Next Button']\r\n        WAIT 3\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Passwotd textfiled'] Text: NewPwd EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Sign in Button']\r\n        IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... .com/login\\'']['&lt;img&gt; \\'tile-img\\' 2']) THEN\r\n                ON ERROR REPEAT 1 TIMES WAIT 2\r\n                ON ERROR\r\n        \r\n                END\r\n            WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... .com/login\\'']['&lt;img&gt; \\'tile-img\\' 2'] MouseClick: False\r\n        END\r\n        WAIT 60\r\n    END\r\n    IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Enter Username Text filed']) THEN\r\n        DISABLE Display.InputDialog Title: $'''Enter the Username''' Message: $'''Please Enter the Username''' InputType: Display.InputType.SingleLine IsTopMost: False UserInput=&gt; UserName_Signin ButtonPressed=&gt; ButtonPressed\r\n        DISABLE Display.InputDialog Title: $'''Enter Password''' Message: $'''Please Enter Password''' InputType: Display.InputType.Password IsTopMost: False UserInput=&gt; Password_Signin ButtonPressed=&gt; ButtonPressed2\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Enter Username Text filed'] Text: UserID EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Next Button']\r\n        WAIT 3\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Passwotd textfiled'] Text: NewPwd EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Sign in Button']\r\n        IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... .com/login\\'']['&lt;img&gt; \\'tile-img\\' 2']) THEN\r\n                ON ERROR REPEAT 1 TIMES WAIT 2\r\n                ON ERROR\r\n        \r\n                END\r\n            WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... .com/login\\'']['&lt;img&gt; \\'tile-img\\' 2'] ClickType: WebAutomation.ClickType.LeftClick MouseClick: False WaitForPageToLoadTimeout: 60 MousePositionRelativeToElement: WebAutomation.RectangleEdgePoint.MiddleCenter OffsetX: 0 OffsetY: 0\r\n        END\r\n        WAIT 60\r\n    END\r\n    IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... tDashboard\\'']['Setting Button']) THEN\r\n    END\r\nEND FUNCTION\r\n"</Definition>
+      <SchemaVersion>2022.06</SchemaVersion>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Automatathon_2021_Login Process Script" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{0165f3b8-f962-ec11-8f8f-6045bd009d13}" Name="Get User Email ID" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/GetUserEmailID-0165F3B8-F962-EC11-8F8F-6045BD009D13.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Get User Email ID" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{ffa1e523-2347-48b7-b0db-a05d91c61a22}" Name="Automatathon_2021_Login Process Script -PVI-6_01_2023">
+      <JsonFileName>/Workflows/Automatathon_2021_LoginProcessScript-PVI-6_01_2023-FFA1E523-2347-48B7-B0DB-A05D91C61A22.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>6</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <UIFlowType>2</UIFlowType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <Metadata>{"isvalid":true,"schemaVersion":"ROBIN_20211012","containsActiveConnections":false}</Metadata>
+      <Inputs>{"schema":{"properties":{"UserID":{"default":"","description":"","format":null,"title":"UserID","type":"string","value":""},"NewPwd":{"default":"","description":"","format":null,"title":"NewPwd","type":"string","value":""}},"type":"object"}}</Inputs>
+      <Outputs>{"schema":null}</Outputs>
+      <Dependencies>{"childFlows":[]}</Dependencies>
+      <ConnectionReferences>[]</ConnectionReferences>
+      <Definition>"@@ConnectionString: ''\r\n@@Type: 'Local'\r\n@@DesktopType: 'local'\r\n@@DisplayName: 'Computer'\r\nIMPORT 'controlRepo.appmask' AS appmask\r\nIMPORT 'imageRepo.imgrepo' AS imgrepo\r\n@SENSITIVE: []\r\n@INPUT UserID : { 'Description': '', 'FriendlyName': 'UserID', 'DefaultValue': '', 'Type': 'String' } \r\n@INPUT NewPwd : { 'Description': '', 'FriendlyName': 'NewPwd', 'DefaultValue': '', 'Type': 'String' } \r\nCALL Login_Process\r\nFUNCTION Login_Process GLOBAL\r\n    WebAutomation.LaunchChrome.LaunchChrome Url: $'''https://mshackatons6787d3f0e221d0dddevaos.cloudax.dynamics.com/?cmp=usmf&amp;mi=vendinvoiceinfolistpage''' WindowState: WebAutomation.BrowserWindowState.Maximized ClearCache: False ClearCookies: False WaitForPageToLoadTimeout: 60 Timeout: 60 BrowserInstance=&gt; Browser\r\n    WAIT 3\r\n    IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Click Use Another Account']) THEN\r\n        WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Click Use Another Account'] MouseClick: False\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Enter Username Text filed'] Text: UserID EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Next Button']\r\n        WAIT 3\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Passwotd textfiled'] Text: NewPwd EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Sign in Button']\r\n        IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... .com/login\\'']['&lt;img&gt; \\'tile-img\\' 2']) THEN\r\n                ON ERROR REPEAT 1 TIMES WAIT 2\r\n                ON ERROR\r\n        \r\n                END\r\n            WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... .com/login\\'']['&lt;img&gt; \\'tile-img\\' 2'] MouseClick: False\r\n        END\r\n        WAIT 60\r\n    END\r\n    IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Enter Username Text filed']) THEN\r\n        DISABLE Display.InputDialog Title: $'''Enter the Username''' Message: $'''Please Enter the Username''' InputType: Display.InputType.SingleLine IsTopMost: False UserInput=&gt; UserName_Signin ButtonPressed=&gt; ButtonPressed\r\n        DISABLE Display.InputDialog Title: $'''Enter Password''' Message: $'''Please Enter Password''' InputType: Display.InputType.Password IsTopMost: False UserInput=&gt; Password_Signin ButtonPressed=&gt; ButtonPressed2\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Enter Username Text filed'] Text: UserID EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Next Button']\r\n        WAIT 3\r\n        WebAutomation.PopulateTextField.PopulateTextField BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Passwotd textfiled'] Text: NewPwd EmulateTyping: True UnfocusAfterPopulate: False Mode: WebAutomation.PopulateTextMode.Replace\r\n        WebAutomation.PressButton.PressButton BrowserInstance: Browser Control: appmask['Web Page \\'h ... ics.com%2f\\'']['Sign in Button']\r\n        IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... .com/login\\'']['&lt;img&gt; \\'tile-img\\' 2']) THEN\r\n                ON ERROR REPEAT 1 TIMES WAIT 2\r\n                ON ERROR\r\n        \r\n                END\r\n            WebAutomation.Click.Click BrowserInstance: Browser Control: appmask['Web Page \\'h ... .com/login\\'']['&lt;img&gt; \\'tile-img\\' 2'] ClickType: WebAutomation.ClickType.LeftClick MouseClick: False WaitForPageToLoadTimeout: 60 MousePositionRelativeToElement: WebAutomation.RectangleEdgePoint.MiddleCenter OffsetX: 0 OffsetY: 0\r\n        END\r\n        WAIT 60\r\n    END\r\n    IF (WebAutomation.IfWebPageContains.WebPageContainsElement BrowserInstance: Browser Control: appmask['Web Page \\'h ... tDashboard\\'']['Setting Button']) THEN\r\n    END\r\nEND FUNCTION\r\n"</Definition>
+      <SchemaVersion>2022.06</SchemaVersion>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Automatathon_2021_Login Process Script -PVI-6_01_2023" />
+      </LocalizedNames>
+    </Workflow>
+  </Workflows>
+  <FieldSecurityProfiles></FieldSecurityProfiles>
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <CanvasApps>
+    <CanvasApp>
+      <Name>new_powerplatformaihacktogether_9bda2</Name>
+      <AppVersion>2023-09-28T15:43:29Z</AppVersion>
+      <Status>Ready</Status>
+      <CreatedByClientVersion>3.23092.13.0</CreatedByClientVersion>
+      <MinClientVersion>3.23092.13.0</MinClientVersion>
+      <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","supportsPortrait":"false","supportsLandscape":"true","primaryFormFactor":"Tablet","showStatusBar":"false","publisherVersion":"3.23092.13","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20230928T140040Z-3.23092.13.0"}</Tags>
+      <IsCdsUpgraded>0</IsCdsUpgraded>
+      <GalleryItemId xsi:nil="true"></GalleryItemId>
+      <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+      <DisplayName>PowerPlatformGlobalAIHack-saglobal</DisplayName>
+      <Description xsi:nil="true"></Description>
+      <CommitMessage xsi:nil="true"></CommitMessage>
+      <Publisher xsi:nil="true"></Publisher>
+      <AuthorizationReferences>[]</AuthorizationReferences>
+      <ConnectionReferences>{"279fd7fb-6a34-41ba-8555-d7d21a225751":{"id":"/providers/microsoft.powerapps/apis/shared_sharepointonline","displayName":"SharePoint","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1656/1.0.1656.3432/sharepointonline/icon.png","dataSources":["Vendor Invoice Extracted Data Using AI Builder","Pending Vendor Invoice","PVI Items","Currency Exchange Rate","CurrencyExchangeRateData","Currency Exchange Rate for AI","AI_ReconcilationReport"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{"https://saglobal.sharepoint.com/sites/Powerautomate":{"dataSources":{"Vendor Invoice Extracted Data Using AI Builder":{"tableName":"a3c207e9-3eb7-4296-9033-b300bdb08306"}}},"https://saglobal.sharepoint.com/sites/RPACoETeam":{"dataSources":{"Pending Vendor Invoice":{"tableName":"ca930e7a-0fe5-4db4-b5cb-f20d0e469d69"},"PVI Items":{"tableName":"a53a3ff4-1fe3-46d1-976d-73bb60afc789"},"Currency Exchange Rate":{"tableName":"6c497910-ee54-4d2e-a795-e14dd7254233"},"CurrencyExchangeRateData":{"tableName":"566b4e01-1f7d-45a2-9465-d81dd5097c16"},"Currency Exchange Rate for AI":{"tableName":"3e52dfbc-b1e8-4fea-a43e-a65ab8b45e09"},"AI_ReconcilationReport":{"tableName":"a02a88ef-c30d-4645-a27c-d24c0751e72f"}}}},"apiTier":"Standard","actions":["providers/PowerPlatform.Governance/Operations/Read"]},"ab491ac8-ad57-49bd-a52f-3c4f0d112233":{"id":"/providers/microsoft.powerapps/apis/shared_office365","displayName":"Office 365 Outlook","iconUri":"https://connectoricons-prod.azureedge.net/u/henryorsborn/partial-builds/asev3migrations-with-resourceTemplate/1.0.1653.3403/office365/icon.png","dataSources":["Office365Outlook"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["SendEmail"]},"e0b8676c-9764-42c4-9df9-d955536c0db7":{"id":"/providers/microsoft.powerapps/apis/shared_office365users","displayName":"Office 365 Users","iconUri":"https://connectoricons-prod.azureedge.net/u/henryorsborn/partial-builds/asev3migrations-with-resourceTemplate/1.0.1653.3403/office365users/icon.png","dataSources":["Office365Users"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["SearchUser"]}}</ConnectionReferences>
+      <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified"}},"dataSources":{"43b0dc67-68af-47ae-9a9c-9e69d396ba3e":{"entitySetName":"msdyn_aimodels","logicalName":"msdyn_aimodel"},"aaecc619-18c9-476b-9b00-1226535c6d87":{"entitySetName":"organizations","logicalName":"organization"},"Vendor Masters":{"entitySetName":"crcf6_vendormasters","logicalName":"crcf6_vendormaster"}},"components":[{"componentName":"msdyn_AIModel","identifier":"a1afa5d4-7a44-4c31-9cd2-e852a78431fa","identifierType":"UniqueId"}]}}</DatabaseReferences>
+      <AppComponents>[]</AppComponents>
+      <AppComponentDependencies>[]</AppComponentDependencies>
+      <CanConsumeAppPass>1</CanConsumeAppPass>
+      <CanvasAppType>0</CanvasAppType>
+      <BypassConsent>0</BypassConsent>
+      <AdminControlBypassConsent>0</AdminControlBypassConsent>
+      <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <CdsDependencies>{"cdsdependencies":[{"logicalname":"msdyn_aimodel","componenttype":1},{"logicalname":"organization","componenttype":1},{"logicalname":"crcf6_vendormaster","componenttype":1},{"dependencyid":"a1afa5d4-7a44-4c31-9cd2-e852a78431fa","logicalname":"","componenttype":401,"componenttypeplatformname":"msdyn_AIModel"}]}</CdsDependencies>
+      <IsCustomizable>1</IsCustomizable>
+      <BackgroundImageUri>/CanvasApps/new_powerplatformaihacktogether_9bda2_BackgroundImageUri</BackgroundImageUri>
+      <DocumentUri>/CanvasApps/new_powerplatformaihacktogether_9bda2_DocumentUri.msapp</DocumentUri>
+    </CanvasApp>
+  </CanvasApps>
+  <AIModels>
+    <AIModel>
+      <msdyn_aimodelid>{3881f979-d997-481b-bf44-d13e89da992d}</msdyn_aimodelid>
+      <msdyn_name>PVI AI Model</msdyn_name>
+      <msdyn_templateid>{10707e4e-1d56-e911-8194-000d3a6cd5a5}</msdyn_templateid>
+      <statecode>1</statecode>
+      <statuscode>1</statuscode>
+      <IsCustomizable>1</IsCustomizable>
+      <msdyn_activerunconfigurationid>{28306b9b-aa0b-ec11-b6e6-0022480439e7}</msdyn_activerunconfigurationid>
+      <AIConfigurations>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{28306b9b-aa0b-ec11-b6e6-0022480439e7}</msdyn_aiconfigurationid>
+          <msdyn_customconfiguration>{"version":"DocumentScanning-2","labels":{"InvoiceNumber":{"defaultId":"c2480168-7218-43fc-9aab-c382c5548a05","layoutSpecificIds":{}},"InvoiceDate":{"defaultId":"c23f9b39-15d6-49e4-ac79-6a7434e5eafe","layoutSpecificIds":{}},"PaymentDate":{"defaultId":"dd34e082-2f0e-4675-ad95-dc4a4fa5a1f7","layoutSpecificIds":{}},"From Address":{"defaultId":"f2fc43af-0c5e-4a93-90ff-68e50fcdcd21","layoutSpecificIds":{}},"ToAddress":{"defaultId":"fd17b311-2826-4c78-940e-496d9fed46ce","layoutSpecificIds":{}},"Currency":{"defaultId":"b6fcd665-3846-4a49-b3b4-5503b74e34fb","layoutSpecificIds":{}},"SalesSub Total Amount":{"defaultId":"a276c481-2337-4caa-8a79-3b74702fe762","layoutSpecificIds":{}},"TotalAmount":{"defaultId":"8345c3ab-3b6d-4bfb-8fb1-8c07623ee61c","layoutSpecificIds":{}}},"tables":{"PVI Items":{"defaultId":"05dc593e-9078-42dd-93f7-4edcc9bcbdbb","layoutSpecificIds":{},"columns":{"ItemNumber":{"defaultId":"cc6ae834-2c28-4100-b978-7e68597458c8","layoutSpecificIds":{}},"Description":{"defaultId":"b9474f89-4d52-4d7c-88dd-cde236e6a91e","layoutSpecificIds":{}},"Quantity":{"defaultId":"bbb0a3cb-e0bf-4dcb-8164-75e25b20f814","layoutSpecificIds":{}},"Unit":{"defaultId":"aa368c28-c8fc-49ed-8e96-fb5c8556d4d1","layoutSpecificIds":{}},"UnitPrice":{"defaultId":"9e07ae99-a7d1-451f-8490-24d8b1c6711d","layoutSpecificIds":{}},"DiscountPercent":{"defaultId":"220b4950-fa5f-409d-8746-d2bf11c66719","layoutSpecificIds":{}},"Discount":{"defaultId":"459189a7-5ec4-4ca9-b56a-f74089779347","layoutSpecificIds":{}},"Amount":{"defaultId":"64327918-0e79-4d06-b428-b158b776dab2","layoutSpecificIds":{}}}}},"layouts":{"PVI Doc":{"layoutId":"eb407607-1c39-4e98-808a-db0ee6356c33"}}}</msdyn_customconfiguration>
+          <msdyn_majoriterationnumber>2</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_name>3881f979-d997-481b-bf44-d13e89da992d_2021-09-02T04:59:52.409Z</msdyn_name>
+          <msdyn_modelrundataspecification>H4sIAAAAAAAEAO1YXW/aMBT9K5afNom1qvbxwBstrYQ0FVa6vjvOhblz7Mgf1aKq/322KQmEsMV01YZmHgD5+lyfe46d2H7E8xLolVQFMXegNJMCD88GeCJKa26kNJfCMFPh4SMeM11yUl2TAvAQ4wEeGaNYZg1oH86Ihk8fLgWVOeS7/ceS2gKEcbjbqvQtk4IsAT8NcMEKWLXtAyHjw4N1dAyaKlaaQBYzn+f0voTlYOdvKZYDUpacUeJ7n5b54jli2GLRcJm7SsTSkyldUO8ymYXmPQycRqCQRyJFhPt+c/ljiM6QVOj9u49vT9BU8AopMFYJ7X615UYjuUAEaTcsB7RwBpy49NOQknA8NMpCTe88aLsm+eRoTq2JNYiTDHhHaY0K0+weqHeod86JeJCMwrUtMlC+oW+mbWA7bb7Z93HXpAfCbXfkO1Sf5crsGDo7DLyZTVXbnd0YK7PFmv16Rrt5sHQNT8GiQPLVyYRR+tChUixYDoJ2rLMmhjSVCpocN+Am4yrBs2VjYuAApwMs+XwEPs9I5Z+5sT5vwpLPR+DzlZIFGuW5ex/pmHK2cMnpI3D6Vh5gcwNKHh+BxxdWKdeliimlxiSHj8DhOeGg5zZDt9IQjkaFtO44FVFXd4Lk/RF4HxyLd3wTlnz+530OOQzJeNcNxEuO6bO7CZoYKKI2AA0odupQyW0hNgcbKUWqGMbiOXdbQ58YfQOSb5rQjMxfeypsMfj9lAiOulORYvAiObwPB1yyNKh2wnp1d8z0vyLsH1ljqyS9nqhbN3j9a9qEJU1bmn6xpKbdt6Aak9RsqflVsKiXfeifVOxQcaYYhVgpV6CkZ/u5yVzM7SdnoCjE7Ubb0KTtHm0PETWp2VYz/ri056T0nytZf1xlpJLWrPf9rcskybmr0dWNwua9S5gAv6iHnIcRf5WpB72fCDBZsMIeAAA=</msdyn_modelrundataspecification>
+          <msdyn_type>190690001</msdyn_type>
+          <msdyn_aimodelid>{3881f979-d997-481b-bf44-d13e89da992d}</msdyn_aimodelid>
+          <msdyn_trainedmodelaiconfigurationpareid>{f32816f1-1117-4144-820d-851b3c6877c0}</msdyn_trainedmodelaiconfigurationpareid>
+          <statecode>2</statecode>
+          <statuscode>7</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{f32816f1-1117-4144-820d-851b3c6877c0}</msdyn_aiconfigurationid>
+          <msdyn_customconfiguration>{"version":"DocumentScanning-1","shouldReturnTableFromUnsupervisedModel":false,"defaultLayoutId":"eb407607-1c39-4e98-808a-db0ee6356c33","requiredFeatures":["SupervisedTable"]}</msdyn_customconfiguration>
+          <msdyn_databinding>{"schemaVersion":2,"input":{"schemaName":"msdyn_aibdatasetfile","queries":{"train":{"type":"fetchXml","query":"&lt;fetch mapping=\"logical\"&gt;\n    &lt;entity name=\"msdyn_aibdatasetfile\"&gt;\n      &lt;filter type=\"and\"&gt;\n  &lt;condition attribute=\"msdyn_aibdatasetid\" operator=\"eq\" value=\"a113bb3c-daf0-452c-88ec-b061a3fc5311\"/&gt;\n&lt;/filter&gt;\n    &lt;/entity&gt;\n  &lt;/fetch&gt;"}},"relatedEntities":[{"schemaName":"msdyn_AIBDatasetFile_msdyn_AIBuilde","cardinality":"ManyToOne","attributes":[{"specificationName":"binaryName","schemaName":"msdyn_file","dataType":"Undefined","requiredLevel":"ApplicationRequired"}]},{"schemaName":"msdyn_AIBFileAttachedData_msdyn_AIB","specificationName":"labels","cardinality":"OneToMany","queries":{"train":{"type":"fetchXml","query":"&lt;fetch mapping=\"logical\"&gt;\n    &lt;entity name=\"msdyn_aibfileattacheddata\"&gt;\n      &lt;filter type=\"and\"&gt;\n  &lt;condition attribute=\"msdyn_type\" operator=\"eq\" value=\"tag\"/&gt;\n&lt;/filter&gt;\n    &lt;/entity&gt;\n  &lt;/fetch&gt;"}},"embeddedObjects":[{"schemaName":"msdyn_data","isCollection":false,"embeddedObjects":[{"schemaName":"trainingLabel","specificationName":"labels","isCollection":false}]}]},{"schemaName":"msdyn_AIBFileAttachedData_msdyn_AIB","specificationName":"tables","cardinality":"OneToMany","queries":{"train":{"type":"fetchXml","query":"&lt;fetch mapping=\"logical\"&gt;\n    &lt;entity name=\"msdyn_aibfileattacheddata\"&gt;\n      &lt;filter type=\"and\"&gt;\n  &lt;condition attribute=\"msdyn_type\" operator=\"eq\" value=\"table\"/&gt;\n&lt;/filter&gt;\n    &lt;/entity&gt;\n  &lt;/fetch&gt;"}},"embeddedObjects":[{"schemaName":"msdyn_data","isCollection":false,"embeddedObjects":[{"schemaName":"trainingTable","specificationName":"tables","isCollection":false}]}]}]}}</msdyn_databinding>
+          <msdyn_majoriterationnumber>2</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_modeldata>6ef82a28-7a5a-4b1a-88ac-ee74354d79f7</msdyn_modeldata>
+          <msdyn_modelperformance>{"metrics":[]}</msdyn_modelperformance>
+          <msdyn_name>3881f979-d997-481b-bf44-d13e89da992d_2021-09-02T04:59:46.459Z</msdyn_name>
+          <msdyn_modelrundataspecification>{
+  "SpecFormatVersion": 1,
+  "InputRootEntity": {
+    "DisplayName": "Document",
+    "Attributes": {
+      "binaryName": { "Type": "Image" }
+    }
+  }
+}</msdyn_modelrundataspecification>
+          <msdyn_type>190690000</msdyn_type>
+          <msdyn_aimodelid>{3881f979-d997-481b-bf44-d13e89da992d}</msdyn_aimodelid>
+          <msdyn_lasttrainorrundate>2021-09-02T05:00:31</msdyn_lasttrainorrundate>
+          <statecode>2</statecode>
+          <statuscode>6</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+          <msdyn_modelprovisioningmetadata>AQAAAJkAAADvu797Ikdlb2dyYXBoeSI6InVzIiwiQ2x1c3RlcklkIjoid3VzIiwiS2V5VmVyc2lvbiI6ImY1YTM4OTFlMGJhNzQ4YzI5MWI1ODhiMGM4ZWIzMGE5IiwiU2lnbmF0dXJlVmVyc2lvbiI6InYxIiwiU2lnbmF0dXJlRGF0ZUJpbmFyeSI6NTI0OTM0NzU3NDc0MzMyNTA5MH0gAAAA7d/dQwNDZF10c6DC7HNW2qoXKz8MP8cBeo7/H0B5dXXCAQAAeyJ2ZXJzaW9uIjoiRG9jdW1lbnRTY2FubmluZ0NvcHlEYXRhLTEiLCJtb2RlbERhdGEiOnsiaW50ZXJuYWxTdXBlcnZpc2VkTW9kZWxJZCI6ImY1YzVjZDFjLTQxMzQtNGUwYy1iYTk2LTk2YjdmNzE5MTJmYSIsImNvZ25pdGl2ZVN1cGVydmlzZWRSZXNvdXJjZUlkIjoiRm9ybVVuZGVyc3RhbmRpbmdBcHBsaWNhdGlvbktleS0zIiwiYmFja2VuZFZlcnNpb24iOiJ2Mi4xIiwiYmFja2VuZE1pbm9yVmVyc2lvbiI6IiIsImtleUFsbG9jYXRvclZlcnNpb24iOiJ2Mi4wIiwibW9kZWxMYXlvdXRzQ29uZmlnIjp7InN1Ym1vZGVscyI6W10sImRlZmF1bHRMYXlvdXRJZCI6ImViNDA3NjA3LTFjMzktNGU5OC04MDhhLWRiMGVlNjM1NmMzMyJ9LCJGZWF0dXJlcyI6eyJ1c2VDb2x1bW5CYXNlZFVuc3VwZXJ2aXNlZFRhYmxlSWRlbnRpZmljYXRpb24iOnRydWV9LCJzb3VyY2VJc2xhbmRJZCI6InVzIn19</msdyn_modelprovisioningmetadata>
+        </AIConfiguration>
+      </AIConfigurations>
+    </AIModel>
+  </AIModels>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>
