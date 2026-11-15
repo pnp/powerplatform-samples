@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{21b13f8a-753a-43db-b3bc-0b54a2aaa549}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{f05270dd-15f1-4ba4-bc93-b6057a9f198e}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{aa3863cb-aa59-4f9b-979e-fad667f99d86}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{084377c3-c9a9-4d97-be58-e41d2f831f39}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="ctb_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ctb_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{22648d9c-2a2a-474d-962c-732389e2b927}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Capability" languagecode="1033" />
+                        </labels>
+                        <control id="ctb_capability" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="ctb_capability" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{057d93c7-e2bb-40a0-90dd-e1e30e460684}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{94298899-707d-4ada-bc08-7796854a807a}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{2bb570c5-6d86-488d-af01-db22ca0b1eea}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e67b5b4f-ecc3-491b-9fbd-71fe6f5b124e}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{4c4d07ed-ef9e-480f-b974-3bb9adaa23f3}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{44574a64-b69f-483f-8f70-a3a15cb34e3a}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{d1e49feb-bba9-477b-8a16-9851cea747e4}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{76c22513-7868-429f-bcde-b07f9359d966}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{4df9463b-f59a-4814-a2ae-f158d6235759}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
