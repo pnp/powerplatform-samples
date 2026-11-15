@@ -1,0 +1,586 @@
+EditTask_scr As screen:
+
+    Container2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.None
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =768
+        Width: =1366
+        ZIndex: =2
+
+        Container1 As groupContainer.manualLayoutContainer:
+            BorderColor: =ColorFade(theme.darkFont,0.4)
+            BorderThickness: =1
+            DropShadow: =DropShadow.Bold
+            Fill: =ColorFade(theme.darkFont,.8)
+            Height: =670
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =663
+            X: =352
+            Y: =60
+            ZIndex: =2
+
+            Form2 As form.PowerApps_CoreControls_Form:
+                DataSource: ='Task Tracker'
+                Height: =511
+                Item: =selectedItem
+                NumberOfColumns: =2
+                UseFluentV9Cards: =true
+                Width: =Parent.Width
+                X: =1
+                Y: =157
+                ZIndex: =1
+
+                Priority_DataCard6 As typedDataCard.fluentV9ComboBoxEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Priority"
+                    Default: =ThisItem.Priority
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"Priority")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =38
+                    Required: =false
+                    Update: =priority.Selected
+                    Width: =331
+                    X: =1
+                    Y: =2
+                    ZIndex: =1
+
+                    DataCardKey49 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    priority As Dropdown.pcfdataset:
+                        AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                        DefaultSelectedItems: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Items: =Choices([@'Task Tracker'].Priority)
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey49.Y + DataCardKey49.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage40 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =priority.Y + priority.Height
+                        ZIndex: =3
+
+                    StarVisible40 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =20
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey49.Y
+                        ZIndex: =4
+
+                Title_DataCard4 As typedDataCard.fluentV9TextualEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Title"
+                    Default: =ThisItem.Title
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"Title")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'Task Tracker'], DataSourceInfo.MaxLength, "Title")
+                    Required: =false
+                    Update: =title.Value
+                    Width: =662
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+                    DataCardKey36 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "title As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        BasePaletteColor: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =Parent.DisplayMode
+                        FontSize: =0
+                        Height: =32
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey36.Y + DataCardKey36.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage28 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =title.Y + title.Height
+                        ZIndex: =3
+
+                    StarVisible28 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey36.Y
+                        ZIndex: =4
+
+                Progress_DataCard4 As typedDataCard.fluentV9ComboBoxEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Progress"
+                    Default: =ThisItem.Progress
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"Progress")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    Required: =false
+                    Update: =progress.Selected
+                    Width: =331
+                    X: =0
+                    Y: =1
+                    ZIndex: =2
+
+                    DataCardKey38 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    progress As Dropdown.pcfdataset:
+                        AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                        DefaultSelectedItems: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Items: =Choices([@'Task Tracker'].Progress)
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey38.Y + DataCardKey38.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage30 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =progress.Y + progress.Height
+                        ZIndex: =3
+
+                    StarVisible30 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =20
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey38.Y
+                        ZIndex: =4
+
+                Project_DataCard4 As typedDataCard.fluentV9ComboBoxEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Project"
+                    Default: =ThisItem.Project
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"Project")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    Required: =false
+                    Update: =project.Selected
+                    Width: =331
+                    X: =1
+                    Y: =1
+                    ZIndex: =2
+
+                    DataCardKey43 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    project As Dropdown.pcfdataset:
+                        AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                        DefaultSelectedItems: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Items: =Choices([@'Task Tracker'].Project)
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey43.Y + DataCardKey43.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage35 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =project.Y + project.Height
+                        ZIndex: =3
+
+                    StarVisible35 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =20
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey43.Y
+                        ZIndex: =4
+
+                Assigned_To_DataCard4 As typedDataCard.fluentV9ComboBoxEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Assigned_To"
+                    Default: =ThisItem.Assigned_To
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"Assigned_To")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    Required: =false
+                    Update: =assignTo.Selected
+                    Width: =331
+                    X: =0
+                    Y: =2
+                    ZIndex: =2
+
+                    DataCardKey44 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    assignTo As Dropdown.pcfdataset:
+                        AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                        DefaultSelectedItems: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Items: =Choices([@'Task Tracker'].Assigned_To)
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey44.Y + DataCardKey44.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage36 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =assignTo.Y + assignTo.Height
+                        ZIndex: =3
+
+                    StarVisible36 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =20
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey44.Y
+                        ZIndex: =4
+
+                "'Due date_DataCard4' As typedDataCard.fluentV9DateEditCard":
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="DueDate"
+                    Default: =ThisItem.'Due date'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"DueDate")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    Required: =false
+                    Update: =duedate.SelectedDate
+                    Width: =662
+                    X: =0
+                    Y: =3
+                    ZIndex: =2
+
+                    DataCardKey40 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "duedate As 'Date picker'":
+                        AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                        BasePaletteColor: =
+                        DisplayMode: =Parent.DisplayMode
+                        EndYear: =Year(Today())+100
+                        FontSize: =0
+                        Height: =32
+                        SelectedDate: =Parent.Default
+                        StartYear: =1900
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey40.Y + DataCardKey40.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage32 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =duedate.Y + duedate.Height
+                        ZIndex: =3
+
+                    StarVisible32 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey40.Y
+                        ZIndex: =4
+
+                Description_DataCard4 As typedDataCard.fluentV9TextualEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Description"
+                    Default: =ThisItem.Description
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"Description")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =137
+                    MaxLength: =DataSourceInfo([@'Task Tracker'], DataSourceInfo.MaxLength, "Description")
+                    Required: =false
+                    Update: =description.Value
+                    Width: =662
+                    X: =0
+                    Y: =4
+                    ZIndex: =2
+
+                    DataCardKey37 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "description As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        BasePaletteColor: =
+                        DisplayMode: =Parent.DisplayMode
+                        FontSize: =0
+                        Height: =91
+                        Mode: ='TextInputCanvas.Mode'.Multiline
+                        Required: =Parent.Required
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey37.Y + DataCardKey37.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage29 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =description.Y + description.Height
+                        ZIndex: =3
+
+                    StarVisible29 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey37.Y
+                        ZIndex: =4
+
+            cnt_formLogo As groupContainer.manualLayoutContainer:
+                BorderStyle: =BorderStyle.None
+                DropShadow: =DropShadow.None
+                Height: =135
+                RadiusBottomLeft: =10
+                RadiusBottomRight: =10
+                RadiusTopLeft: =10
+                RadiusTopRight: =10
+                Width: =129
+                X: =Parent.Width/2 - (cnt_formLogo.Width/2)
+                Y: =22
+                ZIndex: =2
+
+                HtmlText1 As htmlViewer:
+                    AutoHeight: =true
+                    HtmlText: |-
+                        ="<div style='background: rgb(160,45,253); height:8px;
+                        background: linear-gradient(to right, #B2BDC5 , #334F66);border-radius:20px; width:100%;'></div>"
+                    Width: =Parent.Width
+                    Y: =cnt_formLogo.Height-20
+                    ZIndex: =1
+
+                Image2 As image:
+                    Height: =114
+                    Image: ='icons8-edit-96 (1)'
+                    Visible: =edittask
+                    Width: =129
+                    ZIndex: =2
+
+                Image6 As image:
+                    Height: =115
+                    Image: ='icons8-add-list-96'
+                    Visible: =addtask
+                    Width: =129
+                    ZIndex: =3
+
+            Container8 As groupContainer.manualLayoutContainer:
+                Fill: =ColorFade(theme.darkFont,0.2)
+                Height: =35
+                Width: =92
+                X: =550
+                Y: =610
+                ZIndex: =3
+
+                Image13 As image:
+                    Height: =35
+                    Image: ='icons8-save-96 (1)'
+                    Width: =30
+                    X: =9
+                    ZIndex: =1
+
+                Label15 As label:
+                    Color: =RGBA(255, 255, 255, 1)
+                    FontWeight: =FontWeight.Semibold
+                    Height: =35
+                    Size: =12
+                    Text: ="Save "
+                    Width: =50
+                    X: =39
+                    ZIndex: =2
+
+            Button1 As button:
+                Align: =Align.Right
+                DisplayMode: =If(IsBlank(title.Value),DisplayMode.Disabled,DisplayMode.Edit)
+                Fill: =Color.Transparent
+                Font: =Font.Arial
+                Height: =35
+                HoverColor: =Color.White
+                HoverFill: =Color.Transparent
+                OnSelect: |-
+                    =//SubmitForm(Form2);
+                    Patch(
+                        'Task Tracker',
+                        If(
+                            edittask,
+                            LookUp(
+                                'Task Tracker',
+                                ID = selectedItem.ID
+                            ),
+                            Defaults('Task Tracker')
+                        ),
+                        {
+                            Title: title.Value,
+                            Progress: progress.Selected,
+                            Project: project.Selected,
+                            Assigned_To: assignTo.Selected,
+                            'Due date': duedate.SelectedDate,
+                            Description: description.Value,
+                            Priority: priority.Selected,
+                            AssignedBy: activeUser.Title & " " & activeUser.LastName
+                        }
+                    );
+                    ResetForm(Form2);
+                    Refresh('Task Tracker');
+                    Navigate(userTask_scr)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =20
+                PaddingTop: =0
+                PressedColor: =Color.White
+                PressedFill: =Color.Transparent
+                RadiusBottomLeft: =5
+                RadiusBottomRight: =5
+                RadiusTopLeft: =5
+                RadiusTopRight: =5
+                Text: =If(IsBlank(title.Value),"  Submit","")
+                Width: =92
+                X: =550
+                Y: =610
+                ZIndex: =4
+
+        Image11 As image:
+            Height: =57
+            Image: ='icons8-back-96 (1)'
+            OnSelect: =Back()
+            Width: =51
+            X: =11
+            Y: =3
+            ZIndex: =3
+

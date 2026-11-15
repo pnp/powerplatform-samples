@@ -1,0 +1,22 @@
+backdrop As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =App.Height - 70
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    HtmlText2 As htmlViewer:
+        Height: =698
+        HtmlText: |-
+            ="<div style='backdrop-filter: blur(16px) saturate(180%);
+                -webkit-backdrop-filter: blur(16px) saturate(180%);
+                background-color: rgba(17, 25, 40, 0.75);width:"&Parent.Width&"px;height:"& Parent.Height-5&"px'></div>"
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        Width: =1363
+        Y: =5
+        ZIndex: =1
+

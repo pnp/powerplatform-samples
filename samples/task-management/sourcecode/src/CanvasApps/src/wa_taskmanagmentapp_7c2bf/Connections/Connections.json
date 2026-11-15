@@ -1,0 +1,72 @@
+{
+  "3706d264-2060-4c7d-9379-6a6140992f76": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write",
+      "providers/PowerPlatform.Governance/Operations/Delete"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1664/1.0.1664.3477/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://pdlz.sharepoint.com/sites/TaskManagmentApp_wa_testEnvVar": {
+        "datasetOverride": {
+          "environmentVariableName": "wa_testEnvVar",
+          "name": "https://pdlz.sharepoint.com/sites/TaskManagmentApp"
+        },
+        "dataSources": {
+          "Events": {
+            "tableName": "67efa8c4-f7a6-4e54-8be8-5f6f7105096f",
+            "tableNameOverride": {
+              "environmentVariableName": "wa_shared_sharepointonline_f63aec0fca2e44e1900fb192de84e19c",
+              "name": "67efa8c4-f7a6-4e54-8be8-5f6f7105096f"
+            }
+          },
+          "Pods": {
+            "tableName": "a370b128-a440-405c-9b3c-af7c706bfa64",
+            "tableNameOverride": {
+              "environmentVariableName": "wa_shared_sharepointonline_8a69ba0c170243e29acf3bd7683018be",
+              "name": "a370b128-a440-405c-9b3c-af7c706bfa64"
+            }
+          },
+          "Projects": {
+            "tableName": "349868bc-4d19-49d1-8d01-df01608e2ae7",
+            "tableNameOverride": {
+              "environmentVariableName": "wa_shared_sharepointonline_00218b2e3a8c4cc0b78865fcacdf839a",
+              "name": "349868bc-4d19-49d1-8d01-df01608e2ae7"
+            }
+          },
+          "Task Tracker": {
+            "tableName": "df3be436-72a4-4fd7-a69c-9ddd4bc50732",
+            "tableNameOverride": {
+              "environmentVariableName": "wa_shared_sharepointonline_d256589fec514cc283550cd869185031",
+              "name": "df3be436-72a4-4fd7-a69c-9ddd4bc50732"
+            }
+          },
+          "Users": {
+            "tableName": "1ee45ad9-04ec-446d-a3d3-4bf498681745",
+            "tableNameOverride": {
+              "environmentVariableName": "wa_shared_sharepointonline_2a01dff1831b4839bf8143d7bad82570",
+              "name": "1ee45ad9-04ec-446d-a3d3-4bf498681745"
+            }
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Events",
+      "Projects",
+      "Pods",
+      "Task Tracker",
+      "Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "3706d264-2060-4c7d-9379-6a6140992f76"
+  }
+}

@@ -1,0 +1,1408 @@
+Users_scr As screen:
+    Fill: =
+    OnVisible: |-
+        =Set(var_Del_Image, false); UpdateContext({loc_Gal_Width:false}) 
+
+    user_cnt_main As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cnt_inner As groupContainer.manualLayoutContainer:
+            BorderThickness: =2
+            Fill: =ColorFade(theme.darkFont,0.7)
+            Height: =Parent.Height-80
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Width: =Parent.Width
+            Y: =80
+            ZIndex: =2
+
+            Rectangle5 As rectangle:
+                Fill: =RGBA(0, 0, 0, 0.53)
+                Height: =688
+                Visible: =false
+                Width: =1366
+                ZIndex: =1
+
+            Label5 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =87
+                PaddingLeft: =0
+                Size: =32
+                Text: =Proper(users_gallery.Selected.Title &" "& users_gallery.Selected.LastName)
+                Width: =455
+                X: =558
+                Y: =40
+                ZIndex: =2
+
+            Button5 As button:
+                BorderColor: =ColorFade(Self.Fill, -25%)
+                Color: =theme.darkFont
+                DisplayMode: =DisplayMode.View
+                Fill: =theme.contrastColor
+                Height: =23
+                PaddingBottom: =7
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                Size: =12
+                Text: |
+                    =users_gallery.Selected.JobTitle.Value
+                Width: |-
+                    =If(
+                        Len(users_gallery.Selected.JobTitle.Value) > 12,
+                        Len(users_gallery.Selected.JobTitle.Value) * 9,
+                        Len(users_gallery.Selected.JobTitle.Value) * 10
+                    )
+                X: =558
+                Y: =116
+                ZIndex: =10
+
+            Image10 As image:
+                DisplayMode: =DisplayMode.View
+                Height: =255
+                Image: =If(IsBlank(users_gallery.Selected.ProfileImage),user_1077012,users_gallery.Selected.ProfileImage)
+                ImagePosition: =ImagePosition.Fill
+                RadiusBottomLeft: =10
+                RadiusBottomRight: =10
+                RadiusTopLeft: =10
+                RadiusTopRight: =10
+                Visible: =!IsBlank(users_gallery.Selected)
+                Width: =232
+                X: =1104
+                Y: =62
+                ZIndex: =11
+
+            cnt_user_email_7 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.None
+                Height: =177
+                Visible: =!IsBlank(users_gallery.Selected)
+                Width: =778
+                X: =558
+                Y: =484
+                ZIndex: =12
+
+                Label7_14 As label:
+                    FontWeight: =FontWeight.Bold
+                    Height: =42
+                    Text: |-
+                        ="Project Detail :"
+                    Width: =145
+                    Y: =3
+                    ZIndex: =1
+
+                project_detail As label:
+                    AutoHeight: =true
+                    LineHeight: =1.3
+                    Text: |-
+                        =If(
+                            //Condition to check project exist or not
+                            IsBlank(
+                                LookUp(
+                                    Projects,
+                                    Title = project_name.Text
+                                ).'Project Details'
+                            ),
+                            // If IsBlank => "TRUE"  
+                            "N/A",
+                            // If IsBlank => is "FALSE"  mean project exist
+                            // we are looking for projects who's title is same to our project 
+                            // If TRUE we need "Project Details" to that project 
+                            LookUp(
+                                Projects,
+                                Title = project_name.Text
+                            ).'Project Details'
+                        )
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =629
+                    X: =Label7_12.Width+ 20
+                    Y: =5
+                    ZIndex: =2
+
+            Container4_2 As groupContainer.manualLayoutContainer:
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =32
+                RadiusBottomLeft: =5
+                RadiusBottomRight: =5
+                RadiusTopLeft: =5
+                RadiusTopRight: =5
+                Visible: =!IsBlank(users_gallery.Selected) And manager_access
+                Width: =96
+                X: =1188
+                Y: =18
+                ZIndex: =13
+
+                Label6_2 As label:
+                    Color: =theme.lightFont
+                    Fill: |-
+                        =ColorValue("#334F66")
+                    FocusedBorderColor: =
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Height: =32
+                    HoverBorderColor: =
+                    PaddingRight: =15
+                    Size: =11
+                    Text: ="Edit User"
+                    Width: =96
+                    ZIndex: =2
+
+                Image27 As image:
+                    Height: =28
+                    Image: ='icons8-edit-96'
+                    Width: =29
+                    X: =67
+                    ZIndex: =4
+
+                Button4 As button:
+                    DisabledColor: =
+                    DisabledFill: =
+                    Fill: =Color.Transparent
+                    FocusedBorderColor: =
+                    FocusedBorderThickness: =
+                    Height: =33
+                    HoverBorderColor: =
+                    HoverColor: =
+                    HoverFill: =
+                    OnSelect: |-
+                        =Set(
+                            editUserIns,
+                            users_gallery.Selected
+                        );
+                        Set(
+                            editUser_popUp,
+                            true
+                        );
+                        Set(
+                            var_Del_Image,
+                            false
+                        )
+                    PressedBorderColor: =
+                    PressedColor: =
+                    PressedFill: =
+                    Text: =""
+                    Width: =96
+                    ZIndex: =5
+
+            header_Users_Gal As rectangle:
+                Fill: =ColorFade(theme.darkFont,0.2)
+                Height: =50
+                Width: =users_gallery.Width
+                X: =7
+                Y: =10
+                ZIndex: =14
+
+            "users_gallery As gallery.'BrowseLayout_Vertical_TwoTextOneImageTwoColumnVariant_ver5.0'":
+                Default: ={}
+                DelayItemLoading: =true
+                Fill: =theme.contrastColor
+                FocusedBorderThickness: =
+                Height: =625
+                Items: |-
+                    =Filter(
+                        Users,
+                        TextInputCanvas1.Value in Title || IsBlank(TextInputCanvas1.Value)||
+                        TextInputCanvas1.Value in LastName || IsBlank(TextInputCanvas1.Value)
+                    )
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                OnSelect: |-
+                    =    UpdateContext({loc_Gal_Width:false})
+                ShowNavigation: =true
+                ShowScrollbar: =false
+                TemplatePadding: =10
+                TemplateSize: =284
+                Width: =If(loc_Gal_Width, Parent.Width, 520)
+                WrapCount: |-
+                    =If(
+                        users_gallery.Width > 1000,
+                        4,
+                        If(
+                            users_gallery.Width > 750,
+                            3,
+                            If(
+                                users_gallery.Width > 490,
+                                2
+                            )
+                        )
+                    )
+                X: =7
+                Y: =59
+                ZIndex: =15
+
+                user_card As group:
+                    Height: =5
+                    Width: =5
+                    X: =40
+                    Y: =40
+                    ZIndex: =5
+
+                    userCard As groupContainer.manualLayoutContainer:
+                        DropShadow: =If(ThisItem.IsSelected,DropShadow.Bold,DropShadow.None)
+                        Fill: =If(ThisItem.IsSelected, ColorFade(theme.darkFont,0.2),ColorFade(theme.darkFont,0.8))
+                        Height: =279
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        Width: =233
+                        X: =users_gallery.TemplateWidth/2 - userCard.Width/2
+                        Y: =4
+                        ZIndex: =1
+
+                    Image26 As image:
+                        Height: =195
+                        Image: =If(IsBlank(ThisItem.ProfileImage),'add-user',ThisItem.ProfileImage)
+                        ImagePosition: =ImagePosition.Fill
+                        OnSelect: =Select(Parent)
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        Width: =185
+                        X: =users_gallery.TemplateWidth/2 -Self.Width/2
+                        Y: =15
+                        ZIndex: =2
+
+                    Title5 As label:
+                        Color: =If(ThisItem.IsSelected, Color.White, theme.darkFont)
+                        Font: =Font.'Patrick Hand'
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =28
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =18
+                        Text: =Proper(ThisItem.Title &" "& ThisItem.LastName)
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Image26.Width
+                        X: =users_gallery.TemplateWidth/2 -Self.Width/2
+                        Y: =215
+                        ZIndex: =3
+
+                    Subtitle6 As label:
+                        Color: =If(ThisItem.IsSelected, Color.White, theme.darkFont)
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =24
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =10
+                        Text: =ThisItem.JobTitle.Value
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Image26.Width
+                        X: =users_gallery.TemplateWidth/2 -Self.Width/2
+                        Y: =243
+                        ZIndex: =4
+
+            Image29 As image:
+                Height: =47
+                Image: ='icons8-arrow-96'
+                ImageRotation: =If(loc_Gal_Width,ImageRotation.Rotate180,ImageRotation.None)
+                OnSelect: |-
+                    =UpdateContext({loc_Gal_Width:!loc_Gal_Width})
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingRight: =5
+                PaddingTop: =5
+                Width: =40
+                X: =header_Users_Gal.Width -50
+                Y: =11
+                ZIndex: =16
+
+            "TextInputCanvas1 As 'Text input'":
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                Height: =35
+                Placeholder: ="All Users"
+                Type: ='TextInputCanvas.Type'.Search
+                Width: =If(header_Users_Gal.Width > 480, 400, header_Users_Gal.Width -10)
+                X: =If(header_Users_Gal.Width > 480, 20,10)
+                Y: =17
+                ZIndex: =17
+
+            user_detail_fields As group:
+                Height: =5
+                Width: =5
+                X: =40
+                Y: =40
+                ZIndex: =17
+
+                cnt_user_email As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    Height: =45
+                    Visible: =!IsBlank(users_gallery.Selected)
+                    Width: =565
+                    X: =558
+                    Y: =214
+                    ZIndex: =3
+
+                    Label7 As label:
+                        FontWeight: =FontWeight.Bold
+                        Text: |-
+                            ="Email :"
+                        Width: =125
+                        Y: =8
+                        ZIndex: =1
+
+                    Label7_1 As label:
+                        Height: =37
+                        Text: =users_gallery.Selected.Email
+                        Width: =420
+                        X: =Label7.Width+ 20
+                        Y: =8
+                        ZIndex: =2
+
+                cnt_user_email_1 As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    Height: =45
+                    Visible: =!IsBlank(users_gallery.Selected)
+                    Width: =565
+                    X: =558
+                    Y: =171
+                    ZIndex: =4
+
+                    Label7_2 As label:
+                        FontWeight: =FontWeight.Bold
+                        Height: =42
+                        Text: |-
+                            ="User Name :"
+                        Width: =125
+                        Y: =8
+                        ZIndex: =1
+
+                    Label7_3 As label:
+                        Height: =35
+                        Text: =users_gallery.Selected.Title &" "& users_gallery.Selected.LastName
+                        Width: =420
+                        X: =Label7_2.Width + 20
+                        Y: =10
+                        ZIndex: =2
+
+                cnt_user_email_3 As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    Height: =45
+                    Visible: =!IsBlank(users_gallery.Selected)
+                    Width: =565
+                    X: =558
+                    Y: =259
+                    ZIndex: =5
+
+                    Label7_6 As label:
+                        FontWeight: =FontWeight.Bold
+                        Height: =42
+                        Text: |-
+                            ="Designation :"
+                        Width: =125
+                        Y: =3
+                        ZIndex: =1
+
+                    Label7_7 As label:
+                        Text: =users_gallery.Selected.JobTitle.Value
+                        Width: =420
+                        X: =Label7_6.Width+ 20
+                        Y: =5
+                        ZIndex: =2
+
+                cnt_user_email_4 As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    Height: =45
+                    Visible: =!IsBlank(users_gallery.Selected)
+                    Width: =565
+                    X: =558
+                    Y: =304
+                    ZIndex: =6
+
+                    Label7_8 As label:
+                        FontWeight: =FontWeight.Bold
+                        Height: =42
+                        Text: |-
+                            ="Pod Name :"
+                        Width: =125
+                        Y: =3
+                        ZIndex: =1
+
+                    Label7_9 As label:
+                        Color: =If(IsBlank(users_gallery.Selected.POD.Value), Color.Red)
+                        FontWeight: =If(IsBlank(users_gallery.Selected.POD.Value),FontWeight.Semibold)
+                        Text: =If(IsBlank(users_gallery.Selected.POD.Value),"Not Assigned Yet",users_gallery.Selected.POD.Value)
+                        Width: =420
+                        X: =Label7_8.Width+ 20
+                        Y: =5
+                        ZIndex: =2
+
+                cnt_user_email_2 As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    Height: =45
+                    Visible: =!IsBlank(users_gallery.Selected)
+                    Width: =565
+                    X: =558
+                    Y: =349
+                    ZIndex: =7
+
+                    Label7_4 As label:
+                        FontWeight: =FontWeight.Bold
+                        Height: =42
+                        Text: |-
+                            ="Role :"
+                        Width: =125
+                        Y: =3
+                        ZIndex: =1
+
+                    Label7_5 As label:
+                        Text: =users_gallery.Selected.Role.Value
+                        Width: =420
+                        X: =Label7_4.Width+ 20
+                        Y: =5
+                        ZIndex: =2
+
+                cnt_user_email_5 As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    Height: =45
+                    Visible: =!IsBlank(users_gallery.Selected)
+                    Width: =565
+                    X: =558
+                    Y: =394
+                    ZIndex: =8
+
+                    Label7_10 As label:
+                        FontWeight: =FontWeight.Bold
+                        Height: =42
+                        Text: |-
+                            ="Gender :"
+                        Width: =125
+                        Y: =3
+                        ZIndex: =1
+
+                    Label7_11 As label:
+                        Text: =users_gallery.Selected.Gender.Value
+                        Width: =420
+                        X: =Label7_10.Width+ 20
+                        Y: =5
+                        ZIndex: =2
+
+                cnt_user_email_6 As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.None
+                    Height: =45
+                    Visible: =!IsBlank(users_gallery.Selected)
+                    Width: =565
+                    X: =558
+                    Y: =439
+                    ZIndex: =9
+
+                    Label7_12 As label:
+                        FontWeight: =FontWeight.Bold
+                        Height: =42
+                        Text: |-
+                            ="Project :"
+                        Width: =125
+                        Y: =3
+                        ZIndex: =1
+
+                    project_name As label:
+                        Text: =If(IsBlank(users_gallery.Selected.Project.Value),"N/A",users_gallery.Selected.Project.Value)
+                        Width: =Parent.Width-Label7_12.Width
+                        X: =Label7_12.Width+ 20
+                        Y: =5
+                        ZIndex: =2
+
+            Image30 As image:
+                Height: =40
+                Image: ='icons8-trash-64'
+                OnSelect: |-
+                    =UpdateContext({loc_delUser:true})
+                Tooltip: ="Delete This User"
+                Visible: =!IsBlank(users_gallery.Selected) && manager_access
+                Width: =40
+                X: =1296
+                Y: =14
+                ZIndex: =18
+
+            backdrop_1 As backdrop:
+                Height: =688
+                Visible: =editUser_popUp Or loc_delUser
+                ZIndex: =19
+
+            Container6 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Bold
+                Fill: =RGBA(214, 221, 224, 1)
+                Height: =Form3.Height + 30
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                Visible: =editUser_popUp
+                Width: =Form3.Width+20 
+                X: =Rectangle5.Width/2 - (Container6.Width/2)
+                Y: =Rectangle5.Height/2 - (Container6.Height/2)
+                ZIndex: =20
+
+                Form3 As form.PowerApps_CoreControls_Form:
+                    DataSource: =Users
+                    Height: =600
+                    Item: =editUserIns
+                    NumberOfColumns: =2
+                    SnapToColumns: =false
+                    UseFluentV9Cards: =true
+                    Visible: =editUser_popUp
+                    Width: =807
+                    X: =12
+                    Y: =25
+                    ZIndex: =1
+
+                    Title_DataCard2 As typedDataCard.fluentV9TextualEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Title"
+                        Default: =ThisItem.Title
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Users],DataSourceInfo.DisplayName,"Title")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        MaxLength: =DataSourceInfo([@Users], DataSourceInfo.MaxLength, "Title")
+                        Required: =false
+                        Update: =DataCardValue3.Value
+                        Width: =400
+                        X: =0
+                        Y: =0
+                        ZIndex: =6
+
+                        DataCardKey6 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: ="FirstName"
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue3 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            BasePaletteColor: =
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey6.Y + DataCardKey6.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage3 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue3.Y + DataCardValue3.Height
+                            ZIndex: =3
+
+                        StarVisible6 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey6.Y
+                            ZIndex: =4
+
+                    LastName_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="LastName"
+                        Default: =ThisItem.LastName
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Users],DataSourceInfo.DisplayName,"LastName")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        MaxLength: =DataSourceInfo([@Users], DataSourceInfo.MaxLength, "LastName")
+                        Required: =false
+                        Update: =DataCardValue4.Value
+                        Width: =400
+                        X: =1
+                        Y: =0
+                        ZIndex: =6
+
+                        DataCardKey7 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue4 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            BasePaletteColor: =
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey7.Y + DataCardKey7.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage6 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue4.Y + DataCardValue4.Height
+                            ZIndex: =3
+
+                        StarVisible7 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey7.Y
+                            ZIndex: =4
+
+                    UserName_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="UserName"
+                        Default: =ThisItem.UserName
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Users],DataSourceInfo.DisplayName,"UserName")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        MaxLength: =DataSourceInfo([@Users], DataSourceInfo.MaxLength, "UserName")
+                        Required: =false
+                        Update: =DataCardValue5.Value
+                        Width: =400
+                        X: =0
+                        Y: =1
+                        ZIndex: =6
+
+                        DataCardKey9 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue5 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            BasePaletteColor: =
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey9.Y + DataCardKey9.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage7 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue5.Y + DataCardValue5.Height
+                            ZIndex: =3
+
+                        StarVisible9 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey9.Y
+                            ZIndex: =4
+
+                    Email_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Email"
+                        Default: =ThisItem.Email
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Users],DataSourceInfo.DisplayName,"Email")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        MaxLength: =DataSourceInfo([@Users], DataSourceInfo.MaxLength, "Email")
+                        Required: =false
+                        Update: =DataCardValue6.Value
+                        Width: =400
+                        X: =1
+                        Y: =1
+                        ZIndex: =6
+
+                        DataCardKey10 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue6 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            BasePaletteColor: =
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey10.Y + DataCardKey10.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage9 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue6.Y + DataCardValue6.Height
+                            ZIndex: =3
+
+                        StarVisible11 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey10.Y
+                            ZIndex: =4
+
+                    JobTitle_DataCard1 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="JobTitle"
+                        Default: =ThisItem.JobTitle
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Users],DataSourceInfo.DisplayName,"JobTitle")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue10.Selected
+                        Width: =400
+                        X: =0
+                        Y: =2
+                        ZIndex: =6
+
+                        DataCardKey15 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue10 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            DefaultSelectedItems: =editUserIns.JobTitle
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Items: =Choices([@Users].JobTitle)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey15.Y + DataCardKey15.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage14 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue10.Y + DataCardValue10.Height
+                            ZIndex: =3
+
+                        StarVisible15 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =20
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey15.Y
+                            ZIndex: =4
+
+                    Role_DataCard1 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Role"
+                        Default: =ThisItem.Role
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Users],DataSourceInfo.DisplayName,"Role")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue11.Selected
+                        Width: =400
+                        X: =1
+                        Y: =2
+                        ZIndex: =6
+
+                        DataCardKey16 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue11 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            DefaultSelectedItems: =editUserIns.Role
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Items: =Choices([@Users].Role)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey16.Y + DataCardKey16.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage15 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue11.Y + DataCardValue11.Height
+                            ZIndex: =3
+
+                        StarVisible16 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =20
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey16.Y
+                            ZIndex: =4
+
+                    Project_DataCard2 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Projects"
+                        Default: =ThisItem.Project
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Users],DataSourceInfo.DisplayName,"Projects")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue13.Selected
+                        Width: =400
+                        X: =0
+                        Y: =3
+                        ZIndex: =6
+
+                        DataCardKey19 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue13 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            DefaultSelectedItems: =editUserIns.Project
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Items: =Choices([@Users].Project)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey19.Y + DataCardKey19.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage18 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue13.Y + DataCardValue13.Height
+                            ZIndex: =3
+
+                        StarVisible19 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =20
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey19.Y
+                            ZIndex: =4
+
+                    POD_DataCard1 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="POD"
+                        Default: =ThisItem.POD
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Users],DataSourceInfo.DisplayName,"POD")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue12.Selected
+                        Width: =400
+                        X: =1
+                        Y: =3
+                        ZIndex: =6
+
+                        DataCardKey18 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue12 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            DefaultSelectedItems: =editUserIns.POD
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Items: =Choices([@Users].POD)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey18.Y + DataCardKey18.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage17 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue12.Y + DataCardValue12.Height
+                            ZIndex: =3
+
+                        StarVisible18 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =20
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey18.Y
+                            ZIndex: =4
+
+                    Gender_DataCard1 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Gender"
+                        Default: =ThisItem.Gender
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Users],DataSourceInfo.DisplayName,"Gender")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue9.Selected
+                        Width: =400
+                        X: =0
+                        Y: =4
+                        ZIndex: =6
+
+                        DataCardKey14 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue9 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            DefaultSelectedItems: =editUserIns.Gender
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Items: =Choices([@Users].Gender)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey14.Y + DataCardKey14.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage13 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue9.Y + DataCardValue9.Height
+                            ZIndex: =3
+
+                        StarVisible14 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =20
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey14.Y
+                            ZIndex: =4
+
+                    Dob_DataCard1 As typedDataCard.fluentV9DateEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Dob"
+                        Default: =ThisItem.Dob
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Users],DataSourceInfo.DisplayName,"Dob")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue8.SelectedDate
+                        Width: =400
+                        X: =1
+                        Y: =4
+                        ZIndex: =6
+
+                        DataCardKey13 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =1
+
+                        "DataCardValue8 As 'Date picker'":
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            BasePaletteColor: =
+                            DisplayMode: =Parent.DisplayMode
+                            EndYear: =Year(Today())+100
+                            Height: =32
+                            SelectedDate: =Parent.Default
+                            StartYear: =1900
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey13.Y + DataCardKey13.Height + 4
+                            ZIndex: =2
+
+                        ErrorMessage12 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue8.Y + DataCardValue8.Height
+                            ZIndex: =3
+
+                        StarVisible13 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey13.Y
+                            ZIndex: =4
+
+                    ProfileImage_DataCard1 As typedDataCard.fluentV9AddLargePictureCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ProfileImage"
+                        Default: =ThisItem.ProfileImage
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Users],DataSourceInfo.DisplayName,"ProfileImage")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =230
+                        Required: =false
+                        Update: =Image23.Image
+                        Width: =400
+                        X: =0
+                        Y: =5
+                        ZIndex: =6
+
+                        DataCardKey17 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =34
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =4
+                            ZIndex: =1
+
+                        Image23 As image:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            DisplayMode: =Parent.DisplayMode
+                            Fill: =RGBA(255, 255, 255, 1)
+                            Height: =188
+                            Image: =If(IsBlank(AddPicture1.Media), If(var_Del_Image,Blank(),Parent.Default), AddPicture1.Media)
+                            PaddingBottom: =5
+                            PaddingLeft: =5
+                            PaddingRight: =5
+                            PaddingTop: =5
+                            RadiusBottomLeft: =5
+                            RadiusBottomRight: =5
+                            RadiusTopLeft: =5
+                            RadiusTopRight: =5
+                            Tooltip: =Parent.DisplayName
+                            Width: =348
+                            X: =30
+                            Y: =38
+                            ZIndex: =2
+
+                        ErrorMessage16 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =10
+                            Size: =12
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =Image23.Y + Image23.Height
+                            ZIndex: =3
+
+                        StarVisible17 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =DataCardKey17.Height
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            X: =0
+                            Y: =DataCardKey17.Y
+                            ZIndex: =4
+
+                        Image24 As image:
+                            Height: =51
+                            Image: ='icons8-camera-128'
+                            Width: =50
+                            X: =324
+                            Y: =40
+                            ZIndex: =5
+
+                        AddPicture1 As addMedia:
+                            ChangePictureText: =""
+                            Color: =RGBA(255, 255, 255, 1)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            FocusedBorderThickness: =
+                            Font: =Font.Arial
+                            Height: =38
+                            Size: =12
+                            Text: =""
+                            Tooltip: =If(!IsBlank(AddPicture1.Media),"Add Image", "Change Image")
+                            Width: =36
+                            X: =332
+                            Y: =48
+                            ZIndex: =6
+
+                        Image28 As image:
+                            Fill: =RGBA(255, 255, 255, 1)
+                            Height: =41
+                            Image: ='icons8-trash-64'
+                            OnSelect: =Set(var_Del_Image, true)
+                            Visible: =If(IsBlank(AddPicture1.Media), false, true)
+                            Width: =35
+                            X: =337
+                            Y: =185
+                            ZIndex: =7
+
+                ButtonCanvas1 As Button:
+                    BasePaletteColor: =RGBA(51,79,102,1)
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    OnSelect: =Set(editUser_popUp, false)
+                    Text: ="CLOSE"
+                    Visible: =editUser_popUp
+                    Width: =137
+                    X: =500
+                    Y: =545
+                    ZIndex: =2
+
+                Label4 As label:
+                    Text: =
+                    X: =727
+                    Y: =434
+                    ZIndex: =3
+
+                Rectangle5_1 As rectangle:
+                    Fill: =RGBA(163, 160, 160, 0.39)
+                    Height: =630
+                    Visible: =loading
+                    Width: =827
+                    ZIndex: =4
+
+                ButtonCanvas1_1 As Button:
+                    BasePaletteColor: =RGBA(51,79,102,1)
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    OnSelect: |-
+                        =Set(loading, true);
+                        Patch(
+                            Users,
+                            // refer to specific record for update 
+                            LookUp(Users,ID= editUserIns.ID),
+                            {
+                                Title:DataCardValue3.Value,
+                                LastName:DataCardValue4.Value,
+                                UserName:DataCardValue5.Value,
+                                Email:DataCardValue6.Value,
+                                JobTitle:DataCardValue10.Selected,
+                                Project:DataCardValue13.Selected,
+                                Role:DataCardValue11.Selected,
+                                POD:DataCardValue12.Selected,
+                                Dob:DataCardValue8.SelectedDate,
+                                Gender:DataCardValue9.Selected,
+                                ProfileImage:Image23.Image
+                            }
+                        );
+                        
+                        Set(loading, false);
+                        Set(editUser_popUp, false);
+                        Set(var_Del_Image, false)
+                    Text: ="UPDATE"
+                    Visible: =editUser_popUp
+                    Width: =137
+                    X: =654
+                    Y: =545
+                    ZIndex: =5
+
+            model_Dialog_Box_1 As model_Dialog_Box:
+                btn_close_text: ="No"
+                btn_ok_text: ="Yes"
+                Dialog_Title: ="Confirmation!"
+                DialogMsg: ="You want to delete this user!"
+                Height: =313
+                Visible: =loc_delUser
+                X: =458
+                Y: =171
+                ZIndex: =21
+
+            Button6_4 As button:
+                BorderThickness: =0
+                Fill: =ColorFade(theme.darkFont,.2)
+                FocusedBorderThickness: =0
+                Height: =32
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: |-
+                    =Remove(Users, users_gallery.Selected); UpdateContext({loc_delUser:false})
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Size: =12
+                Text: ="Delete"
+                Visible: =loc_delUser
+                Width: =100
+                X: =733
+                Y: =419
+                ZIndex: =22
+
+            Button6_5 As button:
+                BorderThickness: =0
+                Color: =theme.darkFont
+                Fill: =ColorFade(theme.darkFont,.7)
+                FocusedBorderThickness: =0
+                Height: =32
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: |-
+                    =UpdateContext({loc_delUser:false})
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Size: =12
+                Text: ="Cencle"
+                Visible: =loc_delUser
+                Width: =100
+                X: =617
+                Y: =419
+                ZIndex: =23
+
+        AppHeader_2 As AppHeader:
+            ZIndex: =3
+
+    Image25 As image:
+        Image: ='2'
+        Visible: =loading
+        X: =633
+        Y: =272
+        ZIndex: =2
+

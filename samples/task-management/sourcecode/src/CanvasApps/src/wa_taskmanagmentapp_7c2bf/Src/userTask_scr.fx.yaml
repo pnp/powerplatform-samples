@@ -1,0 +1,978 @@
+userTask_scr As screen:
+    Fill: =theme.bgColor
+    OnVisible: =false
+
+    Task_container As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.None
+        Fill: =ColorFade(theme.darkFont,0.7)
+        Height: =690
+        PaddingTop: =25
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =1366
+        X: =0   
+        Y: =80
+        ZIndex: =1
+
+        "gal_tasks As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver5.0'":
+            BorderStyle: =BorderStyle.None
+            Default: ={}
+            DelayItemLoading: =true
+            Height: =597
+            Items: |-
+                =Sort(
+                    Filter(
+                        'Task Tracker',
+                        If(activeUser.Role.Value = "Manager",  "" in Title, Assigned_To.Value = activeUser.Title || IsBlank(activeUser.Title)),
+                        searchtxt.Value in Title,
+                        Progress.Value = drpFilter.Selected.Value || IsBlank(drpFilter.Selected.Value)
+                    ),
+                    'Due date',
+                    If(
+                        sortDueDate,
+                        SortOrder.Ascending,
+                        SortOrder.Descending
+                    )
+                )
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            ShowNavigation: =true
+            ShowScrollbar: =false
+            TemplatePadding: =0
+            TemplateSize: =160
+            Visible: =CountRows(gal_tasks.AllItems) > 0
+            Width: =1029
+            X: =203
+            Y: =84
+            ZIndex: =1
+
+            task_card As groupContainer.manualLayoutContainer:
+                ChildTabPriority: =false
+                ContentLanguage: =
+                DropShadow: =DropShadow.Regular
+                EnableChildFocus: =false
+                Fill: =If(ThisItem.IsSelected, ColorFade(theme.darkFont,0.2),theme.lightFont)
+                Height: =136
+                RadiusBottomLeft: =10
+                RadiusBottomRight: =10
+                RadiusTopLeft: =10
+                RadiusTopRight: =10
+                Width: =963
+                X: =11
+                Y: =18
+                ZIndex: =1
+
+                Label1 As label:
+                    Color: =If(ThisItem.IsSelected,ColorFade(theme.darkFont,0.8), ColorFade(theme.darkFont,0.3))
+                    Font: =Font.'Patrick Hand'
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =28
+                    LineHeight: =1.3
+                    Strikethrough: =ThisItem.Progress.Value = "Completed"
+                    Text: |
+                        ="Title_: "&If(Len(ThisItem.Title)>100, Left(ThisItem.Title,100) & "...",ThisItem.Title)
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =828
+                    X: =11
+                    Y: =9
+                    ZIndex: =3
+
+                Container3 As groupContainer.manualLayoutContainer:
+                    BorderColor: =RGBA(164, 164, 164, 1)
+                    BorderThickness: =2
+                    DropShadow: =DropShadow.Regular
+                    Fill: =If( ThisItem.IsSelected, theme.lightFont, theme.contrastColor)
+                    Height: =25
+                    Width: =80
+                    X: =870
+                    Y: =9
+                    ZIndex: =5
+
+                    Label10 As label:
+                        Align: =Align.Center
+                        Color: =ColorFade(theme.darkFont,0.3)
+                        Font: =Font.'Patrick Hand'
+                        FontWeight: =FontWeight.Bold
+                        Height: =25
+                        Size: =10
+                        Text: =Upper(ThisItem.Progress.Value)
+                        Width: =80
+                        ZIndex: =1
+
+                Label10_1 As label:
+                    Color: =If(ThisItem.IsSelected,ColorFade(theme.darkFont,0.8), RGBA(247,59,24,0.6))
+                    Font: =Font.'Patrick Hand'
+                    FontWeight: =FontWeight.Bold
+                    Height: =33
+                    Size: =12
+                    Text: |-
+                        ="Due Date : "&Upper(ThisItem.'Due date')
+                    Width: =153
+                    X: =32
+                    Y: =108
+                    ZIndex: =6
+
+                Image18 As image:
+                    Height: =32
+                    Image: ='icons8-calendar-96'
+                    Width: =21
+                    X: =11
+                    Y: =108
+                    ZIndex: =7
+
+                Label1_1 As label:
+                    AutoHeight: =true
+                    Color: =If(ThisItem.IsSelected,ColorFade(theme.darkFont,0.8), ColorFade(theme.darkFont,0.3))
+                    Font: =Font.'Patrick Hand'
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =28
+                    LineHeight: =1.3
+                    Strikethrough: =ThisItem.Progress.Value = "Completed"
+                    Text: |
+                        ="Description_: "&If(Len(ThisItem.Description)>100, Left(ThisItem.Description,200) & "...",ThisItem.Description)
+                    VerticalAlign: =VerticalAlign.Top
+                    Visible: =Len(ThisItem.Description)>1
+                    Width: =828
+                    X: =11
+                    Y: =37
+                    ZIndex: =8
+
+                Label10_2 As label:
+                    Align: =Align.Right
+                    Color: =If(ThisItem.IsSelected,ColorFade(theme.darkFont,0.8), RGBA(247,59,24,0.6))
+                    Font: =Font.'Patrick Hand'
+                    FontWeight: =FontWeight.Bold
+                    Height: =33
+                    Size: =12
+                    Text: |-
+                        =If( IsBlank(ThisItem.AssignedBy),"Assigned By : N/A","Assigned By : "&Upper(ThisItem.AssignedBy))
+                    Width: =230
+                    X: =719
+                    Y: =103
+                    ZIndex: =9
+
+            Image12 As image:
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                Height: =47
+                HoverBorderColor: =Color.Transparent
+                HoverFill: =Color.Transparent
+                Image: ='icons8-edit-96'
+                OnSelect: |-
+                    =EditForm(Form2);
+                    Navigate(
+                        EditTask_scr,
+                        ScreenTransition.Fade,
+                        {selectedItem: gal_tasks.Selected, edittask: true,addtask:false}
+                    )
+                PressedBorderColor: =Color.Transparent
+                PressedFill: =Color.Transparent
+                Visible: =ThisItem.IsSelected && !IsBlank(users_gallery.Selected) && manager_access
+                Width: =45
+                X: =980
+                Y: =60
+                ZIndex: =2
+
+            Image20 As image:
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                Height: =52
+                HoverBorderColor: =Color.Transparent
+                HoverFill: =Color.Transparent
+                Image: ='icons8-trash-64'
+                OnSelect: |-
+                    =UpdateContext({task_popUp:true})
+                PressedBorderColor: =Color.Transparent
+                PressedFill: =Color.Transparent
+                Visible: =ThisItem.IsSelected && !IsBlank(users_gallery.Selected) && manager_access
+                Width: =57
+                X: =972
+                Y: =107
+                ZIndex: =3
+
+            Image21 As image:
+                Height: =45
+                Image: ='icons8-open-128 (3)'
+                OnSelect: |-
+                    =Set(taskDetail,gal_tasks.Selected);
+                    Set(taskpop, true)
+                Visible: =ThisItem.IsSelected
+                Width: =57
+                X: =972
+                Y: =18
+                ZIndex: =4
+
+        Container4 As groupContainer.manualLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =35
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Visible: =manager_access
+            Width: =100
+            X: =1075
+            Y: =35
+            ZIndex: =2
+
+            Label6 As label:
+                Align: =Align.Right
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =ColorFade(theme.darkFont, 0.2)
+                Font: =Font.'Lato Light'
+                FontWeight: =FontWeight.Semibold
+                Height: =35
+                PaddingRight: =15
+                Size: =11
+                Text: ="Add Task"
+                Width: =100
+                ZIndex: =2
+
+            Image15 As image:
+                Height: =35
+                Image: ='icons8-add-96'
+                Width: =30
+                ZIndex: =3
+
+        Button2 As button:
+            BorderColor: =
+            BorderThickness: =0
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =35
+            HoverColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =
+            OnSelect: |-
+                =NewForm(Form2);
+                Navigate(
+                    EditTask_scr,
+                    ScreenTransition.Fade,
+                    {
+                        addtask: true,
+                        edittask: false
+                    }
+                )
+            PressedColor: =
+            PressedFill: =
+            Size: =8
+            Text: =""
+            Visible: =manager_access
+            Width: =100
+            X: =1075
+            Y: =35
+            ZIndex: =3
+
+        cnt_filter As groupContainer.manualLayoutContainer:
+            Fill: =ColorFade(theme.darkFont,.2)  
+            Height: =46
+            RadiusBottomLeft: =6
+            RadiusBottomRight: =6
+            RadiusTopLeft: =6
+            RadiusTopRight: =6
+            Visible: =showFilter
+            Width: =768
+            X: =214
+            Y: =23
+            ZIndex: =4
+
+            "searchtxt As 'Text input'":
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontSize: =0
+                Height: =32
+                Placeholder: ="Search Task Title"
+                Value: =
+                Width: =230
+                X: =16
+                Y: =cnt_filter.Height/2 - (searchtxt.Height/2)
+                ZIndex: =1
+
+            drpFilter As Dropdown.pcfdataset:
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                Items: =Choices([@'Task Tracker'].Progress)
+                Width: =180
+                X: =258
+                Y: =7
+                ZIndex: =2
+
+            Label9 As label:
+                Color: =RGBA(122, 138, 143, 1)
+                Height: =32
+                PaddingLeft: =10
+                Size: =10
+                Text: ="Search by Status"
+                Visible: =IsBlank(drpFilter.Selected.Value)
+                X: =258
+                Y: =7
+                ZIndex: =3
+
+            Image16 As image:
+                Height: =35
+                Image: ='icons8-repeat-96'
+                OnSelect: =Reset(drpFilter);Reset(searchtxt)
+                Width: =40
+                X: =587
+                Y: =6
+                ZIndex: =4
+
+            Container4_1 As groupContainer.manualLayoutContainer:
+                Fill: =RGBA(245,245,245,1)
+                Height: =32
+                Width: =100
+                X: =456
+                Y: =7
+                ZIndex: =5
+
+                Label6_1 As label:
+                    Align: =Align.Right
+                    Color: =ColorFade(theme.darkFont,0.4)
+                    Fill: =RGBA(245,245,245,1)
+                    Height: =35
+                    HoverBorderColor: =
+                    PaddingRight: =10
+                    Size: =10
+                    Text: ="Due Date"
+                    Width: =100
+                    ZIndex: =2
+
+                Image19 As image:
+                    Height: =32
+                    Image: ='icons8-sort-96'
+                    PaddingBottom: =5
+                    PaddingLeft: =5
+                    PaddingRight: =5
+                    PaddingTop: =5
+                    Width: =28
+                    ZIndex: =3
+
+            Button2_1 As button:
+                BorderColor: =
+                BorderThickness: =0
+                Color: =ColorFade(theme.darkFont,0.2)
+                Fill: =RGBA(0, 0, 0, 0)
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =32
+                HoverBorderColor: =
+                HoverColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =
+                OnSelect: =Set(sortDueDate,!sortDueDate)
+                PressedColor: =
+                PressedFill: =
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Text: =""
+                Width: =100
+                X: =456
+                Y: =7
+                ZIndex: =6
+
+        Image17 As image:
+            Height: =45
+            Image: ='icons8-filter-96'
+            OnSelect: =Set(showFilter, true)
+            Visible: =!showFilter && CountRows(gal_tasks.AllItems) > 0
+            Width: =45
+            X: =208
+            Y: =37
+            ZIndex: =5
+
+        Image14 As image:
+            Fill: =ColorFade(theme.darkFont,0.2)
+            Height: =24
+            Image: ='icons8-stockx-128'
+            OnSelect: =Set(showFilter, !showFilter)
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Tooltip: ="Hide Filter"
+            Visible: =showFilter
+            Width: =25
+            X: =970
+            Y: =13
+            ZIndex: =6
+
+        Label14 As label:
+            Align: =Align.Center
+            Color: =ColorFade(theme.darkFont,.3)
+            FontWeight: =FontWeight.Bold
+            Height: =113
+            Size: =25
+            Text: ="No Task Found !"
+            Visible: =CountRows(gal_tasks.AllItems) = 0
+            Width: =1363
+            Y: =248
+            ZIndex: =7
+
+    AppHeader_3 As AppHeader:
+        ZIndex: =2
+
+    Rectangle1 As rectangle:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        Fill: =RGBA(83, 89, 93, 1)
+        Height: =688
+        Visible: =taskpop
+        Width: =1366
+        Y: =80
+        ZIndex: =3
+
+    Container5 As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(214, 221, 224, 1)
+        Height: =637
+        RadiusBottomLeft: =5
+        RadiusBottomRight: =5
+        RadiusTopLeft: =5
+        RadiusTopRight: =5
+        Visible: =taskpop
+        Width: =1120
+        X: =123
+        Y: =99
+        ZIndex: =4
+
+        Form1 As form:
+            BorderColor: =RGBA(214, 221, 224, 1)
+            DataSource: ='Task Tracker'
+            Height: =601
+            Item: =taskDetail
+            NumberOfColumns: =2
+            Visible: =taskpop
+            Width: =1048
+            X: =35
+            Y: =30
+            ZIndex: =1
+
+            Title_DataCard1 As typedDataCard.textualEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Title"
+                Default: =ThisItem.Title
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"Title")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =99
+                MaxLength: =DataSourceInfo([@'Task Tracker'], DataSourceInfo.MaxLength, "Title")
+                Required: =false
+                Update: =DataCardValue1.Text
+                Width: =1048
+                WidthFit: =false
+                X: =0
+                Y: =0
+                ZIndex: =11
+
+                DataCardKey1 As label:
+                    AutoHeight: =true
+                    DisplayMode: =DisplayMode.View
+                    FontWeight: =FontWeight.Bold
+                    Height: =34
+                    Text: |-
+                        =Parent.DisplayName &" :"
+                    Width: =106
+                    Wrap: =false
+                    X: =30
+                    Y: =8
+                    ZIndex: =1
+
+                DataCardValue1 As text:
+                    BorderColor: =RGBA(0, 0, 0, 0.04)
+                    BorderThickness: =1
+                    Default: =taskDetail.Title
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =RGBA(0, 0, 0, 0.04)
+                    FontWeight: =FontWeight.Semibold
+                    Height: =77
+                    HoverBorderColor: =RGBA(0, 0, 0, 0.04)
+                    HoverFill: =RGBA(0, 0, 0, 0.04)
+                    MaxLength: =Parent.MaxLength
+                    Mode: =TextMode.MultiLine
+                    PaddingLeft: =5
+                    Tooltip: =Parent.DisplayName
+                    Width: =883
+                    X: =147
+                    Y: =10
+                    ZIndex: =2
+
+                ErrorMessage1 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardValue1.Y + DataCardValue1.Height
+                    ZIndex: =3
+
+                StarVisible1 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey1.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey1.Y
+                    ZIndex: =4
+
+            Description_DataCard1 As typedDataCard.textualEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Description"
+                Default: =ThisItem.Description
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"Description")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =249
+                MaxLength: =DataSourceInfo([@'Task Tracker'], DataSourceInfo.MaxLength, "Description")
+                Required: =false
+                Update: =DataCardValue2.Text
+                Width: =1048
+                X: =0
+                Y: =1
+                ZIndex: =11
+
+                DataCardKey2 As label:
+                    AutoHeight: =true
+                    FontWeight: =FontWeight.Bold
+                    Height: =34
+                    Text: |-
+                        =Parent.DisplayName&" :"
+                    Width: =120
+                    Wrap: =false
+                    X: =30
+                    Y: =8
+                    ZIndex: =1
+
+                DataCardValue2 As text:
+                    BorderColor: =RGBA(0, 0, 0, 0.04)
+                    BorderThickness: =1
+                    Default: =If(IsBlank(taskDetail.Description),"N/A",taskDetail.Description)
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =RGBA(0, 0, 0, 0.04)
+                    Height: =216
+                    HoverBorderColor: =RGBA(0, 0, 0, 0.04)
+                    HoverFill: =RGBA(0, 0, 0, 0.04)
+                    MaxLength: =Parent.MaxLength
+                    Mode: =TextMode.MultiLine
+                    PaddingLeft: =5
+                    PressedBorderColor: =RGBA(0, 0, 0, 0.04)
+                    PressedFill: =RGBA(0, 0, 0, 0.04)
+                    Tooltip: =Parent.DisplayName
+                    Width: =882
+                    X: =150
+                    Y: =10
+                    ZIndex: =2
+
+                ErrorMessage2 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardValue2.Y + DataCardValue2.Height
+                    ZIndex: =3
+
+                StarVisible2 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey2.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey2.Y
+                    ZIndex: =4
+
+            Project_DataCard1 As typedDataCard.comboBoxEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Project"
+                Default: =ThisItem.Project
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"Project")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =50
+                Required: =false
+                Update: =
+                Width: =524
+                X: =0
+                Y: =2
+                ZIndex: =11
+
+                DataCardKey8 As label:
+                    AutoHeight: =true
+                    FontWeight: =FontWeight.Bold
+                    Height: =34
+                    PaddingTop: =2
+                    Text: |-
+                        =Parent.DisplayName&" :"
+                    Width: =(Parent.Width - 60) * 0.4
+                    Wrap: =false
+                    X: =30
+                    Y: =1
+                    ZIndex: =1
+
+                ErrorMessage8 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =
+                    ZIndex: =3
+
+                StarVisible8 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey8.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey8.Y
+                    ZIndex: =4
+
+                Label2_4 As label:
+                    BorderColor: =RGBA(0, 0, 0, 0.04)
+                    BorderThickness: =1
+                    Fill: =RGBA(0, 0, 0, 0.04)
+                    Height: =50
+                    HoverBorderColor: =RGBA(0, 0, 0, 0.04)
+                    HoverColor: =RGBA(0, 0, 0, 1)
+                    HoverFill: =RGBA(0, 0, 0, 0.04)
+                    Text: =taskDetail.Project.Value
+                    VerticalAlign: =VerticalAlign.Top
+                    X: =153
+                    Y: =1
+                    ZIndex: =5
+
+            Priority_DataCard1 As typedDataCard.comboBoxEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Priority"
+                Default: =ThisItem.Priority
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"Priority")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =
+                Width: =524
+                X: =1
+                Y: =2
+                ZIndex: =11
+
+                DataCardKey11 As label:
+                    AutoHeight: =true
+                    FontWeight: =FontWeight.Bold
+                    Height: =34
+                    PaddingTop: =2
+                    Text: |-
+                        =Parent.DisplayName&" :"
+                    Width: =(Parent.Width - 60) * 0.4
+                    Wrap: =false
+                    X: =30
+                    ZIndex: =1
+
+                ErrorMessage10 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =
+                    ZIndex: =3
+
+                StarVisible10 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey11.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey11.Y
+                    ZIndex: =4
+
+                Label2_5 As label:
+                    BorderColor: =RGBA(0, 0, 0, 0.04)
+                    BorderThickness: =1
+                    Fill: =RGBA(0, 0, 0, 0.04)
+                    Height: =50
+                    HoverBorderColor: =RGBA(0, 0, 0, 0.04)
+                    HoverColor: =RGBA(0, 0, 0, 1)
+                    HoverFill: =RGBA(0, 0, 0, 0.04)
+                    Text: =taskDetail.Priority.Value
+                    VerticalAlign: =VerticalAlign.Top
+                    X: =150
+                    ZIndex: =5
+
+            "'Start date_DataCard1' As typedDataCard.dateEditCard":
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="StartDate"
+                Default: =ThisItem.'Start date'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"StartDate")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =50
+                Required: =false
+                Update: =
+                Width: =524
+                X: =0
+                Y: =3
+                ZIndex: =11
+
+                DataCardKey4 As label:
+                    AutoHeight: =true
+                    FontWeight: =FontWeight.Bold
+                    Height: =34
+                    PaddingTop: =2
+                    Text: |-
+                        =Parent.DisplayName&" :"
+                    Width: =(Parent.Width - 60) * 0.4
+                    Wrap: =false
+                    X: =30
+                    Y: =1
+                    ZIndex: =1
+
+                ErrorMessage4 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =
+                    ZIndex: =3
+
+                StarVisible4 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey4.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey4.Y
+                    ZIndex: =4
+
+                Label2_1 As label:
+                    BorderColor: =RGBA(0, 0, 0, 0.04)
+                    BorderThickness: =1
+                    Fill: =RGBA(0, 0, 0, 0.04)
+                    Height: =50
+                    HoverBorderColor: =RGBA(0, 0, 0, 0.04)
+                    Text: =taskDetail.'Start date'
+                    VerticalAlign: =VerticalAlign.Top
+                    X: =153
+                    ZIndex: =5
+
+            "'Due date_DataCard1' As typedDataCard.dateEditCard":
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="DueDate"
+                Default: =ThisItem.'Due date'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"DueDate")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =
+                Width: =524
+                X: =1
+                Y: =3
+                ZIndex: =11
+
+                DataCardKey5 As label:
+                    AutoHeight: =true
+                    FontWeight: =FontWeight.Bold
+                    Height: =34
+                    PaddingTop: =2
+                    Text: |-
+                        =Parent.DisplayName&" :"
+                    Width: =(Parent.Width - 60) * 0.4
+                    Wrap: =false
+                    X: =30
+                    Y: =
+                    ZIndex: =1
+
+                ErrorMessage5 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =
+                    ZIndex: =3
+
+                StarVisible5 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey5.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey5.Y
+                    ZIndex: =4
+
+                Label2_2 As label:
+                    BorderColor: =RGBA(0, 0, 0, 0.04)
+                    BorderThickness: =1
+                    Fill: =RGBA(0, 0, 0, 0.04)
+                    Height: =50
+                    HoverBorderColor: =RGBA(0, 0, 0, 0.04)
+                    Text: =taskDetail.'Due date'
+                    VerticalAlign: =VerticalAlign.Top
+                    X: =150
+                    ZIndex: =5
+
+            Progress_DataCard1 As typedDataCard.comboBoxEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Progress"
+                Default: =ThisItem.Progress
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'Task Tracker'],DataSourceInfo.DisplayName,"Progress")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =
+                Width: =524
+                X: =0
+                Y: =4
+                ZIndex: =11
+
+                DataCardKey3 As label:
+                    AutoHeight: =true
+                    FontWeight: =FontWeight.Bold
+                    Height: =34
+                    PaddingTop: =2
+                    Text: |-
+                        =Parent.DisplayName&" :"
+                    Width: =(Parent.Width - 60) * 0.4
+                    Wrap: =false
+                    X: =30
+                    Y: =
+                    ZIndex: =1
+
+                StarVisible3 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey3.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey3.Y
+                    ZIndex: =4
+
+                Label2 As label:
+                    BorderColor: =RGBA(0, 0, 0, 0.04)
+                    BorderThickness: =1
+                    Fill: =RGBA(0, 0, 0, 0.04)
+                    Height: =50
+                    HoverBorderColor: =RGBA(0, 0, 0, 0.04)
+                    Text: =taskDetail.Progress.Value
+                    VerticalAlign: =VerticalAlign.Top
+                    X: =153
+                    ZIndex: =5
+
+    Image22 As image:
+        Height: =60
+        Image: ='icons8-stockx-128'
+        OnSelect: =Set(taskpop, false)
+        Visible: =taskpop
+        Width: =58
+        X: =1243
+        Y: =90
+        ZIndex: =5
+
+    backdrop_2 As backdrop:
+        Height: =700
+        Visible: =task_popUp
+        Y: =67
+        ZIndex: =6
+
+    model_Dialog_Box_2 As model_Dialog_Box:
+        btn_close_text: ="Cencle"
+        btn_ok_text: ="Delete"
+        Dialog_Title: ="Confirmation !"
+        DialogMsg: ="You want to delete this task ?"
+        Visible: =task_popUp
+        X: =438
+        Y: =249
+        ZIndex: =7
+
+    Button6 As button:
+        BorderThickness: =0
+        Fill: =theme.darkFont  
+        FocusedBorderThickness: =0
+        Height: =32
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        OnSelect: |-
+            =Remove('Task Tracker', gal_tasks.Selected);UpdateContext({task_popUp: false})
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        RadiusBottomLeft: =2
+        RadiusBottomRight: =2
+        RadiusTopLeft: =2
+        RadiusTopRight: =2
+        Size: =12
+        Text: ="Delete"
+        Visible: =task_popUp
+        Width: =100
+        X: =717
+        Y: =501
+        ZIndex: =8
+
+    Button6_1 As button:
+        BorderThickness: =0
+        Color: =theme.darkFont
+        Fill: =ColorFade(theme.darkFont ,.6 )
+        FocusedBorderThickness: =0
+        Height: =32
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        OnSelect: |-
+            =UpdateContext({task_popUp: false})
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        RadiusBottomLeft: =2
+        RadiusBottomRight: =2
+        RadiusTopLeft: =2
+        RadiusTopRight: =2
+        Size: =12
+        Text: ="Cencle"
+        Visible: =task_popUp
+        Width: =100
+        X: =600
+        Y: =501
+        ZIndex: =9
+
