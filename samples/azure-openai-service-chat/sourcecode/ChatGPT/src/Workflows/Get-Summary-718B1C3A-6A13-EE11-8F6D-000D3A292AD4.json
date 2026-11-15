@@ -1,0 +1,125 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_azureopenaiservice-5f534785e02bede9d0-5fae562e10a2de687a": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "ppchal_sharedazureopenaiservice5f534785e02bede9d05fae562e10a2de687a_7cd22"
+        },
+        "api": {
+          "name": "shared_azureopenaiservice-5f534785e02bede9d0-5fae562e10a2de687a",
+          "logicalName": "ppchal_azureopenaiservice"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Azure OpenAI Service Deployment ID (ppchal_AzureOpenAIServiceDeploymentID)": {
+          "defaultValue": "Challenge019",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ppchal_AzureOpenAIServiceDeploymentID",
+            "description": "This should contain the name of the model you've deployed to your Aszure OpenAI service."
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "c8cfd28b-b821-48ff-8c8c-64d790a49894"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text_2": {
+                  "title": "Message",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Create_a_completion": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6c3e4547-b23d-42c7-918f-683b27299560"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "summary": "@outputs('Create_a_completion')?['body/answer']"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "summary": {
+                  "title": "Summary",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Create_a_completion": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "3a4527b6-810e-4736-9319-cc3027765596"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_azureopenaiservice-5f534785e02bede9d0-5fae562e10a2de687a",
+              "operationId": "CreateCompletion",
+              "apiId": ""
+            },
+            "parameters": {
+              "deployment-id": "@parameters('Azure OpenAI Service Deployment ID (ppchal_AzureOpenAIServiceDeploymentID)')",
+              "api-version": "2022-12-01",
+              "body/prompt": "@triggerBody()['text_2']",
+              "body/initial_scope": "You will receive a question. I do not want you to answer it, but to summarize it in max 4 words. Also leave out any punctuation marks.",
+              "body/max_tokens": 256,
+              "body/temperature": 0.2,
+              "body/top_p": 1,
+              "body/n": 1,
+              "body/echo": false,
+              "body/presence_penalty": 0,
+              "body/frequency_penalty": 0,
+              "body/best_of": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

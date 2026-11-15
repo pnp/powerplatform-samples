@@ -1,0 +1,7 @@
+/* Issue in disabling Calendar Control https://github.com/microsoft/fluentui/issues/19453*/
+
+.PowerCATCalendarDisable {
+    opacity: 0.4;
+    pointer-events: none;
+    filter: alpha(opacity=10);
+}
