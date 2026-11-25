@@ -1,0 +1,114 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_outlook": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "jrd_outlookcom"
+        },
+        "api": {
+          "name": "shared_outlook"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "To",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Recipients, separated by ;",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "Subject",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Email subject",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "Body",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Email body (HTML)",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Send_email": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_outlook",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_outlook"
+            },
+            "parameters": {
+              "emailMessage/To": "@triggerBody()?['text']",
+              "emailMessage/Subject": "@triggerBody()?['text_1']",
+              "emailMessage/Body": "<div style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px\">@{triggerBody()?['text_2']}<p style=\"color:#656d76;font-size:12px\">Sent by Data Issue Desk</p></div>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Respond_to_parent": {
+          "type": "Response",
+          "kind": "PowerApp",
+          "runAfter": {
+            "Send_email": [
+              "Succeeded"
+            ]
+          },
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "sent": "true"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sent": {
+                  "title": "sent",
+                  "type": "string",
+                  "x-ms-dynamically-added": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

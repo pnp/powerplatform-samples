@@ -1,0 +1,97 @@
+[
+  {
+    "name": "pnp-powerplatform-samples-data-issue-desk",
+    "source": "pnp",
+    "title": "Data Issue Desk",
+    "shortDescription": "Report, approve and escalate data quality issues with a responsive canvas app, four solution-aware cloud flows and Dataverse.",
+    "url": "https://github.com/pnp/powerplatform-samples/tree/main/samples/data-issue-desk",
+    "downloadUrl": "https://pnp.github.io/download-partial/?url=https://github.com/pnp/powerplatform-samples/tree/main/samples/data-issue-desk",
+    "longDescription": [
+      "Business users report data quality issues from a responsive canvas app. High and critical issues go through an approval, anyone can escalate an issue from the app, and the data team gets a daily email with the issues that are overdue. Every status change is written to an issue log, and every flow logs its own failures to a Flow error table."
+    ],
+    "creationDateTime": "2026-11-25",
+    "updateDateTime": "2026-11-25",
+    "products": [
+      "Power Apps",
+      "Power Automate",
+      "Power Fx",
+      "Power Platform"
+    ],
+    "tags": [
+      "Dataverse",
+      "Approvals",
+      "Child flow",
+      "Error handling",
+      "Environment variables",
+      "Connection references",
+      "Responsive layout",
+      "Named formulas"
+    ],
+    "categories": [
+      "CANVAS",
+      "CLOUD-FLOW"
+    ],
+    "metadata": [
+      {
+        "key": "POWERAPPS-EXPERIMENTAL",
+        "value": "No"
+      },
+      {
+        "key": "POWERAPPS-PREMIUM",
+        "value": "Yes"
+      },
+      {
+        "key": "POWERAPPS-ONPREM",
+        "value": "No"
+      },
+      {
+        "key": "POWERAPPS-CUSTOMCONNECTOR",
+        "value": "No"
+      }
+    ],
+    "thumbnails": [
+      {
+        "type": "image",
+        "order": 100,
+        "url": "https://github.com/pnp/powerplatform-samples/raw/main/samples/data-issue-desk/assets/preview.png",
+        "alt": "Issue list in the Data Issue Desk canvas app with status tabs, search and status labels"
+      },
+      {
+        "type": "image",
+        "order": 101,
+        "url": "https://github.com/pnp/powerplatform-samples/raw/main/samples/data-issue-desk/assets/app-detail.png",
+        "alt": "Issue detail screen with status, severity, data source, days open and the status history timeline"
+      },
+      {
+        "type": "image",
+        "order": 102,
+        "url": "https://github.com/pnp/powerplatform-samples/raw/main/samples/data-issue-desk/assets/overdue-reminder.png",
+        "alt": "Daily overdue reminder email with an HTML table of open issues"
+      }
+    ],
+    "authors": [
+      {
+        "gitHubAccount": "JordyRdev",
+        "pictureUrl": "https://github.com/JordyRdev.png",
+        "name": "Jordy Roijen"
+      }
+    ],
+    "references": [
+      {
+        "name": "Use environment variables in solutions",
+        "description": "Store configuration such as mailbox addresses and thresholds outside of the flows.",
+        "url": "https://learn.microsoft.com/power-apps/maker/data-platform/environmentvariables"
+      },
+      {
+        "name": "Use a connection reference in a solution",
+        "description": "Let flows in a solution share connections that are set per environment.",
+        "url": "https://learn.microsoft.com/power-apps/maker/data-platform/create-connection-reference"
+      },
+      {
+        "name": "Create child flows",
+        "description": "Reuse logic across flows by calling one flow from another.",
+        "url": "https://learn.microsoft.com/power-automate/create-child-flows"
+      }
+    ]
+  }
+]

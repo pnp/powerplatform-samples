@@ -1,0 +1,232 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "jrd_dataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Data team mailbox (jrd_TeamMailbox)": {
+          "defaultValue": "",
+          "type": "String",
+          "metadata": {
+            "schemaName": "jrd_TeamMailbox",
+            "description": "Where escalations are sent."
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "IssueId",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Row id of the issue",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "Reason",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Why the issue is escalated",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Try": {
+          "type": "Scope",
+          "actions": {
+            "Get_issue": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "jrd_issues",
+                  "recordId": "@triggerBody()?['text']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Log_escalation": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "jrd_issuelogs",
+                  "item/jrd_name": "Escalated",
+                  "item/jrd_fromstatus": "@body('Get_issue')?['jrd_status']",
+                  "item/jrd_tostatus": "@body('Get_issue')?['jrd_status']",
+                  "item/jrd_changedon": "@utcNow()",
+                  "item/jrd_comment": "@triggerBody()?['text_1']",
+                  "item/jrd_IssueId@odata.bind": "jrd_issues(@{triggerBody()?['text']})"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Get_issue": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Notify_data_team": {
+              "type": "Workflow",
+              "inputs": {
+                "host": {
+                  "workflowReferenceName": "7cb0a690-53e3-f111-84e8-70a8a506aceb"
+                },
+                "body": {
+                  "text": "@parameters('Data team mailbox (jrd_TeamMailbox)')",
+                  "text_1": "Escalated: [@{body('Get_issue')?['jrd_severity@OData.Community.Display.V1.FormattedValue']}] @{body('Get_issue')?['jrd_title']}",
+                  "text_2": "<h3>@{body('Get_issue')?['jrd_title']}</h3><p><b>Reason:</b> @{triggerBody()?['text_1']}</p><p><b>Data source:</b> @{body('Get_issue')?['_jrd_datasourceid_value@OData.Community.Display.V1.FormattedValue']}<br><b>Severity:</b> @{body('Get_issue')?['jrd_severity@OData.Community.Display.V1.FormattedValue']}<br><b>Status:</b> @{body('Get_issue')?['jrd_status@OData.Community.Display.V1.FormattedValue']}<br><b>Reported by:</b> @{body('Get_issue')?['jrd_reportedby']}</p><p>@{coalesce(body('Get_issue')?['jrd_description'], '')}</p>"
+                }
+              },
+              "runAfter": {
+                "Log_escalation": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Respond_to_app": {
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "result": "Escalated"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "title": "result",
+                      "type": "string",
+                      "x-ms-dynamically-added": true
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Notify_data_team": [
+                  "Succeeded"
+                ]
+              }
+            }
+          }
+        },
+        "Catch": {
+          "type": "Scope",
+          "runAfter": {
+            "Try": [
+              "Failed",
+              "TimedOut"
+            ]
+          },
+          "actions": {
+            "Log_flow_error": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "jrd_flowerrors",
+                  "item/jrd_name": "@{workflow()?['tags']?['flowDisplayName']}",
+                  "item/jrd_runurl": "https://make.powerautomate.com/environments/@{workflow()?['tags']?['environmentName']}/flows/@{workflow()?['name']}/runs/@{workflow()?['run']?['name']}",
+                  "item/jrd_error": "@{take(string(result('Try')), 3900)}",
+                  "item/jrd_occurredon": "@utcNow()"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Respond_failure": {
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "result": "Failed"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "title": "result",
+                      "type": "string",
+                      "x-ms-dynamically-added": true
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Log_flow_error": [
+                  "Succeeded",
+                  "Failed"
+                ]
+              }
+            },
+            "Fail_the_run": {
+              "type": "Terminate",
+              "runAfter": {
+                "Respond_failure": [
+                  "Succeeded",
+                  "Failed"
+                ]
+              },
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "FlowFailed",
+                  "message": "Logged to the Flow errors table."
+                }
+              }
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

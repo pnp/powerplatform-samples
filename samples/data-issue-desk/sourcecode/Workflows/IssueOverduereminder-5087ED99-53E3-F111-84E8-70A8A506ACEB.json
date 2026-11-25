@@ -1,0 +1,198 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "jrd_dataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Data team mailbox (jrd_TeamMailbox)": {
+          "defaultValue": "",
+          "type": "String",
+          "metadata": {
+            "schemaName": "jrd_TeamMailbox",
+            "description": "Where escalations are sent."
+          }
+        },
+        "Overdue after (days) (jrd_OverdueDays)": {
+          "defaultValue": 5,
+          "type": "Int",
+          "metadata": {
+            "schemaName": "jrd_OverdueDays",
+            "description": "Open issues older than this get a reminder."
+          }
+        }
+      },
+      "triggers": {
+        "Every_morning": {
+          "type": "Recurrence",
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "timeZone": "W. Europe Standard Time",
+            "schedule": {
+              "hours": [
+                "7"
+              ],
+              "minutes": [
+                0
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Try": {
+          "type": "Scope",
+          "actions": {
+            "List_overdue_issues": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "jrd_issues",
+                  "$select": "jrd_title,jrd_severity,jrd_status,jrd_reportedon,_jrd_datasourceid_value",
+                  "$filter": "jrd_status ne 648000003 and jrd_status ne 648000004 and jrd_reportedon lt @{addDays(utcNow(), mul(-1, parameters('Overdue after (days) (jrd_OverdueDays)')))}",
+                  "$orderby": "jrd_reportedon asc"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Any_overdue": {
+              "type": "If",
+              "runAfter": {
+                "List_overdue_issues": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "and": [
+                  {
+                    "greater": [
+                      "@length(outputs('List_overdue_issues')?['body/value'])",
+                      0
+                    ]
+                  }
+                ]
+              },
+              "actions": {
+                "Shape_rows": {
+                  "type": "Select",
+                  "inputs": {
+                    "from": "@outputs('List_overdue_issues')?['body/value']",
+                    "select": {
+                      "Issue": "@item()?['jrd_title']",
+                      "Data source": "@item()?['_jrd_datasourceid_value@OData.Community.Display.V1.FormattedValue']",
+                      "Severity": "@item()?['jrd_severity@OData.Community.Display.V1.FormattedValue']",
+                      "Status": "@item()?['jrd_status@OData.Community.Display.V1.FormattedValue']",
+                      "Days open": "@div(sub(ticks(utcNow()), ticks(item()?['jrd_reportedon'])), 864000000000)"
+                    }
+                  }
+                },
+                "Build_table": {
+                  "type": "Table",
+                  "runAfter": {
+                    "Shape_rows": [
+                      "Succeeded"
+                    ]
+                  },
+                  "inputs": {
+                    "from": "@body('Shape_rows')",
+                    "format": "HTML"
+                  }
+                },
+                "Send_reminder": {
+                  "type": "Workflow",
+                  "inputs": {
+                    "host": {
+                      "workflowReferenceName": "7cb0a690-53e3-f111-84e8-70a8a506aceb"
+                    },
+                    "body": {
+                      "text": "@parameters('Data team mailbox (jrd_TeamMailbox)')",
+                      "text_1": "@{length(outputs('List_overdue_issues')?['body/value'])} data issues open longer than @{parameters('Overdue after (days) (jrd_OverdueDays)')} days",
+                      "text_2": "<p>These issues are still open:</p>@{replace(body('Build_table'), '<table>', '<table border=\"1\" cellpadding=\"6\" style=\"border-collapse:collapse\">')}"
+                    }
+                  },
+                  "runAfter": {
+                    "Build_table": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Catch": {
+          "type": "Scope",
+          "runAfter": {
+            "Try": [
+              "Failed",
+              "TimedOut"
+            ]
+          },
+          "actions": {
+            "Log_flow_error": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "jrd_flowerrors",
+                  "item/jrd_name": "@{workflow()?['tags']?['flowDisplayName']}",
+                  "item/jrd_runurl": "https://make.powerautomate.com/environments/@{workflow()?['tags']?['environmentName']}/flows/@{workflow()?['name']}/runs/@{workflow()?['run']?['name']}",
+                  "item/jrd_error": "@{take(string(result('Try')), 3900)}",
+                  "item/jrd_occurredon": "@utcNow()"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Fail_the_run": {
+              "type": "Terminate",
+              "runAfter": {
+                "Log_flow_error": [
+                  "Succeeded",
+                  "Failed"
+                ]
+              },
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "FlowFailed",
+                  "message": "Logged to the Flow errors table."
+                }
+              }
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

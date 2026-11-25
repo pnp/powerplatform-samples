@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>jrd_reportadataissue_9e5cd</Name>
+  <AppVersion>2026-11-18T19:34:40Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.26112.10.0</CreatedByClientVersion>
+  <MinClientVersion>3.26112.10.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1535","primaryDeviceHeight":"592","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","showStatusBar":"false","publisherVersion":"3.26112.10","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","m365CopilotSettingValue":"0","sienaVersion":"20261118T115106Z-3.26112.10.0"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+  <DisplayName>Report a Data Issue</DisplayName>
+  <Description xsi:nil="true"></Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher xsi:nil="true"></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{"0cfaed09-6c9e-4e84-9cda-3c401cd5665b":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logicastroom","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1766/1.0.1766.4325/logicflows/icon.png","dataSources":["Issue|Escalate"],"dependencies":["7e799ee1-1d00-4fdf-89f1-fce006fa18d6"],"dependents":[],"parameterHints":{"workflowName":{"value":"01cec40b-46e3-4447-9437-0d80cfc631c1"},"workflowEntityId":{"value":"4087ed99-53e3-f111-84e8-70a8a506aceb"},"workflowDisplayName":{"value":"Issue | Escalate"},"7e799ee1-1d00-4fdf-89f1-fce006fa18d6":{"value":"shared_commondataserviceforapps"}},"parameterHintsV2":{"workflowName":{"value":"01cec40b-46e3-4447-9437-0d80cfc631c1"},"workflowEntityId":{"value":"4087ed99-53e3-f111-84e8-70a8a506aceb"},"workflowDisplayName":{"value":"Issue | Escalate"},"shared_commondataserviceforapps":{"value":"7e799ee1-1d00-4fdf-89f1-fce006fa18d6"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"7e799ee1-1d00-4fdf-89f1-fce006fa18d6":{"id":"/providers/microsoft.powerapps/apis/shared_commondataserviceforapps","displayName":"Microsoft Dataverse","iconUri":"https://static.powerapps.com/resource/ppcr/releases/v1.0.1835/1.0.1835.5113/commondataserviceforapps/icon.png","dataSources":[],"dependencies":[],"dependents":["0cfaed09-6c9e-4e84-9cda-3c401cd5665b"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Premium","authenticationType":"Oauth"}}</ConnectionReferences>
+  <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified","environmentVariableName":""}},"dataSources":{"Issues":{"entitySetName":"jrd_issues","logicalName":"jrd_issue"},"Data sources":{"entitySetName":"jrd_datasources","logicalName":"jrd_datasource"},"Issue logs":{"entitySetName":"jrd_issuelogs","logicalName":"jrd_issuelog"}}}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>0</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"dependencyid":"4087ed99-53e3-f111-84e8-70a8a506aceb","componenttype":29,"componenttypeplatformname":"Workflow"},{"logicalname":"jrd_issue","componenttype":1},{"logicalname":"jrd_datasource","componenttype":1},{"logicalname":"jrd_issuelog","componenttype":1}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/jrd_reportadataissue_9e5cd_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/jrd_reportadataissue_9e5cd_DocumentUri.msapp</DocumentUri>
+  <AdditionalUris>
+    <AdditionalUri>/CanvasApps/jrd_reportadataissue_9e5cd_AdditionalUris0_identity.json</AdditionalUri>
+  </AdditionalUris>
+</CanvasApp>
