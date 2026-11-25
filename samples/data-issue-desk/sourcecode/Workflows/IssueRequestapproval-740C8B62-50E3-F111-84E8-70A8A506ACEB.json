@@ -1,0 +1,251 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "jrd_dataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_approvals": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "jrd_approvals"
+        },
+        "api": {
+          "name": "shared_approvals"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Approver email (jrd_ApproverEmail)": {
+          "defaultValue": "",
+          "type": "String",
+          "metadata": {
+            "schemaName": "jrd_ApproverEmail",
+            "description": "Who approves high and critical issues."
+          }
+        }
+      },
+      "triggers": {
+        "When_a_high_or_critical_issue_is_reported": {
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "jrd_issue",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filterexpression": "jrd_severity ge 648000002"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Try": {
+          "type": "Scope",
+          "actions": {
+            "Get_data_source": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "jrd_datasources",
+                  "recordId": "@triggerOutputs()?['body/_jrd_datasourceid_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Set_status_awaiting_approval": {
+              "type": "OpenApiConnection",
+              "runAfter": {
+                "Get_data_source": [
+                  "Succeeded"
+                ]
+              },
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "jrd_issues",
+                  "recordId": "@triggerOutputs()?['body/jrd_issueid']",
+                  "item/jrd_status": 648000001
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Log_approval_requested": {
+              "type": "OpenApiConnection",
+              "runAfter": {
+                "Set_status_awaiting_approval": [
+                  "Succeeded"
+                ]
+              },
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "jrd_issuelogs",
+                  "item/jrd_name": "New -> Awaiting approval",
+                  "item/jrd_fromstatus": 648000000,
+                  "item/jrd_tostatus": 648000001,
+                  "item/jrd_changedon": "@utcNow()",
+                  "item/jrd_comment": "Approval requested from @{parameters('Approver email (jrd_ApproverEmail)')}",
+                  "item/jrd_IssueId@odata.bind": "jrd_issues(@{triggerOutputs()?['body/jrd_issueid']})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Start_and_wait_for_approval": {
+              "type": "OpenApiConnectionWebhook",
+              "runAfter": {
+                "Log_approval_requested": [
+                  "Succeeded"
+                ]
+              },
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_approvals",
+                  "operationId": "StartAndWaitForAnApproval",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_approvals"
+                },
+                "parameters": {
+                  "approvalType": "Basic",
+                  "WebhookApprovalCreationInput/title": "[@{triggerOutputs()?['body/_jrd_severity_label']}] @{triggerOutputs()?['body/jrd_title']}",
+                  "WebhookApprovalCreationInput/assignedTo": "@parameters('Approver email (jrd_ApproverEmail)')",
+                  "WebhookApprovalCreationInput/details": "**Data source:** @{body('Get_data_source')?['jrd_name']} (owner: @{body('Get_data_source')?['jrd_owneremail']})\n\n**Reported by:** @{triggerOutputs()?['body/jrd_reportedby']}\n\n**Description:** @{coalesce(triggerOutputs()?['body/jrd_description'], '-')}\n\n**Impact:** @{coalesce(triggerOutputs()?['body/jrd_impact'], '-')}\n\nApprove to plan a fix, reject if this is not a data issue.",
+                  "WebhookApprovalCreationInput/enableNotifications": true,
+                  "WebhookApprovalCreationInput/enableReassignment": true
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Set_status_from_outcome": {
+              "type": "OpenApiConnection",
+              "runAfter": {
+                "Start_and_wait_for_approval": [
+                  "Succeeded"
+                ]
+              },
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "jrd_issues",
+                  "recordId": "@triggerOutputs()?['body/jrd_issueid']",
+                  "item/jrd_status": "@if(equals(body('Start_and_wait_for_approval')?['outcome'], 'Approve'), 648000002, 648000003)"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Log_approval_outcome": {
+              "type": "OpenApiConnection",
+              "runAfter": {
+                "Set_status_from_outcome": [
+                  "Succeeded"
+                ]
+              },
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "jrd_issuelogs",
+                  "item/jrd_name": "Awaiting approval -> @{if(equals(body('Start_and_wait_for_approval')?['outcome'], 'Approve'), 'Approved', 'Rejected')}",
+                  "item/jrd_fromstatus": 648000001,
+                  "item/jrd_tostatus": "@if(equals(body('Start_and_wait_for_approval')?['outcome'], 'Approve'), 648000002, 648000003)",
+                  "item/jrd_changedon": "@utcNow()",
+                  "item/jrd_comment": "@{first(body('Start_and_wait_for_approval')?['responses'])?['responder']?['displayName']}: @{coalesce(first(body('Start_and_wait_for_approval')?['responses'])?['comments'], 'no comment')}",
+                  "item/jrd_IssueId@odata.bind": "jrd_issues(@{triggerOutputs()?['body/jrd_issueid']})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          }
+        },
+        "Catch": {
+          "type": "Scope",
+          "runAfter": {
+            "Try": [
+              "Failed",
+              "TimedOut"
+            ]
+          },
+          "actions": {
+            "Log_flow_error": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "jrd_flowerrors",
+                  "item/jrd_name": "@{workflow()?['tags']?['flowDisplayName']}",
+                  "item/jrd_runurl": "https://make.powerautomate.com/environments/@{workflow()?['tags']?['environmentName']}/flows/@{workflow()?['name']}/runs/@{workflow()?['run']?['name']}",
+                  "item/jrd_error": "@{take(string(result('Try')), 3900)}",
+                  "item/jrd_occurredon": "@utcNow()"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Fail_the_run": {
+              "type": "Terminate",
+              "runAfter": {
+                "Log_flow_error": [
+                  "Succeeded",
+                  "Failed"
+                ]
+              },
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "IssueApprovalFailed",
+                  "message": "Logged to the Flow errors table."
+                }
+              }
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
